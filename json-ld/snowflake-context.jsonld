@@ -1,0 +1,234 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "snowflake": "https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dc": "http://purl.org/dc/terms/",
+    "Warehouse": {
+      "@id": "snowflake:warehouse",
+      "@context": {
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "warehouse_type": {
+          "@id": "snowflake:warehouse#warehouse_type",
+          "@type": "xsd:string"
+        },
+        "warehouse_size": {
+          "@id": "snowflake:warehouse#warehouse_size",
+          "@type": "xsd:string"
+        },
+        "max_cluster_count": {
+          "@id": "snowflake:warehouse#max_cluster_count",
+          "@type": "xsd:integer"
+        },
+        "min_cluster_count": {
+          "@id": "snowflake:warehouse#min_cluster_count",
+          "@type": "xsd:integer"
+        },
+        "scaling_policy": {
+          "@id": "snowflake:warehouse#scaling_policy",
+          "@type": "xsd:string"
+        },
+        "auto_suspend": {
+          "@id": "snowflake:warehouse#auto_suspend",
+          "@type": "xsd:integer"
+        },
+        "auto_resume": {
+          "@id": "snowflake:warehouse#auto_resume",
+          "@type": "xsd:string"
+        },
+        "resource_monitor": {
+          "@id": "snowflake:warehouse#resource_monitor",
+          "@type": "xsd:string"
+        },
+        "comment": {
+          "@id": "rdfs:comment",
+          "@type": "xsd:string"
+        },
+        "state": {
+          "@id": "snowflake:warehouse#state",
+          "@type": "xsd:string"
+        },
+        "owner": {
+          "@id": "schema:owner",
+          "@type": "xsd:string"
+        },
+        "created_on": {
+          "@id": "dc:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_on": {
+          "@id": "dc:modified",
+          "@type": "xsd:dateTime"
+        },
+        "resumed_on": {
+          "@id": "snowflake:warehouse#resumed_on",
+          "@type": "xsd:dateTime"
+        },
+        "enable_query_acceleration": {
+          "@id": "snowflake:warehouse#enable_query_acceleration",
+          "@type": "xsd:string"
+        },
+        "query_acceleration_max_scale_factor": {
+          "@id": "snowflake:warehouse#query_acceleration_max_scale_factor",
+          "@type": "xsd:integer"
+        },
+        "max_concurrency_level": {
+          "@id": "snowflake:warehouse#max_concurrency_level",
+          "@type": "xsd:integer"
+        },
+        "statement_queued_timeout_in_seconds": {
+          "@id": "snowflake:warehouse#statement_queued_timeout_in_seconds",
+          "@type": "xsd:integer"
+        },
+        "statement_timeout_in_seconds": {
+          "@id": "snowflake:warehouse#statement_timeout_in_seconds",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+    "Database": {
+      "@id": "snowflake:database",
+      "@context": {
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "kind": {
+          "@id": "snowflake:database#kind",
+          "@type": "xsd:string"
+        },
+        "comment": {
+          "@id": "rdfs:comment",
+          "@type": "xsd:string"
+        },
+        "data_retention_time_in_days": {
+          "@id": "snowflake:database#data_retention_time_in_days",
+          "@type": "xsd:integer"
+        },
+        "default_ddl_collation": {
+          "@id": "snowflake:database#default_ddl_collation",
+          "@type": "xsd:string"
+        },
+        "log_level": {
+          "@id": "snowflake:database#log_level",
+          "@type": "xsd:string"
+        },
+        "trace_level": {
+          "@id": "snowflake:database#trace_level",
+          "@type": "xsd:string"
+        },
+        "max_data_extension_time_in_days": {
+          "@id": "snowflake:database#max_data_extension_time_in_days",
+          "@type": "xsd:integer"
+        },
+        "owner": {
+          "@id": "schema:owner",
+          "@type": "xsd:string"
+        },
+        "owner_role_type": {
+          "@id": "snowflake:database#owner_role_type",
+          "@type": "xsd:string"
+        },
+        "created_on": {
+          "@id": "dc:created",
+          "@type": "xsd:dateTime"
+        },
+        "dropped_on": {
+          "@id": "snowflake:database#dropped_on",
+          "@type": "xsd:dateTime"
+        },
+        "is_default": {
+          "@id": "snowflake:database#is_default",
+          "@type": "xsd:boolean"
+        },
+        "is_current": {
+          "@id": "snowflake:database#is_current",
+          "@type": "xsd:boolean"
+        },
+        "origin": {
+          "@id": "snowflake:database#origin",
+          "@type": "xsd:string"
+        },
+        "retention_time": {
+          "@id": "snowflake:database#retention_time",
+          "@type": "xsd:integer"
+        },
+        "budget": {
+          "@id": "snowflake:database#budget",
+          "@type": "xsd:string"
+        }
+      }
+    },
+    "Statement": {
+      "@id": "snowflake:sql-api",
+      "@context": {
+        "statement": {
+          "@id": "snowflake:sql-api#statement",
+          "@type": "xsd:string"
+        },
+        "timeout": {
+          "@id": "snowflake:sql-api#timeout",
+          "@type": "xsd:integer"
+        },
+        "database": {
+          "@id": "snowflake:sql-api#database",
+          "@type": "xsd:string"
+        },
+        "schema_name": {
+          "@id": "snowflake:sql-api#schema",
+          "@type": "xsd:string"
+        },
+        "warehouse": {
+          "@id": "snowflake:sql-api#warehouse",
+          "@type": "xsd:string"
+        },
+        "role": {
+          "@id": "snowflake:sql-api#role",
+          "@type": "xsd:string"
+        },
+        "statementHandle": {
+          "@id": "snowflake:sql-api#statementHandle",
+          "@type": "xsd:string"
+        },
+        "statementStatusUrl": {
+          "@id": "snowflake:sql-api#statementStatusUrl",
+          "@type": "@id"
+        },
+        "createdOn": {
+          "@id": "dc:created",
+          "@type": "xsd:long"
+        }
+      }
+    },
+    "ResultSet": {
+      "@id": "snowflake:sql-api#ResultSet",
+      "@context": {
+        "code": {
+          "@id": "snowflake:sql-api#code",
+          "@type": "xsd:string"
+        },
+        "sqlState": {
+          "@id": "snowflake:sql-api#sqlState",
+          "@type": "xsd:string"
+        },
+        "message": {
+          "@id": "snowflake:sql-api#message",
+          "@type": "xsd:string"
+        },
+        "numRows": {
+          "@id": "snowflake:sql-api#numRows",
+          "@type": "xsd:integer"
+        },
+        "data": {
+          "@id": "snowflake:sql-api#data",
+          "@container": "@list"
+        }
+      }
+    }
+  }
+}
