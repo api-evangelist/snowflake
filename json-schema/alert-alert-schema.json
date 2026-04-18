@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Alert",
+  "type": "object",
+  "description": "A Snowflake alert",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the alert"
+    },
+    "comment": {
+      "type": "string",
+      "description": "user comment associated to an object in the dictionary"
+    },
+    "warehouse": {
+      "type": "string",
+      "description": "The warehouse the alert runs in"
+    },
+    "condition": {
+      "type": "string",
+      "description": "The SQL statement that must be evaluated to determine whether to trigger the alert"
+    },
+    "action": {
+      "type": "string",
+      "description": "The SQL statement to execute when the alert is triggered"
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the alert was created."
+    },
+    "database_name": {
+      "type": "string",
+      "description": "Database in which the alert is stored"
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "Schema in which the alert is stored"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Role that owns the alert"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "The type of role that owns the alert"
+    },
+    "state": {
+      "type": "string",
+      "description": "The current state of the alert"
+    }
+  }
+}

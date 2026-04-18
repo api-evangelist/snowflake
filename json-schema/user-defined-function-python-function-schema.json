@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PythonFunction",
+  "type": "object",
+  "properties": {
+    "external_access_integrations": {
+      "type": "array",
+      "description": "List of external access integrations attached to this function/procedure"
+    },
+    "secrets": {
+      "type": "object",
+      "description": "Secrets to be used with this function/procedure for external access"
+    },
+    "runtime_version": {
+      "type": "string",
+      "description": "Specifies the Python version to use. The supported versions of Python are:\n                        * 3.8\n                        * 3.9\n                        * 3.10\n                        * 3.11"
+    }
+  }
+}

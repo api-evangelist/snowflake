@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Glue",
+  "type": "object",
+  "properties": {
+    "glue_aws_role_arn": {
+      "type": "string",
+      "description": "ARN for AWS role to assume"
+    },
+    "glue_catalog_id": {
+      "type": "string",
+      "description": "Glue catalog id"
+    },
+    "glue_region": {
+      "type": "string",
+      "description": "AWS region of the Glue catalog. Must be specified if the Snowflake account is not hosted on AWS."
+    },
+    "catalog_namespace": {
+      "type": "string",
+      "description": "default AWS Glue catalog namespace for all Iceberg table that use this catalog integration"
+    }
+  }
+}

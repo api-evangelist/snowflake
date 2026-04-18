@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QueryRequest",
+  "type": "object",
+  "description": "A search query and additional parameters for search.",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "Unstructured text query.  Exactly one of 'query' or 'multi_index_query' must be specified."
+    },
+    "multi_index_query": {
+      "type": "object",
+      "description": "A search query expressed as a collection of multiple column-level queries.  Exactly one of 'query' or 'multi_index_query' must be specified. A column/index can be queried with multiple queries."
+    },
+    "columns": {
+      "type": "array",
+      "description": "List of columns to return."
+    },
+    "filter": {
+      "type": "object",
+      "description": "Filter query."
+    },
+    "limit": {
+      "type": "integer",
+      "description": "Max number of results to return."
+    },
+    "experimental": {
+      "type": "object",
+      "description": "reserved"
+    }
+  }
+}

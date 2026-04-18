@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ComputePool",
+  "type": "object",
+  "description": "A Snowflake compute pool definition.",
+  "properties": {
+    "min_nodes": {
+      "type": "integer",
+      "description": "Minimum number of nodes for the compute pool."
+    },
+    "max_nodes": {
+      "type": "integer",
+      "description": "Maximum number of nodes for the compute pool."
+    },
+    "instance_family": {
+      "type": "string",
+      "description": "Instance family for the compute pool."
+    },
+    "auto_resume": {
+      "type": "boolean",
+      "description": "Whether Snowflake automatically resumes the compute pool when any statement that requires the compute pool is submitted."
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment describing the compute pool."
+    },
+    "state": {
+      "type": "string",
+      "description": "Current state of the compute pool. Possible values include UNKNOWN, STARTING, IDLE, ACTIVE, STOPPING, SUSPENDED, and RESIZING."
+    },
+    "num_services": {
+      "type": "integer",
+      "description": "Number of services on the compute pool."
+    },
+    "num_jobs": {
+      "type": "integer",
+      "description": "Number of jobs on the compute pool."
+    },
+    "auto_suspend_secs": {
+      "type": "integer",
+      "description": "Number of seconds until the compute pool automatically suspends."
+    },
+    "active_nodes": {
+      "type": "integer",
+      "description": "Number of currently active nodes on the compute pool."
+    },
+    "idle_nodes": {
+      "type": "integer",
+      "description": "Number of currently idle nodes on the compute pool."
+    },
+    "target_nodes": {
+      "type": "integer",
+      "description": "Number of target nodes on the compute pool."
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Time the compute pool was created."
+    },
+    "resumed_on": {
+      "type": "string",
+      "description": "Time the compute pool was last resumed."
+    },
+    "updated_on": {
+      "type": "string",
+      "description": "Time the compute pool was last updated."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Identifier for the current owner of the compute pool."
+    },
+    "is_exclusive": {
+      "type": "boolean",
+      "description": "Whether a compute pool is created exclusively for a Snowflake Native App."
+    },
+    "application": {
+      "type": "string",
+      "description": "Name of the Snowflake Native App if the compute pool is created exclusively for the app."
+    },
+    "budget": {
+      "type": "string",
+      "description": "The name of the budget monitoring the credit usage of the compute pool."
+    },
+    "error_code": {
+      "type": "string",
+      "description": "Current error the compute pool hit if any."
+    },
+    "status_message": {
+      "type": "string",
+      "description": "Current status of the compute pool if any."
+    }
+  }
+}

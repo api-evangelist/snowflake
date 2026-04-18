@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CatalogIntegration",
+  "type": "object",
+  "description": "Catalog integration",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the catalog integration."
+    },
+    "table_format": {
+      "type": "string",
+      "description": "Table format of the catalog."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "whether this catalog integration is available to use for Iceberg tables. "
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment."
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of the integration. Always CATALOG."
+    },
+    "category": {
+      "type": "string",
+      "description": "Category of the integration. Always CATALOG."
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the catalog integration was created."
+    }
+  }
+}

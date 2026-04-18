@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ServiceInstance",
+  "type": "object",
+  "properties": {
+    "service_status": {
+      "type": "string",
+      "description": "The current status of the service."
+    },
+    "instance_id": {
+      "type": "string",
+      "description": "ID of the service instance (this is the index of the service instance starting from 0)."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the service instance."
+    },
+    "spec_digest": {
+      "type": "string",
+      "description": "The unique and immutable identifier that represents the service specification content."
+    },
+    "creation_time": {
+      "type": "string",
+      "description": "The time when Snowflake started creating the service instance."
+    },
+    "start_time": {
+      "type": "string",
+      "description": "The time when Snowflake acknowledged the service instance is running on a node."
+    }
+  }
+}

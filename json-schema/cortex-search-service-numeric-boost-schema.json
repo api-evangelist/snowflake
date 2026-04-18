@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NumericBoost",
+  "type": "object",
+  "properties": {
+    "weight": {
+      "type": "number",
+      "description": "Weight to apply for boosting this numerical column. It will be normalized across all scored columns specified in the scoring config so that all weights sum to 1. If a weight is not provided, the weight defaults to 1 pre-normalization."
+    }
+  }
+}

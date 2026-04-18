@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FunctionLanguage",
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "description": "Language that the function/procedure is written in. Possible values include: JAVA, JAVASCRIPT, PYTHON, SCALA, SQL"
+    },
+    "called_on_null_input": {
+      "type": "boolean",
+      "description": "Decide if the function/procedure can receive null input"
+    },
+    "is_volatile": {
+      "type": "boolean",
+      "description": " Specifies the behavior of the UDF when returning results. This Field is deprecated for Procedure.\n            \n            If true, UDF might return different values for different rows, even for the same input. \n            This field is deprecated for Procedure.\n\n            If false, UDF assumes that the function, when called with the same inputs, will always return the same result. \n            This guarantee is not checked. Specifying IMMUTABLE for a UDF that returns different values for the same input will result in undefined behavior.\n        "
+    }
+  }
+}

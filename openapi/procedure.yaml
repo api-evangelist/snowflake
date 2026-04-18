@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Procedure API
-  description: The Snowflake Procedure API is a REST API that you can use to access,
-    update, and perform certain actions on Procedure resource in a Snowflake database.
+  description: The Snowflake Procedure API is a REST API that you can use to access, update, and perform certain actions on Procedure resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,7 +13,7 @@ info:
 paths:
   /api/v2/databases/{database}/schemas/{schema}/procedures:
     get:
-      summary: List procedures
+      summary: List Procedures
       tags:
       - procedure
       description: List procedures
@@ -37,6 +36,31 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Procedure'
+              examples:
+                Listprocedures200Example:
+                  summary: Default listProcedures 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    execute_as: CALLER
+                    is_secure: true
+                    arguments:
+                    - {}
+                    return_type:
+                      type: example_value
+                    language_config:
+                      language: example_value
+                      called_on_null_input: true
+                    comment: example_value
+                    body: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    schema_name: example_value
+                    database_name: example_value
+                    min_num_arguments: 10
+                    max_num_arguments: 10
+                    owner: example_value
+                    owner_role_type: example_value
+                    is_builtin: true
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -63,8 +87,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create a procedure
+      summary: Create a Procedure
       tags:
       - procedure
       description: Create a procedure
@@ -109,9 +136,39 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Procedure'
+            examples:
+              CreateprocedureRequestExample:
+                summary: Default createProcedure request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  execute_as: CALLER
+                  is_secure: true
+                  arguments:
+                  - name: Example Title
+                    datatype: ARRAY
+                    default_value: example_value
+                  return_type:
+                    type: example_value
+                  language_config:
+                    language: example_value
+                    called_on_null_input: true
+                  comment: example_value
+                  body: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  schema_name: example_value
+                  database_name: example_value
+                  min_num_arguments: 10
+                  max_num_arguments: 10
+                  owner: example_value
+                  owner_role_type: example_value
+                  is_builtin: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}:
     get:
-      summary: Fetch a procedure
+      summary: Fetch a Procedure
       tags:
       - procedure
       description: Fetch a procedure
@@ -132,6 +189,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Procedure'
+              examples:
+                Fetchprocedure200Example:
+                  summary: Default fetchProcedure 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    execute_as: CALLER
+                    is_secure: true
+                    arguments:
+                    - name: Example Title
+                      datatype: ARRAY
+                      default_value: example_value
+                    return_type:
+                      type: example_value
+                    language_config:
+                      language: example_value
+                      called_on_null_input: true
+                    comment: example_value
+                    body: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    schema_name: example_value
+                    database_name: example_value
+                    min_num_arguments: 10
+                    max_num_arguments: 10
+                    owner: example_value
+                    owner_role_type: example_value
+                    is_builtin: true
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -158,8 +242,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Delete a procedure
+      summary: Delete a Procedure
       tags:
       - procedure
       description: Delete a procedure
@@ -198,9 +285,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}:call:
     post:
-      summary: Call a procedure
+      summary: Call a Procedure
       tags:
       - procedure
       description: Call a procedure
@@ -222,6 +312,11 @@ paths:
               schema:
                 type: array
                 items: {}
+              examples:
+                Callprocedure200Example:
+                  summary: Default callProcedure 200 response
+                  x-microcks-default: true
+                  value: []
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -254,6 +349,18 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CallArgumentList'
+            examples:
+              CallprocedureRequestExample:
+                summary: Default callProcedure request
+                x-microcks-default: true
+                value:
+                  call_arguments:
+                  - name: Example Title
+                    datatype: ARRAY
+                    value: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     Procedure:
@@ -264,68 +371,81 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the procedure
+          example: Example Title
         execute_as:
           type: string
           enum:
           - CALLER
           - OWNER
           description: What permissions should the procedure execution be called with
+          example: CALLER
         is_secure:
           type: boolean
           description: Specifies whether the function/procedure is secure or not
+          example: true
         arguments:
           type: array
           items:
             $ref: '#/components/schemas/Argument'
           description: List of arguments for the function/procedure
+          example: []
         return_type:
           $ref: '#/components/schemas/ReturnType'
-          description: Return type of the function/procedure. Should be a SQL data
-            type or a table
+          description: Return type of the function/procedure. Should be a SQL data type or a table
         language_config:
           $ref: '#/components/schemas/FunctionLanguage'
           description: Language that the function/procedure is written in
         comment:
           type: string
           description: Specifies a comment for the function/procedure
+          example: example_value
         body:
           type: string
           description: Function/procedure definition
+          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: The date and time when the function/procedure was created
+          example: '2026-01-15T10:30:00Z'
         schema_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: The name of the schema in which the function/procedure exists.
+          example: example_value
         database_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: The name of the database in which the function/procedure exists.
+          example: example_value
         min_num_arguments:
           type: integer
           readOnly: true
           description: The minimum number of arguments
+          example: 10
         max_num_arguments:
           type: integer
           readOnly: true
           description: The maximum number of arguments
+          example: 10
         owner:
           type: string
           readOnly: true
           description: Role that owns the function/procedure
+          example: example_value
         owner_role_type:
           type: string
           readOnly: true
           description: The type of role that owns the function/procedure
+          example: example_value
         is_builtin:
           type: boolean
           readOnly: true
           description: If the function/procedure is built-in or not (user-defined)
+          example: true
       required:
       - name
       - arguments
@@ -339,6 +459,7 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Argument name
+          example: Example Title
         datatype:
           type: string
           enum:
@@ -414,9 +535,11 @@ components:
           - VARIANT
           - VECTOR
           description: Argument data type
+          example: ARRAY
         default_value:
           type: string
           description: Default value of the argument
+          example: example_value
       required:
       - name
       - datatype
@@ -427,6 +550,7 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Type of the return, can be either DATATYPE or TABLE
+          example: example_value
       required:
       - type
       discriminator:
@@ -513,9 +637,11 @@ components:
           - VARIANT
           - VECTOR
           description: Return data type
+          example: ARRAY
         nullable:
           type: boolean
           description: Argument null return acceptance criteria
+          example: true
       required:
       - datatype
     ReturnTable:
@@ -527,6 +653,7 @@ components:
           items:
             $ref: '#/components/schemas/ColumnType'
           description: List of table columns to return
+          example: []
     ColumnType:
       type: object
       properties:
@@ -534,6 +661,7 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Argument name
+          example: Example Title
         datatype:
           type: string
           enum:
@@ -609,6 +737,7 @@ components:
           - VARIANT
           - VECTOR
           description: Argument data type
+          example: ARRAY
       required:
       - name
       - datatype
@@ -617,11 +746,12 @@ components:
       properties:
         language:
           type: string
-          description: 'Language that the function/procedure is written in. Possible
-            values include: JAVA, JAVASCRIPT, PYTHON, SCALA, SQL'
+          description: 'Language that the function/procedure is written in. Possible values include: JAVA, JAVASCRIPT, PYTHON, SCALA, SQL'
+          example: example_value
         called_on_null_input:
           type: boolean
           description: Decide if the function/procedure can receive null input
+          example: true
       required:
       - language
       discriminator:
@@ -639,19 +769,23 @@ components:
         runtime_version:
           type: string
           description: Runtime version of the function's/procedure's specified language
+          example: example_value
         packages:
           type: array
           items:
             type: string
           description: Packages to include with the function/procedure
+          example: []
         imports:
           type: array
           items:
             type: string
           description: List of imports
+          example: []
         handler:
           type: string
           description: Fully qualified method name including the package and the class
+          example: example_value
       required:
       - runtime_version
       - packages
@@ -665,16 +799,17 @@ components:
           items:
             type: string
           description: List of external access integrations attached to this function/procedure
+          example: []
         secrets:
           type: object
           additionalProperties:
             type: string
-          description: Secrets to be used with this function/procedure for external
-            access
+          description: Secrets to be used with this function/procedure for external access
+          example: example_value
         target_path:
           type: string
-          description: Specifies where Snowflake should write the compiled code for
-            inline procedures
+          description: Specifies where Snowflake should write the compiled code for inline procedures
+          example: example_value
     PythonFunction:
       allOf:
       - $ref: '#/components/schemas/BaseLanguage'
@@ -684,20 +819,21 @@ components:
           items:
             type: string
           description: List of external access integrations attached to this function/procedure
+          example: []
         secrets:
           type: object
           additionalProperties:
             type: string
-          description: Secrets to be used with this function/procedure for external
-            access
+          description: Secrets to be used with this function/procedure for external access
+          example: example_value
     ScalaFunction:
       allOf:
       - $ref: '#/components/schemas/BaseLanguage'
       properties:
         target_path:
           type: string
-          description: Specifies where Snowflake should write the compiled code for
-            inline function/procedures
+          description: Specifies where Snowflake should write the compiled code for inline function/procedures
+          example: example_value
     JavaScriptFunction:
       allOf:
       - $ref: '#/components/schemas/FunctionLanguage'
@@ -712,6 +848,7 @@ components:
           items:
             $ref: '#/components/schemas/CallArgument'
           description: Call Argument list
+          example: []
       required:
       - call_arguments
     CallArgument:
@@ -721,6 +858,7 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the call argument
+          example: Example Title
         datatype:
           type: string
           enum:
@@ -796,8 +934,10 @@ components:
           - VARIANT
           - VECTOR
           description: Call argument data type
+          example: ARRAY
         value:
           description: Value of the call argument
+          example: example_value
       required:
       - name
       - datatype

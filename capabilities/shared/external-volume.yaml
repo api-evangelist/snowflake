@@ -1,0 +1,64 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake External Volume"
+  description: "Access, update, and manage External Volume resources in Snowflake."
+  tags:
+    - Snowflake
+    - External Volumes
+    - Storage
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-external-volume
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake External Volume API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: external-volumes
+          path: /api/v2/external-volumes
+          description: "External volume resources"
+          operations:
+            - name: list-external-volumes
+              method: GET
+              description: "List external volumes"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-external-volume
+              method: POST
+              description: "Create an external volume"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: fetch-external-volume
+              method: GET
+              description: "Fetch an external volume by name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-external-volume
+              method: DELETE
+              description: "Delete an external volume"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

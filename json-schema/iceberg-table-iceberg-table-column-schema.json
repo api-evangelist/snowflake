@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IcebergTableColumn",
+  "type": "object",
+  "description": "A column in the snowflake catalog iceberg table",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Column name"
+    },
+    "datatype": {
+      "type": "string",
+      "description": "The data type for the column"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the column"
+    },
+    "nullable": {
+      "type": "boolean",
+      "description": "Argument null return acceptance criteria"
+    },
+    "default_value": {
+      "type": "string",
+      "description": "Default value for the column"
+    }
+  }
+}

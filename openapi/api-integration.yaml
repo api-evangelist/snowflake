@@ -5,9 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake API Integration API
-  description: The Snowflake API Integration API is a REST API that you can use to
-    access, update, and perform certain actions on API Integration resource in a Snowflake
-    database.
+  description: The Snowflake API Integration API is a REST API that you can use to access, update, and perform certain actions on API Integration resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -15,7 +13,7 @@ info:
 paths:
   /api/v2/api-integrations:
     get:
-      summary: List API integrations
+      summary: List Api Integrations
       tags:
       - api-integration
       description: List API integrations
@@ -36,6 +34,21 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ApiIntegration'
+              examples:
+                Listapiintegrations200Example:
+                  summary: Default listAPIIntegrations 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    api_hook:
+                      type: AWS
+                    api_allowed_prefixes:
+                    - example_value
+                    api_blocked_prefixes:
+                    - example_value
+                    enabled: true
+                    comment: example_value
+                    created_on: '2026-01-15T10:30:00Z'
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -62,8 +75,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create an API integration
+      summary: Create an Api Integration
       tags:
       - api-integration
       description: Create an API integration
@@ -105,9 +121,27 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ApiIntegration'
+            examples:
+              CreateapiintegrationRequestExample:
+                summary: Default createAPIIntegration request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  api_hook:
+                    type: AWS
+                  api_allowed_prefixes:
+                  - example_value
+                  api_blocked_prefixes:
+                  - example_value
+                  enabled: true
+                  comment: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/api-integrations/{name}:
     get:
-      summary: Fetch an API integration
+      summary: Fetch an Api Integration
       tags:
       - api-integration
       description: Fetch an API integration
@@ -126,6 +160,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiIntegration'
+              examples:
+                Fetchapiintegration200Example:
+                  summary: Default fetchAPIIntegration 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    api_hook:
+                      type: AWS
+                    api_allowed_prefixes:
+                    - example_value
+                    api_blocked_prefixes:
+                    - example_value
+                    enabled: true
+                    comment: example_value
+                    created_on: '2026-01-15T10:30:00Z'
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -152,13 +201,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
-      summary: Create an (or alter an existing) API integration
+      summary: Create an (or Alter an Existing) Api Integration
       tags:
       - api-integration
-      description: Create an (or alter an existing) API integration. Note that API_KEY
-        is not currently altered by this operation and is supported for a newly-created
-        object only. Unsetting API_BLOCKED_PREFIXES is also unsupported.
+      description: Create an (or alter an existing) API integration. Note that API_KEY is not currently altered by this operation and is supported for a newly-created object only. Unsetting 
+        API_BLOCKED_PREFIXES is also unsupported.
       operationId: createOrAlterAPIIntegration
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -189,8 +240,26 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ApiIntegration'
+            examples:
+              CreateoralterapiintegrationRequestExample:
+                summary: Default createOrAlterAPIIntegration request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  api_hook:
+                    type: AWS
+                  api_allowed_prefixes:
+                  - example_value
+                  api_blocked_prefixes:
+                  - example_value
+                  enabled: true
+                  comment: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Delete an API integration
+      summary: Delete an Api Integration
       tags:
       - api-integration
       description: Delete an API integration
@@ -227,6 +296,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     ApiIntegration:
@@ -237,33 +309,37 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the API integration.
+          example: Example Title
         api_hook:
           $ref: '#/components/schemas/ApiHook'
         api_allowed_prefixes:
           type: array
           items:
             type: string
-          description: A comma-separated list of endpoints and resources that Snowflake
-            can access.
+          description: A comma-separated list of endpoints and resources that Snowflake can access.
+          example: []
         api_blocked_prefixes:
           type: array
           items:
             type: string
-          description: A comma-separated list of endpoints and resources that are
-            not allowed to be called from Snowflake.
+          description: A comma-separated list of endpoints and resources that are not allowed to be called from Snowflake.
           nullable: true
+          example: []
         enabled:
           type: boolean
           description: Whether the API integration is enabled.
+          example: true
         comment:
           type: string
           description: Comment for the API integration.
           nullable: true
+          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the API integration was created.
+          example: '2026-01-15T10:30:00Z'
       required:
       - name
       - api_hook
@@ -280,6 +356,7 @@ components:
           - GC
           - GIT
           description: Type of ApiHook, can be AWS, AZURE, GC or GIT.
+          example: AWS
       required:
       - type
       discriminator:
@@ -301,9 +378,11 @@ components:
           - AWS_PRIVATE_API_GATEWAY
           - AWS_GOV_API_GATEWAY
           - AWS_GOV_PRIVATE_API_GATEWAY
+          example: AWS_API_GATEWAY
         api_aws_role_arn:
           type: string
           description: The ARN (Amazon resource name) of the IAM role.
+          example: example_value
         api_key:
           $ref: '#/components/schemas/ApiKey'
       required:
@@ -319,13 +398,15 @@ components:
           enum:
           - AZURE_API_MANAGEMENT
           - AZURE_PRIVATE_API_MANAGEMENT
+          example: AZURE_API_MANAGEMENT
         azure_tenant_id:
           type: string
-          description: The ID of the Office 365 tenant that all Azure API Management
-            instances belong to.
+          description: The ID of the Office 365 tenant that all Azure API Management instances belong to.
+          example: '500123'
         azure_ad_application_id:
           type: string
           description: The application ID of the Azure Active Directory application.
+          example: '500123'
         api_key:
           $ref: '#/components/schemas/ApiKey'
       required:
@@ -341,10 +422,11 @@ components:
           type: string
           enum:
           - GOOGLE_API_GATEWAY
+          example: GOOGLE_API_GATEWAY
         google_audience:
           type: string
-          description: Used as an audience claim when generating the JTW (JSON Web
-            Token) to authenticate to the Google API Gateway.
+          description: Used as an audience claim when generating the JTW (JSON Web Token) to authenticate to the Google API Gateway.
+          example: example_value
         api_key:
           $ref: '#/components/schemas/ApiKey'
       required:
@@ -358,29 +440,25 @@ components:
         allow_any_secret:
           type: boolean
           default: false
-          description: Whether to allow any Snowflake secret when accessing the Git
-            repository. This setting is ignored if allowed_authentication_secrets
-            is present.
+          description: Whether to allow any Snowflake secret when accessing the Git repository. This setting is ignored if allowed_authentication_secrets is present.
+          example: true
         allowed_authentication_secrets:
           type: array
           items:
             type: string
-          description: A comma-separated list of fully-qualified Snowflake secret
-            names that UDF or procedure handler code can use when accessing the Git
-            repository.
+          description: A comma-separated list of fully-qualified Snowflake secret names that UDF or procedure handler code can use when accessing the Git repository.
           nullable: true
+          example: []
         allowed_api_authentication_integrations:
           type: array
           items:
             type: string
-          description: A comma-separated list of Snowflake security integration names
-            that UDF or procedure handler code can use when accessing the Git repository.
-            If empty, allow no integrations.
+          description: A comma-separated list of Snowflake security integration names that UDF or procedure handler code can use when accessing the Git repository. If empty, allow no integrations.
           nullable: true
+          example: []
     ApiKey:
       type: string
-      description: An alphanumeric string that is used to identify API clients and
-        control access to the API, also called a subscription key.
+      description: An alphanumeric string that is used to identify API clients and control access to the API, also called a subscription key.
       nullable: true
   securitySchemes:
     KeyPair:

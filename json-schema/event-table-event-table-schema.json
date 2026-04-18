@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EventTable",
+  "type": "object",
+  "description": "A Snowflake event table",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the event table"
+    },
+    "cluster_by": {
+      "type": "array",
+      "description": "Cluster key column(s) or expression"
+    },
+    "data_retention_time_in_days": {
+      "type": "integer",
+      "description": "number of days to retain the old version of deleted/updated data"
+    },
+    "max_data_extension_time_in_days": {
+      "type": "integer",
+      "description": "Maximum number of days to extend data retention beyond the retention period to prevent a stream becoming stale."
+    },
+    "change_tracking": {
+      "type": "boolean",
+      "description": "True if change tracking is enabled, allowing streams and CHANGES to be used on the entity."
+    },
+    "default_ddl_collation": {
+      "type": "string",
+      "description": "Collation that is used for all the new columns created by the DDL statements (if not specified)"
+    },
+    "comment": {
+      "type": "string",
+      "description": "user comment associated to an object in the dictionary"
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the event table was created."
+    },
+    "database_name": {
+      "type": "string",
+      "description": "Database in which the event table is stored"
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "Schema in which the event table is stored"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Role that owns the event table"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "The type of role that owns the event table"
+    },
+    "rows": {
+      "type": "integer",
+      "description": "Number of rows in the table."
+    },
+    "bytes": {
+      "type": "integer",
+      "description": "Number of bytes that will be scanned if the entire table is scanned in a query.Note that this number may be different than the number of actual physical bytes stored on-disk for the table"
+    },
+    "automatic_clustering": {
+      "type": "boolean",
+      "description": "If Automatic Clustering is enabled for your account, specifies whether it is explicitly enabled or disabled for the table."
+    },
+    "search_optimization": {
+      "type": "boolean",
+      "description": "If ON, the table has the search optimization service enabled"
+    },
+    "search_optimization_progress": {
+      "type": "integer",
+      "description": "Percentage of the table that has been optimized for search"
+    },
+    "search_optimization_bytes": {
+      "type": "integer",
+      "description": "Number of additional bytes of storage that the search optimization service consumes for this table"
+    },
+    "columns": {
+      "type": "array"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Cortex Analyst"
+  description: "Chat with data using semantic models to generate SQL queries."
+  tags:
+    - Snowflake
+    - Cortex
+    - AI
+    - Analytics
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-cortex-analyst
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Cortex Analyst API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: cortex-analyst
+          path: /api/v2/cortex/analyst
+          description: "Cortex Analyst resources"
+          operations:
+            - name: send-message
+              method: POST
+              description: "Send a message to Cortex Analyst"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  messages: "{{tools.messages}}"
+            - name: send-feedback
+              method: POST
+              description: "Send feedback on a Cortex Analyst response"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  request_id: "{{tools.request_id}}"
+                  positive: "{{tools.positive}}"
+            - name: generate-verified-query-suggestions
+              method: POST
+              description: "Generate verified query suggestions"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-scoped-token
+              method: POST
+              description: "Get a scoped token for Cortex Analyst"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

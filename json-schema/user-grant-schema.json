@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Grant",
+  "type": "object",
+  "properties": {
+    "securable_type": {
+      "type": "string",
+      "description": "Type of the securable to be granted. Only ROLE is supported"
+    },
+    "privileges": {
+      "type": "array",
+      "description": "List of privileges to be granted."
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the grant was created"
+    },
+    "granted_by": {
+      "type": "string",
+      "description": "The role that granted this privilege to this grantee"
+    }
+  }
+}

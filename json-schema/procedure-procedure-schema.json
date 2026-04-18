@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Procedure",
+  "type": "object",
+  "description": "A Snowflake procedure",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the procedure"
+    },
+    "execute_as": {
+      "type": "string",
+      "description": "What permissions should the procedure execution be called with"
+    },
+    "is_secure": {
+      "type": "boolean",
+      "description": "Specifies whether the function/procedure is secure or not"
+    },
+    "arguments": {
+      "type": "array",
+      "description": "List of arguments for the function/procedure"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the function/procedure"
+    },
+    "body": {
+      "type": "string",
+      "description": "Function/procedure definition"
+    },
+    "created_on": {
+      "type": "string",
+      "description": "The date and time when the function/procedure was created"
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "The name of the schema in which the function/procedure exists."
+    },
+    "database_name": {
+      "type": "string",
+      "description": "The name of the database in which the function/procedure exists."
+    },
+    "min_num_arguments": {
+      "type": "integer",
+      "description": "The minimum number of arguments"
+    },
+    "max_num_arguments": {
+      "type": "integer",
+      "description": "The maximum number of arguments"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Role that owns the function/procedure"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "The type of role that owns the function/procedure"
+    },
+    "is_builtin": {
+      "type": "boolean",
+      "description": "If the function/procedure is built-in or not (user-defined)"
+    }
+  }
+}

@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Alert API
-  description: The Snowflake Alert API is a REST API that you can use to access, update,
-    and perform certain actions on Alert resource in a Snowflake database.
+  description: The Snowflake Alert API is a REST API that you can use to access, update, and perform certain actions on Alert resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,7 +13,7 @@ info:
 paths:
   /api/v2/databases/{database}/schemas/{schema}/alerts:
     get:
-      summary: List alerts
+      summary: List Alerts
       tags:
       - alert
       description: List alerts
@@ -38,6 +37,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Alert'
+              examples:
+                Listalerts200Example:
+                  summary: Default listAlerts 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    comment: example_value
+                    schedule:
+                      schedule_type: example_value
+                    warehouse: example_value
+                    condition: example_value
+                    action: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    owner_role_type: example_value
+                    state: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -64,8 +81,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create an alert
+      summary: Create an Alert
       tags:
       - alert
       description: Create an alert
@@ -109,9 +129,30 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Alert'
+            examples:
+              CreatealertRequestExample:
+                summary: Default createAlert request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  comment: example_value
+                  schedule:
+                    schedule_type: example_value
+                  warehouse: example_value
+                  condition: example_value
+                  action: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  database_name: example_value
+                  schema_name: example_value
+                  owner: example_value
+                  owner_role_type: example_value
+                  state: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/alerts/{name}:
     get:
-      summary: Fetch an alert
+      summary: Fetch an Alert
       tags:
       - alert
       description: Fetch an alert
@@ -130,6 +171,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Alert'
+              examples:
+                Fetchalert200Example:
+                  summary: Default fetchAlert 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    comment: example_value
+                    schedule:
+                      schedule_type: example_value
+                    warehouse: example_value
+                    condition: example_value
+                    action: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    owner_role_type: example_value
+                    state: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -156,8 +215,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Delete an alert
+      summary: Delete an Alert
       tags:
       - alert
       description: Delete an alert
@@ -196,9 +258,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/alerts/{name}:clone:
     post:
-      summary: Create a new alert by cloning from the specified resource
+      summary: Create a New Alert by Cloning From the Specified Resource
       tags:
       - alert
       description: Create a new alert by cloning from the specified resource
@@ -209,19 +274,19 @@ paths:
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/createMode
       - name: targetDatabase
-        description: Database of the newly created resource. Defaults to the source's
-          database
+        description: Database of the newly created resource. Defaults to the source's database
         in: query
         required: true
         schema:
           type: string
+        example: example_value
       - name: targetSchema
-        description: Schema of the newly created resource. Defaults to the source's
-          schema
+        description: Schema of the newly created resource. Defaults to the source's schema
         in: query
         required: true
         schema:
           type: string
+        example: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -257,9 +322,21 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AlertClone'
+            examples:
+              ClonealertRequestExample:
+                summary: Default cloneAlert request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  point_of_time:
+                    point_of_time_type: example_value
+                    reference: at
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/alerts/{name}:execute:
     post:
-      summary: Execute an alert
+      summary: Execute an Alert
       tags:
       - alert
       description: Execute an alert
@@ -297,6 +374,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     Alert:
@@ -306,47 +386,57 @@ components:
         name:
           type: string
           description: Name of the alert
+          example: Example Title
         comment:
           type: string
           description: user comment associated to an object in the dictionary
+          example: example_value
         schedule:
           $ref: '#/components/schemas/Schedule'
           description: The schedule the alert runs under
         warehouse:
           type: string
           description: The warehouse the alert runs in
+          example: example_value
         condition:
           type: string
-          description: The SQL statement that must be evaluated to determine whether
-            to trigger the alert
+          description: The SQL statement that must be evaluated to determine whether to trigger the alert
+          example: example_value
         action:
           type: string
           description: The SQL statement to execute when the alert is triggered
+          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the alert was created.
+          example: '2026-01-15T10:30:00Z'
         database_name:
           type: string
           readOnly: true
           description: Database in which the alert is stored
+          example: example_value
         schema_name:
           type: string
           readOnly: true
           description: Schema in which the alert is stored
+          example: example_value
         owner:
           type: string
           readOnly: true
           description: Role that owns the alert
+          example: example_value
         owner_role_type:
           type: string
           readOnly: true
           description: The type of role that owns the alert
+          example: example_value
         state:
           type: string
           readOnly: true
           description: The current state of the alert
+          example: example_value
       required:
       - name
       - schedule
@@ -358,6 +448,7 @@ components:
         schedule_type:
           type: string
           description: Type of the schedule, can be either CRON_TYPE or MINUTES_TYPE
+          example: example_value
       required:
       - schedule_type
       discriminator:
@@ -373,9 +464,11 @@ components:
         cron_expr:
           type: string
           description: A cron expression for the scheduled execution.
+          example: example_value
         timezone:
           type: string
           description: The time zone for the schedule.
+          example: example_value
       required:
       - cron_expr
       - timezone
@@ -386,6 +479,7 @@ components:
       properties:
         minutes:
           type: integer
+          example: 10
       required:
       - minutes
     AlertClone:
@@ -394,19 +488,17 @@ components:
         name:
           type: string
           description: Name of the alert
+          example: Example Title
         point_of_time:
           $ref: '#/components/schemas/PointOfTime'
           description: 'Type of the point of time. Possible values include:
 
 
-            - `timestamp`: Exact time using the standard timezone format. Example:
-            `2023-09-15 10:59:43`.
+            - `timestamp`: Exact time using the standard timezone format. Example: `2023-09-15 10:59:43`.
 
             - `offset`: Interval relative to ''now.'' Example: `1 day`.
 
-            - `statement`: ID of a query statement to use as the reference point for
-            <a href=https://docs.snowflake.com/en/sql-reference/sql/create-clone#time-travel-parameters>Time
-            Travel</a>.
+            - `statement`: ID of a query statement to use as the reference point for <a href=https://docs.snowflake.com/en/sql-reference/sql/create-clone#time-travel-parameters>Time Travel</a>.
 
 
             For more information, see https://docs.snowflake.com/en/sql-reference/data-types-datetime.
@@ -419,8 +511,8 @@ components:
       properties:
         point_of_time_type:
           type: string
-          description: 'Type of the point of time. Possible values include: timestamp,
-            offset, statement'
+          description: 'Type of the point of time. Possible values include: timestamp, offset, statement'
+          example: example_value
         reference:
           type: string
           enum:
@@ -429,8 +521,8 @@ components:
           x-enum-varnames:
           - AT
           - BEFORE
-          description: Relation to the point of time.  Currently, the API supports
-            `at` and `before`
+          description: Relation to the point of time.  Currently, the API supports `at` and `before`
+          example: at
       required:
       - point_of_time_type
       - reference
@@ -448,6 +540,7 @@ components:
         timestamp:
           type: string
           description: Timestamp of the point of time.
+          example: example_value
       required:
       - timestamp
     PointOfTimeOffset:
@@ -457,8 +550,8 @@ components:
       properties:
         offset:
           type: string
-          description: Point of time identified by an offset in reference to the current
-            time, such as `10 min`.
+          description: Point of time identified by an offset in reference to the current time, such as `10 min`.
+          example: example_value
       required:
       - offset
     PointOfTimeStatement:
@@ -469,6 +562,7 @@ components:
         statement:
           type: string
           description: Statement of the point of time.
+          example: example_value
       required:
       - statement
   securitySchemes:

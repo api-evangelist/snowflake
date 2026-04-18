@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Compute Pools API
-  description: The Snowflake Compute Pools API is a REST API that you can use to access,
-    update, and perform common actions on Compute Pool resources.
+  description: The Snowflake Compute Pools API is a REST API that you can use to access, update, and perform common actions on Compute Pool resources.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,7 +13,7 @@ info:
 paths:
   /api/v2/compute-pools:
     get:
-      summary: Lists compute pools.
+      summary: Lists Compute Pools.
       tags:
       - compute-pool
       description: Lists the compute pools under the account.
@@ -37,6 +36,33 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ComputePool'
+              examples:
+                Listcomputepools200Example:
+                  summary: Default listComputePools 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: {}
+                    min_nodes: 10
+                    max_nodes: 10
+                    instance_family: example_value
+                    auto_resume: true
+                    comment: example_value
+                    state: UNKNOWN
+                    num_services: 10
+                    num_jobs: 10
+                    auto_suspend_secs: 10
+                    active_nodes: 10
+                    idle_nodes: 10
+                    target_nodes: 10
+                    created_on: '2026-01-15T10:30:00Z'
+                    resumed_on: '2026-01-15T10:30:00Z'
+                    updated_on: '2026-01-15T10:30:00Z'
+                    owner: example_value
+                    is_exclusive: true
+                    application: example_value
+                    budget: example_value
+                    error_code: example_value
+                    status_message: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -57,28 +83,56 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Creates a compute pool.
+      summary: Creates a Compute Pool.
       tags:
       - compute-pool
-      description: Creates a compute pool, with standard create modifiers as query
-        parameters. See the Compute Pool component definition for what is required
-        to be provided in the request body.
+      description: Creates a compute pool, with standard create modifiers as query parameters. See the Compute Pool component definition for what is required to be provided in the request body.
       operationId: createComputePool
       parameters:
       - $ref: common.yaml#/components/parameters/createMode
       - name: initiallySuspended
         in: query
-        description: Specifies whether the compute pool is created initially in the
-          suspended state.
+        description: Specifies whether the compute pool is created initially in the suspended state.
         schema:
           type: boolean
+        example: true
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ComputePool'
+            examples:
+              CreatecomputepoolRequestExample:
+                summary: Default createComputePool request
+                x-microcks-default: true
+                value:
+                  name: {}
+                  min_nodes: 10
+                  max_nodes: 10
+                  instance_family: example_value
+                  auto_resume: true
+                  comment: example_value
+                  state: UNKNOWN
+                  num_services: 10
+                  num_jobs: 10
+                  auto_suspend_secs: 10
+                  active_nodes: 10
+                  idle_nodes: 10
+                  target_nodes: 10
+                  created_on: '2026-01-15T10:30:00Z'
+                  resumed_on: '2026-01-15T10:30:00Z'
+                  updated_on: '2026-01-15T10:30:00Z'
+                  owner: example_value
+                  is_exclusive: true
+                  application: example_value
+                  budget: example_value
+                  error_code: example_value
+                  status_message: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -106,13 +160,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/compute-pools/{name}:
     get:
-      summary: Fetches a compute pool.
+      summary: Fetches a Compute Pool.
       tags:
       - compute-pool
-      description: Fetches a named compute pool. You can get the name of the compute
-        pool from the `/api/v2/compute-pools` GET request.
+      description: Fetches a named compute pool. You can get the name of the compute pool from the `/api/v2/compute-pools` GET request.
       operationId: fetchComputePool
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -128,6 +184,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ComputePool'
+              examples:
+                Fetchcomputepool200Example:
+                  summary: Default fetchComputePool 200 response
+                  x-microcks-default: true
+                  value:
+                    name: {}
+                    min_nodes: 10
+                    max_nodes: 10
+                    instance_family: example_value
+                    auto_resume: true
+                    comment: example_value
+                    state: UNKNOWN
+                    num_services: 10
+                    num_jobs: 10
+                    auto_suspend_secs: 10
+                    active_nodes: 10
+                    idle_nodes: 10
+                    target_nodes: 10
+                    created_on: '2026-01-15T10:30:00Z'
+                    resumed_on: '2026-01-15T10:30:00Z'
+                    updated_on: '2026-01-15T10:30:00Z'
+                    owner: example_value
+                    is_exclusive: true
+                    application: example_value
+                    budget: example_value
+                    error_code: example_value
+                    status_message: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -148,12 +231,14 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
-      summary: Create a (or alter an existing) compute pool.
+      summary: Create a (or Alter an Existing) Compute Pool.
       tags:
       - compute-pool
-      description: Create a (or alter an existing) compute pool. Even if the operation
-        is just an alter, the full property set must be provided.
+      description: Create a (or alter an existing) compute pool. Even if the operation is just an alter, the full property set must be provided.
       operationId: createOrAlterComputePool
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -163,6 +248,33 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ComputePool'
+            examples:
+              CreateoraltercomputepoolRequestExample:
+                summary: Default createOrAlterComputePool request
+                x-microcks-default: true
+                value:
+                  name: {}
+                  min_nodes: 10
+                  max_nodes: 10
+                  instance_family: example_value
+                  auto_resume: true
+                  comment: example_value
+                  state: UNKNOWN
+                  num_services: 10
+                  num_jobs: 10
+                  auto_suspend_secs: 10
+                  active_nodes: 10
+                  idle_nodes: 10
+                  target_nodes: 10
+                  created_on: '2026-01-15T10:30:00Z'
+                  resumed_on: '2026-01-15T10:30:00Z'
+                  updated_on: '2026-01-15T10:30:00Z'
+                  owner: example_value
+                  is_exclusive: true
+                  application: example_value
+                  budget: example_value
+                  error_code: example_value
+                  status_message: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -184,16 +296,18 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       parameters:
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Deletes a compute pool.
+      summary: Deletes a Compute Pool.
       tags:
       - compute-pool
-      description: Deletes a compute pool with the given name. If you enable the `ifExists`
-        parameter, the operation succeeds even if the object does not exist. Otherwise,
-        a 404 failure is returned if the object does not exist.
+      description: Deletes a compute pool with the given name. If you enable the `ifExists` parameter, the operation succeeds even if the object does not exist. Otherwise, a 404 failure is returned if
+        the object does not exist.
       operationId: deleteComputePool
       responses:
         '200':
@@ -218,13 +332,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/compute-pools/{name}:resume:
     post:
-      summary: Resumes a suspended compute pool.
+      summary: Resumes a Suspended Compute Pool.
       tags:
       - compute-pool
-      description: Resume a compute pool, if suspended. If the specified compute pool
-        is already running, this will cause a 400 Bad Request error.
+      description: Resume a compute pool, if suspended. If the specified compute pool is already running, this will cause a 400 Bad Request error.
       operationId: resumeComputePool
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -251,13 +367,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/compute-pools/{name}:suspend:
     post:
-      summary: Suspends an active compute pool.
+      summary: Suspends an Active Compute Pool.
       tags:
       - compute-pool
-      description: Suspend a compute pool, if active. If the specified compute pool
-        is already suspended, no action is taken.
+      description: Suspend a compute pool, if active. If the specified compute pool is already suspended, no action is taken.
       operationId: suspendComputePool
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -284,14 +402,16 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/compute-pools/{name}:stopallservices:
     post:
       deprecated: true
-      summary: Stops all services on the compute pool.
+      summary: Stops All Services on the Compute Pool.
       tags:
       - compute-pool
-      description: Stops all services in the compute pool. Deprecated - use :stop-all-services
-        instead.
+      description: Stops all services in the compute pool. Deprecated - use :stop-all-services instead.
       operationId: stopAllServicesInComputePoolDeprecated
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -318,9 +438,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/compute-pools/{name}:stop-all-services:
     post:
-      summary: Stops all services on the compute pool.
+      summary: Stops All Services on the Compute Pool.
       tags:
       - compute-pool
       description: Stops all services in the compute pool.
@@ -350,6 +473,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     ComputePool:
@@ -361,23 +487,26 @@ components:
         min_nodes:
           type: integer
           description: Minimum number of nodes for the compute pool.
+          example: 10
         max_nodes:
           type: integer
           description: Maximum number of nodes for the compute pool.
+          example: 10
         instance_family:
           type: string
           description: Instance family for the compute pool.
+          example: example_value
         auto_resume:
           type: boolean
-          description: Whether Snowflake automatically resumes the compute pool when
-            any statement that requires the compute pool is submitted.
+          description: Whether Snowflake automatically resumes the compute pool when any statement that requires the compute pool is submitted.
+          example: true
         comment:
           type: string
           description: Comment describing the compute pool.
+          example: example_value
         state:
           type: string
-          description: Current state of the compute pool. Possible values include
-            UNKNOWN, STARTING, IDLE, ACTIVE, STOPPING, SUSPENDED, and RESIZING.
+          description: Current state of the compute pool. Possible values include UNKNOWN, STARTING, IDLE, ACTIVE, STOPPING, SUSPENDED, and RESIZING.
           readOnly: true
           enum:
           - UNKNOWN
@@ -387,72 +516,85 @@ components:
           - STOPPING
           - SUSPENDED
           - RESIZING
+          example: UNKNOWN
         num_services:
           type: integer
           description: Number of services on the compute pool.
           readOnly: true
+          example: 10
         num_jobs:
           type: integer
           description: Number of jobs on the compute pool.
           readOnly: true
+          example: 10
         auto_suspend_secs:
           type: integer
           description: Number of seconds until the compute pool automatically suspends.
           format: int64
+          example: 10
         active_nodes:
           type: integer
           description: Number of currently active nodes on the compute pool.
           readOnly: true
+          example: 10
         idle_nodes:
           type: integer
           description: Number of currently idle nodes on the compute pool.
           readOnly: true
+          example: 10
         target_nodes:
           type: integer
           description: Number of target nodes on the compute pool.
           readOnly: true
+          example: 10
         created_on:
           type: string
           description: Time the compute pool was created.
           format: date-time
           readOnly: true
+          example: '2026-01-15T10:30:00Z'
         resumed_on:
           type: string
           description: Time the compute pool was last resumed.
           format: date-time
           readOnly: true
+          example: '2026-01-15T10:30:00Z'
         updated_on:
           type: string
           description: Time the compute pool was last updated.
           format: date-time
           readOnly: true
+          example: '2026-01-15T10:30:00Z'
         owner:
           type: string
           description: Identifier for the current owner of the compute pool.
           readOnly: true
+          example: example_value
         is_exclusive:
           type: boolean
-          description: Whether a compute pool is created exclusively for a Snowflake
-            Native App.
+          description: Whether a compute pool is created exclusively for a Snowflake Native App.
           readOnly: true
+          example: true
         application:
           type: string
-          description: Name of the Snowflake Native App if the compute pool is created
-            exclusively for the app.
+          description: Name of the Snowflake Native App if the compute pool is created exclusively for the app.
           readOnly: true
+          example: example_value
         budget:
           type: string
-          description: The name of the budget monitoring the credit usage of the compute
-            pool.
+          description: The name of the budget monitoring the credit usage of the compute pool.
           readOnly: true
+          example: example_value
         error_code:
           type: string
           description: Current error the compute pool hit if any.
           readOnly: true
+          example: example_value
         status_message:
           type: string
           description: Current status of the compute pool if any.
           readOnly: true
+          example: example_value
       example:
         name: compute_pool_name
         warehouse: test_wh
@@ -476,8 +618,7 @@ components:
         application: testapp
         budget: testbudget
         error_code: '392507'
-        status_message: Compute Pool is resizing for last 10 minutes. We have observed
-          CAPACITY_ERROR. Please refer to our documentation.
+        status_message: Compute Pool is resizing for last 10 minutes. We have observed CAPACITY_ERROR. Please refer to our documentation.
       required:
       - name
       - instance_family

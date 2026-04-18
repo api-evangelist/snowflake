@@ -1,0 +1,72 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Iceberg Table"
+  description: "Access, update, and manage Iceberg Table resources in Snowflake."
+  tags:
+    - Snowflake
+    - Iceberg
+    - Data Lakes
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-iceberg-table
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Iceberg Table API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: iceberg-tables
+          path: /api/v2/databases/{database}/schemas/{schema}/iceberg-tables
+          description: "Iceberg table resources"
+          operations:
+            - name: list-iceberg-tables
+              method: GET
+              description: "List Iceberg tables"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-iceberg-table
+              method: POST
+              description: "Create a managed Iceberg table"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: fetch-iceberg-table
+              method: GET
+              description: "Fetch an Iceberg table by name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: drop-iceberg-table
+              method: DELETE
+              description: "Drop an Iceberg table"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: refresh-iceberg-table
+              method: POST
+              description: "Refresh an Iceberg table"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

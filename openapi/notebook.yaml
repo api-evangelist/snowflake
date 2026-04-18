@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Notebook API
-  description: The Snowflake Notebook API is a REST API that you can use to access,
-    update, and perform certain actions on Notebook resource in a Snowflake database.
+  description: The Snowflake Notebook API is a REST API that you can use to access, update, and perform certain actions on Notebook resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,7 +13,7 @@ info:
 paths:
   /api/v2/databases/{database}/schemas/{schema}/notebooks:
     get:
-      summary: List notebooks
+      summary: List Notebooks
       tags:
       - notebook
       description: List notebooks
@@ -40,6 +39,49 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Notebook'
+              examples:
+                Listnotebooks200Example:
+                  summary: Default listNotebooks 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    version: example_value
+                    fromLocation: example_value
+                    main_file: example_value
+                    comment: example_value
+                    default_version: example_value
+                    query_warehouse: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    owner_role_type: example_value
+                    url_id: https://www.example.com
+                    title: Example Title
+                    default_packages: example_value
+                    user_packages: example_value
+                    runtime_name: example_value
+                    compute_pool: example_value
+                    import_urls:
+                    - example_value
+                    external_access_integrations:
+                    - example_value
+                    external_access_secrets: example_value
+                    idle_auto_shutdown_time_seconds: 10
+                    default_version_details:
+                      name: Example Title
+                      alias: example_value
+                      location_url: https://www.example.com
+                      source_location_uri: example_value
+                      git_commit_hash: example_value
+                    last_version_details:
+                      name: Example Title
+                      alias: example_value
+                      location_url: https://www.example.com
+                      source_location_uri: example_value
+                      git_commit_hash: example_value
+                    live_version_location_uri: example_value
+                    budget: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -66,8 +108,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create a notebook
+      summary: Create a Notebook
       tags:
       - notebook
       description: Create a notebook
@@ -111,9 +156,55 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Notebook'
+            examples:
+              CreatenotebookRequestExample:
+                summary: Default createNotebook request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  version: example_value
+                  fromLocation: example_value
+                  main_file: example_value
+                  comment: example_value
+                  default_version: example_value
+                  query_warehouse: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  database_name: example_value
+                  schema_name: example_value
+                  owner: example_value
+                  owner_role_type: example_value
+                  url_id: https://www.example.com
+                  title: Example Title
+                  default_packages: example_value
+                  user_packages: example_value
+                  runtime_name: example_value
+                  compute_pool: example_value
+                  import_urls:
+                  - example_value
+                  external_access_integrations:
+                  - example_value
+                  external_access_secrets: example_value
+                  idle_auto_shutdown_time_seconds: 10
+                  default_version_details:
+                    name: Example Title
+                    alias: example_value
+                    location_url: https://www.example.com
+                    source_location_uri: example_value
+                    git_commit_hash: example_value
+                  last_version_details:
+                    name: Example Title
+                    alias: example_value
+                    location_url: https://www.example.com
+                    source_location_uri: example_value
+                    git_commit_hash: example_value
+                  live_version_location_uri: example_value
+                  budget: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/notebooks/{name}:
     get:
-      summary: Fetch a notebook
+      summary: Fetch a Notebook
       tags:
       - notebook
       description: Fetch a notebook
@@ -134,6 +225,49 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Notebook'
+              examples:
+                Fetchnotebook200Example:
+                  summary: Default fetchNotebook 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    version: example_value
+                    fromLocation: example_value
+                    main_file: example_value
+                    comment: example_value
+                    default_version: example_value
+                    query_warehouse: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    owner_role_type: example_value
+                    url_id: https://www.example.com
+                    title: Example Title
+                    default_packages: example_value
+                    user_packages: example_value
+                    runtime_name: example_value
+                    compute_pool: example_value
+                    import_urls:
+                    - example_value
+                    external_access_integrations:
+                    - example_value
+                    external_access_secrets: example_value
+                    idle_auto_shutdown_time_seconds: 10
+                    default_version_details:
+                      name: Example Title
+                      alias: example_value
+                      location_url: https://www.example.com
+                      source_location_uri: example_value
+                      git_commit_hash: example_value
+                    last_version_details:
+                      name: Example Title
+                      alias: example_value
+                      location_url: https://www.example.com
+                      source_location_uri: example_value
+                      git_commit_hash: example_value
+                    live_version_location_uri: example_value
+                    budget: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -160,8 +294,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Delete a notebook
+      summary: Delete a Notebook
       tags:
       - notebook
       description: Delete a notebook
@@ -200,6 +337,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/notebooks/{name}:execute:
     post:
       summary: Execute a Notebook
@@ -241,13 +381,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/notebooks/{name}:rename:
     post:
-      summary: Changes the name of the notebook to new name.
+      summary: Changes the Name of the Notebook to New Name.
       tags:
       - notebook
-      description: Changes the name of the notebook to new name. The new identifier
-        must be unique for the schema.
+      description: Changes the name of the notebook to new name. The new identifier must be unique for the schema.
       operationId: renameNotebook
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -261,6 +403,7 @@ paths:
         schema:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+        example: example_value
       - name: targetSchema
         description: Schema of the target resource. Defaults to the source's schema
         in: query
@@ -268,6 +411,7 @@ paths:
         schema:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+        example: example_value
       - name: targetName
         description: Name of the target resource.
         in: query
@@ -275,6 +419,7 @@ paths:
         schema:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+        example: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -304,9 +449,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/notebooks/{name}:add-live-version:
     post:
-      summary: Adds a LIVE version to the notebook
+      summary: Adds a Live Version to the Notebook
       tags:
       - notebook
       description: Adds a LIVE version to the notebook
@@ -321,12 +469,14 @@ paths:
         required: false
         schema:
           type: boolean
+        example: true
       - name: comment
         description: Sets a comment for the notebook or version of the notebook
         in: query
         required: false
         schema:
           type: string
+        example: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -356,13 +506,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/notebooks/{name}:commit:
     post:
-      summary: Commits the LIVE version of the notebook
+      summary: Commits the Live Version of the Notebook
       tags:
       - notebook
-      description: If a Git connection is set up for the notebook, commits the LIVE
-        version of the notebook to the Git repository
+      description: If a Git connection is set up for the notebook, commits the LIVE version of the notebook to the Git repository
       operationId: commitNotebook
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -374,12 +526,14 @@ paths:
         required: false
         schema:
           type: string
+        example: example_value
       - name: comment
         description: Sets a comment for the notebook or version of the notebook
         in: query
         required: false
         schema:
           type: string
+        example: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -409,6 +563,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     Notebook:
@@ -419,97 +576,116 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the notebook
+          example: Example Title
         version:
           type: string
           description: User specified version alias
+          example: example_value
         fromLocation:
           type: string
-          description: Location to copy the file from. This must be a Snowflake stage
-            location.
+          description: Location to copy the file from. This must be a Snowflake stage location.
+          example: example_value
         main_file:
           type: string
           description: Name + path of the file for the Notebook
+          example: example_value
         comment:
           type: string
           description: user comment associated to an object in the dictionary
+          example: example_value
         default_version:
           type: string
           description: The default version name of a file based entity.
+          example: example_value
         query_warehouse:
           type: string
-          description: Warehouse against which the queries issued by the Streamlit
-            app are run against
+          description: Warehouse against which the queries issued by the Streamlit app are run against
+          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the notebook was created.
+          example: '2026-01-15T10:30:00Z'
         database_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Database in which the notebook is stored
+          example: example_value
         schema_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Schema in which the notebook is stored
+          example: example_value
         owner:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Role that owns the notebook
+          example: example_value
         owner_role_type:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: The type of role that owns the notebook
+          example: example_value
         url_id:
           type: string
           readOnly: true
           description: Unique ID associated with the notebook object.
+          example: https://www.example.com
         title:
           type: string
           readOnly: true
           description: User facing title of the Streamlit app or an Organization Profile
+          example: Example Title
         default_packages:
           type: string
           readOnly: true
           description: Default packages of the notebook
+          example: example_value
         user_packages:
           type: string
           readOnly: true
           description: User packages of the notebook
+          example: example_value
         runtime_name:
           type: string
           readOnly: true
-          description: The runtime to run the Streamlit or Notebook on.  If this is
-            not set, the warehouse is assumed
+          description: The runtime to run the Streamlit or Notebook on.  If this is not set, the warehouse is assumed
+          example: example_value
         compute_pool:
           type: string
           readOnly: true
           description: Compute pool name where the snowservice runs
+          example: example_value
         import_urls:
           type: array
           items:
             type: string
           readOnly: true
           description: List of urls
+          example: https://www.example.com
         external_access_integrations:
           type: array
           items:
             type: string
           readOnly: true
           description: List of external access integrations attached to this function
+          example: []
         external_access_secrets:
           type: string
           readOnly: true
           description: Secrets to be used with this function for external access
+          example: example_value
         idle_auto_shutdown_time_seconds:
           type: integer
           format: int64
           readOnly: true
           description: Sets the time in seconds for when to shutdown an idle Notebook.
+          example: 10
         default_version_details:
           $ref: '#/components/schemas/VersionDetails'
           readOnly: true
@@ -520,11 +696,13 @@ components:
           type: string
           readOnly: true
           description: The current version location
+          example: example_value
         budget:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Name of the budget if the notebook is monitored by a budget
+          example: example_value
       required:
       - name
     VersionDetails:
@@ -535,22 +713,27 @@ components:
           type: string
           readOnly: true
           description: The last version name
+          example: Example Title
         alias:
           type: string
           readOnly: true
           description: The default/last version alias of a file based entity.
+          example: example_value
         location_url:
           type: string
           readOnly: true
           description: The default/last version location.
+          example: https://www.example.com
         source_location_uri:
           type: string
           readOnly: true
           description: The default/last version source location.
+          example: example_value
         git_commit_hash:
           type: string
           readOnly: true
           description: The default/last version git commit#
+          example: example_value
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

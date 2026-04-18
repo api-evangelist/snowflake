@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task",
+  "type": "object",
+  "description": "A Snowflake task, used to execute SQL code.",
+  "properties": {
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the task."
+    },
+    "finalize": {
+      "type": "string",
+      "description": "Specifies the name of the root task that the finalizer task is associated with."
+    },
+    "task_auto_retry_attempts": {
+      "type": "integer",
+      "description": "Root task settable only. Specifies the number of automatic task graph retry attempts. Valid range is 0 to 30. When not specified, no retry would happen."
+    },
+    "config": {
+      "type": "object",
+      "description": "Task Config"
+    },
+    "session_parameters": {
+      "type": "object",
+      "description": "Session Parameters for the task at runtime."
+    },
+    "definition": {
+      "type": "string",
+      "description": "The SQL definition for the task. Any one of single SQL statement, call to stored procedure, or procedural logic using Snowflake scripting."
+    },
+    "predecessors": {
+      "type": "array",
+      "description": "Specifies one or more predecessor tasks for the current task"
+    },
+    "task_relations": {
+      "type": "string",
+      "description": "Displays the relationship between the root task and its corresponding finalizer tasks."
+    },
+    "user_task_managed_initial_warehouse_size": {
+      "type": "string",
+      "description": "Specifies the size of the compute resources to provision for the first run of the task. This parameter only applies to serverless tasks."
+    },
+    "serverless_task_min_statement_size": {
+      "type": "string",
+      "description": "Specifies the minimum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE. This parameter only applies to serverless tasks."
+    },
+    "serverless_task_max_statement_size": {
+      "type": "string",
+      "description": "Specifies the maximum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE. This parameter only applies to serverless tasks."
+    },
+    "user_task_timeout_ms": {
+      "type": "integer",
+      "description": "Specifies the time limit on a single run of the task before it times out (in milliseconds)."
+    },
+    "suspend_task_after_num_failures": {
+      "type": "integer",
+      "description": "Specifies the number of consecutive failed task runs after which the current task is suspended automatically."
+    },
+    "condition": {
+      "type": "string",
+      "description": "Specifies a Boolean SQL expression condition; multiple conditions joined with AND/OR are supported"
+    },
+    "allow_overlapping_execution": {
+      "type": "boolean",
+      "description": "Specifies whether to allow multiple instances of the DAG to run concurrently."
+    },
+    "error_integration": {
+      "type": "string",
+      "description": "Specifies the name of the notification integration used to communicate with Amazon SNS, MS Azure Event Grid, or Google Pub/Sub."
+    },
+    "created_on": {
+      "type": "string",
+      "description": "The time the task was created on."
+    },
+    "id": {
+      "type": "string",
+      "description": "An ID for the current task."
+    },
+    "owner": {
+      "type": "string",
+      "description": "The role that owns the task."
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "The role type of the task owner."
+    },
+    "state": {
+      "type": "string",
+      "description": "The state of the task. Must be one of started or suspended."
+    },
+    "last_committed_on": {
+      "type": "string",
+      "description": "The time the task was last committed on."
+    },
+    "last_suspended_on": {
+      "type": "string",
+      "description": "The time the task was last suspended on."
+    },
+    "database_name": {
+      "type": "string",
+      "description": "The name of the parent database for the task."
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "The name of the parent schema for the task."
+    }
+  }
+}

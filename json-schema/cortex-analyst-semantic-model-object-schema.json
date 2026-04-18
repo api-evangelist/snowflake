@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SemanticModelObject",
+  "type": "object",
+  "description": "Represents a semantic model object",
+  "properties": {
+    "semantic_model_file": {
+      "type": "string",
+      "description": "The path to a file stored in a Snowflake Stage holding the semantic model yaml. Must be a fully qualified stage url"
+    },
+    "semantic_view": {
+      "type": "string",
+      "description": "The name of the Snowflake native semantic model object"
+    },
+    "inline_semantic_model": {
+      "type": "string",
+      "description": "A string containing the entire semantic model yaml"
+    }
+  }
+}

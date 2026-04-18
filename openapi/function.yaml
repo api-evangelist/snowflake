@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Function API
-  description: The Snowflake Function API is a REST API that allows caller to create,
-    execute and drop functions in a Snowflake database.
+  description: The Snowflake Function API is a REST API that allows caller to create, execute and drop functions in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -37,6 +36,21 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Function'
+              examples:
+                Listfunctions200Example:
+                  summary: Default listFunctions 200 response
+                  x-microcks-default: true
+                  value:
+                  - function_type: example_value
+                    name: Example Title
+                    arguments:
+                    - {}
+                    returns: FIXED
+                    max_batch_rows: 10
+                    created_on: '2026-01-15T10:30:00Z'
+                    signature: example_value
+                    language: example_value
+                    body: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -57,6 +71,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       summary: Create a Function
       tags:
@@ -73,6 +90,23 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Function'
+            examples:
+              CreatefunctionRequestExample:
+                summary: Default createFunction request
+                x-microcks-default: true
+                value:
+                  function_type: example_value
+                  name: Example Title
+                  arguments:
+                  - name: Example Title
+                    datatype: FIXED
+                    value: example_value
+                  returns: FIXED
+                  max_batch_rows: 10
+                  created_on: '2026-01-15T10:30:00Z'
+                  signature: example_value
+                  language: example_value
+                  body: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -100,6 +134,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/functions/{nameWithArgs}:
     get:
       summary: Fetch a Function.
@@ -123,6 +160,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Function'
+              examples:
+                Fetchfunction200Example:
+                  summary: Default fetchFunction 200 response
+                  x-microcks-default: true
+                  value:
+                    function_type: example_value
+                    name: Example Title
+                    arguments:
+                    - name: Example Title
+                      datatype: FIXED
+                      value: example_value
+                    returns: FIXED
+                    max_batch_rows: 10
+                    created_on: '2026-01-15T10:30:00Z'
+                    signature: example_value
+                    language: example_value
+                    body: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -143,13 +197,16 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       parameters:
       - $ref: common.yaml#/components/parameters/database
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/nameWithArgs
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Delete a function
+      summary: Delete a Function
       tags:
       - function
       description: Delete a function with the given name and args.
@@ -177,6 +234,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/functions/{name}:execute:
     post:
       summary: Execute a Function.
@@ -193,6 +253,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/FunctionArguments'
+            examples:
+              ExecutefunctionRequestExample:
+                summary: Default executeFunction request
+                x-microcks-default: true
+                value:
+                - name: Example Title
+                  datatype: FIXED
+                  value: example_value
       responses:
         '200':
           description: successful
@@ -203,6 +271,11 @@ paths:
             application/json:
               schema:
                 type: object
+              examples:
+                Executefunction200Example:
+                  summary: Default executeFunction 200 response
+                  x-microcks-default: true
+                  value: {}
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -223,6 +296,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     Function:
@@ -236,14 +312,16 @@ components:
         function_type:
           type: string
           default: service-function
+          example: example_value
         name:
           type: string
-          description: Specifies the name for the function, must be unique for the
-            schema in which the function is created
+          description: Specifies the name for the function, must be unique for the schema in which the function is created
+          example: Example Title
         arguments:
           type: array
           items:
             $ref: '#/components/schemas/FunctionArgument'
+          example: []
         returns:
           type: string
           description: Specifies the type for the function return value.
@@ -260,22 +338,28 @@ components:
           - TIMESTAMP_LTZ
           - TIMESTAMP_NTZ
           default: TEXT
+          example: FIXED
         max_batch_rows:
           type: integer
           description: Specifies the max rows for batch operation.
+          example: 10
         created_on:
           type: string
           format: date-time
           description: Date and time when the function was created.
+          example: '2026-01-15T10:30:00Z'
         signature:
           type: string
           description: Function's arguments.
+          example: example_value
         language:
           type: string
           description: Function's language.
+          example: example_value
         body:
           type: string
           description: Function's body.
+          example: example_value
       required:
       - name
       - arguments
@@ -286,6 +370,7 @@ components:
         name:
           type: string
           description: Argument's name
+          example: Example Title
         datatype:
           description: Argument's type
           type: string
@@ -302,8 +387,10 @@ components:
           - TIMESTAMP_LTZ
           - TIMESTAMP_NTZ
           default: TEXT
+          example: FIXED
         value:
           description: Argument's value
+          example: example_value
     FunctionArguments:
       type: array
       items:
@@ -329,9 +416,11 @@ components:
         endpoint:
           type: string
           description: Function's endpoint
+          example: example_value
         path:
           type: string
           description: Function's path
+          example: example_value
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

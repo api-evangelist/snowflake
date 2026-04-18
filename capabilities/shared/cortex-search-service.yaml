@@ -1,0 +1,53 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Cortex Search"
+  description: "Semantic search service for Snowflake Cortex."
+  tags:
+    - Snowflake
+    - Cortex
+    - AI
+    - Search
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-cortex-search
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Cortex Search API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: cortex-search
+          path: /api/v2/databases/{database}/schemas/{schema}/cortex-search-services
+          description: "Cortex Search resources"
+          operations:
+            - name: list-search-services
+              method: GET
+              description: "List Cortex Search services"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: query-search-service
+              method: POST
+              description: "Query a Cortex Search service"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  query: "{{tools.query}}"

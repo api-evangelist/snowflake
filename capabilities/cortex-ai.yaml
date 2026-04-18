@@ -1,0 +1,137 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Cortex AI"
+  description: "Unified workflow for AI and ML capabilities including LLM inference, natural language analytics, semantic search, and notebook-based development. Used by Data Scientists and ML Engineers for AI-powered data exploration and model deployment."
+  tags:
+    - Snowflake
+    - Cortex
+    - AI
+    - Machine Learning
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - import: snowflake-cortex-analyst
+      location: ./shared/cortex-analyst.yaml
+    - import: snowflake-cortex-inference
+      location: ./shared/cortex-inference.yaml
+    - import: snowflake-cortex-search
+      location: ./shared/cortex-search-service.yaml
+    - import: snowflake-notebook
+      location: ./shared/notebook.yaml
+
+  exposes:
+    - type: rest
+      port: 8082
+      namespace: snowflake-cortex-api
+      description: "Unified REST API for Snowflake Cortex AI capabilities."
+      resources:
+        - path: /v1/analyst/messages
+          name: analyst-messages
+          description: "Natural language data analytics"
+          operations:
+            - method: POST
+              name: send-analyst-message
+              description: "Ask a question about your data"
+              call: "snowflake-cortex-analyst.send-message"
+        - path: /v1/inference/complete
+          name: inference
+          description: "LLM inference"
+          operations:
+            - method: POST
+              name: complete
+              description: "Run LLM completion"
+              call: "snowflake-cortex-inference.complete"
+        - path: /v1/inference/models
+          name: models
+          description: "Available models"
+          operations:
+            - method: GET
+              name: list-models
+              description: "List available LLM models"
+              call: "snowflake-cortex-inference.get-models"
+        - path: /v1/search
+          name: search
+          description: "Semantic search"
+          operations:
+            - method: POST
+              name: query-search
+              description: "Query a search service"
+              call: "snowflake-cortex-search.query-search-service"
+        - path: /v1/notebooks
+          name: notebooks
+          description: "Notebook management"
+          operations:
+            - method: GET
+              name: list-notebooks
+              description: "List notebooks"
+              call: "snowflake-notebook.list-notebooks"
+            - method: POST
+              name: create-notebook
+              description: "Create a notebook"
+              call: "snowflake-notebook.create-notebook"
+
+    - type: mcp
+      port: 9082
+      namespace: snowflake-cortex-mcp
+      transport: http
+      description: "MCP server for AI-assisted Snowflake Cortex AI capabilities."
+      tools:
+        - name: ask-analyst
+          description: "Ask a question about your data using natural language"
+          hints:
+            readOnly: true
+          call: "snowflake-cortex-analyst.send-message"
+        - name: send-analyst-feedback
+          description: "Send feedback on an Analyst response"
+          hints:
+            readOnly: false
+          call: "snowflake-cortex-analyst.send-feedback"
+        - name: generate-query-suggestions
+          description: "Generate verified query suggestions"
+          hints:
+            readOnly: true
+          call: "snowflake-cortex-analyst.generate-verified-query-suggestions"
+        - name: list-llm-models
+          description: "List available Cortex LLM models"
+          hints:
+            readOnly: true
+          call: "snowflake-cortex-inference.get-models"
+        - name: llm-complete
+          description: "Run LLM inference completion"
+          hints:
+            readOnly: true
+          call: "snowflake-cortex-inference.complete"
+        - name: semantic-search
+          description: "Query a Cortex Search service"
+          hints:
+            readOnly: true
+          call: "snowflake-cortex-search.query-search-service"
+        - name: list-search-services
+          description: "List Cortex Search services"
+          hints:
+            readOnly: true
+          call: "snowflake-cortex-search.list-search-services"
+        - name: list-notebooks
+          description: "List notebooks"
+          hints:
+            readOnly: true
+          call: "snowflake-notebook.list-notebooks"
+        - name: create-notebook
+          description: "Create a notebook"
+          hints:
+            readOnly: false
+          call: "snowflake-notebook.create-notebook"
+        - name: execute-notebook
+          description: "Execute a notebook"
+          hints:
+            readOnly: false
+          call: "snowflake-notebook.execute-notebook"

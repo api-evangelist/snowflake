@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StreamSource",
+  "type": "object",
+  "properties": {
+    "src_type": {
+      "type": "string",
+      "description": "Type of the source. Possible values include: stream, table, view"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the source whose changes are tracked by the stream"
+    },
+    "database_name": {
+      "type": "string",
+      "description": "Database name to which stream source type belongs. If not provided, database  name provided in the path param will be used."
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "Schema name to which stream source type belongs. If not provided, schema name provided in the path param will be used."
+    }
+  }
+}

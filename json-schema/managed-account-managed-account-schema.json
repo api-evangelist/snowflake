@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedAccount",
+  "type": "object",
+  "description": "Snowflake account object.",
+  "properties": {
+    "cloud": {
+      "type": "string",
+      "description": "Cloud in which the managed account is located. For reader accounts, this is always the same as the cloud for the provider account."
+    },
+    "region": {
+      "type": "string",
+      "description": "Region in which the managed account is located. For reader accounts, this is always the same as the region for the provider account."
+    },
+    "locator": {
+      "type": "string",
+      "description": "Legacy identifier for the account."
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time the account was created."
+    },
+    "url": {
+      "type": "string",
+      "description": "Account URL that is used to connect to the account, in the account name format. The account identifier in this format follows the pattern <orgname>-<account_name>."
+    },
+    "account_locator_url": {
+      "type": "string",
+      "description": "Account URL that is used to connect to the account, in the legacy account locator format."
+    },
+    "comment": {
+      "type": "string",
+      "description": "Optional comment in which to store information related to the account."
+    },
+    "admin_name": {
+      "type": "string",
+      "description": "Name of the account administrator."
+    },
+    "admin_password": {
+      "type": "string",
+      "description": "Password for the account administrator."
+    },
+    "account_type": {
+      "type": "string",
+      "description": "Type of the account."
+    }
+  }
+}

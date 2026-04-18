@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Grant",
+  "type": "object",
+  "description": "Properties of a grant that can be granted to a role or user.",
+  "properties": {
+    "privileges": {
+      "type": "array",
+      "description": "Privilege type"
+    },
+    "grant_option": {
+      "type": "boolean",
+      "description": "Can grantee pass this privilege down?"
+    },
+    "created_on": {
+      "type": "string"
+    },
+    "grantee_type": {
+      "type": "string",
+      "description": "Entity type being granted to"
+    },
+    "grantee_name": {
+      "type": "string",
+      "description": "Specific name of object being granted to"
+    },
+    "securable_type": {
+      "type": "string",
+      "description": "Type of object granted on"
+    },
+    "securable_name": {
+      "type": "string",
+      "description": "Name of specific object granted on (not name of privilege!)"
+    },
+    "granted_by_role_type": {
+      "type": "string",
+      "description": "Type of role that granted this privilege to this grantee"
+    },
+    "granted_by_name": {
+      "type": "string",
+      "description": "The role that granted this privilege to this grantee"
+    }
+  }
+}

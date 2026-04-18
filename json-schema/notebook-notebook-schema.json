@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Notebook",
+  "type": "object",
+  "description": "A Snowflake notebook",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the notebook"
+    },
+    "version": {
+      "type": "string",
+      "description": "User specified version alias"
+    },
+    "fromLocation": {
+      "type": "string",
+      "description": "Location to copy the file from. This must be a Snowflake stage location."
+    },
+    "main_file": {
+      "type": "string",
+      "description": "Name + path of the file for the Notebook"
+    },
+    "comment": {
+      "type": "string",
+      "description": "user comment associated to an object in the dictionary"
+    },
+    "default_version": {
+      "type": "string",
+      "description": "The default version name of a file based entity."
+    },
+    "query_warehouse": {
+      "type": "string",
+      "description": "Warehouse against which the queries issued by the Streamlit app are run against"
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the notebook was created."
+    },
+    "database_name": {
+      "type": "string",
+      "description": "Database in which the notebook is stored"
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "Schema in which the notebook is stored"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Role that owns the notebook"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "The type of role that owns the notebook"
+    },
+    "url_id": {
+      "type": "string",
+      "description": "Unique ID associated with the notebook object."
+    },
+    "title": {
+      "type": "string",
+      "description": "User facing title of the Streamlit app or an Organization Profile"
+    },
+    "default_packages": {
+      "type": "string",
+      "description": "Default packages of the notebook"
+    },
+    "user_packages": {
+      "type": "string",
+      "description": "User packages of the notebook"
+    },
+    "runtime_name": {
+      "type": "string",
+      "description": "The runtime to run the Streamlit or Notebook on.  If this is not set, the warehouse is assumed"
+    },
+    "compute_pool": {
+      "type": "string",
+      "description": "Compute pool name where the snowservice runs"
+    },
+    "import_urls": {
+      "type": "array",
+      "description": "List of urls"
+    },
+    "external_access_integrations": {
+      "type": "array",
+      "description": "List of external access integrations attached to this function"
+    },
+    "external_access_secrets": {
+      "type": "string",
+      "description": "Secrets to be used with this function for external access"
+    },
+    "idle_auto_shutdown_time_seconds": {
+      "type": "integer",
+      "description": "Sets the time in seconds for when to shutdown an idle Notebook."
+    },
+    "live_version_location_uri": {
+      "type": "string",
+      "description": "The current version location"
+    },
+    "budget": {
+      "type": "string",
+      "description": "Name of the budget if the notebook is monitored by a budget"
+    }
+  }
+}

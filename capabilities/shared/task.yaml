@@ -1,0 +1,88 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Task"
+  description: "Access, update, and manage Task resources in Snowflake."
+  tags:
+    - Snowflake
+    - Tasks
+    - Scheduling
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-task
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Task API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: tasks
+          path: /api/v2/databases/{database}/schemas/{schema}/tasks
+          description: "Task resources"
+          operations:
+            - name: list-tasks
+              method: GET
+              description: "List tasks"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-task
+              method: POST
+              description: "Create a task"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: fetch-task
+              method: GET
+              description: "Fetch a task by name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-task
+              method: DELETE
+              description: "Delete a task"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: execute-task
+              method: POST
+              description: "Execute a task"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: resume-task
+              method: POST
+              description: "Resume a suspended task"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: suspend-task
+              method: POST
+              description: "Suspend a task"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

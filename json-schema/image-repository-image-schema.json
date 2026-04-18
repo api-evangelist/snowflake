@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Image",
+  "type": "object",
+  "description": "A image in a Snowflake image repository.",
+  "properties": {
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the image was uploaded to the image repository."
+    },
+    "image_name": {
+      "type": "string",
+      "description": "Image name."
+    },
+    "tags": {
+      "type": "string",
+      "description": "Image tags."
+    },
+    "digest": {
+      "type": "string",
+      "description": "SHA256 digest of the image."
+    },
+    "image_path": {
+      "type": "string",
+      "description": "Image path (database_name/schema_name/repository_name/image_name:image_tag)."
+    }
+  }
+}

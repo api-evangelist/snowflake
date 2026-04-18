@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Event Table API
-  description: The Snowflake Event Table API is a REST API that you can use to access,
-    update, and perform certain actions on Event Table resource in a Snowflake database.
+  description: The Snowflake Event Table API is a REST API that you can use to access, update, and perform certain actions on Event Table resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,7 +13,7 @@ info:
 paths:
   /api/v2/databases/{database}/schemas/{schema}/event-tables:
     get:
-      summary: List event tables
+      summary: List Event Tables
       tags:
       - event-table
       description: List event tables
@@ -38,6 +37,32 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/EventTable'
+              examples:
+                Listeventtables200Example:
+                  summary: Default listEventTables 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    cluster_by:
+                    - example_value
+                    data_retention_time_in_days: 10
+                    max_data_extension_time_in_days: 10
+                    change_tracking: true
+                    default_ddl_collation: example_value
+                    comment: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    owner_role_type: example_value
+                    rows: 10
+                    bytes: 10
+                    automatic_clustering: true
+                    search_optimization: true
+                    search_optimization_progress: 10
+                    search_optimization_bytes: 10
+                    columns:
+                    - {}
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -64,8 +89,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create an event table
+      summary: Create an Event Table
       tags:
       - event-table
       description: Create an event table
@@ -110,9 +138,46 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/EventTable'
+            examples:
+              CreateeventtableRequestExample:
+                summary: Default createEventTable request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  cluster_by:
+                  - example_value
+                  data_retention_time_in_days: 10
+                  max_data_extension_time_in_days: 10
+                  change_tracking: true
+                  default_ddl_collation: example_value
+                  comment: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  database_name: example_value
+                  schema_name: example_value
+                  owner: example_value
+                  owner_role_type: example_value
+                  rows: 10
+                  bytes: 10
+                  automatic_clustering: true
+                  search_optimization: true
+                  search_optimization_progress: 10
+                  search_optimization_bytes: 10
+                  columns:
+                  - name: Example Title
+                    datatype: example_value
+                    nullable: true
+                    default: example_value
+                    primary_key: true
+                    unique_key: true
+                    check: example_value
+                    expression: example_value
+                    comment: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/event-tables/{name}:
     get:
-      summary: Fetch an event table
+      summary: Fetch an Event Table
       tags:
       - event-table
       description: Fetch an event table
@@ -131,6 +196,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EventTable'
+              examples:
+                Fetcheventtable200Example:
+                  summary: Default fetchEventTable 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    cluster_by:
+                    - example_value
+                    data_retention_time_in_days: 10
+                    max_data_extension_time_in_days: 10
+                    change_tracking: true
+                    default_ddl_collation: example_value
+                    comment: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    owner_role_type: example_value
+                    rows: 10
+                    bytes: 10
+                    automatic_clustering: true
+                    search_optimization: true
+                    search_optimization_progress: 10
+                    search_optimization_bytes: 10
+                    columns:
+                    - name: Example Title
+                      datatype: example_value
+                      nullable: true
+                      default: example_value
+                      primary_key: true
+                      unique_key: true
+                      check: example_value
+                      expression: example_value
+                      comment: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -157,8 +256,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Delete an event table
+      summary: Delete an Event Table
       tags:
       - event-table
       description: Delete an event table
@@ -197,9 +299,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/event-tables/{name}:rename:
     post:
-      summary: Rename the event table
+      summary: Rename the Event Table
       tags:
       - event-table
       description: Rename the event table
@@ -215,6 +320,7 @@ paths:
         required: true
         schema:
           type: string
+        example: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -244,6 +350,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     EventTable:
@@ -253,88 +362,100 @@ components:
         name:
           type: string
           description: Name of the event table
+          example: Example Title
         cluster_by:
           type: array
           items:
             type: string
           description: Cluster key column(s) or expression
+          example: []
         data_retention_time_in_days:
           type: integer
-          description: number of days to retain the old version of deleted/updated
-            data
+          description: number of days to retain the old version of deleted/updated data
+          example: 10
         max_data_extension_time_in_days:
           type: integer
-          description: Maximum number of days to extend data retention beyond the
-            retention period to prevent a stream becoming stale.
+          description: Maximum number of days to extend data retention beyond the retention period to prevent a stream becoming stale.
+          example: 10
         change_tracking:
           type: boolean
-          description: True if change tracking is enabled, allowing streams and CHANGES
-            to be used on the entity.
+          description: True if change tracking is enabled, allowing streams and CHANGES to be used on the entity.
+          example: true
         default_ddl_collation:
           type: string
-          description: Collation that is used for all the new columns created by the
-            DDL statements (if not specified)
+          description: Collation that is used for all the new columns created by the DDL statements (if not specified)
+          example: example_value
         comment:
           type: string
           description: user comment associated to an object in the dictionary
+          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the event table was created.
+          example: '2026-01-15T10:30:00Z'
         database_name:
           type: string
           readOnly: true
           description: Database in which the event table is stored
+          example: example_value
         schema_name:
           type: string
           readOnly: true
           description: Schema in which the event table is stored
+          example: example_value
         owner:
           type: string
           readOnly: true
           description: Role that owns the event table
+          example: example_value
         owner_role_type:
           type: string
           readOnly: true
           description: The type of role that owns the event table
+          example: example_value
         rows:
           type: integer
           format: int64
           readOnly: true
           description: Number of rows in the table.
+          example: 10
         bytes:
           type: integer
           format: int64
           readOnly: true
-          description: Number of bytes that will be scanned if the entire table is
-            scanned in a query.Note that this number may be different than the number
-            of actual physical bytes stored on-disk for the table
+          description: Number of bytes that will be scanned if the entire table is scanned in a query.Note that this number may be different than the number of actual physical bytes stored on-disk for
+            the table
+          example: 10
         automatic_clustering:
           type: boolean
           readOnly: true
-          description: If Automatic Clustering is enabled for your account, specifies
-            whether it is explicitly enabled or disabled for the table.
+          description: If Automatic Clustering is enabled for your account, specifies whether it is explicitly enabled or disabled for the table.
+          example: true
         search_optimization:
           type: boolean
           readOnly: true
           description: If ON, the table has the search optimization service enabled
+          example: true
         search_optimization_progress:
           type: integer
           format: int64
           readOnly: true
           description: Percentage of the table that has been optimized for search
+          example: 10
         search_optimization_bytes:
           type: integer
           format: int64
           readOnly: true
-          description: Number of additional bytes of storage that the search optimization
-            service consumes for this table
+          description: Number of additional bytes of storage that the search optimization service consumes for this table
+          example: 10
         columns:
           type: array
           items:
             $ref: '#/components/schemas/EventTableColumn'
           readOnly: true
+          example: []
       required:
       - name
     EventTableColumn:
@@ -343,35 +464,40 @@ components:
         name:
           type: string
           description: Column name
+          example: Example Title
         datatype:
           type: string
           description: The data type for the column
+          example: example_value
         nullable:
           type: boolean
           description: Specifies that the column does allow NULL values or not
+          example: true
         default:
           type: string
-          description: Specifies whether a default value is automatically inserted
-            in the column if a value is not explicitly specified via an INSERT or
-            CREATE TABLE AS SELECT statement
+          description: Specifies whether a default value is automatically inserted in the column if a value is not explicitly specified via an INSERT or CREATE TABLE AS SELECT statement
+          example: example_value
         primary_key:
           type: boolean
-          description: A primary key is the column or columns that contain values
-            that uniquely identify each row in a table
+          description: A primary key is the column or columns that contain values that uniquely identify each row in a table
+          example: true
         unique_key:
           type: boolean
-          description: Unique keys are columns in a table that uniquely identify items
-            in the rows. This sounds a lot like a primary key, but the main difference
-            is that unique keys can have NULL values.
+          description: Unique keys are columns in a table that uniquely identify items in the rows. This sounds a lot like a primary key, but the main difference is that unique keys can have NULL 
+            values.
+          example: true
         check:
           type: string
           description: ''
+          example: example_value
         expression:
           type: string
           description: ''
+          example: example_value
         comment:
           type: string
           description: Specifies a comment for the column
+          example: example_value
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

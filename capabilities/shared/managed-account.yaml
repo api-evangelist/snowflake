@@ -1,0 +1,56 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Managed Account"
+  description: "Manage Managed Account resources in Snowflake."
+  tags:
+    - Snowflake
+    - Accounts
+    - Administration
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-managed-account
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Managed Account API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: managed-accounts
+          path: /api/v2/managed-accounts
+          description: "Managed account resources"
+          operations:
+            - name: list-managed-accounts
+              method: GET
+              description: "List managed accounts"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-managed-account
+              method: POST
+              description: "Create a managed account"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-managed-account
+              method: DELETE
+              description: "Delete a managed account"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

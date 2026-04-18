@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GrantOn",
+  "type": "object",
+  "properties": {
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the grant was created"
+    },
+    "privilege": {
+      "type": "string",
+      "description": "The name of the privilege"
+    },
+    "granted_on": {
+      "type": "string",
+      "description": "The type of of the role"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the role"
+    },
+    "granted_to": {
+      "type": "string",
+      "description": "The type of the grantee"
+    },
+    "grantee_name": {
+      "type": "string",
+      "description": "The name of the grantee"
+    },
+    "grant_option": {
+      "type": "string",
+      "description": "If true, allows the recipient role to grant the privileges to other roles."
+    },
+    "granted_by": {
+      "type": "string",
+      "description": "The role that granted this privilege to this grantee"
+    },
+    "granted_by_role_type": {
+      "type": "string",
+      "description": "Type of the role that granted this privilege to this grantee"
+    }
+  }
+}

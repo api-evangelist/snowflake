@@ -1,0 +1,180 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Security and Access"
+  description: "Unified workflow for managing users, roles, grants, database roles, network policies, and account administration. Used by Platform Administrators and Security Engineers to govern access control and security posture."
+  tags:
+    - Snowflake
+    - Security
+    - Access Control
+    - Administration
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - import: snowflake-user
+      location: ./shared/user.yaml
+    - import: snowflake-role
+      location: ./shared/role.yaml
+    - import: snowflake-grant
+      location: ./shared/grant.yaml
+    - import: snowflake-database-role
+      location: ./shared/database-role.yaml
+    - import: snowflake-network-policy
+      location: ./shared/network-policy.yaml
+    - import: snowflake-account
+      location: ./shared/account.yaml
+    - import: snowflake-managed-account
+      location: ./shared/managed-account.yaml
+
+  exposes:
+    - type: rest
+      port: 8083
+      namespace: snowflake-security-api
+      description: "Unified REST API for Snowflake security and access management."
+      resources:
+        - path: /v1/users
+          name: users
+          description: "User management"
+          operations:
+            - method: GET
+              name: list-users
+              description: "List users"
+              call: "snowflake-user.list-users"
+            - method: POST
+              name: create-user
+              description: "Create a user"
+              call: "snowflake-user.create-user"
+        - path: /v1/roles
+          name: roles
+          description: "Role management"
+          operations:
+            - method: GET
+              name: list-roles
+              description: "List roles"
+              call: "snowflake-role.list-roles"
+            - method: POST
+              name: create-role
+              description: "Create a role"
+              call: "snowflake-role.create-role"
+        - path: /v1/grants
+          name: grants
+          description: "Grant management"
+          operations:
+            - method: POST
+              name: grant-privilege
+              description: "Grant a privilege"
+              call: "snowflake-grant.grant-privilege"
+            - method: GET
+              name: list-grants
+              description: "List grants"
+              call: "snowflake-grant.list-grants-to"
+        - path: /v1/network-policies
+          name: network-policies
+          description: "Network policy management"
+          operations:
+            - method: GET
+              name: list-network-policies
+              description: "List network policies"
+              call: "snowflake-network-policy.list-network-policies"
+            - method: POST
+              name: create-network-policy
+              description: "Create a network policy"
+              call: "snowflake-network-policy.create-network-policy"
+        - path: /v1/accounts
+          name: accounts
+          description: "Account management"
+          operations:
+            - method: GET
+              name: list-accounts
+              description: "List accounts"
+              call: "snowflake-account.list-accounts"
+
+    - type: mcp
+      port: 9083
+      namespace: snowflake-security-mcp
+      transport: http
+      description: "MCP server for AI-assisted Snowflake security and access management."
+      tools:
+        - name: list-users
+          description: "List all users"
+          hints:
+            readOnly: true
+          call: "snowflake-user.list-users"
+        - name: create-user
+          description: "Create a new user"
+          hints:
+            readOnly: false
+          call: "snowflake-user.create-user"
+        - name: fetch-user
+          description: "Fetch user details"
+          hints:
+            readOnly: true
+          call: "snowflake-user.fetch-user"
+        - name: delete-user
+          description: "Delete a user"
+          hints:
+            destructive: true
+          call: "snowflake-user.delete-user"
+        - name: list-roles
+          description: "List all roles"
+          hints:
+            readOnly: true
+          call: "snowflake-role.list-roles"
+        - name: create-role
+          description: "Create a new role"
+          hints:
+            readOnly: false
+          call: "snowflake-role.create-role"
+        - name: grant-privilege
+          description: "Grant a privilege to a role"
+          hints:
+            readOnly: false
+          call: "snowflake-grant.grant-privilege"
+        - name: revoke-privilege
+          description: "Revoke a privilege from a role"
+          hints:
+            readOnly: false
+          call: "snowflake-grant.revoke-privilege"
+        - name: list-grants
+          description: "List grants to a role"
+          hints:
+            readOnly: true
+          call: "snowflake-grant.list-grants-to"
+        - name: list-database-roles
+          description: "List database roles"
+          hints:
+            readOnly: true
+          call: "snowflake-database-role.list-database-roles"
+        - name: create-database-role
+          description: "Create a database role"
+          hints:
+            readOnly: false
+          call: "snowflake-database-role.create-database-role"
+        - name: list-network-policies
+          description: "List network policies"
+          hints:
+            readOnly: true
+          call: "snowflake-network-policy.list-network-policies"
+        - name: create-network-policy
+          description: "Create a network policy"
+          hints:
+            readOnly: false
+          call: "snowflake-network-policy.create-network-policy"
+        - name: list-accounts
+          description: "List accounts"
+          hints:
+            readOnly: true
+          call: "snowflake-account.list-accounts"
+        - name: list-managed-accounts
+          description: "List managed accounts"
+          hints:
+            readOnly: true
+          call: "snowflake-managed-account.list-managed-accounts"

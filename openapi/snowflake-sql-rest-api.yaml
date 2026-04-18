@@ -16,26 +16,26 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
-  - description: Snowflake SQL API V2
-    url: https://{account}.snowflakecomputing.com
-    variables:
-      account:
-        default: org-account
-        description: >-
-          Your Snowflake account identifier in the format org-account_name or
-          account_locator.region.cloud.
+- description: Snowflake SQL API V2
+  url: https://{account}.snowflakecomputing.com
+  variables:
+    account:
+      default: org-account
+      description: >-
+        Your Snowflake account identifier in the format org-account_name or
+        account_locator.region.cloud.
 paths:
   /api/v2/statements:
     parameters:
-      - $ref: '#/components/parameters/requestId'
-      - $ref: '#/components/parameters/async'
-      - $ref: '#/components/parameters/nullable'
-      - $ref: '#/components/parameters/accept'
-      - $ref: '#/components/parameters/userAgent'
-      - $ref: '#/components/parameters/snowflakeAuthorizationTokenType'
+    - $ref: '#/components/parameters/requestId'
+    - $ref: '#/components/parameters/async'
+    - $ref: '#/components/parameters/nullable'
+    - $ref: '#/components/parameters/accept'
+    - $ref: '#/components/parameters/userAgent'
+    - $ref: '#/components/parameters/snowflakeAuthorizationTokenType'
     post:
       operationId: submitStatement
-      summary: Submit a SQL statement for execution.
+      summary: Submit a Sql Statement for Execution.
       description: >-
         Submits one or more SQL statements for execution. You can specify that
         the statement should be executed asynchronously. The following statement
@@ -43,11 +43,11 @@ paths:
         ROLLBACK, statements that set session variables, and statements that
         create temporary tables and stages.
       tags:
-        - statements
+      - statements
       security:
-        - keyPair: []
-        - externalOAuth: []
-        - snowflakeOAuth: []
+      - keyPair: []
+      - externalOAuth: []
+      - snowflakeOAuth: []
       requestBody:
         required: true
         description: Specifies the SQL statement to execute and the statement context.
@@ -75,6 +75,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResultSet'
+              examples:
+                Submitstatement200Example:
+                  summary: Default submitStatement 200 response
+                  x-microcks-default: true
+                  value:
+                    code: example_value
+                    sqlState: example_value
+                    message: example_value
+                    statementHandle: example_value
+                    createdOn: 10
+                    statementStatusUrl: https://www.example.com
+                    resultSetMetaData:
+                      format: jsonv2
+                      numRows: 10
+                      rowType:
+                      - {}
+                      partitionInfo:
+                      - {}
+                      nullable: true
+                    data:
+                    - - example_value
+                    stats:
+                      numRowsInserted: 10
+                      numRowsUpdated: 10
+                      numRowsDeleted: 10
+                      numDuplicateRowsUpdated: 10
           headers:
             Link:
               $ref: '#/components/headers/Link'
@@ -96,6 +122,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/QueryStatus'
+              examples:
+                Submitstatement202Example:
+                  summary: Default submitStatement 202 response
+                  x-microcks-default: true
+                  value:
+                    code: example_value
+                    sqlState: example_value
+                    message: example_value
+                    statementHandle: example_value
+                    createdOn: 10
+                    statementStatusUrl: https://www.example.com
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -114,6 +151,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/QueryStatus'
+              examples:
+                Submitstatement408Example:
+                  summary: Default submitStatement 408 response
+                  x-microcks-default: true
+                  value:
+                    code: example_value
+                    sqlState: example_value
+                    message: example_value
+                    statementHandle: example_value
+                    createdOn: 10
+                    statementStatusUrl: https://www.example.com
         '415':
           $ref: '#/components/responses/415UnsupportedMediaType'
         '422':
@@ -124,6 +172,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/QueryFailureStatus'
+              examples:
+                Submitstatement422Example:
+                  summary: Default submitStatement 422 response
+                  x-microcks-default: true
+                  value:
+                    code: example_value
+                    sqlState: example_value
+                    message: example_value
+                    statementHandle: example_value
+                    createdOn: 10
+                    statementStatusUrl: https://www.example.com
         '429':
           $ref: '#/components/responses/429LimitExceeded'
         '500':
@@ -132,27 +191,30 @@ paths:
           $ref: '#/components/responses/503ServiceUnavailable'
         '504':
           $ref: '#/components/responses/504GatewayTimeout'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/statements/{statementHandle}:
     parameters:
-      - $ref: '#/components/parameters/statementHandle'
-      - $ref: '#/components/parameters/requestId'
-      - $ref: '#/components/parameters/partition'
-      - $ref: '#/components/parameters/accept'
-      - $ref: '#/components/parameters/userAgent'
-      - $ref: '#/components/parameters/snowflakeAuthorizationTokenType'
+    - $ref: '#/components/parameters/statementHandle'
+    - $ref: '#/components/parameters/requestId'
+    - $ref: '#/components/parameters/partition'
+    - $ref: '#/components/parameters/accept'
+    - $ref: '#/components/parameters/userAgent'
+    - $ref: '#/components/parameters/snowflakeAuthorizationTokenType'
     get:
       operationId: getStatementStatus
-      summary: Check the status of the execution of a statement.
+      summary: Check the Status of the Execution of a Statement.
       description: >-
         Checks the status of the execution of the statement with the specified
         statement handle. If the statement was executed successfully, the
         operation returns the requested partition of the result set.
       tags:
-        - statements
+      - statements
       security:
-        - keyPair: []
-        - externalOAuth: []
-        - snowflakeOAuth: []
+      - keyPair: []
+      - externalOAuth: []
+      - snowflakeOAuth: []
       responses:
         '200':
           description: >-
@@ -165,6 +227,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ResultSet'
+              examples:
+                Getstatementstatus200Example:
+                  summary: Default getStatementStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    code: example_value
+                    sqlState: example_value
+                    message: example_value
+                    statementHandle: example_value
+                    createdOn: 10
+                    statementStatusUrl: https://www.example.com
+                    resultSetMetaData:
+                      format: jsonv2
+                      numRows: 10
+                      rowType:
+                      - {}
+                      partitionInfo:
+                      - {}
+                      nullable: true
+                    data:
+                    - - example_value
+                    stats:
+                      numRowsInserted: 10
+                      numRowsUpdated: 10
+                      numRowsDeleted: 10
+                      numDuplicateRowsUpdated: 10
         '202':
           description: >-
             The execution of the statement is still in progress. Use this method
@@ -173,6 +261,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/QueryStatus'
+              examples:
+                Getstatementstatus202Example:
+                  summary: Default getStatementStatus 202 response
+                  x-microcks-default: true
+                  value:
+                    code: example_value
+                    sqlState: example_value
+                    message: example_value
+                    statementHandle: example_value
+                    createdOn: 10
+                    statementStatusUrl: https://www.example.com
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -193,6 +292,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/QueryFailureStatus'
+              examples:
+                Getstatementstatus422Example:
+                  summary: Default getStatementStatus 422 response
+                  x-microcks-default: true
+                  value:
+                    code: example_value
+                    sqlState: example_value
+                    message: example_value
+                    statementHandle: example_value
+                    createdOn: 10
+                    statementStatusUrl: https://www.example.com
         '429':
           $ref: '#/components/responses/429LimitExceeded'
         '500':
@@ -201,25 +311,28 @@ paths:
           $ref: '#/components/responses/503ServiceUnavailable'
         '504':
           $ref: '#/components/responses/504GatewayTimeout'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/statements/{statementHandle}/cancel:
     parameters:
-      - $ref: '#/components/parameters/statementHandle'
-      - $ref: '#/components/parameters/requestId'
-      - $ref: '#/components/parameters/accept'
-      - $ref: '#/components/parameters/userAgent'
-      - $ref: '#/components/parameters/snowflakeAuthorizationTokenType'
+    - $ref: '#/components/parameters/statementHandle'
+    - $ref: '#/components/parameters/requestId'
+    - $ref: '#/components/parameters/accept'
+    - $ref: '#/components/parameters/userAgent'
+    - $ref: '#/components/parameters/snowflakeAuthorizationTokenType'
     post:
       operationId: cancelStatement
-      summary: Cancel the execution of a statement.
+      summary: Cancel the Execution of a Statement.
       description: >-
         Cancels the execution of the statement with the specified statement
         handle.
       tags:
-        - statements
+      - statements
       security:
-        - keyPair: []
-        - externalOAuth: []
-        - snowflakeOAuth: []
+      - keyPair: []
+      - externalOAuth: []
+      - snowflakeOAuth: []
       responses:
         '200':
           description: The execution of the statement was successfully canceled.
@@ -227,6 +340,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CancelStatus'
+              examples:
+                Cancelstatement200Example:
+                  summary: Default cancelStatement 200 response
+                  x-microcks-default: true
+                  value:
+                    code: example_value
+                    sqlState: example_value
+                    message: example_value
+                    statementHandle: example_value
+                    statementStatusUrl: https://www.example.com
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -245,12 +368,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CancelStatus'
+              examples:
+                Cancelstatement422Example:
+                  summary: Default cancelStatement 422 response
+                  x-microcks-default: true
+                  value:
+                    code: example_value
+                    sqlState: example_value
+                    message: example_value
+                    statementHandle: example_value
+                    statementStatusUrl: https://www.example.com
         '500':
           $ref: '#/components/responses/500InternalServerError'
         '503':
           $ref: '#/components/responses/503ServiceUnavailable'
         '504':
           $ref: '#/components/responses/504GatewayTimeout'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     StatementRequest:
@@ -266,8 +402,8 @@ components:
             statements that set session variables, and statements that create
             temporary tables and stages.
           examples:
-            - select * from T where c1=?
-            - CREATE TABLE test_table (id INTEGER, name VARCHAR)
+          - select * from T where c1=?
+          - CREATE TABLE test_table (id INTEGER, name VARCHAR)
         timeout:
           type: integer
           format: int64
@@ -278,36 +414,36 @@ components:
             automatically canceled. To set the timeout to the maximum value
             (604800 seconds), set timeout to 0.
           examples:
-            - 10
-            - 60
+          - 10
+          - 60
         database:
           type: string
           description: >-
             Database in which the statement should be executed. The value in
             this field is case-sensitive.
           examples:
-            - TESTDB
+          - TESTDB
         schema:
           type: string
           description: >-
             Schema in which the statement should be executed. The value in this
             field is case-sensitive.
           examples:
-            - TESTSCHEMA
+          - TESTSCHEMA
         warehouse:
           type: string
           description: >-
             Warehouse to use when executing the statement. The value in this
             field is case-sensitive.
           examples:
-            - TESTWH
+          - TESTWH
         role:
           type: string
           description: >-
             Role to use when executing the statement. The value in this field is
             case-sensitive.
           examples:
-            - TESTROLE
+          - TESTROLE
         bindings:
           type: object
           description: >-
@@ -316,6 +452,7 @@ components:
             statement with these specified values.
           additionalProperties:
             $ref: '#/components/schemas/BindVariable'
+          example: example_value
         parameters:
           $ref: '#/components/schemas/SessionParameters'
     BindVariable:
@@ -328,17 +465,17 @@ components:
             The Snowflake data type of the bind variable (e.g. FIXED, TEXT,
             BOOLEAN, DATE, TIMESTAMP_LTZ, TIMESTAMP_NTZ, TIMESTAMP_TZ).
           examples:
-            - FIXED
-            - TEXT
+          - FIXED
+          - TEXT
         value:
           type: string
           description: The value of the bind variable as a string.
           examples:
-            - '123'
-            - teststring
+          - '123'
+          - teststring
       required:
-        - type
-        - value
+      - type
+      - value
     SessionParameters:
       type: object
       description: Session parameters that should be set before executing the statement.
@@ -347,47 +484,47 @@ components:
           type: string
           description: Time zone to use when executing the statement.
           examples:
-            - america/los_angeles
+          - america/los_angeles
         query_tag:
           type: string
           description: Query tag that you want to associate with the SQL statement.
           examples:
-            - tag-1234
+          - tag-1234
         binary_output_format:
           type: string
           description: Output format for binary values.
           examples:
-            - HEX
+          - HEX
         date_output_format:
           type: string
           description: Output format for DATE values.
           examples:
-            - YYYY-MM-DD
+          - YYYY-MM-DD
         time_output_format:
           type: string
           description: Output format for TIME values.
           examples:
-            - 'HH24:MI:SS.FF6'
+          - 'HH24:MI:SS.FF6'
         timestamp_output_format:
           type: string
           description: Output format for TIMESTAMP values.
           examples:
-            - 'YYYY-MM-DDTHH24:MI:SS.FF6'
+          - 'YYYY-MM-DDTHH24:MI:SS.FF6'
         timestamp_ltz_output_format:
           type: string
           description: Output format for TIMESTAMP_LTZ values.
           examples:
-            - 'YYYY-MM-DDTHH24:MI:SS.FF6'
+          - 'YYYY-MM-DDTHH24:MI:SS.FF6'
         timestamp_ntz_output_format:
           type: string
           description: Output format for TIMESTAMP_NTZ values.
           examples:
-            - 'YYYY-MM-DDTHH24:MI:SS.FF6'
+          - 'YYYY-MM-DDTHH24:MI:SS.FF6'
         timestamp_tz_output_format:
           type: string
           description: Output format for TIMESTAMP_TZ values.
           examples:
-            - 'YYYY-MM-DDTHH24:MI:SS.FF6 TZHTZM'
+          - 'YYYY-MM-DDTHH24:MI:SS.FF6 TZHTZM'
         multi_statement_count:
           type: integer
           description: >-
@@ -396,25 +533,25 @@ components:
             numbers are not allowed.
           default: 1
           examples:
-            - 4
+          - 4
         client_result_chunk_size:
           type: integer
           description: >-
             Maximum size of each set (chunk) of query results to download.
           examples:
-            - 160
+          - 160
         rows_per_resultset:
           type: integer
           description: Maximum number of rows returned in a result set.
           examples:
-            - 10000
+          - 10000
         use_cached_result:
           type: boolean
           description: >-
             Whether to use a previously-cached result set for a query whose
             result set is still in the cache.
           examples:
-            - true
+          - true
     QueryStatus:
       type: object
       description: >-
@@ -424,17 +561,17 @@ components:
           type: string
           description: Status code for the query execution.
           examples:
-            - '090001'
+          - '090001'
         sqlState:
           type: string
           description: SQL state code.
           examples:
-            - '00000'
+          - '00000'
         message:
           type: string
           description: Message describing the status of the query.
           examples:
-            - successfully executed
+          - successfully executed
         statementHandle:
           type: string
           format: uuid
@@ -443,7 +580,7 @@ components:
             handle to check the status of the statement and retrieve the result
             set.
           examples:
-            - e4ce975e-f7ff-4b5e-b15e-bf25f59371ae
+          - e4ce975e-f7ff-4b5e-b15e-bf25f59371ae
         createdOn:
           type: integer
           format: int64
@@ -451,7 +588,7 @@ components:
             Timestamp that specifies when the statement execution started. The
             timestamp is expressed in milliseconds since the epoch.
           examples:
-            - 1597090533987
+          - 1597090533987
         statementStatusUrl:
           type: string
           format: uri
@@ -459,9 +596,9 @@ components:
             URL that you can use to check the status of the execution of the
             statement and retrieve the result set.
           examples:
-            - /api/v2/statements/e4ce975e-f7ff-4b5e-b15e-bf25f59371ae
+          - /api/v2/statements/e4ce975e-f7ff-4b5e-b15e-bf25f59371ae
       required:
-        - statementHandle
+      - statementHandle
     QueryFailureStatus:
       type: object
       description: Status returned when a query execution fails.
@@ -470,23 +607,23 @@ components:
           type: string
           description: Error code for the query failure.
           examples:
-            - '000123'
+          - '000123'
         sqlState:
           type: string
           description: SQL state code indicating the error category.
           examples:
-            - '42601'
+          - '42601'
         message:
           type: string
           description: Error message describing the failure.
           examples:
-            - SQL compilation error
+          - SQL compilation error
         statementHandle:
           type: string
           format: uuid
           description: Handle that uniquely identifies the failed statement.
           examples:
-            - e4ce975e-f7ff-4b5e-b15e-bf25f59371ae
+          - e4ce975e-f7ff-4b5e-b15e-bf25f59371ae
         createdOn:
           type: integer
           format: int64
@@ -494,14 +631,15 @@ components:
             Timestamp that specifies when the statement execution started. The
             timestamp is expressed in milliseconds since the epoch.
           examples:
-            - 1597090533987
+          - 1597090533987
         statementStatusUrl:
           type: string
           format: uri
           description: URL for checking the status of the failed statement.
+          example: https://www.example.com
       required:
-        - message
-        - statementHandle
+      - message
+      - statementHandle
     CancelStatus:
       type: object
       description: Status returned when a statement cancellation is requested.
@@ -509,26 +647,29 @@ components:
         code:
           type: string
           description: Status code for the cancellation.
+          example: example_value
         sqlState:
           type: string
           description: SQL state code.
+          example: example_value
         message:
           type: string
           description: Message describing the cancellation status.
           examples:
-            - successfully canceled
+          - successfully canceled
         statementHandle:
           type: string
           format: uuid
           description: Handle of the canceled statement.
           examples:
-            - 536fad38-b564-4dc5-9892-a4543504df6c
+          - 536fad38-b564-4dc5-9892-a4543504df6c
         statementStatusUrl:
           type: string
           format: uri
           description: URL for checking the status of the canceled statement.
+          example: https://www.example.com
       required:
-        - statementHandle
+      - statementHandle
     ResultSet:
       type: object
       description: >-
@@ -539,23 +680,23 @@ components:
           type: string
           description: Status code for the query.
           examples:
-            - '090001'
+          - '090001'
         sqlState:
           type: string
           description: SQL state code.
           examples:
-            - '00000'
+          - '00000'
         message:
           type: string
           description: Message describing the execution status.
           examples:
-            - successfully executed
+          - successfully executed
         statementHandle:
           type: string
           format: uuid
           description: Handle that uniquely identifies the executed statement.
           examples:
-            - 536fad38-b564-4dc5-9892-a4543504df6c
+          - 536fad38-b564-4dc5-9892-a4543504df6c
         createdOn:
           type: integer
           format: int64
@@ -563,11 +704,12 @@ components:
             Timestamp that specifies when the statement execution started. The
             timestamp is expressed in milliseconds since the epoch.
           examples:
-            - 1597090533987
+          - 1597090533987
         statementStatusUrl:
           type: string
           format: uri
           description: URL for checking the status of the statement.
+          example: https://www.example.com
         resultSetMetaData:
           $ref: '#/components/schemas/ResultSetMetaData'
         data:
@@ -580,8 +722,9 @@ components:
             type: array
             items:
               type:
-                - string
-                - 'null'
+              - string
+              - 'null'
+          example: []
         stats:
           $ref: '#/components/schemas/ExecutionStats'
     ResultSetMetaData:
@@ -591,31 +734,35 @@ components:
         format:
           type: string
           enum:
-            - jsonv2
+          - jsonv2
           description: >-
             For v2 endpoints the only possible value for this field is jsonv2.
+          example: jsonv2
         numRows:
           type: integer
           format: int64
           description: The total number of rows of results.
           examples:
-            - 100
+          - 100
         rowType:
           type: array
           description: Array of column descriptors for the result set.
           minItems: 1
           items:
             $ref: '#/components/schemas/ColumnDefinition'
+          example: []
         partitionInfo:
           type: array
           description: Information about result set partitions for large results.
           items:
             $ref: '#/components/schemas/PartitionInfo'
+          example: []
         nullable:
           type: boolean
           description: >-
             If false, null values are replaced with the string 'null' in the
             result set.
+          example: true
         parameters:
           $ref: '#/components/schemas/SessionParameters'
     ColumnDefinition:
@@ -625,29 +772,35 @@ components:
         name:
           type: string
           description: Name of the column.
+          example: Example Title
         type:
           type: string
           description: >-
             Snowflake data type of the column (e.g. FIXED, TEXT, BOOLEAN, DATE,
             TIMESTAMP_NTZ, VARIANT, ARRAY, OBJECT).
+          example: example_value
         length:
           type: integer
           format: int64
           minimum: 0
           description: Maximum length of the column data.
+          example: 10
         precision:
           type: integer
           format: int64
           minimum: 0
           description: Precision of numeric data.
+          example: 10
         scale:
           type: integer
           format: int64
           minimum: 0
           description: Scale of numeric data.
+          example: 10
         nullable:
           type: boolean
           description: Whether the column allows null values.
+          example: true
     PartitionInfo:
       type: object
       description: Information about a partition of the result set.
@@ -658,7 +811,7 @@ components:
           minimum: 0
           description: Number of rows in the partition.
           examples:
-            - 1324
+          - 1324
         compressedSize:
           type: integer
           format: int64
@@ -667,14 +820,14 @@ components:
             The partition size before decompression. This may not be present in
             every partition.
           examples:
-            - 37436824
+          - 37436824
         uncompressedSize:
           type: integer
           format: int64
           minimum: 0
           description: The partition size after decompression.
           examples:
-            - 1343787384
+          - 1343787384
     ExecutionStats:
       type: object
       description: >-
@@ -687,28 +840,28 @@ components:
           minimum: 0
           description: Number of rows that were inserted.
           examples:
-            - 12
+          - 12
         numRowsUpdated:
           type: integer
           format: int64
           minimum: 0
           description: Number of rows that were updated.
           examples:
-            - 9
+          - 9
         numRowsDeleted:
           type: integer
           format: int64
           minimum: 0
           description: Number of rows that were deleted.
           examples:
-            - 8
+          - 8
         numDuplicateRowsUpdated:
           type: integer
           format: int64
           minimum: 0
           description: Number of duplicate rows that were updated.
           examples:
-            - 20
+          - 20
   parameters:
     requestId:
       name: requestId
@@ -789,9 +942,9 @@ components:
       schema:
         type: string
         enum:
-          - KEYPAIR_JWT
-          - OAUTH
-          - PROGRAMMATIC_ACCESS_TOKEN
+        - KEYPAIR_JWT
+        - OAUTH
+        - PROGRAMMATIC_ACCESS_TOKEN
       required: false
       description: >-
         Specify the authorization token type for the Authorization header.
@@ -887,9 +1040,9 @@ components:
         different rel attribute values that specify the partition to return
         (first, next, prev, and last).
 security:
-  - keyPair: []
-  - externalOAuth: []
-  - snowflakeOAuth: []
+- keyPair: []
+- externalOAuth: []
+- snowflakeOAuth: []
 externalDocs:
   description: Snowflake SQL API documentation
   url: https://docs.snowflake.com/en/developer-guide/sql-api/index

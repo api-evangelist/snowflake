@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Function",
+  "type": "object",
+  "description": "A Snowflake function",
+  "properties": {
+    "function_type": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "description": "Specifies the name for the function, must be unique for the schema in which the function is created"
+    },
+    "arguments": {
+      "type": "array"
+    },
+    "returns": {
+      "type": "string",
+      "description": "Specifies the type for the function return value."
+    },
+    "max_batch_rows": {
+      "type": "integer",
+      "description": "Specifies the max rows for batch operation."
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the function was created."
+    },
+    "signature": {
+      "type": "string",
+      "description": "Function's arguments."
+    },
+    "language": {
+      "type": "string",
+      "description": "Function's language."
+    },
+    "body": {
+      "type": "string",
+      "description": "Function's body."
+    }
+  }
+}

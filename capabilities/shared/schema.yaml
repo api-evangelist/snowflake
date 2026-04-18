@@ -1,0 +1,145 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Schema"
+  description: "Access, update, and manage Schema resources in Snowflake."
+  tags:
+    - Snowflake
+    - Schemas
+    - Data Management
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-schema
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Schema API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: schemas
+          path: /api/v2/databases/{database}/schemas
+          description: "Schema resources"
+          operations:
+            - name: list-schemas
+              method: GET
+              description: "List schemas in a database"
+              inputParameters:
+                - name: database
+                  in: path
+                  type: string
+                  required: true
+                  description: "Database name"
+                - name: like
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by name pattern"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-schema
+              method: POST
+              description: "Create a new schema"
+              inputParameters:
+                - name: database
+                  in: path
+                  type: string
+                  required: true
+                  description: "Database name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+            - name: fetch-schema
+              method: GET
+              description: "Fetch a schema by name"
+              inputParameters:
+                - name: database
+                  in: path
+                  type: string
+                  required: true
+                  description: "Database name"
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Schema name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-schema
+              method: DELETE
+              description: "Delete a schema"
+              inputParameters:
+                - name: database
+                  in: path
+                  type: string
+                  required: true
+                  description: "Database name"
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Schema name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: clone-schema
+              method: POST
+              description: "Clone a schema"
+              inputParameters:
+                - name: database
+                  in: path
+                  type: string
+                  required: true
+                  description: "Database name"
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Schema name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: undrop-schema
+              method: POST
+              description: "Undrop a deleted schema"
+              inputParameters:
+                - name: database
+                  in: path
+                  type: string
+                  required: true
+                  description: "Database name"
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Schema name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

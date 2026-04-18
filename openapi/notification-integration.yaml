@@ -5,9 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Notification Integration API
-  description: The Snowflake Notification Integration API is a REST API that you can
-    use to access, update, and perform certain actions on Notification Integration
-    resource in a Snowflake database.
+  description: The Snowflake Notification Integration API is a REST API that you can use to access, update, and perform certain actions on Notification Integration resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -15,7 +13,7 @@ info:
 paths:
   /api/v2/notification-integrations:
     get:
-      summary: List notification integrations
+      summary: List Notification Integrations
       tags:
       - notification-integration
       description: List notification integrations
@@ -36,6 +34,17 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/NotificationIntegration'
+              examples:
+                Listnotificationintegrations200Example:
+                  summary: Default listNotificationIntegrations 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    enabled: true
+                    comment: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    notification_hook:
+                      type: EMAIL
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -62,8 +71,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create a notification integration
+      summary: Create a Notification Integration
       tags:
       - notification-integration
       description: Create a notification integration
@@ -105,9 +117,23 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/NotificationIntegration'
+            examples:
+              CreatenotificationintegrationRequestExample:
+                summary: Default createNotificationIntegration request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  enabled: true
+                  comment: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  notification_hook:
+                    type: EMAIL
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/notification-integrations/{name}:
     get:
-      summary: Fetch a notification integration
+      summary: Fetch a Notification Integration
       tags:
       - notification-integration
       description: Fetch a notification integration
@@ -126,6 +152,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotificationIntegration'
+              examples:
+                Fetchnotificationintegration200Example:
+                  summary: Default fetchNotificationIntegration 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    enabled: true
+                    comment: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    notification_hook:
+                      type: EMAIL
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -152,8 +189,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Delete a notification integration
+      summary: Delete a Notification Integration
       tags:
       - notification-integration
       description: Delete a notification integration
@@ -190,6 +230,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     NotificationIntegration:
@@ -200,17 +243,21 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the notification.
+          example: Example Title
         enabled:
           type: boolean
           description: Whether the notification integration is enabled.
+          example: true
         comment:
           type: string
           description: Comment for the notification integration.
+          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the notification was created.
+          example: '2026-01-15T10:30:00Z'
         notification_hook:
           $ref: '#/components/schemas/NotificationHook'
       required:
@@ -230,6 +277,7 @@ components:
           - QUEUE_AZURE_EVENT_GRID_INBOUND
           - QUEUE_GCP_PUBSUB_INBOUND
           description: Type of NotificationHook, can be QUEUE, EMAIL or WEBHOOK
+          example: EMAIL
       required:
       - type
       discriminator:
@@ -250,17 +298,18 @@ components:
           type: array
           items:
             type: string
-          description: A comma-separated list of quoted email addresses that can receive
-            notification emails from this integration.
+          description: A comma-separated list of quoted email addresses that can receive notification emails from this integration.
+          example: []
         default_recipients:
           type: array
           items:
             type: string
-          description: A comma-separated list of default recipients for messages sent
-            with this integration.
+          description: A comma-separated list of default recipients for messages sent with this integration.
+          example: []
         default_subject:
           type: string
           description: the default subject line for messages sent with this integration.
+          example: example_value
     NotificationWebhook:
       allOf:
       - $ref: '#/components/schemas/NotificationHook'
@@ -268,19 +317,20 @@ components:
         webhook_url:
           type: string
           description: The URL for the webhook. The URL must use the https:// protocol.
+          example: https://www.example.com
         webhook_secret:
           $ref: '#/components/schemas/WebhookSecret'
           description: The secret to use with this integration.
         webhook_body_template:
           type: string
-          description: A template for the body of the HTTP request to send for the
-            notification.
+          description: A template for the body of the HTTP request to send for the notification.
+          example: example_value
         webhook_headers:
           type: object
           additionalProperties:
             type: string
-          description: A list of HTTP headers and values to include in the HTTP request
-            for the webhook.
+          description: A list of HTTP headers and values to include in the HTTP request for the webhook.
+          example: example_value
       required:
       - webhook_url
     WebhookSecret:
@@ -290,14 +340,17 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: The name of the secret.
+          example: Example Title
         database_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: The database which stores the secret.
+          example: example_value
         schema_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: The schema which stores the secret.
+          example: example_value
       required:
       - name
       - database_name
@@ -308,20 +361,22 @@ components:
       properties:
         aws_sns_topic_arn:
           type: string
-          description: Amazon Resource Name (ARN) of the Amazon SNS (SNS) topic to
-            which notifications are pushed.
+          description: Amazon Resource Name (ARN) of the Amazon SNS (SNS) topic to which notifications are pushed.
+          example: example_value
         aws_sns_role_arn:
           type: string
-          description: ARN of the IAM role that has permissions to publish messages
-            to the SNS topic.
+          description: ARN of the IAM role that has permissions to publish messages to the SNS topic.
+          example: example_value
         sf_aws_iam_user_arn:
           type: string
           readOnly: true
           description: ARN for the Snowflake IAM user created for your account.
+          example: example_value
         sf_aws_external_id:
           type: string
           readOnly: true
           description: External ID for the Snowflake IAM user created for your account.
+          example: '500123'
     NotificationQueueAzureEventGridOutbound:
       allOf:
       - $ref: '#/components/schemas/NotificationHook'
@@ -329,63 +384,69 @@ components:
         azure_event_grid_topic_endpoint:
           type: string
           description: Event Grid topic endpoint to which Snowpipe pushes notifications.
+          example: example_value
         azure_tenant_id:
           type: string
           description: ID of the Azure Active Directory tenant used for identity management.
+          example: '500123'
         azure_consent_url:
           type: string
           readOnly: true
           description: URL to the Microsoft permissions request page.
+          example: https://www.example.com
         azure_multi_tenant_app_name:
           type: string
           readOnly: true
           description: Name of the Snowflake client application created for your account.
+          example: example_value
     NotificationQueueGcpPubsubOutbound:
       allOf:
       - $ref: '#/components/schemas/NotificationHook'
       properties:
         gcp_pubsub_topic_name:
           type: string
-          description: Identification of the Pub/Sub topic to which Snowpipe pushes
-            notifications.
+          description: Identification of the Pub/Sub topic to which Snowpipe pushes notifications.
+          example: example_value
         gcp_pubsub_service_account:
           type: string
           readOnly: true
-          description: Google Cloud Platform (GCP) service account created for your
-            account.
+          description: Google Cloud Platform (GCP) service account created for your account.
+          example: example_value
     NotificationQueueAzureEventGridInbound:
       allOf:
       - $ref: '#/components/schemas/NotificationHook'
       properties:
         azure_storage_queue_primary_uri:
           type: string
-          description: the queue ID for the Azure Queue Storage queue created for
-            Event Grid notifications.
+          description: the queue ID for the Azure Queue Storage queue created for Event Grid notifications.
+          example: example_value
         azure_tenant_id:
           type: string
-          description: the ID of the Azure Active Directory tenant used for identity
-            management.
+          description: the ID of the Azure Active Directory tenant used for identity management.
+          example: '500123'
         azure_consent_url:
           type: string
           readOnly: true
           description: URL to the Microsoft permissions request page.
+          example: https://www.example.com
         azure_multi_tenant_app_name:
           type: string
           readOnly: true
           description: Name of the Snowflake client application created for your account.
+          example: example_value
     NotificationQueueGcpPubsubInbound:
       allOf:
       - $ref: '#/components/schemas/NotificationHook'
       properties:
         gcp_pubsub_subscription_name:
           type: string
-          description: Pub/Sub topic subscription ID used to allow Snowflake access
-            to event messages.
+          description: Pub/Sub topic subscription ID used to allow Snowflake access to event messages.
+          example: example_value
         gcp_pubsub_service_account:
           type: string
           readOnly: true
-          description: Google Cloud Platform (GCP) service account created for your
-            account.
+          description: Google Cloud Platform (GCP) service account created for your account.
+          example: example_value
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

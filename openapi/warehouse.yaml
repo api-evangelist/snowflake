@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Warehouse API
-  description: The Snowflake Warehouse API is a REST API that you can use to access,
-    customize and manage virtual warehouse in a Snowflake account.
+  description: The Snowflake Warehouse API is a REST API that you can use to access, customize and manage virtual warehouse in a Snowflake account.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,7 +13,7 @@ info:
 paths:
   /api/v2/warehouses:
     post:
-      summary: Create or replace warehouse
+      summary: Create or Replace Warehouse
       description: Create a virtual warehouse. Equivalent to CREATE WAREHOUSE in SQL.
       operationId: createWarehouse
       tags:
@@ -27,6 +26,49 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Warehouse'
+            examples:
+              CreatewarehouseRequestExample:
+                summary: Default createWarehouse request
+                x-microcks-default: true
+                value:
+                  name: {}
+                  warehouse_type: example_value
+                  warehouse_size: example_value
+                  wait_for_completion: true
+                  max_cluster_count: 10
+                  min_cluster_count: 10
+                  scaling_policy: example_value
+                  auto_suspend: 10
+                  auto_resume: true
+                  initially_suspended: true
+                  resource_monitor: {}
+                  comment: example_value
+                  enable_query_acceleration: true
+                  query_acceleration_max_scale_factor: 10
+                  max_concurrency_level: 10
+                  statement_queued_timeout_in_seconds: 10
+                  statement_timeout_in_seconds: 10
+                  type: example_value
+                  size: example_value
+                  state: example_value
+                  started_clusters: 10
+                  running: 10
+                  queued: 10
+                  is_default: true
+                  is_current: true
+                  available: example_value
+                  provisioning: example_value
+                  quiescing: example_value
+                  other: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  resumed_on: '2026-01-15T10:30:00Z'
+                  updated_on: '2026-01-15T10:30:00Z'
+                  owner: example_value
+                  budget: example_value
+                  kind: example_value
+                  owner_role_type: example_value
+                  warehouse_credit_limit: 10
+                  target_statement_size: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -54,10 +96,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     get:
-      summary: List warehouse
-      description: Show a list of warehouse filtered by pattern. Equivalent to SHOW
-        WAREHOUSE in SQL.
+      summary: List Warehouse
+      description: Show a list of warehouse filtered by pattern. Equivalent to SHOW WAREHOUSE in SQL.
       operationId: listWarehouses
       tags:
       - warehouse
@@ -77,6 +121,49 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Warehouse'
+              examples:
+                Listwarehouses200Example:
+                  summary: Default listWarehouses 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: {}
+                    warehouse_type: example_value
+                    warehouse_size: example_value
+                    wait_for_completion: true
+                    max_cluster_count: 10
+                    min_cluster_count: 10
+                    scaling_policy: example_value
+                    auto_suspend: 10
+                    auto_resume: true
+                    initially_suspended: true
+                    resource_monitor: {}
+                    comment: example_value
+                    enable_query_acceleration: true
+                    query_acceleration_max_scale_factor: 10
+                    max_concurrency_level: 10
+                    statement_queued_timeout_in_seconds: 10
+                    statement_timeout_in_seconds: 10
+                    type: example_value
+                    size: example_value
+                    state: example_value
+                    started_clusters: 10
+                    running: 10
+                    queued: 10
+                    is_default: true
+                    is_current: true
+                    available: example_value
+                    provisioning: example_value
+                    quiescing: example_value
+                    other: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    resumed_on: '2026-01-15T10:30:00Z'
+                    updated_on: '2026-01-15T10:30:00Z'
+                    owner: example_value
+                    budget: example_value
+                    kind: example_value
+                    owner_role_type: example_value
+                    warehouse_credit_limit: 10
+                    target_statement_size: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -103,11 +190,13 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/warehouses/{name}:
     get:
-      summary: Describe warehouse
-      description: Describes the warehouse, show information of the chosen warehouse.
-        Equivalent to DESCRIBE WAREHOUSE in SQL.
+      summary: Describe Warehouse
+      description: Describes the warehouse, show information of the chosen warehouse. Equivalent to DESCRIBE WAREHOUSE in SQL.
       operationId: fetchWarehouse
       tags:
       - warehouse
@@ -125,6 +214,49 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Warehouse'
+              examples:
+                Fetchwarehouse200Example:
+                  summary: Default fetchWarehouse 200 response
+                  x-microcks-default: true
+                  value:
+                    name: {}
+                    warehouse_type: example_value
+                    warehouse_size: example_value
+                    wait_for_completion: true
+                    max_cluster_count: 10
+                    min_cluster_count: 10
+                    scaling_policy: example_value
+                    auto_suspend: 10
+                    auto_resume: true
+                    initially_suspended: true
+                    resource_monitor: {}
+                    comment: example_value
+                    enable_query_acceleration: true
+                    query_acceleration_max_scale_factor: 10
+                    max_concurrency_level: 10
+                    statement_queued_timeout_in_seconds: 10
+                    statement_timeout_in_seconds: 10
+                    type: example_value
+                    size: example_value
+                    state: example_value
+                    started_clusters: 10
+                    running: 10
+                    queued: 10
+                    is_default: true
+                    is_current: true
+                    available: example_value
+                    provisioning: example_value
+                    quiescing: example_value
+                    other: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    resumed_on: '2026-01-15T10:30:00Z'
+                    updated_on: '2026-01-15T10:30:00Z'
+                    owner: example_value
+                    budget: example_value
+                    kind: example_value
+                    owner_role_type: example_value
+                    warehouse_credit_limit: 10
+                    target_statement_size: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -151,10 +283,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Drop warehouse
-      description: Removes the specified virtual warehouse from the system. Equivalent
-        to DROP WAREHOUSE in SQL.
+      summary: Drop Warehouse
+      description: Removes the specified virtual warehouse from the system. Equivalent to DROP WAREHOUSE in SQL.
       operationId: deleteWarehouse
       tags:
       - warehouse
@@ -190,10 +324,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
-      summary: Create a (or alter an existing) warehouse.
-      description: Create a (or alter an existing) warehouse. Even if the operation
-        is just an alter, the full property set must be provided.
+      summary: Create a (or Alter an Existing) Warehouse.
+      description: Create a (or alter an existing) warehouse. Even if the operation is just an alter, the full property set must be provided.
       operationId: createOrAlterWarehouse
       tags:
       - warehouse
@@ -205,6 +341,49 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Warehouse'
+            examples:
+              CreateoralterwarehouseRequestExample:
+                summary: Default createOrAlterWarehouse request
+                x-microcks-default: true
+                value:
+                  name: {}
+                  warehouse_type: example_value
+                  warehouse_size: example_value
+                  wait_for_completion: true
+                  max_cluster_count: 10
+                  min_cluster_count: 10
+                  scaling_policy: example_value
+                  auto_suspend: 10
+                  auto_resume: true
+                  initially_suspended: true
+                  resource_monitor: {}
+                  comment: example_value
+                  enable_query_acceleration: true
+                  query_acceleration_max_scale_factor: 10
+                  max_concurrency_level: 10
+                  statement_queued_timeout_in_seconds: 10
+                  statement_timeout_in_seconds: 10
+                  type: example_value
+                  size: example_value
+                  state: example_value
+                  started_clusters: 10
+                  running: 10
+                  queued: 10
+                  is_default: true
+                  is_current: true
+                  available: example_value
+                  provisioning: example_value
+                  quiescing: example_value
+                  other: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  resumed_on: '2026-01-15T10:30:00Z'
+                  updated_on: '2026-01-15T10:30:00Z'
+                  owner: example_value
+                  budget: example_value
+                  kind: example_value
+                  owner_role_type: example_value
+                  warehouse_credit_limit: 10
+                  target_statement_size: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -234,11 +413,13 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/warehouses/{name}:resume:
     post:
-      summary: Resume warehouse
-      description: "Bring current warehouse to a usable \u2018Running\u2019 state\
-        \ by provisioning compute resources if current warehouse is suspended."
+      summary: Resume Warehouse
+      description: "Bring current warehouse to a usable ‘Running’ state by provisioning compute resources if current warehouse is suspended."
       operationId: resumeWarehouse
       tags:
       - warehouse
@@ -274,11 +455,13 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/warehouses/{name}:suspend:
     post:
-      summary: Suspend warehouse
-      description: "Remove all compute nodes from a warehouse and put the warehouse\
-        \ into a \u2018Suspended\u2019 state if current warehouse is not suspended."
+      summary: Suspend Warehouse
+      description: "Remove all compute nodes from a warehouse and put the warehouse into a ‘Suspended’ state if current warehouse is not suspended."
       operationId: suspendWarehouse
       tags:
       - warehouse
@@ -314,11 +497,13 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/warehouses/{name}:rename:
     post:
-      summary: Update and rename warehouse
-      description: Specifies a new identifier for the warehouse; must be unique for
-        current account.
+      summary: Update and Rename Warehouse
+      description: Specifies a new identifier for the warehouse; must be unique for current account.
       operationId: renameWarehouse
       tags:
       - warehouse
@@ -331,6 +516,49 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Warehouse'
+            examples:
+              RenamewarehouseRequestExample:
+                summary: Default renameWarehouse request
+                x-microcks-default: true
+                value:
+                  name: {}
+                  warehouse_type: example_value
+                  warehouse_size: example_value
+                  wait_for_completion: true
+                  max_cluster_count: 10
+                  min_cluster_count: 10
+                  scaling_policy: example_value
+                  auto_suspend: 10
+                  auto_resume: true
+                  initially_suspended: true
+                  resource_monitor: {}
+                  comment: example_value
+                  enable_query_acceleration: true
+                  query_acceleration_max_scale_factor: 10
+                  max_concurrency_level: 10
+                  statement_queued_timeout_in_seconds: 10
+                  statement_timeout_in_seconds: 10
+                  type: example_value
+                  size: example_value
+                  state: example_value
+                  started_clusters: 10
+                  running: 10
+                  queued: 10
+                  is_default: true
+                  is_current: true
+                  available: example_value
+                  provisioning: example_value
+                  quiescing: example_value
+                  other: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  resumed_on: '2026-01-15T10:30:00Z'
+                  updated_on: '2026-01-15T10:30:00Z'
+                  owner: example_value
+                  budget: example_value
+                  kind: example_value
+                  owner_role_type: example_value
+                  warehouse_credit_limit: 10
+                  target_statement_size: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -360,9 +588,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/warehouses/{name}:abort:
     post:
-      summary: Abort all queries
+      summary: Abort All Queries
       description: Aborts all the queries currently running or queued on the warehouse.
       operationId: abortAllQueriesOnWarehouse
       tags:
@@ -399,9 +630,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/warehouses/{name}:use:
     post:
-      summary: Use current warehouse for session
+      summary: Use Current Warehouse for Session
       description: '[Deprecated] Specifies the active/current warehouse for the session.'
       operationId: useWarehouse
       tags:
@@ -438,11 +672,13 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/warehouses/{name}:enable:
     post:
-      summary: enable adaptive warehouse
-      description: "Enable an adaptive warehouse and put the warehouse into a \u2018\
-        enabled\u2019 state, if the warehouse is not enabled."
+      summary: Enable Adaptive Warehouse
+      description: "Enable an adaptive warehouse and put the warehouse into a ‘enabled’ state, if the warehouse is not enabled."
       operationId: enableWarehouse
       tags:
       - warehouse
@@ -478,11 +714,13 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/warehouses/{name}:disable:
     post:
-      summary: disable adaptive warehouse
-      description: "Disable an adaptive warehouse and put the warehouse into a \u2018\
-        disabled\u2019 state, if the warehouse is not disabled."
+      summary: Disable Adaptive Warehouse
+      description: "Disable an adaptive warehouse and put the warehouse into a ‘disabled’ state, if the warehouse is not disabled."
       operationId: disableWarehouse
       tags:
       - warehouse
@@ -518,6 +756,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     Warehouse:
@@ -530,194 +771,205 @@ components:
         warehouse_type:
           type: string
           description: 'Type of warehouse, possible types: STANDARD, SNOWPARK-OPTIMIZED'
+          example: example_value
         warehouse_size:
           type: string
-          description: 'Size of warehouse, possible sizes: XSMALL, SMALL, MEDIUM,
-            LARGE, XLARGE, XXLARGE, XXXLARGE, X4LARGE, X5LARGE, X6LARGE'
+          description: 'Size of warehouse, possible sizes: XSMALL, SMALL, MEDIUM, LARGE, XLARGE, XXLARGE, XXXLARGE, X4LARGE, X5LARGE, X6LARGE'
+          example: example_value
         wait_for_completion:
           type: string
           enum:
           - true
           - false
-          description: When resizing a warehouse, you can use this parameter to block
-            the return of the ALTER WAREHOUSE command until the resize has finished
-            provisioning all its compute resources
+          description: When resizing a warehouse, you can use this parameter to block the return of the ALTER WAREHOUSE command until the resize has finished provisioning all its compute resources
+          example: true
         max_cluster_count:
           type: integer
           format: int32
-          description: Specifies the maximum number of clusters for a multi-cluster
-            warehouse
+          description: Specifies the maximum number of clusters for a multi-cluster warehouse
+          example: 10
         min_cluster_count:
           type: integer
           format: int32
-          description: Specifies the minimum number of clusters for a multi-cluster
-            warehouse
+          description: Specifies the minimum number of clusters for a multi-cluster warehouse
+          example: 10
         scaling_policy:
           type: string
-          description: 'Scaling policy of warehouse, possible scaling policies: STANDARD,
-            ECONOMY'
+          description: 'Scaling policy of warehouse, possible scaling policies: STANDARD, ECONOMY'
+          example: example_value
         auto_suspend:
           type: integer
           format: int32
           description: time in seconds before auto suspend
+          example: 10
         auto_resume:
           type: string
           enum:
           - true
           - false
-          description: Specifies whether to automatically resume a warehouse when
-            a SQL statement is submitted to it
+          description: Specifies whether to automatically resume a warehouse when a SQL statement is submitted to it
+          example: true
         initially_suspended:
           type: string
           enum:
           - true
           - false
-          description: Specifies whether the warehouse is created initially in the
-            Suspended state
+          description: Specifies whether the warehouse is created initially in the Suspended state
+          example: true
         resource_monitor:
           $ref: ./common.yaml#/components/schemas/Identifier
-          description: Specifies the name of a resource monitor that is explicitly
-            assigned to the warehouse. When a resource monitor is explicitly assigned
-            to a warehouse, the monitor controls the monthly credits used by the warehouse
+          description: Specifies the name of a resource monitor that is explicitly assigned to the warehouse. When a resource monitor is explicitly assigned to a warehouse, the monitor controls the 
+            monthly credits used by the warehouse
         comment:
           type: string
           format: comment
           description: Specifies a comment for the warehouse
+          example: example_value
         enable_query_acceleration:
           type: string
           enum:
           - true
           - false
-          description: Specifies whether to enable the query acceleration service
-            for queries that rely on this warehouse for compute resources
+          description: Specifies whether to enable the query acceleration service for queries that rely on this warehouse for compute resources
+          example: true
         query_acceleration_max_scale_factor:
           type: integer
           format: int32
-          description: Specifies the maximum scale factor for leasing compute resources
-            for query acceleration. The scale factor is used as a multiplier based
-            on warehouse size
+          description: Specifies the maximum scale factor for leasing compute resources for query acceleration. The scale factor is used as a multiplier based on warehouse size
+          example: 10
         max_concurrency_level:
           type: integer
           format: int32
-          description: Object parameter that specifies the concurrency level for SQL
-            statements executed by a warehouse cluster
+          description: Object parameter that specifies the concurrency level for SQL statements executed by a warehouse cluster
+          example: 10
         statement_queued_timeout_in_seconds:
           type: integer
           format: int32
-          description: Object parameter that specifies the time, in seconds, a SQL
-            statement can be queued on a warehouse before it is canceled by the system
+          description: Object parameter that specifies the time, in seconds, a SQL statement can be queued on a warehouse before it is canceled by the system
+          example: 10
         statement_timeout_in_seconds:
           type: integer
           format: int32
-          description: Object parameter that specifies the time, in seconds, after
-            which a running SQL statement  is canceled by the system
+          description: Object parameter that specifies the time, in seconds, after which a running SQL statement  is canceled by the system
+          example: 10
         type:
           type: string
-          description: '[Deprecated] Type of warehouse, possible types: STANDARD,
-            SNOWPARK-OPTIMIZED'
+          description: '[Deprecated] Type of warehouse, possible types: STANDARD, SNOWPARK-OPTIMIZED'
           deprecated: true
+          example: example_value
         size:
           type: string
-          description: '[Deprecated] names of size: X-Small, Small, Medium, Large,
-            X-Large, 2X-Large, 3X-Large, 4X-Large, 5X-Large, 6X-Large'
+          description: '[Deprecated] names of size: X-Small, Small, Medium, Large, X-Large, 2X-Large, 3X-Large, 4X-Large, 5X-Large, 6X-Large'
           deprecated: true
+          example: example_value
         state:
           type: string
           readOnly: true
-          description: 'The state of warehouse, possible states: STARTED, STARTING,
-            DYNAMIC, SUSPENDED, RESIZING, RESUMING, SUSPENDING'
+          description: 'The state of warehouse, possible states: STARTED, STARTING, DYNAMIC, SUSPENDED, RESIZING, RESUMING, SUSPENDING'
+          example: example_value
         started_clusters:
           type: integer
           format: int32
           readOnly: true
           description: Number of clusters currently started.
+          example: 10
         running:
           type: integer
           format: int32
           readOnly: true
           description: Number of SQL statements that are being executed by the warehouse.
+          example: 10
         queued:
           type: integer
           format: int32
           readOnly: true
           description: Number of SQL statements that are queued for the warehouse.
+          example: 10
         is_default:
           type: boolean
           readOnly: true
           description: Whether the warehouse is the default for the current user.
+          example: true
         is_current:
           type: boolean
           readOnly: true
-          description: Whether the warehouse is in use for the session. Only one warehouse
-            can be in use at a time for a session.  To specify or change the warehouse
-            for a session, use the USE WAREHOUSE command.
+          description: Whether the warehouse is in use for the session. Only one warehouse can be in use at a time for a session.  To specify or change the warehouse for a session, use the USE 
+            WAREHOUSE command.
+          example: true
         available:
           type: string
           format: Percentage
           readOnly: true
-          description: Percentage of the warehouse compute resources that are provisioned
-            and available.
+          description: Percentage of the warehouse compute resources that are provisioned and available.
+          example: example_value
         provisioning:
           type: string
           format: Percentage
           readOnly: true
-          description: Percentage of the warehouse compute resources that are in the
-            process of provisioning.
+          description: Percentage of the warehouse compute resources that are in the process of provisioning.
+          example: example_value
         quiescing:
           type: string
           format: Percentage
           readOnly: true
-          description: Percentage of the warehouse compute resources that are executing
-            SQL statements,  but will be shut down once the queries complete.
+          description: Percentage of the warehouse compute resources that are executing SQL statements,  but will be shut down once the queries complete.
+          example: example_value
         other:
           type: string
           format: Percentage
           readOnly: true
-          description: Percentage of the warehouse compute resources that are in a
-            state other than available,  provisioning, or quiescing.
+          description: Percentage of the warehouse compute resources that are in a state other than available,  provisioning, or quiescing.
+          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the warehouse was created.
+          example: '2026-01-15T10:30:00Z'
         resumed_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the warehouse was last started or restarted.
+          example: '2026-01-15T10:30:00Z'
         updated_on:
           type: string
           format: date-time
           readOnly: true
-          description: Date and time when the warehouse was last updated,  which includes
-            changing any of the properties of the warehouse or changing the state
-            (STARTED, SUSPENDED, RESIZING) of the warehouse.
+          description: Date and time when the warehouse was last updated,  which includes changing any of the properties of the warehouse or changing the state (STARTED, SUSPENDED, RESIZING) of the 
+            warehouse.
+          example: '2026-01-15T10:30:00Z'
         owner:
           type: string
           format: role name
           readOnly: true
           description: Role that owns the warehouse.
+          example: example_value
         budget:
           type: string
           readOnly: true
           description: Comment representing budget for warehouse.
+          example: example_value
         kind:
           type: string
           format: warehouse
           readOnly: true
           deprecated: true
+          example: example_value
         owner_role_type:
           type: string
           readOnly: true
           description: The type of role that owns the object.
+          example: example_value
         warehouse_credit_limit:
           type: integer
           format: int64
           description: Credit limit that are can be executed by the warehouse.
+          example: 10
         target_statement_size:
           type: string
-          description: 'Names of size: X-Small, Small, Medium, Large, X-Large, 2X-Large,
-            3X-Large, 4X-Large, 5X-Large, 6X-Large'
+          description: 'Names of size: X-Small, Small, Medium, Large, X-Large, 2X-Large, 3X-Large, 4X-Large, 5X-Large, 6X-Large'
+          example: example_value
       required:
       - name
   securitySchemes:

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ApiIntegration",
+  "type": "object",
+  "description": "A Snowflake API integration object.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the API integration."
+    },
+    "api_allowed_prefixes": {
+      "type": "array",
+      "description": "A comma-separated list of endpoints and resources that Snowflake can access."
+    },
+    "api_blocked_prefixes": {
+      "type": "array",
+      "description": "A comma-separated list of endpoints and resources that are not allowed to be called from Snowflake."
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the API integration is enabled."
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment for the API integration."
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the API integration was created."
+    }
+  }
+}

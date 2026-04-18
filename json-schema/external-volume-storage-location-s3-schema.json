@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StorageLocationS3",
+  "type": "object",
+  "properties": {
+    "storage_aws_role_arn": {
+      "type": "string",
+      "description": "Specifies the case-sensitive Amazon Resource Name (ARN) of the AWS identity and access management (IAM) role that grants privileges on the S3 bucket containing your data files."
+    },
+    "storage_base_url": {
+      "type": "string",
+      "description": "Specifies the base URL for your cloud storage location."
+    },
+    "storage_aws_external_id": {
+      "type": "string",
+      "description": "Optionally specifies an external ID that Snowflake uses to establish a trust relationship with AWS."
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NotificationQueueAzureEventGridInbound",
+  "type": "object",
+  "properties": {
+    "azure_storage_queue_primary_uri": {
+      "type": "string",
+      "description": "the queue ID for the Azure Queue Storage queue created for Event Grid notifications."
+    },
+    "azure_tenant_id": {
+      "type": "string",
+      "description": "the ID of the Azure Active Directory tenant used for identity management."
+    },
+    "azure_consent_url": {
+      "type": "string",
+      "description": "URL to the Microsoft permissions request page."
+    },
+    "azure_multi_tenant_app_name": {
+      "type": "string",
+      "description": "Name of the Snowflake client application created for your account."
+    }
+  }
+}

@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Image Repository API
-  description: The Snowflake Image Repository API is a REST API that you can use to
-    access, update, and perform common actions on Image Repository resource in Snowflake.
+  description: The Snowflake Image Repository API is a REST API that you can use to access, update, and perform common actions on Image Repository resource in Snowflake.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,7 +13,7 @@ info:
 paths:
   /api/v2/databases/{database}/schemas/{schema}/image-repositories:
     get:
-      summary: Lists image repositories.
+      summary: Lists Image Repositories.
       tags:
       - image-repository
       description: Lists the image repositories under a specified database and schema.
@@ -37,6 +36,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ImageRepository'
+              examples:
+                Listimagerepositories200Example:
+                  summary: Default listImageRepositories 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: {}
+                    database_name: {}
+                    schema_name: {}
+                    created_on: '2026-01-15T10:30:00Z'
+                    repository_url: https://www.example.com
+                    owner: example_value
+                    owner_role_type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -61,14 +72,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Creates an image repository in the specified database and schema.
+      summary: Creates an Image Repository in the Specified Database and Schema.
       tags:
       - image-repository
-      description: Creates an image repository in the specified database, schema,
-        and create mode. The `createMode` query parameter specifies what action to
-        take based on whether the repository already exists. See the ImageRepository
-        component definition for what is required to be provided in the request body.
+      description: Creates an image repository in the specified database, schema, and create mode. The `createMode` query parameter specifies what action to take based on whether the repository 
+        already exists. See the ImageRepository component definition for what is required to be provided in the request body.
       operationId: createImageRepository
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -80,6 +92,18 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ImageRepository'
+            examples:
+              CreateimagerepositoryRequestExample:
+                summary: Default createImageRepository request
+                x-microcks-default: true
+                value:
+                  name: {}
+                  database_name: {}
+                  schema_name: {}
+                  created_on: '2026-01-15T10:30:00Z'
+                  repository_url: https://www.example.com
+                  owner: example_value
+                  owner_role_type: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -107,9 +131,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/image-repositories/{name}:
     get:
-      summary: Fetches an image repository.
+      summary: Fetches an Image Repository.
       tags:
       - image-repository
       description: Fetches a named image repository in a specified database and schema.
@@ -130,6 +157,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImageRepository'
+              examples:
+                Fetchimagerepository200Example:
+                  summary: Default fetchImageRepository 200 response
+                  x-microcks-default: true
+                  value:
+                    name: {}
+                    database_name: {}
+                    schema_name: {}
+                    created_on: '2026-01-15T10:30:00Z'
+                    repository_url: https://www.example.com
+                    owner: example_value
+                    owner_role_type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -150,19 +189,20 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       parameters:
       - $ref: common.yaml#/components/parameters/database
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Deletes an image repository.
+      summary: Deletes an Image Repository.
       tags:
       - image-repository
-      description: Deletes an image repository with the given name. If you enable
-        the `ifExists` query parameter, the operation succeeds even if the object
-        does not exist. Otherwise, a 404 failure is returned if the object does not
-        exist.
+      description: Deletes an image repository with the given name. If you enable the `ifExists` query parameter, the operation succeeds even if the object does not exist. Otherwise, a 404 failure is 
+        returned if the object does not exist.
       operationId: deleteImageRepository
       responses:
         '200':
@@ -187,9 +227,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/image-repositories/{name}/images:
     get:
-      summary: List images in the image repository.
+      summary: List Images in the Image Repository.
       tags:
       - image-repository
       description: List images in the given image repository.
@@ -212,6 +255,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Image'
+              examples:
+                Listimagesinrepository200Example:
+                  summary: Default listImagesInRepository 200 response
+                  x-microcks-default: true
+                  value:
+                  - created_on: example_value
+                    image_name: example_value
+                    tags: example_value
+                    digest: example_value
+                    image_path: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -232,6 +285,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     Image:
@@ -242,22 +298,27 @@ components:
           type: string
           description: Date and time when the image was uploaded to the image repository.
           readOnly: true
+          example: example_value
         image_name:
           type: string
           description: Image name.
           readOnly: true
+          example: example_value
         tags:
           type: string
           description: Image tags.
           readOnly: true
+          example: example_value
         digest:
           type: string
           description: SHA256 digest of the image.
           readOnly: true
+          example: example_value
         image_path:
           type: string
           description: Image path (database_name/schema_name/repository_name/image_name:image_tag).
           readOnly: true
+          example: example_value
     ImageRepository:
       type: object
       description: A Snowflake image repository.
@@ -275,18 +336,22 @@ components:
           description: Time the image repository was created.
           format: date-time
           readOnly: true
+          example: '2026-01-15T10:30:00Z'
         repository_url:
           type: string
           description: Current URL of the image repository.
           readOnly: true
+          example: https://www.example.com
         owner:
           type: string
           description: Identifier for the current owner of the image repository.
           readOnly: true
+          example: example_value
         owner_role_type:
           type: string
           description: Role type of the image repository owner.
           readOnly: true
+          example: example_value
       example:
         name: image_repository_name
         database_name: test_db

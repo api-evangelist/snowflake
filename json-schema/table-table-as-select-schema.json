@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TableAsSelect",
+  "type": "object",
+  "description": "Create table as select",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Specifies the name for the table, must be unique for the schema in which the table is created"
+    },
+    "columns": {
+      "type": "array"
+    },
+    "cluster_by": {
+      "type": "array",
+      "description": "Specifies one or more columns or column expressions in the table as the clustering key"
+    }
+  }
+}

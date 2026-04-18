@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "View",
+  "type": "object",
+  "description": "A Snowflake view",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the view"
+    },
+    "secure": {
+      "type": "boolean",
+      "description": "Whether or not this view is secure"
+    },
+    "kind": {
+      "type": "string",
+      "description": "Kind of the view, permanent (default) or temporary"
+    },
+    "recursive": {
+      "type": "boolean",
+      "description": "Whether or not this view can refer to itself using recursive syntax withot requiring a CTE (common table expression)"
+    },
+    "columns": {
+      "type": "array",
+      "description": "The columns of the view"
+    },
+    "comment": {
+      "type": "string",
+      "description": "user comment associated to an object in the dictionary"
+    },
+    "query": {
+      "type": "string",
+      "description": "Query used to create the view"
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the view was created."
+    },
+    "database_name": {
+      "type": "string",
+      "description": "Database in which the view is stored"
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "Schema in which the view is stored"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Role that owns the view"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "The type of role that owns the view"
+    }
+  }
+}

@@ -10,7 +10,7 @@ info:
 paths:
   /api/v2/cortex/models:
     get:
-      summary: Returns the LLMs available for the current session
+      summary: Returns the Llms Available for the Current Session
       tags:
       - cortex-inference
       description: Returns the LLMs available for the current session
@@ -21,6 +21,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/GetModelsRequest'
+            examples:
+              GetmodelsRequestExample:
+                summary: Default getModels request
+                x-microcks-default: true
+                value:
+                  models:
+                  - example_value
       responses:
         '200':
           description: OK
@@ -28,6 +35,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetModelsResponse'
+              examples:
+                Getmodels200Example:
+                  summary: Default getModels 200 response
+                  x-microcks-default: true
+                  value:
+                    models:
+                    - example_value
         '400':
           $ref: common.yaml#/components/responses/400BadRequest
         '401':
@@ -44,9 +58,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/cortex/inference:complete:
     post:
-      summary: Perform LLM text completion inference.
+      summary: Perform Llm Text Completion Inference.
       tags:
       - cortex-inference
       description: Perform LLM text completion inference, similar to snowflake.cortex.Complete.
@@ -56,6 +73,35 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CompleteRequest'
+            examples:
+              CortexllminferencecompleteRequestExample:
+                summary: Default cortexLLMInferenceComplete request
+                x-microcks-default: true
+                value:
+                  model: example_value
+                  messages:
+                  - role: example_value
+                    content: example_value
+                    content_list:
+                    - {}
+                  temperature: 42.5
+                  top_p: 42.5
+                  max_tokens: 10
+                  max_output_tokens: 10
+                  response_format:
+                    type: json
+                    schema: example_value
+                  guardrails:
+                    enabled: true
+                    response_when_unsafe: example_value
+                  tools:
+                  - {}
+                  tool_choice: {}
+                  provisioned_throughput_id: '500123'
+                  sf-ml-xp-inflight-prompt-action: example_value
+                  sf-ml-xp-inflight-prompt-client-id: '500123'
+                  sf-ml-xp-inflight-prompt-public-key: example_value
+                  stream: true
       responses:
         '200':
           description: OK
@@ -63,6 +109,11 @@ paths:
             text/event-stream:
               schema:
                 $ref: '#/components/schemas/StreamingCompleteResponse'
+              examples:
+                Cortexllminferencecomplete200Example:
+                  summary: Default cortexLLMInferenceComplete 200 response
+                  x-microcks-default: true
+                  value: {}
         '400':
           $ref: common.yaml#/components/responses/400BadRequest
         '401':
@@ -79,6 +130,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     GetModelsRequest:
@@ -88,6 +142,7 @@ components:
           type: array
           items:
             type: string
+          example: []
     GetModelsResponse:
       type: object
       properties:
@@ -95,6 +150,7 @@ components:
           type: array
           items:
             type: string
+          example: []
     CompleteRequest:
       type: object
       description: LLM text completion request.
@@ -102,6 +158,7 @@ components:
         model:
           description: The model name. See documentation for possible values.
           type: string
+          example: example_value
         messages:
           type: array
           items:
@@ -109,18 +166,13 @@ components:
             properties:
               role:
                 type: string
-                description: "Indicates the role of the message, one of 'system',\
-                  \ 'user' or 'assistant'.\n\nRules:\n  - A 'user' message must be\
-                  \ the last message in the list.\n  - If a 'system' message is specified,\
-                  \ it must be the first message.\n  - If a 'assistant' message is\
-                  \ specified, it must be immediately before a 'user' message in the\
-                  \ list.\n\nMultiple 'assistant' and 'user' messages can be specified,\
-                  \ but they must alternate in sequence.\n"
+                description: "Indicates the role of the message, one of 'system', 'user' or 'assistant'.\n\nRules:\n  - A 'user' message must be the last message in the list.\n  - If a 'system' message
+                  is specified, it must be the first message.\n  - If a 'assistant' message is specified, it must be immediately before a 'user' message in the list.\n\nMultiple 'assistant' and 'user' messages
+                  can be specified, but they must alternate in sequence.\n"
                 default: user
               content:
                 type: string
-                description: The text completion prompt, e.g. 'What is a Large Language
-                  Model?'.
+                description: The text completion prompt, e.g. 'What is a Large Language Model?'.
               content_list:
                 type: array
                 description: Contents of toolUse and toolResults
@@ -134,36 +186,37 @@ components:
             required:
             - content
           minItems: 1
+          example: []
         temperature:
-          description: Temperature controls the amount of randomness used in response
-            generation. A higher temperature corresponds to more randomness.
+          description: Temperature controls the amount of randomness used in response generation. A higher temperature corresponds to more randomness.
           type: number
           nullable: true
           minimum: 0.0
+          example: 42.5
         top_p:
-          description: Threshold probability for nucleus sampling. A higher top-p
-            value increases the diversity of tokens that the model considers, while
-            a lower value results in more predictable output.
+          description: Threshold probability for nucleus sampling. A higher top-p value increases the diversity of tokens that the model considers, while a lower value results in more predictable 
+            output.
           type: number
           default: 1.0
           minimum: 0.0
           maximum: 1.0
+          example: 42.5
         max_tokens:
-          description: The maximum number of output tokens to produce. The default
-            value is model-dependent.
+          description: The maximum number of output tokens to produce. The default value is model-dependent.
           type: integer
           default: 4096
           minimum: 0
+          example: 10
         max_output_tokens:
           deprecated: true
           description: Deprecated in favor of "max_tokens", which has identical behavior.
           type: integer
           nullable: true
+          example: 10
         response_format:
           type: object
           nullable: true
-          description: An object describing response format config for structured-output
-            mode.
+          description: An object describing response format config for structured-output mode.
           properties:
             type:
               type: string
@@ -172,8 +225,8 @@ components:
               description: The response format type (e.g., "json").
             schema:
               type: object
-              description: The schema defining the structure of the response. If the
-                `type` is "json", the `schema` field should contain a valid JSON schema.
+              description: The schema defining the structure of the response. If the `type` is "json", the `schema` field should contain a valid JSON schema.
+          example: example_value
         guardrails:
           $ref: '#/components/schemas/GuardrailsConfig'
         tools:
@@ -181,26 +234,32 @@ components:
           type: array
           items:
             $ref: common-cortex-tool.yaml#/components/schemas/Tool
+          example: []
         tool_choice:
           $ref: common-cortex-tool.yaml#/components/schemas/ToolChoice
         provisioned_throughput_id:
           type: string
           description: The provisioned throughput ID to be used with the request.
           nullable: true
+          example: '500123'
         sf-ml-xp-inflight-prompt-action:
           type: string
           description: Reserved
+          example: example_value
         sf-ml-xp-inflight-prompt-client-id:
           type: string
           description: Reserved
+          example: '500123'
         sf-ml-xp-inflight-prompt-public-key:
           type: string
           description: Reserved
+          example: example_value
         stream:
           type: boolean
           default: true
           nullable: true
           description: Reserved
+          example: true
       required:
       - model
       - messages
@@ -213,10 +272,10 @@ components:
         enabled:
           type: boolean
           description: Controls whether guardrails are enabled
+          example: true
         response_when_unsafe:
           type: string
-          description: The response when the guardrails model marks the completion
-            as unsafe
+          description: The response when the guardrails model marks the completion as unsafe
           example: Response filtered by Cortex Guard
     NonStreamingCompleteResponse:
       type: object
@@ -242,6 +301,7 @@ components:
                         mapping:
                           text: common-cortex-tool.yaml#/components/schemas/TextContent
                           tool_use: common-cortex-tool.yaml#/components/schemas/ToolUse
+          example: []
         usage:
           type: object
           title: Usage
@@ -258,6 +318,7 @@ components:
             total_tokens:
               type: integer
               description: Sum of all tokens.
+          example: example_value
     StreamingCompleteResponse:
       type: object
       description: Server-sent events for streaming text-completion updates.
@@ -275,6 +336,7 @@ components:
             properties:
               delta:
                 $ref: '#/components/schemas/StreamingCompleteResponseDelta'
+          example: []
     StreamingCompleteResponseDelta:
       type: object
       required:

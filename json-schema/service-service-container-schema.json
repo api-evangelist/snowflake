@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ServiceContainer",
+  "type": "object",
+  "properties": {
+    "service_status": {
+      "type": "string",
+      "description": "The current status of the service."
+    },
+    "instance_id": {
+      "type": "string",
+      "description": "ID of the service instance (this is the index of the service instance starting from 0)."
+    },
+    "instance_status": {
+      "type": "string",
+      "description": "The current status of the service instance."
+    },
+    "container_name": {
+      "type": "string",
+      "description": "Name of the container."
+    },
+    "status": {
+      "type": "string",
+      "description": "Service container status."
+    },
+    "message": {
+      "type": "string",
+      "description": "Additional clarification about status."
+    },
+    "image_name": {
+      "type": "string",
+      "description": "Image name used to create the service container."
+    },
+    "image_digest": {
+      "type": "string",
+      "description": "The unique and immutable identifier representing the image content."
+    },
+    "restart_count": {
+      "type": "integer",
+      "description": "Number of times Snowflake restarted the service."
+    },
+    "start_time": {
+      "type": "string",
+      "description": "Date and time when the container started."
+    }
+  }
+}

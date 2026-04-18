@@ -1,0 +1,64 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Event Table"
+  description: "Access, update, and manage Event Table resources for logging."
+  tags:
+    - Snowflake
+    - Events
+    - Logging
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-event-table
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Event Table API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: event-tables
+          path: /api/v2/databases/{database}/schemas/{schema}/event-tables
+          description: "Event table resources"
+          operations:
+            - name: list-event-tables
+              method: GET
+              description: "List event tables"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-event-table
+              method: POST
+              description: "Create an event table"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: fetch-event-table
+              method: GET
+              description: "Fetch an event table by name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-event-table
+              method: DELETE
+              description: "Delete an event table"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

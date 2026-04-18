@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QueryStatus",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "sqlState": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "statementHandle": {
+      "type": "string"
+    },
+    "createdOn": {
+      "type": "integer",
+      "description": "Timestamp that specifies when the statement execution started. The timestamp is expressed in milliseconds since the epoch."
+    },
+    "statementStatusUrl": {
+      "type": "string",
+      "description": "URL that you can use to check the status of the execution of the statement and the result set."
+    }
+  }
+}

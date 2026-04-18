@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DatabaseRole",
+  "type": "object",
+  "description": "A Snowflake database role",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the database role"
+    },
+    "comment": {
+      "type": "string",
+      "description": "User comment associated to an object in the dictionary"
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the database role was created"
+    },
+    "granted_to_roles": {
+      "type": "integer",
+      "description": "How many roles this database role has been granted to"
+    },
+    "granted_to_database_roles": {
+      "type": "integer",
+      "description": "How many database roles this database role has been granted to"
+    },
+    "granted_database_roles": {
+      "type": "integer",
+      "description": "How many database roles this database role has been granted"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Role that owns the database role"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "The type of role that owns the database role"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UserDefinedFunction",
+  "type": "object",
+  "description": "A snowflake UDF",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the UDF"
+    },
+    "is_temporary": {
+      "type": "boolean",
+      "description": "Specifies whether the UDF is temporary or not"
+    },
+    "is_aggregate": {
+      "type": "boolean",
+      "description": "Specifies whether the UDF is an aggregate function. Applicable only for Python language type"
+    },
+    "is_memoizable": {
+      "type": "boolean",
+      "description": "Indicates whether the function is memoizable. Applicable only for Python language type."
+    },
+    "is_table_function": {
+      "type": "boolean",
+      "description": "True if the UDF is a table function; false otherwise."
+    },
+    "valid_for_clustering": {
+      "type": "boolean",
+      "description": "True if the UDF is valid for clustering; false otherwise."
+    },
+    "is_secure": {
+      "type": "boolean",
+      "description": "Specifies whether the function/procedure is secure or not"
+    },
+    "arguments": {
+      "type": "array",
+      "description": "List of arguments for the function/procedure"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the function/procedure"
+    },
+    "body": {
+      "type": "string",
+      "description": "Function/procedure definition"
+    },
+    "created_on": {
+      "type": "string",
+      "description": "The date and time when the function/procedure was created"
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "The name of the schema in which the function/procedure exists."
+    },
+    "database_name": {
+      "type": "string",
+      "description": "The name of the database in which the function/procedure exists."
+    },
+    "min_num_arguments": {
+      "type": "integer",
+      "description": "The minimum number of arguments"
+    },
+    "max_num_arguments": {
+      "type": "integer",
+      "description": "The maximum number of arguments"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Role that owns the function/procedure"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "The type of role that owns the function/procedure"
+    },
+    "is_builtin": {
+      "type": "boolean",
+      "description": "If the function/procedure is built-in or not (user-defined)"
+    }
+  }
+}

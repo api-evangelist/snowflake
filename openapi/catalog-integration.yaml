@@ -5,9 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Catalog Integration API
-  description: The Snowflake Catalog Integration API is a REST API that you can use
-    to access, update, and perform certain actions on Catalog Integration resource
-    in a Snowflake database.
+  description: The Snowflake Catalog Integration API is a REST API that you can use to access, update, and perform certain actions on Catalog Integration resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -15,7 +13,7 @@ info:
 paths:
   /api/v2/catalog-integrations:
     get:
-      summary: List catalog integrations.
+      summary: List Catalog Integrations.
       tags:
       - catalog-integration
       description: List catalog integrations.
@@ -34,6 +32,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CatalogIntegration'
+              examples:
+                Listcatalogintegrations200Example:
+                  summary: Default listCatalogIntegrations 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    catalog:
+                      catalog_source: GLUE
+                    table_format: ICEBERG
+                    enabled: true
+                    comment: example_value
+                    type: example_value
+                    category: example_value
+                    created_on: '2026-01-15T10:30:00Z'
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -60,8 +72,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create a catalog integration.
+      summary: Create a Catalog Integration.
       tags:
       - catalog-integration
       description: Create a catalog integration.
@@ -103,9 +118,26 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CatalogIntegration'
+            examples:
+              CreatecatalogintegrationRequestExample:
+                summary: Default createCatalogIntegration request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  catalog:
+                    catalog_source: GLUE
+                  table_format: ICEBERG
+                  enabled: true
+                  comment: example_value
+                  type: example_value
+                  category: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/catalog-integrations/{name}:
     get:
-      summary: Fetch a catalog integration.
+      summary: Fetch a Catalog Integration.
       tags:
       - catalog-integration
       description: Fetch a catalog integration.
@@ -122,6 +154,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CatalogIntegration'
+              examples:
+                Fetchcatalogintegration200Example:
+                  summary: Default fetchCatalogIntegration 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    catalog:
+                      catalog_source: GLUE
+                    table_format: ICEBERG
+                    enabled: true
+                    comment: example_value
+                    type: example_value
+                    category: example_value
+                    created_on: '2026-01-15T10:30:00Z'
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -148,8 +194,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Delete a catalog integration.
+      summary: Delete a Catalog Integration.
       tags:
       - catalog-integration
       description: Delete a catalog integration.
@@ -186,6 +235,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     CatalogIntegration:
@@ -196,6 +248,7 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the catalog integration.
+          example: Example Title
         catalog:
           $ref: '#/components/schemas/Catalog'
           description: Type of catalog and its parameters.
@@ -204,26 +257,31 @@ components:
           enum:
           - ICEBERG
           description: Table format of the catalog.
+          example: ICEBERG
         enabled:
           type: boolean
-          description: 'whether this catalog integration is available to use for Iceberg
-            tables. '
+          description: 'whether this catalog integration is available to use for Iceberg tables. '
+          example: true
         comment:
           type: string
           description: Comment.
+          example: example_value
         type:
           type: string
           readOnly: true
           description: Type of the integration. Always CATALOG.
+          example: example_value
         category:
           type: string
           readOnly: true
           description: Category of the integration. Always CATALOG.
+          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the catalog integration was created.
+          example: '2026-01-15T10:30:00Z'
       required:
       - name
       - catalog
@@ -239,6 +297,7 @@ components:
           - OBJECT_STORE
           - POLARIS
           description: Type of external catalog
+          example: GLUE
       required:
       - catalog_source
       discriminator:
@@ -255,17 +314,19 @@ components:
         glue_aws_role_arn:
           type: string
           description: ARN for AWS role to assume
+          example: example_value
         glue_catalog_id:
           type: string
           description: Glue catalog id
+          example: '500123'
         glue_region:
           type: string
-          description: AWS region of the Glue catalog. Must be specified if the Snowflake
-            account is not hosted on AWS.
+          description: AWS region of the Glue catalog. Must be specified if the Snowflake account is not hosted on AWS.
+          example: example_value
         catalog_namespace:
           type: string
-          description: default AWS Glue catalog namespace for all Iceberg table that
-            use this catalog integration
+          description: default AWS Glue catalog namespace for all Iceberg table that use this catalog integration
+          example: example_value
       required:
       - glue_aws_role_arn
       - glue_catalog_id
@@ -281,15 +342,14 @@ components:
       properties:
         catalog_namespace:
           type: string
-          description: Default Polaris namespace used by all Iceberg tables associated
-            with this catalog integration
+          description: Default Polaris namespace used by all Iceberg tables associated with this catalog integration
+          example: example_value
         rest_config:
           $ref: '#/components/schemas/RestConfig'
           description: Information about the Polaris catalog account and catalog name.
         rest_authentication:
           $ref: '#/components/schemas/RestAuthentication'
-          description: Authentication details that Snowflake uses to connect to the
-            Polaris catalog.
+          description: Authentication details that Snowflake uses to connect to the Polaris catalog.
       required:
       - catalog_namespace
       - rest_config
@@ -300,9 +360,11 @@ components:
         catalog_uri:
           type: string
           description: Customer's Polaris account locator URL
+          example: example_value
         warehouse:
           type: string
           description: Name of the catalog to use in Polaris
+          example: example_value
       required:
       - catalog_uri
       - warehouse
@@ -314,6 +376,7 @@ components:
           enum:
           - OAUTH
           description: Authentication type.
+          example: OAUTH
       required:
       - type
       discriminator:
@@ -327,19 +390,18 @@ components:
       properties:
         oauth_client_id:
           type: string
-          description: The client ID of the OAuth2 credential associated with the
-            Polaris service connection.
+          description: The client ID of the OAuth2 credential associated with the Polaris service connection.
+          example: '500123'
         oauth_client_secret:
           type: string
-          description: The secret for the OAuth2 credential associated with the Polaris
-            service connection.
+          description: The secret for the OAuth2 credential associated with the Polaris service connection.
+          example: example_value
         oauth_allowed_scopes:
           type: array
           items:
             type: string
-          description: The scope of the OAuth token. Only one scope is included in
-            the Iceberg REST API specification, but catalogs can support more than
-            one scope in their implementation.
+          description: The scope of the OAuth token. Only one scope is included in the Iceberg REST API specification, but catalogs can support more than one scope in their implementation.
+          example: []
       required:
       - oauth_client_id
       - oauth_client_secret

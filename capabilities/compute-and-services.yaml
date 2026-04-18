@@ -1,0 +1,178 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Compute and Services"
+  description: "Unified workflow for managing warehouses, compute pools, Snowpark Container Services, image repositories, and monitoring alerts. Used by Platform Engineers and DevOps teams to provision and operate compute infrastructure."
+  tags:
+    - Snowflake
+    - Compute
+    - Containers
+    - Infrastructure
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - import: snowflake-warehouse
+      location: ./shared/warehouse.yaml
+    - import: snowflake-compute-pool
+      location: ./shared/compute-pool.yaml
+    - import: snowflake-service
+      location: ./shared/service.yaml
+    - import: snowflake-image-repository
+      location: ./shared/image-repository.yaml
+    - import: snowflake-alert
+      location: ./shared/alert.yaml
+
+  exposes:
+    - type: rest
+      port: 8084
+      namespace: snowflake-compute-api
+      description: "Unified REST API for Snowflake compute and services management."
+      resources:
+        - path: /v1/warehouses
+          name: warehouses
+          description: "Warehouse management"
+          operations:
+            - method: GET
+              name: list-warehouses
+              description: "List warehouses"
+              call: "snowflake-warehouse.list-warehouses"
+            - method: POST
+              name: create-warehouse
+              description: "Create a warehouse"
+              call: "snowflake-warehouse.create-warehouse"
+        - path: /v1/compute-pools
+          name: compute-pools
+          description: "Compute pool management"
+          operations:
+            - method: GET
+              name: list-compute-pools
+              description: "List compute pools"
+              call: "snowflake-compute-pool.list-compute-pools"
+            - method: POST
+              name: create-compute-pool
+              description: "Create a compute pool"
+              call: "snowflake-compute-pool.create-compute-pool"
+        - path: /v1/services
+          name: services
+          description: "Container service management"
+          operations:
+            - method: GET
+              name: list-services
+              description: "List services"
+              call: "snowflake-service.list-services"
+            - method: POST
+              name: create-service
+              description: "Create a service"
+              call: "snowflake-service.create-service"
+        - path: /v1/alerts
+          name: alerts
+          description: "Alert management"
+          operations:
+            - method: GET
+              name: list-alerts
+              description: "List alerts"
+              call: "snowflake-alert.list-alerts"
+            - method: POST
+              name: create-alert
+              description: "Create an alert"
+              call: "snowflake-alert.create-alert"
+
+    - type: mcp
+      port: 9084
+      namespace: snowflake-compute-mcp
+      transport: http
+      description: "MCP server for AI-assisted Snowflake compute and services management."
+      tools:
+        - name: list-warehouses
+          description: "List virtual warehouses"
+          hints:
+            readOnly: true
+          call: "snowflake-warehouse.list-warehouses"
+        - name: create-warehouse
+          description: "Create a virtual warehouse"
+          hints:
+            readOnly: false
+          call: "snowflake-warehouse.create-warehouse"
+        - name: fetch-warehouse
+          description: "Fetch warehouse details"
+          hints:
+            readOnly: true
+          call: "snowflake-warehouse.fetch-warehouse"
+        - name: delete-warehouse
+          description: "Delete a warehouse"
+          hints:
+            destructive: true
+          call: "snowflake-warehouse.delete-warehouse"
+        - name: list-compute-pools
+          description: "List compute pools"
+          hints:
+            readOnly: true
+          call: "snowflake-compute-pool.list-compute-pools"
+        - name: create-compute-pool
+          description: "Create a compute pool"
+          hints:
+            readOnly: false
+          call: "snowflake-compute-pool.create-compute-pool"
+        - name: list-services
+          description: "List container services"
+          hints:
+            readOnly: true
+          call: "snowflake-service.list-services"
+        - name: create-service
+          description: "Create a container service"
+          hints:
+            readOnly: false
+          call: "snowflake-service.create-service"
+        - name: fetch-service-status
+          description: "Get service status"
+          hints:
+            readOnly: true
+          call: "snowflake-service.fetch-service-status"
+        - name: fetch-service-logs
+          description: "Get service logs"
+          hints:
+            readOnly: true
+          call: "snowflake-service.fetch-service-logs"
+        - name: resume-service
+          description: "Resume a suspended service"
+          hints:
+            readOnly: false
+          call: "snowflake-service.resume-service"
+        - name: suspend-service
+          description: "Suspend a running service"
+          hints:
+            readOnly: false
+          call: "snowflake-service.suspend-service"
+        - name: list-image-repositories
+          description: "List image repositories"
+          hints:
+            readOnly: true
+          call: "snowflake-image-repository.list-image-repositories"
+        - name: create-image-repository
+          description: "Create an image repository"
+          hints:
+            readOnly: false
+          call: "snowflake-image-repository.create-image-repository"
+        - name: list-alerts
+          description: "List monitoring alerts"
+          hints:
+            readOnly: true
+          call: "snowflake-alert.list-alerts"
+        - name: create-alert
+          description: "Create a monitoring alert"
+          hints:
+            readOnly: false
+          call: "snowflake-alert.create-alert"
+        - name: execute-alert
+          description: "Execute an alert"
+          hints:
+            readOnly: false
+          call: "snowflake-alert.execute-alert"

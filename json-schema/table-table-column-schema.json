@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TableColumn",
+  "type": "object",
+  "description": "A column in the table",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Column name"
+    },
+    "datatype": {
+      "type": "string",
+      "description": "The data type for the column"
+    },
+    "nullable": {
+      "type": "boolean",
+      "description": "Specifies that the column does allow NULL values or not."
+    },
+    "collate": {
+      "type": "string",
+      "description": "Specifies the collation to use for column operations such as string comparison"
+    },
+    "default": {
+      "type": "string",
+      "description": "Specifies whether a default value is automatically inserted in the column if a value is not explicitly specified via an INSERT or CREATE TABLE AS SELECT statement"
+    },
+    "autoincrement": {
+      "type": "boolean"
+    },
+    "autoincrement_start": {
+      "type": "integer",
+      "description": "The default value for the column starts with the specified number"
+    },
+    "autoincrement_increment": {
+      "type": "integer",
+      "description": "Each successive value for the column automatically increments by the specified amount"
+    },
+    "constraints": {
+      "type": "array"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the column"
+    }
+  }
+}

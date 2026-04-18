@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IcebergTableFromIcebergRest",
+  "type": "object",
+  "description": "Creates or replaces an Apache Iceberg\u2122 table in the current/specified schema for an Iceberg REST catalog.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Specifies the name for the table, must be unique for the schema in which the table is created"
+    },
+    "external_volume": {
+      "type": "string",
+      "description": "Specifies the name of the external volume to use for the table"
+    },
+    "catalog_table_name": {
+      "type": "string",
+      "description": "Specifies the table name as recognized by the AWS Glue Data Catalog."
+    },
+    "catalog_namespace": {
+      "type": "string",
+      "description": "Specifies the catalog namespace for the table."
+    },
+    "replace_invalid_characters": {
+      "type": "boolean",
+      "description": "Specifies whether to replace invalid characters in the column names"
+    },
+    "auto_refresh": {
+      "type": "boolean",
+      "description": "Specifies whether to automatically refresh the table metadata"
+    },
+    "catalog": {
+      "type": "string",
+      "description": "Specifies the name of the catalog integration to use for the table"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the table"
+    }
+  }
+}

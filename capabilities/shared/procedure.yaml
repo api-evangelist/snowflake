@@ -1,0 +1,72 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Procedure"
+  description: "Access, update, and manage Procedure resources in Snowflake."
+  tags:
+    - Snowflake
+    - Procedures
+    - Programmability
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-procedure
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Procedure API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: procedures
+          path: /api/v2/databases/{database}/schemas/{schema}/procedures
+          description: "Procedure resources"
+          operations:
+            - name: list-procedures
+              method: GET
+              description: "List procedures"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-procedure
+              method: POST
+              description: "Create a procedure"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: fetch-procedure
+              method: GET
+              description: "Fetch a procedure by name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-procedure
+              method: DELETE
+              description: "Delete a procedure"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: call-procedure
+              method: POST
+              description: "Call a procedure"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

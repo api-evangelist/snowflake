@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ConvertToManagedIcebergTableRequest",
+  "type": "object",
+  "description": "Request model for convert to managed iceberg table",
+  "properties": {
+    "base_location": {
+      "type": "string",
+      "description": "The path to a directory where Snowflake can write data and metadata files for the table."
+    },
+    "storage_serialization_policy": {
+      "type": "string",
+      "description": "Specifies the storage serialization policy for the table."
+    }
+  }
+}

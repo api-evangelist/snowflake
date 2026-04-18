@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PartitionInfo",
+  "type": "object",
+  "description": "Information about a partition of the result set.",
+  "properties": {
+    "rowCount": {
+      "type": "integer",
+      "description": "Number of rows in the partition."
+    },
+    "compressedSize": {
+      "type": "integer",
+      "description": "The partition size before decompression. This may not be present in every partition."
+    },
+    "uncompressedSize": {
+      "type": "integer",
+      "description": "The partition size after decompression."
+    }
+  }
+}

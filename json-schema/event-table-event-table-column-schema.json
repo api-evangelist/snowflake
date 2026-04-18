@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EventTableColumn",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Column name"
+    },
+    "datatype": {
+      "type": "string",
+      "description": "The data type for the column"
+    },
+    "nullable": {
+      "type": "boolean",
+      "description": "Specifies that the column does allow NULL values or not"
+    },
+    "default": {
+      "type": "string",
+      "description": "Specifies whether a default value is automatically inserted in the column if a value is not explicitly specified via an INSERT or CREATE TABLE AS SELECT statement"
+    },
+    "primary_key": {
+      "type": "boolean",
+      "description": "A primary key is the column or columns that contain values that uniquely identify each row in a table"
+    },
+    "unique_key": {
+      "type": "boolean",
+      "description": "Unique keys are columns in a table that uniquely identify items in the rows. This sounds a lot like a primary key, but the main difference is that unique keys can have NULL values."
+    },
+    "check": {
+      "type": "string",
+      "description": ""
+    },
+    "expression": {
+      "type": "string",
+      "description": ""
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the column"
+    }
+  }
+}

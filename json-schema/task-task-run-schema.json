@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TaskRun",
+  "type": "object",
+  "description": "A task run executing a standalone task or a DAG of tasks starting from the root task.",
+  "properties": {
+    "root_task_name": {
+      "type": "string",
+      "description": "The name of the root task in the current task run."
+    },
+    "database_name": {
+      "type": "string",
+      "description": "The name of the current database for the task run."
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "The name of the current schema for the task run."
+    },
+    "state": {
+      "type": "string",
+      "description": "The current state of the task run."
+    },
+    "first_error_task_name": {
+      "type": "string",
+      "description": "The name of the first task throwing an error in the task run."
+    },
+    "first_error_code": {
+      "type": "integer",
+      "description": "The first error code thrown in the task run."
+    },
+    "first_error_message": {
+      "type": "string",
+      "description": "The first error message thrown in the task run."
+    },
+    "scheduled_time": {
+      "type": "string",
+      "description": "The scheduled time for the task run."
+    },
+    "query_start_time": {
+      "type": "string",
+      "description": "The start time for the task run query."
+    },
+    "next_scheduled_time": {
+      "type": "string",
+      "description": "The next upcoming time for the task run."
+    },
+    "completed_time": {
+      "type": "string",
+      "description": "The time this task run was last completed."
+    },
+    "root_task_id": {
+      "type": "string",
+      "description": "The unique task ID for the root task."
+    },
+    "graph_version": {
+      "type": "integer",
+      "description": "The current version of the DAG on the task run."
+    },
+    "run_id": {
+      "type": "integer",
+      "description": "The unique ID for the current task run."
+    }
+  }
+}

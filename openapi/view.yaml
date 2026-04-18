@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake View API
-  description: The Snowflake View API is a REST API that you can use to access, update,
-    and perform certain actions on View resource in a Snowflake database.
+  description: The Snowflake View API is a REST API that you can use to access, update, and perform certain actions on View resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,7 +13,7 @@ info:
 paths:
   /api/v2/databases/{database}/schemas/{schema}/views:
     get:
-      summary: List views
+      summary: List Views
       tags:
       - view
       description: List views
@@ -32,6 +31,7 @@ paths:
         required: false
         schema:
           type: boolean
+        example: true
       responses:
         '200':
           description: successful
@@ -44,6 +44,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/View'
+              examples:
+                Listviews200Example:
+                  summary: Default listViews 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    secure: true
+                    kind: PERMANENT
+                    recursive: true
+                    columns:
+                    - {}
+                    comment: example_value
+                    query: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    owner_role_type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -70,8 +88,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create a view
+      summary: Create a View
       tags:
       - view
       description: Create a view
@@ -116,9 +137,32 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/View'
+            examples:
+              CreateviewRequestExample:
+                summary: Default createView request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  secure: true
+                  kind: PERMANENT
+                  recursive: true
+                  columns:
+                  - name: Example Title
+                    comment: example_value
+                    datatype: example_value
+                  comment: example_value
+                  query: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  database_name: example_value
+                  schema_name: example_value
+                  owner: example_value
+                  owner_role_type: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/views/{name}:
     get:
-      summary: Fetch a view
+      summary: Fetch a View
       tags:
       - view
       description: Fetch a view
@@ -137,6 +181,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/View'
+              examples:
+                Fetchview200Example:
+                  summary: Default fetchView 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    secure: true
+                    kind: PERMANENT
+                    recursive: true
+                    columns:
+                    - name: Example Title
+                      comment: example_value
+                      datatype: example_value
+                    comment: example_value
+                    query: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    owner_role_type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -163,8 +227,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Delete a view
+      summary: Delete a View
       tags:
       - view
       description: Delete a view
@@ -203,6 +270,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     View:
@@ -212,51 +282,62 @@ components:
         name:
           type: string
           description: Name of the view
+          example: Example Title
         secure:
           type: boolean
           description: Whether or not this view is secure
+          example: true
         kind:
           type: string
           enum:
           - PERMANENT
           - TEMPORARY
           description: Kind of the view, permanent (default) or temporary
+          example: PERMANENT
         recursive:
           type: boolean
-          description: Whether or not this view can refer to itself using recursive
-            syntax withot requiring a CTE (common table expression)
+          description: Whether or not this view can refer to itself using recursive syntax withot requiring a CTE (common table expression)
+          example: true
         columns:
           type: array
           items:
             $ref: '#/components/schemas/ViewColumn'
           description: The columns of the view
+          example: []
         comment:
           type: string
           description: user comment associated to an object in the dictionary
+          example: example_value
         query:
           type: string
           description: Query used to create the view
+          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the view was created.
+          example: '2026-01-15T10:30:00Z'
         database_name:
           type: string
           readOnly: true
           description: Database in which the view is stored
+          example: example_value
         schema_name:
           type: string
           readOnly: true
           description: Schema in which the view is stored
+          example: example_value
         owner:
           type: string
           readOnly: true
           description: Role that owns the view
+          example: example_value
         owner_role_type:
           type: string
           readOnly: true
           description: The type of role that owns the view
+          example: example_value
       required:
       - name
       - columns
@@ -268,13 +349,16 @@ components:
         name:
           type: string
           description: Column name
+          example: Example Title
         comment:
           type: string
           description: Specifies a comment for the column
+          example: example_value
         datatype:
           type: string
           readOnly: true
           description: The data type for the column
+          example: example_value
       required:
       - name
   securitySchemes:

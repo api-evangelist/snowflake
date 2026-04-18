@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Table",
+  "type": "object",
+  "description": "A Snowflake table",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Specifies the name for the table, must be unique for the schema in which the table is created"
+    },
+    "kind": {
+      "type": "string",
+      "description": "Table type - permanent, transient, or temporary"
+    },
+    "cluster_by": {
+      "type": "array",
+      "description": "Specifies one or more columns or column expressions in the table as the clustering key"
+    },
+    "enable_schema_evolution": {
+      "type": "boolean",
+      "description": "Table has schema evolution enabled or disabled"
+    },
+    "change_tracking": {
+      "type": "boolean",
+      "description": "Change tracking is enabled or disabled"
+    },
+    "data_retention_time_in_days": {
+      "type": "integer",
+      "description": "Specifies the retention period for the table so that Time Travel actions SELECT, CLONE, UNDROP can be performed on historical data in the table"
+    },
+    "max_data_extension_time_in_days": {
+      "type": "integer",
+      "description": "Specifies the retention period for the table so that Time Travel actions SELECT, CLONE, UNDROP can be performed on historical data in the table"
+    },
+    "default_ddl_collation": {
+      "type": "string",
+      "description": "Specifies a default collation specification for the columns in the table, including columns added to the table in the future"
+    },
+    "columns": {
+      "type": "array"
+    },
+    "constraints": {
+      "type": "array"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment for the table"
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the table was created."
+    },
+    "database_name": {
+      "type": "string",
+      "description": "Database in which the table is stored"
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "Schema in which the table is stored"
+    },
+    "rows": {
+      "type": "integer",
+      "description": "Number of rows in the table. Returns NULL for external tables."
+    },
+    "bytes": {
+      "type": "integer",
+      "description": "Number of bytes that will be scanned if the entire table is scanned in a query. Note that this number may be different than the number of actual physical bytes stored on-disk for the table"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Role that owns the table"
+    },
+    "dropped_on": {
+      "type": "string",
+      "description": "Date and time when the table was dropped"
+    },
+    "automatic_clustering": {
+      "type": "boolean",
+      "description": "If Automatic Clustering is enabled for your account, specifies whether it is explicitly enabled or disabled for the table."
+    },
+    "search_optimization": {
+      "type": "boolean",
+      "description": "If ON, the table has the search optimization service enabled"
+    },
+    "search_optimization_progress": {
+      "type": "integer",
+      "description": "Percentage of the table that has been optimized for search."
+    },
+    "search_optimization_bytes": {
+      "type": "integer",
+      "description": "Number of additional bytes of storage that the search optimization service consumes for this table"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "The type of role that owns the object."
+    },
+    "budget": {
+      "type": "string",
+      "description": "Name of the budget if the object is monitored by a budget"
+    },
+    "table_type": {
+      "type": "string",
+      "description": "Type of the table"
+    }
+  }
+}

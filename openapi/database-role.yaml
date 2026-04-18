@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Database Role API
-  description: The Snowflake Database Role API is a REST API that you can use to access,
-    update, and perform certain actions on Database Role resource in a Snowflake database.
+  description: The Snowflake Database Role API is a REST API that you can use to access, update, and perform certain actions on Database Role resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,7 +13,7 @@ info:
 paths:
   /api/v2/databases/{database}/database-roles:
     get:
-      summary: List database roles
+      summary: List Database Roles
       tags:
       - database-role
       description: List database roles
@@ -37,6 +36,19 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/DatabaseRole'
+              examples:
+                Listdatabaseroles200Example:
+                  summary: Default listDatabaseRoles 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    comment: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    granted_to_roles: 10
+                    granted_to_database_roles: 10
+                    granted_database_roles: 10
+                    owner: example_value
+                    owner_role_type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -63,8 +75,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create a database role
+      summary: Create a Database Role
       tags:
       - database-role
       description: Create a database role
@@ -107,9 +122,25 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DatabaseRole'
+            examples:
+              CreatedatabaseroleRequestExample:
+                summary: Default createDatabaseRole request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  comment: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  granted_to_roles: 10
+                  granted_to_database_roles: 10
+                  granted_database_roles: 10
+                  owner: example_value
+                  owner_role_type: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/database-roles/{name}:
     delete:
-      summary: Delete a database role
+      summary: Delete a Database Role
       tags:
       - database-role
       description: Delete a database role
@@ -147,9 +178,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/database-roles/{name}:clone:
     post:
-      summary: Create a new database role by cloning from the specified resource
+      summary: Create a New Database Role by Cloning From the Specified Resource
       tags:
       - database-role
       description: Create a new database role by cloning from the specified resource
@@ -165,6 +199,7 @@ paths:
         schema:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+        example: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -200,9 +235,18 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DatabaseRoleClone'
+            examples:
+              ClonedatabaseroleRequestExample:
+                summary: Default cloneDatabaseRole request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/database-roles/{name}/grants:
     get:
-      summary: List all grants to the role
+      summary: List All Grants to the Role
       tags:
       - database-role
       description: List all grants to the role
@@ -225,6 +269,25 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Grant'
+              examples:
+                Listgrants200Example:
+                  summary: Default listGrants 200 response
+                  x-microcks-default: true
+                  value:
+                  - securable:
+                      database: example_value
+                      schema: example_value
+                      service: example_value
+                      name: Example Title
+                    containing_scope:
+                      database: example_value
+                      schema: example_value
+                    securable_type: example_value
+                    grant_option: true
+                    privileges:
+                    - example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    granted_by: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -251,8 +314,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Grant privileges to the role
+      summary: Grant Privileges to the Role
       tags:
       - database-role
       description: Grant privileges to the role
@@ -295,9 +361,31 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Grant'
+            examples:
+              GrantprivilegesRequestExample:
+                summary: Default grantPrivileges request
+                x-microcks-default: true
+                value:
+                  securable:
+                    database: example_value
+                    schema: example_value
+                    service: example_value
+                    name: Example Title
+                  containing_scope:
+                    database: example_value
+                    schema: example_value
+                  securable_type: example_value
+                  grant_option: true
+                  privileges:
+                  - example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  granted_by: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/database-roles/{name}/grants:revoke:
     post:
-      summary: Revoke grants from the role
+      summary: Revoke Grants From the Role
       tags:
       - database-role
       description: Revoke grants from the role
@@ -341,9 +429,31 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Grant'
+            examples:
+              RevokegrantsRequestExample:
+                summary: Default revokeGrants request
+                x-microcks-default: true
+                value:
+                  securable:
+                    database: example_value
+                    schema: example_value
+                    service: example_value
+                    name: Example Title
+                  containing_scope:
+                    database: example_value
+                    schema: example_value
+                  securable_type: example_value
+                  grant_option: true
+                  privileges:
+                  - example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  granted_by: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/database-roles/{name}/future-grants:
     get:
-      summary: List all future grants to the role
+      summary: List All Future Grants to the Role
       tags:
       - database-role
       description: List all future grants to the role
@@ -366,6 +476,25 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Grant'
+              examples:
+                Listfuturegrants200Example:
+                  summary: Default listFutureGrants 200 response
+                  x-microcks-default: true
+                  value:
+                  - securable:
+                      database: example_value
+                      schema: example_value
+                      service: example_value
+                      name: Example Title
+                    containing_scope:
+                      database: example_value
+                      schema: example_value
+                    securable_type: example_value
+                    grant_option: true
+                    privileges:
+                    - example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    granted_by: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -392,8 +521,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Grant future privileges to the role
+      summary: Grant Future Privileges to the Role
       tags:
       - database-role
       description: Grant future privileges to the role
@@ -436,9 +568,31 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Grant'
+            examples:
+              GrantfutureprivilegesRequestExample:
+                summary: Default grantFuturePrivileges request
+                x-microcks-default: true
+                value:
+                  securable:
+                    database: example_value
+                    schema: example_value
+                    service: example_value
+                    name: Example Title
+                  containing_scope:
+                    database: example_value
+                    schema: example_value
+                  securable_type: example_value
+                  grant_option: true
+                  privileges:
+                  - example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  granted_by: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/database-roles/{name}/future-grants:revoke:
     post:
-      summary: Revoke future grants from the role
+      summary: Revoke Future Grants From the Role
       tags:
       - database-role
       description: Revoke future grants from the role
@@ -482,6 +636,28 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Grant'
+            examples:
+              RevokefuturegrantsRequestExample:
+                summary: Default revokeFutureGrants request
+                x-microcks-default: true
+                value:
+                  securable:
+                    database: example_value
+                    schema: example_value
+                    service: example_value
+                    name: Example Title
+                  containing_scope:
+                    database: example_value
+                    schema: example_value
+                  securable_type: example_value
+                  grant_option: true
+                  privileges:
+                  - example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  granted_by: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     DatabaseRole:
@@ -492,40 +668,47 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the database role
+          example: Example Title
         comment:
           type: string
           description: User comment associated to an object in the dictionary
+          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the database role was created
+          example: '2026-01-15T10:30:00Z'
         granted_to_roles:
           type: integer
           format: int64
           readOnly: true
           description: How many roles this database role has been granted to
+          example: 10
         granted_to_database_roles:
           type: integer
           format: int64
           readOnly: true
-          description: How many database roles this database role has been granted
-            to
+          description: How many database roles this database role has been granted to
+          example: 10
         granted_database_roles:
           type: integer
           format: int64
           readOnly: true
           description: How many database roles this database role has been granted
+          example: 10
         owner:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Role that owns the database role
+          example: example_value
         owner_role_type:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: The type of role that owns the database role
+          example: example_value
       required:
       - name
     DatabaseRoleClone:
@@ -535,6 +718,7 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the database role
+          example: Example Title
       required:
       - name
     Grant:
@@ -549,24 +733,28 @@ components:
         securable_type:
           type: string
           description: Type of the securable to be granted.
+          example: example_value
         grant_option:
           type: boolean
-          description: If true, allows the recipient role to grant the privileges
-            to other roles.
+          description: If true, allows the recipient role to grant the privileges to other roles.
+          example: true
         privileges:
           type: array
           items:
             type: string
           description: List of privileges to be granted.
+          example: []
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the grant was created
+          example: '2026-01-15T10:30:00Z'
         granted_by:
           type: string
           readOnly: true
           description: The role that granted this privilege to this grantee
+          example: example_value
       required:
       - securable_type
     Securable:
@@ -576,18 +764,22 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Database name of the securable if applicable.
+          example: example_value
         schema:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Schema name of the securable if applicable.
+          example: example_value
         service:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Service name of the securable if applicable.
+          example: example_value
         name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the securable if applicable.
+          example: Example Title
       required:
       - name
     ContainingScope:
@@ -597,10 +789,12 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Database name of the securable scope if applicable.
+          example: example_value
         schema:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Schema name of the securable scope if applicable.
+          example: example_value
       required:
       - database
   securitySchemes:

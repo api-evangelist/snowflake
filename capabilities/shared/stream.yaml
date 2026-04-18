@@ -1,0 +1,64 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Stream"
+  description: "Access, update, and manage Stream resources for change data capture."
+  tags:
+    - Snowflake
+    - Streams
+    - Change Data Capture
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-stream
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Stream API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: streams
+          path: /api/v2/databases/{database}/schemas/{schema}/streams
+          description: "Stream resources"
+          operations:
+            - name: list-streams
+              method: GET
+              description: "List streams"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-stream
+              method: POST
+              description: "Create a stream"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: fetch-stream
+              method: GET
+              description: "Fetch a stream by name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-stream
+              method: DELETE
+              description: "Delete a stream"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

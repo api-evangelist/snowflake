@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MessageObject",
+  "type": "object",
+  "description": "Represents a message within a chat.",
+  "properties": {
+    "role": {
+      "type": "string",
+      "description": "The entity that produced the message. One of `user` or `analyst`."
+    },
+    "content": {
+      "type": "array",
+      "description": "The content of the message in array of text or SQL."
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ServiceEndpoint",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "User-friendly endpoint name that represents the corresponding port."
+    },
+    "port": {
+      "type": "integer",
+      "description": "The network port the service is listening on. NULL, when portRange is specified."
+    },
+    "portRange": {
+      "type": "string",
+      "description": "The network port range the service is listening on. NULL, when port is specified."
+    },
+    "protocol": {
+      "type": "string",
+      "description": "Supported network protocol (TCP, HTTP, or HTTPS)."
+    },
+    "is_public": {
+      "type": "boolean",
+      "description": "True, if the endpoint is public, accessible from internet."
+    },
+    "ingress_url": {
+      "type": "string",
+      "description": "Endpoint URL accessible from the internet."
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Role",
+  "type": "object",
+  "description": "A Snowflake role",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the role."
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment of the role."
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the role was created."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Specifies the role that owns this role."
+    },
+    "is_default": {
+      "type": "boolean",
+      "description": "Specifies whether the role being fetched is the user's default role."
+    },
+    "is_current": {
+      "type": "boolean",
+      "description": "Specifies whether the role being fetched is the user's current role."
+    },
+    "is_inherited": {
+      "type": "boolean",
+      "description": "Specifies whether the role used to run the command inherits the specified role."
+    },
+    "assigned_to_users": {
+      "type": "integer",
+      "description": "The number of users to whom this role has been assigned."
+    },
+    "granted_to_roles": {
+      "type": "integer",
+      "description": "The number of roles to which this role has been granted."
+    },
+    "granted_roles": {
+      "type": "integer",
+      "description": "The number of roles that have been granted to this role."
+    }
+  }
+}

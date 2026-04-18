@@ -1,0 +1,264 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Data Management"
+  description: "Unified workflow for managing databases, schemas, tables, views, dynamic tables, iceberg tables, and event tables. Used by Data Engineers and Database Administrators to create, organize, and maintain data structures."
+  tags:
+    - Snowflake
+    - Data Management
+    - Data Engineering
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - import: snowflake-database
+      location: ./shared/database.yaml
+    - import: snowflake-schema
+      location: ./shared/schema.yaml
+    - import: snowflake-table
+      location: ./shared/table.yaml
+    - import: snowflake-view
+      location: ./shared/view.yaml
+    - import: snowflake-dynamic-table
+      location: ./shared/dynamic-table.yaml
+    - import: snowflake-iceberg-table
+      location: ./shared/iceberg-table.yaml
+    - import: snowflake-event-table
+      location: ./shared/event-table.yaml
+    - import: snowflake-external-volume
+      location: ./shared/external-volume.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: snowflake-data-mgmt-api
+      description: "Unified REST API for Snowflake data structure management."
+      resources:
+        - path: /v1/databases
+          name: databases
+          description: "Database management"
+          operations:
+            - method: GET
+              name: list-databases
+              description: "List all databases"
+              call: "snowflake-database.list-databases"
+            - method: POST
+              name: create-database
+              description: "Create a database"
+              call: "snowflake-database.create-database"
+        - path: /v1/databases/{name}
+          name: database
+          description: "Single database operations"
+          operations:
+            - method: GET
+              name: fetch-database
+              description: "Fetch a database"
+              call: "snowflake-database.fetch-database"
+            - method: DELETE
+              name: delete-database
+              description: "Delete a database"
+              call: "snowflake-database.delete-database"
+        - path: /v1/schemas
+          name: schemas
+          description: "Schema management"
+          operations:
+            - method: GET
+              name: list-schemas
+              description: "List schemas"
+              call: "snowflake-schema.list-schemas"
+            - method: POST
+              name: create-schema
+              description: "Create a schema"
+              call: "snowflake-schema.create-schema"
+        - path: /v1/tables
+          name: tables
+          description: "Table management"
+          operations:
+            - method: GET
+              name: list-tables
+              description: "List tables"
+              call: "snowflake-table.list-tables"
+            - method: POST
+              name: create-table
+              description: "Create a table"
+              call: "snowflake-table.create-table"
+        - path: /v1/views
+          name: views
+          description: "View management"
+          operations:
+            - method: GET
+              name: list-views
+              description: "List views"
+              call: "snowflake-view.list-views"
+            - method: POST
+              name: create-view
+              description: "Create a view"
+              call: "snowflake-view.create-view"
+        - path: /v1/dynamic-tables
+          name: dynamic-tables
+          description: "Dynamic table management"
+          operations:
+            - method: GET
+              name: list-dynamic-tables
+              description: "List dynamic tables"
+              call: "snowflake-dynamic-table.list-dynamic-tables"
+            - method: POST
+              name: create-dynamic-table
+              description: "Create a dynamic table"
+              call: "snowflake-dynamic-table.create-dynamic-table"
+        - path: /v1/iceberg-tables
+          name: iceberg-tables
+          description: "Iceberg table management"
+          operations:
+            - method: GET
+              name: list-iceberg-tables
+              description: "List Iceberg tables"
+              call: "snowflake-iceberg-table.list-iceberg-tables"
+            - method: POST
+              name: create-iceberg-table
+              description: "Create an Iceberg table"
+              call: "snowflake-iceberg-table.create-iceberg-table"
+
+    - type: mcp
+      port: 9080
+      namespace: snowflake-data-mgmt-mcp
+      transport: http
+      description: "MCP server for AI-assisted Snowflake data structure management."
+      tools:
+        - name: list-databases
+          description: "List all accessible databases"
+          hints:
+            readOnly: true
+          call: "snowflake-database.list-databases"
+        - name: create-database
+          description: "Create a new database"
+          hints:
+            readOnly: false
+          call: "snowflake-database.create-database"
+        - name: fetch-database
+          description: "Fetch database details by name"
+          hints:
+            readOnly: true
+          call: "snowflake-database.fetch-database"
+        - name: delete-database
+          description: "Delete a database"
+          hints:
+            destructive: true
+          call: "snowflake-database.delete-database"
+        - name: clone-database
+          description: "Clone a database"
+          hints:
+            readOnly: false
+          call: "snowflake-database.clone-database"
+        - name: undrop-database
+          description: "Restore a dropped database"
+          hints:
+            readOnly: false
+          call: "snowflake-database.undrop-database"
+        - name: list-schemas
+          description: "List schemas in a database"
+          hints:
+            readOnly: true
+          call: "snowflake-schema.list-schemas"
+        - name: create-schema
+          description: "Create a new schema"
+          hints:
+            readOnly: false
+          call: "snowflake-schema.create-schema"
+        - name: fetch-schema
+          description: "Fetch schema details"
+          hints:
+            readOnly: true
+          call: "snowflake-schema.fetch-schema"
+        - name: delete-schema
+          description: "Delete a schema"
+          hints:
+            destructive: true
+          call: "snowflake-schema.delete-schema"
+        - name: list-tables
+          description: "List tables in a schema"
+          hints:
+            readOnly: true
+          call: "snowflake-table.list-tables"
+        - name: create-table
+          description: "Create a new table"
+          hints:
+            readOnly: false
+          call: "snowflake-table.create-table"
+        - name: fetch-table
+          description: "Fetch table details"
+          hints:
+            readOnly: true
+          call: "snowflake-table.fetch-table"
+        - name: delete-table
+          description: "Delete a table"
+          hints:
+            destructive: true
+          call: "snowflake-table.delete-table"
+        - name: list-views
+          description: "List views in a schema"
+          hints:
+            readOnly: true
+          call: "snowflake-view.list-views"
+        - name: create-view
+          description: "Create a new view"
+          hints:
+            readOnly: false
+          call: "snowflake-view.create-view"
+        - name: list-dynamic-tables
+          description: "List dynamic tables"
+          hints:
+            readOnly: true
+          call: "snowflake-dynamic-table.list-dynamic-tables"
+        - name: create-dynamic-table
+          description: "Create a dynamic table"
+          hints:
+            readOnly: false
+          call: "snowflake-dynamic-table.create-dynamic-table"
+        - name: suspend-dynamic-table
+          description: "Suspend a dynamic table"
+          hints:
+            readOnly: false
+          call: "snowflake-dynamic-table.suspend-dynamic-table"
+        - name: resume-dynamic-table
+          description: "Resume a dynamic table"
+          hints:
+            readOnly: false
+          call: "snowflake-dynamic-table.resume-dynamic-table"
+        - name: list-iceberg-tables
+          description: "List Iceberg tables"
+          hints:
+            readOnly: true
+          call: "snowflake-iceberg-table.list-iceberg-tables"
+        - name: create-iceberg-table
+          description: "Create an Iceberg table"
+          hints:
+            readOnly: false
+          call: "snowflake-iceberg-table.create-iceberg-table"
+        - name: list-event-tables
+          description: "List event tables"
+          hints:
+            readOnly: true
+          call: "snowflake-event-table.list-event-tables"
+        - name: create-event-table
+          description: "Create an event table"
+          hints:
+            readOnly: false
+          call: "snowflake-event-table.create-event-table"
+        - name: list-external-volumes
+          description: "List external volumes"
+          hints:
+            readOnly: true
+          call: "snowflake-external-volume.list-external-volumes"
+        - name: create-external-volume
+          description: "Create an external volume"
+          hints:
+            readOnly: false
+          call: "snowflake-external-volume.create-external-volume"

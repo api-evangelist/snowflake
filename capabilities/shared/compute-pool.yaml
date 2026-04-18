@@ -1,0 +1,64 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Compute Pool"
+  description: "Access, update, and manage Compute Pool resources in Snowflake."
+  tags:
+    - Snowflake
+    - Compute
+    - Infrastructure
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-compute-pool
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Compute Pools API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: compute-pools
+          path: /api/v2/compute-pools
+          description: "Compute pool resources"
+          operations:
+            - name: list-compute-pools
+              method: GET
+              description: "List compute pools"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-compute-pool
+              method: POST
+              description: "Create a compute pool"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: fetch-compute-pool
+              method: GET
+              description: "Fetch a compute pool by name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-compute-pool
+              method: DELETE
+              description: "Delete a compute pool"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

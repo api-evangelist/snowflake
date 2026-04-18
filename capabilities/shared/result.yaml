@@ -1,0 +1,39 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Result"
+  description: "Check request status and fetch request responses."
+  tags:
+    - Snowflake
+    - Query Results
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-result
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Result API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: results
+          path: /api/v2/results
+          description: "Result resources"
+          operations:
+            - name: get-result
+              method: GET
+              description: "Get a query result"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

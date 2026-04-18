@@ -1,0 +1,64 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Notification Integration"
+  description: "Manage Notification Integration resources in Snowflake."
+  tags:
+    - Snowflake
+    - Notifications
+    - Integrations
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-notification-integration
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Notification Integration API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: notification-integrations
+          path: /api/v2/notification-integrations
+          description: "Notification integration resources"
+          operations:
+            - name: list-notification-integrations
+              method: GET
+              description: "List notification integrations"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-notification-integration
+              method: POST
+              description: "Create a notification integration"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: fetch-notification-integration
+              method: GET
+              description: "Fetch a notification integration by name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-notification-integration
+              method: DELETE
+              description: "Delete a notification integration"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

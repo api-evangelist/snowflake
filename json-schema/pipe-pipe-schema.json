@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pipe",
+  "type": "object",
+  "description": "A Snowflake pipe",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the pipe"
+    },
+    "comment": {
+      "type": "string",
+      "description": "user comment associated to an object in the dictionary"
+    },
+    "auto_ingest": {
+      "type": "boolean",
+      "description": "TRUE if all files from stage need to be auto-ingested"
+    },
+    "error_integration": {
+      "type": "string",
+      "description": "Link to integration object that point to a user provided Azure storage queue / SQS. When present,  errors (e.g. ingest failure for Snowpipe or a user task failure or replication failure) will be sent to this queue to notify customers"
+    },
+    "aws_sns_topic": {
+      "type": "string",
+      "description": "Optional, if provided, auto_ingest pipe will only receive messages from this SNS topic."
+    },
+    "integration": {
+      "type": "string",
+      "description": "Link to integration object that ties a user provided storage queue to an auto_ingest enabled pipe. Required for auto_ingest to work on azure."
+    },
+    "copy_statement": {
+      "type": "string",
+      "description": "COPY INTO <table> statement used to load data from queued files into a Snowflake table. This statement serves as the text/definition for the pipe and is displayed in the SHOW PIPES output"
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the pipe was created."
+    },
+    "database_name": {
+      "type": "string",
+      "description": "Database in which the pipe is stored"
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "Schema in which the pipe is stored"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Role that owns the pipe"
+    },
+    "pattern": {
+      "type": "string",
+      "description": "PATTERN copy option value in the COPY INTO <table> statement in the pipe definition, if the copy option was specified."
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "The type of role that owns the pipe"
+    },
+    "invalid_reason": {
+      "type": "string",
+      "description": "Displays some detailed information for your pipes that may have issues"
+    },
+    "budget": {
+      "type": "string",
+      "description": "Name of the budget if the pipe is monitored by a budget"
+    }
+  }
+}

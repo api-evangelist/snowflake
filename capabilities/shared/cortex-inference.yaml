@@ -1,0 +1,55 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Cortex Inference"
+  description: "LLM inference and model listing for Snowflake Cortex."
+  tags:
+    - Snowflake
+    - Cortex
+    - AI
+    - LLM
+    - Inference
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-cortex-inference
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Cortex Inference API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: cortex-inference
+          path: /api/v2/cortex/inference
+          description: "Cortex inference resources"
+          operations:
+            - name: get-models
+              method: GET
+              description: "List available Cortex LLM models"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: complete
+              method: POST
+              description: "Run LLM inference completion"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  model: "{{tools.model}}"
+                  prompt: "{{tools.prompt}}"

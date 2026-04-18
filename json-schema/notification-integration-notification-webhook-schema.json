@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NotificationWebhook",
+  "type": "object",
+  "properties": {
+    "webhook_url": {
+      "type": "string",
+      "description": "The URL for the webhook. The URL must use the https:// protocol."
+    },
+    "webhook_body_template": {
+      "type": "string",
+      "description": "A template for the body of the HTTP request to send for the notification."
+    },
+    "webhook_headers": {
+      "type": "object",
+      "description": "A list of HTTP headers and values to include in the HTTP request for the webhook."
+    }
+  }
+}

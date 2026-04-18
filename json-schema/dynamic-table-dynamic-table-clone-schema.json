@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DynamicTableClone",
+  "type": "object",
+  "description": "Clone dynamic table",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Specifies the name for the dynamic table, must be unique for the schema in which the dynamic table is created"
+    },
+    "warehouse": {
+      "type": "string",
+      "description": "Specifies the name of the warehouse that provides the compute resources for refreshing the dynamic table"
+    }
+  }
+}

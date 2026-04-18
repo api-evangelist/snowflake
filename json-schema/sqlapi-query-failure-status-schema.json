@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QueryFailureStatus",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "sqlState": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "statementHandle": {
+      "type": "string"
+    },
+    "createdOn": {
+      "type": "integer",
+      "description": "Timestamp that specifies when the statement execution started.\u200c The timestamp is expressed in milliseconds since the epoch."
+    },
+    "statementStatusUrl": {
+      "type": "string"
+    }
+  }
+}

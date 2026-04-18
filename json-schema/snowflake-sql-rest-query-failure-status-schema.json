@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QueryFailureStatus",
+  "type": "object",
+  "description": "Status returned when a query execution fails.",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Error code for the query failure."
+    },
+    "sqlState": {
+      "type": "string",
+      "description": "SQL state code indicating the error category."
+    },
+    "message": {
+      "type": "string",
+      "description": "Error message describing the failure."
+    },
+    "statementHandle": {
+      "type": "string",
+      "description": "Handle that uniquely identifies the failed statement."
+    },
+    "createdOn": {
+      "type": "integer",
+      "description": "Timestamp that specifies when the statement execution started. The timestamp is expressed in milliseconds since the epoch."
+    },
+    "statementStatusUrl": {
+      "type": "string",
+      "description": "URL for checking the status of the failed statement."
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ResultSetMetaData",
+  "type": "object",
+  "description": "Metadata about the result set including column definitions.",
+  "properties": {
+    "format": {
+      "type": "string",
+      "description": "For v2 endpoints the only possible value for this field is jsonv2."
+    },
+    "numRows": {
+      "type": "integer",
+      "description": "The total number of rows of results."
+    },
+    "rowType": {
+      "type": "array",
+      "description": "Array of column descriptors for the result set."
+    },
+    "partitionInfo": {
+      "type": "array",
+      "description": "Information about result set partitions for large results."
+    },
+    "nullable": {
+      "type": "boolean",
+      "description": "If false, null values are replaced with the string 'null' in the result set."
+    }
+  }
+}

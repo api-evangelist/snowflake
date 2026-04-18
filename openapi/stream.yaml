@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Stream API
-  description: The Snowflake Stream API is a REST API that you can use to access,
-    update, and perform certain actions on Stream resource in a Snowflake database.
+  description: The Snowflake Stream API is a REST API that you can use to access, update, and perform certain actions on Stream resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,7 +13,7 @@ info:
 paths:
   /api/v2/databases/{database}/schemas/{schema}/streams:
     get:
-      summary: List streams
+      summary: List Streams
       tags:
       - stream
       description: List streams
@@ -38,6 +37,29 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Stream'
+              examples:
+                Liststreams200Example:
+                  summary: Default listStreams 200 response
+                  x-microcks-default: true
+                  value:
+                  - created_on: '2026-01-15T10:30:00Z'
+                    name: Example Title
+                    stream_source:
+                      src_type: example_value
+                      name: Example Title
+                      database_name: example_value
+                      schema_name: example_value
+                    comment: example_value
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    table_name: example_value
+                    stale: true
+                    mode: example_value
+                    stale_after: '2026-01-15T10:30:00Z'
+                    invalid_reason: example_value
+                    owner_role_type: example_value
+                    type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -64,8 +86,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create a stream
+      summary: Create a Stream
       tags:
       - stream
       description: Create a stream
@@ -110,9 +135,35 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Stream'
+            examples:
+              CreatestreamRequestExample:
+                summary: Default createStream request
+                x-microcks-default: true
+                value:
+                  created_on: '2026-01-15T10:30:00Z'
+                  name: Example Title
+                  stream_source:
+                    src_type: example_value
+                    name: Example Title
+                    database_name: example_value
+                    schema_name: example_value
+                  comment: example_value
+                  database_name: example_value
+                  schema_name: example_value
+                  owner: example_value
+                  table_name: example_value
+                  stale: true
+                  mode: example_value
+                  stale_after: '2026-01-15T10:30:00Z'
+                  invalid_reason: example_value
+                  owner_role_type: example_value
+                  type: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/streams/{name}:
     get:
-      summary: Fetch a stream
+      summary: Fetch a Stream
       tags:
       - stream
       description: Fetch a stream
@@ -131,6 +182,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Stream'
+              examples:
+                Fetchstream200Example:
+                  summary: Default fetchStream 200 response
+                  x-microcks-default: true
+                  value:
+                    created_on: '2026-01-15T10:30:00Z'
+                    name: Example Title
+                    stream_source:
+                      src_type: example_value
+                      name: Example Title
+                      database_name: example_value
+                      schema_name: example_value
+                    comment: example_value
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    table_name: example_value
+                    stale: true
+                    mode: example_value
+                    stale_after: '2026-01-15T10:30:00Z'
+                    invalid_reason: example_value
+                    owner_role_type: example_value
+                    type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -157,8 +231,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Delete a stream
+      summary: Delete a Stream
       tags:
       - stream
       description: Delete a stream
@@ -197,9 +274,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/streams/{name}:clone:
     post:
-      summary: Clone a stream
+      summary: Clone a Stream
       tags:
       - stream
       description: Clone a stream
@@ -216,6 +296,7 @@ paths:
         schema:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+        example: example_value
       - name: targetSchema
         description: Schema of the target resource. Defaults to the source's schema
         in: query
@@ -223,6 +304,7 @@ paths:
         schema:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+        example: example_value
       - $ref: common.yaml#/components/parameters/copyGrants
       responses:
         '200':
@@ -259,6 +341,16 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/StreamClone'
+            examples:
+              ClonestreamRequestExample:
+                summary: Default cloneStream request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  comment: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     Stream:
@@ -270,66 +362,75 @@ components:
           format: date-time
           readOnly: true
           description: Date and time when the stream was created.
+          example: '2026-01-15T10:30:00Z'
         name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the stream
+          example: Example Title
         stream_source:
           $ref: '#/components/schemas/StreamSource'
           description: Source for the stream
         comment:
           type: string
           description: user comment associated to an object in the dictionary
+          example: example_value
         database_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Database in which the stream is stored
+          example: example_value
         schema_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Schema in which the stream is stored
+          example: example_value
         owner:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Role that owns the stream
+          example: example_value
         table_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Table name whose changes are tracked by the stream
+          example: example_value
         stale:
           type: boolean
           readOnly: true
           description: Specifies whether the stream is stale or not
+          example: true
         mode:
           type: string
           readOnly: true
-          description: 'Mode of the stream. Possible values include: APPEND_ONLY,
-            INSERT_ONLY. For streams on tables, the column displays DEFAULT.'
+          description: 'Mode of the stream. Possible values include: APPEND_ONLY, INSERT_ONLY. For streams on tables, the column displays DEFAULT.'
+          example: example_value
         stale_after:
           type: string
           format: date-time
           readOnly: true
-          description: 'Timestamp when the stream became stale or may become stale
-            if not consumed. '
+          description: 'Timestamp when the stream became stale or may become stale if not consumed. '
+          example: '2026-01-15T10:30:00Z'
         invalid_reason:
           type: string
           readOnly: true
-          description: Reason why the stream cannot be queried successfully. This
-            column supports future functionality. Currently, the only value returned
-            is N/A.
+          description: Reason why the stream cannot be queried successfully. This column supports future functionality. Currently, the only value returned is N/A.
+          example: example_value
         owner_role_type:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: The type of role that owns the stream
+          example: example_value
         type:
           type: string
           readOnly: true
           description: Type of the stream; currently DELTA only.
+          example: example_value
       required:
       - name
       - stream_source
@@ -338,22 +439,23 @@ components:
       properties:
         src_type:
           type: string
-          description: 'Type of the source. Possible values include: stream, table,
-            view'
+          description: 'Type of the source. Possible values include: stream, table, view'
+          example: example_value
         name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the source whose changes are tracked by the stream
+          example: Example Title
         database_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Database name to which stream source type belongs. If not provided,
-            database  name provided in the path param will be used.
+          description: Database name to which stream source type belongs. If not provided, database  name provided in the path param will be used.
+          example: example_value
         schema_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Schema name to which stream source type belongs. If not provided,
-            schema name provided in the path param will be used.
+          description: Schema name to which stream source type belongs. If not provided, schema name provided in the path param will be used.
+          example: example_value
       required:
       - src_type
       - name
@@ -372,9 +474,11 @@ components:
         append_only:
           type: boolean
           description: Whether this stream is an append only stream or not
+          example: true
         show_initial_rows:
           type: boolean
           description: Whether this stream show initial rows on first consumption
+          example: true
         point_of_time:
           $ref: '#/components/schemas/PointOfTime'
           description: Point of time for the stream
@@ -383,8 +487,8 @@ components:
       properties:
         point_of_time_type:
           type: string
-          description: 'Type of the point of time. Possible values include: timestamp,
-            offset, statement'
+          description: 'Type of the point of time. Possible values include: timestamp, offset, statement'
+          example: example_value
         reference:
           type: string
           enum:
@@ -393,8 +497,8 @@ components:
           x-enum-varnames:
           - AT
           - BEFORE
-          description: Relation to the point of time.  Currently, the API supports
-            `at` and `before`
+          description: Relation to the point of time.  Currently, the API supports `at` and `before`
+          example: at
       required:
       - point_of_time_type
       - reference
@@ -413,6 +517,7 @@ components:
         timestamp:
           type: string
           description: Timestamp of the point of time.
+          example: example_value
       required:
       - timestamp
     PointOfTimeOffset:
@@ -422,8 +527,8 @@ components:
       properties:
         offset:
           type: string
-          description: Point of time identified by an offset in reference to the current
-            time, such as `10 min`.
+          description: Point of time identified by an offset in reference to the current time, such as `10 min`.
+          example: example_value
       required:
       - offset
     PointOfTimeStatement:
@@ -434,6 +539,7 @@ components:
         statement:
           type: string
           description: Statement of the point of time.
+          example: example_value
       required:
       - statement
     PointOfTimeStream:
@@ -443,8 +549,8 @@ components:
       properties:
         stream:
           type: string
-          description: 'Creates the new stream at the same offset as the specified
-            stream. '
+          description: 'Creates the new stream at the same offset as the specified stream. '
+          example: example_value
     StreamSourceExternalTable:
       type: object
       allOf:
@@ -453,6 +559,7 @@ components:
         insert_only:
           type: boolean
           description: Whether this stream is an insert only stream or not
+          example: true
         point_of_time:
           $ref: '#/components/schemas/PointOfTime'
           description: Point of time for the stream
@@ -464,9 +571,11 @@ components:
         append_only:
           type: boolean
           description: Whether this stream is an append only stream or not
+          example: true
         show_initial_rows:
           type: boolean
           description: Whether this stream show initial rows on first consumption
+          example: true
         point_of_time:
           $ref: '#/components/schemas/PointOfTime'
           description: Point of time for the stream
@@ -477,6 +586,7 @@ components:
             pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: List of base tables for the stream
+          example: []
     StreamSourceStage:
       type: object
       allOf:
@@ -488,8 +598,10 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the stream
+          example: Example Title
         comment:
           type: string
           description: user comment associated to an object in the dictionary
+          example: example_value
       required:
       - name

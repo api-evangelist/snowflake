@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SuccessAcceptedResponse",
+  "type": "object",
+  "description": "Schema for a request in progress response returned by the server.",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Message code returned by the server."
+    },
+    "message": {
+      "type": "string",
+      "description": "Message returned by the server"
+    },
+    "resultHandler": {
+      "type": "string",
+      "description": "Opaque result ID used for checking for request completion through one or more subsequent completion check operations."
+    }
+  }
+}

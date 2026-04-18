@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JobService",
+  "type": "object",
+  "description": "A Snowflake job service object.",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "The current status of the service."
+    },
+    "compute_pool": {
+      "type": "string",
+      "description": "Specifies the name of the compute pool in your account on which to run the service."
+    },
+    "external_access_integrations": {
+      "type": "array",
+      "description": "Specifies the names of the external access integrations that allow your service to access external sites."
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the service."
+    },
+    "is_async_job": {
+      "type": "boolean",
+      "description": "True if the service is an async job service; false otherwise."
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NetworkPolicy",
+  "type": "object",
+  "description": "A Snowflake network policy",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the network policy"
+    },
+    "allowed_network_rule_list": {
+      "type": "array",
+      "description": "List of names of allowed network rules in a network policy"
+    },
+    "blocked_network_rule_list": {
+      "type": "array",
+      "description": "List of names of blocked network rules in a network policy"
+    },
+    "allowed_ip_list": {
+      "type": "array",
+      "description": "List of allowed IPs in a network policy"
+    },
+    "blocked_ip_list": {
+      "type": "array",
+      "description": "List of blocked IPs in a network policy"
+    },
+    "comment": {
+      "type": "string",
+      "description": "user comment associated to an object in the dictionary"
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Date and time when the network policy was created."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Role that owns the network policy"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "The type of role that owns the network policy"
+    }
+  }
+}

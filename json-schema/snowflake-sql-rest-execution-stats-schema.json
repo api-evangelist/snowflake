@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExecutionStats",
+  "type": "object",
+  "description": "Statistics about the execution of the statement. These stats might not be available for each request.",
+  "properties": {
+    "numRowsInserted": {
+      "type": "integer",
+      "description": "Number of rows that were inserted."
+    },
+    "numRowsUpdated": {
+      "type": "integer",
+      "description": "Number of rows that were updated."
+    },
+    "numRowsDeleted": {
+      "type": "integer",
+      "description": "Number of rows that were deleted."
+    },
+    "numDuplicateRowsUpdated": {
+      "type": "integer",
+      "description": "Number of duplicate rows that were updated."
+    }
+  }
+}

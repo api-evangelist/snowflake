@@ -1,0 +1,72 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snowflake Pipe"
+  description: "Access, update, and manage Pipe resources for data ingestion."
+  tags:
+    - Snowflake
+    - Pipes
+    - Data Ingestion
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: snowflake-pipe
+      baseUri: "{{SNOWFLAKE_ACCOUNT_URL}}"
+      description: "Snowflake Pipe API"
+      authentication:
+        type: bearer
+        token: "{{SNOWFLAKE_JWT_TOKEN}}"
+      resources:
+        - name: pipes
+          path: /api/v2/databases/{database}/schemas/{schema}/pipes
+          description: "Pipe resources"
+          operations:
+            - name: list-pipes
+              method: GET
+              description: "List pipes"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-pipe
+              method: POST
+              description: "Create a pipe"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: fetch-pipe
+              method: GET
+              description: "Fetch a pipe by name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-pipe
+              method: DELETE
+              description: "Delete a pipe"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: refresh-pipe
+              method: POST
+              description: "Refresh a pipe"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

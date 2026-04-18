@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ResultSet",
+  "type": "object",
+  "description": "The result set returned from a successfully executed SQL statement, including metadata, row data, and execution statistics.",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Status code for the query."
+    },
+    "sqlState": {
+      "type": "string",
+      "description": "SQL state code."
+    },
+    "message": {
+      "type": "string",
+      "description": "Message describing the execution status."
+    },
+    "statementHandle": {
+      "type": "string",
+      "description": "Handle that uniquely identifies the executed statement."
+    },
+    "createdOn": {
+      "type": "integer",
+      "description": "Timestamp that specifies when the statement execution started. The timestamp is expressed in milliseconds since the epoch."
+    },
+    "statementStatusUrl": {
+      "type": "string",
+      "description": "URL for checking the status of the statement."
+    },
+    "data": {
+      "type": "array",
+      "description": "Result set data. Each element in the outer array represents a row. Each element in the inner array represents a column value as a string."
+    }
+  }
+}

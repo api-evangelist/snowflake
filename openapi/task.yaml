@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Task API
-  description: The Snowflake Task API is a REST API that you can use to access, update,
-    and perform certain actions on task resources in a Snowflake database.
+  description: The Snowflake Task API is a REST API that you can use to access, update, and perform certain actions on task resources in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,11 +13,10 @@ info:
 paths:
   /api/v2/databases/{database}/schemas/{schema}/tasks:
     get:
-      summary: List tasks
+      summary: List Tasks
       tags:
       - task
-      description: Lists tasks under the database and schema, with show options as
-        query parameters.
+      description: Lists tasks under the database and schema, with show options as query parameters.
       operationId: listTasks
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -42,6 +40,43 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Task'
+              examples:
+                Listtasks200Example:
+                  summary: Default listTasks 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: {}
+                    warehouse: {}
+                    schedule:
+                      schedule_type: example_value
+                    comment: example_value
+                    finalize: example_value
+                    task_auto_retry_attempts: 10
+                    config: example_value
+                    session_parameters: example_value
+                    definition: example_value
+                    predecessors:
+                    - example_value
+                    task_relations: example_value
+                    user_task_managed_initial_warehouse_size: example_value
+                    target_completion_interval:
+                      minutes: 10
+                    serverless_task_min_statement_size: example_value
+                    serverless_task_max_statement_size: example_value
+                    user_task_timeout_ms: 10
+                    suspend_task_after_num_failures: 10
+                    condition: example_value
+                    allow_overlapping_execution: true
+                    error_integration: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    id: abc123
+                    owner: example_value
+                    owner_role_type: example_value
+                    state: started
+                    last_committed_on: '2026-01-15T10:30:00Z'
+                    last_suspended_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -66,13 +101,14 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create a task
+      summary: Create a Task
       tags:
       - task
-      description: Create a task, with standard create modifiers as query parameters.
-        See the Task component definition for what is required to be provided in the
-        request body.
+      description: Create a task, with standard create modifiers as query parameters. See the Task component definition for what is required to be provided in the request body.
       operationId: createTask
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -123,9 +159,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tasks/{name}:
     get:
-      summary: Fetch a task
+      summary: Fetch a Task
       tags:
       - task
       description: Fetch a task using the describe command output.
@@ -146,6 +185,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Task'
+              examples:
+                Fetchtask200Example:
+                  summary: Default fetchTask 200 response
+                  x-microcks-default: true
+                  value:
+                    name: {}
+                    warehouse: {}
+                    schedule:
+                      schedule_type: example_value
+                    comment: example_value
+                    finalize: example_value
+                    task_auto_retry_attempts: 10
+                    config: example_value
+                    session_parameters: example_value
+                    definition: example_value
+                    predecessors:
+                    - example_value
+                    task_relations: example_value
+                    user_task_managed_initial_warehouse_size: example_value
+                    target_completion_interval:
+                      minutes: 10
+                    serverless_task_min_statement_size: example_value
+                    serverless_task_max_statement_size: example_value
+                    user_task_timeout_ms: 10
+                    suspend_task_after_num_failures: 10
+                    condition: example_value
+                    allow_overlapping_execution: true
+                    error_integration: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    id: abc123
+                    owner: example_value
+                    owner_role_type: example_value
+                    state: started
+                    last_committed_on: '2026-01-15T10:30:00Z'
+                    last_suspended_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -166,12 +242,14 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
-      summary: Create a (or alter an existing) task
+      summary: Create a (or Alter an Existing) Task
       tags:
       - task
-      description: Create a (or alter an existing) task. Even if the operation is
-        just an alter, the full property set must be provided.
+      description: Create a (or alter an existing) task. Even if the operation is just an alter, the full property set must be provided.
       operationId: createOrAlterTask
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -183,6 +261,43 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Task'
+            examples:
+              CreateoraltertaskRequestExample:
+                summary: Default createOrAlterTask request
+                x-microcks-default: true
+                value:
+                  name: {}
+                  warehouse: {}
+                  schedule:
+                    schedule_type: example_value
+                  comment: example_value
+                  finalize: example_value
+                  task_auto_retry_attempts: 10
+                  config: example_value
+                  session_parameters: example_value
+                  definition: example_value
+                  predecessors:
+                  - example_value
+                  task_relations: example_value
+                  user_task_managed_initial_warehouse_size: example_value
+                  target_completion_interval:
+                    minutes: 10
+                  serverless_task_min_statement_size: example_value
+                  serverless_task_max_statement_size: example_value
+                  user_task_timeout_ms: 10
+                  suspend_task_after_num_failures: 10
+                  condition: example_value
+                  allow_overlapping_execution: true
+                  error_integration: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  id: abc123
+                  owner: example_value
+                  owner_role_type: example_value
+                  state: started
+                  last_committed_on: '2026-01-15T10:30:00Z'
+                  last_suspended_on: '2026-01-15T10:30:00Z'
+                  database_name: example_value
+                  schema_name: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -206,18 +321,19 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       parameters:
       - $ref: common.yaml#/components/parameters/database
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Delete a task
+      summary: Delete a Task
       tags:
       - task
-      description: Delete a task with the task name. If ifExists is used, the operation
-        will succeed even if the object does not exist. Otherwise, there will be a
-        failure if the drop is unsuccessful.
+      description: Delete a task with the task name. If ifExists is used, the operation will succeed even if the object does not exist. Otherwise, there will be a failure if the drop is unsuccessful.
       operationId: deleteTask
       responses:
         '200':
@@ -242,9 +358,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tasks/{name}:execute:
     post:
-      summary: Execute a task object.
+      summary: Execute a Task Object.
       tags:
       - task
       description: Execute a task -- this is equivalent to EXECUTE IMMEDIATE.
@@ -260,6 +379,7 @@ paths:
         schema:
           type: boolean
           default: false
+        example: true
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -283,13 +403,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tasks/{name}:resume:
     post:
-      summary: Resume a suspended task.
+      summary: Resume a Suspended Task.
       tags:
       - task
-      description: Resumes a suspended task object. This is equivalento an ALTER TASK
-        ... RESUME.
+      description: Resumes a suspended task object. This is equivalento an ALTER TASK ... RESUME.
       operationId: resumeTask
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -318,13 +440,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tasks/{name}:suspend:
     post:
-      summary: Suspend a running task.
+      summary: Suspend a Running Task.
       tags:
       - task
-      description: Suspends a running task. This is equivalent to an ALTER TASK ...
-        SUSPEND.
+      description: Suspends a running task. This is equivalent to an ALTER TASK ... SUSPEND.
       operationId: suspendTask
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -353,13 +477,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tasks/{name}/dependents:
     get:
-      summary: Fetch the dependent tasks of a task
+      summary: Fetch the Dependent Tasks of a Task
       tags:
       - task
-      description: This operation returns a list of the dependent tasks of the task
-        with identifier {name}.
+      description: This operation returns a list of the dependent tasks of the task with identifier {name}.
       operationId: fetchTaskDependents
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -367,11 +493,11 @@ paths:
       - $ref: common.yaml#/components/parameters/name
       - name: recursive
         in: query
-        description: Specifies whether to limit the output to include only direct
-          child tasks or to include all recursive child tasks.
+        description: Specifies whether to limit the output to include only direct child tasks or to include all recursive child tasks.
         schema:
           type: boolean
           default: true
+        example: true
       responses:
         '200':
           description: successful
@@ -386,6 +512,43 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Task'
+              examples:
+                Fetchtaskdependents200Example:
+                  summary: Default fetchTaskDependents 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: {}
+                    warehouse: {}
+                    schedule:
+                      schedule_type: example_value
+                    comment: example_value
+                    finalize: example_value
+                    task_auto_retry_attempts: 10
+                    config: example_value
+                    session_parameters: example_value
+                    definition: example_value
+                    predecessors:
+                    - example_value
+                    task_relations: example_value
+                    user_task_managed_initial_warehouse_size: example_value
+                    target_completion_interval:
+                      minutes: 10
+                    serverless_task_min_statement_size: example_value
+                    serverless_task_max_statement_size: example_value
+                    user_task_timeout_ms: 10
+                    suspend_task_after_num_failures: 10
+                    condition: example_value
+                    allow_overlapping_execution: true
+                    error_integration: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    id: abc123
+                    owner: example_value
+                    owner_role_type: example_value
+                    state: started
+                    last_committed_on: '2026-01-15T10:30:00Z'
+                    last_suspended_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -406,15 +569,16 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tasks/{name}/current_graphs:
     get:
       deprecated: true
-      summary: Get the graph runs that are executing or scheduled for the task for
-        the next 8 days.
+      summary: Get the Graph Runs That Are Executing or Scheduled for the Task for the Next 8 Days.
       tags:
       - task
-      description: This function returns details for graph runs that are currently
-        executing or are next scheduled to run within the next 8 days.
+      description: This function returns details for graph runs that are currently executing or are next scheduled to run within the next 8 days.
       operationId: getCurrentGraphsDeprecated
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -424,8 +588,8 @@ paths:
         name: resultLimit
         schema:
           type: integer
-          description: Number of results to return, at most. Default is 1000, valid
-            range is 1 to 10000.
+          description: Number of results to return, at most. Default is 1000, valid range is 1 to 10000.
+        example: 10
       responses:
         '200':
           description: successful
@@ -440,6 +604,25 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TaskRun'
+              examples:
+                Getcurrentgraphsdeprecated200Example:
+                  summary: Default getCurrentGraphsDeprecated 200 response
+                  x-microcks-default: true
+                  value:
+                  - root_task_name: example_value
+                    database_name: example_value
+                    schema_name: example_value
+                    state: SCHEDULED
+                    first_error_task_name: example_value
+                    first_error_code: 10
+                    first_error_message: example_value
+                    scheduled_time: '2026-01-15T10:30:00Z'
+                    query_start_time: '2026-01-15T10:30:00Z'
+                    next_scheduled_time: '2026-01-15T10:30:00Z'
+                    completed_time: '2026-01-15T10:30:00Z'
+                    root_task_id: '500123'
+                    graph_version: 10
+                    run_id: '500123'
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -460,14 +643,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tasks/{name}/current-graphs:
     get:
-      summary: Get the graph runs that are executing or scheduled for the task for
-        the next 8 days.
+      summary: Get the Graph Runs That Are Executing or Scheduled for the Task for the Next 8 Days.
       tags:
       - task
-      description: This function returns details for graph runs that are currently
-        executing or are next scheduled to run within the next 8 days.
+      description: This function returns details for graph runs that are currently executing or are next scheduled to run within the next 8 days.
       operationId: getCurrentGraphs
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -477,8 +661,8 @@ paths:
         name: resultLimit
         schema:
           type: integer
-          description: Number of results to return, at most. Default is 1000, valid
-            range is 1 to 10000.
+          description: Number of results to return, at most. Default is 1000, valid range is 1 to 10000.
+        example: 10
       responses:
         '200':
           description: successful
@@ -493,6 +677,25 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TaskRun'
+              examples:
+                Getcurrentgraphs200Example:
+                  summary: Default getCurrentGraphs 200 response
+                  x-microcks-default: true
+                  value:
+                  - root_task_name: example_value
+                    database_name: example_value
+                    schema_name: example_value
+                    state: SCHEDULED
+                    first_error_task_name: example_value
+                    first_error_code: 10
+                    first_error_message: example_value
+                    scheduled_time: '2026-01-15T10:30:00Z'
+                    query_start_time: '2026-01-15T10:30:00Z'
+                    next_scheduled_time: '2026-01-15T10:30:00Z'
+                    completed_time: '2026-01-15T10:30:00Z'
+                    root_task_id: '500123'
+                    graph_version: 10
+                    run_id: '500123'
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -513,10 +716,13 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tasks/{name}/complete_graphs:
     get:
       deprecated: true
-      summary: Get the graph runs that are completed for the task.
+      summary: Get the Graph Runs That Are Completed for the Task.
       tags:
       - task
       description: This function returns details for graph runs that are completed.
@@ -529,14 +735,14 @@ paths:
         name: resultLimit
         schema:
           type: integer
-        description: Number of results to return, at most. Default is 1000, valid
-          range is 1 to 10000.
+        description: Number of results to return, at most. Default is 1000, valid range is 1 to 10000.
+        example: 10
       - in: query
         name: errorOnly
         schema:
           type: boolean
-        description: Whether to only return results for tasks runs that have failed.
-          Default is false.
+        description: Whether to only return results for tasks runs that have failed. Default is false.
+        example: true
       responses:
         '200':
           description: successful
@@ -551,6 +757,25 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TaskRun'
+              examples:
+                Getcompletegraphsdeprecated200Example:
+                  summary: Default getCompleteGraphsDeprecated 200 response
+                  x-microcks-default: true
+                  value:
+                  - root_task_name: example_value
+                    database_name: example_value
+                    schema_name: example_value
+                    state: SCHEDULED
+                    first_error_task_name: example_value
+                    first_error_code: 10
+                    first_error_message: example_value
+                    scheduled_time: '2026-01-15T10:30:00Z'
+                    query_start_time: '2026-01-15T10:30:00Z'
+                    next_scheduled_time: '2026-01-15T10:30:00Z'
+                    completed_time: '2026-01-15T10:30:00Z'
+                    root_task_id: '500123'
+                    graph_version: 10
+                    run_id: '500123'
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -571,9 +796,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tasks/{name}/complete-graphs:
     get:
-      summary: Get the graph runs that are completed for the task.
+      summary: Get the Graph Runs That Are Completed for the Task.
       tags:
       - task
       description: This function returns details for graph runs that are completed.
@@ -586,14 +814,14 @@ paths:
         name: resultLimit
         schema:
           type: integer
-        description: Number of results to return, at most. Default is 1000, valid
-          range is 1 to 10000.
+        description: Number of results to return, at most. Default is 1000, valid range is 1 to 10000.
+        example: 10
       - in: query
         name: errorOnly
         schema:
           type: boolean
-        description: Whether to only return results for tasks runs that have failed.
-          Default is false.
+        description: Whether to only return results for tasks runs that have failed. Default is false.
+        example: true
       responses:
         '200':
           description: successful
@@ -608,6 +836,25 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TaskRun'
+              examples:
+                Getcompletegraphs200Example:
+                  summary: Default getCompleteGraphs 200 response
+                  x-microcks-default: true
+                  value:
+                  - root_task_name: example_value
+                    database_name: example_value
+                    schema_name: example_value
+                    state: SCHEDULED
+                    first_error_task_name: example_value
+                    first_error_code: 10
+                    first_error_message: example_value
+                    scheduled_time: '2026-01-15T10:30:00Z'
+                    query_start_time: '2026-01-15T10:30:00Z'
+                    next_scheduled_time: '2026-01-15T10:30:00Z'
+                    completed_time: '2026-01-15T10:30:00Z'
+                    root_task_id: '500123'
+                    graph_version: 10
+                    run_id: '500123'
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -628,25 +875,30 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     TaskRun:
       type: object
-      description: A task run executing a standalone task or a DAG of tasks starting
-        from the root task.
+      description: A task run executing a standalone task or a DAG of tasks starting from the root task.
       properties:
         root_task_name:
           type: string
           description: The name of the root task in the current task run.
           readOnly: true
+          example: example_value
         database_name:
           type: string
           description: The name of the current database for the task run.
           readOnly: true
+          example: example_value
         schema_name:
           type: string
           description: The name of the current schema for the task run.
           readOnly: true
+          example: example_value
         state:
           type: string
           description: The current state of the task run.
@@ -658,50 +910,61 @@ components:
           - CANCELLED
           - SKIPPED
           readOnly: true
+          example: SCHEDULED
         first_error_task_name:
           type: string
           description: The name of the first task throwing an error in the task run.
           readOnly: true
+          example: example_value
         first_error_code:
           type: integer
           description: The first error code thrown in the task run.
           readOnly: true
+          example: 10
         first_error_message:
           type: string
           description: The first error message thrown in the task run.
           readOnly: true
+          example: example_value
         scheduled_time:
           type: string
           description: The scheduled time for the task run.
           format: date-time
           readOnly: true
+          example: '2026-01-15T10:30:00Z'
         query_start_time:
           type: string
           description: The start time for the task run query.
           format: date-time
           readOnly: true
+          example: '2026-01-15T10:30:00Z'
         next_scheduled_time:
           type: string
           description: The next upcoming time for the task run.
           format: date-time
           readOnly: true
+          example: '2026-01-15T10:30:00Z'
         completed_time:
           type: string
           description: The time this task run was last completed.
           format: date-time
           readOnly: true
+          example: '2026-01-15T10:30:00Z'
         root_task_id:
           type: string
           description: The unique task ID for the root task.
           readOnly: true
+          example: '500123'
         graph_version:
           type: integer
           description: The current version of the DAG on the task run.
           readOnly: true
+          example: 10
         run_id:
           type: integer
           description: The unique ID for the current task run.
           readOnly: true
+          example: '500123'
       example:
         root_task_name: root_task
         database_name: test_db
@@ -736,104 +999,106 @@ components:
           description: String that specifies the identifier (i.e. name) for the task.
         warehouse:
           $ref: ./common.yaml#/components/schemas/Identifier
-          description: Specifies the virtual warehouse that provides compute resources
-            for task runs. Omit this parameter to use serverless compute resources
-            for runs of this task.
+          description: Specifies the virtual warehouse that provides compute resources for task runs. Omit this parameter to use serverless compute resources for runs of this task.
         schedule:
           $ref: '#/components/schemas/TaskSchedule'
           description: Specifies the schedule for periodically running the task.
         comment:
           type: string
           description: Specifies a comment for the task.
+          example: example_value
         finalize:
           type: string
-          description: Specifies the name of the root task that the finalizer task
-            is associated with.
+          description: Specifies the name of the root task that the finalizer task is associated with.
+          example: example_value
         task_auto_retry_attempts:
           type: integer
-          description: Root task settable only. Specifies the number of automatic
-            task graph retry attempts. Valid range is 0 to 30. When not specified,
-            no retry would happen.
+          description: Root task settable only. Specifies the number of automatic task graph retry attempts. Valid range is 0 to 30. When not specified, no retry would happen.
           minimum: 0
           maximum: 30
+          example: 10
         config:
           type: object
           additionalProperties: true
           description: Task Config
+          example: example_value
         session_parameters:
           type: object
           additionalProperties: true
           description: Session Parameters for the task at runtime.
+          example: example_value
         definition:
           type: string
-          description: The SQL definition for the task. Any one of single SQL statement,
-            call to stored procedure, or procedural logic using Snowflake scripting.
+          description: The SQL definition for the task. Any one of single SQL statement, call to stored procedure, or procedural logic using Snowflake scripting.
+          example: example_value
         predecessors:
           type: array
           description: Specifies one or more predecessor tasks for the current task
           items:
             type: string
             description: The identifier for the task.
+          example: []
         task_relations:
           type: string
-          description: Displays the relationship between the root task and its corresponding
-            finalizer tasks.
+          description: Displays the relationship between the root task and its corresponding finalizer tasks.
           readOnly: true
+          example: example_value
         user_task_managed_initial_warehouse_size:
           type: string
-          description: Specifies the size of the compute resources to provision for
-            the first run of the task. This parameter only applies to serverless tasks.
+          description: Specifies the size of the compute resources to provision for the first run of the task. This parameter only applies to serverless tasks.
+          example: example_value
         target_completion_interval:
           $ref: '#/components/schemas/MinutesSchedule'
-          description: Specifies the desired task completion time. This parameter
-            only applies to serverless tasks.
+          description: Specifies the desired task completion time. This parameter only applies to serverless tasks.
         serverless_task_min_statement_size:
           type: string
-          description: Specifies the minimum allowed warehouse size for the serverless
-            task. Minimum XSMALL, Maximum XXLARGE. This parameter only applies to
-            serverless tasks.
+          description: Specifies the minimum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE. This parameter only applies to serverless tasks.
+          example: example_value
         serverless_task_max_statement_size:
           type: string
-          description: Specifies the maximum allowed warehouse size for the serverless
-            task. Minimum XSMALL, Maximum XXLARGE. This parameter only applies to
-            serverless tasks.
+          description: Specifies the maximum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE. This parameter only applies to serverless tasks.
+          example: example_value
         user_task_timeout_ms:
           type: integer
-          description: Specifies the time limit on a single run of the task before
-            it times out (in milliseconds).
+          description: Specifies the time limit on a single run of the task before it times out (in milliseconds).
+          example: 10
         suspend_task_after_num_failures:
           type: integer
-          description: Specifies the number of consecutive failed task runs after
-            which the current task is suspended automatically.
+          description: Specifies the number of consecutive failed task runs after which the current task is suspended automatically.
+          example: 10
         condition:
           type: string
-          description: Specifies a Boolean SQL expression condition; multiple conditions
-            joined with AND/OR are supported
+          description: Specifies a Boolean SQL expression condition; multiple conditions joined with AND/OR are supported
+          example: example_value
         allow_overlapping_execution:
           type: boolean
-          description: Specifies whether to allow multiple instances of the DAG to
-            run concurrently.
+          description: Specifies whether to allow multiple instances of the DAG to run concurrently.
+          example: true
         error_integration:
           type: string
-          description: Specifies the name of the notification integration used to
-            communicate with Amazon SNS, MS Azure Event Grid, or Google Pub/Sub.
+          description: Specifies the name of the notification integration used to communicate with Amazon SNS, MS Azure Event Grid, or Google Pub/Sub.
+          example: example_value
         created_on:
           type: string
           description: The time the task was created on.
           format: date-time
           readOnly: true
+          example: '2026-01-15T10:30:00Z'
         id:
           type: string
           description: An ID for the current task.
           readOnly: true
+          example: abc123
         owner:
           type: string
           description: The role that owns the task.
           readOnly: true
+          example: example_value
         owner_role_type:
           type: string
           description: The role type of the task owner.
           readOnly: true
+          example: example_value
         state:
           type: string
           description: The state of the task. Must be one of started or suspended.
@@ -841,24 +1106,29 @@ components:
           enum:
           - started
           - suspended
+          example: started
         last_committed_on:
           type: string
           description: The time the task was last committed on.
           readOnly: true
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         last_suspended_on:
           type: string
           description: The time the task was last suspended on.
           readOnly: true
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         database_name:
           type: string
           description: The name of the parent database for the task.
           readOnly: true
+          example: example_value
         schema_name:
           type: string
           description: The name of the parent schema for the task.
           readOnly: true
+          example: example_value
       example:
         name: name_example
         schedule:
@@ -903,6 +1173,7 @@ components:
         schedule_type:
           description: Type of the schedule, can be either CRON_TYPE or MINUTES_TYPE.
           type: string
+          example: example_value
       discriminator:
         propertyName: schedule_type
         mapping:
@@ -916,9 +1187,11 @@ components:
         cron_expr:
           type: string
           description: A cron expression for the task execution.
+          example: example_value
         timezone:
           type: string
           description: The time zone for the schedule.
+          example: example_value
       example:
         cron_expr: '* * * * ? *'
         timezone: america/los_angeles
@@ -933,6 +1206,7 @@ components:
         minutes:
           type: integer
           description: The number of minutes between each task run.
+          example: 10
       example:
         minutes: 10
       required:

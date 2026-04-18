@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CancelStatus",
+  "type": "object",
+  "description": "Status returned when a statement cancellation is requested.",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Status code for the cancellation."
+    },
+    "sqlState": {
+      "type": "string",
+      "description": "SQL state code."
+    },
+    "message": {
+      "type": "string",
+      "description": "Message describing the cancellation status."
+    },
+    "statementHandle": {
+      "type": "string",
+      "description": "Handle of the canceled statement."
+    },
+    "statementStatusUrl": {
+      "type": "string",
+      "description": "URL for checking the status of the canceled statement."
+    }
+  }
+}

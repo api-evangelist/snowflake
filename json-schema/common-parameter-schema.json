@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Parameter",
+  "type": "object",
+  "description": "Snowflake parameter defined at the system, account, user, session, or object level.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Parameter name."
+    },
+    "value": {
+      "type": "string",
+      "description": "Parameter value."
+    },
+    "defaultValue": {
+      "type": "string",
+      "description": "Default parameter value."
+    },
+    "dataType": {
+      "type": "string",
+      "description": "Data type of the parameter value. Either BOOLEAN, NUMBER, FLOAT, or STRING."
+    },
+    "level": {
+      "type": "string",
+      "description": "Level at which parameter is defined."
+    },
+    "description": {
+      "type": "string",
+      "description": "Parameter description."
+    }
+  }
+}

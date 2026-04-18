@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StreamSourceView",
+  "type": "object",
+  "properties": {
+    "append_only": {
+      "type": "boolean",
+      "description": "Whether this stream is an append only stream or not"
+    },
+    "show_initial_rows": {
+      "type": "boolean",
+      "description": "Whether this stream show initial rows on first consumption"
+    },
+    "base_tables": {
+      "type": "array",
+      "description": "List of base tables for the stream"
+    }
+  }
+}

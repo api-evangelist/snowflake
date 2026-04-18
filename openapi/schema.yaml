@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Schema API
-  description: The Snowflake Schema API is a REST API that you can use to access,
-    update, and perform certain actions on a Snowflake schema.
+  description: The Snowflake Schema API is a REST API that you can use to access, update, and perform certain actions on a Snowflake schema.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,7 +13,7 @@ info:
 paths:
   /api/v2/databases/{database}/schemas:
     get:
-      summary: List schemas.
+      summary: List Schemas.
       tags:
       - schema
       description: Lists the accessible schemas.
@@ -27,11 +26,11 @@ paths:
       - $ref: common.yaml#/components/parameters/fromName
       - name: history
         in: query
-        description: 'Whether to include dropped schemas that have not yet been purged.
-          Default: `false`.'
+        description: 'Whether to include dropped schemas that have not yet been purged. Default: `false`.'
         schema:
           type: boolean
           default: false
+        example: true
       responses:
         '200':
           description: Successful request.
@@ -46,6 +45,36 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Schema'
+              examples:
+                Listschemas200Example:
+                  summary: Default listSchemas 200 response
+                  x-microcks-default: true
+                  value:
+                  - created_on: '2026-01-15T10:30:00Z'
+                    name: {}
+                    kind: PERMANENT
+                    is_default: true
+                    is_current: true
+                    database_name: example_value
+                    owner: example_value
+                    comment: example_value
+                    options: example_value
+                    managed_access: true
+                    retention_time: 10
+                    dropped_on: '2026-01-15T10:30:00Z'
+                    owner_role_type: example_value
+                    budget: example_value
+                    data_retention_time_in_days: 10
+                    default_ddl_collation: example_value
+                    log_level: example_value
+                    pipe_execution_paused: true
+                    max_data_extension_time_in_days: 10
+                    suspend_task_after_num_failures: 10
+                    trace_level: example_value
+                    user_task_managed_initial_warehouse_size: example_value
+                    user_task_timeout_ms: 10
+                    serverless_task_min_statement_size: example_value
+                    serverless_task_max_statement_size: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -72,30 +101,62 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create a schema.
+      summary: Create a Schema.
       tags:
       - schema
-      description: Creates a schema, with modifiers as query parameters. You must
-        provide the full schema definition when creating a schema.
+      description: Creates a schema, with modifiers as query parameters. You must provide the full schema definition when creating a schema.
       operationId: createSchema
       parameters:
       - $ref: common.yaml#/components/parameters/database
       - $ref: common.yaml#/components/parameters/createMode
       - name: kind
         in: query
-        description: Type of schema to create. Currently, Snowflake supports only
-          `transient` and `permanent` (also represented by the empty string).
+        description: Type of schema to create. Currently, Snowflake supports only `transient` and `permanent` (also represented by the empty string).
         schema:
           type: string
           default: ''
         deprecated: true
+        example: example_value
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Schema'
+            examples:
+              CreateschemaRequestExample:
+                summary: Default createSchema request
+                x-microcks-default: true
+                value:
+                  created_on: '2026-01-15T10:30:00Z'
+                  name: {}
+                  kind: PERMANENT
+                  is_default: true
+                  is_current: true
+                  database_name: example_value
+                  owner: example_value
+                  comment: example_value
+                  options: example_value
+                  managed_access: true
+                  retention_time: 10
+                  dropped_on: '2026-01-15T10:30:00Z'
+                  owner_role_type: example_value
+                  budget: example_value
+                  data_retention_time_in_days: 10
+                  default_ddl_collation: example_value
+                  log_level: example_value
+                  pipe_execution_paused: true
+                  max_data_extension_time_in_days: 10
+                  suspend_task_after_num_failures: 10
+                  trace_level: example_value
+                  user_task_managed_initial_warehouse_size: example_value
+                  user_task_timeout_ms: 10
+                  serverless_task_min_statement_size: example_value
+                  serverless_task_max_statement_size: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -125,13 +186,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{name}:clone:
     post:
-      summary: Clone a schema.
+      summary: Clone a Schema.
       tags:
       - schema
-      description: Clones an existing schema, with modifiers as query parameters.
-        You must provide the full schema definition when cloning an existing schema.
+      description: Clones an existing schema, with modifiers as query parameters. You must provide the full schema definition when cloning an existing schema.
       operationId: cloneSchema
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -139,24 +202,30 @@ paths:
       - $ref: common.yaml#/components/parameters/createMode
       - name: kind
         in: query
-        description: Type of schema to clone. Currently, Snowflake supports only `transient`
-          and `permanent` (also represented by the empty string).
+        description: Type of schema to clone. Currently, Snowflake supports only `transient` and `permanent` (also represented by the empty string).
         schema:
           type: string
           default: ''
         deprecated: true
+        example: example_value
       - name: targetDatabase
         in: query
-        description: Database of the newly created schema. Defaults to the source
-          schema's database.
+        description: Database of the newly created schema. Defaults to the source schema's database.
         schema:
           $ref: ./common.yaml#/components/schemas/Identifier
+        example: example_value
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/SchemaClone'
+            examples:
+              CloneschemaRequestExample:
+                summary: Default cloneSchema request
+                x-microcks-default: true
+                value:
+                  point_of_time: {}
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -186,9 +255,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{name}:undrop:
     post:
-      summary: Undrop a schema.
+      summary: Undrop a Schema.
       tags:
       - schema
       description: Undrops schema.
@@ -225,6 +297,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{name}:
     get:
       tags:
@@ -246,6 +321,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Schema'
+              examples:
+                Fetchschema200Example:
+                  summary: Default fetchSchema 200 response
+                  x-microcks-default: true
+                  value:
+                    created_on: '2026-01-15T10:30:00Z'
+                    name: {}
+                    kind: PERMANENT
+                    is_default: true
+                    is_current: true
+                    database_name: example_value
+                    owner: example_value
+                    comment: example_value
+                    options: example_value
+                    managed_access: true
+                    retention_time: 10
+                    dropped_on: '2026-01-15T10:30:00Z'
+                    owner_role_type: example_value
+                    budget: example_value
+                    data_retention_time_in_days: 10
+                    default_ddl_collation: example_value
+                    log_level: example_value
+                    pipe_execution_paused: true
+                    max_data_extension_time_in_days: 10
+                    suspend_task_after_num_failures: 10
+                    trace_level: example_value
+                    user_task_managed_initial_warehouse_size: example_value
+                    user_task_timeout_ms: 10
+                    serverless_task_min_statement_size: example_value
+                    serverless_task_max_statement_size: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -272,30 +377,62 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
-      summary: Create a new, or alters an existing, schema.
+      summary: Create a New, or Alters an Existing, Schema.
       tags:
       - schema
-      description: Creates a new, or alters an existing, schema. You must provide
-        the full schema definition even when altering an existing schema.
+      description: Creates a new, or alters an existing, schema. You must provide the full schema definition even when altering an existing schema.
       operationId: createOrAlterSchema
       parameters:
       - $ref: common.yaml#/components/parameters/database
       - $ref: common.yaml#/components/parameters/name
       - name: kind
         in: query
-        description: Type of schema to create. Currently, Snowflake supports only
-          `transient` and `permanent` (also represented by the empty string).
+        description: Type of schema to create. Currently, Snowflake supports only `transient` and `permanent` (also represented by the empty string).
         schema:
           type: string
           default: ''
         deprecated: true
+        example: example_value
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Schema'
+            examples:
+              CreateoralterschemaRequestExample:
+                summary: Default createOrAlterSchema request
+                x-microcks-default: true
+                value:
+                  created_on: '2026-01-15T10:30:00Z'
+                  name: {}
+                  kind: PERMANENT
+                  is_default: true
+                  is_current: true
+                  database_name: example_value
+                  owner: example_value
+                  comment: example_value
+                  options: example_value
+                  managed_access: true
+                  retention_time: 10
+                  dropped_on: '2026-01-15T10:30:00Z'
+                  owner_role_type: example_value
+                  budget: example_value
+                  data_retention_time_in_days: 10
+                  default_ddl_collation: example_value
+                  log_level: example_value
+                  pipe_execution_paused: true
+                  max_data_extension_time_in_days: 10
+                  suspend_task_after_num_failures: 10
+                  trace_level: example_value
+                  user_task_managed_initial_warehouse_size: example_value
+                  user_task_timeout_ms: 10
+                  serverless_task_min_statement_size: example_value
+                  serverless_task_max_statement_size: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -325,13 +462,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Delete a schema.
+      summary: Delete a Schema.
       tags:
       - schema
-      description: Deletes the specified schema. If you enable the `ifExists` parameter,
-        the operation succeeds even if the schema does not exist. Otherwise, a 404
-        failure is returned if the schema does not exist. if the drop is unsuccessful.
+      description: Deletes the specified schema. If you enable the `ifExists` parameter, the operation succeeds even if the schema does not exist. Otherwise, a 404 failure is returned if the schema 
+        does not exist. if the drop is unsuccessful.
       operationId: deleteSchema
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -339,20 +478,17 @@ paths:
       - $ref: common.yaml#/components/parameters/ifExists
       - name: restrict
         in: query
-        description: 'Whether to drop the schema if foreign keys exist that reference
-          any tables in the schema.
+        description: 'Whether to drop the schema if foreign keys exist that reference any tables in the schema.
 
-          - `true`: Return a warning about existing foreign key references and don''t
-          drop the schema.
+          - `true`: Return a warning about existing foreign key references and don''t drop the schema.
 
-          - `false`: Drop the schema and all objects in the database, including tables
-          with primary or unique keys that are referenced by foreign keys in other
-          tables.
+          - `false`: Drop the schema and all objects in the database, including tables with primary or unique keys that are referenced by foreign keys in other tables.
 
           Default: `false`.'
         schema:
           type: boolean
           default: false
+        example: true
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -382,6 +518,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     Schema:
@@ -393,6 +532,7 @@ components:
           format: date-time
           readOnly: true
           description: Date and time the schema was created.
+          example: '2026-01-15T10:30:00Z'
         name:
           $ref: ./common.yaml#/components/schemas/Identifier
           description: Name of the schema.
@@ -403,101 +543,108 @@ components:
           - TRANSIENT
           default: PERMANENT
           description: Schema type, permanent (default) or transient.
+          example: PERMANENT
         is_default:
           type: boolean
           readOnly: true
           description: Default schema for a user.
+          example: true
         is_current:
           type: boolean
           readOnly: true
           description: Current schema for the session.
+          example: true
         database_name:
           type: string
           readOnly: true
           description: Database that the schema belongs to
+          example: example_value
         owner:
           type: string
           readOnly: true
           description: Name of the role that owns the schema.
+          example: example_value
         comment:
           type: string
-          description: Optional comment in which to store information related to the
-            schema.
+          description: Optional comment in which to store information related to the schema.
+          example: example_value
         options:
           type: string
           readOnly: true
+          example: example_value
         managed_access:
           type: boolean
           default: false
-          description: Whether this schema is a managed access schema that centralizes
-            privilege management with the schema owner.
+          description: Whether this schema is a managed access schema that centralizes privilege management with the schema owner.
+          example: true
         retention_time:
           type: integer
           readOnly: true
           description: Number of days that historical data is retained for Time Travel.
+          example: 10
         dropped_on:
           type: string
           format: date-time
           readOnly: true
           nullable: true
           description: Date and time the schema was dropped.
+          example: '2026-01-15T10:30:00Z'
         owner_role_type:
           type: string
           readOnly: true
           description: Type of role that owns the object, either `ROLE` or `DATABASE_ROLE`.
+          example: example_value
         budget:
           type: string
           readOnly: true
-          description: Budget that defines a monthly spending limit on the compute
-            costs  for a Snowflake account or a custom group of Snowflake objects.
+          description: Budget that defines a monthly spending limit on the compute costs  for a Snowflake account or a custom group of Snowflake objects.
+          example: example_value
         data_retention_time_in_days:
           type: integer
-          description: Number of days for which Time Travel actions (CLONE and UNDROP)
-            can be performed on the schema, as well as specifying the default Time
-            Travel retention time for all tables created in the schema
+          description: Number of days for which Time Travel actions (CLONE and UNDROP) can be performed on the schema, as well as specifying the default Time Travel retention time for all tables 
+            created in the schema
+          example: 10
         default_ddl_collation:
           type: string
-          description: Specifies a default collation specification for all tables
-            added to the schema. You an override the default at the schema and individual
-            table levels.
+          description: Specifies a default collation specification for all tables added to the schema. You an override the default at the schema and individual table levels.
+          example: example_value
         log_level:
           type: string
-          description: Severity level of messages that should be ingested and made
-            available in the active event table. Currently, Snowflake supports only
-            `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `FATAL` and `OFF`.
+          description: Severity level of messages that should be ingested and made available in the active event table. Currently, Snowflake supports only `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, 
+            `FATAL` and `OFF`.
+          example: example_value
         pipe_execution_paused:
           type: boolean
           description: Whether pipe execution is paused.
+          example: true
         max_data_extension_time_in_days:
           type: integer
-          description: Maximum number of days for which Snowflake can extend the data
-            retention period for tables in the schema to prevent streams on the tables
-            from becoming stale.
+          description: Maximum number of days for which Snowflake can extend the data retention period for tables in the schema to prevent streams on the tables from becoming stale.
+          example: 10
         suspend_task_after_num_failures:
           type: integer
-          description: Specifies the number of consecutive failed task runs after
-            which the current task is suspended automatically.
+          description: Specifies the number of consecutive failed task runs after which the current task is suspended automatically.
+          example: 10
         trace_level:
           type: string
-          description: How trace events are ingested into the event table. Currently,
-            Snowflake supports only `ALWAYS`, `ON_EVENT`, and `OFF`.
+          description: How trace events are ingested into the event table. Currently, Snowflake supports only `ALWAYS`, `ON_EVENT`, and `OFF`.
+          example: example_value
         user_task_managed_initial_warehouse_size:
           type: string
-          description: Size of the compute resources to provision for the first run
-            of the serverless task, before a task history is available for Snowflake
-            to determine an ideal size.
+          description: Size of the compute resources to provision for the first run of the serverless task, before a task history is available for Snowflake to determine an ideal size.
+          example: example_value
         user_task_timeout_ms:
           type: integer
-          description: Time limit, in milliseconds, for a single run of the task before
-            it times out.
+          description: Time limit, in milliseconds, for a single run of the task before it times out.
+          example: 10
         serverless_task_min_statement_size:
           type: string
-          description: Specifies the minimum allowed warehouse size for the serverless
-            task. Minimum XSMALL, Maximum XXLARGE.
+          description: Specifies the minimum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE.
+          example: example_value
         serverless_task_max_statement_size:
           type: string
-          description: Specifies the maximum allowed warehouse size for the serverless
-            task. Minimum XSMALL, Maximum XXLARGE.
+          description: Specifies the maximum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE.
+          example: example_value
       required:
       - name
     SchemaClone:

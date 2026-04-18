@@ -5,9 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake External Volume API
-  description: The Snowflake External Volume API is a REST API that you can use to
-    access, update, and perform certain actions on External Volume resource in a Snowflake
-    database.
+  description: The Snowflake External Volume API is a REST API that you can use to access, update, and perform certain actions on External Volume resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -15,7 +13,7 @@ info:
 paths:
   /api/v2/external-volumes:
     get:
-      summary: List external volumes
+      summary: List External Volumes
       tags:
       - external-volume
       description: List external volumes
@@ -36,6 +34,19 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ExternalVolume'
+              examples:
+                Listexternalvolumes200Example:
+                  summary: Default listExternalVolumes 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    storage_locations:
+                    - {}
+                    allow_writes: true
+                    comment: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    owner: example_value
+                    owner_role_type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -62,8 +73,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create an external volume
+      summary: Create an External Volume
       tags:
       - external-volume
       description: Create an external volume
@@ -105,9 +119,26 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ExternalVolume'
+            examples:
+              CreateexternalvolumeRequestExample:
+                summary: Default createExternalVolume request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  storage_locations:
+                  - name: Example Title
+                    storage_provider: S3
+                  allow_writes: true
+                  comment: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  owner: example_value
+                  owner_role_type: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/external-volumes/{name}:
     get:
-      summary: Fetch an external volume
+      summary: Fetch an External Volume
       tags:
       - external-volume
       description: Fetch an external volume
@@ -126,6 +157,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExternalVolume'
+              examples:
+                Fetchexternalvolume200Example:
+                  summary: Default fetchExternalVolume 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    storage_locations:
+                    - name: Example Title
+                      storage_provider: S3
+                    allow_writes: true
+                    comment: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    owner: example_value
+                    owner_role_type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -152,8 +197,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Delete an external volume
+      summary: Delete an External Volume
       tags:
       - external-volume
       description: Delete an external volume
@@ -190,9 +238,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/external-volumes/{name}:undrop:
     post:
-      summary: Undrop an external volume
+      summary: Undrop an External Volume
       tags:
       - external-volume
       description: Undrop an external volume
@@ -228,6 +279,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     ExternalVolume:
@@ -237,38 +291,40 @@ components:
         name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: String that specifies the identifier (the name) for the external
-            volume; must be unique in your account.
+          description: String that specifies the identifier (the name) for the external volume; must be unique in your account.
+          example: Example Title
         storage_locations:
           type: array
           items:
             $ref: '#/components/schemas/StorageLocation'
-          description: Set of named cloud storage locations in different regions and,
-            optionally, cloud platforms.
+          description: Set of named cloud storage locations in different regions and, optionally, cloud platforms.
+          example: []
         allow_writes:
           type: boolean
-          description: Specifies whether write operations are allowed for the external
-            volume; must be set to TRUE for Iceberg tables that use Snowflake as the
-            catalog.
+          description: Specifies whether write operations are allowed for the external volume; must be set to TRUE for Iceberg tables that use Snowflake as the catalog.
+          example: true
         comment:
           type: string
-          description: String (literal) that specifies a comment for the external
-            volume.
+          description: String (literal) that specifies a comment for the external volume.
+          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the external volume was created.
+          example: '2026-01-15T10:30:00Z'
         owner:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Role that owns the external volume
+          example: example_value
         owner_role_type:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: The type of role that owns the external volume
+          example: example_value
       required:
       - name
       - storage_locations
@@ -278,6 +334,7 @@ components:
         name:
           type: string
           description: ''
+          example: Example Title
         storage_provider:
           type: string
           enum:
@@ -285,8 +342,8 @@ components:
           - S3GOV
           - GCS
           - AZURE
-          description: Specifies the cloud storage provider that stores your data
-            files.
+          description: Specifies the cloud storage provider that stores your data files.
+          example: S3
       required:
       - name
       - storage_provider
@@ -303,20 +360,19 @@ components:
       properties:
         storage_aws_role_arn:
           type: string
-          description: Specifies the case-sensitive Amazon Resource Name (ARN) of
-            the AWS identity and access management (IAM) role that grants privileges
-            on the S3 bucket containing your data files.
+          description: Specifies the case-sensitive Amazon Resource Name (ARN) of the AWS identity and access management (IAM) role that grants privileges on the S3 bucket containing your data files.
+          example: example_value
         storage_base_url:
           type: string
           description: Specifies the base URL for your cloud storage location.
+          example: https://www.example.com
         storage_aws_external_id:
           type: string
-          description: Optionally specifies an external ID that Snowflake uses to
-            establish a trust relationship with AWS.
+          description: Optionally specifies an external ID that Snowflake uses to establish a trust relationship with AWS.
+          example: '500123'
         encryption:
           $ref: '#/components/schemas/Encryption'
-          description: Specifies the properties needed to encrypt data on the external
-            volume.
+          description: Specifies the properties needed to encrypt data on the external volume.
       required:
       - storage_aws_role_arn
       - storage_base_url
@@ -331,10 +387,11 @@ components:
           - AWS_SSE_KMS
           - GCS_SSE_KMS
           description: Specifies the encryption type used.
+          example: NONE
         kms_key_id:
           type: string
-          description: Specifies the ID for the Cloud KMS-managed key used to encrypt
-            files written to the bucket.
+          description: Specifies the ID for the Cloud KMS-managed key used to encrypt files written to the bucket.
+          example: '500123'
       required:
       - type
     StorageLocationS3Gov:
@@ -343,20 +400,19 @@ components:
       properties:
         storage_aws_role_arn:
           type: string
-          description: Specifies the case-sensitive Amazon Resource Name (ARN) of
-            the AWS identity and access management (IAM) role that grants privileges
-            on the S3 bucket containing your data files.
+          description: Specifies the case-sensitive Amazon Resource Name (ARN) of the AWS identity and access management (IAM) role that grants privileges on the S3 bucket containing your data files.
+          example: example_value
         storage_base_url:
           type: string
           description: Specifies the base URL for your cloud storage location.
+          example: https://www.example.com
         storage_aws_external_id:
           type: string
-          description: Optionally specifies an external ID that Snowflake uses to
-            establish a trust relationship with AWS.
+          description: Optionally specifies an external ID that Snowflake uses to establish a trust relationship with AWS.
+          example: '500123'
         encryption:
           $ref: '#/components/schemas/Encryption'
-          description: Specifies the properties needed to encrypt data on the external
-            volume.
+          description: Specifies the properties needed to encrypt data on the external volume.
       required:
       - storage_aws_role_arn
       - storage_base_url
@@ -367,10 +423,10 @@ components:
         storage_base_url:
           type: string
           description: Specifies the base URL for your cloud storage location.
+          example: https://www.example.com
         encryption:
           $ref: '#/components/schemas/Encryption'
-          description: Specifies the properties needed to encrypt data on the external
-            volume.
+          description: Specifies the properties needed to encrypt data on the external volume.
       required:
       - storage_base_url
     StorageLocationAzure:
@@ -379,11 +435,12 @@ components:
       properties:
         azure_tenant_id:
           type: string
-          description: Specifies the ID for your Office 365 tenant that the allowed
-            and blocked storage accounts belong to.
+          description: Specifies the ID for your Office 365 tenant that the allowed and blocked storage accounts belong to.
+          example: '500123'
         storage_base_url:
           type: string
           description: Specifies the base URL for your cloud storage location.
+          example: https://www.example.com
       required:
       - azure_tenant_id
       - storage_base_url

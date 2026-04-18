@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Pipe API
-  description: The Snowflake Pipe API is a REST API that you can use to access, update,
-    and perform certain actions on Pipe resource in a Snowflake database.
+  description: The Snowflake Pipe API is a REST API that you can use to access, update, and perform certain actions on Pipe resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,7 +13,7 @@ info:
 paths:
   /api/v2/databases/{database}/schemas/{schema}/pipes:
     get:
-      summary: List pipes
+      summary: List Pipes
       tags:
       - pipe
       description: List pipes
@@ -35,6 +34,26 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Pipe'
+              examples:
+                Listpipes200Example:
+                  summary: Default listPipes 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    comment: example_value
+                    auto_ingest: true
+                    error_integration: example_value
+                    aws_sns_topic: example_value
+                    integration: example_value
+                    copy_statement: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    pattern: example_value
+                    owner_role_type: example_value
+                    invalid_reason: example_value
+                    budget: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -61,8 +80,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create a pipe
+      summary: Create a Pipe
       tags:
       - pipe
       description: Create a pipe
@@ -106,9 +128,32 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Pipe'
+            examples:
+              CreatepipeRequestExample:
+                summary: Default createPipe request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  comment: example_value
+                  auto_ingest: true
+                  error_integration: example_value
+                  aws_sns_topic: example_value
+                  integration: example_value
+                  copy_statement: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  database_name: example_value
+                  schema_name: example_value
+                  owner: example_value
+                  pattern: example_value
+                  owner_role_type: example_value
+                  invalid_reason: example_value
+                  budget: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/pipes/{name}:
     get:
-      summary: Fetch a pipe
+      summary: Fetch a Pipe
       tags:
       - pipe
       description: Fetch a pipe
@@ -127,6 +172,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Pipe'
+              examples:
+                Fetchpipe200Example:
+                  summary: Default fetchPipe 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    comment: example_value
+                    auto_ingest: true
+                    error_integration: example_value
+                    aws_sns_topic: example_value
+                    integration: example_value
+                    copy_statement: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    pattern: example_value
+                    owner_role_type: example_value
+                    invalid_reason: example_value
+                    budget: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -153,8 +218,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Delete a pipe
+      summary: Delete a Pipe
       tags:
       - pipe
       description: Delete a pipe
@@ -193,9 +261,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/pipes/{name}:refresh:
     post:
-      summary: Refresh the pipe
+      summary: Refresh the Pipe
       tags:
       - pipe
       description: Refresh the pipe
@@ -206,21 +277,20 @@ paths:
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
       - name: prefix
-        description: Path (or prefix) appended to the stage reference in the pipe
-          definition. The path limits the set of files to load.
+        description: Path (or prefix) appended to the stage reference in the pipe definition. The path limits the set of files to load.
         in: query
         required: false
         schema:
           type: string
+        example: example_value
       - name: modified_after
-        description: Timestamp (in ISO-8601 format) of the oldest data files to copy
-          into the Snowpipe ingest queue based on the LAST_MODIFIED date (i.e. date
-          when a file was staged)
+        description: Timestamp (in ISO-8601 format) of the oldest data files to copy into the Snowpipe ingest queue based on the LAST_MODIFIED date (i.e. date when a file was staged)
         in: query
         required: false
         schema:
           type: string
           format: date-time
+        example: '2026-01-15T10:30:00Z'
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -250,6 +320,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     Pipe:
@@ -259,68 +332,75 @@ components:
         name:
           type: string
           description: Name of the pipe
+          example: Example Title
         comment:
           type: string
           description: user comment associated to an object in the dictionary
+          example: example_value
         auto_ingest:
           type: boolean
           description: TRUE if all files from stage need to be auto-ingested
+          example: true
         error_integration:
           type: string
-          description: Link to integration object that point to a user provided Azure
-            storage queue / SQS. When present,  errors (e.g. ingest failure for Snowpipe
-            or a user task failure or replication failure) will be sent to this queue
-            to notify customers
+          description: Link to integration object that point to a user provided Azure storage queue / SQS. When present,  errors (e.g. ingest failure for Snowpipe or a user task failure or replication
+            failure) will be sent to this queue to notify customers
+          example: example_value
         aws_sns_topic:
           type: string
-          description: Optional, if provided, auto_ingest pipe will only receive messages
-            from this SNS topic.
+          description: Optional, if provided, auto_ingest pipe will only receive messages from this SNS topic.
+          example: example_value
         integration:
           type: string
-          description: Link to integration object that ties a user provided storage
-            queue to an auto_ingest enabled pipe. Required for auto_ingest to work
-            on azure.
+          description: Link to integration object that ties a user provided storage queue to an auto_ingest enabled pipe. Required for auto_ingest to work on azure.
+          example: example_value
         copy_statement:
           type: string
-          description: COPY INTO <table> statement used to load data from queued files
-            into a Snowflake table. This statement serves as the text/definition for
-            the pipe and is displayed in the SHOW PIPES output
+          description: COPY INTO <table> statement used to load data from queued files into a Snowflake table. This statement serves as the text/definition for the pipe and is displayed in the SHOW 
+            PIPES output
           pattern: (?i)^COPY INTO .*
+          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the pipe was created.
+          example: '2026-01-15T10:30:00Z'
         database_name:
           type: string
           readOnly: true
           description: Database in which the pipe is stored
+          example: example_value
         schema_name:
           type: string
           readOnly: true
           description: Schema in which the pipe is stored
+          example: example_value
         owner:
           type: string
           readOnly: true
           description: Role that owns the pipe
+          example: example_value
         pattern:
           type: string
           readOnly: true
-          description: PATTERN copy option value in the COPY INTO <table> statement
-            in the pipe definition, if the copy option was specified.
+          description: PATTERN copy option value in the COPY INTO <table> statement in the pipe definition, if the copy option was specified.
+          example: example_value
         owner_role_type:
           type: string
           readOnly: true
           description: The type of role that owns the pipe
+          example: example_value
         invalid_reason:
           type: string
           readOnly: true
-          description: Displays some detailed information for your pipes that may
-            have issues
+          description: Displays some detailed information for your pipes that may have issues
+          example: example_value
         budget:
           type: string
           readOnly: true
           description: Name of the budget if the pipe is monitored by a budget
+          example: example_value
       required:
       - name
       - copy_statement

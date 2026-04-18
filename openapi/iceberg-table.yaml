@@ -5,8 +5,7 @@ servers:
 info:
   version: 0.0.1
   title: Snowflake Iceberg Table API
-  description: The Snowflake Iceberg Table API is a REST API that you can use to access,
-    update, and perform certain actions on Iceberg Table resource in a Snowflake database.
+  description: The Snowflake Iceberg Table API is a REST API that you can use to access, update, and perform certain actions on Iceberg Table resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
@@ -14,11 +13,10 @@ info:
 paths:
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables:
     get:
-      summary: List iceberg tables
+      summary: List Iceberg Tables
       tags:
       - iceberg-table
-      description: "Lists the Apache Iceberg\u2122 tables for which you have access\
-        \ privileges."
+      description: "Lists the Apache Iceberg™ tables for which you have access privileges."
       operationId: listIcebergTables
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -33,6 +31,7 @@ paths:
         required: false
         schema:
           type: boolean
+        example: true
       responses:
         '200':
           description: successful
@@ -47,6 +46,39 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/IcebergTable'
+              examples:
+                Listicebergtables200Example:
+                  summary: Default listIcebergTables 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    comment: example_value
+                    change_tracking: true
+                    max_data_extension_time_in_days: 10
+                    external_volume: example_value
+                    data_retention_time_in_days: 10
+                    catalog_sync: example_value
+                    catalog: example_value
+                    storage_serialization_policy: COMPATIBLE
+                    created_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    owner_role_type: example_value
+                    iceberg_table_type: example_value
+                    catalog_table_name: example_value
+                    catalog_namespace: example_value
+                    can_write_metadata: example_value
+                    cluster_by:
+                    - example_value
+                    columns:
+                    - {}
+                    base_location: example_value
+                    replace_invalid_characters: true
+                    auto_refresh: true
+                    metadata_file_path: example_value
+                    constraints:
+                    - {}
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -73,13 +105,14 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
-      summary: Create a snowflake managed iceberg table (clone and undrop are separate
-        subresources)
+      summary: Create a Snowflake Managed Iceberg Table (clone and Undrop Are Separate Subresources)
       tags:
       - iceberg-table
-      description: Create a snowflake managed iceberg table (clone and undrop are
-        separate subresources)
+      description: Create a snowflake managed iceberg table (clone and undrop are separate subresources)
       operationId: createSnowflakeManagedIcebergTable
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -121,9 +154,51 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/IcebergTable'
+            examples:
+              CreatesnowflakemanagedicebergtableRequestExample:
+                summary: Default createSnowflakeManagedIcebergTable request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  comment: example_value
+                  change_tracking: true
+                  max_data_extension_time_in_days: 10
+                  external_volume: example_value
+                  data_retention_time_in_days: 10
+                  catalog_sync: example_value
+                  catalog: example_value
+                  storage_serialization_policy: COMPATIBLE
+                  created_on: '2026-01-15T10:30:00Z'
+                  database_name: example_value
+                  schema_name: example_value
+                  owner: example_value
+                  owner_role_type: example_value
+                  iceberg_table_type: example_value
+                  catalog_table_name: example_value
+                  catalog_namespace: example_value
+                  can_write_metadata: example_value
+                  cluster_by:
+                  - example_value
+                  columns:
+                  - name: Example Title
+                    datatype: example_value
+                    comment: example_value
+                    nullable: true
+                    default_value: example_value
+                  base_location: example_value
+                  replace_invalid_characters: true
+                  auto_refresh: true
+                  metadata_file_path: example_value
+                  constraints:
+                  - name: Example Title
+                    column_names: {}
+                    constraint_type: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables:as-select:
     post:
-      summary: Create a snowflake managed iceberg table as select
+      summary: Create a Snowflake Managed Iceberg Table as Select
       tags:
       - iceberg-table
       description: Create a snowflake managed iceberg table as select
@@ -136,16 +211,33 @@ paths:
       - name: query
         in: query
         required: true
-        description: The SQL select query to run to set up the table values (and possibly
-          columns).
+        description: The SQL select query to run to set up the table values (and possibly columns).
         schema:
           type: string
+        example: example_value
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/IcebergTableAsSelect'
+            examples:
+              CreatesnowflakemanagedicebergtableasselectRequestExample:
+                summary: Default createSnowflakeManagedIcebergTableAsSelect request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  columns:
+                  - name: Example Title
+                    datatype: example_value
+                    comment: example_value
+                    nullable: true
+                    default_value: example_value
+                  external_volume: example_value
+                  cluster_by:
+                  - example_value
+                  base_location: example_value
+                  comment: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -175,9 +267,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables:from-aws-glue-catalog:
     post:
-      summary: Create an unmanaged iceberg table from AWS Glue catalog
+      summary: Create an Unmanaged Iceberg Table From Aws Glue Catalog
       tags:
       - iceberg-table
       description: Create an unmanaged iceberg table from AWS Glue catalog
@@ -221,9 +316,25 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/IcebergTableFromAWSGlueCatalog'
+            examples:
+              CreateunmanagedicebergtablefromawsgluecatalogRequestExample:
+                summary: Default createUnmanagedIcebergTableFromAWSGlueCatalog request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  external_volume: example_value
+                  catalog_table_name: example_value
+                  catalog_namespace: example_value
+                  replace_invalid_characters: true
+                  auto_refresh: true
+                  catalog: example_value
+                  comment: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables:from-delta:
     post:
-      summary: Create an unmanaged iceberg table from Delta
+      summary: Create an Unmanaged Iceberg Table From Delta
       tags:
       - iceberg-table
       description: Create an unmanaged iceberg table from Delta
@@ -267,9 +378,23 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/IcebergTableFromDelta'
+            examples:
+              CreateunmanagedicebergtablefromdeltaRequestExample:
+                summary: Default createUnmanagedIcebergTableFromDelta request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  external_volume: example_value
+                  replace_invalid_characters: true
+                  base_location: example_value
+                  catalog: example_value
+                  comment: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables:from-iceberg-files:
     post:
-      summary: Create an unmanaged iceberg table from Iceberg files
+      summary: Create an Unmanaged Iceberg Table From Iceberg Files
       tags:
       - iceberg-table
       description: Create an unmanaged iceberg table from Iceberg files
@@ -313,9 +438,23 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/IcebergTableFromIcebergFiles'
+            examples:
+              CreateunmanagedicebergtablefromicebergfilesRequestExample:
+                summary: Default createUnmanagedIcebergTableFromIcebergFiles request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  external_volume: example_value
+                  replace_invalid_characters: true
+                  metadata_file_path: example_value
+                  catalog: example_value
+                  comment: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables:from-iceberg-rest:
     post:
-      summary: Create an unmanaged iceberg table from Iceberg REST
+      summary: Create an Unmanaged Iceberg Table From Iceberg Rest
       tags:
       - iceberg-table
       description: Create an unmanaged iceberg table from Iceberg REST
@@ -359,9 +498,25 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/IcebergTableFromIcebergRest'
+            examples:
+              CreateunmanagedicebergtablefromicebergrestRequestExample:
+                summary: Default createUnmanagedIcebergTableFromIcebergRest request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  external_volume: example_value
+                  catalog_table_name: example_value
+                  catalog_namespace: example_value
+                  replace_invalid_characters: true
+                  auto_refresh: true
+                  catalog: example_value
+                  comment: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:
     get:
-      summary: Describe iceberg table
+      summary: Describe Iceberg Table
       tags:
       - iceberg-table
       description: Describe an iceberg table
@@ -382,6 +537,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IcebergTable'
+              examples:
+                Fetchicebergtable200Example:
+                  summary: Default fetchIcebergTable 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    comment: example_value
+                    change_tracking: true
+                    max_data_extension_time_in_days: 10
+                    external_volume: example_value
+                    data_retention_time_in_days: 10
+                    catalog_sync: example_value
+                    catalog: example_value
+                    storage_serialization_policy: COMPATIBLE
+                    created_on: '2026-01-15T10:30:00Z'
+                    database_name: example_value
+                    schema_name: example_value
+                    owner: example_value
+                    owner_role_type: example_value
+                    iceberg_table_type: example_value
+                    catalog_table_name: example_value
+                    catalog_namespace: example_value
+                    can_write_metadata: example_value
+                    cluster_by:
+                    - example_value
+                    columns:
+                    - name: Example Title
+                      datatype: example_value
+                      comment: example_value
+                      nullable: true
+                      default_value: example_value
+                    base_location: example_value
+                    replace_invalid_characters: true
+                    auto_refresh: true
+                    metadata_file_path: example_value
+                    constraints:
+                    - name: Example Title
+                      column_names: {}
+                      constraint_type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -408,8 +602,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
-      summary: Drop iceberg table
+      summary: Drop Iceberg Table
       tags:
       - iceberg-table
       description: Drop an iceberg table
@@ -420,8 +617,7 @@ paths:
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
       - name: type
-        description: Specifies whether the table can be dropped if foreign keys exist
-          that reference the table.
+        description: Specifies whether the table can be dropped if foreign keys exist that reference the table.
         in: query
         required: false
         schema:
@@ -429,6 +625,7 @@ paths:
           enum:
           - CASCADE
           - RESTRICT
+        example: CASCADE
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -458,13 +655,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:resume-recluster:
     post:
-      summary: Resume recluster of an iceberg table
+      summary: Resume Recluster of an Iceberg Table
       tags:
       - iceberg-table
-      description: Resume recluster of an iceberg table (iceberg tables managed by
-        an external catalog do not allow clustering)
+      description: Resume recluster of an iceberg table (iceberg tables managed by an external catalog do not allow clustering)
       operationId: resumeReclusterIcebergTable
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -500,13 +699,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:suspend-recluster:
     post:
-      summary: Suspend recluster of an iceberg table
+      summary: Suspend Recluster of an Iceberg Table
       tags:
       - iceberg-table
-      description: Suspend recluster of an iceberg table (iceberg tables managed by
-        an external catalog do not allow clustering)
+      description: Suspend recluster of an iceberg table (iceberg tables managed by an external catalog do not allow clustering)
       operationId: suspendReclusterIcebergTable
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -542,14 +743,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:refresh:
     post:
-      summary: Refreshes the metadata for an Apache Iceberg table that uses an external
-        Iceberg catalog
+      summary: Refreshes the Metadata for an Apache Iceberg Table That Uses an External Iceberg Catalog
       tags:
       - iceberg-table
-      description: Refreshes the metadata for an Apache Iceberg table that uses an
-        external Iceberg catalog
+      description: Refreshes the metadata for an Apache Iceberg table that uses an external Iceberg catalog
       operationId: refreshIcebergTable
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -591,10 +793,18 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RefreshIcebergTableRequest'
+            examples:
+              RefreshicebergtableRequestExample:
+                summary: Default refreshIcebergTable request
+                x-microcks-default: true
+                value:
+                  metadata_file_relative_path: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:convert-to-managed:
     post:
-      summary: "Converts an Apache Iceberg\u2122 table that uses an external Iceberg\
-        \ catalog into a table that uses Snowflake as the catalog"
+      summary: "Converts an Apache Iceberg™ Table That Uses an External Iceberg Catalog Into a Table That Uses Snowflake as the Catalog"
       tags:
       - iceberg-table
       description: Convert unmanaged iceberg table to managed iceberg table
@@ -639,9 +849,19 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ConvertToManagedIcebergTableRequest'
+            examples:
+              ConverttomanagedicebergtableRequestExample:
+                summary: Default convertToManagedIcebergTable request
+                x-microcks-default: true
+                value:
+                  base_location: example_value
+                  storage_serialization_policy: COMPATIBLE
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:undrop:
     post:
-      summary: Undrop iceberg table
+      summary: Undrop Iceberg Table
       tags:
       - iceberg-table
       description: Undrop an iceberg table
@@ -679,9 +899,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:clone:
     post:
-      summary: Clone a snowflake managed iceberg table
+      summary: Clone a Snowflake Managed Iceberg Table
       tags:
       - iceberg-table
       description: Clone a snowflake managed iceberg table
@@ -694,16 +917,16 @@ paths:
       - $ref: common.yaml#/components/parameters/copyGrants
       - name: targetDatabase
         in: query
-        description: Database of the newly created table. Defaults to the source table's
-          database.
+        description: Database of the newly created table. Defaults to the source table's database.
         schema:
           $ref: ./common.yaml#/components/schemas/Identifier
+        example: example_value
       - name: targetSchema
         in: query
-        description: Schema of the newly created table. Defaults to the source table's
-          schema.
+        description: Schema of the newly created table. Defaults to the source table's schema.
         schema:
           $ref: ./common.yaml#/components/schemas/Identifier
+        example: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -739,13 +962,22 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/IcebergTableClone'
+            examples:
+              ClonesnowflakemanagedicebergtableRequestExample:
+                summary: Default cloneSnowflakeManagedIcebergTable request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  point_of_time: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:create-like:
     post:
-      summary: Create iceberg table like
+      summary: Create Iceberg Table Like
       tags:
       - iceberg-table
-      description: Creates a new table with the same column definitions as an existing
-        table, but without copying data from the existing table.
+      description: Creates a new table with the same column definitions as an existing table, but without copying data from the existing table.
       operationId: createSnowflakeManagedIcebergTableLike
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -755,16 +987,16 @@ paths:
       - $ref: common.yaml#/components/parameters/copyGrants
       - name: targetDatabase
         in: query
-        description: Database of the newly created table. Defaults to the source table's
-          database.
+        description: Database of the newly created table. Defaults to the source table's database.
         schema:
           $ref: ./common.yaml#/components/schemas/Identifier
+        example: example_value
       - name: targetSchema
         in: query
-        description: Schema of the newly created table. Defaults to the source table's
-          schema.
+        description: Schema of the newly created table. Defaults to the source table's schema.
         schema:
           $ref: ./common.yaml#/components/schemas/Identifier
+        example: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -800,6 +1032,20 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/IcebergTableLike'
+            examples:
+              CreatesnowflakemanagedicebergtablelikeRequestExample:
+                summary: Default createSnowflakeManagedIcebergTableLike request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  cluster_by:
+                  - example_value
+                  external_volume: example_value
+                  base_location: example_value
+                  comment: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     RefreshIcebergTableRequest:
@@ -808,22 +1054,23 @@ components:
       properties:
         metadata_file_relative_path:
           type: string
-          description: Specifies a metadata file path for a table created from Iceberg
-            files in object storage.
+          description: Specifies a metadata file path for a table created from Iceberg files in object storage.
+          example: example_value
     ConvertToManagedIcebergTableRequest:
       type: object
       description: Request model for convert to managed iceberg table
       properties:
         base_location:
           type: string
-          description: The path to a directory where Snowflake can write data and
-            metadata files for the table.
+          description: The path to a directory where Snowflake can write data and metadata files for the table.
+          example: example_value
         storage_serialization_policy:
           type: string
           description: Specifies the storage serialization policy for the table.
           enum:
           - COMPATIBLE
           - OPTIMIZED
+          example: COMPATIBLE
     IcebergTable:
       type: object
       description: A Snowflake iceberg table
@@ -832,112 +1079,124 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the iceberg table
+          example: Example Title
         comment:
           type: string
           description: user comment associated to an object in the dictionary
+          example: example_value
         change_tracking:
           type: boolean
-          description: True if change tracking is enabled, allowing streams and CHANGES
-            to be used on the entity.
+          description: True if change tracking is enabled, allowing streams and CHANGES to be used on the entity.
+          example: true
         max_data_extension_time_in_days:
           type: integer
-          description: Maximum number of days to extend data retention beyond the
-            retention period to prevent a stream becoming stale.
+          description: Maximum number of days to extend data retention beyond the retention period to prevent a stream becoming stale.
+          example: 10
         external_volume:
           type: string
-          description: Name of an external volume that will be used for persisted
-            Iceberg metadata and data files.
+          description: Name of an external volume that will be used for persisted Iceberg metadata and data files.
+          example: example_value
         data_retention_time_in_days:
           type: integer
-          description: number of days to retain the old version of deleted/updated
-            data
+          description: number of days to retain the old version of deleted/updated data
+          example: 10
         catalog_sync:
           type: string
           description: Name of the catalog integration to sync this table
+          example: example_value
         catalog:
           type: string
           description: Name of the catalog integration to use for iceberg tables
+          example: example_value
         storage_serialization_policy:
           type: string
-          description: Storage serialization policy used for managed Iceberg table.
-            This include encodings and compressions
+          description: Storage serialization policy used for managed Iceberg table. This include encodings and compressions
           enum:
           - COMPATIBLE
           - OPTIMIZED
+          example: COMPATIBLE
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the iceberg table was created.
+          example: '2026-01-15T10:30:00Z'
         database_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Database in which the iceberg table is stored
+          example: example_value
         schema_name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Schema in which the iceberg table is stored
+          example: example_value
         owner:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Role that owns the iceberg table
+          example: example_value
         owner_role_type:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: The type of role that owns the iceberg table
+          example: example_value
         iceberg_table_type:
           type: string
           readOnly: true
-          description: Type of Iceberg table. UNMANAGED if the table is not managed
-            by Snowflake. NOT ICEBERG otherwise.
+          description: Type of Iceberg table. UNMANAGED if the table is not managed by Snowflake. NOT ICEBERG otherwise.
+          example: example_value
         catalog_table_name:
           type: string
           description: Name of the table as recognized by the catalog.
+          example: example_value
         catalog_namespace:
           type: string
-          description: "Catalog namespace for the table. The namespace defined when\
-            \ the table was created. Otherwise, the default namespace associated with\
-            \ the catalog integration used by the table. If you\u2019re syncing the\
-            \ table to Snowflake Open Catalog, the default is null."
+          description: "Catalog namespace for the table. The namespace defined when the table was created. Otherwise, the default namespace associated with the catalog integration used by the table. If
+            you’re syncing the table to Snowflake Open Catalog, the default is null."
+          example: example_value
         can_write_metadata:
           type: string
           readOnly: true
-          description: Signifies whether Snowflake can write metadata to the location
-            specified by the file_path.
+          description: Signifies whether Snowflake can write metadata to the location specified by the file_path.
+          example: example_value
         cluster_by:
           type: array
           items:
             type: string
-          description: Specifies one or more columns or column expressions in the
-            table as the clustering key.
+          description: Specifies one or more columns or column expressions in the table as the clustering key.
+          example: []
         columns:
           type: array
           items:
             $ref: '#/components/schemas/IcebergTableColumn'
+          example: []
         base_location:
           type: string
-          description: The path to a directory where Snowflake can write data and
-            metadata files for the table.
+          description: The path to a directory where Snowflake can write data and metadata files for the table.
+          example: example_value
         replace_invalid_characters:
           type: boolean
-          description: Specifies whether to replace invalid characters in the column
-            names
+          description: Specifies whether to replace invalid characters in the column names
+          example: true
         auto_refresh:
           readOnly: true
           type: boolean
           description: Specifies whether to automatically refresh the table metadata
+          example: true
         metadata_file_path:
           type: string
-          description: Specifies the relative path of the Iceberg metadata file to
-            use for column definitions.
+          description: Specifies the relative path of the Iceberg metadata file to use for column definitions.
+          example: example_value
         constraints:
           type: array
           items:
             $ref: '#/components/schemas/Constraint'
+          example: []
       required:
       - name
     IcebergTableAsSelect:
@@ -946,28 +1205,31 @@ components:
       properties:
         name:
           type: string
-          description: Specifies the name for the table, must be unique for the schema
-            in which the table is created
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+          example: Example Title
         columns:
           type: array
           items:
             $ref: '#/components/schemas/IcebergTableColumn'
+          example: []
         external_volume:
           type: string
           description: Specifies the name of the external volume to use for the table
+          example: example_value
         cluster_by:
           type: array
-          description: Specifies one or more columns or column expressions in the
-            table as the clustering key
+          description: Specifies one or more columns or column expressions in the table as the clustering key
           items:
             type: string
+          example: []
         base_location:
           type: string
-          description: Specifies the path to a directory where Snowflake can write
-            data and metadata files for the table
+          description: Specifies the path to a directory where Snowflake can write data and metadata files for the table
+          example: example_value
         comment:
           type: string
           description: Specifies a comment for the table
+          example: example_value
       required:
       - name
       - base_location
@@ -977,24 +1239,26 @@ components:
       properties:
         name:
           type: string
-          description: Specifies the name for the table, must be unique for the schema
-            in which the table is created
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+          example: Example Title
         cluster_by:
           type: array
-          description: Specifies one or more columns or column expressions in the
-            table as the clustering key
+          description: Specifies one or more columns or column expressions in the table as the clustering key
           items:
             type: string
+          example: []
         external_volume:
           type: string
           description: Specifies the name of the external volume to use for the table
+          example: example_value
         base_location:
           type: string
-          description: Specifies the path to a directory where Snowflake can write
-            data and metadata files for the table
+          description: Specifies the path to a directory where Snowflake can write data and metadata files for the table
+          example: example_value
         comment:
           type: string
           description: Specifies a comment for the table
+          example: example_value
       required:
       - name
     IcebergTableClone:
@@ -1003,8 +1267,8 @@ components:
       properties:
         name:
           type: string
-          description: Specifies the name for the table, must be unique for the schema
-            in which the table is created
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+          example: Example Title
         point_of_time:
           $ref: common.yaml#/components/schemas/PointOfTime
       required:
@@ -1015,32 +1279,36 @@ components:
       properties:
         name:
           type: string
-          description: Specifies the name for the table, must be unique for the schema
-            in which the table is created
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+          example: Example Title
         external_volume:
           type: string
           description: Specifies the name of the external volume to use for the table
+          example: example_value
         catalog_table_name:
           type: string
-          description: Specifies the table name as recognized by the AWS Glue Data
-            Catalog.
+          description: Specifies the table name as recognized by the AWS Glue Data Catalog.
+          example: example_value
         catalog_namespace:
           type: string
           description: Specifies the catalog namespace for the table.
+          example: example_value
         replace_invalid_characters:
           type: boolean
-          description: Specifies whether to replace invalid characters in the column
-            names
+          description: Specifies whether to replace invalid characters in the column names
+          example: true
         auto_refresh:
           type: boolean
           description: Specifies whether to automatically refresh the table metadata
+          example: true
         catalog:
           type: string
-          description: Specifies the name of the catalog integration to use for the
-            table
+          description: Specifies the name of the catalog integration to use for the table
+          example: example_value
         comment:
           type: string
           description: Specifies a comment for the table
+          example: example_value
       required:
       - name
       - catalog_table_name
@@ -1050,26 +1318,28 @@ components:
       properties:
         name:
           type: string
-          description: Specifies the name for the table, must be unique for the schema
-            in which the table is created
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+          example: Example Title
         external_volume:
           type: string
           description: Specifies the name of the external volume to use for the table
+          example: example_value
         replace_invalid_characters:
           type: boolean
-          description: Specifies whether to replace invalid characters in the column
-            names
+          description: Specifies whether to replace invalid characters in the column names
+          example: true
         metadata_file_path:
           type: string
-          description: Specifies the relative path of the Iceberg metadata file to
-            use for column definitions.
+          description: Specifies the relative path of the Iceberg metadata file to use for column definitions.
+          example: example_value
         catalog:
           type: string
-          description: Specifies the name of the catalog integration to use for the
-            table
+          description: Specifies the name of the catalog integration to use for the table
+          example: example_value
         comment:
           type: string
           description: Specifies a comment for the table
+          example: example_value
       required:
       - name
       - metadata_file_path
@@ -1079,63 +1349,67 @@ components:
       properties:
         name:
           type: string
-          description: Specifies the name for the table, must be unique for the schema
-            in which the table is created
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+          example: Example Title
         external_volume:
           type: string
           description: Specifies the name of the external volume to use for the table
+          example: example_value
         replace_invalid_characters:
           type: boolean
-          description: Specifies whether to replace invalid characters in the column
-            names
+          description: Specifies whether to replace invalid characters in the column names
+          example: true
         base_location:
           type: string
-          description: "Specifies a relative path from the table\u2019s EXTERNAL_VOLUME\
-            \ location to a directory where Snowflake can access your Delta table\
-            \ files."
+          description: "Specifies a relative path from the table’s EXTERNAL_VOLUME location to a directory where Snowflake can access your Delta table files."
+          example: example_value
         catalog:
           type: string
-          description: Specifies the name of the catalog integration to use for the
-            table
+          description: Specifies the name of the catalog integration to use for the table
+          example: example_value
         comment:
           type: string
           description: Specifies a comment for the table
+          example: example_value
       required:
       - name
       - base_location
     IcebergTableFromIcebergRest:
       type: object
-      description: "Creates or replaces an Apache Iceberg\u2122 table in the current/specified\
-        \ schema for an Iceberg REST catalog."
+      description: "Creates or replaces an Apache Iceberg™ table in the current/specified schema for an Iceberg REST catalog."
       properties:
         name:
           type: string
-          description: Specifies the name for the table, must be unique for the schema
-            in which the table is created
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+          example: Example Title
         external_volume:
           type: string
           description: Specifies the name of the external volume to use for the table
+          example: example_value
         catalog_table_name:
           type: string
-          description: Specifies the table name as recognized by the AWS Glue Data
-            Catalog.
+          description: Specifies the table name as recognized by the AWS Glue Data Catalog.
+          example: example_value
         catalog_namespace:
           type: string
           description: Specifies the catalog namespace for the table.
+          example: example_value
         replace_invalid_characters:
           type: boolean
-          description: Specifies whether to replace invalid characters in the column
-            names
+          description: Specifies whether to replace invalid characters in the column names
+          example: true
         auto_refresh:
           type: boolean
           description: Specifies whether to automatically refresh the table metadata
+          example: true
         catalog:
           type: string
-          description: Specifies the name of the catalog integration to use for the
-            table
+          description: Specifies the name of the catalog integration to use for the table
+          example: example_value
         comment:
           type: string
           description: Specifies a comment for the table
+          example: example_value
       required:
       - name
       - catalog_table_name
@@ -1147,37 +1421,44 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Column name
+          example: Example Title
         datatype:
           type: string
           description: The data type for the column
+          example: example_value
         comment:
           type: string
           description: Specifies a comment for the column
+          example: example_value
         nullable:
           type: boolean
           description: Argument null return acceptance criteria
+          example: true
         default_value:
           type: string
           description: Default value for the column
+          example: example_value
       required:
       - name
       - datatype
     Constraint:
       type: object
-      description: Constraints define integrity and consistency rules for data stored
-        in tables.
+      description: Constraints define integrity and consistency rules for data stored in tables.
       properties:
         name:
           type: string
           description: Name of the Constraint
+          example: Example Title
         column_names:
           type: array
           items:
             type: string
             description: Column name for the constraint
+          example: []
         constraint_type:
           type: string
           description: Type of the constraint
+          example: example_value
       discriminator:
         propertyName: constraint_type
         mapping:
@@ -1188,15 +1469,12 @@ components:
       allOf:
       - $ref: '#/components/schemas/Constraint'
       type: object
-      description: A primary key is the column or columns that contain values that
-        uniquely identify each row in a table.
+      description: A primary key is the column or columns that contain values that uniquely identify each row in a table.
     UniqueKey:
       allOf:
       - $ref: '#/components/schemas/Constraint'
       type: object
-      description: Unique keys are columns in a table that uniquely identify items
-        in the rows. This sounds a lot like a primary key, but the main difference
-        is that unique keys can have NULL values.
+      description: Unique keys are columns in a table that uniquely identify items in the rows. This sounds a lot like a primary key, but the main difference is that unique keys can have NULL values.
     ForeignKey:
       allOf:
       - $ref: '#/components/schemas/Constraint'
@@ -1205,10 +1483,12 @@ components:
       properties:
         referenced_table_name:
           type: string
+          example: example_value
         referenced_column_names:
           type: array
           items:
             type: string
+          example: []
       required:
       - referenced_table_name
   securitySchemes:

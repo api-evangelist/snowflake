@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CompleteRequest",
+  "type": "object",
+  "description": "LLM text completion request.",
+  "properties": {
+    "model": {
+      "type": "string",
+      "description": "The model name. See documentation for possible values."
+    },
+    "messages": {
+      "type": "array"
+    },
+    "temperature": {
+      "type": "number",
+      "description": "Temperature controls the amount of randomness used in response generation. A higher temperature corresponds to more randomness."
+    },
+    "top_p": {
+      "type": "number",
+      "description": "Threshold probability for nucleus sampling. A higher top-p value increases the diversity of tokens that the model considers, while a lower value results in more predictable output."
+    },
+    "max_tokens": {
+      "type": "integer",
+      "description": "The maximum number of output tokens to produce. The default value is model-dependent."
+    },
+    "max_output_tokens": {
+      "type": "integer",
+      "description": "Deprecated in favor of \"max_tokens\", which has identical behavior."
+    },
+    "response_format": {
+      "type": "object",
+      "description": "An object describing response format config for structured-output mode."
+    },
+    "tools": {
+      "type": "array",
+      "description": "List of tools to be used during tool calling"
+    },
+    "provisioned_throughput_id": {
+      "type": "string",
+      "description": "The provisioned throughput ID to be used with the request."
+    },
+    "sf-ml-xp-inflight-prompt-action": {
+      "type": "string",
+      "description": "Reserved"
+    },
+    "sf-ml-xp-inflight-prompt-client-id": {
+      "type": "string",
+      "description": "Reserved"
+    },
+    "sf-ml-xp-inflight-prompt-public-key": {
+      "type": "string",
+      "description": "Reserved"
+    },
+    "stream": {
+      "type": "boolean",
+      "description": "Reserved"
+    }
+  }
+}
