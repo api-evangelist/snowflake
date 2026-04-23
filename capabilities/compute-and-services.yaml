@@ -1,3 +1,8 @@
+# This capability composes the imported shared Snowflake capabilities
+# (warehouse, compute-pool, service, image-repository, alert) and exposes
+# them uniformly across MCP (http + stdio), Agent Skills, and REST — so one
+# integration layer serves remote MCP agents, local IDE agents, skill hosts,
+# and conventional REST clients.
 naftiko: "1.0.0-alpha1"
 
 info:
@@ -9,7 +14,7 @@ info:
     - Containers
     - Infrastructure
   created: "2026-04-18"
-  modified: "2026-04-18"
+  modified: "2026-04-23"
 
 binds:
   - namespace: env
@@ -44,10 +49,46 @@ capability:
               name: list-warehouses
               description: "List warehouses"
               call: "snowflake-warehouse.list-warehouses"
+              inputParameters:
+                - name: like
+                  type: string
+                  description: "Optional LIKE pattern to filter warehouse names."
+                  required: false
+                  mapping: "queryParameters.like"
+              outputParameters:
+                - name: warehouses
+                  type: array
+                  mapping: "$[*]"
+                - name: count
+                  type: integer
+                  mapping: "$.length"
             - method: POST
               name: create-warehouse
               description: "Create a warehouse"
               call: "snowflake-warehouse.create-warehouse"
+              inputParameters:
+                - name: name
+                  type: string
+                  description: "Warehouse name."
+                  required: true
+                  mapping: "body.name"
+                - name: warehouse_size
+                  type: string
+                  description: "Warehouse size (e.g. XSMALL, SMALL, MEDIUM)."
+                  required: false
+                  mapping: "body.warehouse_size"
+                - name: auto_suspend
+                  type: integer
+                  description: "Auto-suspend idle timeout in seconds."
+                  required: false
+                  mapping: "body.auto_suspend"
+              outputParameters:
+                - name: name
+                  type: string
+                  mapping: "$.name"
+                - name: state
+                  type: string
+                  mapping: "$.state"
         - path: /v1/compute-pools
           name: compute-pools
           description: "Compute pool management"
@@ -56,10 +97,51 @@ capability:
               name: list-compute-pools
               description: "List compute pools"
               call: "snowflake-compute-pool.list-compute-pools"
+              inputParameters:
+                - name: like
+                  type: string
+                  description: "Optional LIKE pattern to filter compute pool names."
+                  required: false
+                  mapping: "queryParameters.like"
+              outputParameters:
+                - name: compute_pools
+                  type: array
+                  mapping: "$[*]"
+                - name: count
+                  type: integer
+                  mapping: "$.length"
             - method: POST
               name: create-compute-pool
               description: "Create a compute pool"
               call: "snowflake-compute-pool.create-compute-pool"
+              inputParameters:
+                - name: name
+                  type: string
+                  description: "Compute pool name."
+                  required: true
+                  mapping: "body.name"
+                - name: instance_family
+                  type: string
+                  description: "Instance family (e.g. CPU_X64_XS)."
+                  required: true
+                  mapping: "body.instance_family"
+                - name: min_nodes
+                  type: integer
+                  description: "Minimum node count."
+                  required: true
+                  mapping: "body.min_nodes"
+                - name: max_nodes
+                  type: integer
+                  description: "Maximum node count."
+                  required: true
+                  mapping: "body.max_nodes"
+              outputParameters:
+                - name: name
+                  type: string
+                  mapping: "$.name"
+                - name: state
+                  type: string
+                  mapping: "$.state"
         - path: /v1/services
           name: services
           description: "Container service management"
@@ -68,10 +150,61 @@ capability:
               name: list-services
               description: "List services"
               call: "snowflake-service.list-services"
+              inputParameters:
+                - name: database
+                  type: string
+                  description: "Target database name."
+                  required: true
+                  mapping: "pathParameters.database"
+                - name: schema
+                  type: string
+                  description: "Target schema name."
+                  required: true
+                  mapping: "pathParameters.schema"
+              outputParameters:
+                - name: services
+                  type: array
+                  mapping: "$[*]"
+                - name: count
+                  type: integer
+                  mapping: "$.length"
             - method: POST
               name: create-service
               description: "Create a service"
               call: "snowflake-service.create-service"
+              inputParameters:
+                - name: database
+                  type: string
+                  description: "Target database name."
+                  required: true
+                  mapping: "pathParameters.database"
+                - name: schema
+                  type: string
+                  description: "Target schema name."
+                  required: true
+                  mapping: "pathParameters.schema"
+                - name: name
+                  type: string
+                  description: "Service name."
+                  required: true
+                  mapping: "body.name"
+                - name: compute_pool
+                  type: string
+                  description: "Compute pool name that runs the service."
+                  required: true
+                  mapping: "body.compute_pool"
+                - name: spec
+                  type: object
+                  description: "Service specification (image, endpoints, env)."
+                  required: true
+                  mapping: "body.spec"
+              outputParameters:
+                - name: name
+                  type: string
+                  mapping: "$.name"
+                - name: status
+                  type: string
+                  mapping: "$.status"
         - path: /v1/alerts
           name: alerts
           description: "Alert management"
@@ -80,99 +213,1506 @@ capability:
               name: list-alerts
               description: "List alerts"
               call: "snowflake-alert.list-alerts"
+              inputParameters:
+                - name: database
+                  type: string
+                  description: "Target database name."
+                  required: true
+                  mapping: "pathParameters.database"
+                - name: schema
+                  type: string
+                  description: "Target schema name."
+                  required: true
+                  mapping: "pathParameters.schema"
+              outputParameters:
+                - name: alerts
+                  type: array
+                  mapping: "$[*]"
+                - name: count
+                  type: integer
+                  mapping: "$.length"
             - method: POST
               name: create-alert
               description: "Create an alert"
               call: "snowflake-alert.create-alert"
+              inputParameters:
+                - name: database
+                  type: string
+                  description: "Target database name."
+                  required: true
+                  mapping: "pathParameters.database"
+                - name: schema
+                  type: string
+                  description: "Target schema name."
+                  required: true
+                  mapping: "pathParameters.schema"
+                - name: name
+                  type: string
+                  description: "Alert name."
+                  required: true
+                  mapping: "body.name"
+                - name: condition
+                  type: string
+                  description: "SQL condition that triggers the alert."
+                  required: true
+                  mapping: "body.condition"
+                - name: action
+                  type: string
+                  description: "Action to execute when the condition is met."
+                  required: true
+                  mapping: "body.action"
+              outputParameters:
+                - name: name
+                  type: string
+                  mapping: "$.name"
+                - name: state
+                  type: string
+                  mapping: "$.state"
 
     - type: mcp
       port: 9084
       namespace: snowflake-compute-mcp
       transport: http
-      description: "MCP server for AI-assisted Snowflake compute and services management."
+      description: "MCP server (Streaming HTTP) for AI-assisted Snowflake compute and services management."
       tools:
         - name: list-warehouses
           description: "List virtual warehouses"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-warehouse.list-warehouses"
+          inputParameters:
+            - name: like
+              type: string
+              description: "Optional LIKE pattern to filter warehouse names."
+              required: false
+              mapping: "queryParameters.like"
+          outputParameters:
+            - name: warehouses
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
         - name: create-warehouse
           description: "Create a virtual warehouse"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
           call: "snowflake-warehouse.create-warehouse"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Warehouse name."
+              required: true
+              mapping: "body.name"
+            - name: warehouse_size
+              type: string
+              description: "Warehouse size (e.g. XSMALL, SMALL, MEDIUM)."
+              required: false
+              mapping: "body.warehouse_size"
+            - name: auto_suspend
+              type: integer
+              description: "Auto-suspend idle timeout in seconds."
+              required: false
+              mapping: "body.auto_suspend"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: state
+              type: string
+              mapping: "$.state"
         - name: fetch-warehouse
           description: "Fetch warehouse details"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-warehouse.fetch-warehouse"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Warehouse name to fetch."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: size
+              type: string
+              mapping: "$.warehouse_size"
+            - name: state
+              type: string
+              mapping: "$.state"
+            - name: auto_suspend
+              type: integer
+              mapping: "$.auto_suspend"
         - name: delete-warehouse
           description: "Delete a warehouse"
           hints:
+            readOnly: false
             destructive: true
+            idempotent: true
           call: "snowflake-warehouse.delete-warehouse"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Warehouse name to delete."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
         - name: list-compute-pools
           description: "List compute pools"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-compute-pool.list-compute-pools"
+          inputParameters:
+            - name: like
+              type: string
+              description: "Optional LIKE pattern to filter compute pool names."
+              required: false
+              mapping: "queryParameters.like"
+          outputParameters:
+            - name: compute_pools
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
         - name: create-compute-pool
           description: "Create a compute pool"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
           call: "snowflake-compute-pool.create-compute-pool"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Compute pool name."
+              required: true
+              mapping: "body.name"
+            - name: instance_family
+              type: string
+              description: "Instance family (e.g. CPU_X64_XS)."
+              required: true
+              mapping: "body.instance_family"
+            - name: min_nodes
+              type: integer
+              description: "Minimum node count."
+              required: true
+              mapping: "body.min_nodes"
+            - name: max_nodes
+              type: integer
+              description: "Maximum node count."
+              required: true
+              mapping: "body.max_nodes"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: state
+              type: string
+              mapping: "$.state"
         - name: list-services
           description: "List container services"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-service.list-services"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+          outputParameters:
+            - name: services
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
         - name: create-service
           description: "Create a container service"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
           call: "snowflake-service.create-service"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "body.name"
+            - name: compute_pool
+              type: string
+              description: "Compute pool that runs the service."
+              required: true
+              mapping: "body.compute_pool"
+            - name: spec
+              type: object
+              description: "Service specification (image, endpoints, env)."
+              required: true
+              mapping: "body.spec"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: status
+              type: string
+              mapping: "$.status"
         - name: fetch-service-status
           description: "Get service status"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-service.fetch-service-status"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
+            - name: message
+              type: string
+              mapping: "$.message"
         - name: fetch-service-logs
           description: "Get service logs"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-service.fetch-service-logs"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "pathParameters.name"
+            - name: instance_id
+              type: string
+              description: "Instance identifier within the service."
+              required: false
+              mapping: "queryParameters.instanceId"
+          outputParameters:
+            - name: logs
+              type: string
+              mapping: "$.logs"
         - name: resume-service
           description: "Resume a suspended service"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: true
           call: "snowflake-service.resume-service"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
         - name: suspend-service
           description: "Suspend a running service"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: true
           call: "snowflake-service.suspend-service"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
         - name: list-image-repositories
           description: "List image repositories"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-image-repository.list-image-repositories"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+          outputParameters:
+            - name: image_repositories
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
         - name: create-image-repository
           description: "Create an image repository"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
           call: "snowflake-image-repository.create-image-repository"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Image repository name."
+              required: true
+              mapping: "body.name"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: repository_url
+              type: string
+              mapping: "$.repository_url"
         - name: list-alerts
           description: "List monitoring alerts"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-alert.list-alerts"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+          outputParameters:
+            - name: alerts
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
         - name: create-alert
           description: "Create a monitoring alert"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
           call: "snowflake-alert.create-alert"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Alert name."
+              required: true
+              mapping: "body.name"
+            - name: condition
+              type: string
+              description: "SQL condition that triggers the alert."
+              required: true
+              mapping: "body.condition"
+            - name: action
+              type: string
+              description: "Action to execute when the condition is met."
+              required: true
+              mapping: "body.action"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: state
+              type: string
+              mapping: "$.state"
         - name: execute-alert
           description: "Execute an alert"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
           call: "snowflake-alert.execute-alert"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Alert name to execute."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
+
+    - type: mcp
+      port: 9085
+      namespace: snowflake-compute-mcp-stdio
+      transport: stdio
+      description: "MCP server (Standard IO) for local IDE/agent hosts."
+      tools:
+        - name: list-warehouses
+          description: "List virtual warehouses"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-warehouse.list-warehouses"
+          inputParameters:
+            - name: like
+              type: string
+              description: "Optional LIKE pattern to filter warehouse names."
+              required: false
+              mapping: "queryParameters.like"
+          outputParameters:
+            - name: warehouses
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
+        - name: create-warehouse
+          description: "Create a virtual warehouse"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-warehouse.create-warehouse"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Warehouse name."
+              required: true
+              mapping: "body.name"
+            - name: warehouse_size
+              type: string
+              description: "Warehouse size (e.g. XSMALL, SMALL, MEDIUM)."
+              required: false
+              mapping: "body.warehouse_size"
+            - name: auto_suspend
+              type: integer
+              description: "Auto-suspend idle timeout in seconds."
+              required: false
+              mapping: "body.auto_suspend"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: state
+              type: string
+              mapping: "$.state"
+        - name: fetch-warehouse
+          description: "Fetch warehouse details"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-warehouse.fetch-warehouse"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Warehouse name to fetch."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: size
+              type: string
+              mapping: "$.warehouse_size"
+            - name: state
+              type: string
+              mapping: "$.state"
+            - name: auto_suspend
+              type: integer
+              mapping: "$.auto_suspend"
+        - name: delete-warehouse
+          description: "Delete a warehouse"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "snowflake-warehouse.delete-warehouse"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Warehouse name to delete."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
+        - name: list-compute-pools
+          description: "List compute pools"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-compute-pool.list-compute-pools"
+          inputParameters:
+            - name: like
+              type: string
+              description: "Optional LIKE pattern to filter compute pool names."
+              required: false
+              mapping: "queryParameters.like"
+          outputParameters:
+            - name: compute_pools
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
+        - name: create-compute-pool
+          description: "Create a compute pool"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-compute-pool.create-compute-pool"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Compute pool name."
+              required: true
+              mapping: "body.name"
+            - name: instance_family
+              type: string
+              description: "Instance family (e.g. CPU_X64_XS)."
+              required: true
+              mapping: "body.instance_family"
+            - name: min_nodes
+              type: integer
+              description: "Minimum node count."
+              required: true
+              mapping: "body.min_nodes"
+            - name: max_nodes
+              type: integer
+              description: "Maximum node count."
+              required: true
+              mapping: "body.max_nodes"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: state
+              type: string
+              mapping: "$.state"
+        - name: list-services
+          description: "List container services"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-service.list-services"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+          outputParameters:
+            - name: services
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
+        - name: create-service
+          description: "Create a container service"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-service.create-service"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "body.name"
+            - name: compute_pool
+              type: string
+              description: "Compute pool that runs the service."
+              required: true
+              mapping: "body.compute_pool"
+            - name: spec
+              type: object
+              description: "Service specification (image, endpoints, env)."
+              required: true
+              mapping: "body.spec"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: status
+              type: string
+              mapping: "$.status"
+        - name: fetch-service-status
+          description: "Get service status"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-service.fetch-service-status"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
+            - name: message
+              type: string
+              mapping: "$.message"
+        - name: fetch-service-logs
+          description: "Get service logs"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-service.fetch-service-logs"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "pathParameters.name"
+            - name: instance_id
+              type: string
+              description: "Instance identifier within the service."
+              required: false
+              mapping: "queryParameters.instanceId"
+          outputParameters:
+            - name: logs
+              type: string
+              mapping: "$.logs"
+        - name: resume-service
+          description: "Resume a suspended service"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "snowflake-service.resume-service"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
+        - name: suspend-service
+          description: "Suspend a running service"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "snowflake-service.suspend-service"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
+        - name: list-image-repositories
+          description: "List image repositories"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-image-repository.list-image-repositories"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+          outputParameters:
+            - name: image_repositories
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
+        - name: create-image-repository
+          description: "Create an image repository"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-image-repository.create-image-repository"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Image repository name."
+              required: true
+              mapping: "body.name"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: repository_url
+              type: string
+              mapping: "$.repository_url"
+        - name: list-alerts
+          description: "List monitoring alerts"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-alert.list-alerts"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+          outputParameters:
+            - name: alerts
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
+        - name: create-alert
+          description: "Create a monitoring alert"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-alert.create-alert"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Alert name."
+              required: true
+              mapping: "body.name"
+            - name: condition
+              type: string
+              description: "SQL condition that triggers the alert."
+              required: true
+              mapping: "body.condition"
+            - name: action
+              type: string
+              description: "Action to execute when the condition is met."
+              required: true
+              mapping: "body.action"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: state
+              type: string
+              mapping: "$.state"
+        - name: execute-alert
+          description: "Execute an alert"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-alert.execute-alert"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Alert name to execute."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
+
+    - type: skill
+      port: 10084
+      namespace: snowflake-compute-skill
+      description: "Agent Skills exposure for Snowflake compute and services — same tool shape as MCP, for skill-aware agent hosts."
+      tools:
+        - name: list-warehouses
+          description: "List virtual warehouses"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-warehouse.list-warehouses"
+          inputParameters:
+            - name: like
+              type: string
+              description: "Optional LIKE pattern to filter warehouse names."
+              required: false
+              mapping: "queryParameters.like"
+          outputParameters:
+            - name: warehouses
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
+        - name: create-warehouse
+          description: "Create a virtual warehouse"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-warehouse.create-warehouse"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Warehouse name."
+              required: true
+              mapping: "body.name"
+            - name: warehouse_size
+              type: string
+              description: "Warehouse size (e.g. XSMALL, SMALL, MEDIUM)."
+              required: false
+              mapping: "body.warehouse_size"
+            - name: auto_suspend
+              type: integer
+              description: "Auto-suspend idle timeout in seconds."
+              required: false
+              mapping: "body.auto_suspend"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: state
+              type: string
+              mapping: "$.state"
+        - name: fetch-warehouse
+          description: "Fetch warehouse details"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-warehouse.fetch-warehouse"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Warehouse name to fetch."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: size
+              type: string
+              mapping: "$.warehouse_size"
+            - name: state
+              type: string
+              mapping: "$.state"
+            - name: auto_suspend
+              type: integer
+              mapping: "$.auto_suspend"
+        - name: delete-warehouse
+          description: "Delete a warehouse"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "snowflake-warehouse.delete-warehouse"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Warehouse name to delete."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
+        - name: list-compute-pools
+          description: "List compute pools"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-compute-pool.list-compute-pools"
+          inputParameters:
+            - name: like
+              type: string
+              description: "Optional LIKE pattern to filter compute pool names."
+              required: false
+              mapping: "queryParameters.like"
+          outputParameters:
+            - name: compute_pools
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
+        - name: create-compute-pool
+          description: "Create a compute pool"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-compute-pool.create-compute-pool"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Compute pool name."
+              required: true
+              mapping: "body.name"
+            - name: instance_family
+              type: string
+              description: "Instance family (e.g. CPU_X64_XS)."
+              required: true
+              mapping: "body.instance_family"
+            - name: min_nodes
+              type: integer
+              description: "Minimum node count."
+              required: true
+              mapping: "body.min_nodes"
+            - name: max_nodes
+              type: integer
+              description: "Maximum node count."
+              required: true
+              mapping: "body.max_nodes"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: state
+              type: string
+              mapping: "$.state"
+        - name: list-services
+          description: "List container services"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-service.list-services"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+          outputParameters:
+            - name: services
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
+        - name: create-service
+          description: "Create a container service"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-service.create-service"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "body.name"
+            - name: compute_pool
+              type: string
+              description: "Compute pool that runs the service."
+              required: true
+              mapping: "body.compute_pool"
+            - name: spec
+              type: object
+              description: "Service specification (image, endpoints, env)."
+              required: true
+              mapping: "body.spec"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: status
+              type: string
+              mapping: "$.status"
+        - name: fetch-service-status
+          description: "Get service status"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-service.fetch-service-status"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
+            - name: message
+              type: string
+              mapping: "$.message"
+        - name: fetch-service-logs
+          description: "Get service logs"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-service.fetch-service-logs"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "pathParameters.name"
+            - name: instance_id
+              type: string
+              description: "Instance identifier within the service."
+              required: false
+              mapping: "queryParameters.instanceId"
+          outputParameters:
+            - name: logs
+              type: string
+              mapping: "$.logs"
+        - name: resume-service
+          description: "Resume a suspended service"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "snowflake-service.resume-service"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
+        - name: suspend-service
+          description: "Suspend a running service"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "snowflake-service.suspend-service"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Service name."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"
+        - name: list-image-repositories
+          description: "List image repositories"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-image-repository.list-image-repositories"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+          outputParameters:
+            - name: image_repositories
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
+        - name: create-image-repository
+          description: "Create an image repository"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-image-repository.create-image-repository"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Image repository name."
+              required: true
+              mapping: "body.name"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: repository_url
+              type: string
+              mapping: "$.repository_url"
+        - name: list-alerts
+          description: "List monitoring alerts"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-alert.list-alerts"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+          outputParameters:
+            - name: alerts
+              type: array
+              mapping: "$[*]"
+            - name: count
+              type: integer
+              mapping: "$.length"
+        - name: create-alert
+          description: "Create a monitoring alert"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-alert.create-alert"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Alert name."
+              required: true
+              mapping: "body.name"
+            - name: condition
+              type: string
+              description: "SQL condition that triggers the alert."
+              required: true
+              mapping: "body.condition"
+            - name: action
+              type: string
+              description: "Action to execute when the condition is met."
+              required: true
+              mapping: "body.action"
+          outputParameters:
+            - name: name
+              type: string
+              mapping: "$.name"
+            - name: state
+              type: string
+              mapping: "$.state"
+        - name: execute-alert
+          description: "Execute an alert"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-alert.execute-alert"
+          inputParameters:
+            - name: database
+              type: string
+              description: "Target database name."
+              required: true
+              mapping: "pathParameters.database"
+            - name: schema
+              type: string
+              description: "Target schema name."
+              required: true
+              mapping: "pathParameters.schema"
+            - name: name
+              type: string
+              description: "Alert name to execute."
+              required: true
+              mapping: "pathParameters.name"
+          outputParameters:
+            - name: status
+              type: string
+              mapping: "$.status"

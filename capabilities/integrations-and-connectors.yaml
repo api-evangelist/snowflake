@@ -1,3 +1,19 @@
+# Snowflake Integrations and Connectors — Applied Capability
+#
+# Composition: imports three source HTTP capabilities (api-integration,
+# catalog-integration, notification-integration) and unifies them into a
+# single integration-management surface for Snowflake.
+#
+# Triple exposure (one capability, three channels):
+#   1. REST       — conventional HTTP clients (port 8085)
+#   2. MCP/HTTP   — remote MCP clients such as hosted AI agents (port 9085)
+#   3. MCP/stdio  — local MCP clients such as Claude Desktop, IDE agents
+#   4. Skill      — Agent Skills exposure for agent-compatible metadata
+#
+# Aligned with Naftiko Framework v1.0.0-alpha1 spec patterns from
+# Guide - Use Cases (#1 AI integration, #2 Rightsize AI context,
+# #8 Capability-first context engineering).
+
 naftiko: "1.0.0-alpha1"
 
 info:
@@ -8,7 +24,7 @@ info:
     - Integrations
     - Connectors
   created: "2026-04-18"
-  modified: "2026-04-18"
+  modified: "2026-04-23"
 
 binds:
   - namespace: env
@@ -39,10 +55,57 @@ capability:
               name: list-api-integrations
               description: "List API integrations"
               call: "snowflake-api-integration.list-api-integrations"
+              hints:
+                readOnly: true
+                destructive: false
+                idempotent: true
+              outputParameters:
+                - name: integrations
+                  type: array
+                  description: "Array of API integration objects"
+                  mapping: "$.data"
+                - name: totalCount
+                  type: integer
+                  description: "Count of returned integrations"
+                  mapping: "$.data.length"
             - method: POST
               name: create-api-integration
               description: "Create an API integration"
               call: "snowflake-api-integration.create-api-integration"
+              hints:
+                readOnly: false
+                destructive: false
+                idempotent: false
+              inputParameters:
+                - name: name
+                  type: string
+                  description: "Unique name of the API integration"
+                  required: true
+                  mapping: "$.body.name"
+                - name: api_provider
+                  type: string
+                  description: "API provider (e.g. aws_api_gateway, azure_api_management, google_api_gateway)"
+                  required: true
+                  mapping: "$.body.api_provider"
+                - name: api_allowed_prefixes
+                  type: array
+                  description: "Allowed endpoint prefixes for the external function"
+                  required: true
+                  mapping: "$.body.api_allowed_prefixes"
+                - name: enabled
+                  type: boolean
+                  description: "Whether the integration is enabled on create"
+                  required: false
+                  mapping: "$.body.enabled"
+              outputParameters:
+                - name: integrationName
+                  type: string
+                  description: "Name of the created integration"
+                  mapping: "$.name"
+                - name: status
+                  type: string
+                  description: "Operation status"
+                  mapping: "$.status"
         - path: /v1/catalog-integrations
           name: catalog-integrations
           description: "Catalog integration management"
@@ -51,10 +114,57 @@ capability:
               name: list-catalog-integrations
               description: "List catalog integrations"
               call: "snowflake-catalog-integration.list-catalog-integrations"
+              hints:
+                readOnly: true
+                destructive: false
+                idempotent: true
+              outputParameters:
+                - name: integrations
+                  type: array
+                  description: "Array of catalog integration objects"
+                  mapping: "$.data"
+                - name: totalCount
+                  type: integer
+                  description: "Count of returned integrations"
+                  mapping: "$.data.length"
             - method: POST
               name: create-catalog-integration
               description: "Create a catalog integration"
               call: "snowflake-catalog-integration.create-catalog-integration"
+              hints:
+                readOnly: false
+                destructive: false
+                idempotent: false
+              inputParameters:
+                - name: name
+                  type: string
+                  description: "Unique name of the catalog integration"
+                  required: true
+                  mapping: "$.body.name"
+                - name: catalog_source
+                  type: string
+                  description: "Catalog source (e.g. GLUE, OBJECT_STORE, POLARIS)"
+                  required: true
+                  mapping: "$.body.catalog_source"
+                - name: table_format
+                  type: string
+                  description: "Table format (e.g. ICEBERG, DELTA)"
+                  required: true
+                  mapping: "$.body.table_format"
+                - name: enabled
+                  type: boolean
+                  description: "Whether the integration is enabled on create"
+                  required: false
+                  mapping: "$.body.enabled"
+              outputParameters:
+                - name: integrationName
+                  type: string
+                  description: "Name of the created integration"
+                  mapping: "$.name"
+                - name: status
+                  type: string
+                  description: "Operation status"
+                  mapping: "$.status"
         - path: /v1/notification-integrations
           name: notification-integrations
           description: "Notification integration management"
@@ -63,74 +173,546 @@ capability:
               name: list-notification-integrations
               description: "List notification integrations"
               call: "snowflake-notification-integration.list-notification-integrations"
+              hints:
+                readOnly: true
+                destructive: false
+                idempotent: true
+              outputParameters:
+                - name: integrations
+                  type: array
+                  description: "Array of notification integration objects"
+                  mapping: "$.data"
+                - name: totalCount
+                  type: integer
+                  description: "Count of returned integrations"
+                  mapping: "$.data.length"
             - method: POST
               name: create-notification-integration
               description: "Create a notification integration"
               call: "snowflake-notification-integration.create-notification-integration"
+              hints:
+                readOnly: false
+                destructive: false
+                idempotent: false
+              inputParameters:
+                - name: name
+                  type: string
+                  description: "Unique name of the notification integration"
+                  required: true
+                  mapping: "$.body.name"
+                - name: notification_provider
+                  type: string
+                  description: "Notification provider (e.g. AWS_SNS, AZURE_EVENT_GRID, GCP_PUBSUB)"
+                  required: true
+                  mapping: "$.body.notification_provider"
+                - name: direction
+                  type: string
+                  description: "Notification direction (INBOUND or OUTBOUND)"
+                  required: true
+                  mapping: "$.body.direction"
+                - name: enabled
+                  type: boolean
+                  description: "Whether the integration is enabled on create"
+                  required: false
+                  mapping: "$.body.enabled"
+              outputParameters:
+                - name: integrationName
+                  type: string
+                  description: "Name of the created integration"
+                  mapping: "$.name"
+                - name: status
+                  type: string
+                  description: "Operation status"
+                  mapping: "$.status"
 
     - type: mcp
       port: 9085
       namespace: snowflake-integrations-mcp
       transport: http
-      description: "MCP server for AI-assisted Snowflake integration management."
+      description: "MCP server (Streaming HTTP) for AI-assisted Snowflake integration management."
       tools:
         - name: list-api-integrations
           description: "List API integrations"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-api-integration.list-api-integrations"
+          outputParameters:
+            - name: integrations
+              type: array
+              description: "Array of API integration objects"
+              mapping: "$.data"
+            - name: totalCount
+              type: integer
+              description: "Count of returned integrations"
+              mapping: "$.data.length"
+        - name: create-api-integration
+          description: "Create an API integration"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-api-integration.create-api-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Unique name of the API integration"
+              required: true
+              mapping: "$.body.name"
+            - name: api_provider
+              type: string
+              description: "API provider (e.g. aws_api_gateway, azure_api_management, google_api_gateway)"
+              required: true
+              mapping: "$.body.api_provider"
+            - name: api_allowed_prefixes
+              type: array
+              description: "Allowed endpoint prefixes for the external function"
+              required: true
+              mapping: "$.body.api_allowed_prefixes"
+            - name: enabled
+              type: boolean
+              description: "Whether the integration is enabled on create"
+              required: false
+              mapping: "$.body.enabled"
+          outputParameters:
+            - name: integrationName
+              type: string
+              description: "Name of the created integration"
+              mapping: "$.name"
+            - name: status
+              type: string
+              description: "Operation status"
+              mapping: "$.status"
+        - name: fetch-api-integration
+          description: "Fetch API integration details"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-api-integration.fetch-api-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Name of the API integration to fetch"
+              required: true
+              mapping: "$.path.name"
+          outputParameters:
+            - name: integration
+              type: object
+              description: "Full API integration record"
+              mapping: "$."
+        - name: delete-api-integration
+          description: "Delete an API integration"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "snowflake-api-integration.delete-api-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Name of the API integration to delete"
+              required: true
+              mapping: "$.path.name"
+          outputParameters:
+            - name: status
+              type: string
+              description: "Delete operation status"
+              mapping: "$.status"
+        - name: list-catalog-integrations
+          description: "List catalog integrations"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-catalog-integration.list-catalog-integrations"
+          outputParameters:
+            - name: integrations
+              type: array
+              description: "Array of catalog integration objects"
+              mapping: "$.data"
+            - name: totalCount
+              type: integer
+              description: "Count of returned integrations"
+              mapping: "$.data.length"
+        - name: create-catalog-integration
+          description: "Create a catalog integration"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-catalog-integration.create-catalog-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Unique name of the catalog integration"
+              required: true
+              mapping: "$.body.name"
+            - name: catalog_source
+              type: string
+              description: "Catalog source (e.g. GLUE, OBJECT_STORE, POLARIS)"
+              required: true
+              mapping: "$.body.catalog_source"
+            - name: table_format
+              type: string
+              description: "Table format (e.g. ICEBERG, DELTA)"
+              required: true
+              mapping: "$.body.table_format"
+            - name: enabled
+              type: boolean
+              description: "Whether the integration is enabled on create"
+              required: false
+              mapping: "$.body.enabled"
+          outputParameters:
+            - name: integrationName
+              type: string
+              description: "Name of the created integration"
+              mapping: "$.name"
+            - name: status
+              type: string
+              description: "Operation status"
+              mapping: "$.status"
+        - name: fetch-catalog-integration
+          description: "Fetch catalog integration details"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-catalog-integration.fetch-catalog-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Name of the catalog integration to fetch"
+              required: true
+              mapping: "$.path.name"
+          outputParameters:
+            - name: integration
+              type: object
+              description: "Full catalog integration record"
+              mapping: "$."
+        - name: delete-catalog-integration
+          description: "Delete a catalog integration"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "snowflake-catalog-integration.delete-catalog-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Name of the catalog integration to delete"
+              required: true
+              mapping: "$.path.name"
+          outputParameters:
+            - name: status
+              type: string
+              description: "Delete operation status"
+              mapping: "$.status"
+        - name: list-notification-integrations
+          description: "List notification integrations"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-notification-integration.list-notification-integrations"
+          outputParameters:
+            - name: integrations
+              type: array
+              description: "Array of notification integration objects"
+              mapping: "$.data"
+            - name: totalCount
+              type: integer
+              description: "Count of returned integrations"
+              mapping: "$.data.length"
+        - name: create-notification-integration
+          description: "Create a notification integration"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "snowflake-notification-integration.create-notification-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Unique name of the notification integration"
+              required: true
+              mapping: "$.body.name"
+            - name: notification_provider
+              type: string
+              description: "Notification provider (e.g. AWS_SNS, AZURE_EVENT_GRID, GCP_PUBSUB)"
+              required: true
+              mapping: "$.body.notification_provider"
+            - name: direction
+              type: string
+              description: "Notification direction (INBOUND or OUTBOUND)"
+              required: true
+              mapping: "$.body.direction"
+            - name: enabled
+              type: boolean
+              description: "Whether the integration is enabled on create"
+              required: false
+              mapping: "$.body.enabled"
+          outputParameters:
+            - name: integrationName
+              type: string
+              description: "Name of the created integration"
+              mapping: "$.name"
+            - name: status
+              type: string
+              description: "Operation status"
+              mapping: "$.status"
+        - name: fetch-notification-integration
+          description: "Fetch notification integration details"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "snowflake-notification-integration.fetch-notification-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Name of the notification integration to fetch"
+              required: true
+              mapping: "$.path.name"
+          outputParameters:
+            - name: integration
+              type: object
+              description: "Full notification integration record"
+              mapping: "$."
+        - name: delete-notification-integration
+          description: "Delete a notification integration"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "snowflake-notification-integration.delete-notification-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Name of the notification integration to delete"
+              required: true
+              mapping: "$.path.name"
+          outputParameters:
+            - name: status
+              type: string
+              description: "Delete operation status"
+              mapping: "$.status"
+
+    - type: mcp
+      namespace: snowflake-integrations-mcp-stdio
+      transport: stdio
+      description: "MCP server (stdio transport) for local AI clients such as Claude Desktop and IDE agents."
+      tools:
+        - name: list-api-integrations
+          description: "List API integrations"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-api-integration.list-api-integrations"
         - name: create-api-integration
           description: "Create an API integration"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
           call: "snowflake-api-integration.create-api-integration"
         - name: fetch-api-integration
           description: "Fetch API integration details"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-api-integration.fetch-api-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Name of the API integration to fetch"
+              required: true
+              mapping: "$.path.name"
         - name: delete-api-integration
           description: "Delete an API integration"
           hints:
+            readOnly: false
             destructive: true
+            idempotent: true
           call: "snowflake-api-integration.delete-api-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Name of the API integration to delete"
+              required: true
+              mapping: "$.path.name"
         - name: list-catalog-integrations
           description: "List catalog integrations"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-catalog-integration.list-catalog-integrations"
         - name: create-catalog-integration
           description: "Create a catalog integration"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
           call: "snowflake-catalog-integration.create-catalog-integration"
         - name: fetch-catalog-integration
           description: "Fetch catalog integration details"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-catalog-integration.fetch-catalog-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Name of the catalog integration to fetch"
+              required: true
+              mapping: "$.path.name"
         - name: delete-catalog-integration
           description: "Delete a catalog integration"
           hints:
+            readOnly: false
             destructive: true
+            idempotent: true
           call: "snowflake-catalog-integration.delete-catalog-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Name of the catalog integration to delete"
+              required: true
+              mapping: "$.path.name"
         - name: list-notification-integrations
           description: "List notification integrations"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-notification-integration.list-notification-integrations"
         - name: create-notification-integration
           description: "Create a notification integration"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
           call: "snowflake-notification-integration.create-notification-integration"
         - name: fetch-notification-integration
           description: "Fetch notification integration details"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
           call: "snowflake-notification-integration.fetch-notification-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Name of the notification integration to fetch"
+              required: true
+              mapping: "$.path.name"
         - name: delete-notification-integration
           description: "Delete a notification integration"
           hints:
+            readOnly: false
             destructive: true
+            idempotent: true
           call: "snowflake-notification-integration.delete-notification-integration"
+          inputParameters:
+            - name: name
+              type: string
+              description: "Name of the notification integration to delete"
+              required: true
+              mapping: "$.path.name"
+
+    - type: skill
+      namespace: snowflake-integrations-skill
+      description: "Agent Skills exposure for Snowflake integration management — agent-compatible metadata for autonomous agents."
+      skills:
+        - name: snowflake-integrations-skill
+          description: "Manage Snowflake API, catalog, and notification integrations through a unified agent-facing surface."
+          tools:
+            - name: list-api-integrations
+              description: "List API integrations configured in the Snowflake account"
+              hints:
+                readOnly: true
+                destructive: false
+                idempotent: true
+              call: "snowflake-api-integration.list-api-integrations"
+            - name: create-api-integration
+              description: "Create a new API integration (e.g. AWS API Gateway, Azure API Management)"
+              hints:
+                readOnly: false
+                destructive: false
+                idempotent: false
+              call: "snowflake-api-integration.create-api-integration"
+            - name: fetch-api-integration
+              description: "Fetch a single API integration by name"
+              hints:
+                readOnly: true
+                destructive: false
+                idempotent: true
+              call: "snowflake-api-integration.fetch-api-integration"
+            - name: delete-api-integration
+              description: "Delete an API integration by name"
+              hints:
+                readOnly: false
+                destructive: true
+                idempotent: true
+              call: "snowflake-api-integration.delete-api-integration"
+            - name: list-catalog-integrations
+              description: "List catalog integrations (Iceberg, Glue, Polaris, etc.)"
+              hints:
+                readOnly: true
+                destructive: false
+                idempotent: true
+              call: "snowflake-catalog-integration.list-catalog-integrations"
+            - name: create-catalog-integration
+              description: "Create a new catalog integration"
+              hints:
+                readOnly: false
+                destructive: false
+                idempotent: false
+              call: "snowflake-catalog-integration.create-catalog-integration"
+            - name: fetch-catalog-integration
+              description: "Fetch a single catalog integration by name"
+              hints:
+                readOnly: true
+                destructive: false
+                idempotent: true
+              call: "snowflake-catalog-integration.fetch-catalog-integration"
+            - name: delete-catalog-integration
+              description: "Delete a catalog integration by name"
+              hints:
+                readOnly: false
+                destructive: true
+                idempotent: true
+              call: "snowflake-catalog-integration.delete-catalog-integration"
+            - name: list-notification-integrations
+              description: "List notification integrations (AWS SNS, Azure Event Grid, GCP Pub/Sub, etc.)"
+              hints:
+                readOnly: true
+                destructive: false
+                idempotent: true
+              call: "snowflake-notification-integration.list-notification-integrations"
+            - name: create-notification-integration
+              description: "Create a new notification integration"
+              hints:
+                readOnly: false
+                destructive: false
+                idempotent: false
+              call: "snowflake-notification-integration.create-notification-integration"
+            - name: fetch-notification-integration
+              description: "Fetch a single notification integration by name"
+              hints:
+                readOnly: true
+                destructive: false
+                idempotent: true
+              call: "snowflake-notification-integration.fetch-notification-integration"
+            - name: delete-notification-integration
+              description: "Delete a notification integration by name"
+              hints:
+                readOnly: false
+                destructive: true
+                idempotent: true
+              call: "snowflake-notification-integration.delete-notification-integration"

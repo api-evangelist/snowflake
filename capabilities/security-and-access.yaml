@@ -1,3 +1,18 @@
+# Snowflake Security and Access - Unified Capability
+#
+# Composition: aggregates seven shared Snowflake source capabilities
+# (user, role, grant, database-role, network-policy, account, managed-account)
+# into one governance-oriented applied capability.
+#
+# Triple exposure: the same domain is surfaced three ways from one capability -
+#   1. type: rest   - REST resources for traditional clients
+#   2. type: mcp    - MCP tools over Streaming HTTP (remote agents)
+#   3. type: mcp    - MCP tools over stdio (local IDE / CLI agents)
+#   4. type: skill  - Agent Skills exposure for skill-compatible clients
+#
+# Aligned with Framework Wiki use cases #1 (AI integration),
+# #2 (Rightsize AI context), and #8 (Capability-first context engineering).
+
 naftiko: "1.0.0-alpha1"
 
 info:
@@ -9,7 +24,7 @@ info:
     - Access Control
     - Administration
   created: "2026-04-18"
-  modified: "2026-04-18"
+  modified: "2026-04-23"
 
 binds:
   - namespace: env
@@ -47,10 +62,52 @@ capability:
             - method: GET
               name: list-users
               description: "List users"
+              inputParameters:
+                - name: like
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter users by name pattern (SQL LIKE)"
+                  mapping: "$.like"
+              outputParameters:
+                - name: users
+                  type: array
+                  description: "List of user records"
+                  mapping: "$.result"
               call: "snowflake-user.list-users"
             - method: POST
               name: create-user
               description: "Create a user"
+              inputParameters:
+                - name: name
+                  in: body
+                  type: string
+                  required: true
+                  description: "User name (unique identifier)"
+                  mapping: "$.name"
+                - name: login_name
+                  in: body
+                  type: string
+                  required: false
+                  description: "Login name for the user"
+                  mapping: "$.login_name"
+                - name: email
+                  in: body
+                  type: string
+                  required: false
+                  description: "Email address of the user"
+                  mapping: "$.email"
+                - name: default_role
+                  in: body
+                  type: string
+                  required: false
+                  description: "Default role assigned to the user"
+                  mapping: "$.default_role"
+              outputParameters:
+                - name: user
+                  type: object
+                  description: "Created user record"
+                  mapping: "$.result"
               call: "snowflake-user.create-user"
         - path: /v1/roles
           name: roles
@@ -59,10 +116,40 @@ capability:
             - method: GET
               name: list-roles
               description: "List roles"
+              inputParameters:
+                - name: like
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter roles by name pattern"
+                  mapping: "$.like"
+              outputParameters:
+                - name: roles
+                  type: array
+                  description: "List of role records"
+                  mapping: "$.result"
               call: "snowflake-role.list-roles"
             - method: POST
               name: create-role
               description: "Create a role"
+              inputParameters:
+                - name: name
+                  in: body
+                  type: string
+                  required: true
+                  description: "Role name"
+                  mapping: "$.name"
+                - name: comment
+                  in: body
+                  type: string
+                  required: false
+                  description: "Descriptive comment for the role"
+                  mapping: "$.comment"
+              outputParameters:
+                - name: role
+                  type: object
+                  description: "Created role record"
+                  mapping: "$.result"
               call: "snowflake-role.create-role"
         - path: /v1/grants
           name: grants
@@ -71,10 +158,52 @@ capability:
             - method: POST
               name: grant-privilege
               description: "Grant a privilege"
+              inputParameters:
+                - name: role_name
+                  in: body
+                  type: string
+                  required: true
+                  description: "Target role receiving the grant"
+                  mapping: "$.role_name"
+                - name: privilege
+                  in: body
+                  type: string
+                  required: true
+                  description: "Privilege being granted (e.g. SELECT, USAGE)"
+                  mapping: "$.privilege"
+                - name: securable_type
+                  in: body
+                  type: string
+                  required: true
+                  description: "Type of securable (DATABASE, SCHEMA, TABLE, etc.)"
+                  mapping: "$.securable_type"
+                - name: securable_name
+                  in: body
+                  type: string
+                  required: true
+                  description: "Fully qualified name of the securable"
+                  mapping: "$.securable_name"
+              outputParameters:
+                - name: grant
+                  type: object
+                  description: "Grant record"
+                  mapping: "$.result"
               call: "snowflake-grant.grant-privilege"
             - method: GET
               name: list-grants
               description: "List grants"
+              inputParameters:
+                - name: role_name
+                  in: query
+                  type: string
+                  required: true
+                  description: "Role whose grants are being listed"
+                  mapping: "$.role_name"
+              outputParameters:
+                - name: grants
+                  type: array
+                  description: "List of grants held by the role"
+                  mapping: "$.result"
               call: "snowflake-grant.list-grants-to"
         - path: /v1/network-policies
           name: network-policies
@@ -83,10 +212,46 @@ capability:
             - method: GET
               name: list-network-policies
               description: "List network policies"
+              inputParameters:
+                - name: like
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter policies by name pattern"
+                  mapping: "$.like"
+              outputParameters:
+                - name: policies
+                  type: array
+                  description: "List of network policy records"
+                  mapping: "$.result"
               call: "snowflake-network-policy.list-network-policies"
             - method: POST
               name: create-network-policy
               description: "Create a network policy"
+              inputParameters:
+                - name: name
+                  in: body
+                  type: string
+                  required: true
+                  description: "Network policy name"
+                  mapping: "$.name"
+                - name: allowed_ip_list
+                  in: body
+                  type: array
+                  required: false
+                  description: "Allowed IP CIDR blocks"
+                  mapping: "$.allowed_ip_list"
+                - name: blocked_ip_list
+                  in: body
+                  type: array
+                  required: false
+                  description: "Blocked IP CIDR blocks"
+                  mapping: "$.blocked_ip_list"
+              outputParameters:
+                - name: policy
+                  type: object
+                  description: "Created network policy record"
+                  mapping: "$.result"
               call: "snowflake-network-policy.create-network-policy"
         - path: /v1/accounts
           name: accounts
@@ -95,86 +260,576 @@ capability:
             - method: GET
               name: list-accounts
               description: "List accounts"
+              inputParameters:
+                - name: like
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter accounts by name pattern"
+                  mapping: "$.like"
+              outputParameters:
+                - name: accounts
+                  type: array
+                  description: "List of account records"
+                  mapping: "$.result"
               call: "snowflake-account.list-accounts"
 
     - type: mcp
       port: 9083
       namespace: snowflake-security-mcp
       transport: http
-      description: "MCP server for AI-assisted Snowflake security and access management."
+      description: "MCP server (Streaming HTTP transport) for AI-assisted Snowflake security and access management."
       tools:
         - name: list-users
-          description: "List all users"
+          description: "List all users in the Snowflake account"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: like
+              type: string
+              required: false
+              description: "Filter users by name pattern"
+              mapping: "$.like"
+          outputParameters:
+            - name: users
+              type: array
+              description: "List of user records"
+              mapping: "$.result"
           call: "snowflake-user.list-users"
         - name: create-user
           description: "Create a new user"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "User name"
+              mapping: "$.name"
+            - name: login_name
+              type: string
+              required: false
+              description: "Login name"
+              mapping: "$.login_name"
+            - name: email
+              type: string
+              required: false
+              description: "Email address"
+              mapping: "$.email"
+            - name: default_role
+              type: string
+              required: false
+              description: "Default role for the user"
+              mapping: "$.default_role"
+          outputParameters:
+            - name: user
+              type: object
+              description: "Created user record"
+              mapping: "$.result"
           call: "snowflake-user.create-user"
         - name: fetch-user
-          description: "Fetch user details"
+          description: "Fetch user details by name"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "User name to fetch"
+              mapping: "$.name"
+          outputParameters:
+            - name: user
+              type: object
+              description: "User record"
+              mapping: "$.result"
           call: "snowflake-user.fetch-user"
         - name: delete-user
           description: "Delete a user"
           hints:
+            readOnly: false
             destructive: true
+            idempotent: true
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "User name to delete"
+              mapping: "$.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Deletion result"
+              mapping: "$.result"
           call: "snowflake-user.delete-user"
         - name: list-roles
           description: "List all roles"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: like
+              type: string
+              required: false
+              description: "Filter roles by name pattern"
+              mapping: "$.like"
+          outputParameters:
+            - name: roles
+              type: array
+              description: "List of role records"
+              mapping: "$.result"
           call: "snowflake-role.list-roles"
         - name: create-role
           description: "Create a new role"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "Role name"
+              mapping: "$.name"
+            - name: comment
+              type: string
+              required: false
+              description: "Descriptive comment"
+              mapping: "$.comment"
+          outputParameters:
+            - name: role
+              type: object
+              description: "Created role record"
+              mapping: "$.result"
           call: "snowflake-role.create-role"
         - name: grant-privilege
           description: "Grant a privilege to a role"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: role_name
+              type: string
+              required: true
+              description: "Target role"
+              mapping: "$.role_name"
+            - name: privilege
+              type: string
+              required: true
+              description: "Privilege to grant"
+              mapping: "$.privilege"
+            - name: securable_type
+              type: string
+              required: true
+              description: "Securable type"
+              mapping: "$.securable_type"
+            - name: securable_name
+              type: string
+              required: true
+              description: "Securable name"
+              mapping: "$.securable_name"
+          outputParameters:
+            - name: grant
+              type: object
+              description: "Grant record"
+              mapping: "$.result"
           call: "snowflake-grant.grant-privilege"
         - name: revoke-privilege
           description: "Revoke a privilege from a role"
           hints:
             readOnly: false
+            destructive: true
+            idempotent: true
+          inputParameters:
+            - name: role_name
+              type: string
+              required: true
+              description: "Target role"
+              mapping: "$.role_name"
+            - name: privilege
+              type: string
+              required: true
+              description: "Privilege to revoke"
+              mapping: "$.privilege"
+            - name: securable_type
+              type: string
+              required: true
+              description: "Securable type"
+              mapping: "$.securable_type"
+            - name: securable_name
+              type: string
+              required: true
+              description: "Securable name"
+              mapping: "$.securable_name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Revocation result"
+              mapping: "$.result"
           call: "snowflake-grant.revoke-privilege"
         - name: list-grants
           description: "List grants to a role"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: role_name
+              type: string
+              required: true
+              description: "Role whose grants are being listed"
+              mapping: "$.role_name"
+          outputParameters:
+            - name: grants
+              type: array
+              description: "Grants held by the role"
+              mapping: "$.result"
           call: "snowflake-grant.list-grants-to"
         - name: list-database-roles
           description: "List database roles"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "$.database"
+          outputParameters:
+            - name: database_roles
+              type: array
+              description: "List of database role records"
+              mapping: "$.result"
           call: "snowflake-database-role.list-database-roles"
         - name: create-database-role
           description: "Create a database role"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "$.database"
+            - name: name
+              type: string
+              required: true
+              description: "Database role name"
+              mapping: "$.name"
+          outputParameters:
+            - name: database_role
+              type: object
+              description: "Created database role record"
+              mapping: "$.result"
           call: "snowflake-database-role.create-database-role"
         - name: list-network-policies
           description: "List network policies"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: like
+              type: string
+              required: false
+              description: "Filter policies by name pattern"
+              mapping: "$.like"
+          outputParameters:
+            - name: policies
+              type: array
+              description: "List of network policies"
+              mapping: "$.result"
           call: "snowflake-network-policy.list-network-policies"
         - name: create-network-policy
           description: "Create a network policy"
           hints:
             readOnly: false
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "Policy name"
+              mapping: "$.name"
+            - name: allowed_ip_list
+              type: array
+              required: false
+              description: "Allowed IP CIDR blocks"
+              mapping: "$.allowed_ip_list"
+            - name: blocked_ip_list
+              type: array
+              required: false
+              description: "Blocked IP CIDR blocks"
+              mapping: "$.blocked_ip_list"
+          outputParameters:
+            - name: policy
+              type: object
+              description: "Created network policy record"
+              mapping: "$.result"
           call: "snowflake-network-policy.create-network-policy"
         - name: list-accounts
           description: "List accounts"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: like
+              type: string
+              required: false
+              description: "Filter accounts by name pattern"
+              mapping: "$.like"
+          outputParameters:
+            - name: accounts
+              type: array
+              description: "List of account records"
+              mapping: "$.result"
           call: "snowflake-account.list-accounts"
         - name: list-managed-accounts
           description: "List managed accounts"
           hints:
             readOnly: true
+            destructive: false
+            idempotent: true
+          outputParameters:
+            - name: managed_accounts
+              type: array
+              description: "List of managed account records"
+              mapping: "$.result"
           call: "snowflake-managed-account.list-managed-accounts"
+
+    - type: mcp
+      namespace: snowflake-security-mcp-stdio
+      transport: stdio
+      description: "MCP server (stdio transport) for local IDE and CLI agents managing Snowflake security and access."
+      tools:
+        - name: list-users
+          description: "List all users"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: like
+              type: string
+              required: false
+              description: "Filter users by name pattern"
+              mapping: "$.like"
+          outputParameters:
+            - name: users
+              type: array
+              description: "List of user records"
+              mapping: "$.result"
+          call: "snowflake-user.list-users"
+        - name: fetch-user
+          description: "Fetch user details"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "User name"
+              mapping: "$.name"
+          outputParameters:
+            - name: user
+              type: object
+              description: "User record"
+              mapping: "$.result"
+          call: "snowflake-user.fetch-user"
+        - name: list-roles
+          description: "List all roles"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          outputParameters:
+            - name: roles
+              type: array
+              description: "List of role records"
+              mapping: "$.result"
+          call: "snowflake-role.list-roles"
+        - name: list-grants
+          description: "List grants for a role"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: role_name
+              type: string
+              required: true
+              description: "Role name"
+              mapping: "$.role_name"
+          outputParameters:
+            - name: grants
+              type: array
+              description: "Grants held by the role"
+              mapping: "$.result"
+          call: "snowflake-grant.list-grants-to"
+        - name: list-network-policies
+          description: "List network policies"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          outputParameters:
+            - name: policies
+              type: array
+              description: "Network policies"
+              mapping: "$.result"
+          call: "snowflake-network-policy.list-network-policies"
+        - name: list-accounts
+          description: "List accounts"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          outputParameters:
+            - name: accounts
+              type: array
+              description: "Account records"
+              mapping: "$.result"
+          call: "snowflake-account.list-accounts"
+
+    - type: skill
+      namespace: snowflake-security-skill
+      description: "Agent Skills exposure of Snowflake security and access operations for skill-compatible AI clients."
+      skills:
+        - name: list-users
+          description: "List all users in the Snowflake account"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: like
+              type: string
+              required: false
+              description: "Filter users by name pattern"
+              mapping: "$.like"
+          outputParameters:
+            - name: users
+              type: array
+              description: "List of user records"
+              mapping: "$.result"
+          call: "snowflake-user.list-users"
+        - name: fetch-user
+          description: "Fetch a specific user by name"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "User name"
+              mapping: "$.name"
+          outputParameters:
+            - name: user
+              type: object
+              description: "User record"
+              mapping: "$.result"
+          call: "snowflake-user.fetch-user"
+        - name: list-roles
+          description: "List all roles"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          outputParameters:
+            - name: roles
+              type: array
+              description: "Role records"
+              mapping: "$.result"
+          call: "snowflake-role.list-roles"
+        - name: grant-privilege
+          description: "Grant a privilege to a role"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: role_name
+              type: string
+              required: true
+              description: "Target role"
+              mapping: "$.role_name"
+            - name: privilege
+              type: string
+              required: true
+              description: "Privilege to grant"
+              mapping: "$.privilege"
+            - name: securable_type
+              type: string
+              required: true
+              description: "Securable type"
+              mapping: "$.securable_type"
+            - name: securable_name
+              type: string
+              required: true
+              description: "Securable name"
+              mapping: "$.securable_name"
+          outputParameters:
+            - name: grant
+              type: object
+              description: "Grant record"
+              mapping: "$.result"
+          call: "snowflake-grant.grant-privilege"
+        - name: list-grants
+          description: "List grants held by a role"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: role_name
+              type: string
+              required: true
+              description: "Role name"
+              mapping: "$.role_name"
+          outputParameters:
+            - name: grants
+              type: array
+              description: "Grants held by the role"
+              mapping: "$.result"
+          call: "snowflake-grant.list-grants-to"
+        - name: list-network-policies
+          description: "List network policies"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          outputParameters:
+            - name: policies
+              type: array
+              description: "Network policies"
+              mapping: "$.result"
+          call: "snowflake-network-policy.list-network-policies"
+        - name: list-accounts
+          description: "List accessible accounts"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          outputParameters:
+            - name: accounts
+              type: array
+              description: "Account records"
+              mapping: "$.result"
+          call: "snowflake-account.list-accounts"

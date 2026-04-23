@@ -1,3 +1,10 @@
+# Naftiko Snowflake Data Management capability.
+# Composes eight shared Snowflake sub-capabilities (database, schema, table,
+# view, dynamic-table, iceberg-table, event-table, external-volume) and
+# exposes them through a triple adapter surface: REST for conventional
+# clients, MCP (HTTP + stdio transports) for AI agents, and Agent Skills
+# for skill-aware AI clients. Input and output parameters use typed
+# JSONPath mappings so payloads are task-ready for both humans and agents.
 naftiko: "1.0.0-alpha1"
 
 info:
@@ -8,7 +15,7 @@ info:
     - Data Management
     - Data Engineering
   created: "2026-04-18"
-  modified: "2026-04-18"
+  modified: "2026-04-23"
 
 binds:
   - namespace: env
@@ -49,10 +56,34 @@ capability:
               name: list-databases
               description: "List all databases"
               call: "snowflake-database.list-databases"
+              inputParameters:
+                - name: like
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by name pattern"
+                  mapping: "snowflake-database.list-databases.like"
+              outputParameters:
+                - name: databases
+                  type: array
+                  description: "Array of database objects"
+                  mapping: "$."
             - method: POST
               name: create-database
               description: "Create a database"
               call: "snowflake-database.create-database"
+              inputParameters:
+                - name: name
+                  in: body
+                  type: string
+                  required: true
+                  description: "Database name to create"
+                  mapping: "snowflake-database.create-database.name"
+              outputParameters:
+                - name: result
+                  type: object
+                  description: "Created database metadata"
+                  mapping: "$."
         - path: /v1/databases/{name}
           name: database
           description: "Single database operations"
@@ -61,10 +92,34 @@ capability:
               name: fetch-database
               description: "Fetch a database"
               call: "snowflake-database.fetch-database"
+              inputParameters:
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-database.fetch-database.name"
+              outputParameters:
+                - name: result
+                  type: object
+                  description: "Database metadata"
+                  mapping: "$."
             - method: DELETE
               name: delete-database
               description: "Delete a database"
               call: "snowflake-database.delete-database"
+              inputParameters:
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-database.delete-database.name"
+              outputParameters:
+                - name: result
+                  type: object
+                  description: "Delete status"
+                  mapping: "$."
         - path: /v1/schemas
           name: schemas
           description: "Schema management"
@@ -73,10 +128,46 @@ capability:
               name: list-schemas
               description: "List schemas"
               call: "snowflake-schema.list-schemas"
+              inputParameters:
+                - name: database
+                  in: query
+                  type: string
+                  required: true
+                  description: "Database to list schemas from"
+                  mapping: "snowflake-schema.list-schemas.database"
+                - name: like
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by name pattern"
+                  mapping: "snowflake-schema.list-schemas.like"
+              outputParameters:
+                - name: schemas
+                  type: array
+                  description: "Array of schema objects"
+                  mapping: "$."
             - method: POST
               name: create-schema
               description: "Create a schema"
               call: "snowflake-schema.create-schema"
+              inputParameters:
+                - name: database
+                  in: body
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-schema.create-schema.database"
+                - name: name
+                  in: body
+                  type: string
+                  required: true
+                  description: "Schema name"
+                  mapping: "snowflake-schema.create-schema.name"
+              outputParameters:
+                - name: result
+                  type: object
+                  description: "Created schema metadata"
+                  mapping: "$."
         - path: /v1/tables
           name: tables
           description: "Table management"
@@ -85,10 +176,52 @@ capability:
               name: list-tables
               description: "List tables"
               call: "snowflake-table.list-tables"
+              inputParameters:
+                - name: database
+                  in: query
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-table.list-tables.database"
+                - name: schema
+                  in: query
+                  type: string
+                  required: true
+                  description: "Schema name"
+                  mapping: "snowflake-table.list-tables.schema"
+              outputParameters:
+                - name: tables
+                  type: array
+                  description: "Array of table objects"
+                  mapping: "$."
             - method: POST
               name: create-table
               description: "Create a table"
               call: "snowflake-table.create-table"
+              inputParameters:
+                - name: database
+                  in: body
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-table.create-table.database"
+                - name: schema
+                  in: body
+                  type: string
+                  required: true
+                  description: "Schema name"
+                  mapping: "snowflake-table.create-table.schema"
+                - name: name
+                  in: body
+                  type: string
+                  required: true
+                  description: "Table name"
+                  mapping: "snowflake-table.create-table.name"
+              outputParameters:
+                - name: result
+                  type: object
+                  description: "Created table metadata"
+                  mapping: "$."
         - path: /v1/views
           name: views
           description: "View management"
@@ -97,10 +230,52 @@ capability:
               name: list-views
               description: "List views"
               call: "snowflake-view.list-views"
+              inputParameters:
+                - name: database
+                  in: query
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-view.list-views.database"
+                - name: schema
+                  in: query
+                  type: string
+                  required: true
+                  description: "Schema name"
+                  mapping: "snowflake-view.list-views.schema"
+              outputParameters:
+                - name: views
+                  type: array
+                  description: "Array of view objects"
+                  mapping: "$."
             - method: POST
               name: create-view
               description: "Create a view"
               call: "snowflake-view.create-view"
+              inputParameters:
+                - name: database
+                  in: body
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-view.create-view.database"
+                - name: schema
+                  in: body
+                  type: string
+                  required: true
+                  description: "Schema name"
+                  mapping: "snowflake-view.create-view.schema"
+                - name: name
+                  in: body
+                  type: string
+                  required: true
+                  description: "View name"
+                  mapping: "snowflake-view.create-view.name"
+              outputParameters:
+                - name: result
+                  type: object
+                  description: "Created view metadata"
+                  mapping: "$."
         - path: /v1/dynamic-tables
           name: dynamic-tables
           description: "Dynamic table management"
@@ -109,10 +284,52 @@ capability:
               name: list-dynamic-tables
               description: "List dynamic tables"
               call: "snowflake-dynamic-table.list-dynamic-tables"
+              inputParameters:
+                - name: database
+                  in: query
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-dynamic-table.list-dynamic-tables.database"
+                - name: schema
+                  in: query
+                  type: string
+                  required: true
+                  description: "Schema name"
+                  mapping: "snowflake-dynamic-table.list-dynamic-tables.schema"
+              outputParameters:
+                - name: dynamicTables
+                  type: array
+                  description: "Array of dynamic table objects"
+                  mapping: "$."
             - method: POST
               name: create-dynamic-table
               description: "Create a dynamic table"
               call: "snowflake-dynamic-table.create-dynamic-table"
+              inputParameters:
+                - name: database
+                  in: body
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-dynamic-table.create-dynamic-table.database"
+                - name: schema
+                  in: body
+                  type: string
+                  required: true
+                  description: "Schema name"
+                  mapping: "snowflake-dynamic-table.create-dynamic-table.schema"
+                - name: name
+                  in: body
+                  type: string
+                  required: true
+                  description: "Dynamic table name"
+                  mapping: "snowflake-dynamic-table.create-dynamic-table.name"
+              outputParameters:
+                - name: result
+                  type: object
+                  description: "Created dynamic table metadata"
+                  mapping: "$."
         - path: /v1/iceberg-tables
           name: iceberg-tables
           description: "Iceberg table management"
@@ -121,144 +338,878 @@ capability:
               name: list-iceberg-tables
               description: "List Iceberg tables"
               call: "snowflake-iceberg-table.list-iceberg-tables"
+              inputParameters:
+                - name: database
+                  in: query
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-iceberg-table.list-iceberg-tables.database"
+                - name: schema
+                  in: query
+                  type: string
+                  required: true
+                  description: "Schema name"
+                  mapping: "snowflake-iceberg-table.list-iceberg-tables.schema"
+              outputParameters:
+                - name: icebergTables
+                  type: array
+                  description: "Array of Iceberg table objects"
+                  mapping: "$."
             - method: POST
               name: create-iceberg-table
               description: "Create an Iceberg table"
               call: "snowflake-iceberg-table.create-iceberg-table"
+              inputParameters:
+                - name: database
+                  in: body
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-iceberg-table.create-iceberg-table.database"
+                - name: schema
+                  in: body
+                  type: string
+                  required: true
+                  description: "Schema name"
+                  mapping: "snowflake-iceberg-table.create-iceberg-table.schema"
+                - name: name
+                  in: body
+                  type: string
+                  required: true
+                  description: "Iceberg table name"
+                  mapping: "snowflake-iceberg-table.create-iceberg-table.name"
+              outputParameters:
+                - name: result
+                  type: object
+                  description: "Created Iceberg table metadata"
+                  mapping: "$."
 
     - type: mcp
       port: 9080
       namespace: snowflake-data-mgmt-mcp
       transport: http
-      description: "MCP server for AI-assisted Snowflake data structure management."
+      description: "MCP server (HTTP transport) for AI-assisted Snowflake data structure management."
       tools:
         - name: list-databases
           description: "List all accessible databases"
+          call: "snowflake-database.list-databases"
           hints:
             readOnly: true
-          call: "snowflake-database.list-databases"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: like
+              type: string
+              required: false
+              description: "Filter by name pattern"
+              mapping: "snowflake-database.list-databases.like"
+          outputParameters:
+            - name: databases
+              type: array
+              description: "Array of database objects"
+              mapping: "$."
         - name: create-database
           description: "Create a new database"
+          call: "snowflake-database.create-database"
           hints:
             readOnly: false
-          call: "snowflake-database.create-database"
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "Database name to create"
+              mapping: "snowflake-database.create-database.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Created database metadata"
+              mapping: "$."
         - name: fetch-database
           description: "Fetch database details by name"
+          call: "snowflake-database.fetch-database"
           hints:
             readOnly: true
-          call: "snowflake-database.fetch-database"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-database.fetch-database.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Database metadata"
+              mapping: "$."
         - name: delete-database
           description: "Delete a database"
-          hints:
-            destructive: true
           call: "snowflake-database.delete-database"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-database.delete-database.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Delete status"
+              mapping: "$."
         - name: clone-database
           description: "Clone a database"
+          call: "snowflake-database.clone-database"
           hints:
             readOnly: false
-          call: "snowflake-database.clone-database"
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "Source database name"
+              mapping: "snowflake-database.clone-database.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Cloned database metadata"
+              mapping: "$."
         - name: undrop-database
           description: "Restore a dropped database"
+          call: "snowflake-database.undrop-database"
           hints:
             readOnly: false
-          call: "snowflake-database.undrop-database"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-database.undrop-database.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Restore status"
+              mapping: "$."
         - name: list-schemas
           description: "List schemas in a database"
+          call: "snowflake-schema.list-schemas"
           hints:
             readOnly: true
-          call: "snowflake-schema.list-schemas"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-schema.list-schemas.database"
+            - name: like
+              type: string
+              required: false
+              description: "Filter by name pattern"
+              mapping: "snowflake-schema.list-schemas.like"
+          outputParameters:
+            - name: schemas
+              type: array
+              description: "Array of schema objects"
+              mapping: "$."
         - name: create-schema
           description: "Create a new schema"
+          call: "snowflake-schema.create-schema"
           hints:
             readOnly: false
-          call: "snowflake-schema.create-schema"
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-schema.create-schema.database"
+            - name: name
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-schema.create-schema.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Created schema metadata"
+              mapping: "$."
         - name: fetch-schema
           description: "Fetch schema details"
+          call: "snowflake-schema.fetch-schema"
           hints:
             readOnly: true
-          call: "snowflake-schema.fetch-schema"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-schema.fetch-schema.database"
+            - name: name
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-schema.fetch-schema.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Schema metadata"
+              mapping: "$."
         - name: delete-schema
           description: "Delete a schema"
-          hints:
-            destructive: true
           call: "snowflake-schema.delete-schema"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-schema.delete-schema.database"
+            - name: name
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-schema.delete-schema.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Delete status"
+              mapping: "$."
         - name: list-tables
           description: "List tables in a schema"
+          call: "snowflake-table.list-tables"
           hints:
             readOnly: true
-          call: "snowflake-table.list-tables"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-table.list-tables.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-table.list-tables.schema"
+          outputParameters:
+            - name: tables
+              type: array
+              description: "Array of table objects"
+              mapping: "$."
         - name: create-table
           description: "Create a new table"
+          call: "snowflake-table.create-table"
           hints:
             readOnly: false
-          call: "snowflake-table.create-table"
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-table.create-table.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-table.create-table.schema"
+            - name: name
+              type: string
+              required: true
+              description: "Table name"
+              mapping: "snowflake-table.create-table.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Created table metadata"
+              mapping: "$."
         - name: fetch-table
           description: "Fetch table details"
+          call: "snowflake-table.fetch-table"
           hints:
             readOnly: true
-          call: "snowflake-table.fetch-table"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-table.fetch-table.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-table.fetch-table.schema"
+            - name: name
+              type: string
+              required: true
+              description: "Table name"
+              mapping: "snowflake-table.fetch-table.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Table metadata"
+              mapping: "$."
         - name: delete-table
           description: "Delete a table"
-          hints:
-            destructive: true
           call: "snowflake-table.delete-table"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-table.delete-table.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-table.delete-table.schema"
+            - name: name
+              type: string
+              required: true
+              description: "Table name"
+              mapping: "snowflake-table.delete-table.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Delete status"
+              mapping: "$."
         - name: list-views
           description: "List views in a schema"
+          call: "snowflake-view.list-views"
           hints:
             readOnly: true
-          call: "snowflake-view.list-views"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-view.list-views.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-view.list-views.schema"
+          outputParameters:
+            - name: views
+              type: array
+              description: "Array of view objects"
+              mapping: "$."
         - name: create-view
           description: "Create a new view"
+          call: "snowflake-view.create-view"
           hints:
             readOnly: false
-          call: "snowflake-view.create-view"
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-view.create-view.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-view.create-view.schema"
+            - name: name
+              type: string
+              required: true
+              description: "View name"
+              mapping: "snowflake-view.create-view.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Created view metadata"
+              mapping: "$."
         - name: list-dynamic-tables
           description: "List dynamic tables"
+          call: "snowflake-dynamic-table.list-dynamic-tables"
           hints:
             readOnly: true
-          call: "snowflake-dynamic-table.list-dynamic-tables"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-dynamic-table.list-dynamic-tables.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-dynamic-table.list-dynamic-tables.schema"
+          outputParameters:
+            - name: dynamicTables
+              type: array
+              description: "Array of dynamic table objects"
+              mapping: "$."
         - name: create-dynamic-table
           description: "Create a dynamic table"
+          call: "snowflake-dynamic-table.create-dynamic-table"
           hints:
             readOnly: false
-          call: "snowflake-dynamic-table.create-dynamic-table"
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-dynamic-table.create-dynamic-table.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-dynamic-table.create-dynamic-table.schema"
+            - name: name
+              type: string
+              required: true
+              description: "Dynamic table name"
+              mapping: "snowflake-dynamic-table.create-dynamic-table.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Created dynamic table metadata"
+              mapping: "$."
         - name: suspend-dynamic-table
           description: "Suspend a dynamic table"
+          call: "snowflake-dynamic-table.suspend-dynamic-table"
           hints:
             readOnly: false
-          call: "snowflake-dynamic-table.suspend-dynamic-table"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-dynamic-table.suspend-dynamic-table.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-dynamic-table.suspend-dynamic-table.schema"
+            - name: name
+              type: string
+              required: true
+              description: "Dynamic table name"
+              mapping: "snowflake-dynamic-table.suspend-dynamic-table.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Suspend status"
+              mapping: "$."
         - name: resume-dynamic-table
           description: "Resume a dynamic table"
+          call: "snowflake-dynamic-table.resume-dynamic-table"
           hints:
             readOnly: false
-          call: "snowflake-dynamic-table.resume-dynamic-table"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-dynamic-table.resume-dynamic-table.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-dynamic-table.resume-dynamic-table.schema"
+            - name: name
+              type: string
+              required: true
+              description: "Dynamic table name"
+              mapping: "snowflake-dynamic-table.resume-dynamic-table.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Resume status"
+              mapping: "$."
         - name: list-iceberg-tables
           description: "List Iceberg tables"
+          call: "snowflake-iceberg-table.list-iceberg-tables"
           hints:
             readOnly: true
-          call: "snowflake-iceberg-table.list-iceberg-tables"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-iceberg-table.list-iceberg-tables.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-iceberg-table.list-iceberg-tables.schema"
+          outputParameters:
+            - name: icebergTables
+              type: array
+              description: "Array of Iceberg table objects"
+              mapping: "$."
         - name: create-iceberg-table
           description: "Create an Iceberg table"
+          call: "snowflake-iceberg-table.create-iceberg-table"
           hints:
             readOnly: false
-          call: "snowflake-iceberg-table.create-iceberg-table"
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-iceberg-table.create-iceberg-table.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-iceberg-table.create-iceberg-table.schema"
+            - name: name
+              type: string
+              required: true
+              description: "Iceberg table name"
+              mapping: "snowflake-iceberg-table.create-iceberg-table.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Created Iceberg table metadata"
+              mapping: "$."
         - name: list-event-tables
           description: "List event tables"
+          call: "snowflake-event-table.list-event-tables"
           hints:
             readOnly: true
-          call: "snowflake-event-table.list-event-tables"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-event-table.list-event-tables.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-event-table.list-event-tables.schema"
+          outputParameters:
+            - name: eventTables
+              type: array
+              description: "Array of event table objects"
+              mapping: "$."
         - name: create-event-table
           description: "Create an event table"
+          call: "snowflake-event-table.create-event-table"
           hints:
             readOnly: false
-          call: "snowflake-event-table.create-event-table"
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-event-table.create-event-table.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-event-table.create-event-table.schema"
+            - name: name
+              type: string
+              required: true
+              description: "Event table name"
+              mapping: "snowflake-event-table.create-event-table.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Created event table metadata"
+              mapping: "$."
         - name: list-external-volumes
           description: "List external volumes"
+          call: "snowflake-external-volume.list-external-volumes"
           hints:
             readOnly: true
-          call: "snowflake-external-volume.list-external-volumes"
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: like
+              type: string
+              required: false
+              description: "Filter by name pattern"
+              mapping: "snowflake-external-volume.list-external-volumes.like"
+          outputParameters:
+            - name: externalVolumes
+              type: array
+              description: "Array of external volume objects"
+              mapping: "$."
         - name: create-external-volume
           description: "Create an external volume"
+          call: "snowflake-external-volume.create-external-volume"
           hints:
             readOnly: false
-          call: "snowflake-external-volume.create-external-volume"
+            destructive: false
+            idempotent: false
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "External volume name"
+              mapping: "snowflake-external-volume.create-external-volume.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Created external volume metadata"
+              mapping: "$."
+
+    - type: mcp
+      namespace: snowflake-data-mgmt-mcp-stdio
+      transport: stdio
+      description: "MCP server (stdio transport) for local IDE and CLI AI clients managing Snowflake data structures."
+      tools:
+        - name: list-databases
+          description: "List all accessible databases"
+          call: "snowflake-database.list-databases"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: like
+              type: string
+              required: false
+              description: "Filter by name pattern"
+              mapping: "snowflake-database.list-databases.like"
+          outputParameters:
+            - name: databases
+              type: array
+              description: "Array of database objects"
+              mapping: "$."
+        - name: fetch-database
+          description: "Fetch database details by name"
+          call: "snowflake-database.fetch-database"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: name
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-database.fetch-database.name"
+          outputParameters:
+            - name: result
+              type: object
+              description: "Database metadata"
+              mapping: "$."
+        - name: list-schemas
+          description: "List schemas in a database"
+          call: "snowflake-schema.list-schemas"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-schema.list-schemas.database"
+          outputParameters:
+            - name: schemas
+              type: array
+              description: "Array of schema objects"
+              mapping: "$."
+        - name: list-tables
+          description: "List tables in a schema"
+          call: "snowflake-table.list-tables"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-table.list-tables.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-table.list-tables.schema"
+          outputParameters:
+            - name: tables
+              type: array
+              description: "Array of table objects"
+              mapping: "$."
+        - name: list-views
+          description: "List views in a schema"
+          call: "snowflake-view.list-views"
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          inputParameters:
+            - name: database
+              type: string
+              required: true
+              description: "Database name"
+              mapping: "snowflake-view.list-views.database"
+            - name: schema
+              type: string
+              required: true
+              description: "Schema name"
+              mapping: "snowflake-view.list-views.schema"
+          outputParameters:
+            - name: views
+              type: array
+              description: "Array of view objects"
+              mapping: "$."
+
+    - type: skill
+      namespace: snowflake-data-mgmt-skill
+      description: "Agent Skills exposure for Snowflake data structure management. Provides AI agents a skill-aware surface for discovering and invoking data management actions."
+      skills:
+        - name: snowflake-data-mgmt-skill
+          description: "Manage Snowflake data structures — databases, schemas, tables, views, dynamic tables, iceberg tables, and event tables — through a capability-first agent skill."
+          tools:
+            - name: list-databases
+              description: "List all accessible Snowflake databases"
+              call: "snowflake-database.list-databases"
+              hints:
+                readOnly: true
+                destructive: false
+                idempotent: true
+              inputParameters:
+                - name: like
+                  type: string
+                  required: false
+                  description: "Filter by name pattern"
+                  mapping: "snowflake-database.list-databases.like"
+              outputParameters:
+                - name: databases
+                  type: array
+                  description: "Array of database objects"
+                  mapping: "$."
+            - name: create-database
+              description: "Create a new Snowflake database"
+              call: "snowflake-database.create-database"
+              hints:
+                readOnly: false
+                destructive: false
+                idempotent: false
+              inputParameters:
+                - name: name
+                  type: string
+                  required: true
+                  description: "Database name to create"
+                  mapping: "snowflake-database.create-database.name"
+              outputParameters:
+                - name: result
+                  type: object
+                  description: "Created database metadata"
+                  mapping: "$."
+            - name: list-schemas
+              description: "List schemas in a Snowflake database"
+              call: "snowflake-schema.list-schemas"
+              hints:
+                readOnly: true
+                destructive: false
+                idempotent: true
+              inputParameters:
+                - name: database
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-schema.list-schemas.database"
+              outputParameters:
+                - name: schemas
+                  type: array
+                  description: "Array of schema objects"
+                  mapping: "$."
+            - name: list-tables
+              description: "List tables in a Snowflake schema"
+              call: "snowflake-table.list-tables"
+              hints:
+                readOnly: true
+                destructive: false
+                idempotent: true
+              inputParameters:
+                - name: database
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-table.list-tables.database"
+                - name: schema
+                  type: string
+                  required: true
+                  description: "Schema name"
+                  mapping: "snowflake-table.list-tables.schema"
+              outputParameters:
+                - name: tables
+                  type: array
+                  description: "Array of table objects"
+                  mapping: "$."
+            - name: create-table
+              description: "Create a table in Snowflake"
+              call: "snowflake-table.create-table"
+              hints:
+                readOnly: false
+                destructive: false
+                idempotent: false
+              inputParameters:
+                - name: database
+                  type: string
+                  required: true
+                  description: "Database name"
+                  mapping: "snowflake-table.create-table.database"
+                - name: schema
+                  type: string
+                  required: true
+                  description: "Schema name"
+                  mapping: "snowflake-table.create-table.schema"
+                - name: name
+                  type: string
+                  required: true
+                  description: "Table name"
+                  mapping: "snowflake-table.create-table.name"
+              outputParameters:
+                - name: result
+                  type: object
+                  description: "Created table metadata"
+                  mapping: "$."
