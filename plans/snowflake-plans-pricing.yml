@@ -1,0 +1,130 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Snowflake
+providerId: snowflake
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Data Warehouse
+  - Data Lakehouse
+  - Data Cloud
+description: 'Snowflake credit-based pricing with editions: Standard / Enterprise / Business Critical
+  / VPS.'
+sources:
+  - https://www.snowflake.com/en/pricing-options/
+plans:
+  - id: snowflake-standard
+    name: Standard
+    type: usage-based
+    description: $2.00 per credit (US, on-demand).
+    entries:
+      - label: Per credit
+        name: credit
+        type: metered
+        metric: credit
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '2.00'
+        userMultiplied: false
+      - label: Storage (on-demand)
+        name: storage
+        type: metered
+        metric: TB-month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '23.00'
+        userMultiplied: false
+    elements:
+      - name: All standard features
+      - name: AES-256 encryption
+      - name: Standard support
+      - name: X-Small to 6X-Large warehouses
+  - id: snowflake-enterprise
+    name: Enterprise
+    type: paid
+    description: $3.00 per credit (1.5x Standard).
+    entries:
+      - label: Per credit
+        name: credit
+        type: metered
+        metric: credit
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '3.00'
+        userMultiplied: false
+      - label: Storage (on-demand)
+        name: storage
+        type: metered
+        metric: TB-month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '23.00'
+        userMultiplied: false
+    elements:
+      - name: Multi-cluster warehouses
+      - name: Time Travel up to 90 days
+      - name: Materialized views
+      - name: Search optimization
+      - name: Dynamic data masking
+      - name: External tokenization
+  - id: snowflake-business-critical
+    name: Business Critical
+    type: paid
+    description: $4.00 per credit (2x Standard).
+    entries:
+      - label: Per credit
+        name: credit
+        type: metered
+        metric: credit
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: '4.00'
+        userMultiplied: false
+      - label: Storage (on-demand)
+        name: storage
+        type: metered
+        metric: TB-month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '23.00'
+        userMultiplied: false
+    elements:
+      - name: Customer-managed keys (CMK)
+      - name: PrivateLink
+      - name: HIPAA + PCI compliance
+      - name: Database failover/failback
+      - name: Tri-secret secure
+  - id: snowflake-vps
+    name: VPS (Virtual Private Snowflake)
+    type: enterprise
+    description: Custom; dedicated metadata store.
+    entries:
+      - label: Annual (custom)
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: Dedicated metadata store
+      - name: Customer-dedicated VPC
+      - name: All Business Critical features
+      - name: Highest isolation

@@ -1,0 +1,65 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Snowflake
+providerId: snowflake
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Data Cloud
+description: FOCUS-aligned FinOps for Snowflake.
+sources:
+  - https://www.snowflake.com/en/pricing-options/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Snowflake
+serviceCategory: Data Cloud
+billingModel:
+  pricingCategory: Per-Credit + Per-TB Storage
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  ServiceName: Snowflake
+  ServiceCategory: Data Cloud
+  ProviderName: Snowflake
+  PublisherName: Snowflake
+  BillingCurrency: USD
+meters:
+  - name: credits_consumed
+    unit: credit
+    aggregation: sum
+    dimensions:
+      - warehouse
+      - edition
+      - service
+  - name: storage
+    unit: TB-month
+    aggregation: max
+  - name: data_transfer
+    unit: TB
+    aggregation: sum
+  - name: snowpipe_credits
+    unit: credit
+    aggregation: sum
+  - name: serverless_compute_credits
+    unit: credit
+    aggregation: sum
+  - name: cloud_services_credits
+    unit: credit
+    aggregation: sum
+principles:
+  - name: Visibility
+    description: Track Snowflake consumption monthly.
+  - name: Allocation
+    description: Tag usage to teams/cost centers.
+  - name: Optimization
+    description: Right-size; reclaim unused entitlements.
+  - name: Accountability
+    description: Set spend alerts; quarterly review.

@@ -1,0 +1,39 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Snowflake
+providerId: snowflake
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Data Warehouse
+description: Snowflake API and warehouse concurrency limits.
+sources:
+  - https://www.snowflake.com/en/pricing-options/
+  - https://docs.snowflake.com/en/developer-guide/sql-api/intro
+headers: {}
+responseCodes:
+  throttled: 429
+limits:
+  - name: SQL API
+    scope: user
+    metric: concurrent_queries
+    limit: 60
+    notes: Default per-user concurrency
+  - name: Warehouse query concurrency
+    scope: warehouse
+    metric: concurrent_queries
+    limit: 8
+    notes: Default per warehouse; raise via MAX_CONCURRENCY_LEVEL
+  - name: Snowpipe streaming
+    scope: channel
+    metric: MB_per_second
+    limit: 10
+    timeFrame: second per channel
+  - name: Account API
+    scope: account
+    metric: requests_per_minute
+    limit: 1000
+    timeFrame: minute
