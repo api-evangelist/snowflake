@@ -1,0 +1,39 @@
+---
+title: "OpenAI GPT 5.5 on Snowflake Cortex AI"
+url: "https://www.snowflake.com/content/snowflake-site/global/en/blog/openai-gpt-5-5-snowflake-cortex-ai"
+date: "Fri, 24 Apr 2026 11:37:00 -0700"
+author: "John Bae, Thant Htoo Zaw, Arun Agarwal, Paras Mehra"
+feed_url: "https://publish-p57963-e462109.adobeaemcloud.com/feed/?lang=en"
+---
+<ul>
+<li><b>Developers can build AI applications closer to their secure data: </b>Use the <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-llm-rest-api" rel="nofollow noopener noreferrer" target="_blank">Cortex REST API</a> to build agentic enterprise applications within the Snowflake security perimeter. They can leverage new capabilities such as GPT-5.5’s adjustable effort levels, enabling the model to balance reasoning depth and latency on a task. Developers can get started quickly using the OpenAI SDK by pointing it to their Snowflake Cortex REST API endpoint, enabling a seamless integration with familiar Anthropic tooling.</li>
+</ul>
+<p>We are thrilled to announce the availability of <a href="https://openai.com/index/introducing-gpt-5-5/" rel="nofollow noopener noreferrer" target="_blank">OpenAI GPT 5.5</a>, OpenAI's latest model, on <a href="https://www.snowflake.com/en/product/features/cortex/" rel="nofollow noopener noreferrer" target="_blank">Snowflake Cortex AI</a>.&nbsp;As a launch partner with OpenAI, we're providing same-day availability of OpenAI GPT 5.5 in private preview. It is available within the secure Snowflake perimeter for use with <a href="https://www.snowflake.com/en/product/features/cortex-code/" rel="nofollow noopener noreferrer" target="_blank">Cortex Code</a>, <a href="https://www.snowflake.com/en/product/snowflake-intelligence/" rel="nofollow noopener noreferrer" target="_blank">Snowflake Intelligence</a>, <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql" rel="nofollow noopener noreferrer" target="_blank">Snowflake Cortex AI Functions</a> and <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-llm-rest-api" rel="nofollow noopener noreferrer" target="_blank">Cortex REST API</a>.</p>
+<h2>OpenAI GPT 5.5</h2>
+<p>GPT-5.5 is OpenAI's most capable frontier model to date, providing notable improvements in agentic coding, computer use and knowledge work. Rather than breaking tasks into detailed steps, you can hand it a complex, multi-part problem and it plans, validates and works through ambiguity end-to-end on its own. It's especially strong at coding, debugging, data analysis and document generation.</p>
+<ul>
+<li><p><b>Build advanced enterprise intelligence agents:</b> <a href="https://www.snowflake.com/en/blog/snowflake-intelligence-work-agent/" rel="nofollow noopener noreferrer" target="_blank">Snowflake Intelligence&nbsp;</a> introduces a new category of agents designed to transform how organizations work, collaborate and innovate by fostering a truly data-driven culture. Every employee, regardless of technical depth, can ask complex questions in natural language, uncover the “why” behind every “what” and take confident action, all within Snowflake’s secure and governed perimeter. For developers, admins and builders, GPT-5.5 will extend this foundation, enabling the creation of advanced agents that reason across complex data, write and execute code with greater autonomy&nbsp; and orchestrate analytical and operational workflows.</p>
+</li>
+</ul>
+<p>Moving agentic AI from concept production is now a strategic imperative. Powered by OpenAI's GPT 5.5, agents can handle complex, long-running tasks with greater consistency and reduced supervision, driving real work forward at scale. With multiple entry points from <a href="https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-cli" rel="nofollow noopener noreferrer" target="_blank">Cortex Code CLI</a> to <a href="https://www.snowflake.com/en/product/snowflake-intelligence/" rel="nofollow noopener noreferrer" target="_blank">Snowflake Intelligence,</a> <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql" rel="nofollow noopener noreferrer" target="_blank">Cortex AI Functions</a> and <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api" rel="nofollow noopener noreferrer" target="_blank">REST APIs</a>, customers can easily adopt this capability and accelerate their path to high-impact, production-ready agentic AI at scale.</p>
+<h2>Learn more&nbsp;</h2>
+<ul>
+<li><p>Read our latest announcement for <a href="https://www.snowflake.com/en/blog/cortex-code-governed-agent-data-stack/" rel="nofollow noopener noreferrer" target="_blank">Cortex Code</a>, and learn more about it <a href="https://www.snowflake.com/en/product/features/cortex-code/" rel="nofollow noopener noreferrer" target="_blank">here</a>.</p>
+</li>
+<li><p>Read more about the latest <a href="https://www.snowflake.com/en/blog/snowflake-intelligence-work-agent/" rel="nofollow noopener noreferrer" target="_blank">Snowflake Intelligence innovations</a> and <a href="https://www.snowflake.com/en/product/snowflake-intelligence/" rel="nofollow noopener noreferrer" target="_blank">click here</a> to learn more.</p>
+</li>
+<li><p>Get Started with MCP Connectors in Snowflake Intelligence <a href="https://www.snowflake.com/en/developers/guides/sfguide-getting-started-with-mcp-connectors/" rel="nofollow noopener noreferrer" target="_blank">using this guide</a>.</p>
+</li>
+</ul>
+<p>&nbsp;</p>
+<p><sub>Forward-looking statements</sub></p>
+<p><sub>This article contains forward-looking statements, including about our future product offerings, and are not commitments to deliver any product offerings. Actual results and offerings may differ and are subject to known and unknown risk and uncertainties. See our latest 10-Q for more information.</sub></p>
+<p><sub>Source: <a href="https://openai.com/index/introducing-gpt-5-5/" rel="nofollow noopener noreferrer" target="_blank">OpenAI</a>, Apr 23, 2026</sub></p>
+<h2>What you can do with OpenAI GPT 5.5 on Snowflake</h2>
+<p>GPT 5.5 joins other leading frontier models in Snowflake Cortex AI, enabling a wide range of enterprise use cases, all within Snowflake’s perimeter. With GPT 5.5, you can:&nbsp;</p>
+<ul>
+<li><b>Speed up development with <a href="https://www.snowflake.com/en/product/features/cortex-code/" rel="nofollow noopener noreferrer" target="_blank">Cortex Code</a>: </b>Snowflake’s AI coding agent understands your enterprise data, governance policies and workflows, enabling teams to go from idea to production quickly without breaking trust or impacting scale. Now, with GPT-5.5, Cortex Code enables improved reasoning, code generation, support for more complex, long-running tasks and agentic execution, bringing secure, Snowflake-aware assistance directly into Snowsight interface, the CLI and local dev tools. For data engineers, analysts and builders, it turns natural language into production-ready pipelines, analytics and AI agents — collapsing weeks of glue work into minutes, while staying governed, interoperable and enterprise-grade. You can try OpenAI GPT-5.5 in private preview using /model command within the CLI:&nbsp;</li>
+</ul>
+<ul>
+<li><b>Analyze structured and unstructured data with unparalleled precision:</b> <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql" rel="nofollow noopener noreferrer" target="_blank">Cortex AI Functions</a> make it easy to build scalable AI pipelines across multimodal enterprise data using SQL. Cortex AI Functions deliver high-performance processing at a lower cost than manually orchestrated AI pipelines, enabling trusted insights across the enterprise while maintaining the security and governance capabilities Snowflake is known for. For example, with the AI_COMPLETE function, analysts can apply natural language instructions directly in SQL, leveraging&nbsp; models such as GPT 5.5.</li>
+</ul>
