@@ -1,1176 +1,1566 @@
-# Snowflake Data Engineering — Composed Capability
-# Composition: aggregates 9 shared Snowflake source capabilities (SQL API, tasks,
-# streams, pipes, stages, functions, procedures, UDFs, results) under a single
-# data-engineering domain facade.
-# Triple exposure: the same domain is surfaced through (1) a REST adapter for
-# conventional clients, (2) an MCP over HTTP server for remote AI agents, (3) an
-# MCP over stdio server for local IDE/agent clients, and (4) an Agent Skills
-# server for skill-aware agents. One capability, four consumer channels.
-# Aligned with Naftiko Framework v1.0.0-alpha1 spec patterns from the
-# Use Cases guide (#1 AI integration, #2 Rightsize AI context,
-# #8 Capability-first context engineering).
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Snowflake Data Engineering"
-  description: "Unified workflow for building and managing data pipelines using SQL execution, tasks, streams, pipes, stages, and functions. Used by Data Engineers to orchestrate ETL/ELT workflows and continuous data ingestion."
+  label: Snowflake Data Engineering
+  description: Unified workflow for building and managing data pipelines using SQL execution, tasks, streams, pipes, stages,
+    and functions. Used by Data Engineers to orchestrate ETL/ELT workflows and continuous data ingestion.
   tags:
-    - Snowflake
-    - Data Engineering
-    - ETL
-    - Data Pipelines
-  created: "2026-04-18"
-  modified: "2026-04-23"
-
+  - Snowflake
+  - Data Engineering
+  - ETL
+  - Data Pipelines
+  created: '2026-04-18'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
-      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
-
+- namespace: env
+  keys:
+    SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+    SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
 capability:
   consumes:
-    - import: snowflake-sql
-      location: ./shared/sqlapi.yaml
-    - import: snowflake-task
-      location: ./shared/task.yaml
-    - import: snowflake-stream
-      location: ./shared/stream.yaml
-    - import: snowflake-pipe
-      location: ./shared/pipe.yaml
-    - import: snowflake-stage
-      location: ./shared/stage.yaml
-    - import: snowflake-function
-      location: ./shared/function.yaml
-    - import: snowflake-procedure
-      location: ./shared/procedure.yaml
-    - import: snowflake-udf
-      location: ./shared/user-defined-function.yaml
-    - import: snowflake-result
-      location: ./shared/result.yaml
-
+  - type: http
+    namespace: snowflake-sql
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake SQL API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: statements
+      path: /api/v2/statements
+      description: SQL statement resources
+      operations:
+      - name: submit-statement
+        method: POST
+        description: Submit a SQL statement for execution
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            statement: '{{tools.statement}}'
+            warehouse: '{{tools.warehouse}}'
+      - name: get-statement-status
+        method: GET
+        description: Get the status of a submitted statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: cancel-statement
+        method: POST
+        description: Cancel a running statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: snowflake-task
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake Task API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: tasks
+      path: /api/v2/databases/{database}/schemas/{schema}/tasks
+      description: Task resources
+      operations:
+      - name: list-tasks
+        method: GET
+        description: List tasks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-task
+        method: POST
+        description: Create a task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: fetch-task
+        method: GET
+        description: Fetch a task by name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-task
+        method: DELETE
+        description: Delete a task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: execute-task
+        method: POST
+        description: Execute a task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: resume-task
+        method: POST
+        description: Resume a suspended task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: suspend-task
+        method: POST
+        description: Suspend a task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: snowflake-stream
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake Stream API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: streams
+      path: /api/v2/databases/{database}/schemas/{schema}/streams
+      description: Stream resources
+      operations:
+      - name: list-streams
+        method: GET
+        description: List streams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-stream
+        method: POST
+        description: Create a stream
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: fetch-stream
+        method: GET
+        description: Fetch a stream by name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-stream
+        method: DELETE
+        description: Delete a stream
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: snowflake-pipe
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake Pipe API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: pipes
+      path: /api/v2/databases/{database}/schemas/{schema}/pipes
+      description: Pipe resources
+      operations:
+      - name: list-pipes
+        method: GET
+        description: List pipes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-pipe
+        method: POST
+        description: Create a pipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: fetch-pipe
+        method: GET
+        description: Fetch a pipe by name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-pipe
+        method: DELETE
+        description: Delete a pipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: refresh-pipe
+        method: POST
+        description: Refresh a pipe
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: snowflake-stage
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake Stage API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: stages
+      path: /api/v2/databases/{database}/schemas/{schema}/stages
+      description: Stage resources
+      operations:
+      - name: list-stages
+        method: GET
+        description: List stages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-stage
+        method: POST
+        description: Create a stage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: fetch-stage
+        method: GET
+        description: Fetch a stage by name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-stage
+        method: DELETE
+        description: Delete a stage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: list-files
+        method: GET
+        description: List files in a stage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: snowflake-function
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake Function API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: functions
+      path: /api/v2/databases/{database}/schemas/{schema}/functions
+      description: Function resources
+      operations:
+      - name: list-functions
+        method: GET
+        description: List functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-function
+        method: POST
+        description: Create a function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: fetch-function
+        method: GET
+        description: Fetch a function by name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-function
+        method: DELETE
+        description: Delete a function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: execute-function
+        method: POST
+        description: Execute a function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: snowflake-procedure
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake Procedure API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: procedures
+      path: /api/v2/databases/{database}/schemas/{schema}/procedures
+      description: Procedure resources
+      operations:
+      - name: list-procedures
+        method: GET
+        description: List procedures
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-procedure
+        method: POST
+        description: Create a procedure
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: fetch-procedure
+        method: GET
+        description: Fetch a procedure by name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-procedure
+        method: DELETE
+        description: Delete a procedure
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: call-procedure
+        method: POST
+        description: Call a procedure
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: snowflake-udf
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake User Defined Function API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: user-defined-functions
+      path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions
+      description: UDF resources
+      operations:
+      - name: list-udfs
+        method: GET
+        description: List user defined functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-udf
+        method: POST
+        description: Create a user defined function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: fetch-udf
+        method: GET
+        description: Fetch a UDF by name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-udf
+        method: DELETE
+        description: Delete a UDF
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: snowflake-result
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake Result API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: results
+      path: /api/v2/results
+      description: Result resources
+      operations:
+      - name: get-result
+        method: GET
+        description: Get a query result
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8081
-      namespace: snowflake-data-eng-api
-      description: "Unified REST API for Snowflake data pipeline management."
-      resources:
-        - path: /v1/statements
-          name: statements
-          description: "SQL statement execution"
-          operations:
-            - method: POST
-              name: submit-statement
-              description: "Submit a SQL statement"
-              call: "snowflake-sql.submit-statement"
-              inputParameters:
-                - name: statement
-                  type: string
-                  description: "SQL statement to execute"
-                  required: true
-                  mapping: "$.body.statement"
-                - name: warehouse
-                  type: string
-                  description: "Warehouse used to execute the statement"
-                  required: false
-                  mapping: "$.body.warehouse"
-              outputParameters:
-                - name: statementHandle
-                  type: string
-                  description: "Handle identifying the submitted statement"
-                  mapping: "$.statementHandle"
-                - name: result
-                  type: object
-                  description: "Raw statement submission payload"
-                  mapping: "$."
-        - path: /v1/tasks
-          name: tasks
-          description: "Task management"
-          operations:
-            - method: GET
-              name: list-tasks
-              description: "List tasks"
-              call: "snowflake-task.list-tasks"
-              inputParameters:
-                - name: database
-                  type: string
-                  description: "Database containing the tasks"
-                  required: true
-                  mapping: "$.path.database"
-                - name: schema
-                  type: string
-                  description: "Schema containing the tasks"
-                  required: true
-                  mapping: "$.path.schema"
-              outputParameters:
-                - name: tasks
-                  type: array
-                  description: "Collection of tasks in the schema"
-                  mapping: "$."
-            - method: POST
-              name: create-task
-              description: "Create a task"
-              call: "snowflake-task.create-task"
-              inputParameters:
-                - name: database
-                  type: string
-                  description: "Database that will own the task"
-                  required: true
-                  mapping: "$.path.database"
-                - name: schema
-                  type: string
-                  description: "Schema that will own the task"
-                  required: true
-                  mapping: "$.path.schema"
-                - name: name
-                  type: string
-                  description: "Task name"
-                  required: true
-                  mapping: "$.body.name"
-                - name: definition
-                  type: string
-                  description: "SQL body of the task"
-                  required: true
-                  mapping: "$.body.definition"
-              outputParameters:
-                - name: task
-                  type: object
-                  description: "Created task definition"
-                  mapping: "$."
-        - path: /v1/streams
-          name: streams
-          description: "Stream management"
-          operations:
-            - method: GET
-              name: list-streams
-              description: "List streams"
-              call: "snowflake-stream.list-streams"
-              inputParameters:
-                - name: database
-                  type: string
-                  description: "Database containing the streams"
-                  required: true
-                  mapping: "$.path.database"
-                - name: schema
-                  type: string
-                  description: "Schema containing the streams"
-                  required: true
-                  mapping: "$.path.schema"
-              outputParameters:
-                - name: streams
-                  type: array
-                  description: "Collection of change data capture streams"
-                  mapping: "$."
-            - method: POST
-              name: create-stream
-              description: "Create a stream"
-              call: "snowflake-stream.create-stream"
-              inputParameters:
-                - name: database
-                  type: string
-                  description: "Database that will own the stream"
-                  required: true
-                  mapping: "$.path.database"
-                - name: schema
-                  type: string
-                  description: "Schema that will own the stream"
-                  required: true
-                  mapping: "$.path.schema"
-                - name: name
-                  type: string
-                  description: "Stream name"
-                  required: true
-                  mapping: "$.body.name"
-                - name: table_name
-                  type: string
-                  description: "Source table tracked by the stream"
-                  required: true
-                  mapping: "$.body.table_name"
-        - path: /v1/pipes
-          name: pipes
-          description: "Pipe management"
-          operations:
-            - method: GET
-              name: list-pipes
-              description: "List pipes"
-              call: "snowflake-pipe.list-pipes"
-              inputParameters:
-                - name: database
-                  type: string
-                  description: "Database containing the pipes"
-                  required: true
-                  mapping: "$.path.database"
-                - name: schema
-                  type: string
-                  description: "Schema containing the pipes"
-                  required: true
-                  mapping: "$.path.schema"
-              outputParameters:
-                - name: pipes
-                  type: array
-                  description: "Collection of ingestion pipes"
-                  mapping: "$."
-            - method: POST
-              name: create-pipe
-              description: "Create a pipe"
-              call: "snowflake-pipe.create-pipe"
-              inputParameters:
-                - name: database
-                  type: string
-                  description: "Database that will own the pipe"
-                  required: true
-                  mapping: "$.path.database"
-                - name: schema
-                  type: string
-                  description: "Schema that will own the pipe"
-                  required: true
-                  mapping: "$.path.schema"
-                - name: name
-                  type: string
-                  description: "Pipe name"
-                  required: true
-                  mapping: "$.body.name"
-                - name: copy_statement
-                  type: string
-                  description: "COPY statement that defines the pipe"
-                  required: true
-                  mapping: "$.body.copy_statement"
-        - path: /v1/stages
-          name: stages
-          description: "Stage management"
-          operations:
-            - method: GET
-              name: list-stages
-              description: "List stages"
-              call: "snowflake-stage.list-stages"
-              inputParameters:
-                - name: database
-                  type: string
-                  description: "Database containing the stages"
-                  required: true
-                  mapping: "$.path.database"
-                - name: schema
-                  type: string
-                  description: "Schema containing the stages"
-                  required: true
-                  mapping: "$.path.schema"
-              outputParameters:
-                - name: stages
-                  type: array
-                  description: "Collection of data loading stages"
-                  mapping: "$."
-            - method: POST
-              name: create-stage
-              description: "Create a stage"
-              call: "snowflake-stage.create-stage"
-              inputParameters:
-                - name: database
-                  type: string
-                  description: "Database that will own the stage"
-                  required: true
-                  mapping: "$.path.database"
-                - name: schema
-                  type: string
-                  description: "Schema that will own the stage"
-                  required: true
-                  mapping: "$.path.schema"
-                - name: name
-                  type: string
-                  description: "Stage name"
-                  required: true
-                  mapping: "$.body.name"
-
-    - type: mcp
-      port: 9081
-      namespace: snowflake-data-eng-mcp
-      transport: http
-      description: "MCP server (HTTP) for AI-assisted Snowflake data pipeline management."
-      tools:
-        - name: submit-sql
-          description: "Submit a SQL statement for execution"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: false
-          call: "snowflake-sql.submit-statement"
-          inputParameters:
-            - name: statement
-              type: string
-              description: "SQL statement to execute"
-              required: true
-              mapping: "$.body.statement"
-            - name: warehouse
-              type: string
-              description: "Warehouse used to execute the statement"
-              required: false
-              mapping: "$.body.warehouse"
-          outputParameters:
-            - name: statementHandle
-              type: string
-              description: "Handle identifying the submitted statement"
-              mapping: "$.statementHandle"
-            - name: result
-              type: object
-              description: "Raw statement submission payload"
-              mapping: "$."
-        - name: get-statement-status
-          description: "Get status of a submitted statement"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-sql.get-statement-status"
-          inputParameters:
-            - name: statementHandle
-              type: string
-              description: "Handle of the statement to inspect"
-              required: true
-              mapping: "$.path.statementHandle"
-          outputParameters:
-            - name: status
-              type: string
-              description: "Current execution status"
-              mapping: "$.status"
-            - name: result
-              type: object
-              description: "Full status payload"
-              mapping: "$."
-        - name: cancel-statement
-          description: "Cancel a running statement"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "snowflake-sql.cancel-statement"
-          inputParameters:
-            - name: statementHandle
-              type: string
-              description: "Handle of the statement to cancel"
-              required: true
-              mapping: "$.path.statementHandle"
-          outputParameters:
-            - name: result
-              type: object
-              description: "Cancellation response"
-              mapping: "$."
-        - name: list-tasks
-          description: "List scheduled tasks"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-task.list-tasks"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the tasks"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the tasks"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: tasks
-              type: array
-              description: "Collection of tasks in the schema"
-              mapping: "$."
-        - name: create-task
-          description: "Create a scheduled task"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-task.create-task"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database that will own the task"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema that will own the task"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Task name"
-              required: true
-              mapping: "$.body.name"
-            - name: definition
-              type: string
-              description: "SQL body of the task"
-              required: true
-              mapping: "$.body.definition"
-        - name: execute-task
-          description: "Execute a task immediately"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: false
-          call: "snowflake-task.execute-task"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the task"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the task"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Task name to execute"
-              required: true
-              mapping: "$.path.name"
-        - name: resume-task
-          description: "Resume a suspended task"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "snowflake-task.resume-task"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the task"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the task"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Task name to resume"
-              required: true
-              mapping: "$.path.name"
-        - name: suspend-task
-          description: "Suspend a running task"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "snowflake-task.suspend-task"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the task"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the task"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Task name to suspend"
-              required: true
-              mapping: "$.path.name"
-        - name: list-streams
-          description: "List change data capture streams"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-stream.list-streams"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the streams"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the streams"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: streams
-              type: array
-              description: "Collection of CDC streams"
-              mapping: "$."
-        - name: create-stream
-          description: "Create a CDC stream"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-stream.create-stream"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database that will own the stream"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema that will own the stream"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Stream name"
-              required: true
-              mapping: "$.body.name"
-            - name: table_name
-              type: string
-              description: "Source table tracked by the stream"
-              required: true
-              mapping: "$.body.table_name"
-        - name: list-pipes
-          description: "List data ingestion pipes"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-pipe.list-pipes"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the pipes"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the pipes"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: pipes
-              type: array
-              description: "Collection of ingestion pipes"
-              mapping: "$."
-        - name: create-pipe
-          description: "Create a pipe for continuous ingestion"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-pipe.create-pipe"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database that will own the pipe"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema that will own the pipe"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Pipe name"
-              required: true
-              mapping: "$.body.name"
-            - name: copy_statement
-              type: string
-              description: "COPY statement that defines the pipe"
-              required: true
-              mapping: "$.body.copy_statement"
-        - name: refresh-pipe
-          description: "Refresh a pipe"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "snowflake-pipe.refresh-pipe"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the pipe"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the pipe"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Pipe name to refresh"
-              required: true
-              mapping: "$.path.name"
-        - name: list-stages
-          description: "List data loading stages"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-stage.list-stages"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the stages"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the stages"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: stages
-              type: array
-              description: "Collection of data loading stages"
-              mapping: "$."
-        - name: create-stage
-          description: "Create a stage"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-stage.create-stage"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database that will own the stage"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema that will own the stage"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Stage name"
-              required: true
-              mapping: "$.body.name"
-        - name: list-stage-files
-          description: "List files in a stage"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-stage.list-files"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the stage"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the stage"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Stage name"
-              required: true
-              mapping: "$.path.name"
-          outputParameters:
-            - name: files
-              type: array
-              description: "Collection of files staged for loading"
-              mapping: "$."
-        - name: list-functions
-          description: "List functions"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-function.list-functions"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the functions"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the functions"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: functions
-              type: array
-              description: "Collection of functions"
-              mapping: "$."
-        - name: create-function
-          description: "Create a function"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-function.create-function"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database that will own the function"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema that will own the function"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Function name"
-              required: true
-              mapping: "$.body.name"
-        - name: execute-function
-          description: "Execute a function"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-function.execute-function"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the function"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the function"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Function name to execute"
-              required: true
-              mapping: "$.path.name"
-        - name: list-procedures
-          description: "List stored procedures"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-procedure.list-procedures"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the procedures"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the procedures"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: procedures
-              type: array
-              description: "Collection of stored procedures"
-              mapping: "$."
-        - name: create-procedure
-          description: "Create a stored procedure"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-procedure.create-procedure"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database that will own the procedure"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema that will own the procedure"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Procedure name"
-              required: true
-              mapping: "$.body.name"
-        - name: call-procedure
-          description: "Call a stored procedure"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: false
-          call: "snowflake-procedure.call-procedure"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the procedure"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the procedure"
-              required: true
-              mapping: "$.path.schema"
-            - name: name
-              type: string
-              description: "Procedure name to call"
-              required: true
-              mapping: "$.path.name"
-        - name: list-udfs
-          description: "List user defined functions"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-udf.list-udfs"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the UDFs"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the UDFs"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: udfs
-              type: array
-              description: "Collection of user defined functions"
-              mapping: "$."
-        - name: get-query-result
-          description: "Get a query result"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-result.get-result"
-          inputParameters:
-            - name: statementHandle
-              type: string
-              description: "Handle of the statement whose result is fetched"
-              required: true
-              mapping: "$.path.statementHandle"
-          outputParameters:
-            - name: result
-              type: object
-              description: "Full query result payload"
-              mapping: "$."
-
-    - type: mcp
-      port: 9082
-      namespace: snowflake-data-eng-mcp-stdio
-      transport: stdio
-      description: "MCP server (stdio) for local IDE and agent clients managing Snowflake data pipelines."
-      tools:
-        - name: submit-sql
-          description: "Submit a SQL statement for execution"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: false
-          call: "snowflake-sql.submit-statement"
-          inputParameters:
-            - name: statement
-              type: string
-              description: "SQL statement to execute"
-              required: true
-              mapping: "$.body.statement"
-            - name: warehouse
-              type: string
-              description: "Warehouse used to execute the statement"
-              required: false
-              mapping: "$.body.warehouse"
-          outputParameters:
-            - name: statementHandle
-              type: string
-              description: "Handle identifying the submitted statement"
-              mapping: "$.statementHandle"
-            - name: result
-              type: object
-              description: "Raw statement submission payload"
-              mapping: "$."
-        - name: get-statement-status
-          description: "Get status of a submitted statement"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-sql.get-statement-status"
-          inputParameters:
-            - name: statementHandle
-              type: string
-              description: "Handle of the statement to inspect"
-              required: true
-              mapping: "$.path.statementHandle"
-          outputParameters:
-            - name: status
-              type: string
-              description: "Current execution status"
-              mapping: "$.status"
-        - name: list-tasks
-          description: "List scheduled tasks"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-task.list-tasks"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the tasks"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the tasks"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: tasks
-              type: array
-              description: "Collection of tasks in the schema"
-              mapping: "$."
-        - name: list-streams
-          description: "List change data capture streams"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-stream.list-streams"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the streams"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the streams"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: streams
-              type: array
-              description: "Collection of CDC streams"
-              mapping: "$."
-        - name: list-pipes
-          description: "List data ingestion pipes"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-pipe.list-pipes"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the pipes"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the pipes"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: pipes
-              type: array
-              description: "Collection of ingestion pipes"
-              mapping: "$."
-        - name: list-stages
-          description: "List data loading stages"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-stage.list-stages"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the stages"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the stages"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: stages
-              type: array
-              description: "Collection of data loading stages"
-              mapping: "$."
-        - name: get-query-result
-          description: "Get a query result"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-result.get-result"
-          inputParameters:
-            - name: statementHandle
-              type: string
-              description: "Handle of the statement whose result is fetched"
-              required: true
-              mapping: "$.path.statementHandle"
-          outputParameters:
-            - name: result
-              type: object
-              description: "Full query result payload"
-              mapping: "$."
-
-    - type: skill
-      port: 10081
-      namespace: snowflake-data-eng-skill
-      description: "Agent Skills server exposing Snowflake data engineering capabilities for skill-aware AI agents."
-      tools:
-        - name: submit-sql
-          description: "Submit a SQL statement for execution"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: false
-          call: "snowflake-sql.submit-statement"
-          inputParameters:
-            - name: statement
-              type: string
-              description: "SQL statement to execute"
-              required: true
-              mapping: "$.body.statement"
-            - name: warehouse
-              type: string
-              description: "Warehouse used to execute the statement"
-              required: false
-              mapping: "$.body.warehouse"
-          outputParameters:
-            - name: statementHandle
-              type: string
-              description: "Handle identifying the submitted statement"
-              mapping: "$.statementHandle"
-            - name: result
-              type: object
-              description: "Raw statement submission payload"
-              mapping: "$."
-        - name: get-statement-status
-          description: "Get status of a submitted statement"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-sql.get-statement-status"
-          inputParameters:
-            - name: statementHandle
-              type: string
-              description: "Handle of the statement to inspect"
-              required: true
-              mapping: "$.path.statementHandle"
-          outputParameters:
-            - name: status
-              type: string
-              description: "Current execution status"
-              mapping: "$.status"
-        - name: list-tasks
-          description: "List scheduled tasks"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-task.list-tasks"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the tasks"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the tasks"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: tasks
-              type: array
-              description: "Collection of tasks in the schema"
-              mapping: "$."
-        - name: list-streams
-          description: "List change data capture streams"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-stream.list-streams"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the streams"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the streams"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: streams
-              type: array
-              description: "Collection of CDC streams"
-              mapping: "$."
-        - name: list-pipes
-          description: "List data ingestion pipes"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-pipe.list-pipes"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the pipes"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the pipes"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: pipes
-              type: array
-              description: "Collection of ingestion pipes"
-              mapping: "$."
-        - name: list-stages
-          description: "List data loading stages"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-stage.list-stages"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the stages"
-              required: true
-              mapping: "$.path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the stages"
-              required: true
-              mapping: "$.path.schema"
-          outputParameters:
-            - name: stages
-              type: array
-              description: "Collection of data loading stages"
-              mapping: "$."
-        - name: get-query-result
-          description: "Get a query result"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-result.get-result"
-          inputParameters:
-            - name: statementHandle
-              type: string
-              description: "Handle of the statement whose result is fetched"
-              required: true
-              mapping: "$.path.statementHandle"
-          outputParameters:
-            - name: result
-              type: object
-              description: "Full query result payload"
-              mapping: "$."
+  - type: rest
+    port: 8081
+    namespace: snowflake-data-eng-api
+    description: Unified REST API for Snowflake data pipeline management.
+    resources:
+    - path: /v1/statements
+      name: statements
+      description: SQL statement execution
+      operations:
+      - method: POST
+        name: submit-statement
+        description: Submit a SQL statement
+        call: snowflake-sql.submit-statement
+        inputParameters:
+        - name: statement
+          type: string
+          description: SQL statement to execute
+          required: true
+          mapping: $.body.statement
+        - name: warehouse
+          type: string
+          description: Warehouse used to execute the statement
+          required: false
+          mapping: $.body.warehouse
+        outputParameters:
+        - name: statementHandle
+          type: string
+          description: Handle identifying the submitted statement
+          mapping: $.statementHandle
+        - name: result
+          type: object
+          description: Raw statement submission payload
+          mapping: $.
+    - path: /v1/tasks
+      name: tasks
+      description: Task management
+      operations:
+      - method: GET
+        name: list-tasks
+        description: List tasks
+        call: snowflake-task.list-tasks
+        inputParameters:
+        - name: database
+          type: string
+          description: Database containing the tasks
+          required: true
+          mapping: $.path.database
+        - name: schema
+          type: string
+          description: Schema containing the tasks
+          required: true
+          mapping: $.path.schema
+        outputParameters:
+        - name: tasks
+          type: array
+          description: Collection of tasks in the schema
+          mapping: $.
+      - method: POST
+        name: create-task
+        description: Create a task
+        call: snowflake-task.create-task
+        inputParameters:
+        - name: database
+          type: string
+          description: Database that will own the task
+          required: true
+          mapping: $.path.database
+        - name: schema
+          type: string
+          description: Schema that will own the task
+          required: true
+          mapping: $.path.schema
+        - name: name
+          type: string
+          description: Task name
+          required: true
+          mapping: $.body.name
+        - name: definition
+          type: string
+          description: SQL body of the task
+          required: true
+          mapping: $.body.definition
+        outputParameters:
+        - name: task
+          type: object
+          description: Created task definition
+          mapping: $.
+    - path: /v1/streams
+      name: streams
+      description: Stream management
+      operations:
+      - method: GET
+        name: list-streams
+        description: List streams
+        call: snowflake-stream.list-streams
+        inputParameters:
+        - name: database
+          type: string
+          description: Database containing the streams
+          required: true
+          mapping: $.path.database
+        - name: schema
+          type: string
+          description: Schema containing the streams
+          required: true
+          mapping: $.path.schema
+        outputParameters:
+        - name: streams
+          type: array
+          description: Collection of change data capture streams
+          mapping: $.
+      - method: POST
+        name: create-stream
+        description: Create a stream
+        call: snowflake-stream.create-stream
+        inputParameters:
+        - name: database
+          type: string
+          description: Database that will own the stream
+          required: true
+          mapping: $.path.database
+        - name: schema
+          type: string
+          description: Schema that will own the stream
+          required: true
+          mapping: $.path.schema
+        - name: name
+          type: string
+          description: Stream name
+          required: true
+          mapping: $.body.name
+        - name: table_name
+          type: string
+          description: Source table tracked by the stream
+          required: true
+          mapping: $.body.table_name
+    - path: /v1/pipes
+      name: pipes
+      description: Pipe management
+      operations:
+      - method: GET
+        name: list-pipes
+        description: List pipes
+        call: snowflake-pipe.list-pipes
+        inputParameters:
+        - name: database
+          type: string
+          description: Database containing the pipes
+          required: true
+          mapping: $.path.database
+        - name: schema
+          type: string
+          description: Schema containing the pipes
+          required: true
+          mapping: $.path.schema
+        outputParameters:
+        - name: pipes
+          type: array
+          description: Collection of ingestion pipes
+          mapping: $.
+      - method: POST
+        name: create-pipe
+        description: Create a pipe
+        call: snowflake-pipe.create-pipe
+        inputParameters:
+        - name: database
+          type: string
+          description: Database that will own the pipe
+          required: true
+          mapping: $.path.database
+        - name: schema
+          type: string
+          description: Schema that will own the pipe
+          required: true
+          mapping: $.path.schema
+        - name: name
+          type: string
+          description: Pipe name
+          required: true
+          mapping: $.body.name
+        - name: copy_statement
+          type: string
+          description: COPY statement that defines the pipe
+          required: true
+          mapping: $.body.copy_statement
+    - path: /v1/stages
+      name: stages
+      description: Stage management
+      operations:
+      - method: GET
+        name: list-stages
+        description: List stages
+        call: snowflake-stage.list-stages
+        inputParameters:
+        - name: database
+          type: string
+          description: Database containing the stages
+          required: true
+          mapping: $.path.database
+        - name: schema
+          type: string
+          description: Schema containing the stages
+          required: true
+          mapping: $.path.schema
+        outputParameters:
+        - name: stages
+          type: array
+          description: Collection of data loading stages
+          mapping: $.
+      - method: POST
+        name: create-stage
+        description: Create a stage
+        call: snowflake-stage.create-stage
+        inputParameters:
+        - name: database
+          type: string
+          description: Database that will own the stage
+          required: true
+          mapping: $.path.database
+        - name: schema
+          type: string
+          description: Schema that will own the stage
+          required: true
+          mapping: $.path.schema
+        - name: name
+          type: string
+          description: Stage name
+          required: true
+          mapping: $.body.name
+  - type: mcp
+    port: 9081
+    namespace: snowflake-data-eng-mcp
+    transport: http
+    description: MCP server (HTTP) for AI-assisted Snowflake data pipeline management.
+    tools:
+    - name: submit-sql
+      description: Submit a SQL statement for execution
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: false
+      call: snowflake-sql.submit-statement
+      inputParameters:
+      - name: statement
+        type: string
+        description: SQL statement to execute
+        required: true
+        mapping: $.body.statement
+      - name: warehouse
+        type: string
+        description: Warehouse used to execute the statement
+        required: false
+        mapping: $.body.warehouse
+      outputParameters:
+      - name: statementHandle
+        type: string
+        description: Handle identifying the submitted statement
+        mapping: $.statementHandle
+      - name: result
+        type: object
+        description: Raw statement submission payload
+        mapping: $.
+    - name: get-statement-status
+      description: Get status of a submitted statement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-sql.get-statement-status
+      inputParameters:
+      - name: statementHandle
+        type: string
+        description: Handle of the statement to inspect
+        required: true
+        mapping: $.path.statementHandle
+      outputParameters:
+      - name: status
+        type: string
+        description: Current execution status
+        mapping: $.status
+      - name: result
+        type: object
+        description: Full status payload
+        mapping: $.
+    - name: cancel-statement
+      description: Cancel a running statement
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: snowflake-sql.cancel-statement
+      inputParameters:
+      - name: statementHandle
+        type: string
+        description: Handle of the statement to cancel
+        required: true
+        mapping: $.path.statementHandle
+      outputParameters:
+      - name: result
+        type: object
+        description: Cancellation response
+        mapping: $.
+    - name: list-tasks
+      description: List scheduled tasks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-task.list-tasks
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the tasks
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the tasks
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: tasks
+        type: array
+        description: Collection of tasks in the schema
+        mapping: $.
+    - name: create-task
+      description: Create a scheduled task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-task.create-task
+      inputParameters:
+      - name: database
+        type: string
+        description: Database that will own the task
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema that will own the task
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Task name
+        required: true
+        mapping: $.body.name
+      - name: definition
+        type: string
+        description: SQL body of the task
+        required: true
+        mapping: $.body.definition
+    - name: execute-task
+      description: Execute a task immediately
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: false
+      call: snowflake-task.execute-task
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the task
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the task
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Task name to execute
+        required: true
+        mapping: $.path.name
+    - name: resume-task
+      description: Resume a suspended task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: snowflake-task.resume-task
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the task
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the task
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Task name to resume
+        required: true
+        mapping: $.path.name
+    - name: suspend-task
+      description: Suspend a running task
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: snowflake-task.suspend-task
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the task
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the task
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Task name to suspend
+        required: true
+        mapping: $.path.name
+    - name: list-streams
+      description: List change data capture streams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-stream.list-streams
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the streams
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the streams
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: streams
+        type: array
+        description: Collection of CDC streams
+        mapping: $.
+    - name: create-stream
+      description: Create a CDC stream
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-stream.create-stream
+      inputParameters:
+      - name: database
+        type: string
+        description: Database that will own the stream
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema that will own the stream
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Stream name
+        required: true
+        mapping: $.body.name
+      - name: table_name
+        type: string
+        description: Source table tracked by the stream
+        required: true
+        mapping: $.body.table_name
+    - name: list-pipes
+      description: List data ingestion pipes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-pipe.list-pipes
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the pipes
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the pipes
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: pipes
+        type: array
+        description: Collection of ingestion pipes
+        mapping: $.
+    - name: create-pipe
+      description: Create a pipe for continuous ingestion
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-pipe.create-pipe
+      inputParameters:
+      - name: database
+        type: string
+        description: Database that will own the pipe
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema that will own the pipe
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Pipe name
+        required: true
+        mapping: $.body.name
+      - name: copy_statement
+        type: string
+        description: COPY statement that defines the pipe
+        required: true
+        mapping: $.body.copy_statement
+    - name: refresh-pipe
+      description: Refresh a pipe
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: snowflake-pipe.refresh-pipe
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the pipe
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the pipe
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Pipe name to refresh
+        required: true
+        mapping: $.path.name
+    - name: list-stages
+      description: List data loading stages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-stage.list-stages
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the stages
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the stages
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: stages
+        type: array
+        description: Collection of data loading stages
+        mapping: $.
+    - name: create-stage
+      description: Create a stage
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-stage.create-stage
+      inputParameters:
+      - name: database
+        type: string
+        description: Database that will own the stage
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema that will own the stage
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Stage name
+        required: true
+        mapping: $.body.name
+    - name: list-stage-files
+      description: List files in a stage
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-stage.list-files
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the stage
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the stage
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Stage name
+        required: true
+        mapping: $.path.name
+      outputParameters:
+      - name: files
+        type: array
+        description: Collection of files staged for loading
+        mapping: $.
+    - name: list-functions
+      description: List functions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-function.list-functions
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the functions
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the functions
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: functions
+        type: array
+        description: Collection of functions
+        mapping: $.
+    - name: create-function
+      description: Create a function
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-function.create-function
+      inputParameters:
+      - name: database
+        type: string
+        description: Database that will own the function
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema that will own the function
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Function name
+        required: true
+        mapping: $.body.name
+    - name: execute-function
+      description: Execute a function
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-function.execute-function
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the function
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the function
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Function name to execute
+        required: true
+        mapping: $.path.name
+    - name: list-procedures
+      description: List stored procedures
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-procedure.list-procedures
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the procedures
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the procedures
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: procedures
+        type: array
+        description: Collection of stored procedures
+        mapping: $.
+    - name: create-procedure
+      description: Create a stored procedure
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-procedure.create-procedure
+      inputParameters:
+      - name: database
+        type: string
+        description: Database that will own the procedure
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema that will own the procedure
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Procedure name
+        required: true
+        mapping: $.body.name
+    - name: call-procedure
+      description: Call a stored procedure
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: false
+      call: snowflake-procedure.call-procedure
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the procedure
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the procedure
+        required: true
+        mapping: $.path.schema
+      - name: name
+        type: string
+        description: Procedure name to call
+        required: true
+        mapping: $.path.name
+    - name: list-udfs
+      description: List user defined functions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-udf.list-udfs
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the UDFs
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the UDFs
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: udfs
+        type: array
+        description: Collection of user defined functions
+        mapping: $.
+    - name: get-query-result
+      description: Get a query result
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-result.get-result
+      inputParameters:
+      - name: statementHandle
+        type: string
+        description: Handle of the statement whose result is fetched
+        required: true
+        mapping: $.path.statementHandle
+      outputParameters:
+      - name: result
+        type: object
+        description: Full query result payload
+        mapping: $.
+  - type: mcp
+    port: 9082
+    namespace: snowflake-data-eng-mcp-stdio
+    transport: stdio
+    description: MCP server (stdio) for local IDE and agent clients managing Snowflake data pipelines.
+    tools:
+    - name: submit-sql
+      description: Submit a SQL statement for execution
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: false
+      call: snowflake-sql.submit-statement
+      inputParameters:
+      - name: statement
+        type: string
+        description: SQL statement to execute
+        required: true
+        mapping: $.body.statement
+      - name: warehouse
+        type: string
+        description: Warehouse used to execute the statement
+        required: false
+        mapping: $.body.warehouse
+      outputParameters:
+      - name: statementHandle
+        type: string
+        description: Handle identifying the submitted statement
+        mapping: $.statementHandle
+      - name: result
+        type: object
+        description: Raw statement submission payload
+        mapping: $.
+    - name: get-statement-status
+      description: Get status of a submitted statement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-sql.get-statement-status
+      inputParameters:
+      - name: statementHandle
+        type: string
+        description: Handle of the statement to inspect
+        required: true
+        mapping: $.path.statementHandle
+      outputParameters:
+      - name: status
+        type: string
+        description: Current execution status
+        mapping: $.status
+    - name: list-tasks
+      description: List scheduled tasks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-task.list-tasks
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the tasks
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the tasks
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: tasks
+        type: array
+        description: Collection of tasks in the schema
+        mapping: $.
+    - name: list-streams
+      description: List change data capture streams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-stream.list-streams
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the streams
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the streams
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: streams
+        type: array
+        description: Collection of CDC streams
+        mapping: $.
+    - name: list-pipes
+      description: List data ingestion pipes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-pipe.list-pipes
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the pipes
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the pipes
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: pipes
+        type: array
+        description: Collection of ingestion pipes
+        mapping: $.
+    - name: list-stages
+      description: List data loading stages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-stage.list-stages
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the stages
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the stages
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: stages
+        type: array
+        description: Collection of data loading stages
+        mapping: $.
+    - name: get-query-result
+      description: Get a query result
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-result.get-result
+      inputParameters:
+      - name: statementHandle
+        type: string
+        description: Handle of the statement whose result is fetched
+        required: true
+        mapping: $.path.statementHandle
+      outputParameters:
+      - name: result
+        type: object
+        description: Full query result payload
+        mapping: $.
+  - type: skill
+    port: 10081
+    namespace: snowflake-data-eng-skill
+    description: Agent Skills server exposing Snowflake data engineering capabilities for skill-aware AI agents.
+    tools:
+    - name: submit-sql
+      description: Submit a SQL statement for execution
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: false
+      call: snowflake-sql.submit-statement
+      inputParameters:
+      - name: statement
+        type: string
+        description: SQL statement to execute
+        required: true
+        mapping: $.body.statement
+      - name: warehouse
+        type: string
+        description: Warehouse used to execute the statement
+        required: false
+        mapping: $.body.warehouse
+      outputParameters:
+      - name: statementHandle
+        type: string
+        description: Handle identifying the submitted statement
+        mapping: $.statementHandle
+      - name: result
+        type: object
+        description: Raw statement submission payload
+        mapping: $.
+    - name: get-statement-status
+      description: Get status of a submitted statement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-sql.get-statement-status
+      inputParameters:
+      - name: statementHandle
+        type: string
+        description: Handle of the statement to inspect
+        required: true
+        mapping: $.path.statementHandle
+      outputParameters:
+      - name: status
+        type: string
+        description: Current execution status
+        mapping: $.status
+    - name: list-tasks
+      description: List scheduled tasks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-task.list-tasks
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the tasks
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the tasks
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: tasks
+        type: array
+        description: Collection of tasks in the schema
+        mapping: $.
+    - name: list-streams
+      description: List change data capture streams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-stream.list-streams
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the streams
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the streams
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: streams
+        type: array
+        description: Collection of CDC streams
+        mapping: $.
+    - name: list-pipes
+      description: List data ingestion pipes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-pipe.list-pipes
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the pipes
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the pipes
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: pipes
+        type: array
+        description: Collection of ingestion pipes
+        mapping: $.
+    - name: list-stages
+      description: List data loading stages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-stage.list-stages
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the stages
+        required: true
+        mapping: $.path.database
+      - name: schema
+        type: string
+        description: Schema containing the stages
+        required: true
+        mapping: $.path.schema
+      outputParameters:
+      - name: stages
+        type: array
+        description: Collection of data loading stages
+        mapping: $.
+    - name: get-query-result
+      description: Get a query result
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-result.get-result
+      inputParameters:
+      - name: statementHandle
+        type: string
+        description: Handle of the statement whose result is fetched
+        required: true
+        mapping: $.path.statementHandle
+      outputParameters:
+      - name: result
+        type: object
+        description: Full query result payload
+        mapping: $.

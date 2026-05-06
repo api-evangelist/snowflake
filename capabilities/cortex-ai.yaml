@@ -1,1102 +1,1251 @@
-# Spec-Driven Integration notes:
-# This capability composes 4 shared Snowflake capabilities (cortex-analyst,
-# cortex-inference, cortex-search-service, notebook) and exposes them across
-# MCP (http + stdio transports), Agent Skills, and REST — a single integration
-# layer serving traditional clients, remote MCP agents, local stdio MCP agents,
-# and Agent Skill runtimes from one declarative spec.
-
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Snowflake Cortex AI"
-  description: "Unified workflow for AI and ML capabilities including LLM inference, natural language analytics, semantic search, and notebook-based development. Used by Data Scientists and ML Engineers for AI-powered data exploration and model deployment."
+  label: Snowflake Cortex AI
+  description: Unified workflow for AI and ML capabilities including LLM inference, natural language analytics, semantic search,
+    and notebook-based development. Used by Data Scientists and ML Engineers for AI-powered data exploration and model deployment.
   tags:
-    - Snowflake
-    - Cortex
-    - AI
-    - Machine Learning
-  created: "2026-04-18"
-  modified: "2026-04-23"
-
+  - Snowflake
+  - Cortex
+  - AI
+  - Machine Learning
+  created: '2026-04-18'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
-      SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
-
+- namespace: env
+  keys:
+    SNOWFLAKE_ACCOUNT_URL: SNOWFLAKE_ACCOUNT_URL
+    SNOWFLAKE_JWT_TOKEN: SNOWFLAKE_JWT_TOKEN
 capability:
   consumes:
-    - import: snowflake-cortex-analyst
-      location: ./shared/cortex-analyst.yaml
-    - import: snowflake-cortex-inference
-      location: ./shared/cortex-inference.yaml
-    - import: snowflake-cortex-search
-      location: ./shared/cortex-search-service.yaml
-    - import: snowflake-notebook
-      location: ./shared/notebook.yaml
-
+  - type: http
+    namespace: snowflake-cortex-analyst
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake Cortex Analyst API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: cortex-analyst
+      path: /api/v2/cortex/analyst
+      description: Cortex Analyst resources
+      operations:
+      - name: send-message
+        method: POST
+        description: Send a message to Cortex Analyst
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            messages: '{{tools.messages}}'
+      - name: send-feedback
+        method: POST
+        description: Send feedback on a Cortex Analyst response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            request_id: '{{tools.request_id}}'
+            positive: '{{tools.positive}}'
+      - name: generate-verified-query-suggestions
+        method: POST
+        description: Generate verified query suggestions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-scoped-token
+        method: POST
+        description: Get a scoped token for Cortex Analyst
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: snowflake-cortex-inference
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake Cortex Inference API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: cortex-inference
+      path: /api/v2/cortex/inference
+      description: Cortex inference resources
+      operations:
+      - name: get-models
+        method: GET
+        description: List available Cortex LLM models
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: complete
+        method: POST
+        description: Run LLM inference completion
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            model: '{{tools.model}}'
+            prompt: '{{tools.prompt}}'
+  - type: http
+    namespace: snowflake-cortex-search
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake Cortex Search API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: cortex-search
+      path: /api/v2/databases/{database}/schemas/{schema}/cortex-search-services
+      description: Cortex Search resources
+      operations:
+      - name: list-search-services
+        method: GET
+        description: List Cortex Search services
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: query-search-service
+        method: POST
+        description: Query a Cortex Search service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            query: '{{tools.query}}'
+  - type: http
+    namespace: snowflake-notebook
+    baseUri: '{{SNOWFLAKE_ACCOUNT_URL}}'
+    description: Snowflake Notebook API
+    authentication:
+      type: bearer
+      token: '{{SNOWFLAKE_JWT_TOKEN}}'
+    resources:
+    - name: notebooks
+      path: /api/v2/databases/{database}/schemas/{schema}/notebooks
+      description: Notebook resources
+      operations:
+      - name: list-notebooks
+        method: GET
+        description: List notebooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-notebook
+        method: POST
+        description: Create a notebook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: fetch-notebook
+        method: GET
+        description: Fetch a notebook by name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-notebook
+        method: DELETE
+        description: Delete a notebook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: execute-notebook
+        method: POST
+        description: Execute a notebook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8082
-      namespace: snowflake-cortex-api
-      description: "Unified REST API for Snowflake Cortex AI capabilities."
-      resources:
-        - path: /v1/analyst/messages
-          name: analyst-messages
-          description: "Natural language data analytics"
-          operations:
-            - method: POST
-              name: send-analyst-message
-              description: "Ask a question about your data"
-              call: "snowflake-cortex-analyst.send-message"
-              inputParameters:
-                - name: messages
-                  type: array
-                  description: "Conversation messages to send to Cortex Analyst"
-                  required: true
-                  mapping: "body.messages"
-                - name: semantic_model_file
-                  type: string
-                  description: "Reference to the semantic model file (e.g. @db.schema.stage/model.yaml)"
-                  required: false
-                  mapping: "body.semantic_model_file"
-              outputParameters:
-                - name: request_id
-                  type: string
-                  mapping: "$.request_id"
-                - name: message
-                  type: object
-                  mapping: "$.message"
-                - name: warnings
-                  type: array
-                  mapping: "$.warnings"
-        - path: /v1/inference/complete
-          name: inference
-          description: "LLM inference"
-          operations:
-            - method: POST
-              name: complete
-              description: "Run LLM completion"
-              call: "snowflake-cortex-inference.complete"
-              inputParameters:
-                - name: model
-                  type: string
-                  description: "Identifier of the Cortex LLM model to run completion against"
-                  required: true
-                  mapping: "body.model"
-                - name: prompt
-                  type: string
-                  description: "Prompt text to submit for completion"
-                  required: true
-                  mapping: "body.prompt"
-              outputParameters:
-                - name: id
-                  type: string
-                  mapping: "$.id"
-                - name: model
-                  type: string
-                  mapping: "$.model"
-                - name: choices
-                  type: array
-                  mapping: "$.choices"
-                - name: usage
-                  type: object
-                  mapping: "$.usage"
-        - path: /v1/inference/models
-          name: models
-          description: "Available models"
-          operations:
-            - method: GET
-              name: list-models
-              description: "List available LLM models"
-              call: "snowflake-cortex-inference.get-models"
-              inputParameters: []
-              outputParameters:
-                - name: models
-                  type: array
-                  mapping: "$.data"
-        - path: /v1/search
-          name: search
-          description: "Semantic search"
-          operations:
-            - method: POST
-              name: query-search
-              description: "Query a search service"
-              call: "snowflake-cortex-search.query-search-service"
-              inputParameters:
-                - name: database
-                  type: string
-                  description: "Database containing the search service"
-                  required: true
-                  mapping: "path.database"
-                - name: schema
-                  type: string
-                  description: "Schema containing the search service"
-                  required: true
-                  mapping: "path.schema"
-                - name: query
-                  type: string
-                  description: "Natural language query string"
-                  required: true
-                  mapping: "body.query"
-                - name: columns
-                  type: array
-                  description: "Columns to return from the search index"
-                  required: false
-                  mapping: "body.columns"
-                - name: limit
-                  type: integer
-                  description: "Maximum number of results to return"
-                  required: false
-                  mapping: "body.limit"
-              outputParameters:
-                - name: results
-                  type: array
-                  mapping: "$.results"
-                - name: request_id
-                  type: string
-                  mapping: "$.request_id"
-        - path: /v1/notebooks
-          name: notebooks
-          description: "Notebook management"
-          operations:
-            - method: GET
-              name: list-notebooks
-              description: "List notebooks"
-              call: "snowflake-notebook.list-notebooks"
-              inputParameters:
-                - name: database
-                  type: string
-                  description: "Database to list notebooks from"
-                  required: true
-                  mapping: "path.database"
-                - name: schema
-                  type: string
-                  description: "Schema to list notebooks from"
-                  required: true
-                  mapping: "path.schema"
-              outputParameters:
-                - name: notebooks
-                  type: array
-                  mapping: "$.data"
-            - method: POST
-              name: create-notebook
-              description: "Create a notebook"
-              call: "snowflake-notebook.create-notebook"
-              inputParameters:
-                - name: database
-                  type: string
-                  description: "Database to create the notebook in"
-                  required: true
-                  mapping: "path.database"
-                - name: schema
-                  type: string
-                  description: "Schema to create the notebook in"
-                  required: true
-                  mapping: "path.schema"
-                - name: name
-                  type: string
-                  description: "Notebook name"
-                  required: true
-                  mapping: "body.name"
-                - name: comment
-                  type: string
-                  description: "Optional comment describing the notebook"
-                  required: false
-                  mapping: "body.comment"
-                - name: query_warehouse
-                  type: string
-                  description: "Warehouse used to execute notebook cells"
-                  required: false
-                  mapping: "body.query_warehouse"
-              outputParameters:
-                - name: name
-                  type: string
-                  mapping: "$.name"
-                - name: database_name
-                  type: string
-                  mapping: "$.database_name"
-                - name: schema_name
-                  type: string
-                  mapping: "$.schema_name"
-                - name: created_on
-                  type: string
-                  mapping: "$.created_on"
-
-    - type: mcp
-      port: 9082
-      namespace: snowflake-cortex-mcp
-      transport: http
-      description: "MCP server (streaming HTTP) for AI-assisted Snowflake Cortex AI capabilities."
-      tools:
-        - name: ask-analyst
-          description: "Ask a question about your data using natural language"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: false
-          call: "snowflake-cortex-analyst.send-message"
-          inputParameters:
-            - name: messages
-              type: array
-              description: "Conversation messages to send to Cortex Analyst"
-              required: true
-              mapping: "body.messages"
-            - name: semantic_model_file
-              type: string
-              description: "Reference to the semantic model file"
-              required: false
-              mapping: "body.semantic_model_file"
-          outputParameters:
-            - name: request_id
-              type: string
-              mapping: "$.request_id"
-            - name: message
-              type: object
-              mapping: "$.message"
-            - name: warnings
-              type: array
-              mapping: "$.warnings"
-        - name: send-analyst-feedback
-          description: "Send feedback on an Analyst response"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "snowflake-cortex-analyst.send-feedback"
-          inputParameters:
-            - name: request_id
-              type: string
-              description: "Analyst request identifier to attach feedback to"
-              required: true
-              mapping: "body.request_id"
-            - name: positive
-              type: boolean
-              description: "Whether the feedback is positive"
-              required: true
-              mapping: "body.positive"
-            - name: feedback_message
-              type: string
-              description: "Optional free-form feedback text"
-              required: false
-              mapping: "body.feedback_message"
-          outputParameters:
-            - name: request_id
-              type: string
-              mapping: "$.request_id"
-            - name: status
-              type: string
-              mapping: "$.status"
-        - name: generate-query-suggestions
-          description: "Generate verified query suggestions"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: false
-          call: "snowflake-cortex-analyst.generate-verified-query-suggestions"
-          inputParameters:
-            - name: semantic_model_file
-              type: string
-              description: "Semantic model file to generate suggestions for"
-              required: true
-              mapping: "body.semantic_model_file"
-            - name: limit
-              type: integer
-              description: "Maximum number of suggestions to return"
-              required: false
-              mapping: "body.limit"
-          outputParameters:
-            - name: suggestions
-              type: array
-              mapping: "$.suggestions"
-            - name: request_id
-              type: string
-              mapping: "$.request_id"
-        - name: list-llm-models
-          description: "List available Cortex LLM models"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-cortex-inference.get-models"
-          inputParameters: []
-          outputParameters:
-            - name: models
-              type: array
-              mapping: "$.data"
-        - name: llm-complete
-          description: "Run LLM inference completion"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: false
-          call: "snowflake-cortex-inference.complete"
-          inputParameters:
-            - name: model
-              type: string
-              description: "Identifier of the Cortex LLM model"
-              required: true
-              mapping: "body.model"
-            - name: prompt
-              type: string
-              description: "Prompt text"
-              required: true
-              mapping: "body.prompt"
-          outputParameters:
-            - name: id
-              type: string
-              mapping: "$.id"
-            - name: model
-              type: string
-              mapping: "$.model"
-            - name: choices
-              type: array
-              mapping: "$.choices"
-            - name: usage
-              type: object
-              mapping: "$.usage"
-        - name: semantic-search
-          description: "Query a Cortex Search service"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-cortex-search.query-search-service"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the search service"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the search service"
-              required: true
-              mapping: "path.schema"
-            - name: query
-              type: string
-              description: "Natural language query string"
-              required: true
-              mapping: "body.query"
-            - name: columns
-              type: array
-              description: "Columns to return from the search index"
-              required: false
-              mapping: "body.columns"
-            - name: limit
-              type: integer
-              description: "Maximum number of results to return"
-              required: false
-              mapping: "body.limit"
-          outputParameters:
-            - name: results
-              type: array
-              mapping: "$.results"
-            - name: request_id
-              type: string
-              mapping: "$.request_id"
-        - name: list-search-services
-          description: "List Cortex Search services"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-cortex-search.list-search-services"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database to list search services from"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema to list search services from"
-              required: true
-              mapping: "path.schema"
-          outputParameters:
-            - name: services
-              type: array
-              mapping: "$.data"
-        - name: list-notebooks
-          description: "List notebooks"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-notebook.list-notebooks"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database to list notebooks from"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema to list notebooks from"
-              required: true
-              mapping: "path.schema"
-          outputParameters:
-            - name: notebooks
-              type: array
-              mapping: "$.data"
-        - name: create-notebook
-          description: "Create a notebook"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-notebook.create-notebook"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database to create the notebook in"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema to create the notebook in"
-              required: true
-              mapping: "path.schema"
-            - name: name
-              type: string
-              description: "Notebook name"
-              required: true
-              mapping: "body.name"
-            - name: comment
-              type: string
-              description: "Optional comment describing the notebook"
-              required: false
-              mapping: "body.comment"
-            - name: query_warehouse
-              type: string
-              description: "Warehouse used to execute notebook cells"
-              required: false
-              mapping: "body.query_warehouse"
-          outputParameters:
-            - name: name
-              type: string
-              mapping: "$.name"
-            - name: database_name
-              type: string
-              mapping: "$.database_name"
-            - name: schema_name
-              type: string
-              mapping: "$.schema_name"
-            - name: created_on
-              type: string
-              mapping: "$.created_on"
-        - name: execute-notebook
-          description: "Execute a notebook"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-notebook.execute-notebook"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the notebook"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the notebook"
-              required: true
-              mapping: "path.schema"
-            - name: name
-              type: string
-              description: "Notebook name to execute"
-              required: true
-              mapping: "path.name"
-          outputParameters:
-            - name: status
-              type: string
-              mapping: "$.status"
-            - name: execution_id
-              type: string
-              mapping: "$.execution_id"
-
-    - type: mcp
-      port: 9083
-      namespace: snowflake-cortex-mcp-stdio
-      transport: stdio
-      description: "MCP server (stdio transport) for local IDE/agent Snowflake Cortex AI use."
-      tools:
-        - name: ask-analyst
-          description: "Ask a question about your data using natural language"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: false
-          call: "snowflake-cortex-analyst.send-message"
-          inputParameters:
-            - name: messages
-              type: array
-              description: "Conversation messages to send to Cortex Analyst"
-              required: true
-              mapping: "body.messages"
-            - name: semantic_model_file
-              type: string
-              description: "Reference to the semantic model file"
-              required: false
-              mapping: "body.semantic_model_file"
-          outputParameters:
-            - name: request_id
-              type: string
-              mapping: "$.request_id"
-            - name: message
-              type: object
-              mapping: "$.message"
-            - name: warnings
-              type: array
-              mapping: "$.warnings"
-        - name: send-analyst-feedback
-          description: "Send feedback on an Analyst response"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "snowflake-cortex-analyst.send-feedback"
-          inputParameters:
-            - name: request_id
-              type: string
-              description: "Analyst request identifier"
-              required: true
-              mapping: "body.request_id"
-            - name: positive
-              type: boolean
-              description: "Whether the feedback is positive"
-              required: true
-              mapping: "body.positive"
-            - name: feedback_message
-              type: string
-              description: "Optional free-form feedback text"
-              required: false
-              mapping: "body.feedback_message"
-          outputParameters:
-            - name: request_id
-              type: string
-              mapping: "$.request_id"
-            - name: status
-              type: string
-              mapping: "$.status"
-        - name: generate-query-suggestions
-          description: "Generate verified query suggestions"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: false
-          call: "snowflake-cortex-analyst.generate-verified-query-suggestions"
-          inputParameters:
-            - name: semantic_model_file
-              type: string
-              description: "Semantic model file to generate suggestions for"
-              required: true
-              mapping: "body.semantic_model_file"
-            - name: limit
-              type: integer
-              description: "Maximum number of suggestions to return"
-              required: false
-              mapping: "body.limit"
-          outputParameters:
-            - name: suggestions
-              type: array
-              mapping: "$.suggestions"
-            - name: request_id
-              type: string
-              mapping: "$.request_id"
-        - name: list-llm-models
-          description: "List available Cortex LLM models"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-cortex-inference.get-models"
-          inputParameters: []
-          outputParameters:
-            - name: models
-              type: array
-              mapping: "$.data"
-        - name: llm-complete
-          description: "Run LLM inference completion"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: false
-          call: "snowflake-cortex-inference.complete"
-          inputParameters:
-            - name: model
-              type: string
-              description: "Identifier of the Cortex LLM model"
-              required: true
-              mapping: "body.model"
-            - name: prompt
-              type: string
-              description: "Prompt text"
-              required: true
-              mapping: "body.prompt"
-          outputParameters:
-            - name: id
-              type: string
-              mapping: "$.id"
-            - name: model
-              type: string
-              mapping: "$.model"
-            - name: choices
-              type: array
-              mapping: "$.choices"
-            - name: usage
-              type: object
-              mapping: "$.usage"
-        - name: semantic-search
-          description: "Query a Cortex Search service"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-cortex-search.query-search-service"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the search service"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the search service"
-              required: true
-              mapping: "path.schema"
-            - name: query
-              type: string
-              description: "Natural language query string"
-              required: true
-              mapping: "body.query"
-            - name: columns
-              type: array
-              description: "Columns to return from the search index"
-              required: false
-              mapping: "body.columns"
-            - name: limit
-              type: integer
-              description: "Maximum number of results to return"
-              required: false
-              mapping: "body.limit"
-          outputParameters:
-            - name: results
-              type: array
-              mapping: "$.results"
-            - name: request_id
-              type: string
-              mapping: "$.request_id"
-        - name: list-search-services
-          description: "List Cortex Search services"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-cortex-search.list-search-services"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database to list search services from"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema to list search services from"
-              required: true
-              mapping: "path.schema"
-          outputParameters:
-            - name: services
-              type: array
-              mapping: "$.data"
-        - name: list-notebooks
-          description: "List notebooks"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-notebook.list-notebooks"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database to list notebooks from"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema to list notebooks from"
-              required: true
-              mapping: "path.schema"
-          outputParameters:
-            - name: notebooks
-              type: array
-              mapping: "$.data"
-        - name: create-notebook
-          description: "Create a notebook"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-notebook.create-notebook"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database to create the notebook in"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema to create the notebook in"
-              required: true
-              mapping: "path.schema"
-            - name: name
-              type: string
-              description: "Notebook name"
-              required: true
-              mapping: "body.name"
-            - name: comment
-              type: string
-              description: "Optional comment describing the notebook"
-              required: false
-              mapping: "body.comment"
-            - name: query_warehouse
-              type: string
-              description: "Warehouse used to execute notebook cells"
-              required: false
-              mapping: "body.query_warehouse"
-          outputParameters:
-            - name: name
-              type: string
-              mapping: "$.name"
-            - name: database_name
-              type: string
-              mapping: "$.database_name"
-            - name: schema_name
-              type: string
-              mapping: "$.schema_name"
-            - name: created_on
-              type: string
-              mapping: "$.created_on"
-        - name: execute-notebook
-          description: "Execute a notebook"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-notebook.execute-notebook"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the notebook"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the notebook"
-              required: true
-              mapping: "path.schema"
-            - name: name
-              type: string
-              description: "Notebook name to execute"
-              required: true
-              mapping: "path.name"
-          outputParameters:
-            - name: status
-              type: string
-              mapping: "$.status"
-            - name: execution_id
-              type: string
-              mapping: "$.execution_id"
-
-    - type: skill
-      port: 10082
-      namespace: snowflake-cortex-skill
-      description: "Agent Skills surface for Snowflake Cortex AI — same tool set exposed as agent-compatible skills."
-      tools:
-        - name: ask-analyst
-          description: "Ask a question about your data using natural language"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: false
-          call: "snowflake-cortex-analyst.send-message"
-          inputParameters:
-            - name: messages
-              type: array
-              description: "Conversation messages to send to Cortex Analyst"
-              required: true
-              mapping: "body.messages"
-            - name: semantic_model_file
-              type: string
-              description: "Reference to the semantic model file"
-              required: false
-              mapping: "body.semantic_model_file"
-          outputParameters:
-            - name: request_id
-              type: string
-              mapping: "$.request_id"
-            - name: message
-              type: object
-              mapping: "$.message"
-            - name: warnings
-              type: array
-              mapping: "$.warnings"
-        - name: send-analyst-feedback
-          description: "Send feedback on an Analyst response"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "snowflake-cortex-analyst.send-feedback"
-          inputParameters:
-            - name: request_id
-              type: string
-              description: "Analyst request identifier"
-              required: true
-              mapping: "body.request_id"
-            - name: positive
-              type: boolean
-              description: "Whether the feedback is positive"
-              required: true
-              mapping: "body.positive"
-            - name: feedback_message
-              type: string
-              description: "Optional free-form feedback text"
-              required: false
-              mapping: "body.feedback_message"
-          outputParameters:
-            - name: request_id
-              type: string
-              mapping: "$.request_id"
-            - name: status
-              type: string
-              mapping: "$.status"
-        - name: generate-query-suggestions
-          description: "Generate verified query suggestions"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: false
-          call: "snowflake-cortex-analyst.generate-verified-query-suggestions"
-          inputParameters:
-            - name: semantic_model_file
-              type: string
-              description: "Semantic model file to generate suggestions for"
-              required: true
-              mapping: "body.semantic_model_file"
-            - name: limit
-              type: integer
-              description: "Maximum number of suggestions to return"
-              required: false
-              mapping: "body.limit"
-          outputParameters:
-            - name: suggestions
-              type: array
-              mapping: "$.suggestions"
-            - name: request_id
-              type: string
-              mapping: "$.request_id"
-        - name: list-llm-models
-          description: "List available Cortex LLM models"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-cortex-inference.get-models"
-          inputParameters: []
-          outputParameters:
-            - name: models
-              type: array
-              mapping: "$.data"
-        - name: llm-complete
-          description: "Run LLM inference completion"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: false
-          call: "snowflake-cortex-inference.complete"
-          inputParameters:
-            - name: model
-              type: string
-              description: "Identifier of the Cortex LLM model"
-              required: true
-              mapping: "body.model"
-            - name: prompt
-              type: string
-              description: "Prompt text"
-              required: true
-              mapping: "body.prompt"
-          outputParameters:
-            - name: id
-              type: string
-              mapping: "$.id"
-            - name: model
-              type: string
-              mapping: "$.model"
-            - name: choices
-              type: array
-              mapping: "$.choices"
-            - name: usage
-              type: object
-              mapping: "$.usage"
-        - name: semantic-search
-          description: "Query a Cortex Search service"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-cortex-search.query-search-service"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the search service"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the search service"
-              required: true
-              mapping: "path.schema"
-            - name: query
-              type: string
-              description: "Natural language query string"
-              required: true
-              mapping: "body.query"
-            - name: columns
-              type: array
-              description: "Columns to return from the search index"
-              required: false
-              mapping: "body.columns"
-            - name: limit
-              type: integer
-              description: "Maximum number of results to return"
-              required: false
-              mapping: "body.limit"
-          outputParameters:
-            - name: results
-              type: array
-              mapping: "$.results"
-            - name: request_id
-              type: string
-              mapping: "$.request_id"
-        - name: list-search-services
-          description: "List Cortex Search services"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-cortex-search.list-search-services"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database to list search services from"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema to list search services from"
-              required: true
-              mapping: "path.schema"
-          outputParameters:
-            - name: services
-              type: array
-              mapping: "$.data"
-        - name: list-notebooks
-          description: "List notebooks"
-          hints:
-            readOnly: true
-            destructive: false
-            idempotent: true
-          call: "snowflake-notebook.list-notebooks"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database to list notebooks from"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema to list notebooks from"
-              required: true
-              mapping: "path.schema"
-          outputParameters:
-            - name: notebooks
-              type: array
-              mapping: "$.data"
-        - name: create-notebook
-          description: "Create a notebook"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-notebook.create-notebook"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database to create the notebook in"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema to create the notebook in"
-              required: true
-              mapping: "path.schema"
-            - name: name
-              type: string
-              description: "Notebook name"
-              required: true
-              mapping: "body.name"
-            - name: comment
-              type: string
-              description: "Optional comment describing the notebook"
-              required: false
-              mapping: "body.comment"
-            - name: query_warehouse
-              type: string
-              description: "Warehouse used to execute notebook cells"
-              required: false
-              mapping: "body.query_warehouse"
-          outputParameters:
-            - name: name
-              type: string
-              mapping: "$.name"
-            - name: database_name
-              type: string
-              mapping: "$.database_name"
-            - name: schema_name
-              type: string
-              mapping: "$.schema_name"
-            - name: created_on
-              type: string
-              mapping: "$.created_on"
-        - name: execute-notebook
-          description: "Execute a notebook"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "snowflake-notebook.execute-notebook"
-          inputParameters:
-            - name: database
-              type: string
-              description: "Database containing the notebook"
-              required: true
-              mapping: "path.database"
-            - name: schema
-              type: string
-              description: "Schema containing the notebook"
-              required: true
-              mapping: "path.schema"
-            - name: name
-              type: string
-              description: "Notebook name to execute"
-              required: true
-              mapping: "path.name"
-          outputParameters:
-            - name: status
-              type: string
-              mapping: "$.status"
-            - name: execution_id
-              type: string
-              mapping: "$.execution_id"
+  - type: rest
+    port: 8082
+    namespace: snowflake-cortex-api
+    description: Unified REST API for Snowflake Cortex AI capabilities.
+    resources:
+    - path: /v1/analyst/messages
+      name: analyst-messages
+      description: Natural language data analytics
+      operations:
+      - method: POST
+        name: send-analyst-message
+        description: Ask a question about your data
+        call: snowflake-cortex-analyst.send-message
+        inputParameters:
+        - name: messages
+          type: array
+          description: Conversation messages to send to Cortex Analyst
+          required: true
+          mapping: body.messages
+        - name: semantic_model_file
+          type: string
+          description: Reference to the semantic model file (e.g. @db.schema.stage/model.yaml)
+          required: false
+          mapping: body.semantic_model_file
+        outputParameters:
+        - name: request_id
+          type: string
+          mapping: $.request_id
+        - name: message
+          type: object
+          mapping: $.message
+        - name: warnings
+          type: array
+          mapping: $.warnings
+    - path: /v1/inference/complete
+      name: inference
+      description: LLM inference
+      operations:
+      - method: POST
+        name: complete
+        description: Run LLM completion
+        call: snowflake-cortex-inference.complete
+        inputParameters:
+        - name: model
+          type: string
+          description: Identifier of the Cortex LLM model to run completion against
+          required: true
+          mapping: body.model
+        - name: prompt
+          type: string
+          description: Prompt text to submit for completion
+          required: true
+          mapping: body.prompt
+        outputParameters:
+        - name: id
+          type: string
+          mapping: $.id
+        - name: model
+          type: string
+          mapping: $.model
+        - name: choices
+          type: array
+          mapping: $.choices
+        - name: usage
+          type: object
+          mapping: $.usage
+    - path: /v1/inference/models
+      name: models
+      description: Available models
+      operations:
+      - method: GET
+        name: list-models
+        description: List available LLM models
+        call: snowflake-cortex-inference.get-models
+        inputParameters: []
+        outputParameters:
+        - name: models
+          type: array
+          mapping: $.data
+    - path: /v1/search
+      name: search
+      description: Semantic search
+      operations:
+      - method: POST
+        name: query-search
+        description: Query a search service
+        call: snowflake-cortex-search.query-search-service
+        inputParameters:
+        - name: database
+          type: string
+          description: Database containing the search service
+          required: true
+          mapping: path.database
+        - name: schema
+          type: string
+          description: Schema containing the search service
+          required: true
+          mapping: path.schema
+        - name: query
+          type: string
+          description: Natural language query string
+          required: true
+          mapping: body.query
+        - name: columns
+          type: array
+          description: Columns to return from the search index
+          required: false
+          mapping: body.columns
+        - name: limit
+          type: integer
+          description: Maximum number of results to return
+          required: false
+          mapping: body.limit
+        outputParameters:
+        - name: results
+          type: array
+          mapping: $.results
+        - name: request_id
+          type: string
+          mapping: $.request_id
+    - path: /v1/notebooks
+      name: notebooks
+      description: Notebook management
+      operations:
+      - method: GET
+        name: list-notebooks
+        description: List notebooks
+        call: snowflake-notebook.list-notebooks
+        inputParameters:
+        - name: database
+          type: string
+          description: Database to list notebooks from
+          required: true
+          mapping: path.database
+        - name: schema
+          type: string
+          description: Schema to list notebooks from
+          required: true
+          mapping: path.schema
+        outputParameters:
+        - name: notebooks
+          type: array
+          mapping: $.data
+      - method: POST
+        name: create-notebook
+        description: Create a notebook
+        call: snowflake-notebook.create-notebook
+        inputParameters:
+        - name: database
+          type: string
+          description: Database to create the notebook in
+          required: true
+          mapping: path.database
+        - name: schema
+          type: string
+          description: Schema to create the notebook in
+          required: true
+          mapping: path.schema
+        - name: name
+          type: string
+          description: Notebook name
+          required: true
+          mapping: body.name
+        - name: comment
+          type: string
+          description: Optional comment describing the notebook
+          required: false
+          mapping: body.comment
+        - name: query_warehouse
+          type: string
+          description: Warehouse used to execute notebook cells
+          required: false
+          mapping: body.query_warehouse
+        outputParameters:
+        - name: name
+          type: string
+          mapping: $.name
+        - name: database_name
+          type: string
+          mapping: $.database_name
+        - name: schema_name
+          type: string
+          mapping: $.schema_name
+        - name: created_on
+          type: string
+          mapping: $.created_on
+  - type: mcp
+    port: 9082
+    namespace: snowflake-cortex-mcp
+    transport: http
+    description: MCP server (streaming HTTP) for AI-assisted Snowflake Cortex AI capabilities.
+    tools:
+    - name: ask-analyst
+      description: Ask a question about your data using natural language
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: snowflake-cortex-analyst.send-message
+      inputParameters:
+      - name: messages
+        type: array
+        description: Conversation messages to send to Cortex Analyst
+        required: true
+        mapping: body.messages
+      - name: semantic_model_file
+        type: string
+        description: Reference to the semantic model file
+        required: false
+        mapping: body.semantic_model_file
+      outputParameters:
+      - name: request_id
+        type: string
+        mapping: $.request_id
+      - name: message
+        type: object
+        mapping: $.message
+      - name: warnings
+        type: array
+        mapping: $.warnings
+    - name: send-analyst-feedback
+      description: Send feedback on an Analyst response
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: snowflake-cortex-analyst.send-feedback
+      inputParameters:
+      - name: request_id
+        type: string
+        description: Analyst request identifier to attach feedback to
+        required: true
+        mapping: body.request_id
+      - name: positive
+        type: boolean
+        description: Whether the feedback is positive
+        required: true
+        mapping: body.positive
+      - name: feedback_message
+        type: string
+        description: Optional free-form feedback text
+        required: false
+        mapping: body.feedback_message
+      outputParameters:
+      - name: request_id
+        type: string
+        mapping: $.request_id
+      - name: status
+        type: string
+        mapping: $.status
+    - name: generate-query-suggestions
+      description: Generate verified query suggestions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: snowflake-cortex-analyst.generate-verified-query-suggestions
+      inputParameters:
+      - name: semantic_model_file
+        type: string
+        description: Semantic model file to generate suggestions for
+        required: true
+        mapping: body.semantic_model_file
+      - name: limit
+        type: integer
+        description: Maximum number of suggestions to return
+        required: false
+        mapping: body.limit
+      outputParameters:
+      - name: suggestions
+        type: array
+        mapping: $.suggestions
+      - name: request_id
+        type: string
+        mapping: $.request_id
+    - name: list-llm-models
+      description: List available Cortex LLM models
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-cortex-inference.get-models
+      inputParameters: []
+      outputParameters:
+      - name: models
+        type: array
+        mapping: $.data
+    - name: llm-complete
+      description: Run LLM inference completion
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: snowflake-cortex-inference.complete
+      inputParameters:
+      - name: model
+        type: string
+        description: Identifier of the Cortex LLM model
+        required: true
+        mapping: body.model
+      - name: prompt
+        type: string
+        description: Prompt text
+        required: true
+        mapping: body.prompt
+      outputParameters:
+      - name: id
+        type: string
+        mapping: $.id
+      - name: model
+        type: string
+        mapping: $.model
+      - name: choices
+        type: array
+        mapping: $.choices
+      - name: usage
+        type: object
+        mapping: $.usage
+    - name: semantic-search
+      description: Query a Cortex Search service
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-cortex-search.query-search-service
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the search service
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema containing the search service
+        required: true
+        mapping: path.schema
+      - name: query
+        type: string
+        description: Natural language query string
+        required: true
+        mapping: body.query
+      - name: columns
+        type: array
+        description: Columns to return from the search index
+        required: false
+        mapping: body.columns
+      - name: limit
+        type: integer
+        description: Maximum number of results to return
+        required: false
+        mapping: body.limit
+      outputParameters:
+      - name: results
+        type: array
+        mapping: $.results
+      - name: request_id
+        type: string
+        mapping: $.request_id
+    - name: list-search-services
+      description: List Cortex Search services
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-cortex-search.list-search-services
+      inputParameters:
+      - name: database
+        type: string
+        description: Database to list search services from
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema to list search services from
+        required: true
+        mapping: path.schema
+      outputParameters:
+      - name: services
+        type: array
+        mapping: $.data
+    - name: list-notebooks
+      description: List notebooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-notebook.list-notebooks
+      inputParameters:
+      - name: database
+        type: string
+        description: Database to list notebooks from
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema to list notebooks from
+        required: true
+        mapping: path.schema
+      outputParameters:
+      - name: notebooks
+        type: array
+        mapping: $.data
+    - name: create-notebook
+      description: Create a notebook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-notebook.create-notebook
+      inputParameters:
+      - name: database
+        type: string
+        description: Database to create the notebook in
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema to create the notebook in
+        required: true
+        mapping: path.schema
+      - name: name
+        type: string
+        description: Notebook name
+        required: true
+        mapping: body.name
+      - name: comment
+        type: string
+        description: Optional comment describing the notebook
+        required: false
+        mapping: body.comment
+      - name: query_warehouse
+        type: string
+        description: Warehouse used to execute notebook cells
+        required: false
+        mapping: body.query_warehouse
+      outputParameters:
+      - name: name
+        type: string
+        mapping: $.name
+      - name: database_name
+        type: string
+        mapping: $.database_name
+      - name: schema_name
+        type: string
+        mapping: $.schema_name
+      - name: created_on
+        type: string
+        mapping: $.created_on
+    - name: execute-notebook
+      description: Execute a notebook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-notebook.execute-notebook
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the notebook
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema containing the notebook
+        required: true
+        mapping: path.schema
+      - name: name
+        type: string
+        description: Notebook name to execute
+        required: true
+        mapping: path.name
+      outputParameters:
+      - name: status
+        type: string
+        mapping: $.status
+      - name: execution_id
+        type: string
+        mapping: $.execution_id
+  - type: mcp
+    port: 9083
+    namespace: snowflake-cortex-mcp-stdio
+    transport: stdio
+    description: MCP server (stdio transport) for local IDE/agent Snowflake Cortex AI use.
+    tools:
+    - name: ask-analyst
+      description: Ask a question about your data using natural language
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: snowflake-cortex-analyst.send-message
+      inputParameters:
+      - name: messages
+        type: array
+        description: Conversation messages to send to Cortex Analyst
+        required: true
+        mapping: body.messages
+      - name: semantic_model_file
+        type: string
+        description: Reference to the semantic model file
+        required: false
+        mapping: body.semantic_model_file
+      outputParameters:
+      - name: request_id
+        type: string
+        mapping: $.request_id
+      - name: message
+        type: object
+        mapping: $.message
+      - name: warnings
+        type: array
+        mapping: $.warnings
+    - name: send-analyst-feedback
+      description: Send feedback on an Analyst response
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: snowflake-cortex-analyst.send-feedback
+      inputParameters:
+      - name: request_id
+        type: string
+        description: Analyst request identifier
+        required: true
+        mapping: body.request_id
+      - name: positive
+        type: boolean
+        description: Whether the feedback is positive
+        required: true
+        mapping: body.positive
+      - name: feedback_message
+        type: string
+        description: Optional free-form feedback text
+        required: false
+        mapping: body.feedback_message
+      outputParameters:
+      - name: request_id
+        type: string
+        mapping: $.request_id
+      - name: status
+        type: string
+        mapping: $.status
+    - name: generate-query-suggestions
+      description: Generate verified query suggestions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: snowflake-cortex-analyst.generate-verified-query-suggestions
+      inputParameters:
+      - name: semantic_model_file
+        type: string
+        description: Semantic model file to generate suggestions for
+        required: true
+        mapping: body.semantic_model_file
+      - name: limit
+        type: integer
+        description: Maximum number of suggestions to return
+        required: false
+        mapping: body.limit
+      outputParameters:
+      - name: suggestions
+        type: array
+        mapping: $.suggestions
+      - name: request_id
+        type: string
+        mapping: $.request_id
+    - name: list-llm-models
+      description: List available Cortex LLM models
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-cortex-inference.get-models
+      inputParameters: []
+      outputParameters:
+      - name: models
+        type: array
+        mapping: $.data
+    - name: llm-complete
+      description: Run LLM inference completion
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: snowflake-cortex-inference.complete
+      inputParameters:
+      - name: model
+        type: string
+        description: Identifier of the Cortex LLM model
+        required: true
+        mapping: body.model
+      - name: prompt
+        type: string
+        description: Prompt text
+        required: true
+        mapping: body.prompt
+      outputParameters:
+      - name: id
+        type: string
+        mapping: $.id
+      - name: model
+        type: string
+        mapping: $.model
+      - name: choices
+        type: array
+        mapping: $.choices
+      - name: usage
+        type: object
+        mapping: $.usage
+    - name: semantic-search
+      description: Query a Cortex Search service
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-cortex-search.query-search-service
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the search service
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema containing the search service
+        required: true
+        mapping: path.schema
+      - name: query
+        type: string
+        description: Natural language query string
+        required: true
+        mapping: body.query
+      - name: columns
+        type: array
+        description: Columns to return from the search index
+        required: false
+        mapping: body.columns
+      - name: limit
+        type: integer
+        description: Maximum number of results to return
+        required: false
+        mapping: body.limit
+      outputParameters:
+      - name: results
+        type: array
+        mapping: $.results
+      - name: request_id
+        type: string
+        mapping: $.request_id
+    - name: list-search-services
+      description: List Cortex Search services
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-cortex-search.list-search-services
+      inputParameters:
+      - name: database
+        type: string
+        description: Database to list search services from
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema to list search services from
+        required: true
+        mapping: path.schema
+      outputParameters:
+      - name: services
+        type: array
+        mapping: $.data
+    - name: list-notebooks
+      description: List notebooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-notebook.list-notebooks
+      inputParameters:
+      - name: database
+        type: string
+        description: Database to list notebooks from
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema to list notebooks from
+        required: true
+        mapping: path.schema
+      outputParameters:
+      - name: notebooks
+        type: array
+        mapping: $.data
+    - name: create-notebook
+      description: Create a notebook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-notebook.create-notebook
+      inputParameters:
+      - name: database
+        type: string
+        description: Database to create the notebook in
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema to create the notebook in
+        required: true
+        mapping: path.schema
+      - name: name
+        type: string
+        description: Notebook name
+        required: true
+        mapping: body.name
+      - name: comment
+        type: string
+        description: Optional comment describing the notebook
+        required: false
+        mapping: body.comment
+      - name: query_warehouse
+        type: string
+        description: Warehouse used to execute notebook cells
+        required: false
+        mapping: body.query_warehouse
+      outputParameters:
+      - name: name
+        type: string
+        mapping: $.name
+      - name: database_name
+        type: string
+        mapping: $.database_name
+      - name: schema_name
+        type: string
+        mapping: $.schema_name
+      - name: created_on
+        type: string
+        mapping: $.created_on
+    - name: execute-notebook
+      description: Execute a notebook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-notebook.execute-notebook
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the notebook
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema containing the notebook
+        required: true
+        mapping: path.schema
+      - name: name
+        type: string
+        description: Notebook name to execute
+        required: true
+        mapping: path.name
+      outputParameters:
+      - name: status
+        type: string
+        mapping: $.status
+      - name: execution_id
+        type: string
+        mapping: $.execution_id
+  - type: skill
+    port: 10082
+    namespace: snowflake-cortex-skill
+    description: Agent Skills surface for Snowflake Cortex AI — same tool set exposed as agent-compatible skills.
+    tools:
+    - name: ask-analyst
+      description: Ask a question about your data using natural language
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: snowflake-cortex-analyst.send-message
+      inputParameters:
+      - name: messages
+        type: array
+        description: Conversation messages to send to Cortex Analyst
+        required: true
+        mapping: body.messages
+      - name: semantic_model_file
+        type: string
+        description: Reference to the semantic model file
+        required: false
+        mapping: body.semantic_model_file
+      outputParameters:
+      - name: request_id
+        type: string
+        mapping: $.request_id
+      - name: message
+        type: object
+        mapping: $.message
+      - name: warnings
+        type: array
+        mapping: $.warnings
+    - name: send-analyst-feedback
+      description: Send feedback on an Analyst response
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: snowflake-cortex-analyst.send-feedback
+      inputParameters:
+      - name: request_id
+        type: string
+        description: Analyst request identifier
+        required: true
+        mapping: body.request_id
+      - name: positive
+        type: boolean
+        description: Whether the feedback is positive
+        required: true
+        mapping: body.positive
+      - name: feedback_message
+        type: string
+        description: Optional free-form feedback text
+        required: false
+        mapping: body.feedback_message
+      outputParameters:
+      - name: request_id
+        type: string
+        mapping: $.request_id
+      - name: status
+        type: string
+        mapping: $.status
+    - name: generate-query-suggestions
+      description: Generate verified query suggestions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: snowflake-cortex-analyst.generate-verified-query-suggestions
+      inputParameters:
+      - name: semantic_model_file
+        type: string
+        description: Semantic model file to generate suggestions for
+        required: true
+        mapping: body.semantic_model_file
+      - name: limit
+        type: integer
+        description: Maximum number of suggestions to return
+        required: false
+        mapping: body.limit
+      outputParameters:
+      - name: suggestions
+        type: array
+        mapping: $.suggestions
+      - name: request_id
+        type: string
+        mapping: $.request_id
+    - name: list-llm-models
+      description: List available Cortex LLM models
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-cortex-inference.get-models
+      inputParameters: []
+      outputParameters:
+      - name: models
+        type: array
+        mapping: $.data
+    - name: llm-complete
+      description: Run LLM inference completion
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: snowflake-cortex-inference.complete
+      inputParameters:
+      - name: model
+        type: string
+        description: Identifier of the Cortex LLM model
+        required: true
+        mapping: body.model
+      - name: prompt
+        type: string
+        description: Prompt text
+        required: true
+        mapping: body.prompt
+      outputParameters:
+      - name: id
+        type: string
+        mapping: $.id
+      - name: model
+        type: string
+        mapping: $.model
+      - name: choices
+        type: array
+        mapping: $.choices
+      - name: usage
+        type: object
+        mapping: $.usage
+    - name: semantic-search
+      description: Query a Cortex Search service
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-cortex-search.query-search-service
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the search service
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema containing the search service
+        required: true
+        mapping: path.schema
+      - name: query
+        type: string
+        description: Natural language query string
+        required: true
+        mapping: body.query
+      - name: columns
+        type: array
+        description: Columns to return from the search index
+        required: false
+        mapping: body.columns
+      - name: limit
+        type: integer
+        description: Maximum number of results to return
+        required: false
+        mapping: body.limit
+      outputParameters:
+      - name: results
+        type: array
+        mapping: $.results
+      - name: request_id
+        type: string
+        mapping: $.request_id
+    - name: list-search-services
+      description: List Cortex Search services
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-cortex-search.list-search-services
+      inputParameters:
+      - name: database
+        type: string
+        description: Database to list search services from
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema to list search services from
+        required: true
+        mapping: path.schema
+      outputParameters:
+      - name: services
+        type: array
+        mapping: $.data
+    - name: list-notebooks
+      description: List notebooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snowflake-notebook.list-notebooks
+      inputParameters:
+      - name: database
+        type: string
+        description: Database to list notebooks from
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema to list notebooks from
+        required: true
+        mapping: path.schema
+      outputParameters:
+      - name: notebooks
+        type: array
+        mapping: $.data
+    - name: create-notebook
+      description: Create a notebook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-notebook.create-notebook
+      inputParameters:
+      - name: database
+        type: string
+        description: Database to create the notebook in
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema to create the notebook in
+        required: true
+        mapping: path.schema
+      - name: name
+        type: string
+        description: Notebook name
+        required: true
+        mapping: body.name
+      - name: comment
+        type: string
+        description: Optional comment describing the notebook
+        required: false
+        mapping: body.comment
+      - name: query_warehouse
+        type: string
+        description: Warehouse used to execute notebook cells
+        required: false
+        mapping: body.query_warehouse
+      outputParameters:
+      - name: name
+        type: string
+        mapping: $.name
+      - name: database_name
+        type: string
+        mapping: $.database_name
+      - name: schema_name
+        type: string
+        mapping: $.schema_name
+      - name: created_on
+        type: string
+        mapping: $.created_on
+    - name: execute-notebook
+      description: Execute a notebook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: snowflake-notebook.execute-notebook
+      inputParameters:
+      - name: database
+        type: string
+        description: Database containing the notebook
+        required: true
+        mapping: path.database
+      - name: schema
+        type: string
+        description: Schema containing the notebook
+        required: true
+        mapping: path.schema
+      - name: name
+        type: string
+        description: Notebook name to execute
+        required: true
+        mapping: path.name
+      outputParameters:
+      - name: status
+        type: string
+        mapping: $.status
+      - name: execution_id
+        type: string
+        mapping: $.execution_id
