@@ -1,0 +1,191 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake Image Repository API — image-repository
+  description: 'Snowflake Image Repository API — image-repository. 5 operations. Lead operation: Lists Image Repositories..
+    Self-contained Naftiko capability covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - image-repository
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: image-repository-image-repository
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake Image Repository API — image-repository business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-databases-database-schemas-schema-image-repositories
+      path: /api/v2/databases/{database}/schemas/{schema}/image-repositories
+      operations:
+      - name: listimagerepositories
+        method: GET
+        description: Lists Image Repositories.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createimagerepository
+        method: POST
+        description: Creates an Image Repository in the Specified Database and Schema.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-databases-database-schemas-schema-image-repositories-name
+      path: /api/v2/databases/{database}/schemas/{schema}/image-repositories/{name}
+      operations:
+      - name: fetchimagerepository
+        method: GET
+        description: Fetches an Image Repository.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteimagerepository
+        method: DELETE
+        description: Deletes an Image Repository.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-image-repositories-name-images
+      path: /api/v2/databases/{database}/schemas/{schema}/image-repositories/{name}/images
+      operations:
+      - name: listimagesinrepository
+        method: GET
+        description: List Images in the Image Repository.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: image-repository-image-repository-rest
+    port: 8080
+    description: REST adapter for Snowflake Image Repository API — image-repository. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/image-repositories
+      name: api-v2-databases-database-schemas-schema-image-repositories
+      description: REST surface for api-v2-databases-database-schemas-schema-image-repositories.
+      operations:
+      - method: GET
+        name: listimagerepositories
+        description: Lists Image Repositories.
+        call: image-repository-image-repository.listimagerepositories
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createimagerepository
+        description: Creates an Image Repository in the Specified Database and Schema.
+        call: image-repository-image-repository.createimagerepository
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/image-repositories/{name}
+      name: api-v2-databases-database-schemas-schema-image-repositories-name
+      description: REST surface for api-v2-databases-database-schemas-schema-image-repositories-name.
+      operations:
+      - method: GET
+        name: fetchimagerepository
+        description: Fetches an Image Repository.
+        call: image-repository-image-repository.fetchimagerepository
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteimagerepository
+        description: Deletes an Image Repository.
+        call: image-repository-image-repository.deleteimagerepository
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/image-repositories/{name}/images
+      name: api-v2-databases-database-schemas-schema-image-repositories-name-images
+      description: REST surface for api-v2-databases-database-schemas-schema-image-repositories-name-images.
+      operations:
+      - method: GET
+        name: listimagesinrepository
+        description: List Images in the Image Repository.
+        call: image-repository-image-repository.listimagesinrepository
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: image-repository-image-repository-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake Image Repository API — image-repository. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: lists-image-repositories
+      description: Lists Image Repositories.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: image-repository-image-repository.listimagerepositories
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creates-image-repository-specified-database
+      description: Creates an Image Repository in the Specified Database and Schema.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: image-repository-image-repository.createimagerepository
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetches-image-repository
+      description: Fetches an Image Repository.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: image-repository-image-repository.fetchimagerepository
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-image-repository
+      description: Deletes an Image Repository.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: image-repository-image-repository.deleteimagerepository
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-images-image-repository
+      description: List Images in the Image Repository.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: image-repository-image-repository.listimagesinrepository
+      outputParameters:
+      - type: object
+        mapping: $.

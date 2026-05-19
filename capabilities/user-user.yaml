@@ -1,0 +1,303 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake User API — user
+  description: 'Snowflake User API — user. 8 operations. Lead operation: Create a User. Self-contained Naftiko capability
+    covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - user
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-user
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake User API — user business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-users
+      path: /api/v2/users
+      operations:
+      - name: createuser
+        method: POST
+        description: Create a User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listusers
+        method: GET
+        description: List Users in the System.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-users-name
+      path: /api/v2/users/{name}
+      operations:
+      - name: fetchuser
+        method: GET
+        description: Fetch Information About a User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteuser
+        method: DELETE
+        description: Delete a User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createoralteruser
+        method: PUT
+        description: Create a (or Alter an Existing) User.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-users-name-grants
+      path: /api/v2/users/{name}/grants
+      operations:
+      - name: listgrants
+        method: GET
+        description: List All Grants to the User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: grant
+        method: POST
+        description: Grant a Role to the User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-users-name-grants:revoke
+      path: /api/v2/users/{name}/grants:revoke
+      operations:
+      - name: revokegrants
+        method: POST
+        description: Revoke Grants From the User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-user-rest
+    port: 8080
+    description: REST adapter for Snowflake User API — user. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v2/users
+      name: api-v2-users
+      description: REST surface for api-v2-users.
+      operations:
+      - method: POST
+        name: createuser
+        description: Create a User
+        call: user-user.createuser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listusers
+        description: List Users in the System.
+        call: user-user.listusers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/users/{name}
+      name: api-v2-users-name
+      description: REST surface for api-v2-users-name.
+      operations:
+      - method: GET
+        name: fetchuser
+        description: Fetch Information About a User
+        call: user-user.fetchuser
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteuser
+        description: Delete a User
+        call: user-user.deleteuser
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createoralteruser
+        description: Create a (or Alter an Existing) User.
+        call: user-user.createoralteruser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/users/{name}/grants
+      name: api-v2-users-name-grants
+      description: REST surface for api-v2-users-name-grants.
+      operations:
+      - method: GET
+        name: listgrants
+        description: List All Grants to the User
+        call: user-user.listgrants
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: grant
+        description: Grant a Role to the User
+        call: user-user.grant
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/users/{name}/grants-revoke
+      name: api-v2-users-name-grants-revoke
+      description: REST surface for api-v2-users-name-grants:revoke.
+      operations:
+      - method: POST
+        name: revokegrants
+        description: Revoke Grants From the User
+        call: user-user.revokegrants
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake User API — user. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: create-user
+      description: Create a User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-user.createuser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-users-system
+      description: List Users in the System.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-user.listusers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-information-about-user
+      description: Fetch Information About a User
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-user.fetchuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-user
+      description: Delete a User
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user-user.deleteuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-alter-existing-user
+      description: Create a (or Alter an Existing) User.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user-user.createoralteruser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-grants-user
+      description: List All Grants to the User
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-user.listgrants
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grant-role-user
+      description: Grant a Role to the User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-user.grant
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: revoke-grants-user
+      description: Revoke Grants From the User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-user.revokegrants
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

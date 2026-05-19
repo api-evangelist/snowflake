@@ -1,0 +1,144 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake SQL API — statements
+  description: 'Snowflake SQL API — statements. 3 operations. Lead operation: Submits a Sql Statement for Execution.. Self-contained
+    Naftiko capability covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - statements
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sqlapi-statements
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake SQL API — statements business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-statements
+      path: /api/v2/statements
+      operations:
+      - name: submitstatement
+        method: POST
+        description: Submits a Sql Statement for Execution.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-statements-statementHandle
+      path: /api/v2/statements/{statementHandle}
+      operations:
+      - name: getstatementstatus
+        method: GET
+        description: Checks the Status of the Execution of a Statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-statements-statementHandle-cancel
+      path: /api/v2/statements/{statementHandle}/cancel
+      operations:
+      - name: cancelstatement
+        method: POST
+        description: Cancels the Execution of a Statement.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SNOWFLAKE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: sqlapi-statements-rest
+    port: 8080
+    description: REST adapter for Snowflake SQL API — statements. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/statements
+      name: api-v2-statements
+      description: REST surface for api-v2-statements.
+      operations:
+      - method: POST
+        name: submitstatement
+        description: Submits a Sql Statement for Execution.
+        call: sqlapi-statements.submitstatement
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/statements/{statementhandle}
+      name: api-v2-statements-statementhandle
+      description: REST surface for api-v2-statements-statementHandle.
+      operations:
+      - method: GET
+        name: getstatementstatus
+        description: Checks the Status of the Execution of a Statement
+        call: sqlapi-statements.getstatementstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/statements/{statementhandle}/cancel
+      name: api-v2-statements-statementhandle-cancel
+      description: REST surface for api-v2-statements-statementHandle-cancel.
+      operations:
+      - method: POST
+        name: cancelstatement
+        description: Cancels the Execution of a Statement.
+        call: sqlapi-statements.cancelstatement
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sqlapi-statements-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake SQL API — statements. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: submits-sql-statement-execution
+      description: Submits a Sql Statement for Execution.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: sqlapi-statements.submitstatement
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: checks-status-execution-statement
+      description: Checks the Status of the Execution of a Statement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sqlapi-statements.getstatementstatus
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancels-execution-statement
+      description: Cancels the Execution of a Statement.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: sqlapi-statements.cancelstatement
+      outputParameters:
+      - type: object
+        mapping: $.

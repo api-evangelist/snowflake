@@ -1,0 +1,596 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake Services API — service
+  description: 'Snowflake Services API — service. 16 operations. Lead operation: List Services. Self-contained Naftiko capability
+    covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - service
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: service-service
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake Services API — service business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-databases-database-schemas-schema-services
+      path: /api/v2/databases/{database}/schemas/{schema}/services
+      operations:
+      - name: listservices
+        method: GET
+        description: List Services
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createservice
+        method: POST
+        description: Create a Service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: createMode
+          in: query
+          type: string
+          description: 'Query parameter allowing support for different modes of resource creation. Possible values include:
+            - `errorIfExists`: Throws an error if you try to create a re'
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-databases-database-schemas-schema-services-name
+      path: /api/v2/databases/{database}/schemas/{schema}/services/{name}
+      operations:
+      - name: fetchservice
+        method: GET
+        description: Fetch a service.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createoralterservice
+        method: PUT
+        description: Create a (or Alter an Existing) Service.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteservice
+        method: DELETE
+        description: Delete a Service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-services-name-containers
+      path: /api/v2/databases/{database}/schemas/{schema}/services/{name}/containers
+      operations:
+      - name: listservicecontainers
+        method: GET
+        description: List all the containers of the service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-services-name-endpoints
+      path: /api/v2/databases/{database}/schemas/{schema}/services/{name}/endpoints
+      operations:
+      - name: showserviceendpoints
+        method: GET
+        description: List the Endpoints in a Service.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-services-name-instances
+      path: /api/v2/databases/{database}/schemas/{schema}/services/{name}/instances
+      operations:
+      - name: listserviceinstances
+        method: GET
+        description: List all the instances of the service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-services-name-logs
+      path: /api/v2/databases/{database}/schemas/{schema}/services/{name}/logs
+      operations:
+      - name: fetchservicelogs
+        method: GET
+        description: Fetch the logs for a given service.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: instanceId
+          in: query
+          type: integer
+          description: ID of the service instance, starting with 0.
+          required: true
+        - name: containerName
+          in: query
+          type: string
+          description: Container name as specified in the service specification file.
+          required: true
+        - name: numLines
+          in: query
+          type: integer
+          description: Number of trailing log lines to retrieve.
+    - name: api-v2-databases-database-schemas-schema-services-name-roles
+      path: /api/v2/databases/{database}/schemas/{schema}/services/{name}/roles
+      operations:
+      - name: listserviceroles
+        method: GET
+        description: List all the service roles of the service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-services-name-status
+      path: /api/v2/databases/{database}/schemas/{schema}/services/{name}/status
+      operations:
+      - name: fetchservicestatus
+        method: GET
+        description: Fetch the status for a given service.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: timeout
+          in: query
+          type: integer
+          description: Number of seconds to wait for the service to reach a steady state (for example, READY) before returning
+            the status. If the service does not reach a steady state
+    - name: api-v2-databases-database-schemas-schema-services-name}:resume
+      path: /api/v2/databases/{database}/schemas/{schema}/services/{name}:resume
+      operations:
+      - name: resumeservice
+        method: POST
+        description: Resume a service.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-services-name}:suspend
+      path: /api/v2/databases/{database}/schemas/{schema}/services/{name}:suspend
+      operations:
+      - name: suspendservice
+        method: POST
+        description: Suspend a service.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-services-service-roles-name-grants
+      path: /api/v2/databases/{database}/schemas/{schema}/services/{service}/roles/{name}/grants
+      operations:
+      - name: listservicerolegrantsto
+        method: GET
+        description: List all the grants given to the service role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-services-service-roles-name-grants-of
+      path: /api/v2/databases/{database}/schemas/{schema}/services/{service}/roles/{name}/grants-of
+      operations:
+      - name: listservicerolegrantsof
+        method: GET
+        description: List all the grants of the service role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-services:execute-job
+      path: /api/v2/databases/{database}/schemas/{schema}/services:execute-job
+      operations:
+      - name: executejobservice
+        method: POST
+        description: Execute a Job Service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: service-service-rest
+    port: 8080
+    description: REST adapter for Snowflake Services API — service. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services
+      name: api-v2-databases-database-schemas-schema-services
+      description: REST surface for api-v2-databases-database-schemas-schema-services.
+      operations:
+      - method: GET
+        name: listservices
+        description: List Services
+        call: service-service.listservices
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createservice
+        description: Create a Service
+        call: service-service.createservice
+        with:
+          createMode: rest.createMode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services/{name}
+      name: api-v2-databases-database-schemas-schema-services-name
+      description: REST surface for api-v2-databases-database-schemas-schema-services-name.
+      operations:
+      - method: GET
+        name: fetchservice
+        description: Fetch a service.
+        call: service-service.fetchservice
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createoralterservice
+        description: Create a (or Alter an Existing) Service.
+        call: service-service.createoralterservice
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteservice
+        description: Delete a Service
+        call: service-service.deleteservice
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services/{name}/containers
+      name: api-v2-databases-database-schemas-schema-services-name-containers
+      description: REST surface for api-v2-databases-database-schemas-schema-services-name-containers.
+      operations:
+      - method: GET
+        name: listservicecontainers
+        description: List all the containers of the service
+        call: service-service.listservicecontainers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services/{name}/endpoints
+      name: api-v2-databases-database-schemas-schema-services-name-endpoints
+      description: REST surface for api-v2-databases-database-schemas-schema-services-name-endpoints.
+      operations:
+      - method: GET
+        name: showserviceendpoints
+        description: List the Endpoints in a Service.
+        call: service-service.showserviceendpoints
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services/{name}/instances
+      name: api-v2-databases-database-schemas-schema-services-name-instances
+      description: REST surface for api-v2-databases-database-schemas-schema-services-name-instances.
+      operations:
+      - method: GET
+        name: listserviceinstances
+        description: List all the instances of the service
+        call: service-service.listserviceinstances
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services/{name}/logs
+      name: api-v2-databases-database-schemas-schema-services-name-logs
+      description: REST surface for api-v2-databases-database-schemas-schema-services-name-logs.
+      operations:
+      - method: GET
+        name: fetchservicelogs
+        description: Fetch the logs for a given service.
+        call: service-service.fetchservicelogs
+        with:
+          instanceId: rest.instanceId
+          containerName: rest.containerName
+          numLines: rest.numLines
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services/{name}/roles
+      name: api-v2-databases-database-schemas-schema-services-name-roles
+      description: REST surface for api-v2-databases-database-schemas-schema-services-name-roles.
+      operations:
+      - method: GET
+        name: listserviceroles
+        description: List all the service roles of the service
+        call: service-service.listserviceroles
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services/{name}/status
+      name: api-v2-databases-database-schemas-schema-services-name-status
+      description: REST surface for api-v2-databases-database-schemas-schema-services-name-status.
+      operations:
+      - method: GET
+        name: fetchservicestatus
+        description: Fetch the status for a given service.
+        call: service-service.fetchservicestatus
+        with:
+          timeout: rest.timeout
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services/name-resume
+      name: api-v2-databases-database-schemas-schema-services-name-resume
+      description: REST surface for api-v2-databases-database-schemas-schema-services-name}:resume.
+      operations:
+      - method: POST
+        name: resumeservice
+        description: Resume a service.
+        call: service-service.resumeservice
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services/name-suspend
+      name: api-v2-databases-database-schemas-schema-services-name-suspend
+      description: REST surface for api-v2-databases-database-schemas-schema-services-name}:suspend.
+      operations:
+      - method: POST
+        name: suspendservice
+        description: Suspend a service.
+        call: service-service.suspendservice
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services/{service}/roles/{name}/grants
+      name: api-v2-databases-database-schemas-schema-services-service-roles-name-grants
+      description: REST surface for api-v2-databases-database-schemas-schema-services-service-roles-name-grants.
+      operations:
+      - method: GET
+        name: listservicerolegrantsto
+        description: List all the grants given to the service role
+        call: service-service.listservicerolegrantsto
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services/{service}/roles/{name}/grants-of
+      name: api-v2-databases-database-schemas-schema-services-service-roles-name-grants-of
+      description: REST surface for api-v2-databases-database-schemas-schema-services-service-roles-name-grants-of.
+      operations:
+      - method: GET
+        name: listservicerolegrantsof
+        description: List all the grants of the service role
+        call: service-service.listservicerolegrantsof
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/services-execute-job
+      name: api-v2-databases-database-schemas-schema-services-execute-job
+      description: REST surface for api-v2-databases-database-schemas-schema-services:execute-job.
+      operations:
+      - method: POST
+        name: executejobservice
+        description: Execute a Job Service
+        call: service-service.executejobservice
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: service-service-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake Services API — service. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-services
+      description: List Services
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-service.listservices
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-service
+      description: Create a Service
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: service-service.createservice
+      with:
+        createMode: tools.createMode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-service
+      description: Fetch a service.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-service.fetchservice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-alter-existing-service
+      description: Create a (or Alter an Existing) Service.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: service-service.createoralterservice
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-service
+      description: Delete a Service
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: service-service.deleteservice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-containers-service
+      description: List all the containers of the service
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-service.listservicecontainers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-endpoints-service
+      description: List the Endpoints in a Service.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-service.showserviceendpoints
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-instances-service
+      description: List all the instances of the service
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-service.listserviceinstances
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-logs-given-service
+      description: Fetch the logs for a given service.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-service.fetchservicelogs
+      with:
+        instanceId: tools.instanceId
+        containerName: tools.containerName
+        numLines: tools.numLines
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-service-roles-service
+      description: List all the service roles of the service
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-service.listserviceroles
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-status-given-service
+      description: Fetch the status for a given service.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-service.fetchservicestatus
+      with:
+        timeout: tools.timeout
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resume-service
+      description: Resume a service.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: service-service.resumeservice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suspend-service
+      description: Suspend a service.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: service-service.suspendservice
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-grants-given-service
+      description: List all the grants given to the service role
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-service.listservicerolegrantsto
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-grants-service-role
+      description: List all the grants of the service role
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-service.listservicerolegrantsof
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: execute-job-service
+      description: Execute a Job Service
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: service-service.executejobservice
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

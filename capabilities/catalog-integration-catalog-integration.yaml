@@ -1,0 +1,159 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake Catalog Integration API — catalog-integration
+  description: 'Snowflake Catalog Integration API — catalog-integration. 4 operations. Lead operation: List Catalog Integrations..
+    Self-contained Naftiko capability covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - catalog-integration
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: catalog-integration-catalog-integration
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake Catalog Integration API — catalog-integration business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-catalog-integrations
+      path: /api/v2/catalog-integrations
+      operations:
+      - name: listcatalogintegrations
+        method: GET
+        description: List Catalog Integrations.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcatalogintegration
+        method: POST
+        description: Create a Catalog Integration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-catalog-integrations-name
+      path: /api/v2/catalog-integrations/{name}
+      operations:
+      - name: fetchcatalogintegration
+        method: GET
+        description: Fetch a Catalog Integration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletecatalogintegration
+        method: DELETE
+        description: Delete a Catalog Integration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: catalog-integration-catalog-integration-rest
+    port: 8080
+    description: REST adapter for Snowflake Catalog Integration API — catalog-integration. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/catalog-integrations
+      name: api-v2-catalog-integrations
+      description: REST surface for api-v2-catalog-integrations.
+      operations:
+      - method: GET
+        name: listcatalogintegrations
+        description: List Catalog Integrations.
+        call: catalog-integration-catalog-integration.listcatalogintegrations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcatalogintegration
+        description: Create a Catalog Integration.
+        call: catalog-integration-catalog-integration.createcatalogintegration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/catalog-integrations/{name}
+      name: api-v2-catalog-integrations-name
+      description: REST surface for api-v2-catalog-integrations-name.
+      operations:
+      - method: GET
+        name: fetchcatalogintegration
+        description: Fetch a Catalog Integration.
+        call: catalog-integration-catalog-integration.fetchcatalogintegration
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecatalogintegration
+        description: Delete a Catalog Integration.
+        call: catalog-integration-catalog-integration.deletecatalogintegration
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: catalog-integration-catalog-integration-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake Catalog Integration API — catalog-integration. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: list-catalog-integrations
+      description: List Catalog Integrations.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-integration-catalog-integration.listcatalogintegrations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-catalog-integration
+      description: Create a Catalog Integration.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: catalog-integration-catalog-integration.createcatalogintegration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-catalog-integration
+      description: Fetch a Catalog Integration.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-integration-catalog-integration.fetchcatalogintegration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-catalog-integration
+      description: Delete a Catalog Integration.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: catalog-integration-catalog-integration.deletecatalogintegration
+      outputParameters:
+      - type: object
+        mapping: $.

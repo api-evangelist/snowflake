@@ -1,0 +1,193 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cortex Analyst API — cortex-analyst
+  description: 'Cortex Analyst API — cortex-analyst. 4 operations. Lead operation: Send a Data Question to the Cortex Analyst.
+    Self-contained Naftiko capability covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - cortex-analyst
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cortex-analyst-cortex-analyst
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Cortex Analyst API — cortex-analyst business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-cortex-analyst-feedback
+      path: /api/v2/cortex/analyst/feedback
+      operations:
+      - name: sendfeedback
+        method: POST
+        description: Send a user feedback of Cortex Analyst response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-cortex-analyst-message
+      path: /api/v2/cortex/analyst/message
+      operations:
+      - name: sendmessage
+        method: POST
+        description: Send a Data Question to the Cortex Analyst
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-cortex-analyst-token
+      path: /api/v2/cortex/analyst/token
+      operations:
+      - name: getscopedtoken
+        method: GET
+        description: Internal Endpoint to Exchange a Cortex Analyst Oauth Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-cortex-analyst-verified-query-suggestions
+      path: /api/v2/cortex/analyst/verified-query-suggestions
+      operations:
+      - name: generateverifiedquerysuggestions
+        method: POST
+        description: Generate Vq Suggestions for a Semantic Model
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: cortex-analyst-cortex-analyst-rest
+    port: 8080
+    description: REST adapter for Cortex Analyst API — cortex-analyst. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/cortex/analyst/feedback
+      name: api-v2-cortex-analyst-feedback
+      description: REST surface for api-v2-cortex-analyst-feedback.
+      operations:
+      - method: POST
+        name: sendfeedback
+        description: Send a user feedback of Cortex Analyst response
+        call: cortex-analyst-cortex-analyst.sendfeedback
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/cortex/analyst/message
+      name: api-v2-cortex-analyst-message
+      description: REST surface for api-v2-cortex-analyst-message.
+      operations:
+      - method: POST
+        name: sendmessage
+        description: Send a Data Question to the Cortex Analyst
+        call: cortex-analyst-cortex-analyst.sendmessage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/cortex/analyst/token
+      name: api-v2-cortex-analyst-token
+      description: REST surface for api-v2-cortex-analyst-token.
+      operations:
+      - method: GET
+        name: getscopedtoken
+        description: Internal Endpoint to Exchange a Cortex Analyst Oauth Token
+        call: cortex-analyst-cortex-analyst.getscopedtoken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/cortex/analyst/verified-query-suggestions
+      name: api-v2-cortex-analyst-verified-query-suggestions
+      description: REST surface for api-v2-cortex-analyst-verified-query-suggestions.
+      operations:
+      - method: POST
+        name: generateverifiedquerysuggestions
+        description: Generate Vq Suggestions for a Semantic Model
+        call: cortex-analyst-cortex-analyst.generateverifiedquerysuggestions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cortex-analyst-cortex-analyst-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cortex Analyst API — cortex-analyst. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: send-user-feedback-cortex-analyst
+      description: Send a user feedback of Cortex Analyst response
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cortex-analyst-cortex-analyst.sendfeedback
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-data-question-cortex-analyst
+      description: Send a Data Question to the Cortex Analyst
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cortex-analyst-cortex-analyst.sendmessage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: internal-endpoint-exchange-cortex-analyst
+      description: Internal Endpoint to Exchange a Cortex Analyst Oauth Token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-analyst-cortex-analyst.getscopedtoken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: generate-vq-suggestions-semantic-model
+      description: Generate Vq Suggestions for a Semantic Model
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cortex-analyst-cortex-analyst.generateverifiedquerysuggestions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

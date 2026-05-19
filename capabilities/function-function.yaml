@@ -1,0 +1,201 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake Function API — function
+  description: 'Snowflake Function API — function. 5 operations. Lead operation: List Functions. Self-contained Naftiko capability
+    covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - function
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: function-function
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake Function API — function business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-databases-database-schemas-schema-functions
+      path: /api/v2/databases/{database}/schemas/{schema}/functions
+      operations:
+      - name: listfunctions
+        method: GET
+        description: List Functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createfunction
+        method: POST
+        description: Create a Function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-databases-database-schemas-schema-functions-nameWithArgs
+      path: /api/v2/databases/{database}/schemas/{schema}/functions/{nameWithArgs}
+      operations:
+      - name: fetchfunction
+        method: GET
+        description: Fetch a Function.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletefunction
+        method: DELETE
+        description: Delete a Function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-functions-name}:execute
+      path: /api/v2/databases/{database}/schemas/{schema}/functions/{name}:execute
+      operations:
+      - name: executefunction
+        method: POST
+        description: Execute a Function.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: function-function-rest
+    port: 8080
+    description: REST adapter for Snowflake Function API — function. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/functions
+      name: api-v2-databases-database-schemas-schema-functions
+      description: REST surface for api-v2-databases-database-schemas-schema-functions.
+      operations:
+      - method: GET
+        name: listfunctions
+        description: List Functions
+        call: function-function.listfunctions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createfunction
+        description: Create a Function
+        call: function-function.createfunction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/functions/{namewithargs}
+      name: api-v2-databases-database-schemas-schema-functions-namewithargs
+      description: REST surface for api-v2-databases-database-schemas-schema-functions-nameWithArgs.
+      operations:
+      - method: GET
+        name: fetchfunction
+        description: Fetch a Function.
+        call: function-function.fetchfunction
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletefunction
+        description: Delete a Function
+        call: function-function.deletefunction
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/functions/name-execute
+      name: api-v2-databases-database-schemas-schema-functions-name-execute
+      description: REST surface for api-v2-databases-database-schemas-schema-functions-name}:execute.
+      operations:
+      - method: POST
+        name: executefunction
+        description: Execute a Function.
+        call: function-function.executefunction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: function-function-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake Function API — function. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-functions
+      description: List Functions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: function-function.listfunctions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-function
+      description: Create a Function
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: function-function.createfunction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-function
+      description: Fetch a Function.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: function-function.fetchfunction
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-function
+      description: Delete a Function
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: function-function.deletefunction
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: execute-function
+      description: Execute a Function.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: function-function.executefunction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

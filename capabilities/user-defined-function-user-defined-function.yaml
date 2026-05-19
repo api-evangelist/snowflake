@@ -1,0 +1,216 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake User Defined Function API — user-defined-function
+  description: 'Snowflake User Defined Function API — user-defined-function. 5 operations. Lead operation: Create a Udf. Self-contained
+    Naftiko capability covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - user-defined-function
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user-defined-function-user-defined-function
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake User Defined Function API — user-defined-function business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: api-v2-databases-database-schemas-schema-user-defined-functions
+      path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions
+      operations:
+      - name: createuserdefinedfunction
+        method: POST
+        description: Create a Udf
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listuserdefinedfunctions
+        method: GET
+        description: List Udfs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-user-defined-functions-nameWithArgs
+      path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}
+      operations:
+      - name: fetchuserdefinedfunction
+        method: GET
+        description: Fetch a Udf
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteuserdefinedfunction
+        method: DELETE
+        description: Delete a Udf
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-user-defined-functions-nameWithArgs}:re
+      path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}:rename
+      operations:
+      - name: renameuserdefinedfunction
+        method: POST
+        description: Rename a Udf
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: targetDatabase
+          in: query
+          type: string
+          description: Database of the target resource. Defaults to the source's database
+          required: true
+        - name: targetSchema
+          in: query
+          type: string
+          description: Schema of the target resource. Defaults to the source's schema
+          required: true
+        - name: targetName
+          in: query
+          type: string
+          description: Name of the target resource.
+          required: true
+  exposes:
+  - type: rest
+    namespace: user-defined-function-user-defined-function-rest
+    port: 8080
+    description: REST adapter for Snowflake User Defined Function API — user-defined-function. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/user-defined-functions
+      name: api-v2-databases-database-schemas-schema-user-defined-functions
+      description: REST surface for api-v2-databases-database-schemas-schema-user-defined-functions.
+      operations:
+      - method: POST
+        name: createuserdefinedfunction
+        description: Create a Udf
+        call: user-defined-function-user-defined-function.createuserdefinedfunction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listuserdefinedfunctions
+        description: List Udfs
+        call: user-defined-function-user-defined-function.listuserdefinedfunctions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{namewithargs}
+      name: api-v2-databases-database-schemas-schema-user-defined-functions-namewithargs
+      description: REST surface for api-v2-databases-database-schemas-schema-user-defined-functions-nameWithArgs.
+      operations:
+      - method: GET
+        name: fetchuserdefinedfunction
+        description: Fetch a Udf
+        call: user-defined-function-user-defined-function.fetchuserdefinedfunction
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteuserdefinedfunction
+        description: Delete a Udf
+        call: user-defined-function-user-defined-function.deleteuserdefinedfunction
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/user-defined-functions/namewithargs-rename
+      name: api-v2-databases-database-schemas-schema-user-defined-functions-namewithargs-re
+      description: REST surface for api-v2-databases-database-schemas-schema-user-defined-functions-nameWithArgs}:re.
+      operations:
+      - method: POST
+        name: renameuserdefinedfunction
+        description: Rename a Udf
+        call: user-defined-function-user-defined-function.renameuserdefinedfunction
+        with:
+          targetDatabase: rest.targetDatabase
+          targetSchema: rest.targetSchema
+          targetName: rest.targetName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-defined-function-user-defined-function-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake User Defined Function API — user-defined-function. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: create-udf
+      description: Create a Udf
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-defined-function-user-defined-function.createuserdefinedfunction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-udfs
+      description: List Udfs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-defined-function-user-defined-function.listuserdefinedfunctions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-udf
+      description: Fetch a Udf
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user-defined-function-user-defined-function.fetchuserdefinedfunction
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-udf
+      description: Delete a Udf
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user-defined-function-user-defined-function.deleteuserdefinedfunction
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: rename-udf
+      description: Rename a Udf
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user-defined-function-user-defined-function.renameuserdefinedfunction
+      with:
+        targetDatabase: tools.targetDatabase
+        targetSchema: tools.targetSchema
+        targetName: tools.targetName
+      outputParameters:
+      - type: object
+        mapping: $.

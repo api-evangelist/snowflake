@@ -1,0 +1,328 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake Compute Pools API — compute-pool
+  description: 'Snowflake Compute Pools API — compute-pool. 9 operations. Lead operation: Lists Compute Pools.. Self-contained
+    Naftiko capability covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - compute-pool
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: compute-pool-compute-pool
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake Compute Pools API — compute-pool business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-compute-pools
+      path: /api/v2/compute-pools
+      operations:
+      - name: listcomputepools
+        method: GET
+        description: Lists Compute Pools.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcomputepool
+        method: POST
+        description: Creates a Compute Pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: initiallySuspended
+          in: query
+          type: boolean
+          description: Specifies whether the compute pool is created initially in the suspended state.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-compute-pools-name
+      path: /api/v2/compute-pools/{name}
+      operations:
+      - name: fetchcomputepool
+        method: GET
+        description: Fetches a Compute Pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createoraltercomputepool
+        method: PUT
+        description: Create a (or Alter an Existing) Compute Pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecomputepool
+        method: DELETE
+        description: Deletes a Compute Pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-compute-pools-name}:resume
+      path: /api/v2/compute-pools/{name}:resume
+      operations:
+      - name: resumecomputepool
+        method: POST
+        description: Resumes a Suspended Compute Pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-compute-pools-name}:stop-all-services
+      path: /api/v2/compute-pools/{name}:stop-all-services
+      operations:
+      - name: stopallservicesincomputepool
+        method: POST
+        description: Stops All Services on the Compute Pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-compute-pools-name}:stopallservices
+      path: /api/v2/compute-pools/{name}:stopallservices
+      operations:
+      - name: stopallservicesincomputepooldeprecated
+        method: POST
+        description: Stops All Services on the Compute Pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-compute-pools-name}:suspend
+      path: /api/v2/compute-pools/{name}:suspend
+      operations:
+      - name: suspendcomputepool
+        method: POST
+        description: Suspends an Active Compute Pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: compute-pool-compute-pool-rest
+    port: 8080
+    description: REST adapter for Snowflake Compute Pools API — compute-pool. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/compute-pools
+      name: api-v2-compute-pools
+      description: REST surface for api-v2-compute-pools.
+      operations:
+      - method: GET
+        name: listcomputepools
+        description: Lists Compute Pools.
+        call: compute-pool-compute-pool.listcomputepools
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcomputepool
+        description: Creates a Compute Pool.
+        call: compute-pool-compute-pool.createcomputepool
+        with:
+          initiallySuspended: rest.initiallySuspended
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/compute-pools/{name}
+      name: api-v2-compute-pools-name
+      description: REST surface for api-v2-compute-pools-name.
+      operations:
+      - method: GET
+        name: fetchcomputepool
+        description: Fetches a Compute Pool.
+        call: compute-pool-compute-pool.fetchcomputepool
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createoraltercomputepool
+        description: Create a (or Alter an Existing) Compute Pool.
+        call: compute-pool-compute-pool.createoraltercomputepool
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecomputepool
+        description: Deletes a Compute Pool.
+        call: compute-pool-compute-pool.deletecomputepool
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/compute-pools/name-resume
+      name: api-v2-compute-pools-name-resume
+      description: REST surface for api-v2-compute-pools-name}:resume.
+      operations:
+      - method: POST
+        name: resumecomputepool
+        description: Resumes a Suspended Compute Pool.
+        call: compute-pool-compute-pool.resumecomputepool
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/compute-pools/name-stop-all-services
+      name: api-v2-compute-pools-name-stop-all-services
+      description: REST surface for api-v2-compute-pools-name}:stop-all-services.
+      operations:
+      - method: POST
+        name: stopallservicesincomputepool
+        description: Stops All Services on the Compute Pool.
+        call: compute-pool-compute-pool.stopallservicesincomputepool
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/compute-pools/name-stopallservices
+      name: api-v2-compute-pools-name-stopallservices
+      description: REST surface for api-v2-compute-pools-name}:stopallservices.
+      operations:
+      - method: POST
+        name: stopallservicesincomputepooldeprecated
+        description: Stops All Services on the Compute Pool.
+        call: compute-pool-compute-pool.stopallservicesincomputepooldeprecated
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/compute-pools/name-suspend
+      name: api-v2-compute-pools-name-suspend
+      description: REST surface for api-v2-compute-pools-name}:suspend.
+      operations:
+      - method: POST
+        name: suspendcomputepool
+        description: Suspends an Active Compute Pool.
+        call: compute-pool-compute-pool.suspendcomputepool
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: compute-pool-compute-pool-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake Compute Pools API — compute-pool. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: lists-compute-pools
+      description: Lists Compute Pools.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: compute-pool-compute-pool.listcomputepools
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creates-compute-pool
+      description: Creates a Compute Pool.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: compute-pool-compute-pool.createcomputepool
+      with:
+        initiallySuspended: tools.initiallySuspended
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetches-compute-pool
+      description: Fetches a Compute Pool.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: compute-pool-compute-pool.fetchcomputepool
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-alter-existing-compute-pool
+      description: Create a (or Alter an Existing) Compute Pool.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: compute-pool-compute-pool.createoraltercomputepool
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-compute-pool
+      description: Deletes a Compute Pool.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: compute-pool-compute-pool.deletecomputepool
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resumes-suspended-compute-pool
+      description: Resumes a Suspended Compute Pool.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: compute-pool-compute-pool.resumecomputepool
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: stops-all-services-compute-pool
+      description: Stops All Services on the Compute Pool.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: compute-pool-compute-pool.stopallservicesincomputepool
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: stops-all-services-compute-pool-2
+      description: Stops All Services on the Compute Pool.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: compute-pool-compute-pool.stopallservicesincomputepooldeprecated
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suspends-active-compute-pool
+      description: Suspends an Active Compute Pool.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: compute-pool-compute-pool.suspendcomputepool
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,119 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cortex Inference API — cortex-inference
+  description: 'Cortex Inference API — cortex-inference. 2 operations. Lead operation: Perform Llm Text Completion Inference..
+    Self-contained Naftiko capability covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - cortex-inference
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cortex-inference-cortex-inference
+    baseUri: ''
+    description: Cortex Inference API — cortex-inference business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-cortex-inference:complete
+      path: /api/v2/cortex/inference:complete
+      operations:
+      - name: cortexllminferencecomplete
+        method: POST
+        description: Perform Llm Text Completion Inference.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-cortex-models
+      path: /api/v2/cortex/models
+      operations:
+      - name: getmodels
+        method: GET
+        description: Returns the Llms Available for the Current Session
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: cortex-inference-cortex-inference-rest
+    port: 8080
+    description: REST adapter for Cortex Inference API — cortex-inference. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/cortex/inference-complete
+      name: api-v2-cortex-inference-complete
+      description: REST surface for api-v2-cortex-inference:complete.
+      operations:
+      - method: POST
+        name: cortexllminferencecomplete
+        description: Perform Llm Text Completion Inference.
+        call: cortex-inference-cortex-inference.cortexllminferencecomplete
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/cortex/models
+      name: api-v2-cortex-models
+      description: REST surface for api-v2-cortex-models.
+      operations:
+      - method: GET
+        name: getmodels
+        description: Returns the Llms Available for the Current Session
+        call: cortex-inference-cortex-inference.getmodels
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cortex-inference-cortex-inference-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cortex Inference API — cortex-inference. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: perform-llm-text-completion-inference
+      description: Perform Llm Text Completion Inference.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cortex-inference-cortex-inference.cortexllminferencecomplete
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-llms-available-current-session
+      description: Returns the Llms Available for the Current Session
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-inference-cortex-inference.getmodels
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

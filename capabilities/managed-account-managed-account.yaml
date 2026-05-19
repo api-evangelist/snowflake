@@ -1,0 +1,134 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake Managed Account API — managed-account
+  description: 'Snowflake Managed Account API — managed-account. 3 operations. Lead operation: List Managed Accounts.. Self-contained
+    Naftiko capability covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - managed-account
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: managed-account-managed-account
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake Managed Account API — managed-account business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-managed-accounts
+      path: /api/v2/managed-accounts
+      operations:
+      - name: listmanagedaccounts
+        method: GET
+        description: List Managed Accounts.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createmanagedaccount
+        method: POST
+        description: Create a Managed Accounts.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-managed-accounts-name
+      path: /api/v2/managed-accounts/{name}
+      operations:
+      - name: deletemanagedaccount
+        method: DELETE
+        description: Delete a Managed Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: managed-account-managed-account-rest
+    port: 8080
+    description: REST adapter for Snowflake Managed Account API — managed-account. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/managed-accounts
+      name: api-v2-managed-accounts
+      description: REST surface for api-v2-managed-accounts.
+      operations:
+      - method: GET
+        name: listmanagedaccounts
+        description: List Managed Accounts.
+        call: managed-account-managed-account.listmanagedaccounts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createmanagedaccount
+        description: Create a Managed Accounts.
+        call: managed-account-managed-account.createmanagedaccount
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/managed-accounts/{name}
+      name: api-v2-managed-accounts-name
+      description: REST surface for api-v2-managed-accounts-name.
+      operations:
+      - method: DELETE
+        name: deletemanagedaccount
+        description: Delete a Managed Account.
+        call: managed-account-managed-account.deletemanagedaccount
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: managed-account-managed-account-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake Managed Account API — managed-account. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-managed-accounts
+      description: List Managed Accounts.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: managed-account-managed-account.listmanagedaccounts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-managed-accounts
+      description: Create a Managed Accounts.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: managed-account-managed-account.createmanagedaccount
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-managed-account
+      description: Delete a Managed Account.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: managed-account-managed-account.deletemanagedaccount
+      outputParameters:
+      - type: object
+        mapping: $.

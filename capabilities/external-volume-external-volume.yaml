@@ -1,0 +1,191 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake External Volume API — external-volume
+  description: 'Snowflake External Volume API — external-volume. 5 operations. Lead operation: List External Volumes. Self-contained
+    Naftiko capability covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - external-volume
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: external-volume-external-volume
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake External Volume API — external-volume business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-external-volumes
+      path: /api/v2/external-volumes
+      operations:
+      - name: listexternalvolumes
+        method: GET
+        description: List External Volumes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createexternalvolume
+        method: POST
+        description: Create an External Volume
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-external-volumes-name
+      path: /api/v2/external-volumes/{name}
+      operations:
+      - name: fetchexternalvolume
+        method: GET
+        description: Fetch an External Volume
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteexternalvolume
+        method: DELETE
+        description: Delete an External Volume
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-external-volumes-name}:undrop
+      path: /api/v2/external-volumes/{name}:undrop
+      operations:
+      - name: undropexternalvolume
+        method: POST
+        description: Undrop an External Volume
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: external-volume-external-volume-rest
+    port: 8080
+    description: REST adapter for Snowflake External Volume API — external-volume. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/external-volumes
+      name: api-v2-external-volumes
+      description: REST surface for api-v2-external-volumes.
+      operations:
+      - method: GET
+        name: listexternalvolumes
+        description: List External Volumes
+        call: external-volume-external-volume.listexternalvolumes
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createexternalvolume
+        description: Create an External Volume
+        call: external-volume-external-volume.createexternalvolume
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/external-volumes/{name}
+      name: api-v2-external-volumes-name
+      description: REST surface for api-v2-external-volumes-name.
+      operations:
+      - method: GET
+        name: fetchexternalvolume
+        description: Fetch an External Volume
+        call: external-volume-external-volume.fetchexternalvolume
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteexternalvolume
+        description: Delete an External Volume
+        call: external-volume-external-volume.deleteexternalvolume
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/external-volumes/name-undrop
+      name: api-v2-external-volumes-name-undrop
+      description: REST surface for api-v2-external-volumes-name}:undrop.
+      operations:
+      - method: POST
+        name: undropexternalvolume
+        description: Undrop an External Volume
+        call: external-volume-external-volume.undropexternalvolume
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: external-volume-external-volume-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake External Volume API — external-volume. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-external-volumes
+      description: List External Volumes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: external-volume-external-volume.listexternalvolumes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-external-volume
+      description: Create an External Volume
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: external-volume-external-volume.createexternalvolume
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-external-volume
+      description: Fetch an External Volume
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: external-volume-external-volume.fetchexternalvolume
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-external-volume
+      description: Delete an External Volume
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: external-volume-external-volume.deleteexternalvolume
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: undrop-external-volume
+      description: Undrop an External Volume
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: external-volume-external-volume.undropexternalvolume
+      outputParameters:
+      - type: object
+        mapping: $.

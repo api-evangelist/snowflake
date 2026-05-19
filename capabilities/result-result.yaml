@@ -1,0 +1,84 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake Result API — result
+  description: 'Snowflake Result API — result. 1 operations. Lead operation: Check Result Status or Fetch Request. Self-contained
+    Naftiko capability covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - result
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: result-result
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake Result API — result business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-results-result_handler
+      path: /api/v2/results/{result_handler}
+      operations:
+      - name: fetchresult
+        method: GET
+        description: Check Result Status or Fetch Request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: result_handler
+          in: path
+          type: string
+          description: The opaque result id.
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: Number of the page of results to return. The number can range from 0 to the total number of pages minus
+            1.
+  exposes:
+  - type: rest
+    namespace: result-result-rest
+    port: 8080
+    description: REST adapter for Snowflake Result API — result. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v2/results/{result-handler}
+      name: api-v2-results-result-handler
+      description: REST surface for api-v2-results-result_handler.
+      operations:
+      - method: GET
+        name: fetchresult
+        description: Check Result Status or Fetch Request
+        call: result-result.fetchresult
+        with:
+          result_handler: rest.result_handler
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: result-result-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake Result API — result. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: check-result-status-fetch-request
+      description: Check Result Status or Fetch Request
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: result-result.fetchresult
+      with:
+        result_handler: tools.result_handler
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.

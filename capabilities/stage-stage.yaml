@@ -1,0 +1,240 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake Stage API — stage
+  description: 'Snowflake Stage API — stage. 6 operations. Lead operation: List Stages. Self-contained Naftiko capability
+    covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - stage
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: stage-stage
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake Stage API — stage business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-databases-database-schemas-schema-stages
+      path: /api/v2/databases/{database}/schemas/{schema}/stages
+      operations:
+      - name: liststages
+        method: GET
+        description: List Stages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createstage
+        method: POST
+        description: Create a Stage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-databases-database-schemas-schema-stages-name
+      path: /api/v2/databases/{database}/schemas/{schema}/stages/{name}
+      operations:
+      - name: fetchstage
+        method: GET
+        description: Fetch a Stage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletestage
+        method: DELETE
+        description: Delete a Stage
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-stages-name-files
+      path: /api/v2/databases/{database}/schemas/{schema}/stages/{name}/files
+      operations:
+      - name: listfiles
+        method: GET
+        description: List Files in the Stage.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-stages-name-files-filePath}:presigned-u
+      path: /api/v2/databases/{database}/schemas/{schema}/stages/{name}/files/{filePath}:presigned-url
+      operations:
+      - name: getpresignedurl
+        method: POST
+        description: Generate a Presigned Url and Optionally Encryption Materials.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filePath
+          in: path
+          type: string
+          description: The full stage path of the file.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+  exposes:
+  - type: rest
+    namespace: stage-stage-rest
+    port: 8080
+    description: REST adapter for Snowflake Stage API — stage. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/stages
+      name: api-v2-databases-database-schemas-schema-stages
+      description: REST surface for api-v2-databases-database-schemas-schema-stages.
+      operations:
+      - method: GET
+        name: liststages
+        description: List Stages
+        call: stage-stage.liststages
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createstage
+        description: Create a Stage
+        call: stage-stage.createstage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/stages/{name}
+      name: api-v2-databases-database-schemas-schema-stages-name
+      description: REST surface for api-v2-databases-database-schemas-schema-stages-name.
+      operations:
+      - method: GET
+        name: fetchstage
+        description: Fetch a Stage
+        call: stage-stage.fetchstage
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletestage
+        description: Delete a Stage
+        call: stage-stage.deletestage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/stages/{name}/files
+      name: api-v2-databases-database-schemas-schema-stages-name-files
+      description: REST surface for api-v2-databases-database-schemas-schema-stages-name-files.
+      operations:
+      - method: GET
+        name: listfiles
+        description: List Files in the Stage.
+        call: stage-stage.listfiles
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/stages/{name}/files/filepath-presigned-url
+      name: api-v2-databases-database-schemas-schema-stages-name-files-filepath-presigned-u
+      description: REST surface for api-v2-databases-database-schemas-schema-stages-name-files-filePath}:presigned-u.
+      operations:
+      - method: POST
+        name: getpresignedurl
+        description: Generate a Presigned Url and Optionally Encryption Materials.
+        call: stage-stage.getpresignedurl
+        with:
+          filePath: rest.filePath
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: stage-stage-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake Stage API — stage. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-stages
+      description: List Stages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stage-stage.liststages
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-stage
+      description: Create a Stage
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: stage-stage.createstage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-stage
+      description: Fetch a Stage
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stage-stage.fetchstage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-stage
+      description: Delete a Stage
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: stage-stage.deletestage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-files-stage
+      description: List Files in the Stage.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stage-stage.listfiles
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: generate-presigned-url-and-optionally
+      description: Generate a Presigned Url and Optionally Encryption Materials.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: stage-stage.getpresignedurl
+      with:
+        filePath: tools.filePath
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,201 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake Event Table API — event-table
+  description: 'Snowflake Event Table API — event-table. 5 operations. Lead operation: List Event Tables. Self-contained Naftiko
+    capability covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - event-table
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: event-table-event-table
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake Event Table API — event-table business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-databases-database-schemas-schema-event-tables
+      path: /api/v2/databases/{database}/schemas/{schema}/event-tables
+      operations:
+      - name: listeventtables
+        method: GET
+        description: List Event Tables
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createeventtable
+        method: POST
+        description: Create an Event Table
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-databases-database-schemas-schema-event-tables-name
+      path: /api/v2/databases/{database}/schemas/{schema}/event-tables/{name}
+      operations:
+      - name: fetcheventtable
+        method: GET
+        description: Fetch an Event Table
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteeventtable
+        method: DELETE
+        description: Delete an Event Table
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-databases-database-schemas-schema-event-tables-name}:rename
+      path: /api/v2/databases/{database}/schemas/{schema}/event-tables/{name}:rename
+      operations:
+      - name: renameeventtable
+        method: POST
+        description: Rename the Event Table
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: targetName
+          in: query
+          type: string
+          description: Specify the name of the target resource to be renamed to.
+          required: true
+  exposes:
+  - type: rest
+    namespace: event-table-event-table-rest
+    port: 8080
+    description: REST adapter for Snowflake Event Table API — event-table. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/event-tables
+      name: api-v2-databases-database-schemas-schema-event-tables
+      description: REST surface for api-v2-databases-database-schemas-schema-event-tables.
+      operations:
+      - method: GET
+        name: listeventtables
+        description: List Event Tables
+        call: event-table-event-table.listeventtables
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createeventtable
+        description: Create an Event Table
+        call: event-table-event-table.createeventtable
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/event-tables/{name}
+      name: api-v2-databases-database-schemas-schema-event-tables-name
+      description: REST surface for api-v2-databases-database-schemas-schema-event-tables-name.
+      operations:
+      - method: GET
+        name: fetcheventtable
+        description: Fetch an Event Table
+        call: event-table-event-table.fetcheventtable
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteeventtable
+        description: Delete an Event Table
+        call: event-table-event-table.deleteeventtable
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/databases/{database}/schemas/{schema}/event-tables/name-rename
+      name: api-v2-databases-database-schemas-schema-event-tables-name-rename
+      description: REST surface for api-v2-databases-database-schemas-schema-event-tables-name}:rename.
+      operations:
+      - method: POST
+        name: renameeventtable
+        description: Rename the Event Table
+        call: event-table-event-table.renameeventtable
+        with:
+          targetName: rest.targetName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: event-table-event-table-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake Event Table API — event-table. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-event-tables
+      description: List Event Tables
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: event-table-event-table.listeventtables
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-event-table
+      description: Create an Event Table
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: event-table-event-table.createeventtable
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-event-table
+      description: Fetch an Event Table
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: event-table-event-table.fetcheventtable
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-event-table
+      description: Delete an Event Table
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: event-table-event-table.deleteeventtable
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: rename-event-table
+      description: Rename the Event Table
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: event-table-event-table.renameeventtable
+      with:
+        targetName: tools.targetName
+      outputParameters:
+      - type: object
+        mapping: $.

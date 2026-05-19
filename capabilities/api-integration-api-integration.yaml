@@ -1,0 +1,194 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake API Integration API — api-integration
+  description: 'Snowflake API Integration API — api-integration. 5 operations. Lead operation: List Api Integrations. Self-contained
+    Naftiko capability covering one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - api-integration
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: api-integration-api-integration
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake API Integration API — api-integration business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-api-integrations
+      path: /api/v2/api-integrations
+      operations:
+      - name: listapiintegrations
+        method: GET
+        description: List Api Integrations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createapiintegration
+        method: POST
+        description: Create an Api Integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-api-integrations-name
+      path: /api/v2/api-integrations/{name}
+      operations:
+      - name: fetchapiintegration
+        method: GET
+        description: Fetch an Api Integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createoralterapiintegration
+        method: PUT
+        description: Create an (or Alter an Existing) Api Integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteapiintegration
+        method: DELETE
+        description: Delete an Api Integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: api-integration-api-integration-rest
+    port: 8080
+    description: REST adapter for Snowflake API Integration API — api-integration. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/api-integrations
+      name: api-v2-api-integrations
+      description: REST surface for api-v2-api-integrations.
+      operations:
+      - method: GET
+        name: listapiintegrations
+        description: List Api Integrations
+        call: api-integration-api-integration.listapiintegrations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createapiintegration
+        description: Create an Api Integration
+        call: api-integration-api-integration.createapiintegration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/api-integrations/{name}
+      name: api-v2-api-integrations-name
+      description: REST surface for api-v2-api-integrations-name.
+      operations:
+      - method: GET
+        name: fetchapiintegration
+        description: Fetch an Api Integration
+        call: api-integration-api-integration.fetchapiintegration
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createoralterapiintegration
+        description: Create an (or Alter an Existing) Api Integration
+        call: api-integration-api-integration.createoralterapiintegration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapiintegration
+        description: Delete an Api Integration
+        call: api-integration-api-integration.deleteapiintegration
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: api-integration-api-integration-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake API Integration API — api-integration. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-api-integrations
+      description: List Api Integrations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-integration-api-integration.listapiintegrations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-api-integration
+      description: Create an Api Integration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: api-integration-api-integration.createapiintegration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: fetch-api-integration
+      description: Fetch an Api Integration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: api-integration-api-integration.fetchapiintegration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-alter-existing-api-integration
+      description: Create an (or Alter an Existing) Api Integration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: api-integration-api-integration.createoralterapiintegration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-api-integration
+      description: Delete an Api Integration
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: api-integration-api-integration.deleteapiintegration
+      outputParameters:
+      - type: object
+        mapping: $.

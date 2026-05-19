@@ -1,0 +1,416 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snowflake Role API — role
+  description: 'Snowflake Role API — role. 11 operations. Lead operation: List Roles. Self-contained Naftiko capability covering
+    one Snowflake business surface.'
+  tags:
+  - Snowflake
+  - role
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNOWFLAKE_API_KEY: SNOWFLAKE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: role-role
+    baseUri: https://org-account.snowflakecomputing.com
+    description: Snowflake Role API — role business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-roles
+      path: /api/v2/roles
+      operations:
+      - name: listroles
+        method: GET
+        description: List Roles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createrole
+        method: POST
+        description: Create a Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-roles-name
+      path: /api/v2/roles/{name}
+      operations:
+      - name: deleterole
+        method: DELETE
+        description: Delete a Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-roles-name-future-grants
+      path: /api/v2/roles/{name}/future-grants
+      operations:
+      - name: listfuturegrants
+        method: GET
+        description: List All Future Grants to the Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: grantfutureprivileges
+        method: POST
+        description: Grant Future Privileges to the Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-roles-name-future-grants:revoke
+      path: /api/v2/roles/{name}/future-grants:revoke
+      operations:
+      - name: revokefuturegrants
+        method: POST
+        description: Revoke Future Grants From the Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-roles-name-grants
+      path: /api/v2/roles/{name}/grants
+      operations:
+      - name: listgrants
+        method: GET
+        description: List All Grants to the Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: grantprivileges
+        method: POST
+        description: Grant Privileges to the Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-roles-name-grants-of
+      path: /api/v2/roles/{name}/grants-of
+      operations:
+      - name: listgrantsof
+        method: GET
+        description: List All Grants of the Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-roles-name-grants-on
+      path: /api/v2/roles/{name}/grants-on
+      operations:
+      - name: listgrantson
+        method: GET
+        description: List All Grants on the Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-roles-name-grants:revoke
+      path: /api/v2/roles/{name}/grants:revoke
+      operations:
+      - name: revokegrants
+        method: POST
+        description: Revoke Grants From the Role
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: role-role-rest
+    port: 8080
+    description: REST adapter for Snowflake Role API — role. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v2/roles
+      name: api-v2-roles
+      description: REST surface for api-v2-roles.
+      operations:
+      - method: GET
+        name: listroles
+        description: List Roles
+        call: role-role.listroles
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrole
+        description: Create a Role
+        call: role-role.createrole
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/roles/{name}
+      name: api-v2-roles-name
+      description: REST surface for api-v2-roles-name.
+      operations:
+      - method: DELETE
+        name: deleterole
+        description: Delete a Role
+        call: role-role.deleterole
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/roles/{name}/future-grants
+      name: api-v2-roles-name-future-grants
+      description: REST surface for api-v2-roles-name-future-grants.
+      operations:
+      - method: GET
+        name: listfuturegrants
+        description: List All Future Grants to the Role
+        call: role-role.listfuturegrants
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: grantfutureprivileges
+        description: Grant Future Privileges to the Role
+        call: role-role.grantfutureprivileges
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/roles/{name}/future-grants-revoke
+      name: api-v2-roles-name-future-grants-revoke
+      description: REST surface for api-v2-roles-name-future-grants:revoke.
+      operations:
+      - method: POST
+        name: revokefuturegrants
+        description: Revoke Future Grants From the Role
+        call: role-role.revokefuturegrants
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/roles/{name}/grants
+      name: api-v2-roles-name-grants
+      description: REST surface for api-v2-roles-name-grants.
+      operations:
+      - method: GET
+        name: listgrants
+        description: List All Grants to the Role
+        call: role-role.listgrants
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: grantprivileges
+        description: Grant Privileges to the Role
+        call: role-role.grantprivileges
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/roles/{name}/grants-of
+      name: api-v2-roles-name-grants-of
+      description: REST surface for api-v2-roles-name-grants-of.
+      operations:
+      - method: GET
+        name: listgrantsof
+        description: List All Grants of the Role
+        call: role-role.listgrantsof
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/roles/{name}/grants-on
+      name: api-v2-roles-name-grants-on
+      description: REST surface for api-v2-roles-name-grants-on.
+      operations:
+      - method: GET
+        name: listgrantson
+        description: List All Grants on the Role
+        call: role-role.listgrantson
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/roles/{name}/grants-revoke
+      name: api-v2-roles-name-grants-revoke
+      description: REST surface for api-v2-roles-name-grants:revoke.
+      operations:
+      - method: POST
+        name: revokegrants
+        description: Revoke Grants From the Role
+        call: role-role.revokegrants
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: role-role-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snowflake Role API — role. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-roles
+      description: List Roles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: role-role.listroles
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-role
+      description: Create a Role
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: role-role.createrole
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-role
+      description: Delete a Role
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: role-role.deleterole
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-future-grants-role
+      description: List All Future Grants to the Role
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: role-role.listfuturegrants
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grant-future-privileges-role
+      description: Grant Future Privileges to the Role
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: role-role.grantfutureprivileges
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: revoke-future-grants-role
+      description: Revoke Future Grants From the Role
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: role-role.revokefuturegrants
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-grants-role
+      description: List All Grants to the Role
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: role-role.listgrants
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grant-privileges-role
+      description: Grant Privileges to the Role
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: role-role.grantprivileges
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-grants-role-2
+      description: List All Grants of the Role
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: role-role.listgrantsof
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-grants-role-3
+      description: List All Grants on the Role
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: role-role.listgrantson
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: revoke-grants-role
+      description: Revoke Grants From the Role
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: role-role.revokegrants
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
