@@ -1,0 +1,61 @@
+{
+  "operationId": "createTable",
+  "method": "POST",
+  "path": "/api/v2/databases/{database}/schemas/{schema}/tables",
+  "summary": "Create a Table (clone and Undrop Are Separate Subresources)",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreatetableRequestExample",
+      "example": {
+        "name": "Example Title",
+        "kind": "PERMANENT",
+        "cluster_by": [
+          "example_value"
+        ],
+        "enable_schema_evolution": true,
+        "change_tracking": true,
+        "data_retention_time_in_days": 10,
+        "max_data_extension_time_in_days": 10,
+        "default_ddl_collation": "example_value",
+        "columns": [
+          {
+            "name": "Example Title",
+            "datatype": "example_value",
+            "nullable": true,
+            "collate": "example_value",
+            "default": "example_value",
+            "autoincrement": true,
+            "autoincrement_start": 10,
+            "autoincrement_increment": 10,
+            "constraints": {},
+            "comment": "example_value"
+          }
+        ],
+        "constraints": [
+          {
+            "name": "Example Title",
+            "column_names": {},
+            "constraint_type": "example_value"
+          }
+        ],
+        "comment": "example_value",
+        "created_on": "2026-01-15T10:30:00Z",
+        "database_name": "example_value",
+        "schema_name": "example_value",
+        "rows": 10,
+        "bytes": 10,
+        "owner": "example_value",
+        "dropped_on": "2026-01-15T10:30:00Z",
+        "automatic_clustering": true,
+        "search_optimization": true,
+        "search_optimization_progress": 10,
+        "search_optimization_bytes": 10,
+        "owner_role_type": "example_value",
+        "budget": "example_value",
+        "table_type": "NORMAL"
+      }
+    }
+  ],
+  "responseExamples": []
+}

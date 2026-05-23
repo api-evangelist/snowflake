@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ComputePool",
+  "title": "ComputePool",
+  "type": "object",
+  "description": "A Snowflake compute pool definition.",
+  "properties": {
+    "name": {
+      "$ref": "./common.yaml#/components/schemas/Identifier"
+    },
+    "min_nodes": {
+      "type": "integer",
+      "description": "Minimum number of nodes for the compute pool.",
+      "example": 10
+    },
+    "max_nodes": {
+      "type": "integer",
+      "description": "Maximum number of nodes for the compute pool.",
+      "example": 10
+    },
+    "instance_family": {
+      "type": "string",
+      "description": "Instance family for the compute pool.",
+      "example": "example_value"
+    },
+    "auto_resume": {
+      "type": "boolean",
+      "description": "Whether Snowflake automatically resumes the compute pool when any statement that requires the compute pool is submitted.",
+      "example": true
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment describing the compute pool.",
+      "example": "example_value"
+    },
+    "state": {
+      "type": "string",
+      "description": "Current state of the compute pool. Possible values include UNKNOWN, STARTING, IDLE, ACTIVE, STOPPING, SUSPENDED, and RESIZING.",
+      "readOnly": true,
+      "enum": [
+        "UNKNOWN",
+        "STARTING",
+        "IDLE",
+        "ACTIVE",
+        "STOPPING",
+        "SUSPENDED",
+        "RESIZING"
+      ],
+      "example": "UNKNOWN"
+    },
+    "num_services": {
+      "type": "integer",
+      "description": "Number of services on the compute pool.",
+      "readOnly": true,
+      "example": 10
+    },
+    "num_jobs": {
+      "type": "integer",
+      "description": "Number of jobs on the compute pool.",
+      "readOnly": true,
+      "example": 10
+    },
+    "auto_suspend_secs": {
+      "type": "integer",
+      "description": "Number of seconds until the compute pool automatically suspends.",
+      "format": "int64",
+      "example": 10
+    },
+    "active_nodes": {
+      "type": "integer",
+      "description": "Number of currently active nodes on the compute pool.",
+      "readOnly": true,
+      "example": 10
+    },
+    "idle_nodes": {
+      "type": "integer",
+      "description": "Number of currently idle nodes on the compute pool.",
+      "readOnly": true,
+      "example": 10
+    },
+    "target_nodes": {
+      "type": "integer",
+      "description": "Number of target nodes on the compute pool.",
+      "readOnly": true,
+      "example": 10
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Time the compute pool was created.",
+      "format": "date-time",
+      "readOnly": true,
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "resumed_on": {
+      "type": "string",
+      "description": "Time the compute pool was last resumed.",
+      "format": "date-time",
+      "readOnly": true,
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updated_on": {
+      "type": "string",
+      "description": "Time the compute pool was last updated.",
+      "format": "date-time",
+      "readOnly": true,
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Identifier for the current owner of the compute pool.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "is_exclusive": {
+      "type": "boolean",
+      "description": "Whether a compute pool is created exclusively for a Snowflake Native App.",
+      "readOnly": true,
+      "example": true
+    },
+    "application": {
+      "type": "string",
+      "description": "Name of the Snowflake Native App if the compute pool is created exclusively for the app.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "budget": {
+      "type": "string",
+      "description": "The name of the budget monitoring the credit usage of the compute pool.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "error_code": {
+      "type": "string",
+      "description": "Current error the compute pool hit if any.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "status_message": {
+      "type": "string",
+      "description": "Current status of the compute pool if any.",
+      "readOnly": true,
+      "example": "example_value"
+    }
+  },
+  "example": {
+    "name": "compute_pool_name",
+    "warehouse": "test_wh",
+    "min_nodes": 4,
+    "max_nodes": 5,
+    "instance_family": "compute_pool_family",
+    "auto_resume": false,
+    "comment": "test_comment",
+    "state": "STARTING",
+    "num_services": 1,
+    "num_jobs": 3,
+    "auto_suspend_secs": 10,
+    "active_nodes": 2,
+    "idle_nodes": 2,
+    "target_nodes": 4,
+    "created_on": "2024-06-18T01:01:01.111111",
+    "updated_on": "2024-06-18T01:01:01.111111",
+    "resumed_on": "2024-06-18T01:01:01.111111",
+    "owner": "POOL_ADMIN",
+    "is_exclusive": true,
+    "application": "testapp",
+    "budget": "testbudget",
+    "error_code": "392507",
+    "status_message": "Compute Pool is resizing for last 10 minutes. We have observed CAPACITY_ERROR. Please refer to our documentation."
+  },
+  "required": [
+    "name",
+    "instance_family",
+    "min_nodes",
+    "max_nodes"
+  ]
+}

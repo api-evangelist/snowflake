@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CompleteRequest",
+  "title": "CompleteRequest",
+  "type": "object",
+  "description": "LLM text completion request.",
+  "properties": {
+    "model": {
+      "description": "The model name. See documentation for possible values.",
+      "type": "string",
+      "example": "example_value"
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "description": "Indicates the role of the message, one of 'system', 'user' or 'assistant'.\n\nRules:\n  - A 'user' message must be the last message in the list.\n  - If a 'system' message is specified, it must be the first message.\n  - If a 'assistant' message is specified, it must be immediately before a 'user' message in the list.\n\nMultiple 'assistant' and 'user' messages can be specified, but they must alternate in sequence.\n",
+            "default": "user"
+          },
+          "content": {
+            "type": "string",
+            "description": "The text completion prompt, e.g. 'What is a Large Language Model?'."
+          },
+          "content_list": {
+            "type": "array",
+            "description": "Contents of toolUse and toolResults",
+            "items": {
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "text": "common-cortex-tool.yaml#/components/schemas/TextContent",
+                  "tool_result": "common-cortex-tool.yaml#/components/schemas/ToolResults",
+                  "tool_use": "common-cortex-tool.yaml#/components/schemas/ToolUse"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "content"
+        ]
+      },
+      "minItems": 1,
+      "example": []
+    },
+    "temperature": {
+      "description": "Temperature controls the amount of randomness used in response generation. A higher temperature corresponds to more randomness.",
+      "type": "number",
+      "nullable": true,
+      "minimum": 0.0,
+      "example": 42.5
+    },
+    "top_p": {
+      "description": "Threshold probability for nucleus sampling. A higher top-p value increases the diversity of tokens that the model considers, while a lower value results in more predictable output.",
+      "type": "number",
+      "default": 1.0,
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "example": 42.5
+    },
+    "max_tokens": {
+      "description": "The maximum number of output tokens to produce. The default value is model-dependent.",
+      "type": "integer",
+      "default": 4096,
+      "minimum": 0,
+      "example": 10
+    },
+    "max_output_tokens": {
+      "deprecated": true,
+      "description": "Deprecated in favor of \"max_tokens\", which has identical behavior.",
+      "type": "integer",
+      "nullable": true,
+      "example": 10
+    },
+    "response_format": {
+      "type": "object",
+      "nullable": true,
+      "description": "An object describing response format config for structured-output mode.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "json"
+          ],
+          "description": "The response format type (e.g., \"json\")."
+        },
+        "schema": {
+          "type": "object",
+          "description": "The schema defining the structure of the response. If the `type` is \"json\", the `schema` field should contain a valid JSON schema."
+        }
+      },
+      "example": "example_value"
+    },
+    "guardrails": {
+      "$ref": "#/components/schemas/GuardrailsConfig"
+    },
+    "tools": {
+      "description": "List of tools to be used during tool calling",
+      "type": "array",
+      "items": {
+        "$ref": "common-cortex-tool.yaml#/components/schemas/Tool"
+      },
+      "example": []
+    },
+    "tool_choice": {
+      "$ref": "common-cortex-tool.yaml#/components/schemas/ToolChoice"
+    },
+    "provisioned_throughput_id": {
+      "type": "string",
+      "description": "The provisioned throughput ID to be used with the request.",
+      "nullable": true,
+      "example": "500123"
+    },
+    "sf-ml-xp-inflight-prompt-action": {
+      "type": "string",
+      "description": "Reserved",
+      "example": "example_value"
+    },
+    "sf-ml-xp-inflight-prompt-client-id": {
+      "type": "string",
+      "description": "Reserved",
+      "example": "500123"
+    },
+    "sf-ml-xp-inflight-prompt-public-key": {
+      "type": "string",
+      "description": "Reserved",
+      "example": "example_value"
+    },
+    "stream": {
+      "type": "boolean",
+      "default": true,
+      "nullable": true,
+      "description": "Reserved",
+      "example": true
+    }
+  },
+  "required": [
+    "model",
+    "messages"
+  ]
+}

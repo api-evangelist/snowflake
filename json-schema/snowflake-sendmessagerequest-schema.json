@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SendMessageRequest",
+  "title": "SendMessageRequest",
+  "type": "object",
+  "description": "The request object for sendMessage requests",
+  "properties": {
+    "semantic_model_file": {
+      "type": "string",
+      "description": "The path to a file stored in a Snowflake Stage holding the semantic model yaml. Must be a fully qualified stage url",
+      "example": "@db.schema.stage/path/to/file.yaml"
+    },
+    "semantic_model": {
+      "type": "string",
+      "description": "A string containing the entire semantic model yaml",
+      "example": "name: my_semantic_model\\ntables:\\n  - name: orders\\n..."
+    },
+    "semantic_view": {
+      "type": "string",
+      "description": "The name of the Snowflake native semantic model object",
+      "example": "db.schema.semantic_view"
+    },
+    "semantic_models": {
+      "type": "array",
+      "description": "A list of semantic model objects. If set, other semantic model properties are ignored",
+      "items": {
+        "$ref": "#/components/schemas/SemanticModelObject"
+      },
+      "example": []
+    },
+    "stream": {
+      "type": "boolean",
+      "description": "Whether to stream the response or not",
+      "default": false,
+      "example": true
+    },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "sql_generation",
+        "answer_generation"
+      ],
+      "description": "Whether to response with SQL or natural language. One of 'sql_generation' or 'answer_generation'",
+      "default": "sql_generation",
+      "example": "sql_generation"
+    },
+    "warehouse": {
+      "type": "string",
+      "description": "Warehouse name to use for result set handling. Only used when 'operation' is 'answer_generation'",
+      "example": "example_value"
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/MessageObject"
+      },
+      "example": []
+    },
+    "source": {
+      "type": "string",
+      "description": "an optional field to specify the source of the request. e.g \"eval\", \"prod\"",
+      "example": "example_value"
+    },
+    "experimental": {
+      "type": "string",
+      "description": "JSON serialized string of experimental API fields (undocumented).",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "messages"
+  ]
+}

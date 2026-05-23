@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CatalogIntegration",
+  "title": "CatalogIntegration",
+  "type": "object",
+  "description": "Catalog integration",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Name of the catalog integration.",
+      "example": "Example Title"
+    },
+    "catalog": {
+      "$ref": "#/components/schemas/Catalog",
+      "description": "Type of catalog and its parameters."
+    },
+    "table_format": {
+      "type": "string",
+      "enum": [
+        "ICEBERG"
+      ],
+      "description": "Table format of the catalog.",
+      "example": "ICEBERG"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "whether this catalog integration is available to use for Iceberg tables. ",
+      "example": true
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment.",
+      "example": "example_value"
+    },
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Type of the integration. Always CATALOG.",
+      "example": "example_value"
+    },
+    "category": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Category of the integration. Always CATALOG.",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the catalog integration was created.",
+      "example": "2026-01-15T10:30:00Z"
+    }
+  },
+  "required": [
+    "name",
+    "catalog",
+    "table_format",
+    "enabled"
+  ]
+}

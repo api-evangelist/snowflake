@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GrantOf",
+  "title": "GrantOf",
+  "type": "object",
+  "properties": {
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the grant was created",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "role": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the role",
+      "example": "example_value"
+    },
+    "granted_to": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of the grantee, can be USER or ROLE",
+      "example": "example_value"
+    },
+    "grantee_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the grantee",
+      "example": "example_value"
+    },
+    "granted_by": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The role that granted this role to this grantee",
+      "example": "example_value"
+    }
+  }
+}

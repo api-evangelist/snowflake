@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GoogleCloudHook",
+  "title": "GoogleCloudHook",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ApiHook"
+    }
+  ],
+  "properties": {
+    "api_provider": {
+      "type": "string",
+      "enum": [
+        "GOOGLE_API_GATEWAY"
+      ],
+      "example": "GOOGLE_API_GATEWAY"
+    },
+    "google_audience": {
+      "type": "string",
+      "description": "Used as an audience claim when generating the JTW (JSON Web Token) to authenticate to the Google API Gateway.",
+      "example": "example_value"
+    },
+    "api_key": {
+      "$ref": "#/components/schemas/ApiKey"
+    }
+  },
+  "required": [
+    "api_provider",
+    "google_audience"
+  ]
+}

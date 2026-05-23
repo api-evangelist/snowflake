@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResultSetMetaData",
+  "title": "ResultSetMetaData",
+  "type": "object",
+  "description": "Metadata about the result set including column definitions.",
+  "properties": {
+    "format": {
+      "type": "string",
+      "enum": [
+        "jsonv2"
+      ],
+      "description": "For v2 endpoints the only possible value for this field is jsonv2.",
+      "example": "jsonv2"
+    },
+    "numRows": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The total number of rows of results.",
+      "examples": [
+        100
+      ]
+    },
+    "rowType": {
+      "type": "array",
+      "description": "Array of column descriptors for the result set.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/components/schemas/ColumnDefinition"
+      },
+      "example": []
+    },
+    "partitionInfo": {
+      "type": "array",
+      "description": "Information about result set partitions for large results.",
+      "items": {
+        "$ref": "#/components/schemas/PartitionInfo"
+      },
+      "example": []
+    },
+    "nullable": {
+      "type": "boolean",
+      "description": "If false, null values are replaced with the string 'null' in the result set.",
+      "example": true
+    },
+    "parameters": {
+      "$ref": "#/components/schemas/SessionParameters"
+    }
+  }
+}

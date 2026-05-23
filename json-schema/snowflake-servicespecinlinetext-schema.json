@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceSpecInlineText",
+  "title": "ServiceSpecInlineText",
+  "description": "Specifies service specification with inline text.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ServiceSpec"
+    }
+  ],
+  "properties": {
+    "spec_text": {
+      "type": "string",
+      "description": "Specifies service specification. You can use a pair of dollar signs ($$) to delimit the beginning and ending of the specification string.",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "spec_text"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "operationId": "listTasks",
+  "method": "GET",
+  "path": "/api/v2/databases/{database}/schemas/{schema}/tasks",
+  "summary": "List Tasks",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Listtasks200Example",
+      "example": [
+        {
+          "name": {},
+          "warehouse": {},
+          "schedule": {
+            "schedule_type": "example_value"
+          },
+          "comment": "example_value",
+          "finalize": "example_value",
+          "task_auto_retry_attempts": 10,
+          "config": "example_value",
+          "session_parameters": "example_value",
+          "definition": "example_value",
+          "predecessors": [
+            "example_value"
+          ],
+          "task_relations": "example_value",
+          "user_task_managed_initial_warehouse_size": "example_value",
+          "target_completion_interval": {
+            "minutes": 10
+          },
+          "serverless_task_min_statement_size": "example_value",
+          "serverless_task_max_statement_size": "example_value",
+          "user_task_timeout_ms": 10,
+          "suspend_task_after_num_failures": 10,
+          "condition": "example_value",
+          "allow_overlapping_execution": true,
+          "error_integration": "example_value",
+          "created_on": "2026-01-15T10:30:00Z",
+          "id": "abc123",
+          "owner": "example_value",
+          "owner_role_type": "example_value",
+          "state": "started",
+          "last_committed_on": "2026-01-15T10:30:00Z",
+          "last_suspended_on": "2026-01-15T10:30:00Z",
+          "database_name": "example_value",
+          "schema_name": "example_value"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryFailureStatus",
+  "title": "QueryFailureStatus",
+  "type": "object",
+  "description": "Status returned when a query execution fails.",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Error code for the query failure.",
+      "examples": [
+        "000123"
+      ]
+    },
+    "sqlState": {
+      "type": "string",
+      "description": "SQL state code indicating the error category.",
+      "examples": [
+        "42601"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "description": "Error message describing the failure.",
+      "examples": [
+        "SQL compilation error"
+      ]
+    },
+    "statementHandle": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Handle that uniquely identifies the failed statement.",
+      "examples": [
+        "e4ce975e-f7ff-4b5e-b15e-bf25f59371ae"
+      ]
+    },
+    "createdOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Timestamp that specifies when the statement execution started. The timestamp is expressed in milliseconds since the epoch.",
+      "examples": [
+        1597090533987
+      ]
+    },
+    "statementStatusUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL for checking the status of the failed statement.",
+      "example": "https://www.example.com"
+    }
+  },
+  "required": [
+    "message",
+    "statementHandle"
+  ]
+}

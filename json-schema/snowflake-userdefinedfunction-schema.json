@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserDefinedFunction",
+  "title": "UserDefinedFunction",
+  "type": "object",
+  "description": "A snowflake UDF",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "The name of the UDF",
+      "example": "Example Title"
+    },
+    "is_temporary": {
+      "type": "boolean",
+      "description": "Specifies whether the UDF is temporary or not",
+      "example": true
+    },
+    "is_aggregate": {
+      "type": "boolean",
+      "description": "Specifies whether the UDF is an aggregate function. Applicable only for Python language type",
+      "example": true
+    },
+    "is_memoizable": {
+      "type": "boolean",
+      "description": "Indicates whether the function is memoizable. Applicable only for Python language type.",
+      "example": true
+    },
+    "is_table_function": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "True if the UDF is a table function; false otherwise.",
+      "example": true
+    },
+    "valid_for_clustering": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "True if the UDF is valid for clustering; false otherwise.",
+      "example": true
+    },
+    "is_secure": {
+      "type": "boolean",
+      "description": "Specifies whether the function/procedure is secure or not",
+      "example": true
+    },
+    "arguments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Argument"
+      },
+      "description": "List of arguments for the function/procedure",
+      "example": []
+    },
+    "return_type": {
+      "$ref": "#/components/schemas/ReturnType",
+      "description": "Return type of the function/procedure. Should be a SQL data type or a table"
+    },
+    "language_config": {
+      "$ref": "#/components/schemas/FunctionLanguage",
+      "description": "Language that the function/procedure is written in"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the function/procedure",
+      "example": "example_value"
+    },
+    "body": {
+      "type": "string",
+      "description": "Function/procedure definition",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "The date and time when the function/procedure was created",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "schema_name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "The name of the schema in which the function/procedure exists.",
+      "example": "example_value"
+    },
+    "database_name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "The name of the database in which the function/procedure exists.",
+      "example": "example_value"
+    },
+    "min_num_arguments": {
+      "type": "integer",
+      "readOnly": true,
+      "description": "The minimum number of arguments",
+      "example": 10
+    },
+    "max_num_arguments": {
+      "type": "integer",
+      "readOnly": true,
+      "description": "The maximum number of arguments",
+      "example": 10
+    },
+    "owner": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Role that owns the function/procedure",
+      "example": "example_value"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "The type of role that owns the function/procedure",
+      "example": "example_value"
+    },
+    "is_builtin": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "If the function/procedure is built-in or not (user-defined)",
+      "example": true
+    }
+  },
+  "required": [
+    "name",
+    "arguments",
+    "return_type",
+    "language_config"
+  ]
+}

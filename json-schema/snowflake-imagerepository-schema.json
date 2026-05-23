@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImageRepository",
+  "title": "ImageRepository",
+  "type": "object",
+  "description": "A Snowflake image repository.",
+  "properties": {
+    "name": {
+      "$ref": "./common.yaml#/components/schemas/Identifier"
+    },
+    "database_name": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "readOnly": true
+    },
+    "schema_name": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "readOnly": true
+    },
+    "created_on": {
+      "type": "string",
+      "description": "Time the image repository was created.",
+      "format": "date-time",
+      "readOnly": true,
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "repository_url": {
+      "type": "string",
+      "description": "Current URL of the image repository.",
+      "readOnly": true,
+      "example": "https://www.example.com"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Identifier for the current owner of the image repository.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "Role type of the image repository owner.",
+      "readOnly": true,
+      "example": "example_value"
+    }
+  },
+  "example": {
+    "name": "image_repository_name",
+    "database_name": "test_db",
+    "schema_name": "test_schema",
+    "created_on": "2024-06-18T01:01:01.111111",
+    "repository_url": "https://www.snowflake.com",
+    "owner": "IMAGE_ADMIN",
+    "owner_role_type": "ADMIN"
+  },
+  "required": [
+    "name"
+  ]
+}

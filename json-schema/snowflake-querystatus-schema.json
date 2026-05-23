@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryStatus",
+  "title": "QueryStatus",
+  "type": "object",
+  "description": "Status of a query that is in progress or has completed successfully.",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Status code for the query execution.",
+      "examples": [
+        "090001"
+      ]
+    },
+    "sqlState": {
+      "type": "string",
+      "description": "SQL state code.",
+      "examples": [
+        "00000"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "description": "Message describing the status of the query.",
+      "examples": [
+        "successfully executed"
+      ]
+    },
+    "statementHandle": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Handle that uniquely identifies the statement. You can use this handle to check the status of the statement and retrieve the result set.",
+      "examples": [
+        "e4ce975e-f7ff-4b5e-b15e-bf25f59371ae"
+      ]
+    },
+    "createdOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Timestamp that specifies when the statement execution started. The timestamp is expressed in milliseconds since the epoch.",
+      "examples": [
+        1597090533987
+      ]
+    },
+    "statementStatusUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL that you can use to check the status of the execution of the statement and retrieve the result set.",
+      "examples": [
+        "/api/v2/statements/e4ce975e-f7ff-4b5e-b15e-bf25f59371ae"
+      ]
+    }
+  },
+  "required": [
+    "statementHandle"
+  ]
+}

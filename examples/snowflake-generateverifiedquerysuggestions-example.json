@@ -1,0 +1,41 @@
+{
+  "operationId": "generateVerifiedQuerySuggestions",
+  "method": "POST",
+  "path": "/api/v2/cortex/analyst/verified-query-suggestions",
+  "summary": "Generate Vq Suggestions for a Semantic Model",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "GenerateverifiedquerysuggestionsRequestExample",
+      "example": {
+        "semantic_model": {
+          "semantic_model_file": "example_value",
+          "semantic_view": "example_value",
+          "inline_semantic_model": "example_value"
+        },
+        "warehouse": "example_value",
+        "experimental": "example_value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Generateverifiedquerysuggestions200Example",
+      "example": {
+        "request_id": "500123",
+        "vq_suggestions": [
+          {
+            "score": 42.5
+          }
+        ],
+        "warnings": [
+          {
+            "message": "example_value"
+          }
+        ]
+      }
+    }
+  ]
+}

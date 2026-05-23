@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceSpecStageFile",
+  "title": "ServiceSpecStageFile",
+  "description": "Specifies service specification with a stage file.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ServiceSpec"
+    }
+  ],
+  "properties": {
+    "stage": {
+      "type": "string",
+      "description": "Specifies the Snowflake internal stage where the specification file is stored; for example, @tutorial_stage.",
+      "example": "example_value"
+    },
+    "spec_file": {
+      "type": "string",
+      "description": "Specifies the path to the service specification file on the stage; for example, 'some-dir/echo_spec.yaml'.",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "stage",
+    "spec_file"
+  ]
+}

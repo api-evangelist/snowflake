@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserDefinedLag",
+  "title": "UserDefinedLag",
+  "description": "User-defined target lag.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/TargetLag"
+    }
+  ],
+  "properties": {
+    "seconds": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Target lag time in seconds."
+    }
+  },
+  "example": {
+    "seconds": 3600
+  },
+  "required": [
+    "seconds"
+  ]
+}

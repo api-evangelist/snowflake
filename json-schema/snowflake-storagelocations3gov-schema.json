@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StorageLocationS3Gov",
+  "title": "StorageLocationS3Gov",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/StorageLocation"
+    }
+  ],
+  "properties": {
+    "storage_aws_role_arn": {
+      "type": "string",
+      "description": "Specifies the case-sensitive Amazon Resource Name (ARN) of the AWS identity and access management (IAM) role that grants privileges on the S3 bucket containing your data files.",
+      "example": "example_value"
+    },
+    "storage_base_url": {
+      "type": "string",
+      "description": "Specifies the base URL for your cloud storage location.",
+      "example": "https://www.example.com"
+    },
+    "storage_aws_external_id": {
+      "type": "string",
+      "description": "Optionally specifies an external ID that Snowflake uses to establish a trust relationship with AWS.",
+      "example": "500123"
+    },
+    "encryption": {
+      "$ref": "#/components/schemas/Encryption",
+      "description": "Specifies the properties needed to encrypt data on the external volume."
+    }
+  },
+  "required": [
+    "storage_aws_role_arn",
+    "storage_base_url"
+  ]
+}

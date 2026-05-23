@@ -1,0 +1,27 @@
+{
+  "operationId": "createTask",
+  "method": "POST",
+  "path": "/api/v2/databases/{database}/schemas/{schema}/tasks",
+  "summary": "Create a Task",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "name": "name_example",
+        "warehouse": "REGRESS",
+        "schedule": {
+          "schedule_type": "MINUTES_TYPE",
+          "minutes": 10
+        },
+        "predecessors": [
+          "task1",
+          "task2",
+          "task3"
+        ],
+        "comment": "test_comment",
+        "definition": "select 1"
+      }
+    }
+  ],
+  "responseExamples": []
+}

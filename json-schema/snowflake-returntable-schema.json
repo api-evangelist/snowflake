@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReturnTable",
+  "title": "ReturnTable",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ReturnType"
+    }
+  ],
+  "properties": {
+    "column_list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ColumnType"
+      },
+      "description": "List of table columns to return",
+      "example": []
+    }
+  }
+}

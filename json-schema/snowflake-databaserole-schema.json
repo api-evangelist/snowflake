@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DatabaseRole",
+  "title": "DatabaseRole",
+  "type": "object",
+  "description": "A Snowflake database role",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Name of the database role",
+      "example": "Example Title"
+    },
+    "comment": {
+      "type": "string",
+      "description": "User comment associated to an object in the dictionary",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the database role was created",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "granted_to_roles": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "How many roles this database role has been granted to",
+      "example": 10
+    },
+    "granted_to_database_roles": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "How many database roles this database role has been granted to",
+      "example": 10
+    },
+    "granted_database_roles": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "How many database roles this database role has been granted",
+      "example": 10
+    },
+    "owner": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Role that owns the database role",
+      "example": "example_value"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "The type of role that owns the database role",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

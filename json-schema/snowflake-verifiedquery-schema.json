@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VerifiedQuery",
+  "title": "VerifiedQuery",
+  "type": "object",
+  "description": "VerifiedQuery represents a (question, sql) pair that has been manually verified (e.g. by an analyst) to be correct.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "A name for this verified query. Mainly used for display purposes.",
+      "example": "Example Title"
+    },
+    "question": {
+      "type": "string",
+      "description": "The question being answered.",
+      "example": "example_value"
+    },
+    "sql": {
+      "type": "string",
+      "description": "The correct SQL query for answering the question.",
+      "example": "example_value"
+    },
+    "verified_at": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Timestamp at which the query was last verified - measures in seconds since epoch, in UTC.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "verified_by": {
+      "type": "string",
+      "description": "Name of the person who verified this query.",
+      "example": "example_value"
+    }
+  }
+}

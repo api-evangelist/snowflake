@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IcebergTableFromAWSGlueCatalog",
+  "title": "IcebergTableFromAWSGlueCatalog",
+  "type": "object",
+  "description": "Create iceberg table from AWS Glue catalog",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Specifies the name for the table, must be unique for the schema in which the table is created",
+      "example": "Example Title"
+    },
+    "external_volume": {
+      "type": "string",
+      "description": "Specifies the name of the external volume to use for the table",
+      "example": "example_value"
+    },
+    "catalog_table_name": {
+      "type": "string",
+      "description": "Specifies the table name as recognized by the AWS Glue Data Catalog.",
+      "example": "example_value"
+    },
+    "catalog_namespace": {
+      "type": "string",
+      "description": "Specifies the catalog namespace for the table.",
+      "example": "example_value"
+    },
+    "replace_invalid_characters": {
+      "type": "boolean",
+      "description": "Specifies whether to replace invalid characters in the column names",
+      "example": true
+    },
+    "auto_refresh": {
+      "type": "boolean",
+      "description": "Specifies whether to automatically refresh the table metadata",
+      "example": true
+    },
+    "catalog": {
+      "type": "string",
+      "description": "Specifies the name of the catalog integration to use for the table",
+      "example": "example_value"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the table",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name",
+    "catalog_table_name"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceInstance",
+  "title": "ServiceInstance",
+  "type": "object",
+  "properties": {
+    "database_name": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "description": "Database in which the service is created.",
+      "readOnly": true
+    },
+    "schema_name": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "description": "Schema in which the service is created.",
+      "readOnly": true
+    },
+    "service_name": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "description": "The name of the service.",
+      "readOnly": true
+    },
+    "service_status": {
+      "type": "string",
+      "description": "The current status of the service.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "instance_id": {
+      "type": "string",
+      "description": "ID of the service instance (this is the index of the service instance starting from 0).",
+      "readOnly": true,
+      "example": "500123"
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the service instance.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "spec_digest": {
+      "type": "string",
+      "description": "The unique and immutable identifier that represents the service specification content.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "creation_time": {
+      "type": "string",
+      "description": "The time when Snowflake started creating the service instance.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "start_time": {
+      "type": "string",
+      "description": "The time when Snowflake acknowledged the service instance is running on a node.",
+      "readOnly": true,
+      "example": "example_value"
+    }
+  },
+  "example": {
+    "database_name": "testdb",
+    "schema_name": "testschema",
+    "service_name": "myservice",
+    "instance_id": "0",
+    "status": "PENDING",
+    "spec_digest": "abcdefg",
+    "creation_time": "2023-01-01 00:00:00+00:00",
+    "start_time": "2023-01-01 00:00:00+00:00"
+  }
+}

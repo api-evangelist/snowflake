@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Grant",
+  "title": "Grant",
+  "type": "object",
+  "properties": {
+    "securable": {
+      "$ref": "#/components/schemas/Securable",
+      "description": "Securable of the grant"
+    },
+    "containing_scope": {
+      "$ref": "#/components/schemas/ContainingScope",
+      "description": "Containing scope of the grant"
+    },
+    "securable_type": {
+      "type": "string",
+      "description": "Type of the securable to be granted.",
+      "example": "example_value"
+    },
+    "grant_option": {
+      "type": "boolean",
+      "description": "If true, allows the recipient role to grant the privileges to other roles.",
+      "example": true
+    },
+    "privileges": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of privileges to be granted.",
+      "example": []
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the grant was created",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "granted_by": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The role that granted this privilege to this grantee",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "securable_type"
+  ]
+}

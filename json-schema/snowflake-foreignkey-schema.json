@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ForeignKey",
+  "title": "ForeignKey",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Constraint"
+    }
+  ],
+  "type": "object",
+  "description": "Foreign keys link data in one table to the data in another table.",
+  "properties": {
+    "referenced_table_name": {
+      "type": "string",
+      "example": "example_value"
+    },
+    "referenced_column_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    }
+  },
+  "required": [
+    "referenced_table_name"
+  ]
+}

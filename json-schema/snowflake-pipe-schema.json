@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Pipe",
+  "title": "Pipe",
+  "type": "object",
+  "description": "A Snowflake pipe",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the pipe",
+      "example": "Example Title"
+    },
+    "comment": {
+      "type": "string",
+      "description": "user comment associated to an object in the dictionary",
+      "example": "example_value"
+    },
+    "auto_ingest": {
+      "type": "boolean",
+      "description": "TRUE if all files from stage need to be auto-ingested",
+      "example": true
+    },
+    "error_integration": {
+      "type": "string",
+      "description": "Link to integration object that point to a user provided Azure storage queue / SQS. When present,  errors (e.g. ingest failure for Snowpipe or a user task failure or replication failure) will be sent to this queue to notify customers",
+      "example": "example_value"
+    },
+    "aws_sns_topic": {
+      "type": "string",
+      "description": "Optional, if provided, auto_ingest pipe will only receive messages from this SNS topic.",
+      "example": "example_value"
+    },
+    "integration": {
+      "type": "string",
+      "description": "Link to integration object that ties a user provided storage queue to an auto_ingest enabled pipe. Required for auto_ingest to work on azure.",
+      "example": "example_value"
+    },
+    "copy_statement": {
+      "type": "string",
+      "description": "COPY INTO <table> statement used to load data from queued files into a Snowflake table. This statement serves as the text/definition for the pipe and is displayed in the SHOW PIPES output",
+      "pattern": "(?i)^COPY INTO .*",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the pipe was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "database_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Database in which the pipe is stored",
+      "example": "example_value"
+    },
+    "schema_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Schema in which the pipe is stored",
+      "example": "example_value"
+    },
+    "owner": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Role that owns the pipe",
+      "example": "example_value"
+    },
+    "pattern": {
+      "type": "string",
+      "readOnly": true,
+      "description": "PATTERN copy option value in the COPY INTO <table> statement in the pipe definition, if the copy option was specified.",
+      "example": "example_value"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of role that owns the pipe",
+      "example": "example_value"
+    },
+    "invalid_reason": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Displays some detailed information for your pipes that may have issues",
+      "example": "example_value"
+    },
+    "budget": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Name of the budget if the pipe is monitored by a budget",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name",
+    "copy_statement"
+  ]
+}

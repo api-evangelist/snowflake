@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Polaris",
+  "title": "Polaris",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Catalog"
+    }
+  ],
+  "properties": {
+    "catalog_namespace": {
+      "type": "string",
+      "description": "Default Polaris namespace used by all Iceberg tables associated with this catalog integration",
+      "example": "example_value"
+    },
+    "rest_config": {
+      "$ref": "#/components/schemas/RestConfig",
+      "description": "Information about the Polaris catalog account and catalog name."
+    },
+    "rest_authentication": {
+      "$ref": "#/components/schemas/RestAuthentication",
+      "description": "Authentication details that Snowflake uses to connect to the Polaris catalog."
+    }
+  },
+  "required": [
+    "catalog_namespace",
+    "rest_config",
+    "rest_authentication"
+  ]
+}

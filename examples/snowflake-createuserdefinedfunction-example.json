@@ -1,0 +1,47 @@
+{
+  "operationId": "createUserDefinedFunction",
+  "method": "POST",
+  "path": "/api/v2/databases/{database}/schemas/{schema}/user-defined-functions",
+  "summary": "Create a Udf",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateuserdefinedfunctionRequestExample",
+      "example": {
+        "name": "Example Title",
+        "is_temporary": true,
+        "is_aggregate": true,
+        "is_memoizable": true,
+        "is_table_function": true,
+        "valid_for_clustering": true,
+        "is_secure": true,
+        "arguments": [
+          {
+            "name": "Example Title",
+            "datatype": "ARRAY",
+            "default_value": "example_value"
+          }
+        ],
+        "return_type": {
+          "type": "example_value"
+        },
+        "language_config": {
+          "language": "example_value",
+          "called_on_null_input": true,
+          "is_volatile": true
+        },
+        "comment": "example_value",
+        "body": "example_value",
+        "created_on": "2026-01-15T10:30:00Z",
+        "schema_name": "example_value",
+        "database_name": "example_value",
+        "min_num_arguments": 10,
+        "max_num_arguments": 10,
+        "owner": "example_value",
+        "owner_role_type": "example_value",
+        "is_builtin": true
+      }
+    }
+  ],
+  "responseExamples": []
+}

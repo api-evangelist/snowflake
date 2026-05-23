@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DatabaseClone",
+  "title": "DatabaseClone",
+  "type": "object",
+  "description": "Clone database.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Database"
+    }
+  ],
+  "properties": {
+    "point_of_time": {
+      "$ref": "common.yaml#/components/schemas/PointOfTime"
+    }
+  }
+}

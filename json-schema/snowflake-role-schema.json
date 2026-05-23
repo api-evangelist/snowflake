@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Role",
+  "title": "Role",
+  "type": "object",
+  "description": "A Snowflake role",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Name of the role.",
+      "example": "Example Title"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment of the role.",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the role was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "owner": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Specifies the role that owns this role.",
+      "example": "example_value"
+    },
+    "is_default": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "Specifies whether the role being fetched is the user's default role.",
+      "example": true
+    },
+    "is_current": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "Specifies whether the role being fetched is the user's current role.",
+      "example": true
+    },
+    "is_inherited": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "Specifies whether the role used to run the command inherits the specified role.",
+      "example": true
+    },
+    "assigned_to_users": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "The number of users to whom this role has been assigned.",
+      "example": 10
+    },
+    "granted_to_roles": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "The number of roles to which this role has been granted.",
+      "example": 10
+    },
+    "granted_roles": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "The number of roles that have been granted to this role.",
+      "example": 10
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

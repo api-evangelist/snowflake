@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AwsHook",
+  "title": "AwsHook",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ApiHook"
+    }
+  ],
+  "properties": {
+    "api_provider": {
+      "type": "string",
+      "enum": [
+        "AWS_API_GATEWAY",
+        "AWS_PRIVATE_API_GATEWAY",
+        "AWS_GOV_API_GATEWAY",
+        "AWS_GOV_PRIVATE_API_GATEWAY"
+      ],
+      "example": "AWS_API_GATEWAY"
+    },
+    "api_aws_role_arn": {
+      "type": "string",
+      "description": "The ARN (Amazon resource name) of the IAM role.",
+      "example": "example_value"
+    },
+    "api_key": {
+      "$ref": "#/components/schemas/ApiKey"
+    }
+  },
+  "required": [
+    "api_provider",
+    "api_aws_role_arn"
+  ]
+}

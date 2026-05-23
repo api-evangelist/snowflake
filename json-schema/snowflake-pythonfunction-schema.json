@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PythonFunction",
+  "title": "PythonFunction",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/BaseLanguage"
+    }
+  ],
+  "properties": {
+    "external_access_integrations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of external access integrations attached to this function/procedure",
+      "example": []
+    },
+    "secrets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Secrets to be used with this function/procedure for external access",
+      "example": "example_value"
+    }
+  }
+}

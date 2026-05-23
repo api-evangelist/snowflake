@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IcebergTableFromIcebergFiles",
+  "title": "IcebergTableFromIcebergFiles",
+  "type": "object",
+  "description": "Create iceberg table from Iceberg files",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Specifies the name for the table, must be unique for the schema in which the table is created",
+      "example": "Example Title"
+    },
+    "external_volume": {
+      "type": "string",
+      "description": "Specifies the name of the external volume to use for the table",
+      "example": "example_value"
+    },
+    "replace_invalid_characters": {
+      "type": "boolean",
+      "description": "Specifies whether to replace invalid characters in the column names",
+      "example": true
+    },
+    "metadata_file_path": {
+      "type": "string",
+      "description": "Specifies the relative path of the Iceberg metadata file to use for column definitions.",
+      "example": "example_value"
+    },
+    "catalog": {
+      "type": "string",
+      "description": "Specifies the name of the catalog integration to use for the table",
+      "example": "example_value"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the table",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name",
+    "metadata_file_path"
+  ]
+}

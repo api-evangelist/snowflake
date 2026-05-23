@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NotificationWebhook",
+  "title": "NotificationWebhook",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/NotificationHook"
+    }
+  ],
+  "properties": {
+    "webhook_url": {
+      "type": "string",
+      "description": "The URL for the webhook. The URL must use the https:// protocol.",
+      "example": "https://www.example.com"
+    },
+    "webhook_secret": {
+      "$ref": "#/components/schemas/WebhookSecret",
+      "description": "The secret to use with this integration."
+    },
+    "webhook_body_template": {
+      "type": "string",
+      "description": "A template for the body of the HTTP request to send for the notification.",
+      "example": "example_value"
+    },
+    "webhook_headers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "A list of HTTP headers and values to include in the HTTP request for the webhook.",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "webhook_url"
+  ]
+}

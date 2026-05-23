@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GenerateVerifiedQuerySuggestionsRequest",
+  "title": "GenerateVerifiedQuerySuggestionsRequest",
+  "type": "object",
+  "description": "The request object for getting VQ suggestions",
+  "properties": {
+    "semantic_model": {
+      "$ref": "#/components/schemas/SemanticModelObject"
+    },
+    "warehouse": {
+      "type": "string",
+      "description": "Warehouse name to use for processing suggestions.",
+      "example": "example_value"
+    },
+    "experimental": {
+      "type": "string",
+      "description": "JSON serialized string of experimental API fields (undocumented).",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "semantic_model"
+  ]
+}

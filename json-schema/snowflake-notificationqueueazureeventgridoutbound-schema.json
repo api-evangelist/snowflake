@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NotificationQueueAzureEventGridOutbound",
+  "title": "NotificationQueueAzureEventGridOutbound",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/NotificationHook"
+    }
+  ],
+  "properties": {
+    "azure_event_grid_topic_endpoint": {
+      "type": "string",
+      "description": "Event Grid topic endpoint to which Snowpipe pushes notifications.",
+      "example": "example_value"
+    },
+    "azure_tenant_id": {
+      "type": "string",
+      "description": "ID of the Azure Active Directory tenant used for identity management.",
+      "example": "500123"
+    },
+    "azure_consent_url": {
+      "type": "string",
+      "readOnly": true,
+      "description": "URL to the Microsoft permissions request page.",
+      "example": "https://www.example.com"
+    },
+    "azure_multi_tenant_app_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Name of the Snowflake client application created for your account.",
+      "example": "example_value"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GrantOn",
+  "title": "GrantOn",
+  "type": "object",
+  "properties": {
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the grant was created",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "privilege": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the privilege",
+      "example": "example_value"
+    },
+    "granted_on": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of of the role",
+      "example": "example_value"
+    },
+    "name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the role",
+      "example": "Example Title"
+    },
+    "granted_to": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of the grantee",
+      "example": "example_value"
+    },
+    "grantee_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the grantee",
+      "example": "example_value"
+    },
+    "grant_option": {
+      "type": "string",
+      "readOnly": true,
+      "description": "If true, allows the recipient role to grant the privileges to other roles.",
+      "example": "example_value"
+    },
+    "granted_by": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The role that granted this privilege to this grantee",
+      "example": "example_value"
+    },
+    "granted_by_role_type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Type of the role that granted this privilege to this grantee",
+      "example": "example_value"
+    }
+  }
+}

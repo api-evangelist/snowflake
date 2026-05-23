@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceFunction",
+  "title": "ServiceFunction",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Function"
+    }
+  ],
+  "description": "Service based function",
+  "required": [
+    "service",
+    "endpoint",
+    "path"
+  ],
+  "properties": {
+    "service": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "description": "Service's name"
+    },
+    "service_database": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "description": "Service's database name"
+    },
+    "service_schema": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "description": "Service's schema name"
+    },
+    "endpoint": {
+      "type": "string",
+      "description": "Function's endpoint",
+      "example": "example_value"
+    },
+    "path": {
+      "type": "string",
+      "description": "Function's path",
+      "example": "example_value"
+    }
+  }
+}

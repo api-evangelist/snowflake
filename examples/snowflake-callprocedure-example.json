@@ -1,0 +1,29 @@
+{
+  "operationId": "callProcedure",
+  "method": "POST",
+  "path": "/api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}:call",
+  "summary": "Call a Procedure",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CallprocedureRequestExample",
+      "example": {
+        "call_arguments": [
+          {
+            "name": "Example Title",
+            "datatype": "ARRAY",
+            "value": "example_value"
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Callprocedure200Example",
+      "example": []
+    }
+  ]
+}

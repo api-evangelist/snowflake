@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Constraint",
+  "title": "Constraint",
+  "type": "object",
+  "description": "Constraints define integrity and consistency rules for data stored in tables.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the Constraint",
+      "example": "Example Title"
+    },
+    "column_names": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Column name for the constraint"
+      },
+      "example": []
+    },
+    "constraint_type": {
+      "type": "string",
+      "description": "Type of the constraint",
+      "example": "example_value"
+    }
+  },
+  "discriminator": {
+    "propertyName": "constraint_type",
+    "mapping": {
+      "PRIMARY KEY": "PrimaryKey",
+      "FOREIGN KEY": "ForeignKey",
+      "UNIQUE": "UniqueKey"
+    }
+  }
+}

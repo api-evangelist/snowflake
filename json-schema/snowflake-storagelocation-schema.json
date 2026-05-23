@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StorageLocation",
+  "title": "StorageLocation",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "example": "Example Title"
+    },
+    "storage_provider": {
+      "type": "string",
+      "enum": [
+        "S3",
+        "S3GOV",
+        "GCS",
+        "AZURE"
+      ],
+      "description": "Specifies the cloud storage provider that stores your data files.",
+      "example": "S3"
+    }
+  },
+  "required": [
+    "name",
+    "storage_provider"
+  ],
+  "discriminator": {
+    "propertyName": "storage_provider",
+    "mapping": {
+      "S3": "StorageLocationS3",
+      "S3GOV": "StorageLocationS3Gov",
+      "GCS": "StorageLocationGcs",
+      "AZURE": "StorageLocationAzure"
+    }
+  }
+}

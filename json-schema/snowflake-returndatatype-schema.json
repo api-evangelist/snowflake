@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReturnDataType",
+  "title": "ReturnDataType",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ReturnType"
+    }
+  ],
+  "properties": {
+    "datatype": {
+      "type": "string",
+      "enum": [
+        "ARRAY",
+        "BIGINT",
+        "BINARY",
+        "BOOLEAN",
+        "BYTEINT",
+        "CHAR",
+        "CHARACTER",
+        "DATE",
+        "DATETIME",
+        "DECIMAL",
+        "DOUBLE",
+        "DOUBLE PRECISION",
+        "FLOAT",
+        "FLOAT4",
+        "FLOAT8",
+        "GEOGRAPHY",
+        "GEOMETRY",
+        "INT",
+        "INTEGER",
+        "NUMBER",
+        "NUMERIC",
+        "OBJECT",
+        "REAL",
+        "STRING",
+        "SMALLINT",
+        "TEXT",
+        "TIME",
+        "TIMESTAMP_LTZ",
+        "TIMESTAMP_NTZ",
+        "TIMESTAMP_TZ",
+        "TINYINT",
+        "VARBINARY",
+        "VARCHAR",
+        "VARIANT",
+        "VECTOR"
+      ],
+      "x-enum-varnames": [
+        "ARRAY",
+        "BIGINT",
+        "BINARY",
+        "BOOLEAN",
+        "BYTEINT",
+        "CHAR",
+        "CHARACTER",
+        "DATE",
+        "DATETIME",
+        "DECIMAL",
+        "DOUBLE",
+        "DOUBLE_PRECISION",
+        "FLOAT",
+        "FLOAT4",
+        "FLOAT8",
+        "GEOGRAPHY",
+        "GEOMETRY",
+        "INT",
+        "INTEGER",
+        "NUMBER",
+        "NUMERIC",
+        "OBJECT",
+        "REAL",
+        "STRING",
+        "SMALLINT",
+        "TEXT",
+        "TIME",
+        "TIMESTAMP_LTZ",
+        "TIMESTAMP_NTZ",
+        "TIMESTAMP_TZ",
+        "TINYINT",
+        "VARBINARY",
+        "VARCHAR",
+        "VARIANT",
+        "VECTOR"
+      ],
+      "description": "Return data type",
+      "example": "ARRAY"
+    },
+    "nullable": {
+      "type": "boolean",
+      "description": "Argument null return acceptance criteria",
+      "example": true
+    }
+  },
+  "required": [
+    "datatype"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageContentChartObject",
+  "title": "MessageContentChartObject",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageContent"
+    },
+    {
+      "title": "Chart",
+      "type": "object",
+      "description": "The chart specification that is part of a message.",
+      "properties": {
+        "chart_spec": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "chart_spec"
+      ]
+    }
+  ]
+}

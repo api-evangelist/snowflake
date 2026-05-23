@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NotificationEmail",
+  "title": "NotificationEmail",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/NotificationHook"
+    }
+  ],
+  "properties": {
+    "allowed_recipients": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A comma-separated list of quoted email addresses that can receive notification emails from this integration.",
+      "example": []
+    },
+    "default_recipients": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A comma-separated list of default recipients for messages sent with this integration.",
+      "example": []
+    },
+    "default_subject": {
+      "type": "string",
+      "description": "the default subject line for messages sent with this integration.",
+      "example": "example_value"
+    }
+  }
+}

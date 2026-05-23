@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NetworkPolicy",
+  "title": "NetworkPolicy",
+  "type": "object",
+  "description": "A Snowflake network policy",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Name of the network policy",
+      "example": "Example Title"
+    },
+    "allowed_network_rule_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of names of allowed network rules in a network policy",
+      "example": []
+    },
+    "blocked_network_rule_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of names of blocked network rules in a network policy",
+      "example": []
+    },
+    "allowed_ip_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of allowed IPs in a network policy",
+      "example": []
+    },
+    "blocked_ip_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of blocked IPs in a network policy",
+      "example": []
+    },
+    "comment": {
+      "type": "string",
+      "description": "user comment associated to an object in the dictionary",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the network policy was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "owner": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Role that owns the network policy",
+      "example": "example_value"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "The type of role that owns the network policy",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

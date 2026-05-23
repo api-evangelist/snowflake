@@ -1,0 +1,45 @@
+{
+  "operationId": "listStages",
+  "method": "GET",
+  "path": "/api/v2/databases/{database}/schemas/{schema}/stages",
+  "summary": "List Stages",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Liststages200Example",
+      "example": [
+        {
+          "name": {},
+          "kind": "PERMANENT",
+          "url": "https://www.example.com",
+          "endpoint": "example_value",
+          "storage_integration": {},
+          "comment": "example_value",
+          "credentials": {
+            "credential_type": "example_value"
+          },
+          "encryption": {
+            "type": "SNOWFLAKE_FULL",
+            "master_key": "example_value",
+            "kms_key_id": "500123"
+          },
+          "directory_table": {
+            "enable": true,
+            "refresh_on_create": true,
+            "auto_refresh": true,
+            "notification_integration": "example_value"
+          },
+          "created_on": "2026-01-15T10:30:00Z",
+          "has_credentials": true,
+          "has_encryption_key": true,
+          "owner": "example_value",
+          "owner_role_type": "example_value",
+          "region": "example_value",
+          "cloud": "example_value"
+        }
+      ]
+    }
+  ]
+}

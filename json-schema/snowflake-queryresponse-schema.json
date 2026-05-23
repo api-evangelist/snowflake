@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryResponse",
+  "title": "QueryResponse",
+  "type": "object",
+  "description": "Search results.",
+  "properties": {
+    "results": {
+      "type": "array",
+      "description": "List of result rows.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "description": "Map of column names to bytes."
+      },
+      "example": []
+    },
+    "request_id": {
+      "type": "string",
+      "description": "ID of the request.",
+      "example": "500123"
+    }
+  },
+  "required": [
+    "results",
+    "request_id"
+  ]
+}

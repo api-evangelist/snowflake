@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SendFeedbackRequest",
+  "title": "SendFeedbackRequest",
+  "type": "object",
+  "description": "The request object for sending user feedback on Cortex Analyst responses",
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "description": "Request id associated with the feedback",
+      "example": "500123"
+    },
+    "positive": {
+      "type": "boolean",
+      "description": "Whether the response was good (true) or bad (false)",
+      "example": true
+    },
+    "feedback_message": {
+      "type": "string",
+      "description": "The text for the detailed feedback message",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "request_id",
+    "positive"
+  ]
+}

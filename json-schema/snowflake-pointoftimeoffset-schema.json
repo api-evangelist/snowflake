@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PointOfTimeOffset",
+  "title": "PointOfTimeOffset",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/PointOfTime"
+    }
+  ],
+  "properties": {
+    "offset": {
+      "type": "string",
+      "description": "Point of time identified by an offset in reference to the current time, such as `10 min`.",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "offset"
+  ]
+}

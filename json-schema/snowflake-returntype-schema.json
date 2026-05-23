@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReturnType",
+  "title": "ReturnType",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Type of the return, can be either DATATYPE or TABLE",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "DATATYPE": "ReturnDataType",
+      "TABLE": "ReturnTable"
+    }
+  }
+}

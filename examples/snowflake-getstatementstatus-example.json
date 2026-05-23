@@ -1,0 +1,70 @@
+{
+  "operationId": "getStatementStatus",
+  "method": "GET",
+  "path": "/api/v2/statements/{statementHandle}",
+  "summary": "Check the Status of the Execution of a Statement.",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getstatementstatus200Example",
+      "example": {
+        "code": "example_value",
+        "sqlState": "example_value",
+        "message": "example_value",
+        "statementHandle": "example_value",
+        "createdOn": 10,
+        "statementStatusUrl": "https://www.example.com",
+        "resultSetMetaData": {
+          "format": "jsonv2",
+          "numRows": 10,
+          "rowType": [
+            {}
+          ],
+          "partitionInfo": [
+            {}
+          ],
+          "nullable": true
+        },
+        "data": [
+          [
+            "example_value"
+          ]
+        ],
+        "stats": {
+          "numRowsInserted": 10,
+          "numRowsUpdated": 10,
+          "numRowsDeleted": 10,
+          "numDuplicateRowsUpdated": 10
+        }
+      }
+    },
+    {
+      "status": "202",
+      "contentType": "application/json",
+      "name": "Getstatementstatus202Example",
+      "example": {
+        "code": "example_value",
+        "sqlState": "example_value",
+        "message": "example_value",
+        "statementHandle": "example_value",
+        "createdOn": 10,
+        "statementStatusUrl": "https://www.example.com"
+      }
+    },
+    {
+      "status": "422",
+      "contentType": "application/json",
+      "name": "Getstatementstatus422Example",
+      "example": {
+        "code": "example_value",
+        "sqlState": "example_value",
+        "message": "example_value",
+        "statementHandle": "example_value",
+        "createdOn": 10,
+        "statementStatusUrl": "https://www.example.com"
+      }
+    }
+  ]
+}

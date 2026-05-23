@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NonStreamingCompleteResponse",
+  "title": "NonStreamingCompleteResponse",
+  "type": "object",
+  "description": "Text-completion response for non-streaming request.",
+  "properties": {
+    "choices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "description": "The text completion response."
+              },
+              "content_list": {
+                "type": "array",
+                "description": "Contents of text and toolUse response.",
+                "items": {
+                  "discriminator": {
+                    "propertyName": "type",
+                    "mapping": {
+                      "text": "common-cortex-tool.yaml#/components/schemas/TextContent",
+                      "tool_use": "common-cortex-tool.yaml#/components/schemas/ToolUse"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "example": []
+    },
+    "usage": {
+      "type": "object",
+      "title": "Usage",
+      "properties": {
+        "prompt_tokens": {
+          "type": "integer",
+          "description": "Input token count."
+        },
+        "completion_tokens": {
+          "type": "integer",
+          "description": "Output token count."
+        },
+        "guard_tokens": {
+          "type": "integer",
+          "description": "Tokens used by cortex guard."
+        },
+        "total_tokens": {
+          "type": "integer",
+          "description": "Sum of all tokens."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

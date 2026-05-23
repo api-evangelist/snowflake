@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TimeDecay",
+  "title": "TimeDecay",
+  "type": "object",
+  "properties": {
+    "column": {
+      "$ref": "#/components/schemas/Column"
+    },
+    "weight": {
+      "type": "number",
+      "description": "Weight to apply for decaying this timestamp column. Normalized across all scored columns in the scoring config so that all weights sum to 1. If a weight is not provided, the weight defaults to 1 pre-normalization.",
+      "example": 0.5
+    },
+    "limit_hours": {
+      "type": "number",
+      "description": "Optional limit in hours after which the decay does not apply.",
+      "example": 24
+    },
+    "now": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Optional reference timestamp to calculate decay from.",
+      "example": "2022-01-01T00:00:00Z"
+    }
+  },
+  "required": [
+    "column"
+  ]
+}

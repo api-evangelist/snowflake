@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceSpec",
+  "title": "ServiceSpec",
+  "type": "object",
+  "description": "Specifies service specification.",
+  "properties": {
+    "spec_type": {
+      "type": "string",
+      "description": "Type of the service specification, can be `from_file` or `from_inline`.",
+      "example": "example_value"
+    }
+  },
+  "discriminator": {
+    "propertyName": "spec_type",
+    "mapping": {
+      "from_file": "ServiceSpecStageFile",
+      "from_inline": "ServiceSpecInlineText"
+    }
+  },
+  "writeOnly": true
+}

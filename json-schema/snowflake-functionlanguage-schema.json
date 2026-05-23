@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FunctionLanguage",
+  "title": "FunctionLanguage",
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "description": "Language that the function/procedure is written in. Possible values include: JAVA, JAVASCRIPT, PYTHON, SCALA, SQL",
+      "example": "example_value"
+    },
+    "called_on_null_input": {
+      "type": "boolean",
+      "description": "Decide if the function/procedure can receive null input",
+      "example": true
+    }
+  },
+  "required": [
+    "language"
+  ],
+  "discriminator": {
+    "propertyName": "language",
+    "mapping": {
+      "JAVA": "JavaFunction",
+      "PYTHON": "PythonFunction",
+      "SCALA": "ScalaFunction",
+      "JAVASCRIPT": "JavaScriptFunction",
+      "SQL": "SQLFunction"
+    }
+  }
+}

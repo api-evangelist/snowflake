@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DynamicTable",
+  "title": "DynamicTable",
+  "type": "object",
+  "description": "A Snowflake dynamic table object.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Specifies the name for the dynamic table, must be unique for the schema in which the dynamic table is created",
+      "example": "Example Title"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "PERMANENT",
+        "TRANSIENT"
+      ],
+      "default": "PERMANENT",
+      "description": "Specifies the dynamic table type, permanent (default) or transient.",
+      "example": "PERMANENT"
+    },
+    "columns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DynamicTableColumn"
+      },
+      "example": []
+    },
+    "target_lag": {
+      "$ref": "common.yaml#/components/schemas/TargetLag"
+    },
+    "refresh_mode": {
+      "type": "string",
+      "description": "Specifies the refresh type for the dynamic table",
+      "enum": [
+        "AUTO",
+        "FULL",
+        "INCREMENTAL"
+      ],
+      "example": "AUTO"
+    },
+    "initialize": {
+      "type": "string",
+      "description": "Specifies the behavior of the initial refresh of the dynamic table",
+      "enum": [
+        "ON_CREATE",
+        "ON_SCHEDULE"
+      ],
+      "example": "ON_CREATE"
+    },
+    "warehouse": {
+      "type": "string",
+      "description": "Specifies the name of the warehouse that provides the compute resources for refreshing the dynamic table",
+      "example": "test_wh"
+    },
+    "cluster_by": {
+      "type": "array",
+      "description": "Specifies one or more columns or column expressions in the dynamic table as the clustering key",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "query": {
+      "type": "string",
+      "description": "Specifies the query whose results the dynamic table should contain",
+      "example": "SELECT * FROM foo"
+    },
+    "data_retention_time_in_days": {
+      "type": "integer",
+      "description": "Specifies the retention period for the dynamic table so that Time Travel actions (SELECT, CLONE) can be performed on historical data in the dynamic table",
+      "example": 10
+    },
+    "max_data_extension_time_in_days": {
+      "type": "integer",
+      "description": "Specifies the retention period for the dynamic table so that Time Travel actions (SELECT, CLONE) can be performed on historical data in the dynamic table",
+      "example": 10
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the dynamic table.",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the dynamic table was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "database_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Database in which the dynamic table is stored",
+      "example": "example_value"
+    },
+    "schema_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Schema in which the dynamic table is stored",
+      "example": "example_value"
+    },
+    "rows": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "Number of rows in the dynamic table.",
+      "example": 10
+    },
+    "bytes": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "Number of bytes that will be scanned if the entire table is scanned in a query. Note that this number may be different than the number of actual physical bytes stored on-disk for the table",
+      "example": 10
+    },
+    "scheduling_state": {
+      "type": "string",
+      "enum": [
+        "RUNNING",
+        "SUSPENDED"
+      ],
+      "readOnly": true,
+      "description": "Scheduling state (RUNNING or SUSPENDED)",
+      "example": "RUNNING"
+    },
+    "automatic_clustering": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "If Automatic Clustering is enabled for your account, specifies whether it is explicitly enabled or disabled for the dynamic table.",
+      "example": true
+    },
+    "owner": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Role that owns the table",
+      "example": "example_value"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of role that owns the object.",
+      "example": "example_value"
+    },
+    "budget": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Name of the budget if the object is monitored by a budget",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name",
+    "target_lag",
+    "warehouse",
+    "query"
+  ]
+}

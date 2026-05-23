@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CronSchedule",
+  "title": "CronSchedule",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Schedule"
+    }
+  ],
+  "properties": {
+    "cron_expr": {
+      "type": "string",
+      "description": "A cron expression for the scheduled execution.",
+      "example": "example_value"
+    },
+    "timezone": {
+      "type": "string",
+      "description": "The time zone for the schedule.",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "cron_expr",
+    "timezone"
+  ]
+}

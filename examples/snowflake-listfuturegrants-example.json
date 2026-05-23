@@ -1,0 +1,35 @@
+{
+  "operationId": "listFutureGrants",
+  "method": "GET",
+  "path": "/api/v2/databases/{database}/database-roles/{name}/future-grants",
+  "summary": "List All Future Grants to the Role",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Listfuturegrants200Example",
+      "example": [
+        {
+          "securable": {
+            "database": "example_value",
+            "schema": "example_value",
+            "service": "example_value",
+            "name": "Example Title"
+          },
+          "containing_scope": {
+            "database": "example_value",
+            "schema": "example_value"
+          },
+          "securable_type": "example_value",
+          "grant_option": true,
+          "privileges": [
+            "example_value"
+          ],
+          "created_on": "2026-01-15T10:30:00Z",
+          "granted_by": "example_value"
+        }
+      ]
+    }
+  ]
+}

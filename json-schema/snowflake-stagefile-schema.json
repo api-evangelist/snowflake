@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StageFile",
+  "title": "StageFile",
+  "type": "object",
+  "description": "A file on a snowflake stage.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the file.",
+      "example": "Example Title"
+    },
+    "size": {
+      "type": "string",
+      "description": "Size of the file.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "md5": {
+      "type": "string",
+      "description": "md5 hash of the file.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "last_modified": {
+      "type": "string",
+      "description": "Date and time when the file was last modified.",
+      "readOnly": true,
+      "example": "example_value"
+    }
+  }
+}

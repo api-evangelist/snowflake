@@ -1,0 +1,272 @@
+{
+  "provider": "Snowflake",
+  "providerId": "snowflake",
+  "kind": "json-structure",
+  "description": "Structural overview of the Snowflake API surface; extracted from openapi/.",
+  "schemaCount": 15,
+  "operationCount": 16,
+  "schemas": [
+    {
+      "name": "RefreshIcebergTableRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ConvertToManagedIcebergTableRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "IcebergTable",
+      "type": "object",
+      "propertyCount": 25,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "IcebergTableAsSelect",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name",
+        "base_location"
+      ]
+    },
+    {
+      "name": "IcebergTableLike",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "IcebergTableClone",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "IcebergTableFromAWSGlueCatalog",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "catalog_table_name"
+      ]
+    },
+    {
+      "name": "IcebergTableFromIcebergFiles",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name",
+        "metadata_file_path"
+      ]
+    },
+    {
+      "name": "IcebergTableFromDelta",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name",
+        "base_location"
+      ]
+    },
+    {
+      "name": "IcebergTableFromIcebergRest",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "catalog_table_name"
+      ]
+    },
+    {
+      "name": "IcebergTableColumn",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name",
+        "datatype"
+      ]
+    },
+    {
+      "name": "Constraint",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "PrimaryKey",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "UniqueKey",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ForeignKey",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "referenced_table_name"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables",
+      "operationId": "listIcebergTables",
+      "summary": "List Iceberg Tables",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables",
+      "operationId": "createSnowflakeManagedIcebergTable",
+      "summary": "Create a Snowflake Managed Iceberg Table (clone and Undrop Are Separate Subresources)",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables:as-select",
+      "operationId": "createSnowflakeManagedIcebergTableAsSelect",
+      "summary": "Create a Snowflake Managed Iceberg Table as Select",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables:from-aws-glue-catalog",
+      "operationId": "createUnmanagedIcebergTableFromAWSGlueCatalog",
+      "summary": "Create an Unmanaged Iceberg Table From Aws Glue Catalog",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables:from-delta",
+      "operationId": "createUnmanagedIcebergTableFromDelta",
+      "summary": "Create an Unmanaged Iceberg Table From Delta",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables:from-iceberg-files",
+      "operationId": "createUnmanagedIcebergTableFromIcebergFiles",
+      "summary": "Create an Unmanaged Iceberg Table From Iceberg Files",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables:from-iceberg-rest",
+      "operationId": "createUnmanagedIcebergTableFromIcebergRest",
+      "summary": "Create an Unmanaged Iceberg Table From Iceberg Rest",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}",
+      "operationId": "fetchIcebergTable",
+      "summary": "Describe Iceberg Table",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}",
+      "operationId": "dropIcebergTable",
+      "summary": "Drop Iceberg Table",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:resume-recluster",
+      "operationId": "resumeReclusterIcebergTable",
+      "summary": "Resume Recluster of an Iceberg Table",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:suspend-recluster",
+      "operationId": "suspendReclusterIcebergTable",
+      "summary": "Suspend Recluster of an Iceberg Table",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:refresh",
+      "operationId": "refreshIcebergTable",
+      "summary": "Refreshes the Metadata for an Apache Iceberg Table That Uses an External Iceberg Catalog",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:convert-to-managed",
+      "operationId": "convertToManagedIcebergTable",
+      "summary": "Converts an Apache Iceberg\u2122 Table That Uses an External Iceberg Catalog Into a Table That Uses Snowflake as the Catalog",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:undrop",
+      "operationId": "undropIcebergTable",
+      "summary": "Undrop Iceberg Table",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:clone",
+      "operationId": "cloneSnowflakeManagedIcebergTable",
+      "summary": "Clone a Snowflake Managed Iceberg Table",
+      "tags": [
+        "iceberg-table"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:create-like",
+      "operationId": "createSnowflakeManagedIcebergTableLike",
+      "summary": "Create Iceberg Table Like",
+      "tags": [
+        "iceberg-table"
+      ]
+    }
+  ]
+}

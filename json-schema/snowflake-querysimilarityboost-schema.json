@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QuerySimilarityBoost",
+  "title": "QuerySimilarityBoost",
+  "type": "object",
+  "properties": {
+    "cortex_search_service": {
+      "description": "Fully-qualified name of a Cortex Search Service through which to find similar previous queries.",
+      "type": "string",
+      "example": "MY_DB.MY_SCHEMA.MY_SEARCH_SERVICE"
+    },
+    "previous_query_column": {
+      "description": "Name of a TEXT column indexed in the specified previous queries search service that contains the previous query strings.",
+      "type": "string",
+      "example": "example_value"
+    },
+    "documents_column": {
+      "description": "Name of an ARRAY column indexed in the specified previous queries search service that contains a list of documents that matched the corresponding previous query. Each document is represented as an OBJECT mapping all primary key columns to their corresponding values.",
+      "type": "string",
+      "example": "example_value"
+    }
+  }
+}

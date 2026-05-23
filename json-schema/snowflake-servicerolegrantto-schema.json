@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceRoleGrantTo",
+  "title": "ServiceRoleGrantTo",
+  "type": "object",
+  "properties": {
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the grant was created",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "privilege": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the privilege",
+      "example": "example_value"
+    },
+    "granted_on": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of of the securable",
+      "example": "example_value"
+    },
+    "name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the securable",
+      "example": "Example Title"
+    },
+    "granted_to": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of the grantee",
+      "example": "example_value"
+    },
+    "grantee_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the grantee",
+      "example": "example_value"
+    }
+  },
+  "example": {
+    "created_on": "2023-01-01 00:00:00+00:00",
+    "privilege": "usage",
+    "granted_on": "service_endpoint",
+    "name": "db.schema.service!svc_role",
+    "granted_to": "service role",
+    "grantee_name": "all_endpoints_usage"
+  }
+}

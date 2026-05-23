@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PointOfTimeStream",
+  "title": "PointOfTimeStream",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/PointOfTime"
+    }
+  ],
+  "properties": {
+    "stream": {
+      "type": "string",
+      "description": "Creates the new stream at the same offset as the specified stream. ",
+      "example": "example_value"
+    }
+  }
+}

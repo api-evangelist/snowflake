@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AlertClone",
+  "title": "AlertClone",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the alert",
+      "example": "Example Title"
+    },
+    "point_of_time": {
+      "$ref": "#/components/schemas/PointOfTime",
+      "description": "Type of the point of time. Possible values include:\n\n- `timestamp`: Exact time using the standard timezone format. Example: `2023-09-15 10:59:43`.\n- `offset`: Interval relative to 'now.' Example: `1 day`.\n- `statement`: ID of a query statement to use as the reference point for <a href=https://docs.snowflake.com/en/sql-reference/sql/create-clone#time-travel-parameters>Time Travel</a>.\n\nFor more information, see https://docs.snowflake.com/en/sql-reference/data-types-datetime.\n"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

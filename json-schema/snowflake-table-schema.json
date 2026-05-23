@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Table",
+  "title": "Table",
+  "type": "object",
+  "description": "A Snowflake table",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Specifies the name for the table, must be unique for the schema in which the table is created",
+      "example": "Example Title"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "PERMANENT",
+        "TRANSIENT",
+        "TEMPORARY",
+        "",
+        "transient",
+        "temporary"
+      ],
+      "x-enum-varnames": [
+        "PERMANENT",
+        "TRANSIENT",
+        "TEMPORARY",
+        "DEPRECATED_PERMANENT",
+        "DEPRECATED_TRANSIENT",
+        "DEPRECATED_TEMPORARY"
+      ],
+      "default": "PERMANENT",
+      "description": "Table type - permanent, transient, or temporary",
+      "example": "PERMANENT"
+    },
+    "cluster_by": {
+      "type": "array",
+      "description": "Specifies one or more columns or column expressions in the table as the clustering key",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "enable_schema_evolution": {
+      "type": "boolean",
+      "description": "Table has schema evolution enabled or disabled",
+      "example": true
+    },
+    "change_tracking": {
+      "type": "boolean",
+      "description": "Change tracking is enabled or disabled",
+      "example": true
+    },
+    "data_retention_time_in_days": {
+      "type": "integer",
+      "description": "Specifies the retention period for the table so that Time Travel actions SELECT, CLONE, UNDROP can be performed on historical data in the table",
+      "example": 10
+    },
+    "max_data_extension_time_in_days": {
+      "type": "integer",
+      "description": "Specifies the retention period for the table so that Time Travel actions SELECT, CLONE, UNDROP can be performed on historical data in the table",
+      "example": 10
+    },
+    "default_ddl_collation": {
+      "type": "string",
+      "description": "Specifies a default collation specification for the columns in the table, including columns added to the table in the future",
+      "example": "example_value"
+    },
+    "columns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TableColumn"
+      },
+      "example": []
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Constraint"
+      },
+      "example": []
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment for the table",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the table was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "database_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Database in which the table is stored",
+      "example": "example_value"
+    },
+    "schema_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Schema in which the table is stored",
+      "example": "example_value"
+    },
+    "rows": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "Number of rows in the table. Returns NULL for external tables.",
+      "example": 10
+    },
+    "bytes": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "Number of bytes that will be scanned if the entire table is scanned in a query. Note that this number may be different than the number of actual physical bytes stored on-disk for the table",
+      "example": 10
+    },
+    "owner": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Role that owns the table",
+      "example": "example_value"
+    },
+    "dropped_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the table was dropped",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "automatic_clustering": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "If Automatic Clustering is enabled for your account, specifies whether it is explicitly enabled or disabled for the table.",
+      "example": true
+    },
+    "search_optimization": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "If ON, the table has the search optimization service enabled",
+      "example": true
+    },
+    "search_optimization_progress": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "Percentage of the table that has been optimized for search.",
+      "example": 10
+    },
+    "search_optimization_bytes": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "Number of additional bytes of storage that the search optimization service consumes for this table",
+      "example": 10
+    },
+    "owner_role_type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of role that owns the object.",
+      "example": "example_value"
+    },
+    "budget": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Name of the budget if the object is monitored by a budget",
+      "example": "example_value"
+    },
+    "table_type": {
+      "type": "string",
+      "enum": [
+        "NORMAL",
+        "DYNAMIC",
+        "EXTERNAL",
+        "EVENT",
+        "HYBRID",
+        "ICEBERG",
+        "IMMUTABLE"
+      ],
+      "readOnly": true,
+      "description": "Type of the table",
+      "example": "NORMAL"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

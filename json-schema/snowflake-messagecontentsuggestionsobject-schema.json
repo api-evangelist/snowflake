@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageContentSuggestionsObject",
+  "title": "MessageContentSuggestionsObject",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageContent"
+    },
+    {
+      "title": "Suggested Questions",
+      "type": "object",
+      "description": "If SQL cannot be generated, a list of questions the semantic model can generate SQL for.",
+      "properties": {
+        "suggestions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "What is the lifetime revenue for the top 5 clients?"
+          }
+        }
+      },
+      "required": [
+        "suggestions"
+      ]
+    }
+  ]
+}

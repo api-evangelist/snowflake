@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryRequest",
+  "title": "QueryRequest",
+  "type": "object",
+  "description": "A search query and additional parameters for search.",
+  "properties": {
+    "query": {
+      "description": "Unstructured text query.  Exactly one of 'query' or 'multi_index_query' must be specified.",
+      "type": "string",
+      "example": "example_value"
+    },
+    "multi_index_query": {
+      "description": "A search query expressed as a collection of multiple column-level queries.  Exactly one of 'query' or 'multi_index_query' must be specified. A column/index can be queried with multiple queries.",
+      "type": "object",
+      "additionalProperties": true,
+      "example": "example_value"
+    },
+    "columns": {
+      "description": "List of columns to return.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "filter": {
+      "description": "Filter query.",
+      "type": "object",
+      "example": "example_value"
+    },
+    "limit": {
+      "description": "Max number of results to return.",
+      "type": "integer",
+      "default": 10,
+      "example": 10
+    },
+    "scoring_config": {
+      "$ref": "#/components/schemas/ScoringConfig"
+    },
+    "experimental": {
+      "description": "reserved",
+      "type": "object",
+      "additionalProperties": true,
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "columns"
+  ]
+}

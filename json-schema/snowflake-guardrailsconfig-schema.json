@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GuardrailsConfig",
+  "title": "GuardrailsConfig",
+  "type": "object",
+  "description": "Guardrails configuration",
+  "nullable": true,
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "description": "Controls whether guardrails are enabled",
+      "example": true
+    },
+    "response_when_unsafe": {
+      "type": "string",
+      "description": "The response when the guardrails model marks the completion as unsafe",
+      "example": "Response filtered by Cortex Guard"
+    }
+  }
+}

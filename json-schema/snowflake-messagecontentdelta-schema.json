@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageContentDelta",
+  "title": "MessageContentDelta",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "example": "example_value"
+    },
+    "index": {
+      "type": "integer",
+      "description": "The index of the content array this delta object represents",
+      "example": 10
+    }
+  },
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "text": "#/components/schemas/MessageContentDeltaTextObject",
+      "sql": "#/components/schemas/MessageContentDeltaSqlObject",
+      "suggestions": "#/components/schemas/MessageContentDeltaSuggestionsObject",
+      "chart": "#/components/schemas/MessageContentChartObject"
+    }
+  }
+}

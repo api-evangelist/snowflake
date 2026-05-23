@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountIdentifiers",
+  "title": "AccountIdentifiers",
+  "type": "object",
+  "description": "Array of unique account identifiers.",
+  "properties": {
+    "accounts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "example": []
+    }
+  },
+  "example": {
+    "accounts": [
+      "accountName1",
+      "accountName2"
+    ]
+  },
+  "required": [
+    "accounts"
+  ]
+}

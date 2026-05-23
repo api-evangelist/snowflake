@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StreamSourceExternalTable",
+  "title": "StreamSourceExternalTable",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/StreamSource"
+    }
+  ],
+  "properties": {
+    "insert_only": {
+      "type": "boolean",
+      "description": "Whether this stream is an insert only stream or not",
+      "example": true
+    },
+    "point_of_time": {
+      "$ref": "#/components/schemas/PointOfTime",
+      "description": "Point of time for the stream"
+    }
+  }
+}

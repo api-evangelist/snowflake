@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiIntegration",
+  "title": "ApiIntegration",
+  "type": "object",
+  "description": "A Snowflake API integration object.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Name of the API integration.",
+      "example": "Example Title"
+    },
+    "api_hook": {
+      "$ref": "#/components/schemas/ApiHook"
+    },
+    "api_allowed_prefixes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A comma-separated list of endpoints and resources that Snowflake can access.",
+      "example": []
+    },
+    "api_blocked_prefixes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A comma-separated list of endpoints and resources that are not allowed to be called from Snowflake.",
+      "nullable": true,
+      "example": []
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the API integration is enabled.",
+      "example": true
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment for the API integration.",
+      "nullable": true,
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the API integration was created.",
+      "example": "2026-01-15T10:30:00Z"
+    }
+  },
+  "required": [
+    "name",
+    "api_hook",
+    "api_allowed_prefixes",
+    "enabled"
+  ]
+}

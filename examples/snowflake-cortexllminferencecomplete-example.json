@@ -1,0 +1,53 @@
+{
+  "operationId": "cortexLLMInferenceComplete",
+  "method": "POST",
+  "path": "/api/v2/cortex/inference:complete",
+  "summary": "Perform Llm Text Completion Inference.",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CortexllminferencecompleteRequestExample",
+      "example": {
+        "model": "example_value",
+        "messages": [
+          {
+            "role": "example_value",
+            "content": "example_value",
+            "content_list": [
+              {}
+            ]
+          }
+        ],
+        "temperature": 42.5,
+        "top_p": 42.5,
+        "max_tokens": 10,
+        "max_output_tokens": 10,
+        "response_format": {
+          "type": "json",
+          "schema": "example_value"
+        },
+        "guardrails": {
+          "enabled": true,
+          "response_when_unsafe": "example_value"
+        },
+        "tools": [
+          {}
+        ],
+        "tool_choice": {},
+        "provisioned_throughput_id": "500123",
+        "sf-ml-xp-inflight-prompt-action": "example_value",
+        "sf-ml-xp-inflight-prompt-client-id": "500123",
+        "sf-ml-xp-inflight-prompt-public-key": "example_value",
+        "stream": true
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "text/event-stream",
+      "name": "Cortexllminferencecomplete200Example",
+      "example": {}
+    }
+  ]
+}

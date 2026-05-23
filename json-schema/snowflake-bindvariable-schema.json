@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BindVariable",
+  "title": "BindVariable",
+  "type": "object",
+  "description": "A bind variable value with its Snowflake data type.",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The Snowflake data type of the bind variable (e.g. FIXED, TEXT, BOOLEAN, DATE, TIMESTAMP_LTZ, TIMESTAMP_NTZ, TIMESTAMP_TZ).",
+      "examples": [
+        "FIXED",
+        "TEXT"
+      ]
+    },
+    "value": {
+      "type": "string",
+      "description": "The value of the bind variable as a string.",
+      "examples": [
+        "123",
+        "teststring"
+      ]
+    }
+  },
+  "required": [
+    "type",
+    "value"
+  ]
+}

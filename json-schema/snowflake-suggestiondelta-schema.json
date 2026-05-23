@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SuggestionDelta",
+  "title": "SuggestionDelta",
+  "type": "object",
+  "properties": {
+    "index": {
+      "type": "integer",
+      "description": "The index of the suggestions array this delta object represents",
+      "example": 10
+    },
+    "suggestion_delta": {
+      "type": "string",
+      "description": "The delta of a suggestion text, clients should concatenate all deltas for the same index",
+      "example": "example_value"
+    }
+  }
+}

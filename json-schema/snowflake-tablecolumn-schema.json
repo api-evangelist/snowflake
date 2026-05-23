@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TableColumn",
+  "title": "TableColumn",
+  "type": "object",
+  "description": "A column in the table",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Column name",
+      "example": "Example Title"
+    },
+    "datatype": {
+      "type": "string",
+      "description": "The data type for the column",
+      "example": "example_value"
+    },
+    "nullable": {
+      "type": "boolean",
+      "default": true,
+      "description": "Specifies that the column does allow NULL values or not.",
+      "example": true
+    },
+    "collate": {
+      "type": "string",
+      "description": "Specifies the collation to use for column operations such as string comparison",
+      "example": "example_value"
+    },
+    "default": {
+      "type": "string",
+      "description": "Specifies whether a default value is automatically inserted in the column if a value is not explicitly specified via an INSERT or CREATE TABLE AS SELECT statement",
+      "example": "example_value"
+    },
+    "autoincrement": {
+      "type": "boolean",
+      "example": true
+    },
+    "autoincrement_start": {
+      "type": "integer",
+      "description": "The default value for the column starts with the specified number",
+      "example": 10
+    },
+    "autoincrement_increment": {
+      "type": "integer",
+      "description": "Each successive value for the column automatically increments by the specified amount",
+      "example": 10
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Constraint"
+      },
+      "example": []
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the column",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name",
+    "datatype"
+  ]
+}

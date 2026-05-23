@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StorageLocationGcs",
+  "title": "StorageLocationGcs",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/StorageLocation"
+    }
+  ],
+  "properties": {
+    "storage_base_url": {
+      "type": "string",
+      "description": "Specifies the base URL for your cloud storage location.",
+      "example": "https://www.example.com"
+    },
+    "encryption": {
+      "$ref": "#/components/schemas/Encryption",
+      "description": "Specifies the properties needed to encrypt data on the external volume."
+    }
+  },
+  "required": [
+    "storage_base_url"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DynamicTableClone",
+  "title": "DynamicTableClone",
+  "type": "object",
+  "description": "Clone dynamic table",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Specifies the name for the dynamic table, must be unique for the schema in which the dynamic table is created",
+      "example": "Example Title"
+    },
+    "target_lag": {
+      "$ref": "common.yaml#/components/schemas/TargetLag"
+    },
+    "warehouse": {
+      "type": "string",
+      "description": "Specifies the name of the warehouse that provides the compute resources for refreshing the dynamic table",
+      "example": "example_value"
+    },
+    "point_of_time": {
+      "$ref": "common.yaml#/components/schemas/PointOfTime"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

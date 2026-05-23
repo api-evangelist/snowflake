@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BaseLanguage",
+  "title": "BaseLanguage",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/FunctionLanguage"
+    }
+  ],
+  "properties": {
+    "runtime_version": {
+      "type": "string",
+      "description": "Runtime version of the function's/procedure's specified language",
+      "example": "example_value"
+    },
+    "packages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Packages to include with the function/procedure",
+      "example": []
+    },
+    "imports": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of imports",
+      "example": []
+    },
+    "handler": {
+      "type": "string",
+      "description": "Fully qualified method name including the package and the class",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "runtime_version",
+    "packages",
+    "handler"
+  ]
+}

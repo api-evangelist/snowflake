@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StreamingCompleteResponseDelta",
+  "title": "StreamingCompleteResponseDelta",
+  "type": "object",
+  "required": [
+    "type"
+  ],
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "text": "common-cortex-tool.yaml#/components/schemas/StreamingTextContent",
+      "tool_use": "common-cortex-tool.yaml#/components/schemas/StreamingToolUse"
+    }
+  }
+}

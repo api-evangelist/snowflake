@@ -1,0 +1,30 @@
+{
+  "operationId": "grant",
+  "method": "POST",
+  "path": "/api/v2/users/{name}/grants",
+  "summary": "Grant a Role to the User",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "GrantRequestExample",
+      "example": {
+        "securable": {
+          "database": "example_value",
+          "schema": "example_value",
+          "name": "Example Title"
+        },
+        "containing_scope": {
+          "database": "example_value",
+          "schema": "example_value"
+        },
+        "securable_type": "example_value",
+        "privileges": [
+          "example_value"
+        ],
+        "created_on": "2026-01-15T10:30:00Z",
+        "granted_by": "example_value"
+      }
+    }
+  ],
+  "responseExamples": []
+}

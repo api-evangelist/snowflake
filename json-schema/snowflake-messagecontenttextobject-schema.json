@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageContentTextObject",
+  "title": "MessageContentTextObject",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageContent"
+    },
+    {
+      "title": "Text",
+      "type": "object",
+      "description": "The text content that is part of a message.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "example": "To answer the question \"What is the profit per store?\" we must aggregate sales at the store level"
+        }
+      },
+      "required": [
+        "text"
+      ]
+    }
+  ]
+}

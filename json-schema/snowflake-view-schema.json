@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/View",
+  "title": "View",
+  "type": "object",
+  "description": "A Snowflake view",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the view",
+      "example": "Example Title"
+    },
+    "secure": {
+      "type": "boolean",
+      "description": "Whether or not this view is secure",
+      "example": true
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "PERMANENT",
+        "TEMPORARY"
+      ],
+      "description": "Kind of the view, permanent (default) or temporary",
+      "example": "PERMANENT"
+    },
+    "recursive": {
+      "type": "boolean",
+      "description": "Whether or not this view can refer to itself using recursive syntax withot requiring a CTE (common table expression)",
+      "example": true
+    },
+    "columns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ViewColumn"
+      },
+      "description": "The columns of the view",
+      "example": []
+    },
+    "comment": {
+      "type": "string",
+      "description": "user comment associated to an object in the dictionary",
+      "example": "example_value"
+    },
+    "query": {
+      "type": "string",
+      "description": "Query used to create the view",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the view was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "database_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Database in which the view is stored",
+      "example": "example_value"
+    },
+    "schema_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Schema in which the view is stored",
+      "example": "example_value"
+    },
+    "owner": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Role that owns the view",
+      "example": "example_value"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of role that owns the view",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name",
+    "columns",
+    "query"
+  ]
+}

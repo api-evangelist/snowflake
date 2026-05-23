@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StatusUpdate",
+  "title": "StatusUpdate",
+  "type": "object",
+  "properties": {
+    "status": {
+      "description": "The latest status for processing the request",
+      "type": "string",
+      "example": "example_value"
+    },
+    "status_message": {
+      "description": "A human readable description on the current request processing status",
+      "type": "string",
+      "example": "example_value"
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Unique request ID.",
+      "example": "500123"
+    }
+  },
+  "required": [
+    "status"
+  ]
+}

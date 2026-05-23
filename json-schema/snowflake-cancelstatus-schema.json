@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CancelStatus",
+  "title": "CancelStatus",
+  "type": "object",
+  "description": "Status returned when a statement cancellation is requested.",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Status code for the cancellation.",
+      "example": "example_value"
+    },
+    "sqlState": {
+      "type": "string",
+      "description": "SQL state code.",
+      "example": "example_value"
+    },
+    "message": {
+      "type": "string",
+      "description": "Message describing the cancellation status.",
+      "examples": [
+        "successfully canceled"
+      ]
+    },
+    "statementHandle": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Handle of the canceled statement.",
+      "examples": [
+        "536fad38-b564-4dc5-9892-a4543504df6c"
+      ]
+    },
+    "statementStatusUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL for checking the status of the canceled statement.",
+      "example": "https://www.example.com"
+    }
+  },
+  "required": [
+    "statementHandle"
+  ]
+}

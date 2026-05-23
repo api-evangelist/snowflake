@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Task",
+  "title": "Task",
+  "type": "object",
+  "description": "A Snowflake task, used to execute SQL code.",
+  "properties": {
+    "name": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "description": "String that specifies the identifier (i.e. name) for the task."
+    },
+    "warehouse": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "description": "Specifies the virtual warehouse that provides compute resources for task runs. Omit this parameter to use serverless compute resources for runs of this task."
+    },
+    "schedule": {
+      "$ref": "#/components/schemas/TaskSchedule",
+      "description": "Specifies the schedule for periodically running the task."
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the task.",
+      "example": "example_value"
+    },
+    "finalize": {
+      "type": "string",
+      "description": "Specifies the name of the root task that the finalizer task is associated with.",
+      "example": "example_value"
+    },
+    "task_auto_retry_attempts": {
+      "type": "integer",
+      "description": "Root task settable only. Specifies the number of automatic task graph retry attempts. Valid range is 0 to 30. When not specified, no retry would happen.",
+      "minimum": 0,
+      "maximum": 30,
+      "example": 10
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Task Config",
+      "example": "example_value"
+    },
+    "session_parameters": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Session Parameters for the task at runtime.",
+      "example": "example_value"
+    },
+    "definition": {
+      "type": "string",
+      "description": "The SQL definition for the task. Any one of single SQL statement, call to stored procedure, or procedural logic using Snowflake scripting.",
+      "example": "example_value"
+    },
+    "predecessors": {
+      "type": "array",
+      "description": "Specifies one or more predecessor tasks for the current task",
+      "items": {
+        "type": "string",
+        "description": "The identifier for the task."
+      },
+      "example": []
+    },
+    "task_relations": {
+      "type": "string",
+      "description": "Displays the relationship between the root task and its corresponding finalizer tasks.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "user_task_managed_initial_warehouse_size": {
+      "type": "string",
+      "description": "Specifies the size of the compute resources to provision for the first run of the task. This parameter only applies to serverless tasks.",
+      "example": "example_value"
+    },
+    "target_completion_interval": {
+      "$ref": "#/components/schemas/MinutesSchedule",
+      "description": "Specifies the desired task completion time. This parameter only applies to serverless tasks."
+    },
+    "serverless_task_min_statement_size": {
+      "type": "string",
+      "description": "Specifies the minimum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE. This parameter only applies to serverless tasks.",
+      "example": "example_value"
+    },
+    "serverless_task_max_statement_size": {
+      "type": "string",
+      "description": "Specifies the maximum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE. This parameter only applies to serverless tasks.",
+      "example": "example_value"
+    },
+    "user_task_timeout_ms": {
+      "type": "integer",
+      "description": "Specifies the time limit on a single run of the task before it times out (in milliseconds).",
+      "example": 10
+    },
+    "suspend_task_after_num_failures": {
+      "type": "integer",
+      "description": "Specifies the number of consecutive failed task runs after which the current task is suspended automatically.",
+      "example": 10
+    },
+    "condition": {
+      "type": "string",
+      "description": "Specifies a Boolean SQL expression condition; multiple conditions joined with AND/OR are supported",
+      "example": "example_value"
+    },
+    "allow_overlapping_execution": {
+      "type": "boolean",
+      "description": "Specifies whether to allow multiple instances of the DAG to run concurrently.",
+      "example": true
+    },
+    "error_integration": {
+      "type": "string",
+      "description": "Specifies the name of the notification integration used to communicate with Amazon SNS, MS Azure Event Grid, or Google Pub/Sub.",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "description": "The time the task was created on.",
+      "format": "date-time",
+      "readOnly": true,
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "id": {
+      "type": "string",
+      "description": "An ID for the current task.",
+      "readOnly": true,
+      "example": "abc123"
+    },
+    "owner": {
+      "type": "string",
+      "description": "The role that owns the task.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "description": "The role type of the task owner.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "state": {
+      "type": "string",
+      "description": "The state of the task. Must be one of started or suspended.",
+      "readOnly": true,
+      "enum": [
+        "started",
+        "suspended"
+      ],
+      "example": "started"
+    },
+    "last_committed_on": {
+      "type": "string",
+      "description": "The time the task was last committed on.",
+      "readOnly": true,
+      "format": "date-time",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "last_suspended_on": {
+      "type": "string",
+      "description": "The time the task was last suspended on.",
+      "readOnly": true,
+      "format": "date-time",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "database_name": {
+      "type": "string",
+      "description": "The name of the parent database for the task.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "The name of the parent schema for the task.",
+      "readOnly": true,
+      "example": "example_value"
+    }
+  },
+  "example": {
+    "name": "name_example",
+    "schedule": {
+      "schedule_type": "MINUTES_TYPE",
+      "minutes": 10
+    },
+    "comment": "test_comment",
+    "config": {
+      "output_dir": "/temp/test_directory/",
+      "learning_rate": "0.1"
+    },
+    "definition": "this task does...",
+    "predecessors": [
+      "task1",
+      "task2",
+      "task3"
+    ],
+    "user_task_managed_initial_warehouse_size": "SMALL",
+    "target_completion_interval": {
+      "schedule_type": "MINUTES_TYPE",
+      "minutes": 5
+    },
+    "serverless_task_min_statement_size": "XSMALL",
+    "serverless_task_max_statement_size": "MEDIUM",
+    "user_task_timeout_ms": 10,
+    "suspend_task_after_num_failures": 3,
+    "condition": "select 1",
+    "allow_overlapping_execution": false,
+    "error_integration": "my_notification_int",
+    "created_on": "2024-06-18T01:01:01.111111",
+    "id": "task_id",
+    "owner": "TASK_ADMIN",
+    "owner_role_type": "ADMIN",
+    "state": "started",
+    "last_committed_on": "2024-06-18T01:01:01.111111",
+    "last_suspended_on": "2024-06-18T01:01:01.111111",
+    "database_name": "TESTDB",
+    "schema_name": "TESTSCHEMA"
+  },
+  "required": [
+    "name",
+    "definition"
+  ]
+}

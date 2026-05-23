@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExternalVolume",
+  "title": "ExternalVolume",
+  "type": "object",
+  "description": "A Snowflake external volume",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "String that specifies the identifier (the name) for the external volume; must be unique in your account.",
+      "example": "Example Title"
+    },
+    "storage_locations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/StorageLocation"
+      },
+      "description": "Set of named cloud storage locations in different regions and, optionally, cloud platforms.",
+      "example": []
+    },
+    "allow_writes": {
+      "type": "boolean",
+      "description": "Specifies whether write operations are allowed for the external volume; must be set to TRUE for Iceberg tables that use Snowflake as the catalog.",
+      "example": true
+    },
+    "comment": {
+      "type": "string",
+      "description": "String (literal) that specifies a comment for the external volume.",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the external volume was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "owner": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Role that owns the external volume",
+      "example": "example_value"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "The type of role that owns the external volume",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name",
+    "storage_locations"
+  ]
+}

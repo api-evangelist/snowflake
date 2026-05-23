@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GitHook",
+  "title": "GitHook",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ApiHook"
+    }
+  ],
+  "properties": {
+    "allow_any_secret": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to allow any Snowflake secret when accessing the Git repository. This setting is ignored if allowed_authentication_secrets is present.",
+      "example": true
+    },
+    "allowed_authentication_secrets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A comma-separated list of fully-qualified Snowflake secret names that UDF or procedure handler code can use when accessing the Git repository.",
+      "nullable": true,
+      "example": []
+    },
+    "allowed_api_authentication_integrations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A comma-separated list of Snowflake security integration names that UDF or procedure handler code can use when accessing the Git repository. If empty, allow no integrations.",
+      "nullable": true,
+      "example": []
+    }
+  }
+}

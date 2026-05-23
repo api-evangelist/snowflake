@@ -1,0 +1,48 @@
+{
+  "operationId": "createEventTable",
+  "method": "POST",
+  "path": "/api/v2/databases/{database}/schemas/{schema}/event-tables",
+  "summary": "Create an Event Table",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreateeventtableRequestExample",
+      "example": {
+        "name": "Example Title",
+        "cluster_by": [
+          "example_value"
+        ],
+        "data_retention_time_in_days": 10,
+        "max_data_extension_time_in_days": 10,
+        "change_tracking": true,
+        "default_ddl_collation": "example_value",
+        "comment": "example_value",
+        "created_on": "2026-01-15T10:30:00Z",
+        "database_name": "example_value",
+        "schema_name": "example_value",
+        "owner": "example_value",
+        "owner_role_type": "example_value",
+        "rows": 10,
+        "bytes": 10,
+        "automatic_clustering": true,
+        "search_optimization": true,
+        "search_optimization_progress": 10,
+        "search_optimization_bytes": 10,
+        "columns": [
+          {
+            "name": "Example Title",
+            "datatype": "example_value",
+            "nullable": true,
+            "default": "example_value",
+            "primary_key": true,
+            "unique_key": true,
+            "check": "example_value",
+            "expression": "example_value",
+            "comment": "example_value"
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

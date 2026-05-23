@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PartitionInfo",
+  "title": "PartitionInfo",
+  "type": "object",
+  "description": "Information about a partition of the result set.",
+  "properties": {
+    "rowCount": {
+      "type": "integer",
+      "format": "int64",
+      "minimum": 0,
+      "description": "Number of rows in the partition.",
+      "examples": [
+        1324
+      ]
+    },
+    "compressedSize": {
+      "type": "integer",
+      "format": "int64",
+      "minimum": 0,
+      "description": "The partition size before decompression. This may not be present in every partition.",
+      "examples": [
+        37436824
+      ]
+    },
+    "uncompressedSize": {
+      "type": "integer",
+      "format": "int64",
+      "minimum": 0,
+      "description": "The partition size after decompression.",
+      "examples": [
+        1343787384
+      ]
+    }
+  }
+}

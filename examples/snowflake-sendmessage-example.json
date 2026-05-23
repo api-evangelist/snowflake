@@ -1,0 +1,66 @@
+{
+  "operationId": "sendMessage",
+  "method": "POST",
+  "path": "/api/v2/cortex/analyst/message",
+  "summary": "Send a Data Question to the Cortex Analyst",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "SendmessageRequestExample",
+      "example": {
+        "semantic_model_file": "example_value",
+        "semantic_model": "example_value",
+        "semantic_view": "example_value",
+        "semantic_models": [
+          {
+            "semantic_model_file": "example_value",
+            "semantic_view": "example_value",
+            "inline_semantic_model": "example_value"
+          }
+        ],
+        "stream": true,
+        "operation": "sql_generation",
+        "warehouse": "example_value",
+        "messages": [
+          {
+            "role": "user",
+            "content": {}
+          }
+        ],
+        "source": "example_value",
+        "experimental": "example_value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Sendmessage200Example",
+      "example": {
+        "message": {
+          "role": "user",
+          "content": [
+            {}
+          ]
+        },
+        "request_id": "500123",
+        "warnings": [
+          {
+            "message": "example_value"
+          }
+        ],
+        "semantic_model_selection": {
+          "index": 10
+        },
+        "response_metadata": "example_value"
+      }
+    },
+    {
+      "status": "200",
+      "contentType": "text/event-stream",
+      "name": "Sendmessage200Example",
+      "example": "example_value"
+    }
+  ]
+}

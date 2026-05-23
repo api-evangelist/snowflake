@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageContentDeltaSqlObject",
+  "title": "MessageContentDeltaSqlObject",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageContentDelta"
+    },
+    {
+      "title": "SQL",
+      "type": "object",
+      "description": "The SQL content that is part of a message.",
+      "properties": {
+        "statement_delta": {
+          "type": "string",
+          "description": "The delta of the sql statement, clients should concatenate all deltas for the same index",
+          "example": "SELECT store, SUM(profit) FROM sales GROUP BY store"
+        },
+        "confidence": {
+          "$ref": "#/components/schemas/Confidence"
+        }
+      },
+      "required": [
+        "statement_delta"
+      ]
+    }
+  ]
+}

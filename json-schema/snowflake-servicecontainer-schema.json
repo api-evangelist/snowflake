@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceContainer",
+  "title": "ServiceContainer",
+  "type": "object",
+  "properties": {
+    "database_name": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "description": "Database in which the service is created.",
+      "readOnly": true
+    },
+    "schema_name": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "description": "Schema in which the service is created.",
+      "readOnly": true
+    },
+    "service_name": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "description": "The name of the service.",
+      "readOnly": true
+    },
+    "service_status": {
+      "type": "string",
+      "description": "The current status of the service.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "instance_id": {
+      "type": "string",
+      "description": "ID of the service instance (this is the index of the service instance starting from 0).",
+      "readOnly": true,
+      "example": "500123"
+    },
+    "instance_status": {
+      "type": "string",
+      "description": "The current status of the service instance.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "container_name": {
+      "type": "string",
+      "description": "Name of the container.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "status": {
+      "type": "string",
+      "description": "Service container status.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "message": {
+      "type": "string",
+      "description": "Additional clarification about status.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "image_name": {
+      "type": "string",
+      "description": "Image name used to create the service container.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "image_digest": {
+      "type": "string",
+      "description": "The unique and immutable identifier representing the image content.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "restart_count": {
+      "type": "integer",
+      "description": "Number of times Snowflake restarted the service.",
+      "readOnly": true,
+      "example": 10
+    },
+    "start_time": {
+      "type": "string",
+      "description": "Date and time when the container started.",
+      "readOnly": true,
+      "example": "example_value"
+    }
+  },
+  "example": {
+    "database_name": "testdb",
+    "schema_name": "testschema",
+    "service_name": "myservice",
+    "instance_id": "0",
+    "container_name": "main",
+    "status": "PENDING",
+    "message": "Pending scheduling.",
+    "image_name": "/db/schema/repo/image:1.0",
+    "image_digest": "abcdefd",
+    "restart_count": 0,
+    "start_time": "2023-01-01 00:00:00+00:00"
+  }
+}

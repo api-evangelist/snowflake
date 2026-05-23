@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Securable",
+  "title": "Securable",
+  "type": "object",
+  "properties": {
+    "database": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Database name of the securable if applicable.",
+      "example": "example_value"
+    },
+    "schema": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Schema name of the securable if applicable.",
+      "example": "example_value"
+    },
+    "service": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Service name of the securable if applicable.",
+      "example": "example_value"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Name of the securable if applicable.",
+      "example": "Example Title"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

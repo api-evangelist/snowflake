@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TableClone",
+  "title": "TableClone",
+  "type": "object",
+  "description": "Clone table",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Table"
+    }
+  ],
+  "properties": {
+    "point_of_time": {
+      "$ref": "common.yaml#/components/schemas/PointOfTime"
+    }
+  }
+}

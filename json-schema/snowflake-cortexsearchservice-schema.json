@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CortexSearchService",
+  "title": "CortexSearchService",
+  "type": "object",
+  "description": "A Snowflake cortex search service object.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Specifies the name for the cortex search service, must be unique for the schema in which the cortex search service is created",
+      "example": "Example Title"
+    },
+    "search_column": {
+      "type": "string",
+      "description": "Specifies the name of the search column for the cortex search service.",
+      "example": "example_value"
+    },
+    "columns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Specifies all columns included in the cortex search service and that can be returned in search queries.",
+      "example": []
+    },
+    "attribute_columns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Specifies the attribute columns, which can be referenced in filters in search queries to the cortex search service.",
+      "example": []
+    },
+    "target_lag": {
+      "$ref": "common.yaml#/components/schemas/TargetLag",
+      "description": "Specifies the schedule for periodically refreshing the cortex search service."
+    },
+    "warehouse": {
+      "type": "string",
+      "description": "Specifies the name of the warehouse that provides the compute resources for refreshing the cortex search service",
+      "example": "test_wh"
+    },
+    "definition": {
+      "type": "string",
+      "description": "Specifies the definition (source query) used to create the cortex search service",
+      "example": "SELECT col1, col2 FROM foo"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the cortex search service",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the cortex search service was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "database_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Database in which the cortex search service is stored",
+      "example": "example_value"
+    },
+    "schema_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Schema in which the cortex search service is stored",
+      "example": "example_value"
+    },
+    "source_data_num_rows": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "Number of rows in the materialized source data feeding into the cortex search service.",
+      "example": 10
+    },
+    "data_timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time as of which data existent in base tables is now serving.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "indexing_state": {
+      "$ref": "#/components/schemas/SchedulingState",
+      "description": "Current state of the indexing pipeline for the cortex search service; one of 'SUSPENDED' or 'ACTIVE'."
+    },
+    "serving_state": {
+      "$ref": "#/components/schemas/SchedulingState",
+      "description": "Whether the cortex search service is currently actively serving; one of 'SUSPENDED' or 'ACTIVE'."
+    },
+    "indexing_error": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Error encountered during the latest indexing pipeline of the cortex search service, if any.",
+      "example": "example_value"
+    },
+    "serving_data_bytes": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "Size of the serving index, in bytes.",
+      "example": 10
+    }
+  }
+}

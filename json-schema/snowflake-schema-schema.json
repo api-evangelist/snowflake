@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Schema",
+  "title": "Schema",
+  "type": "object",
+  "description": "Snowflake schema definition.",
+  "properties": {
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time the schema was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "name": {
+      "$ref": "./common.yaml#/components/schemas/Identifier",
+      "description": "Name of the schema."
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "PERMANENT",
+        "TRANSIENT"
+      ],
+      "default": "PERMANENT",
+      "description": "Schema type, permanent (default) or transient.",
+      "example": "PERMANENT"
+    },
+    "is_default": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "Default schema for a user.",
+      "example": true
+    },
+    "is_current": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "Current schema for the session.",
+      "example": true
+    },
+    "database_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Database that the schema belongs to",
+      "example": "example_value"
+    },
+    "owner": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Name of the role that owns the schema.",
+      "example": "example_value"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Optional comment in which to store information related to the schema.",
+      "example": "example_value"
+    },
+    "options": {
+      "type": "string",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "managed_access": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this schema is a managed access schema that centralizes privilege management with the schema owner.",
+      "example": true
+    },
+    "retention_time": {
+      "type": "integer",
+      "readOnly": true,
+      "description": "Number of days that historical data is retained for Time Travel.",
+      "example": 10
+    },
+    "dropped_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "nullable": true,
+      "description": "Date and time the schema was dropped.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Type of role that owns the object, either `ROLE` or `DATABASE_ROLE`.",
+      "example": "example_value"
+    },
+    "budget": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Budget that defines a monthly spending limit on the compute costs  for a Snowflake account or a custom group of Snowflake objects.",
+      "example": "example_value"
+    },
+    "data_retention_time_in_days": {
+      "type": "integer",
+      "description": "Number of days for which Time Travel actions (CLONE and UNDROP) can be performed on the schema, as well as specifying the default Time Travel retention time for all tables created in the schema",
+      "example": 10
+    },
+    "default_ddl_collation": {
+      "type": "string",
+      "description": "Specifies a default collation specification for all tables added to the schema. You an override the default at the schema and individual table levels.",
+      "example": "example_value"
+    },
+    "log_level": {
+      "type": "string",
+      "description": "Severity level of messages that should be ingested and made available in the active event table. Currently, Snowflake supports only `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `FATAL` and `OFF`.",
+      "example": "example_value"
+    },
+    "pipe_execution_paused": {
+      "type": "boolean",
+      "description": "Whether pipe execution is paused.",
+      "example": true
+    },
+    "max_data_extension_time_in_days": {
+      "type": "integer",
+      "description": "Maximum number of days for which Snowflake can extend the data retention period for tables in the schema to prevent streams on the tables from becoming stale.",
+      "example": 10
+    },
+    "suspend_task_after_num_failures": {
+      "type": "integer",
+      "description": "Specifies the number of consecutive failed task runs after which the current task is suspended automatically.",
+      "example": 10
+    },
+    "trace_level": {
+      "type": "string",
+      "description": "How trace events are ingested into the event table. Currently, Snowflake supports only `ALWAYS`, `ON_EVENT`, and `OFF`.",
+      "example": "example_value"
+    },
+    "user_task_managed_initial_warehouse_size": {
+      "type": "string",
+      "description": "Size of the compute resources to provision for the first run of the serverless task, before a task history is available for Snowflake to determine an ideal size.",
+      "example": "example_value"
+    },
+    "user_task_timeout_ms": {
+      "type": "integer",
+      "description": "Time limit, in milliseconds, for a single run of the task before it times out.",
+      "example": 10
+    },
+    "serverless_task_min_statement_size": {
+      "type": "string",
+      "description": "Specifies the minimum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE.",
+      "example": "example_value"
+    },
+    "serverless_task_max_statement_size": {
+      "type": "string",
+      "description": "Specifies the maximum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE.",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

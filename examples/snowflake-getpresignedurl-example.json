@@ -1,0 +1,25 @@
+{
+  "operationId": "getPresignedUrl",
+  "method": "POST",
+  "path": "/api/v2/databases/{database}/schemas/{schema}/stages/{name}/files/{filePath}:presigned-url",
+  "summary": "Generate a Presigned Url and Optionally Encryption Materials.",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "GetpresignedurlRequestExample",
+      "example": {
+        "expiration_time": 10
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getpresignedurl200Example",
+      "example": {
+        "presigned_url": "https://www.example.com"
+      }
+    }
+  ]
+}

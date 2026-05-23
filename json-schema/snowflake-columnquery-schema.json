@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ColumnQuery",
+  "title": "ColumnQuery",
+  "description": "Query specification of a given column. Exactly one of 'text' or 'vector' must be specified.",
+  "type": "object",
+  "properties": {
+    "text": {
+      "description": "Unstructured text query for querying a text index.",
+      "type": "string",
+      "example": "example_value"
+    },
+    "vector": {
+      "description": "Query embedding vector. Must be computed using the same model as used for embedding the column being queried.",
+      "type": "array",
+      "items": {
+        "type": "number",
+        "format": "float"
+      },
+      "example": []
+    }
+  }
+}

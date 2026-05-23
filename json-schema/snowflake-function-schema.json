@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Function",
+  "title": "Function",
+  "type": "object",
+  "description": "A Snowflake function",
+  "discriminator": {
+    "propertyName": "function_type",
+    "mapping": {
+      "service-function": "#/components/schemas/ServiceFunction"
+    }
+  },
+  "properties": {
+    "function_type": {
+      "type": "string",
+      "default": "service-function",
+      "example": "example_value"
+    },
+    "name": {
+      "type": "string",
+      "description": "Specifies the name for the function, must be unique for the schema in which the function is created",
+      "example": "Example Title"
+    },
+    "arguments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/FunctionArgument"
+      },
+      "example": []
+    },
+    "returns": {
+      "type": "string",
+      "description": "Specifies the type for the function return value.",
+      "enum": [
+        "FIXED",
+        "INT",
+        "REAL",
+        "NUMBER",
+        "TEXT",
+        "BOOLEAN",
+        "DATE",
+        "TIME",
+        "TIMESTAMP_TZ",
+        "TIMESTAMP_LTZ",
+        "TIMESTAMP_NTZ"
+      ],
+      "default": "TEXT",
+      "example": "FIXED"
+    },
+    "max_batch_rows": {
+      "type": "integer",
+      "description": "Specifies the max rows for batch operation.",
+      "example": 10
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the function was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Function's arguments.",
+      "example": "example_value"
+    },
+    "language": {
+      "type": "string",
+      "description": "Function's language.",
+      "example": "example_value"
+    },
+    "body": {
+      "type": "string",
+      "description": "Function's body.",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name",
+    "arguments"
+  ]
+}

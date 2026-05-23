@@ -1,0 +1,57 @@
+{
+  "operationId": "fetchIcebergTable",
+  "method": "GET",
+  "path": "/api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}",
+  "summary": "Describe Iceberg Table",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Fetchicebergtable200Example",
+      "example": {
+        "name": "Example Title",
+        "comment": "example_value",
+        "change_tracking": true,
+        "max_data_extension_time_in_days": 10,
+        "external_volume": "example_value",
+        "data_retention_time_in_days": 10,
+        "catalog_sync": "example_value",
+        "catalog": "example_value",
+        "storage_serialization_policy": "COMPATIBLE",
+        "created_on": "2026-01-15T10:30:00Z",
+        "database_name": "example_value",
+        "schema_name": "example_value",
+        "owner": "example_value",
+        "owner_role_type": "example_value",
+        "iceberg_table_type": "example_value",
+        "catalog_table_name": "example_value",
+        "catalog_namespace": "example_value",
+        "can_write_metadata": "example_value",
+        "cluster_by": [
+          "example_value"
+        ],
+        "columns": [
+          {
+            "name": "Example Title",
+            "datatype": "example_value",
+            "comment": "example_value",
+            "nullable": true,
+            "default_value": "example_value"
+          }
+        ],
+        "base_location": "example_value",
+        "replace_invalid_characters": true,
+        "auto_refresh": true,
+        "metadata_file_path": "example_value",
+        "constraints": [
+          {
+            "name": "Example Title",
+            "column_names": {},
+            "constraint_type": "example_value"
+          }
+        ]
+      }
+    }
+  ]
+}

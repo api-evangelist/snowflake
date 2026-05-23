@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PointOfTimeStatement",
+  "title": "PointOfTimeStatement",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/PointOfTime"
+    }
+  ],
+  "properties": {
+    "statement": {
+      "type": "string",
+      "description": "Statement of the point of time.",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "statement"
+  ]
+}

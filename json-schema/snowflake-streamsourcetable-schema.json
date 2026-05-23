@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StreamSourceTable",
+  "title": "StreamSourceTable",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/StreamSource"
+    }
+  ],
+  "properties": {
+    "append_only": {
+      "type": "boolean",
+      "description": "Whether this stream is an append only stream or not",
+      "example": true
+    },
+    "show_initial_rows": {
+      "type": "boolean",
+      "description": "Whether this stream show initial rows on first consumption",
+      "example": true
+    },
+    "point_of_time": {
+      "$ref": "#/components/schemas/PointOfTime",
+      "description": "Point of time for the stream"
+    }
+  }
+}

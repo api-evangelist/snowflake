@@ -1,0 +1,49 @@
+{
+  "operationId": "listTables",
+  "method": "GET",
+  "path": "/api/v2/databases/{database}/schemas/{schema}/tables",
+  "summary": "List Tables",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Listtables200Example",
+      "example": [
+        {
+          "name": "Example Title",
+          "kind": "PERMANENT",
+          "cluster_by": [
+            "example_value"
+          ],
+          "enable_schema_evolution": true,
+          "change_tracking": true,
+          "data_retention_time_in_days": 10,
+          "max_data_extension_time_in_days": 10,
+          "default_ddl_collation": "example_value",
+          "columns": [
+            {}
+          ],
+          "constraints": [
+            {}
+          ],
+          "comment": "example_value",
+          "created_on": "2026-01-15T10:30:00Z",
+          "database_name": "example_value",
+          "schema_name": "example_value",
+          "rows": 10,
+          "bytes": 10,
+          "owner": "example_value",
+          "dropped_on": "2026-01-15T10:30:00Z",
+          "automatic_clustering": true,
+          "search_optimization": true,
+          "search_optimization_progress": 10,
+          "search_optimization_bytes": 10,
+          "owner_role_type": "example_value",
+          "budget": "example_value",
+          "table_type": "NORMAL"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OAuth",
+  "title": "OAuth",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/RestAuthentication"
+    }
+  ],
+  "properties": {
+    "oauth_client_id": {
+      "type": "string",
+      "description": "The client ID of the OAuth2 credential associated with the Polaris service connection.",
+      "example": "500123"
+    },
+    "oauth_client_secret": {
+      "type": "string",
+      "description": "The secret for the OAuth2 credential associated with the Polaris service connection.",
+      "example": "example_value"
+    },
+    "oauth_allowed_scopes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The scope of the OAuth token. Only one scope is included in the Iceberg REST API specification, but catalogs can support more than one scope in their implementation.",
+      "example": []
+    }
+  },
+  "required": [
+    "oauth_client_id",
+    "oauth_client_secret",
+    "oauth_allowed_scopes"
+  ]
+}

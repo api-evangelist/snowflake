@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PointOfTimeTimestamp",
+  "title": "PointOfTimeTimestamp",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/PointOfTime"
+    }
+  ],
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "description": "Timestamp of the point of time.",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "timestamp"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StorageLocationAzure",
+  "title": "StorageLocationAzure",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/StorageLocation"
+    }
+  ],
+  "properties": {
+    "azure_tenant_id": {
+      "type": "string",
+      "description": "Specifies the ID for your Office 365 tenant that the allowed and blocked storage accounts belong to.",
+      "example": "500123"
+    },
+    "storage_base_url": {
+      "type": "string",
+      "description": "Specifies the base URL for your cloud storage location.",
+      "example": "https://www.example.com"
+    }
+  },
+  "required": [
+    "azure_tenant_id",
+    "storage_base_url"
+  ]
+}

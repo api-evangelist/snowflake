@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorResponse",
+  "title": "ErrorResponse",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "Error message returned by the server"
+    },
+    "code": {
+      "type": "string",
+      "description": "Error code."
+    },
+    "error_code": {
+      "type": "string",
+      "description": "Error code, same as `code` above. This property has been deprecated and will be removed in a future release, but is temporarily supported for for short-term backward compatibility."
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Unique request ID."
+    }
+  },
+  "example": {
+    "message": "Compilation error!",
+    "error_code": "390189",
+    "request_id": "01afef9d-0607-0550-0001-dd270c3902d7"
+  }
+}

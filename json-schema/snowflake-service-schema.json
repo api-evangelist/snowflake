@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Service",
+  "title": "Service",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/JobService"
+    },
+    {
+      "type": "object",
+      "description": "A Snowflake service object.",
+      "properties": {
+        "auto_resume": {
+          "type": "boolean",
+          "description": "Specifies whether to automatically resume a service when a service function or ingress is called."
+        },
+        "current_instances": {
+          "type": "integer",
+          "description": "The current number of instances for the service.",
+          "readOnly": true
+        },
+        "target_instances": {
+          "type": "integer",
+          "description": "The target number of service instances that should be running as determined by Snowflake.",
+          "readOnly": true
+        },
+        "min_ready_instances": {
+          "type": "integer",
+          "description": "The minimum number of ready service instances to declare the service as READY."
+        },
+        "min_instances": {
+          "type": "integer",
+          "description": "Specifies the minimum number of service instances to run."
+        },
+        "max_instances": {
+          "type": "integer",
+          "description": "Specifies the maximum number of service instances to run."
+        },
+        "database_name": {
+          "$ref": "./common.yaml#/components/schemas/Identifier",
+          "description": "The name of the parent database for the service.",
+          "readOnly": true
+        },
+        "schema_name": {
+          "$ref": "./common.yaml#/components/schemas/Identifier",
+          "description": "The name of the parent schema for the service.",
+          "readOnly": true
+        },
+        "owner": {
+          "type": "string",
+          "description": "Role that owns the service.",
+          "readOnly": true
+        },
+        "dns_name": {
+          "type": "string",
+          "description": "Snowflake-assiged DNS name of the service. The DNS name enables service-to-service communications.",
+          "readOnly": true
+        },
+        "created_on": {
+          "type": "string",
+          "description": "Timestamp when the service was created.",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_on": {
+          "type": "string",
+          "description": "Timestamp when the service was last updated.",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "resumed_on": {
+          "type": "string",
+          "description": "Timestamp when the service was last resumed.",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "suspended_on": {
+          "type": "string",
+          "description": "Timestamp when the service was last suspended.",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "auto_suspend_secs": {
+          "type": "integer",
+          "description": "Number of seconds of inactivity after which the service will be automatically suspended. The default value is 0 which represents the service will not be automatically suspended.",
+          "format": "int64"
+        },
+        "owner_role_type": {
+          "type": "string",
+          "description": "The role type of the service owner.",
+          "readOnly": true
+        },
+        "is_job": {
+          "type": "boolean",
+          "description": "True if the service is a job service; false otherwise.",
+          "readOnly": true
+        },
+        "spec_digest": {
+          "type": "string",
+          "description": "The unique and immutable identifier representing the service spec content.",
+          "readOnly": true
+        },
+        "is_upgrading": {
+          "type": "boolean",
+          "description": "TRUE, if Snowflake is in the process of upgrading the service.",
+          "readOnly": true
+        },
+        "managing_object_domain": {
+          "type": "string",
+          "description": "The domain of the managing object (for example, the domain of the notebook that manages the service). NULL if the service is not managed by a Snowflake entity.",
+          "readOnly": true
+        },
+        "managing_object_name": {
+          "type": "string",
+          "description": "The name of the managing object (for example, the name of the notebook that manages the service). NULL if the service is not managed by a Snowflake entity.",
+          "readOnly": true
+        }
+      },
+      "example": {
+        "min_ready_instances": 1,
+        "min_instances": 2,
+        "max_instances": 5,
+        "database_name": "testdb",
+        "schema_name": "testschema",
+        "owner": "SYSADMIN",
+        "is_job": false
+      }
+    }
+  ]
+}

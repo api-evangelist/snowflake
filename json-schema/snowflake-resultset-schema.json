@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResultSet",
+  "title": "ResultSet",
+  "type": "object",
+  "description": "The result set returned from a successfully executed SQL statement, including metadata, row data, and execution statistics.",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Status code for the query.",
+      "examples": [
+        "090001"
+      ]
+    },
+    "sqlState": {
+      "type": "string",
+      "description": "SQL state code.",
+      "examples": [
+        "00000"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "description": "Message describing the execution status.",
+      "examples": [
+        "successfully executed"
+      ]
+    },
+    "statementHandle": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Handle that uniquely identifies the executed statement.",
+      "examples": [
+        "536fad38-b564-4dc5-9892-a4543504df6c"
+      ]
+    },
+    "createdOn": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Timestamp that specifies when the statement execution started. The timestamp is expressed in milliseconds since the epoch.",
+      "examples": [
+        1597090533987
+      ]
+    },
+    "statementStatusUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL for checking the status of the statement.",
+      "example": "https://www.example.com"
+    },
+    "resultSetMetaData": {
+      "$ref": "#/components/schemas/ResultSetMetaData"
+    },
+    "data": {
+      "type": "array",
+      "description": "Result set data. Each element in the outer array represents a row. Each element in the inner array represents a column value as a string.",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "example": []
+    },
+    "stats": {
+      "$ref": "#/components/schemas/ExecutionStats"
+    }
+  }
+}

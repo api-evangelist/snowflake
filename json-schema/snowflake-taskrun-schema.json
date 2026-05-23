@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaskRun",
+  "title": "TaskRun",
+  "type": "object",
+  "description": "A task run executing a standalone task or a DAG of tasks starting from the root task.",
+  "properties": {
+    "root_task_name": {
+      "type": "string",
+      "description": "The name of the root task in the current task run.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "database_name": {
+      "type": "string",
+      "description": "The name of the current database for the task run.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "schema_name": {
+      "type": "string",
+      "description": "The name of the current schema for the task run.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "state": {
+      "type": "string",
+      "description": "The current state of the task run.",
+      "enum": [
+        "SCHEDULED",
+        "EXECUTING",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELLED",
+        "SKIPPED"
+      ],
+      "readOnly": true,
+      "example": "SCHEDULED"
+    },
+    "first_error_task_name": {
+      "type": "string",
+      "description": "The name of the first task throwing an error in the task run.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "first_error_code": {
+      "type": "integer",
+      "description": "The first error code thrown in the task run.",
+      "readOnly": true,
+      "example": 10
+    },
+    "first_error_message": {
+      "type": "string",
+      "description": "The first error message thrown in the task run.",
+      "readOnly": true,
+      "example": "example_value"
+    },
+    "scheduled_time": {
+      "type": "string",
+      "description": "The scheduled time for the task run.",
+      "format": "date-time",
+      "readOnly": true,
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "query_start_time": {
+      "type": "string",
+      "description": "The start time for the task run query.",
+      "format": "date-time",
+      "readOnly": true,
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "next_scheduled_time": {
+      "type": "string",
+      "description": "The next upcoming time for the task run.",
+      "format": "date-time",
+      "readOnly": true,
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "completed_time": {
+      "type": "string",
+      "description": "The time this task run was last completed.",
+      "format": "date-time",
+      "readOnly": true,
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "root_task_id": {
+      "type": "string",
+      "description": "The unique task ID for the root task.",
+      "readOnly": true,
+      "example": "500123"
+    },
+    "graph_version": {
+      "type": "integer",
+      "description": "The current version of the DAG on the task run.",
+      "readOnly": true,
+      "example": 10
+    },
+    "run_id": {
+      "type": "integer",
+      "description": "The unique ID for the current task run.",
+      "readOnly": true,
+      "example": "500123"
+    }
+  },
+  "example": {
+    "root_task_name": "root_task",
+    "database_name": "test_db",
+    "schema_name": "test_schema",
+    "state": "SCHEDULED",
+    "first_error_task_name": "test_task",
+    "first_error_code": 0,
+    "first_error_message": "ERROR",
+    "scheduled_time": "2024-06-18T01:01:01.111111",
+    "query_start_time": "2024-06-18T01:01:01.111111",
+    "next_scheduled_time": "2024-06-18T01:01:01.111111",
+    "completed_time": "2024-06-18T01:01:01.111111",
+    "root_task_id": "0",
+    "graph_version": 0,
+    "run_id": 0
+  },
+  "required": [
+    "root_task_name",
+    "database_name",
+    "schema_name",
+    "state",
+    "scheduled_time",
+    "next_scheduled_time",
+    "root_task_id",
+    "graph_version",
+    "run_id"
+  ]
+}

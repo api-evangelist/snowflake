@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ViewColumn",
+  "title": "ViewColumn",
+  "type": "object",
+  "description": "A column specifier in the view",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Column name",
+      "example": "Example Title"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the column",
+      "example": "example_value"
+    },
+    "datatype": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The data type for the column",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

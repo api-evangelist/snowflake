@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AzureHook",
+  "title": "AzureHook",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ApiHook"
+    }
+  ],
+  "properties": {
+    "api_provider": {
+      "type": "string",
+      "enum": [
+        "AZURE_API_MANAGEMENT",
+        "AZURE_PRIVATE_API_MANAGEMENT"
+      ],
+      "example": "AZURE_API_MANAGEMENT"
+    },
+    "azure_tenant_id": {
+      "type": "string",
+      "description": "The ID of the Office 365 tenant that all Azure API Management instances belong to.",
+      "example": "500123"
+    },
+    "azure_ad_application_id": {
+      "type": "string",
+      "description": "The application ID of the Azure Active Directory application.",
+      "example": "500123"
+    },
+    "api_key": {
+      "$ref": "#/components/schemas/ApiKey"
+    }
+  },
+  "required": [
+    "api_provider",
+    "azure_tenant_id",
+    "azure_ad_application_id"
+  ]
+}

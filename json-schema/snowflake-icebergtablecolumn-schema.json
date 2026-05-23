@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IcebergTableColumn",
+  "title": "IcebergTableColumn",
+  "type": "object",
+  "description": "A column in the snowflake catalog iceberg table",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Column name",
+      "example": "Example Title"
+    },
+    "datatype": {
+      "type": "string",
+      "description": "The data type for the column",
+      "example": "example_value"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Specifies a comment for the column",
+      "example": "example_value"
+    },
+    "nullable": {
+      "type": "boolean",
+      "description": "Argument null return acceptance criteria",
+      "example": true
+    },
+    "default_value": {
+      "type": "string",
+      "description": "Default value for the column",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name",
+    "datatype"
+  ]
+}

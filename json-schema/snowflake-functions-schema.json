@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Functions",
+  "title": "Functions",
+  "type": "object",
+  "description": "Functions to apply for scoring this request.",
+  "properties": {
+    "numeric_boosts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NumericBoost"
+      },
+      "example": []
+    },
+    "time_decays": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TimeDecay"
+      },
+      "example": []
+    },
+    "text_boosts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TextBoost"
+      },
+      "example": []
+    },
+    "vector_boosts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/VectorBoost"
+      },
+      "example": []
+    },
+    "query_similarity_boosts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/QuerySimilarityBoost"
+      },
+      "example": []
+    }
+  }
+}

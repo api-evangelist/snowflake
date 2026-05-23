@@ -1,0 +1,101 @@
+{
+  "operationId": "submitStatement",
+  "method": "POST",
+  "path": "/api/v2/statements",
+  "summary": "Submit a Sql Statement for Execution.",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "statement": "select * from T where c1=?",
+        "timeout": 10,
+        "database": "TESTDB",
+        "schema": "TESTSCHEMA",
+        "warehouse": "TESTWH",
+        "role": "TESTROLE",
+        "bindings": {
+          "1": {
+            "type": "FIXED",
+            "value": "123"
+          }
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Submitstatement200Example",
+      "example": {
+        "code": "example_value",
+        "sqlState": "example_value",
+        "message": "example_value",
+        "statementHandle": "example_value",
+        "createdOn": 10,
+        "statementStatusUrl": "https://www.example.com",
+        "resultSetMetaData": {
+          "format": "jsonv2",
+          "numRows": 10,
+          "rowType": [
+            {}
+          ],
+          "partitionInfo": [
+            {}
+          ],
+          "nullable": true
+        },
+        "data": [
+          [
+            "example_value"
+          ]
+        ],
+        "stats": {
+          "numRowsInserted": 10,
+          "numRowsUpdated": 10,
+          "numRowsDeleted": 10,
+          "numDuplicateRowsUpdated": 10
+        }
+      }
+    },
+    {
+      "status": "202",
+      "contentType": "application/json",
+      "name": "Submitstatement202Example",
+      "example": {
+        "code": "example_value",
+        "sqlState": "example_value",
+        "message": "example_value",
+        "statementHandle": "example_value",
+        "createdOn": 10,
+        "statementStatusUrl": "https://www.example.com"
+      }
+    },
+    {
+      "status": "408",
+      "contentType": "application/json",
+      "name": "Submitstatement408Example",
+      "example": {
+        "code": "example_value",
+        "sqlState": "example_value",
+        "message": "example_value",
+        "statementHandle": "example_value",
+        "createdOn": 10,
+        "statementStatusUrl": "https://www.example.com"
+      }
+    },
+    {
+      "status": "422",
+      "contentType": "application/json",
+      "name": "Submitstatement422Example",
+      "example": {
+        "code": "example_value",
+        "sqlState": "example_value",
+        "message": "example_value",
+        "statementHandle": "example_value",
+        "createdOn": 10,
+        "statementStatusUrl": "https://www.example.com"
+      }
+    }
+  ]
+}

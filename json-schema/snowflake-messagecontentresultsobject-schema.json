@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageContentResultsObject",
+  "title": "MessageContentResultsObject",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageContent"
+    },
+    {
+      "title": "Results",
+      "type": "object",
+      "description": "Query ID of the executed query",
+      "properties": {
+        "query_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "query_id"
+      ]
+    }
+  ]
+}

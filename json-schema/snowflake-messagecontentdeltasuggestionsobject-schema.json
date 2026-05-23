@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageContentDeltaSuggestionsObject",
+  "title": "MessageContentDeltaSuggestionsObject",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageContentDelta"
+    },
+    {
+      "title": "Suggested Questions",
+      "type": "object",
+      "description": "If SQL cannot be generated, a list of questions the semantic model can generate SQL for.",
+      "properties": {
+        "suggestions_delta": {
+          "$ref": "#/components/schemas/SuggestionDelta"
+        }
+      },
+      "required": [
+        "suggestions_delta"
+      ]
+    }
+  ]
+}

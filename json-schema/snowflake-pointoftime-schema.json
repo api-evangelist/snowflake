@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PointOfTime",
+  "title": "PointOfTime",
+  "type": "object",
+  "properties": {
+    "point_of_time_type": {
+      "type": "string",
+      "description": "Type of the point of time. Possible values include: timestamp, offset, statement",
+      "example": "example_value"
+    },
+    "reference": {
+      "type": "string",
+      "enum": [
+        "at",
+        "before"
+      ],
+      "x-enum-varnames": [
+        "AT",
+        "BEFORE"
+      ],
+      "description": "Relation to the point of time.  Currently, the API supports `at` and `before`",
+      "example": "at"
+    }
+  },
+  "required": [
+    "point_of_time_type",
+    "reference"
+  ],
+  "discriminator": {
+    "propertyName": "point_of_time_type",
+    "mapping": {
+      "timestamp": "PointOfTimeTimestamp",
+      "offset": "PointOfTimeOffset",
+      "statement": "PointOfTimeStatement"
+    }
+  }
+}

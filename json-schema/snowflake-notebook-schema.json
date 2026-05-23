@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Notebook",
+  "title": "Notebook",
+  "type": "object",
+  "description": "A Snowflake notebook",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Name of the notebook",
+      "example": "Example Title"
+    },
+    "version": {
+      "type": "string",
+      "description": "User specified version alias",
+      "example": "example_value"
+    },
+    "fromLocation": {
+      "type": "string",
+      "description": "Location to copy the file from. This must be a Snowflake stage location.",
+      "example": "example_value"
+    },
+    "main_file": {
+      "type": "string",
+      "description": "Name + path of the file for the Notebook",
+      "example": "example_value"
+    },
+    "comment": {
+      "type": "string",
+      "description": "user comment associated to an object in the dictionary",
+      "example": "example_value"
+    },
+    "default_version": {
+      "type": "string",
+      "description": "The default version name of a file based entity.",
+      "example": "example_value"
+    },
+    "query_warehouse": {
+      "type": "string",
+      "description": "Warehouse against which the queries issued by the Streamlit app are run against",
+      "example": "example_value"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the notebook was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "database_name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Database in which the notebook is stored",
+      "example": "example_value"
+    },
+    "schema_name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Schema in which the notebook is stored",
+      "example": "example_value"
+    },
+    "owner": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Role that owns the notebook",
+      "example": "example_value"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "The type of role that owns the notebook",
+      "example": "example_value"
+    },
+    "url_id": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Unique ID associated with the notebook object.",
+      "example": "https://www.example.com"
+    },
+    "title": {
+      "type": "string",
+      "readOnly": true,
+      "description": "User facing title of the Streamlit app or an Organization Profile",
+      "example": "Example Title"
+    },
+    "default_packages": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Default packages of the notebook",
+      "example": "example_value"
+    },
+    "user_packages": {
+      "type": "string",
+      "readOnly": true,
+      "description": "User packages of the notebook",
+      "example": "example_value"
+    },
+    "runtime_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The runtime to run the Streamlit or Notebook on.  If this is not set, the warehouse is assumed",
+      "example": "example_value"
+    },
+    "compute_pool": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Compute pool name where the snowservice runs",
+      "example": "example_value"
+    },
+    "import_urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "readOnly": true,
+      "description": "List of urls",
+      "example": "https://www.example.com"
+    },
+    "external_access_integrations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "readOnly": true,
+      "description": "List of external access integrations attached to this function",
+      "example": []
+    },
+    "external_access_secrets": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Secrets to be used with this function for external access",
+      "example": "example_value"
+    },
+    "idle_auto_shutdown_time_seconds": {
+      "type": "integer",
+      "format": "int64",
+      "readOnly": true,
+      "description": "Sets the time in seconds for when to shutdown an idle Notebook.",
+      "example": 10
+    },
+    "default_version_details": {
+      "$ref": "#/components/schemas/VersionDetails",
+      "readOnly": true
+    },
+    "last_version_details": {
+      "$ref": "#/components/schemas/VersionDetails",
+      "readOnly": true
+    },
+    "live_version_location_uri": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The current version location",
+      "example": "example_value"
+    },
+    "budget": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Name of the budget if the notebook is monitored by a budget",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ColumnDefinition",
+  "title": "ColumnDefinition",
+  "type": "object",
+  "description": "Describes a column in the result set.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the column.",
+      "example": "Example Title"
+    },
+    "type": {
+      "type": "string",
+      "description": "Snowflake data type of the column (e.g. FIXED, TEXT, BOOLEAN, DATE, TIMESTAMP_NTZ, VARIANT, ARRAY, OBJECT).",
+      "example": "example_value"
+    },
+    "length": {
+      "type": "integer",
+      "format": "int64",
+      "minimum": 0,
+      "description": "Maximum length of the column data.",
+      "example": 10
+    },
+    "precision": {
+      "type": "integer",
+      "format": "int64",
+      "minimum": 0,
+      "description": "Precision of numeric data.",
+      "example": 10
+    },
+    "scale": {
+      "type": "integer",
+      "format": "int64",
+      "minimum": 0,
+      "description": "Scale of numeric data.",
+      "example": 10
+    },
+    "nullable": {
+      "type": "boolean",
+      "description": "Whether the column allows null values.",
+      "example": true
+    }
+  }
+}

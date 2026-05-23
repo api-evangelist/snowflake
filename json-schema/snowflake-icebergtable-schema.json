@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IcebergTable",
+  "title": "IcebergTable",
+  "type": "object",
+  "description": "A Snowflake iceberg table",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Name of the iceberg table",
+      "example": "Example Title"
+    },
+    "comment": {
+      "type": "string",
+      "description": "user comment associated to an object in the dictionary",
+      "example": "example_value"
+    },
+    "change_tracking": {
+      "type": "boolean",
+      "description": "True if change tracking is enabled, allowing streams and CHANGES to be used on the entity.",
+      "example": true
+    },
+    "max_data_extension_time_in_days": {
+      "type": "integer",
+      "description": "Maximum number of days to extend data retention beyond the retention period to prevent a stream becoming stale.",
+      "example": 10
+    },
+    "external_volume": {
+      "type": "string",
+      "description": "Name of an external volume that will be used for persisted Iceberg metadata and data files.",
+      "example": "example_value"
+    },
+    "data_retention_time_in_days": {
+      "type": "integer",
+      "description": "number of days to retain the old version of deleted/updated data",
+      "example": 10
+    },
+    "catalog_sync": {
+      "type": "string",
+      "description": "Name of the catalog integration to sync this table",
+      "example": "example_value"
+    },
+    "catalog": {
+      "type": "string",
+      "description": "Name of the catalog integration to use for iceberg tables",
+      "example": "example_value"
+    },
+    "storage_serialization_policy": {
+      "type": "string",
+      "description": "Storage serialization policy used for managed Iceberg table. This include encodings and compressions",
+      "enum": [
+        "COMPATIBLE",
+        "OPTIMIZED"
+      ],
+      "example": "COMPATIBLE"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the iceberg table was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "database_name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Database in which the iceberg table is stored",
+      "example": "example_value"
+    },
+    "schema_name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Schema in which the iceberg table is stored",
+      "example": "example_value"
+    },
+    "owner": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Role that owns the iceberg table",
+      "example": "example_value"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "The type of role that owns the iceberg table",
+      "example": "example_value"
+    },
+    "iceberg_table_type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Type of Iceberg table. UNMANAGED if the table is not managed by Snowflake. NOT ICEBERG otherwise.",
+      "example": "example_value"
+    },
+    "catalog_table_name": {
+      "type": "string",
+      "description": "Name of the table as recognized by the catalog.",
+      "example": "example_value"
+    },
+    "catalog_namespace": {
+      "type": "string",
+      "description": "Catalog namespace for the table. The namespace defined when the table was created. Otherwise, the default namespace associated with the catalog integration used by the table. If you\u2019re syncing the table to Snowflake Open Catalog, the default is null.",
+      "example": "example_value"
+    },
+    "can_write_metadata": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Signifies whether Snowflake can write metadata to the location specified by the file_path.",
+      "example": "example_value"
+    },
+    "cluster_by": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Specifies one or more columns or column expressions in the table as the clustering key.",
+      "example": []
+    },
+    "columns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/IcebergTableColumn"
+      },
+      "example": []
+    },
+    "base_location": {
+      "type": "string",
+      "description": "The path to a directory where Snowflake can write data and metadata files for the table.",
+      "example": "example_value"
+    },
+    "replace_invalid_characters": {
+      "type": "boolean",
+      "description": "Specifies whether to replace invalid characters in the column names",
+      "example": true
+    },
+    "auto_refresh": {
+      "readOnly": true,
+      "type": "boolean",
+      "description": "Specifies whether to automatically refresh the table metadata",
+      "example": true
+    },
+    "metadata_file_path": {
+      "type": "string",
+      "description": "Specifies the relative path of the Iceberg metadata file to use for column definitions.",
+      "example": "example_value"
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Constraint"
+      },
+      "example": []
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

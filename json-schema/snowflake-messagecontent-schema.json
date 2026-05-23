@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageContent",
+  "title": "MessageContent",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "text",
+        "sql",
+        "suggestions",
+        "results",
+        "chart"
+      ],
+      "example": "text"
+    }
+  },
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "text": "#/components/schemas/MessageContentTextObject",
+      "sql": "#/components/schemas/MessageContentSqlObject",
+      "suggestions": "#/components/schemas/MessageContentSuggestionsObject",
+      "results": "#/components/schemas/MessageContentResultsObject",
+      "chart": "#/components/schemas/MessageContentChartObject"
+    }
+  }
+}

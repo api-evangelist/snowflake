@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageContentDeltaTextObject",
+  "title": "MessageContentDeltaTextObject",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageContentDelta"
+    },
+    {
+      "title": "Text",
+      "type": "object",
+      "description": "The text content that is part of a message.",
+      "properties": {
+        "text_delta": {
+          "type": "string",
+          "description": "The delta of the text content, clients should concatenate all deltas for the same index",
+          "example": "To answer the question \"What is the profit per store?\" we must aggregate sales at the store level"
+        }
+      },
+      "required": [
+        "text_delta"
+      ]
+    }
+  ]
+}

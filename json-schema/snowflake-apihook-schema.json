@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiHook",
+  "title": "ApiHook",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "AWS",
+        "AZURE",
+        "GC",
+        "GIT"
+      ],
+      "description": "Type of ApiHook, can be AWS, AZURE, GC or GIT.",
+      "example": "AWS"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "AWS": "AwsHook",
+      "AZURE": "AzureHook",
+      "GC": "GoogleCloudHook",
+      "GIT": "GitHook"
+    }
+  }
+}

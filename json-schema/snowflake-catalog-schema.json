@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Catalog",
+  "title": "Catalog",
+  "type": "object",
+  "properties": {
+    "catalog_source": {
+      "type": "string",
+      "enum": [
+        "GLUE",
+        "OBJECT_STORE",
+        "POLARIS"
+      ],
+      "description": "Type of external catalog",
+      "example": "GLUE"
+    }
+  },
+  "required": [
+    "catalog_source"
+  ],
+  "discriminator": {
+    "propertyName": "catalog_source",
+    "mapping": {
+      "GLUE": "Glue",
+      "OBJECT_STORE": "ObjectStore",
+      "POLARIS": "Polaris"
+    }
+  }
+}

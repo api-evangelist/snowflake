@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Weights",
+  "title": "Weights",
+  "type": "object",
+  "description": "Weights to apply to each scoring component.",
+  "properties": {
+    "texts": {
+      "description": "Weight to apply to all text-specific columns.",
+      "type": "number",
+      "example": 0.5
+    },
+    "vectors": {
+      "description": "Weight to apply to all vector-specific columns.",
+      "type": "number",
+      "example": 0.5
+    },
+    "reranker": {
+      "description": "Weight to apply to reranker-specific scoring component.",
+      "type": "number",
+      "example": 0.5
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SendMessageResponse",
+  "title": "SendMessageResponse",
+  "type": "object",
+  "description": "The non-streaming response object for the sendMessage",
+  "properties": {
+    "message": {
+      "$ref": "#/components/schemas/MessageObject"
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Unique request ID",
+      "example": "500123"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Warning"
+      },
+      "example": []
+    },
+    "semantic_model_selection": {
+      "$ref": "#/components/schemas/SemanticModelSelection"
+    },
+    "response_metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "message"
+  ]
+}
