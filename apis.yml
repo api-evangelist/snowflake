@@ -719,6 +719,66 @@ apis:
   - type: Documentation
     url: https://docs.snowflake.com/en/user-guide/data-load-snowpipe-rest-apis
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/snowflake-cancel-running-statement-workflow.yml
+    name: Snowflake Cancel a Running SQL Statement
+    summary: Submit a SQL statement asynchronously, then cancel its execution by handle.
+  - url: arazzo/snowflake-clone-database-and-verify-workflow.yml
+    name: Snowflake Clone a Database and Verify
+    summary: Clone an existing database into a new database, then describe the clone to confirm it.
+  - url: arazzo/snowflake-create-and-execute-alert-workflow.yml
+    name: Snowflake Create and Execute an Alert
+    summary: Create an alert with a condition and action, describe it, then execute it on demand.
+  - url: arazzo/snowflake-create-and-execute-task-workflow.yml
+    name: Snowflake Create, Resume, and Execute a Task
+    summary: Create a task, resume it from its initial suspended state, then run it once on demand.
+  - url: arazzo/snowflake-create-and-refresh-dynamic-table-workflow.yml
+    name: Snowflake Create, Verify, and Refresh a Dynamic Table
+    summary: Create a dynamic table from a query, describe it, then trigger a manual refresh.
+  - url: arazzo/snowflake-create-and-refresh-pipe-workflow.yml
+    name: Snowflake Create, Verify, and Refresh a Pipe
+    summary: Create a pipe with a COPY statement, describe it, then trigger a refresh to ingest files.
+  - url: arazzo/snowflake-create-and-verify-warehouse-workflow.yml
+    name: Snowflake Create and Verify Warehouse
+    summary: Create a virtual warehouse and then describe it to confirm its settings.
+  - url: arazzo/snowflake-create-database-and-schema-workflow.yml
+    name: Snowflake Create Database, Verify, and Add Schema
+    summary: Create a database, describe it to confirm, then create a schema inside it.
+  - url: arazzo/snowflake-create-role-and-grant-privileges-workflow.yml
+    name: Snowflake Create Role and Grant Privileges
+    summary: Create a role, grant privileges on a securable to it, then list its grants to confirm.
+  - url: arazzo/snowflake-create-schema-and-table-workflow.yml
+    name: Snowflake Create Schema and Table
+    summary: Create a schema in an existing database, add a table, then describe the table.
+  - url: arazzo/snowflake-create-stage-and-list-files-workflow.yml
+    name: Snowflake Create Stage, Verify, and List Files
+    summary: Create a named stage, describe it to confirm, then list the files staged in it.
+  - url: arazzo/snowflake-create-stream-on-table-workflow.yml
+    name: Snowflake Create a Table and a Change Stream On It
+    summary: Create a table, create a stream that tracks changes to it, then describe the stream.
+  - url: arazzo/snowflake-create-table-and-insert-via-sql-workflow.yml
+    name: Snowflake Create Table and Insert Rows via SQL
+    summary: Run a CREATE TABLE DDL statement, then run an INSERT statement against it.
+  - url: arazzo/snowflake-create-user-and-grant-role-workflow.yml
+    name: Snowflake Create User and Grant Role
+    summary: Create a user, grant a role to the user, then list the user's grants to confirm.
+  - url: arazzo/snowflake-provision-database-schema-table-workflow.yml
+    name: Snowflake Provision Database, Schema, and Table
+    summary: Create a database, create a schema inside it, then create a table inside that schema.
+  - url: arazzo/snowflake-resume-warehouse-and-verify-workflow.yml
+    name: Snowflake Resume Warehouse and Verify State
+    summary: Resume a suspended warehouse and confirm it is running by describing it.
+  - url: arazzo/snowflake-submit-async-sql-statement-workflow.yml
+    name: Snowflake Submit Asynchronous SQL Statement
+    summary: Submit a SQL statement asynchronously and check its execution status by handle.
+  - url: arazzo/snowflake-submit-sql-statement-and-poll-workflow.yml
+    name: Snowflake Submit SQL Statement and Poll for Results
+    summary: Submit a SQL statement for execution, poll its status, then fetch the result set.
+  - url: arazzo/snowflake-warehouse-lifecycle-workflow.yml
+    name: Snowflake Warehouse Create, Verify, and Suspend Lifecycle
+    summary: Create a warehouse, describe it to confirm, then suspend it to stop billing.
 - type: LinkedIn
   url: https://www.linkedin.com/company/snowflake-computing
 - type: StatusPage

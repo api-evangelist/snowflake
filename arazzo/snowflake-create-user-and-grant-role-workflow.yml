@@ -1,0 +1,119 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Create User and Grant Role
+  summary: Create a user, grant a role to the user, then list the user's grants to confirm.
+  description: >-
+    User onboarding flow. The workflow creates a user with login and default
+    settings, grants a role to that user, and lists all grants to the user to
+    confirm the role assignment. Each step inlines its Authorization bearer token
+    and the X-Snowflake-Authorization-Token-Type header, its create-mode query
+    parameter, and its JSON request body where applicable so the chain can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: userApi
+  url: ../openapi/user.yaml
+  type: openapi
+workflows:
+- workflowId: create-user-and-grant-role
+  summary: Create a user, grant a role to them, then list their grants to verify.
+  description: >-
+    Chains createUser, grant, and listGrants so a user is provisioned, assigned a
+    role, and verified, all keyed off the same user name.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - userName
+    - grant
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      userName:
+        type: string
+        description: Name of the user to create.
+      loginName:
+        type: string
+        description: Login name for the user.
+      email:
+        type: string
+        description: Email address for the user.
+      defaultRole:
+        type: string
+        description: Default role assigned to the user.
+      grant:
+        type: object
+        description: >-
+          The grant payload describing the role to grant to the user, including
+          the securable and securable_type.
+  steps:
+  - stepId: createUser
+    description: Create the user with login, email, and default role.
+    operationId: createUser
+    parameters:
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.userName
+        login_name: $inputs.loginName
+        email: $inputs.email
+        default_role: $inputs.defaultRole
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: grantRole
+    description: Grant the specified role to the user.
+    operationId: grant
+    parameters:
+    - name: name
+      in: path
+      value: $inputs.userName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload: $inputs.grant
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: listGrants
+    description: List all grants to the user to confirm the role was granted.
+    operationId: listGrants
+    parameters:
+    - name: name
+      in: path
+      value: $inputs.userName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      grants: $response.body
+  outputs:
+    createStatus: $steps.createUser.outputs.status
+    grantStatus: $steps.grantRole.outputs.status
+    grants: $steps.listGrants.outputs.grants

@@ -1,0 +1,100 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Create and Verify Warehouse
+  summary: Create a virtual warehouse and then describe it to confirm its settings.
+  description: >-
+    A create-then-confirm flow for Snowflake virtual warehouses. The workflow
+    creates a warehouse with the requested size and auto-suspend settings, then
+    immediately describes the warehouse by name to read back its persisted
+    configuration and state. Each step inlines its Authorization bearer token and
+    the X-Snowflake-Authorization-Token-Type header, its create-mode query
+    parameter, and its JSON request body so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: warehouseApi
+  url: ../openapi/warehouse.yaml
+  type: openapi
+workflows:
+- workflowId: create-and-verify-warehouse
+  summary: Create a warehouse, then fetch it to verify the created configuration.
+  description: >-
+    Creates a virtual warehouse and chains a describe call against the same name
+    so the caller can verify the warehouse exists and read back its size, state,
+    and auto-suspend settings.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - warehouseName
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      warehouseName:
+        type: string
+        description: Name of the warehouse to create.
+      warehouseSize:
+        type: string
+        description: Size of the warehouse (e.g. XSMALL, SMALL, MEDIUM).
+        default: XSMALL
+      autoSuspend:
+        type: integer
+        description: Seconds of inactivity before the warehouse auto-suspends.
+        default: 300
+      comment:
+        type: string
+        description: Optional comment applied to the warehouse.
+  steps:
+  - stepId: createWarehouse
+    description: Create the virtual warehouse with the requested size and auto-suspend.
+    operationId: createWarehouse
+    parameters:
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.warehouseName
+        warehouse_size: $inputs.warehouseSize
+        auto_suspend: $inputs.autoSuspend
+        auto_resume: true
+        comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: fetchWarehouse
+    description: Describe the warehouse by name to confirm it was created.
+    operationId: fetchWarehouse
+    parameters:
+    - name: name
+      in: path
+      value: $inputs.warehouseName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      warehouseName: $response.body#/name
+      state: $response.body#/state
+      size: $response.body#/size
+  outputs:
+    createStatus: $steps.createWarehouse.outputs.status
+    warehouseState: $steps.fetchWarehouse.outputs.state
+    warehouseSize: $steps.fetchWarehouse.outputs.size

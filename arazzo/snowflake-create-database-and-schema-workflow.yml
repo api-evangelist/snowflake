@@ -1,0 +1,118 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Create Database, Verify, and Add Schema
+  summary: Create a database, describe it to confirm, then create a schema inside it.
+  description: >-
+    A staged provisioning flow that creates a database, confirms it exists by
+    describing it, and then creates a schema scoped to that database. The middle
+    describe step guards the schema creation so it only proceeds against a
+    database that is known to exist. Each step inlines its Authorization bearer
+    token and the X-Snowflake-Authorization-Token-Type header, its create-mode
+    query parameter, and its JSON request body so the chain can be read and
+    executed without opening the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: databaseApi
+  url: ../openapi/database.yaml
+  type: openapi
+- name: schemaApi
+  url: ../openapi/schema.yaml
+  type: openapi
+workflows:
+- workflowId: create-database-and-schema
+  summary: Create a database, fetch it to confirm, then create a schema within it.
+  description: >-
+    Creates a database, describes it to verify creation, and creates a schema
+    inside that database, chaining the database name from inputs through all
+    three steps.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - databaseName
+    - schemaName
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      databaseName:
+        type: string
+        description: Name of the database to create.
+      schemaName:
+        type: string
+        description: Name of the schema to create within the database.
+      comment:
+        type: string
+        description: Optional comment applied to the created resources.
+  steps:
+  - stepId: createDatabase
+    description: Create the database using errorIfExists create mode.
+    operationId: createDatabase
+    parameters:
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.databaseName
+        comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: fetchDatabase
+    description: Describe the database by name to confirm it exists before adding a schema.
+    operationId: fetchDatabase
+    parameters:
+    - name: name
+      in: path
+      value: $inputs.databaseName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      databaseName: $response.body#/name
+  - stepId: createSchema
+    description: Create the schema inside the confirmed database.
+    operationId: createSchema
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.schemaName
+        comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  outputs:
+    databaseStatus: $steps.createDatabase.outputs.status
+    schemaStatus: $steps.createSchema.outputs.status

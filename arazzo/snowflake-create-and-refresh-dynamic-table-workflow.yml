@@ -1,0 +1,144 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Create, Verify, and Refresh a Dynamic Table
+  summary: Create a dynamic table from a query, describe it, then trigger a manual refresh.
+  description: >-
+    Dynamic tables materialize the result of a query and refresh on a target lag.
+    This workflow creates a dynamic table backed by a query and warehouse,
+    describes it to confirm creation and read back its scheduling state, and then
+    triggers a manual refresh. Each step inlines its Authorization bearer token
+    and the X-Snowflake-Authorization-Token-Type header, its query parameters,
+    and its JSON request body where applicable so the chain can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dynamicTableApi
+  url: ../openapi/dynamic-table.yaml
+  type: openapi
+workflows:
+- workflowId: create-and-refresh-dynamic-table
+  summary: Create a dynamic table, fetch it to confirm, then refresh it manually.
+  description: >-
+    Chains createDynamicTable, fetchDynamicTable, and refreshDynamicTable so a
+    dynamic table is materialized, verified, and refreshed, all scoped to the
+    same database and schema.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - databaseName
+    - schemaName
+    - tableName
+    - warehouse
+    - query
+    - targetLag
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      databaseName:
+        type: string
+        description: Database that holds the schema and dynamic table.
+      schemaName:
+        type: string
+        description: Schema that holds the dynamic table.
+      tableName:
+        type: string
+        description: Name of the dynamic table to create.
+      warehouse:
+        type: string
+        description: Warehouse used to refresh the dynamic table.
+      query:
+        type: string
+        description: The query that the dynamic table materializes.
+      targetLag:
+        type: object
+        description: The target lag object that controls refresh frequency.
+  steps:
+  - stepId: createDynamicTable
+    description: Create the dynamic table from its query, warehouse, and target lag.
+    operationId: createDynamicTable
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.tableName
+        warehouse: $inputs.warehouse
+        query: $inputs.query
+        target_lag: $inputs.targetLag
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: fetchDynamicTable
+    description: Describe the dynamic table to confirm creation and read its scheduling state.
+    operationId: fetchDynamicTable
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: name
+      in: path
+      value: $inputs.tableName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      schedulingState: $response.body#/scheduling_state
+  - stepId: refreshDynamicTable
+    description: Trigger a manual refresh of the dynamic table.
+    operationId: refreshDynamicTable
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: name
+      in: path
+      value: $inputs.tableName
+    - name: ifExists
+      in: query
+      value: true
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  outputs:
+    createStatus: $steps.createDynamicTable.outputs.status
+    schedulingState: $steps.fetchDynamicTable.outputs.schedulingState
+    refreshStatus: $steps.refreshDynamicTable.outputs.status

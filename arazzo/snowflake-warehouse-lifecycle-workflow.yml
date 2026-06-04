@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Warehouse Create, Verify, and Suspend Lifecycle
+  summary: Create a warehouse, describe it to confirm, then suspend it to stop billing.
+  description: >-
+    A cost-conscious lifecycle flow that stands up a warehouse, confirms it, and
+    suspends it so it stops consuming credits when idle. The workflow creates the
+    warehouse, describes it by name to verify creation, and finally suspends it.
+    Each step inlines its Authorization bearer token and the
+    X-Snowflake-Authorization-Token-Type header, plus its create-mode or ifExists
+    query parameter and JSON request body where applicable, so the chain can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: warehouseApi
+  url: ../openapi/warehouse.yaml
+  type: openapi
+workflows:
+- workflowId: warehouse-lifecycle
+  summary: Create a warehouse, verify it with a describe, then suspend it.
+  description: >-
+    Chains createWarehouse, fetchWarehouse, and suspendWarehouse so a warehouse
+    is provisioned, confirmed, and then parked in a suspended state in a single
+    flow.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - warehouseName
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      warehouseName:
+        type: string
+        description: Name of the warehouse to create and then suspend.
+      warehouseSize:
+        type: string
+        description: Size of the warehouse (e.g. XSMALL, SMALL, MEDIUM).
+        default: XSMALL
+  steps:
+  - stepId: createWarehouse
+    description: Create the warehouse, initially suspended to avoid immediate billing.
+    operationId: createWarehouse
+    parameters:
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.warehouseName
+        warehouse_size: $inputs.warehouseSize
+        initially_suspended: true
+        auto_resume: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: fetchWarehouse
+    description: Describe the warehouse to confirm it was created.
+    operationId: fetchWarehouse
+    parameters:
+    - name: name
+      in: path
+      value: $inputs.warehouseName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/state
+  - stepId: suspendWarehouse
+    description: Suspend the warehouse so it stops consuming credits.
+    operationId: suspendWarehouse
+    parameters:
+    - name: name
+      in: path
+      value: $inputs.warehouseName
+    - name: ifExists
+      in: query
+      value: true
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  outputs:
+    createStatus: $steps.createWarehouse.outputs.status
+    verifiedState: $steps.fetchWarehouse.outputs.state
+    suspendStatus: $steps.suspendWarehouse.outputs.status

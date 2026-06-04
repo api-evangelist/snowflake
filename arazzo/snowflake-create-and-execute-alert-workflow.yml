@@ -1,0 +1,151 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Create and Execute an Alert
+  summary: Create an alert with a condition and action, describe it, then execute it on demand.
+  description: >-
+    Alerting flow for Snowflake. The workflow creates an alert that runs a
+    condition query on a schedule and performs an action when the condition is
+    met, describes the alert to confirm creation, and then executes the alert
+    immediately rather than waiting for its schedule. Each step inlines its
+    Authorization bearer token and the X-Snowflake-Authorization-Token-Type
+    header, its create-mode query parameter, and its JSON request body where
+    applicable so the chain can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: alertApi
+  url: ../openapi/alert.yaml
+  type: openapi
+workflows:
+- workflowId: create-and-execute-alert
+  summary: Create an alert, fetch it to confirm, then execute it on demand.
+  description: >-
+    Chains createAlert, fetchAlert, and executeAlert so an alert is provisioned
+    with a condition and action, verified, and run once on demand, all scoped to
+    the same database and schema.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - databaseName
+    - schemaName
+    - alertName
+    - warehouse
+    - condition
+    - action
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      databaseName:
+        type: string
+        description: Database that holds the schema and alert.
+      schemaName:
+        type: string
+        description: Schema that holds the alert.
+      alertName:
+        type: string
+        description: Name of the alert to create.
+      warehouse:
+        type: string
+        description: Warehouse used to evaluate the alert condition and action.
+      condition:
+        type: string
+        description: The SQL condition that triggers the alert.
+      action:
+        type: string
+        description: The SQL action performed when the condition is met.
+      schedule:
+        type: object
+        description: The schedule object controlling how often the alert is evaluated.
+      comment:
+        type: string
+        description: Optional comment applied to the alert.
+  steps:
+  - stepId: createAlert
+    description: Create the alert with its condition, action, warehouse, and schedule.
+    operationId: createAlert
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.alertName
+        warehouse: $inputs.warehouse
+        condition: $inputs.condition
+        action: $inputs.action
+        schedule: $inputs.schedule
+        comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: fetchAlert
+    description: Describe the alert to confirm it was created.
+    operationId: fetchAlert
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: name
+      in: path
+      value: $inputs.alertName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      alertName: $response.body#/name
+      state: $response.body#/state
+  - stepId: executeAlert
+    description: Execute the alert immediately rather than waiting for its schedule.
+    operationId: executeAlert
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: name
+      in: path
+      value: $inputs.alertName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  outputs:
+    createStatus: $steps.createAlert.outputs.status
+    alertState: $steps.fetchAlert.outputs.state
+    executeStatus: $steps.executeAlert.outputs.status

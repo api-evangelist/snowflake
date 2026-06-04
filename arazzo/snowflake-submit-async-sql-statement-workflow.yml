@@ -1,0 +1,105 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Submit Asynchronous SQL Statement
+  summary: Submit a SQL statement asynchronously and check its execution status by handle.
+  description: >-
+    Fire-and-monitor pattern for the Snowflake SQL API. The statement is
+    submitted with async=true so the API immediately returns a 202 with a
+    statement handle rather than waiting for execution to complete. The workflow
+    then performs a single status check against that handle to capture the
+    current execution state. Each step inlines its Authorization bearer token
+    and the X-Snowflake-Authorization-Token-Type header so the request can be
+    read and executed without opening the OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: snowflakeSqlApi
+  url: ../openapi/snowflake-sql-rest-api.yaml
+  type: openapi
+workflows:
+- workflowId: submit-async-sql-statement
+  summary: Submit a SQL statement asynchronously and read back its execution status.
+  description: >-
+    Submits a long-running SQL statement with async execution enabled so the API
+    returns a statement handle immediately, then checks that handle once with
+    getStatementStatus to observe whether the statement is still running or has
+    completed.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - statement
+    - warehouse
+    - database
+    - schema
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      statement:
+        type: string
+        description: The SQL statement to execute asynchronously.
+      warehouse:
+        type: string
+        description: Warehouse to use when executing the statement.
+      database:
+        type: string
+        description: Database in which the statement should be executed.
+      schema:
+        type: string
+        description: Schema in which the statement should be executed.
+  steps:
+  - stepId: submitAsync
+    description: >-
+      Submit the SQL statement with async=true. The API returns a 202 with the
+      statement handle that uniquely identifies the running statement.
+    operationId: submitStatement
+    parameters:
+    - name: async
+      in: query
+      value: true
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        statement: $inputs.statement
+        warehouse: $inputs.warehouse
+        database: $inputs.database
+        schema: $inputs.schema
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      statementHandle: $response.body#/statementHandle
+      statementStatusUrl: $response.body#/statementStatusUrl
+  - stepId: checkStatus
+    description: >-
+      Check the execution status of the asynchronous statement by its handle. A
+      202 indicates the statement is still running; a 200 indicates completion
+      with a result set.
+    operationId: getStatementStatus
+    parameters:
+    - name: statementHandle
+      in: path
+      value: $steps.submitAsync.outputs.statementHandle
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200 || $statusCode == 202
+    outputs:
+      statusCode: $statusCode
+      message: $response.body#/message
+  outputs:
+    statementHandle: $steps.submitAsync.outputs.statementHandle
+    statusCode: $steps.checkStatus.outputs.statusCode

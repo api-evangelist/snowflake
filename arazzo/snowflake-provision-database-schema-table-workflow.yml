@@ -1,0 +1,146 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Provision Database, Schema, and Table
+  summary: Create a database, create a schema inside it, then create a table inside that schema.
+  description: >-
+    End-to-end provisioning of the core Snowflake object hierarchy using the
+    resource REST APIs. The workflow first creates a database, then creates a
+    schema scoped to that database, and finally creates a table scoped to that
+    database and schema. Each step inlines its Authorization bearer token and the
+    X-Snowflake-Authorization-Token-Type header, its create-mode query parameter,
+    and its JSON request body so the chain can be read and executed without
+    opening the underlying OpenAPI descriptions. Because the three resources live
+    in separate OpenAPI documents, the chaining flows through workflow inputs and
+    step outputs rather than shared identifiers in a single spec.
+  version: 1.0.0
+sourceDescriptions:
+- name: databaseApi
+  url: ../openapi/database.yaml
+  type: openapi
+- name: schemaApi
+  url: ../openapi/schema.yaml
+  type: openapi
+- name: tableApi
+  url: ../openapi/table.yaml
+  type: openapi
+workflows:
+- workflowId: provision-database-schema-table
+  summary: Create a database, a schema within it, and a table within the schema.
+  description: >-
+    Creates the full database to schema to table hierarchy in three chained
+    calls across the database, schema, and table APIs, confirming each create
+    succeeds before moving to the next level.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - databaseName
+    - schemaName
+    - tableName
+    - columns
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      databaseName:
+        type: string
+        description: Name of the database to create.
+      schemaName:
+        type: string
+        description: Name of the schema to create within the database.
+      tableName:
+        type: string
+        description: Name of the table to create within the schema.
+      columns:
+        type: array
+        description: Column definitions for the new table (name and datatype).
+        items:
+          type: object
+      comment:
+        type: string
+        description: Optional comment applied to the created resources.
+  steps:
+  - stepId: createDatabase
+    description: Create the database using errorIfExists create mode.
+    operationId: createDatabase
+    parameters:
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.databaseName
+        comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: createSchema
+    description: Create the schema inside the newly created database.
+    operationId: createSchema
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.schemaName
+        comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: createTable
+    description: Create the table inside the newly created database and schema.
+    operationId: createTable
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.tableName
+        columns: $inputs.columns
+        comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  outputs:
+    databaseStatus: $steps.createDatabase.outputs.status
+    schemaStatus: $steps.createSchema.outputs.status
+    tableStatus: $steps.createTable.outputs.status

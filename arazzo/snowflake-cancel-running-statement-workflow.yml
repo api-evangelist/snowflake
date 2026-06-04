@@ -1,0 +1,101 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Cancel a Running SQL Statement
+  summary: Submit a SQL statement asynchronously, then cancel its execution by handle.
+  description: >-
+    Submit-then-abort pattern for the Snowflake SQL API. A statement is launched
+    asynchronously so the API returns a statement handle without waiting for the
+    query to finish, and the workflow then cancels the execution of that
+    statement using its handle. This is the flow used to stop a long-running or
+    runaway query. Each step inlines its Authorization bearer token and the
+    X-Snowflake-Authorization-Token-Type header so the request can be read and
+    executed without opening the OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: snowflakeSqlApi
+  url: ../openapi/snowflake-sql-rest-api.yaml
+  type: openapi
+workflows:
+- workflowId: cancel-running-statement
+  summary: Launch a SQL statement asynchronously and cancel it by its statement handle.
+  description: >-
+    Submits a SQL statement with async execution to obtain a statement handle,
+    then calls cancelStatement against that handle to stop the execution.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - statement
+    - warehouse
+    - database
+    - schema
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      statement:
+        type: string
+        description: The SQL statement to submit asynchronously.
+      warehouse:
+        type: string
+        description: Warehouse to use when executing the statement.
+      database:
+        type: string
+        description: Database in which the statement should be executed.
+      schema:
+        type: string
+        description: Schema in which the statement should be executed.
+  steps:
+  - stepId: submitAsync
+    description: >-
+      Submit the statement asynchronously so the API returns a 202 with the
+      statement handle to cancel.
+    operationId: submitStatement
+    parameters:
+    - name: async
+      in: query
+      value: true
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        statement: $inputs.statement
+        warehouse: $inputs.warehouse
+        database: $inputs.database
+        schema: $inputs.schema
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      statementHandle: $response.body#/statementHandle
+  - stepId: cancelStatement
+    description: >-
+      Cancel the execution of the statement identified by the handle. A 200
+      indicates the execution was successfully canceled.
+    operationId: cancelStatement
+    parameters:
+    - name: statementHandle
+      in: path
+      value: $steps.submitAsync.outputs.statementHandle
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      message: $response.body#/message
+      canceledHandle: $response.body#/statementHandle
+  outputs:
+    statementHandle: $steps.submitAsync.outputs.statementHandle
+    cancelMessage: $steps.cancelStatement.outputs.message

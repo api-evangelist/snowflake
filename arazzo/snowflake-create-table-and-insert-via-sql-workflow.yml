@@ -1,0 +1,108 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Create Table and Insert Rows via SQL
+  summary: Run a CREATE TABLE DDL statement, then run an INSERT statement against it.
+  description: >-
+    A two-statement provisioning flow expressed entirely through the Snowflake
+    SQL API. The first step submits a CREATE TABLE DDL statement, and the second
+    step submits an INSERT statement that loads rows into the table that was just
+    created. Both statements run against the same warehouse, database, and
+    schema. Each step inlines its Authorization bearer token and the
+    X-Snowflake-Authorization-Token-Type header so the requests can be read and
+    executed without opening the OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: snowflakeSqlApi
+  url: ../openapi/snowflake-sql-rest-api.yaml
+  type: openapi
+workflows:
+- workflowId: create-table-and-insert-via-sql
+  summary: Create a table with a DDL statement, then insert rows with a second statement.
+  description: >-
+    Submits a CREATE TABLE statement followed by an INSERT statement through the
+    SQL API, chaining the two so the insert runs only after the create returns a
+    successful result.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - createStatement
+    - insertStatement
+    - warehouse
+    - database
+    - schema
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      createStatement:
+        type: string
+        description: The CREATE TABLE DDL statement.
+      insertStatement:
+        type: string
+        description: The INSERT statement to load rows into the new table.
+      warehouse:
+        type: string
+        description: Warehouse to use when executing the statements.
+      database:
+        type: string
+        description: Database in which the statements should be executed.
+      schema:
+        type: string
+        description: Schema in which the statements should be executed.
+  steps:
+  - stepId: createTable
+    description: >-
+      Submit the CREATE TABLE DDL statement. A 200 indicates the table was
+      created successfully.
+    operationId: submitStatement
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        statement: $inputs.createStatement
+        warehouse: $inputs.warehouse
+        database: $inputs.database
+        schema: $inputs.schema
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      createHandle: $response.body#/statementHandle
+  - stepId: insertRows
+    description: >-
+      Submit the INSERT statement against the newly created table. A 200 returns
+      execution stats including the number of rows inserted.
+    operationId: submitStatement
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        statement: $inputs.insertStatement
+        warehouse: $inputs.warehouse
+        database: $inputs.database
+        schema: $inputs.schema
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      insertHandle: $response.body#/statementHandle
+      numRowsInserted: $response.body#/stats/numRowsInserted
+  outputs:
+    createHandle: $steps.createTable.outputs.createHandle
+    insertHandle: $steps.insertRows.outputs.insertHandle
+    numRowsInserted: $steps.insertRows.outputs.numRowsInserted

@@ -1,0 +1,80 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Resume Warehouse and Verify State
+  summary: Resume a suspended warehouse and confirm it is running by describing it.
+  description: >-
+    An operational flow for waking a suspended Snowflake warehouse before running
+    queries against it. The workflow resumes the named warehouse, then describes
+    it to read back its current state and confirm the resume took effect. Each
+    step inlines its Authorization bearer token and the
+    X-Snowflake-Authorization-Token-Type header and its ifExists query parameter
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: warehouseApi
+  url: ../openapi/warehouse.yaml
+  type: openapi
+workflows:
+- workflowId: resume-warehouse-and-verify
+  summary: Resume a warehouse, then fetch it to verify it is no longer suspended.
+  description: >-
+    Resumes a suspended virtual warehouse and chains a describe call so the
+    caller can confirm the warehouse state after the resume.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - warehouseName
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      warehouseName:
+        type: string
+        description: Name of the warehouse to resume.
+  steps:
+  - stepId: resumeWarehouse
+    description: Resume the warehouse, tolerating the case where it does not exist.
+    operationId: resumeWarehouse
+    parameters:
+    - name: name
+      in: path
+      value: $inputs.warehouseName
+    - name: ifExists
+      in: query
+      value: true
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: fetchWarehouse
+    description: Describe the warehouse to read back its current state.
+    operationId: fetchWarehouse
+    parameters:
+    - name: name
+      in: path
+      value: $inputs.warehouseName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/state
+  outputs:
+    resumeStatus: $steps.resumeWarehouse.outputs.status
+    warehouseState: $steps.fetchWarehouse.outputs.state

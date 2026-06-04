@@ -1,0 +1,128 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Create Stage, Verify, and List Files
+  summary: Create a named stage, describe it to confirm, then list the files staged in it.
+  description: >-
+    Staging area provisioning and inspection flow. The workflow creates a named
+    internal stage, describes it to confirm creation, and lists the files
+    currently present in the stage. Each step inlines its Authorization bearer
+    token and the X-Snowflake-Authorization-Token-Type header, its create-mode
+    query parameter, and its JSON request body where applicable so the chain can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: stageApi
+  url: ../openapi/stage.yaml
+  type: openapi
+workflows:
+- workflowId: create-stage-and-list-files
+  summary: Create a stage, fetch it to confirm, then list the files in it.
+  description: >-
+    Chains createStage, fetchStage, and listFiles so a stage is provisioned,
+    verified, and inspected, all scoped to the same database and schema.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - databaseName
+    - schemaName
+    - stageName
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      databaseName:
+        type: string
+        description: Database that holds the schema and stage.
+      schemaName:
+        type: string
+        description: Schema that holds the stage.
+      stageName:
+        type: string
+        description: Name of the stage to create.
+      comment:
+        type: string
+        description: Optional comment applied to the stage.
+  steps:
+  - stepId: createStage
+    description: Create the named stage in the database and schema.
+    operationId: createStage
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.stageName
+        comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: fetchStage
+    description: Describe the stage to confirm it was created.
+    operationId: fetchStage
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: name
+      in: path
+      value: $inputs.stageName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      stageName: $response.body#/name
+  - stepId: listFiles
+    description: List the files currently staged in the stage.
+    operationId: listFiles
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: name
+      in: path
+      value: $inputs.stageName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      files: $response.body
+  outputs:
+    createStatus: $steps.createStage.outputs.status
+    confirmedStage: $steps.fetchStage.outputs.stageName
+    files: $steps.listFiles.outputs.files

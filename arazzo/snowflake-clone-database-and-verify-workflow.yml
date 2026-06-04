@@ -1,0 +1,92 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Clone a Database and Verify
+  summary: Clone an existing database into a new database, then describe the clone to confirm it.
+  description: >-
+    Zero-copy cloning flow for Snowflake databases. The workflow clones an
+    existing source database into a new target database, optionally at a point in
+    time, and then describes the new database to confirm the clone exists. Each
+    step inlines its Authorization bearer token and the
+    X-Snowflake-Authorization-Token-Type header, its create-mode query parameter,
+    and its JSON request body where applicable so the chain can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: databaseApi
+  url: ../openapi/database.yaml
+  type: openapi
+workflows:
+- workflowId: clone-database-and-verify
+  summary: Clone a source database into a new database, then fetch the clone to confirm.
+  description: >-
+    Chains cloneDatabase and fetchDatabase so a database is cloned and the new
+    clone is verified by describing it.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - sourceDatabase
+    - targetDatabase
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      sourceDatabase:
+        type: string
+        description: Name of the existing database to clone from.
+      targetDatabase:
+        type: string
+        description: Name of the new database to create as the clone.
+      pointOfTime:
+        type: object
+        description: Optional point-of-time specifier to clone the database as of a past moment.
+  steps:
+  - stepId: cloneDatabase
+    description: Clone the source database into the target database name.
+    operationId: cloneDatabase
+    parameters:
+    - name: name
+      in: path
+      value: $inputs.sourceDatabase
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.targetDatabase
+        point_of_time: $inputs.pointOfTime
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: fetchClone
+    description: Describe the cloned database to confirm it was created.
+    operationId: fetchDatabase
+    parameters:
+    - name: name
+      in: path
+      value: $inputs.targetDatabase
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      databaseName: $response.body#/name
+  outputs:
+    cloneStatus: $steps.cloneDatabase.outputs.status
+    confirmedClone: $steps.fetchClone.outputs.databaseName

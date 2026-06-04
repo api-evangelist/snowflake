@@ -1,0 +1,137 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Create Schema and Table
+  summary: Create a schema in an existing database, add a table, then describe the table.
+  description: >-
+    A flow for carving out a new schema in an existing database and populating it
+    with a table. The workflow creates the schema, creates a table inside it, and
+    then describes the table to read back its persisted definition. Each step
+    inlines its Authorization bearer token and the
+    X-Snowflake-Authorization-Token-Type header, its create-mode query parameter,
+    and its JSON request body so the chain can be read and executed without
+    opening the underlying OpenAPI descriptions.
+  version: 1.0.0
+sourceDescriptions:
+- name: schemaApi
+  url: ../openapi/schema.yaml
+  type: openapi
+- name: tableApi
+  url: ../openapi/table.yaml
+  type: openapi
+workflows:
+- workflowId: create-schema-and-table
+  summary: Create a schema, create a table within it, then fetch the table to confirm.
+  description: >-
+    Creates a schema in an existing database, creates a table within that
+    schema, and describes the table, chaining the database and schema names from
+    inputs through every step.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - databaseName
+    - schemaName
+    - tableName
+    - columns
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      databaseName:
+        type: string
+        description: Name of the existing database that holds the schema.
+      schemaName:
+        type: string
+        description: Name of the schema to create.
+      tableName:
+        type: string
+        description: Name of the table to create within the schema.
+      columns:
+        type: array
+        description: Column definitions for the new table (name and datatype).
+        items:
+          type: object
+  steps:
+  - stepId: createSchema
+    description: Create the schema in the existing database.
+    operationId: createSchema
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.schemaName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: createTable
+    description: Create the table inside the newly created schema.
+    operationId: createTable
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.tableName
+        columns: $inputs.columns
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: fetchTable
+    description: Describe the table to read back its persisted definition.
+    operationId: fetchTable
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: name
+      in: path
+      value: $inputs.tableName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tableName: $response.body#/name
+  outputs:
+    schemaStatus: $steps.createSchema.outputs.status
+    tableStatus: $steps.createTable.outputs.status
+    confirmedTable: $steps.fetchTable.outputs.tableName

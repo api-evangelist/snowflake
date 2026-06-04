@@ -1,0 +1,136 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Submit SQL Statement and Poll for Results
+  summary: Submit a SQL statement for execution, poll its status, then fetch the result set.
+  description: >-
+    The canonical Snowflake SQL API pattern. A SQL statement is submitted for
+    execution against a warehouse, database, and schema. When the submission
+    returns immediately the result set is already present, but when execution is
+    still in progress the workflow polls the statement status by handle until it
+    completes and the requested partition of the result set is returned. Every
+    step spells out its request inline, including the inline Authorization bearer
+    token and the X-Snowflake-Authorization-Token-Type header the SQL API
+    requires, so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: snowflakeSqlApi
+  url: ../openapi/snowflake-sql-rest-api.yaml
+  type: openapi
+workflows:
+- workflowId: submit-sql-statement-and-poll
+  summary: Submit a SQL statement, poll its execution status, and retrieve the results.
+  description: >-
+    Submits a single SQL statement bound to a warehouse/database/schema/role,
+    then branches on the response: a 200 returns the result set directly while a
+    202 hands back a statement handle that is polled via getStatementStatus
+    until the statement finishes.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - statement
+    - warehouse
+    - database
+    - schema
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      statement:
+        type: string
+        description: The SQL statement to execute.
+      warehouse:
+        type: string
+        description: Warehouse to use when executing the statement.
+      database:
+        type: string
+        description: Database in which the statement should be executed.
+      schema:
+        type: string
+        description: Schema in which the statement should be executed.
+      role:
+        type: string
+        description: Role to use when executing the statement.
+      timeout:
+        type: integer
+        description: Timeout in seconds for statement execution.
+        default: 60
+  steps:
+  - stepId: submitStatement
+    description: >-
+      Submit the SQL statement synchronously. If execution completes quickly the
+      result set is returned with a 200; otherwise a 202 is returned with a
+      statement handle to poll.
+    operationId: submitStatement
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        statement: $inputs.statement
+        timeout: $inputs.timeout
+        warehouse: $inputs.warehouse
+        database: $inputs.database
+        schema: $inputs.schema
+        role: $inputs.role
+    successCriteria:
+    - condition: $statusCode == 200 || $statusCode == 202
+    outputs:
+      statementHandle: $response.body#/statementHandle
+      submittedStatusCode: $statusCode
+    onSuccess:
+    - name: completedImmediately
+      type: end
+      criteria:
+      - condition: $statusCode == 200
+    - name: stillRunning
+      type: goto
+      stepId: pollStatus
+      criteria:
+      - condition: $statusCode == 202
+  - stepId: pollStatus
+    description: >-
+      Check the status of the statement execution by its handle. A 202 means the
+      statement is still in progress; a 200 means it finished and the requested
+      partition of the result set is returned.
+    operationId: getStatementStatus
+    parameters:
+    - name: statementHandle
+      in: path
+      value: $steps.submitStatement.outputs.statementHandle
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200 || $statusCode == 202
+    outputs:
+      statusCode: $statusCode
+      resultData: $response.body#/data
+      resultMetaData: $response.body#/resultSetMetaData
+    onSuccess:
+    - name: stillPolling
+      type: goto
+      stepId: pollStatus
+      criteria:
+      - condition: $statusCode == 202
+    - name: finished
+      type: end
+      criteria:
+      - condition: $statusCode == 200
+  outputs:
+    statementHandle: $steps.submitStatement.outputs.statementHandle
+    resultData: $steps.pollStatus.outputs.resultData
+    resultMetaData: $steps.pollStatus.outputs.resultMetaData

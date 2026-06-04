@@ -1,0 +1,123 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Create Role and Grant Privileges
+  summary: Create a role, grant privileges on a securable to it, then list its grants to confirm.
+  description: >-
+    Access-control provisioning flow. The workflow creates a role, grants a set
+    of privileges on a securable object to that role, and then lists all grants
+    to the role to confirm the privileges landed. Each step inlines its
+    Authorization bearer token and the X-Snowflake-Authorization-Token-Type
+    header, its create-mode query parameter, and its JSON request body where
+    applicable so the chain can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: roleApi
+  url: ../openapi/role.yaml
+  type: openapi
+workflows:
+- workflowId: create-role-and-grant-privileges
+  summary: Create a role, grant privileges to it, then list its grants to verify.
+  description: >-
+    Chains createRole, grantPrivileges, and listGrants so a role is created,
+    given privileges on a securable, and verified, all keyed off the same role
+    name.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - roleName
+    - securable
+    - privileges
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      roleName:
+        type: string
+        description: Name of the role to create.
+      securable:
+        type: object
+        description: The securable object the privileges apply to (e.g. database, schema, name).
+      securableType:
+        type: string
+        description: The type of the securable (e.g. DATABASE, SCHEMA, TABLE).
+      privileges:
+        type: array
+        description: The list of privileges to grant.
+        items:
+          type: string
+      comment:
+        type: string
+        description: Optional comment applied to the role.
+  steps:
+  - stepId: createRole
+    description: Create the role using errorIfExists create mode.
+    operationId: createRole
+    parameters:
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.roleName
+        comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: grantPrivileges
+    description: Grant the requested privileges on the securable to the role.
+    operationId: grantPrivileges
+    parameters:
+    - name: name
+      in: path
+      value: $inputs.roleName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        securable: $inputs.securable
+        securable_type: $inputs.securableType
+        privileges: $inputs.privileges
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: listGrants
+    description: List all grants to the role to confirm the privileges were granted.
+    operationId: listGrants
+    parameters:
+    - name: name
+      in: path
+      value: $inputs.roleName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      grants: $response.body
+  outputs:
+    createStatus: $steps.createRole.outputs.status
+    grantStatus: $steps.grantPrivileges.outputs.status
+    grants: $steps.listGrants.outputs.grants

@@ -1,0 +1,165 @@
+arazzo: 1.0.1
+info:
+  title: Snowflake Create, Resume, and Execute a Task
+  summary: Create a task, resume it from its initial suspended state, then run it once on demand.
+  description: >-
+    Snowflake tasks are created in a suspended state and must be resumed before
+    they will run on schedule. This workflow creates a task with a SQL
+    definition and warehouse, resumes it so it becomes active, triggers a single
+    on-demand execution equivalent to EXECUTE IMMEDIATE, and finally describes
+    the task to read back its state. Each step inlines its Authorization bearer
+    token and the X-Snowflake-Authorization-Token-Type header, its query
+    parameters, and its JSON request body where applicable so the chain can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: taskApi
+  url: ../openapi/task.yaml
+  type: openapi
+workflows:
+- workflowId: create-and-execute-task
+  summary: Create a task, resume it, execute it once, then fetch it to confirm state.
+  description: >-
+    Chains createTask, resumeTask, executeTask, and fetchTask so a task is
+    provisioned, activated, run on demand, and verified, all scoped to the same
+    database and schema.
+  inputs:
+    type: object
+    required:
+    - authToken
+    - databaseName
+    - schemaName
+    - taskName
+    - warehouse
+    - definition
+    properties:
+      authToken:
+        type: string
+        description: Bearer token (KEYPAIR_JWT, OAUTH, or programmatic access token).
+      tokenType:
+        type: string
+        description: Value for the X-Snowflake-Authorization-Token-Type header.
+        default: OAUTH
+      databaseName:
+        type: string
+        description: Database that holds the schema and task.
+      schemaName:
+        type: string
+        description: Schema that holds the task.
+      taskName:
+        type: string
+        description: Name of the task to create.
+      warehouse:
+        type: string
+        description: Warehouse used to run the task.
+      definition:
+        type: string
+        description: The SQL statement the task executes.
+      comment:
+        type: string
+        description: Optional comment applied to the task.
+  steps:
+  - stepId: createTask
+    description: Create the task with its SQL definition and warehouse.
+    operationId: createTask
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: createMode
+      in: query
+      value: errorIfExists
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.taskName
+        warehouse: $inputs.warehouse
+        definition: $inputs.definition
+        comment: $inputs.comment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: resumeTask
+    description: Resume the task so it transitions out of its initial suspended state.
+    operationId: resumeTask
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: name
+      in: path
+      value: $inputs.taskName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: executeTask
+    description: Trigger a single on-demand execution of the task.
+    operationId: executeTask
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: name
+      in: path
+      value: $inputs.taskName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: fetchTask
+    description: Describe the task to confirm its current state.
+    operationId: fetchTask
+    parameters:
+    - name: database
+      in: path
+      value: $inputs.databaseName
+    - name: schema
+      in: path
+      value: $inputs.schemaName
+    - name: name
+      in: path
+      value: $inputs.taskName
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.authToken
+    - name: X-Snowflake-Authorization-Token-Type
+      in: header
+      value: $inputs.tokenType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      state: $response.body#/state
+  outputs:
+    createStatus: $steps.createTask.outputs.status
+    resumeStatus: $steps.resumeTask.outputs.status
+    executeStatus: $steps.executeTask.outputs.status
+    taskState: $steps.fetchTask.outputs.state
