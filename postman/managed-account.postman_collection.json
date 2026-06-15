@@ -1,0 +1,1698 @@
+{
+  "info": {
+    "_postman_id": "74db9789-b563-4a6c-b412-b8a509f9521d",
+    "name": "Snowflake Managed Account API",
+    "description": "The Snowflake Managed Account API is a REST API that you can use to access, update, and perform certain actions on Managed Account resource in Snowflake.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:20:30.000Z",
+    "updatedAt": "2026-06-05T13:20:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-74db9789-b563-4a6c-b412-b8a509f9521d"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "managed-accounts",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "Delete a Managed Account.",
+                      "id": "f00d8d03-5f47-4675-a3f0-0c05f5f7c444",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0be6a72b-2a90-4496-b82b-61ede9cdffc9",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Removes a managed account, including all objects created in the account, and immediately restricts access to the account. Currently used by data providers to create reader accounts for their consumers. For more details, see Manage reader accounts."
+                      },
+                      "response": [
+                        {
+                          "id": "aecab50b-70d0-4b79-af91-bfe5d136455f",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-aecab50b-70d0-4b79-af91-bfe5d136455f"
+                        },
+                        {
+                          "id": "e465223a-65bd-4151-a6b0-a17c294d4c82",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-e465223a-65bd-4151-a6b0-a17c294d4c82"
+                        },
+                        {
+                          "id": "a0ea2a56-fd2e-488d-9dd3-5ac01b09dbf2",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-a0ea2a56-fd2e-488d-9dd3-5ac01b09dbf2"
+                        },
+                        {
+                          "id": "a8a56bbb-c994-4474-9e9a-049c34d9987b",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-a8a56bbb-c994-4474-9e9a-049c34d9987b"
+                        },
+                        {
+                          "id": "dcff2273-2e4d-4733-a0cb-a6ee8889552c",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-dcff2273-2e4d-4733-a0cb-a6ee8889552c"
+                        },
+                        {
+                          "id": "d4868b09-6341-4497-9b40-66ae328eabfc",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-d4868b09-6341-4497-9b40-66ae328eabfc"
+                        },
+                        {
+                          "id": "0346ccb3-f98c-4ec2-94ef-ebd027c13e02",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-0346ccb3-f98c-4ec2-94ef-ebd027c13e02"
+                        },
+                        {
+                          "id": "5d97fefc-4718-4fd0-80bb-285512f0f7f0",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-5d97fefc-4718-4fd0-80bb-285512f0f7f0"
+                        },
+                        {
+                          "id": "666c7e85-f4f4-4b23-b24e-b74574a184f8",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-666c7e85-f4f4-4b23-b24e-b74574a184f8"
+                        },
+                        {
+                          "id": "26a2f401-532f-4a22-9bcc-9794d85d5a7e",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-26a2f401-532f-4a22-9bcc-9794d85d5a7e"
+                        },
+                        {
+                          "id": "d5a85d6a-4cb3-4e29-96b1-3a83fe04f88a",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-d5a85d6a-4cb3-4e29-96b1-3a83fe04f88a"
+                        },
+                        {
+                          "id": "459d3caa-f042-4e7f-bcab-c1151d1a41ba",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-459d3caa-f042-4e7f-bcab-c1151d1a41ba"
+                        },
+                        {
+                          "id": "734f9e4f-b195-43e1-a5a8-ebab91c05f8a",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-734f9e4f-b195-43e1-a5a8-ebab91c05f8a"
+                        },
+                        {
+                          "id": "1bffaef4-2aad-4fba-ac0a-0d2c6dd31cb0",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/managed-accounts/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "managed-accounts",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:31.000Z",
+                          "updatedAt": "2026-06-05T13:20:31.000Z",
+                          "uid": "35240-1bffaef4-2aad-4fba-ac0a-0d2c6dd31cb0"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:20:30.000Z",
+                      "updatedAt": "2026-06-05T13:20:30.000Z",
+                      "uid": "35240-f00d8d03-5f47-4675-a3f0-0c05f5f7c444"
+                    }
+                  ],
+                  "id": "9043b1e5-8a76-49ba-ae48-cd5db1da1d94",
+                  "createdAt": "2026-06-05T13:20:30.000Z",
+                  "updatedAt": "2026-06-05T13:20:30.000Z",
+                  "uid": "35240-9043b1e5-8a76-49ba-ae48-cd5db1da1d94"
+                },
+                {
+                  "name": "List Managed Accounts.",
+                  "id": "16b3e272-53fb-4980-ab7b-debf64887f89",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "managed-accounts"
+                      ]
+                    },
+                    "description": "Lists the accessible managed accounts."
+                  },
+                  "response": [
+                    {
+                      "id": "90cb9e0b-a6f8-47f8-973c-2ceca237f437",
+                      "name": "Successful request.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Snowflake-Request-ID",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": {\n      \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n    },\n    \"admin_name\": \"<string>\",\n    \"admin_password\": \"<string>\",\n    \"account_type\": \"READER\",\n    \"cloud\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locator\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"url\": \"<string>\",\n    \"account_locator_url\": \"<string>\",\n    \"comment\": \"<string>\"\n  },\n  {\n    \"name\": {\n      \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n    },\n    \"admin_name\": \"<string>\",\n    \"admin_password\": \"<string>\",\n    \"account_type\": \"READER\",\n    \"cloud\": \"<string>\",\n    \"region\": \"<string>\",\n    \"locator\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"url\": \"<string>\",\n    \"account_locator_url\": \"<string>\",\n    \"comment\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-90cb9e0b-a6f8-47f8-973c-2ceca237f437"
+                    },
+                    {
+                      "id": "6f80737c-7804-45a4-83c5-44dca8f8b9c0",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-6f80737c-7804-45a4-83c5-44dca8f8b9c0"
+                    },
+                    {
+                      "id": "e4393668-1adc-4f64-a7d0-cd0d26ef4ad4",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-e4393668-1adc-4f64-a7d0-cd0d26ef4ad4"
+                    },
+                    {
+                      "id": "32780784-9e30-4c34-bb88-f6ddff6aa5f8",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-32780784-9e30-4c34-bb88-f6ddff6aa5f8"
+                    },
+                    {
+                      "id": "b79ff189-5117-4b1d-b34f-57490bdc2a38",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-b79ff189-5117-4b1d-b34f-57490bdc2a38"
+                    },
+                    {
+                      "id": "8e6d2b6c-f8b7-4746-b10a-648bede8655e",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-8e6d2b6c-f8b7-4746-b10a-648bede8655e"
+                    },
+                    {
+                      "id": "0c8bf2ef-b00c-48a5-98db-ba5c0fa22a3a",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-0c8bf2ef-b00c-48a5-98db-ba5c0fa22a3a"
+                    },
+                    {
+                      "id": "ccdad9bf-12f5-48c8-a1f2-973278c111a8",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-ccdad9bf-12f5-48c8-a1f2-973278c111a8"
+                    },
+                    {
+                      "id": "3eae908c-dd02-42bc-b2c2-4ab5ca40f0e3",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-3eae908c-dd02-42bc-b2c2-4ab5ca40f0e3"
+                    },
+                    {
+                      "id": "7923b7ea-9784-4d75-9f32-627fa7d25211",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-7923b7ea-9784-4d75-9f32-627fa7d25211"
+                    },
+                    {
+                      "id": "6381b6ea-9dd0-48e6-acc7-7ae9a44ba369",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-6381b6ea-9dd0-48e6-acc7-7ae9a44ba369"
+                    },
+                    {
+                      "id": "e3c73886-cf79-4bf6-92f2-932bec391baa",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-e3c73886-cf79-4bf6-92f2-932bec391baa"
+                    },
+                    {
+                      "id": "8d8f847f-246a-49e9-bb96-04a6c5d12541",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-8d8f847f-246a-49e9-bb96-04a6c5d12541"
+                    },
+                    {
+                      "id": "e2ae366e-7d24-46bd-bfd8-74d92f886958",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-e2ae366e-7d24-46bd-bfd8-74d92f886958"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:20:30.000Z",
+                  "updatedAt": "2026-06-05T13:20:30.000Z",
+                  "uid": "35240-16b3e272-53fb-4980-ab7b-debf64887f89"
+                },
+                {
+                  "name": "Create a Managed Accounts.",
+                  "id": "70200c38-9863-4793-ba29-890f9bf6381e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "managed-accounts"
+                      ]
+                    },
+                    "description": "Creates a managed account. You must provide the full managed account definition when creating a managed account."
+                  },
+                  "response": [
+                    {
+                      "id": "46a7ecf2-ce67-4df5-988c-464f4db57f5d",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-46a7ecf2-ce67-4df5-988c-464f4db57f5d"
+                    },
+                    {
+                      "id": "dbc38996-501c-442d-bbe8-fef5de85f30e",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-dbc38996-501c-442d-bbe8-fef5de85f30e"
+                    },
+                    {
+                      "id": "2bd01f30-1025-4c68-afe0-39b6662b8b49",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-2bd01f30-1025-4c68-afe0-39b6662b8b49"
+                    },
+                    {
+                      "id": "0286f782-9199-4a26-a3f8-038fa1d456e8",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-0286f782-9199-4a26-a3f8-038fa1d456e8"
+                    },
+                    {
+                      "id": "389c43b0-99c7-4fa0-95c7-448f3779c6d5",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-389c43b0-99c7-4fa0-95c7-448f3779c6d5"
+                    },
+                    {
+                      "id": "431bc563-3489-4937-a815-816460b09ff6",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-431bc563-3489-4937-a815-816460b09ff6"
+                    },
+                    {
+                      "id": "b0d02dca-8d17-485c-8090-80954a98ed91",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-b0d02dca-8d17-485c-8090-80954a98ed91"
+                    },
+                    {
+                      "id": "a58f37e2-7196-4642-aecb-22fb643e133f",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-a58f37e2-7196-4642-aecb-22fb643e133f"
+                    },
+                    {
+                      "id": "ca4dcabb-6171-45d3-a110-92153f36faa0",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-ca4dcabb-6171-45d3-a110-92153f36faa0"
+                    },
+                    {
+                      "id": "fe9bfe62-ca53-4060-817a-fef6dffc3297",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-fe9bfe62-ca53-4060-817a-fef6dffc3297"
+                    },
+                    {
+                      "id": "d6126a0b-8272-4640-bfd8-3d8db2f9583f",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-d6126a0b-8272-4640-bfd8-3d8db2f9583f"
+                    },
+                    {
+                      "id": "c640b9c1-1d6b-40e8-872a-5e29e09dd7e4",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-c640b9c1-1d6b-40e8-872a-5e29e09dd7e4"
+                    },
+                    {
+                      "id": "4cbcc057-04fe-4521-b639-a2d254942989",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-4cbcc057-04fe-4521-b639-a2d254942989"
+                    },
+                    {
+                      "id": "0a009982-d612-4127-aa87-7b9bc6063509",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"account_type\": \"READER\",\n  \"cloud\": \"<string>\",\n  \"region\": \"<string>\",\n  \"locator\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"url\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/managed-accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "managed-accounts"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:31.000Z",
+                      "updatedAt": "2026-06-05T13:20:31.000Z",
+                      "uid": "35240-0a009982-d612-4127-aa87-7b9bc6063509"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:20:30.000Z",
+                  "updatedAt": "2026-06-05T13:20:30.000Z",
+                  "uid": "35240-70200c38-9863-4793-ba29-890f9bf6381e"
+                }
+              ],
+              "id": "0d1bfd4c-c552-4d73-a8a6-0667715488d5",
+              "createdAt": "2026-06-05T13:20:30.000Z",
+              "updatedAt": "2026-06-05T13:20:30.000Z",
+              "uid": "35240-0d1bfd4c-c552-4d73-a8a6-0667715488d5"
+            }
+          ],
+          "id": "1031c13f-d3d5-4db7-858a-20e602728a91",
+          "createdAt": "2026-06-05T13:20:30.000Z",
+          "updatedAt": "2026-06-05T13:20:30.000Z",
+          "uid": "35240-1031c13f-d3d5-4db7-858a-20e602728a91"
+        }
+      ],
+      "id": "f7197c6b-c302-4931-a2c6-605bd8863205",
+      "createdAt": "2026-06-05T13:20:30.000Z",
+      "updatedAt": "2026-06-05T13:20:30.000Z",
+      "uid": "35240-f7197c6b-c302-4931-a2c6-605bd8863205"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://org-account.snowflakecomputing.com"
+    }
+  ]
+}

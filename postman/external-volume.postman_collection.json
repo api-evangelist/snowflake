@@ -1,0 +1,2723 @@
+{
+  "info": {
+    "_postman_id": "c8888cc7-de4d-4ed1-b295-1edacf645ef6",
+    "name": "Snowflake External Volume API",
+    "description": "The Snowflake External Volume API is a REST API that you can use to access, update, and perform certain actions on External Volume resource in a Snowflake database.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:20:22.000Z",
+    "updatedAt": "2026-06-05T13:20:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c8888cc7-de4d-4ed1-b295-1edacf645ef6"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "external-volumes",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "Fetch an External Volume",
+                      "id": "c4c9cc06-fe90-471b-b0ff-a6f1bdc06152",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "27120502-fbd4-434b-a330-afe0f7e70e71",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Fetch an external volume"
+                      },
+                      "response": [
+                        {
+                          "id": "054a023a-8977-4566-adef-1a924b9bc4d9",
+                          "name": "successful",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-Snowflake-Request-ID",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Link",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-054a023a-8977-4566-adef-1a924b9bc4d9"
+                        },
+                        {
+                          "id": "aa421413-65ff-4d6c-b24d-93023918c8ad",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-aa421413-65ff-4d6c-b24d-93023918c8ad"
+                        },
+                        {
+                          "id": "08a27d17-6bbd-4562-bcaf-41a69df5769d",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-08a27d17-6bbd-4562-bcaf-41a69df5769d"
+                        },
+                        {
+                          "id": "db1cf37a-cd8c-4df6-9453-d8ae9b5685e5",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-db1cf37a-cd8c-4df6-9453-d8ae9b5685e5"
+                        },
+                        {
+                          "id": "55465b18-91c1-4576-9f82-0dbea15b807c",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-55465b18-91c1-4576-9f82-0dbea15b807c"
+                        },
+                        {
+                          "id": "81b6efc4-1458-4acb-95ba-efda908db6c5",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-81b6efc4-1458-4acb-95ba-efda908db6c5"
+                        },
+                        {
+                          "id": "2e1b11a7-b305-41c8-ad7d-aa66b39fa2bb",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-2e1b11a7-b305-41c8-ad7d-aa66b39fa2bb"
+                        },
+                        {
+                          "id": "cbe52687-f15a-49a0-aae0-65f4a9136fa5",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-cbe52687-f15a-49a0-aae0-65f4a9136fa5"
+                        },
+                        {
+                          "id": "1a27eb71-ab7e-4ff6-ad3b-56dca37a731b",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-1a27eb71-ab7e-4ff6-ad3b-56dca37a731b"
+                        },
+                        {
+                          "id": "dc8a9ea3-db3e-423c-a21a-d4fbc497a099",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-dc8a9ea3-db3e-423c-a21a-d4fbc497a099"
+                        },
+                        {
+                          "id": "92428a79-5e30-4cb8-8820-657adbef3cd7",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-92428a79-5e30-4cb8-8820-657adbef3cd7"
+                        },
+                        {
+                          "id": "527364b0-378a-456e-9b43-aeca281027b5",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-527364b0-378a-456e-9b43-aeca281027b5"
+                        },
+                        {
+                          "id": "ba54b482-7af2-4099-96db-0468da466de9",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-ba54b482-7af2-4099-96db-0468da466de9"
+                        },
+                        {
+                          "id": "395219f3-699a-4edf-9f82-313dd2973e28",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-395219f3-699a-4edf-9f82-313dd2973e28"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-c4c9cc06-fe90-471b-b0ff-a6f1bdc06152"
+                    },
+                    {
+                      "name": "Delete an External Volume",
+                      "id": "7aebd0f1-59f9-44ad-8f26-19b678ac5cdc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5a3fae92-39ad-4007-9ac5-03a5cf609858",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Delete an external volume"
+                      },
+                      "response": [
+                        {
+                          "id": "cd9a6d43-d50c-4aa6-aef4-ade82c22150e",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-cd9a6d43-d50c-4aa6-aef4-ade82c22150e"
+                        },
+                        {
+                          "id": "6470052a-3cf0-48ac-b7e9-f8d033b6b464",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-6470052a-3cf0-48ac-b7e9-f8d033b6b464"
+                        },
+                        {
+                          "id": "f576c0f7-529f-412b-bebf-afb5f13746e2",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-f576c0f7-529f-412b-bebf-afb5f13746e2"
+                        },
+                        {
+                          "id": "c33143be-6c72-47ed-a581-229f8fcaadf8",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-c33143be-6c72-47ed-a581-229f8fcaadf8"
+                        },
+                        {
+                          "id": "ea089c55-3b3b-4c80-be28-3b8dd8dc2224",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-ea089c55-3b3b-4c80-be28-3b8dd8dc2224"
+                        },
+                        {
+                          "id": "739b7753-4add-4377-9256-8c02e36a03e5",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-739b7753-4add-4377-9256-8c02e36a03e5"
+                        },
+                        {
+                          "id": "6c3be69d-5c04-4d13-b51e-fb3092c744ad",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-6c3be69d-5c04-4d13-b51e-fb3092c744ad"
+                        },
+                        {
+                          "id": "1afe0287-8fb8-44b4-93ec-76a1a14344f2",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-1afe0287-8fb8-44b4-93ec-76a1a14344f2"
+                        },
+                        {
+                          "id": "26e0613b-dcbe-4bc5-b42d-506033a0ff90",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-26e0613b-dcbe-4bc5-b42d-506033a0ff90"
+                        },
+                        {
+                          "id": "4f05913f-31f8-45ee-aac9-666db406868c",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-4f05913f-31f8-45ee-aac9-666db406868c"
+                        },
+                        {
+                          "id": "d4e0092d-8940-4ef6-a6a3-97130985c7bf",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-d4e0092d-8940-4ef6-a6a3-97130985c7bf"
+                        },
+                        {
+                          "id": "dfe07ccf-9aaf-473a-a1f9-5ea336ad1391",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-dfe07ccf-9aaf-473a-a1f9-5ea336ad1391"
+                        },
+                        {
+                          "id": "a4f0970b-a15b-4f64-a983-cfc715884897",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-a4f0970b-a15b-4f64-a983-cfc715884897"
+                        },
+                        {
+                          "id": "d75795b7-fb37-4d8c-9afb-d50b5ce1a496",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-d75795b7-fb37-4d8c-9afb-d50b5ce1a496"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-7aebd0f1-59f9-44ad-8f26-19b678ac5cdc"
+                    }
+                  ],
+                  "id": "7a073a31-9117-4e8e-b364-950f31bc4659",
+                  "createdAt": "2026-06-05T13:20:23.000Z",
+                  "updatedAt": "2026-06-05T13:20:23.000Z",
+                  "uid": "35240-7a073a31-9117-4e8e-b364-950f31bc4659"
+                },
+                {
+                  "name": "{name}:undrop",
+                  "item": [
+                    {
+                      "name": "Undrop an External Volume",
+                      "id": "21dbad4c-14a8-4101-a04c-8d96b879cf95",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes",
+                            "{{name}}:undrop"
+                          ]
+                        },
+                        "description": "Undrop an external volume"
+                      },
+                      "response": [
+                        {
+                          "id": "6ae63293-b4b9-401d-9c6e-31dacd899719",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-6ae63293-b4b9-401d-9c6e-31dacd899719"
+                        },
+                        {
+                          "id": "bd1e6373-4cf8-41fc-b8e7-bc9eaa6d3061",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-bd1e6373-4cf8-41fc-b8e7-bc9eaa6d3061"
+                        },
+                        {
+                          "id": "3d1d954c-ef39-47b7-a98f-54fdc097d2b4",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-3d1d954c-ef39-47b7-a98f-54fdc097d2b4"
+                        },
+                        {
+                          "id": "b779e236-2ed8-4475-b532-23aaa6d44006",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-b779e236-2ed8-4475-b532-23aaa6d44006"
+                        },
+                        {
+                          "id": "ac5cde16-d038-4a9e-ae88-35d7da282fa4",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-ac5cde16-d038-4a9e-ae88-35d7da282fa4"
+                        },
+                        {
+                          "id": "4c20becf-0c26-406c-9389-a147b3547b5d",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-4c20becf-0c26-406c-9389-a147b3547b5d"
+                        },
+                        {
+                          "id": "0f7da4c9-ce66-4d08-8f58-8bacccf8a225",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-0f7da4c9-ce66-4d08-8f58-8bacccf8a225"
+                        },
+                        {
+                          "id": "3c8208ed-3dca-4722-a2e8-1e54eba90f82",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-3c8208ed-3dca-4722-a2e8-1e54eba90f82"
+                        },
+                        {
+                          "id": "635ec5bc-aeb8-4992-a145-913096d54a12",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-635ec5bc-aeb8-4992-a145-913096d54a12"
+                        },
+                        {
+                          "id": "93328291-fbc0-4b5d-8c90-4c84eff87d4f",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-93328291-fbc0-4b5d-8c90-4c84eff87d4f"
+                        },
+                        {
+                          "id": "9976d50e-634a-4163-83b4-9c1821f545e6",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-9976d50e-634a-4163-83b4-9c1821f545e6"
+                        },
+                        {
+                          "id": "73f6f99b-4880-4fa3-9b30-e4c0feb079bf",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-73f6f99b-4880-4fa3-9b30-e4c0feb079bf"
+                        },
+                        {
+                          "id": "6116d455-912f-43db-b763-3a2e8acfd324",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-6116d455-912f-43db-b763-3a2e8acfd324"
+                        },
+                        {
+                          "id": "371f8e32-05eb-4f25-a302-1a060fca6ef5",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/external-volumes/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "external-volumes",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:23.000Z",
+                          "updatedAt": "2026-06-05T13:20:23.000Z",
+                          "uid": "35240-371f8e32-05eb-4f25-a302-1a060fca6ef5"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-21dbad4c-14a8-4101-a04c-8d96b879cf95"
+                    }
+                  ],
+                  "id": "86aa8b49-d8d0-48bb-9a66-113729bdac09",
+                  "createdAt": "2026-06-05T13:20:23.000Z",
+                  "updatedAt": "2026-06-05T13:20:23.000Z",
+                  "uid": "35240-86aa8b49-d8d0-48bb-9a66-113729bdac09"
+                },
+                {
+                  "name": "List External Volumes",
+                  "id": "e132c900-5544-4b4b-a92d-4fd6a7599d8e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/external-volumes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "external-volumes"
+                      ]
+                    },
+                    "description": "List external volumes"
+                  },
+                  "response": [
+                    {
+                      "id": "843acf8b-cf1c-4166-8f58-7104424adb6b",
+                      "name": "successful",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Snowflake-Request-ID",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Link",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": \"BqTvux\",\n    \"storage_locations\": [\n      {\n        \"name\": \"<string>\",\n        \"storage_provider\": \"GCS\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"storage_provider\": \"S3GOV\"\n      }\n    ],\n    \"allow_writes\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"owner\": \"\\\"\\\"\\\"\\\"\",\n    \"owner_role_type\": \"\\\"\\\"\\\"\\\"\\\"4!\\\"\\\"\\\"\"\n  },\n  {\n    \"name\": \"C3D0CM\",\n    \"storage_locations\": [\n      {\n        \"name\": \"<string>\",\n        \"storage_provider\": \"S3GOV\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"storage_provider\": \"S3GOV\"\n      }\n    ],\n    \"allow_writes\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"owner\": \"\\\">zU^\\\"\\\"\\\"\\\"\\\"\",\n    \"owner_role_type\": \"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\"\n  }\n]",
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-843acf8b-cf1c-4166-8f58-7104424adb6b"
+                    },
+                    {
+                      "id": "f0d99f5c-458f-44e6-bfc1-6247539b8996",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-f0d99f5c-458f-44e6-bfc1-6247539b8996"
+                    },
+                    {
+                      "id": "c9dde1fd-860c-4c37-a4e2-b9b706b146f5",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-c9dde1fd-860c-4c37-a4e2-b9b706b146f5"
+                    },
+                    {
+                      "id": "20262415-2b4b-472d-a220-341b888a8e3e",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-20262415-2b4b-472d-a220-341b888a8e3e"
+                    },
+                    {
+                      "id": "52af4586-fb87-4872-a70f-d0a8ef6fda42",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-52af4586-fb87-4872-a70f-d0a8ef6fda42"
+                    },
+                    {
+                      "id": "c9e489ae-7eaf-4e22-9d05-b94c0215c091",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-c9e489ae-7eaf-4e22-9d05-b94c0215c091"
+                    },
+                    {
+                      "id": "ad359d93-08ac-44c6-9527-519221006f21",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-ad359d93-08ac-44c6-9527-519221006f21"
+                    },
+                    {
+                      "id": "7a3350de-66bf-4efd-9a56-d9336f1b31a4",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-7a3350de-66bf-4efd-9a56-d9336f1b31a4"
+                    },
+                    {
+                      "id": "b8944709-ab8f-411d-816a-e198494cc92e",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-b8944709-ab8f-411d-816a-e198494cc92e"
+                    },
+                    {
+                      "id": "01b148b2-f3e4-4624-a2a8-7442c0b5d42b",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-01b148b2-f3e4-4624-a2a8-7442c0b5d42b"
+                    },
+                    {
+                      "id": "174d8927-ed41-45cd-a7ff-78aed38bcc0b",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-174d8927-ed41-45cd-a7ff-78aed38bcc0b"
+                    },
+                    {
+                      "id": "d43b0ee1-8d7a-4026-8ca8-078831f031f7",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-d43b0ee1-8d7a-4026-8ca8-078831f031f7"
+                    },
+                    {
+                      "id": "f278b245-aeee-471d-b2d3-6eb09888bcc3",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-f278b245-aeee-471d-b2d3-6eb09888bcc3"
+                    },
+                    {
+                      "id": "f4505347-548e-45d1-b37b-a68730498927",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-f4505347-548e-45d1-b37b-a68730498927"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:20:23.000Z",
+                  "updatedAt": "2026-06-05T13:20:23.000Z",
+                  "uid": "35240-e132c900-5544-4b4b-a92d-4fd6a7599d8e"
+                },
+                {
+                  "name": "Create an External Volume",
+                  "id": "29dee572-67a6-44b6-bf4c-8160b09cdc48",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/external-volumes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "external-volumes"
+                      ]
+                    },
+                    "description": "Create an external volume"
+                  },
+                  "response": [
+                    {
+                      "id": "ae0de948-7d84-4f23-9827-ae1705c4fa66",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-ae0de948-7d84-4f23-9827-ae1705c4fa66"
+                    },
+                    {
+                      "id": "7d7a12c3-63fe-41b8-a779-926b37c65cf0",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-7d7a12c3-63fe-41b8-a779-926b37c65cf0"
+                    },
+                    {
+                      "id": "facfdd84-d461-4db2-a2f9-f737888640dc",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-facfdd84-d461-4db2-a2f9-f737888640dc"
+                    },
+                    {
+                      "id": "c959d058-e989-47a0-8a22-e133fc20ce3e",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-c959d058-e989-47a0-8a22-e133fc20ce3e"
+                    },
+                    {
+                      "id": "1e8c7326-b590-4b75-8678-82e1f1a5f573",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-1e8c7326-b590-4b75-8678-82e1f1a5f573"
+                    },
+                    {
+                      "id": "ab5ea083-96c5-4d3f-adfd-09ae4d4cce4f",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-ab5ea083-96c5-4d3f-adfd-09ae4d4cce4f"
+                    },
+                    {
+                      "id": "a59d0b5e-d513-4c65-a9e1-5867b2ab955d",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-a59d0b5e-d513-4c65-a9e1-5867b2ab955d"
+                    },
+                    {
+                      "id": "7568e5a6-2432-44e2-b94a-49a713ec41f2",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-7568e5a6-2432-44e2-b94a-49a713ec41f2"
+                    },
+                    {
+                      "id": "cea2fc4e-1d67-43ff-824b-5470e5207f32",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-cea2fc4e-1d67-43ff-824b-5470e5207f32"
+                    },
+                    {
+                      "id": "5a7a9798-ac75-4530-b05a-6c439e8ddba8",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-5a7a9798-ac75-4530-b05a-6c439e8ddba8"
+                    },
+                    {
+                      "id": "e0bce4c8-c9c2-4e01-aa50-bbe7206726f3",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-e0bce4c8-c9c2-4e01-aa50-bbe7206726f3"
+                    },
+                    {
+                      "id": "ce4268a3-b256-45db-b01c-ecacaedc364a",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-ce4268a3-b256-45db-b01c-ecacaedc364a"
+                    },
+                    {
+                      "id": "ae4e9a55-57d7-4fef-9ddf-9833b4fadd0e",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-ae4e9a55-57d7-4fef-9ddf-9833b4fadd0e"
+                    },
+                    {
+                      "id": "d979d3f0-e74d-4461-8002-c1e4930937b8",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ojE7bJ0A9D\",\n  \"storage_locations\": [\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"AZURE\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"storage_provider\": \"S3\"\n    }\n  ],\n  \"allow_writes\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\";\\\"\\\"\\\"\\\"\\\"\\\"S\\\"\\\"\\\"\\\"\\\"\",\n  \"owner_role_type\": \"yjEK9vra\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/external-volumes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "external-volumes"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:23.000Z",
+                      "updatedAt": "2026-06-05T13:20:23.000Z",
+                      "uid": "35240-d979d3f0-e74d-4461-8002-c1e4930937b8"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:20:23.000Z",
+                  "updatedAt": "2026-06-05T13:20:23.000Z",
+                  "uid": "35240-29dee572-67a6-44b6-bf4c-8160b09cdc48"
+                }
+              ],
+              "id": "fd21043d-af9d-499c-9efd-1460dc37c641",
+              "createdAt": "2026-06-05T13:20:23.000Z",
+              "updatedAt": "2026-06-05T13:20:23.000Z",
+              "uid": "35240-fd21043d-af9d-499c-9efd-1460dc37c641"
+            }
+          ],
+          "id": "d1cb4025-0478-41f4-b7b2-9d5d5c2e2cdc",
+          "createdAt": "2026-06-05T13:20:23.000Z",
+          "updatedAt": "2026-06-05T13:20:23.000Z",
+          "uid": "35240-d1cb4025-0478-41f4-b7b2-9d5d5c2e2cdc"
+        }
+      ],
+      "id": "3f510b6a-44f8-4499-bd09-1c39dd7b927e",
+      "createdAt": "2026-06-05T13:20:23.000Z",
+      "updatedAt": "2026-06-05T13:20:23.000Z",
+      "uid": "35240-3f510b6a-44f8-4499-bd09-1c39dd7b927e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://org-account.snowflakecomputing.com"
+    }
+  ]
+}

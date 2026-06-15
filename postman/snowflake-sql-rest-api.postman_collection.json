@@ -1,0 +1,2879 @@
+{
+  "info": {
+    "_postman_id": "54e3e194-948a-45ea-af80-42e567484fb8",
+    "name": "Snowflake SQL REST API",
+    "description": "The Snowflake SQL REST API is a REST API that you can use to access and update data in a Snowflake database. You can use this API to submit SQL statements for execution, check the status of statement execution, and retrieve results. The API supports synchronous and asynchronous execution, multi-statement requests, and bind variables.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:20:55.000Z",
+    "updatedAt": "2026-06-05T13:20:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-54e3e194-948a-45ea-af80-42e567484fb8"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "statements",
+              "item": [
+                {
+                  "name": "{statementHandle}",
+                  "item": [
+                    {
+                      "name": "cancel",
+                      "item": [
+                        {
+                          "name": "Cancel the Execution of a Statement.",
+                          "id": "216f4863-2021-409f-b9f3-42bb1e21eae0",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "bearer",
+                              "bearer": [
+                                {
+                                  "key": "token",
+                                  "value": "{{bearerToken}}",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle/cancel?requestId=<uuid>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle",
+                                "cancel"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "86125d5c-a985-414d-98d0-a29d32e416fd",
+                                  "key": "statementHandle",
+                                  "value": "<uuid>",
+                                  "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                                }
+                              ]
+                            },
+                            "description": "Cancels the execution of the statement with the specified statement handle."
+                          },
+                          "response": [
+                            {
+                              "id": "3521c168-c590-45dd-a03d-39fcc42c2c5b",
+                              "name": "The execution of the statement was successfully canceled.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                    "key": "User-Agent",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                    "key": "X-Snowflake-Authorization-Token-Type",
+                                    "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/statements/:statementHandle/cancel?requestId=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "statements",
+                                    ":statementHandle",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                      "key": "requestId",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "statementHandle"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statementHandle\": \"<uuid>\",\n  \"code\": \"<string>\",\n  \"sqlState\": \"<string>\",\n  \"message\": \"<string>\",\n  \"statementStatusUrl\": \"<uri>\"\n}",
+                              "createdAt": "2026-06-05T13:20:56.000Z",
+                              "updatedAt": "2026-06-05T13:20:56.000Z",
+                              "uid": "35240-3521c168-c590-45dd-a03d-39fcc42c2c5b"
+                            },
+                            {
+                              "id": "55202eb9-e6b3-4b65-bd97-7472661988f1",
+                              "name": "Bad Request. The request payload is invalid or malformed. This happens if the application did not send the correct request payload. The response body may include the error code and message indicating the actual cause. The application must reconstruct the ",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                    "key": "User-Agent",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                    "key": "X-Snowflake-Authorization-Token-Type",
+                                    "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/statements/:statementHandle/cancel?requestId=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "statements",
+                                    ":statementHandle",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                      "key": "requestId",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "statementHandle"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:56.000Z",
+                              "updatedAt": "2026-06-05T13:20:56.000Z",
+                              "uid": "35240-55202eb9-e6b3-4b65-bd97-7472661988f1"
+                            },
+                            {
+                              "id": "d7e87afa-96e2-43fd-8c77-8913f14c7dae",
+                              "name": "Unauthorized. The request is not authorized. This happens if the attached access token is invalid or missing. The response body may include the error code and message indicating the actual cause, e.g., expired, invalid token. The application must obtain a",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                    "key": "User-Agent",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                    "key": "X-Snowflake-Authorization-Token-Type",
+                                    "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/statements/:statementHandle/cancel?requestId=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "statements",
+                                    ":statementHandle",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                      "key": "requestId",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "statementHandle"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:56.000Z",
+                              "updatedAt": "2026-06-05T13:20:56.000Z",
+                              "uid": "35240-d7e87afa-96e2-43fd-8c77-8913f14c7dae"
+                            },
+                            {
+                              "id": "77f92f35-e0b4-4eb8-abd1-beda99f8cfe5",
+                              "name": "Forbidden. The request is forbidden. This can happen if the request is made even though the API is not enabled.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                    "key": "User-Agent",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                    "key": "X-Snowflake-Authorization-Token-Type",
+                                    "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/statements/:statementHandle/cancel?requestId=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "statements",
+                                    ":statementHandle",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                      "key": "requestId",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "statementHandle"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:56.000Z",
+                              "updatedAt": "2026-06-05T13:20:56.000Z",
+                              "uid": "35240-77f92f35-e0b4-4eb8-abd1-beda99f8cfe5"
+                            },
+                            {
+                              "id": "a355880f-3f7d-4c0d-8f5c-f03bbbef5661",
+                              "name": "Not Found. The request endpoint is not valid. This happens if the API endpoint is wrong.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                    "key": "User-Agent",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                    "key": "X-Snowflake-Authorization-Token-Type",
+                                    "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/statements/:statementHandle/cancel?requestId=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "statements",
+                                    ":statementHandle",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                      "key": "requestId",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "statementHandle"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:56.000Z",
+                              "updatedAt": "2026-06-05T13:20:56.000Z",
+                              "uid": "35240-a355880f-3f7d-4c0d-8f5c-f03bbbef5661"
+                            },
+                            {
+                              "id": "6de455cc-e887-49dc-8811-3668ed9f9b0b",
+                              "name": "Method Not Allowed. The request method does not match the supported API. This happens, for example, if the application calls the API with GET method but the endpoint accepts only POST.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                    "key": "User-Agent",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                    "key": "X-Snowflake-Authorization-Token-Type",
+                                    "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/statements/:statementHandle/cancel?requestId=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "statements",
+                                    ":statementHandle",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                      "key": "requestId",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "statementHandle"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:56.000Z",
+                              "updatedAt": "2026-06-05T13:20:56.000Z",
+                              "uid": "35240-6de455cc-e887-49dc-8811-3668ed9f9b0b"
+                            },
+                            {
+                              "id": "bf125b1a-615a-44c3-b174-b804172e9fac",
+                              "name": "An error occurred when cancelling the execution of the statement. Check the error code and error message for details.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                    "key": "User-Agent",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                    "key": "X-Snowflake-Authorization-Token-Type",
+                                    "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/statements/:statementHandle/cancel?requestId=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "statements",
+                                    ":statementHandle",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                      "key": "requestId",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "statementHandle"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statementHandle\": \"<uuid>\",\n  \"code\": \"<string>\",\n  \"sqlState\": \"<string>\",\n  \"message\": \"<string>\",\n  \"statementStatusUrl\": \"<uri>\"\n}",
+                              "createdAt": "2026-06-05T13:20:56.000Z",
+                              "updatedAt": "2026-06-05T13:20:56.000Z",
+                              "uid": "35240-bf125b1a-615a-44c3-b174-b804172e9fac"
+                            },
+                            {
+                              "id": "6f16e20b-584b-43c7-9c87-5590dd645d0a",
+                              "name": "Internal Server Error. The server hit an unrecoverable system error. The response body may include the error code and message for further guidance. The application owner may need to reach out to customer support.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                    "key": "User-Agent",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                    "key": "X-Snowflake-Authorization-Token-Type",
+                                    "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/statements/:statementHandle/cancel?requestId=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "statements",
+                                    ":statementHandle",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                      "key": "requestId",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "statementHandle"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:56.000Z",
+                              "updatedAt": "2026-06-05T13:20:56.000Z",
+                              "uid": "35240-6f16e20b-584b-43c7-9c87-5590dd645d0a"
+                            },
+                            {
+                              "id": "04e4ef1e-c39a-4aba-a4f1-f452957b7734",
+                              "name": "Service Unavailable. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                    "key": "User-Agent",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                    "key": "X-Snowflake-Authorization-Token-Type",
+                                    "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/statements/:statementHandle/cancel?requestId=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "statements",
+                                    ":statementHandle",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                      "key": "requestId",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "statementHandle"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Service Unavailable",
+                              "code": 503,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:56.000Z",
+                              "updatedAt": "2026-06-05T13:20:56.000Z",
+                              "uid": "35240-04e4ef1e-c39a-4aba-a4f1-f452957b7734"
+                            },
+                            {
+                              "id": "c332f8ad-40ae-4630-b781-9a53f46d85e7",
+                              "name": "Gateway Timeout. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                    "key": "User-Agent",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                    "key": "X-Snowflake-Authorization-Token-Type",
+                                    "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/statements/:statementHandle/cancel?requestId=<uuid>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "statements",
+                                    ":statementHandle",
+                                    "cancel"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                      "key": "requestId",
+                                      "value": "<uuid>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "statementHandle"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Gateway Timeout",
+                              "code": 504,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:56.000Z",
+                              "updatedAt": "2026-06-05T13:20:56.000Z",
+                              "uid": "35240-c332f8ad-40ae-4630-b781-9a53f46d85e7"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-216f4863-2021-409f-b9f3-42bb1e21eae0"
+                        }
+                      ],
+                      "id": "295969a0-e3bc-4fbe-8f76-98511acb712f",
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-295969a0-e3bc-4fbe-8f76-98511acb712f"
+                    },
+                    {
+                      "name": "Check the Status of the Execution of a Statement.",
+                      "id": "2773a541-8f89-4a16-b001-ee06b3329d51",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements",
+                            ":statementHandle"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                              "key": "partition",
+                              "value": "<long>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "239eb350-a2b0-4461-8330-900543978bc1",
+                              "key": "statementHandle",
+                              "value": "<uuid>",
+                              "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                            }
+                          ]
+                        },
+                        "description": "Checks the status of the execution of the statement with the specified statement handle. If the statement was executed successfully, the operation returns the requested partition of the result set."
+                      },
+                      "response": [
+                        {
+                          "id": "2b44593d-f22e-441d-b93a-6afa0c64ea9b",
+                          "name": "The statement was executed successfully, and the response includes any data requested.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Link",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"sqlState\": \"<string>\",\n  \"message\": \"<string>\",\n  \"statementHandle\": \"<uuid>\",\n  \"createdOn\": \"<long>\",\n  \"statementStatusUrl\": \"<uri>\",\n  \"resultSetMetaData\": {\n    \"format\": \"jsonv2\",\n    \"numRows\": \"<long>\",\n    \"rowType\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"length\": \"<long>\",\n        \"precision\": \"<long>\",\n        \"scale\": \"<long>\",\n        \"nullable\": \"<boolean>\"\n      }\n    ],\n    \"partitionInfo\": [\n      {\n        \"rowCount\": \"<long>\",\n        \"compressedSize\": \"<long>\",\n        \"uncompressedSize\": \"<long>\"\n      },\n      {\n        \"rowCount\": \"<long>\",\n        \"compressedSize\": \"<long>\",\n        \"uncompressedSize\": \"<long>\"\n      }\n    ],\n    \"nullable\": \"<boolean>\",\n    \"parameters\": {\n      \"timezone\": \"<string>\",\n      \"query_tag\": \"<string>\",\n      \"binary_output_format\": \"<string>\",\n      \"date_output_format\": \"<string>\",\n      \"time_output_format\": \"<string>\",\n      \"timestamp_output_format\": \"<string>\",\n      \"timestamp_ltz_output_format\": \"<string>\",\n      \"timestamp_ntz_output_format\": \"<string>\",\n      \"timestamp_tz_output_format\": \"<string>\",\n      \"multi_statement_count\": 1,\n      \"client_result_chunk_size\": \"<integer>\",\n      \"rows_per_resultset\": \"<integer>\",\n      \"use_cached_result\": \"<boolean>\"\n    }\n  },\n  \"data\": [\n    [\n      \"<string,null>\",\n      \"<string,null>\"\n    ],\n    [\n      \"<string,null>\",\n      \"<string,null>\"\n    ]\n  ],\n  \"stats\": {\n    \"numRowsInserted\": \"<long>\",\n    \"numRowsUpdated\": \"<long>\",\n    \"numRowsDeleted\": \"<long>\",\n    \"numDuplicateRowsUpdated\": \"<long>\"\n  }\n}",
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-2b44593d-f22e-441d-b93a-6afa0c64ea9b"
+                        },
+                        {
+                          "id": "9b2872fa-d898-4270-8b81-bb8838cee51d",
+                          "name": "The execution of the statement is still in progress. Use this method again to check the status of the statement execution.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statementHandle\": \"<uuid>\",\n  \"code\": \"<string>\",\n  \"sqlState\": \"<string>\",\n  \"message\": \"<string>\",\n  \"createdOn\": \"<long>\",\n  \"statementStatusUrl\": \"<uri>\"\n}",
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-9b2872fa-d898-4270-8b81-bb8838cee51d"
+                        },
+                        {
+                          "id": "58164df9-d2e0-4ef2-8ad8-6cb03dd499c1",
+                          "name": "Bad Request. The request payload is invalid or malformed. This happens if the application did not send the correct request payload. The response body may include the error code and message indicating the actual cause. The application must reconstruct the ",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-58164df9-d2e0-4ef2-8ad8-6cb03dd499c1"
+                        },
+                        {
+                          "id": "76cf231e-f565-4d5e-bce5-0d4c53f9ddc8",
+                          "name": "Unauthorized. The request is not authorized. This happens if the attached access token is invalid or missing. The response body may include the error code and message indicating the actual cause, e.g., expired, invalid token. The application must obtain a",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-76cf231e-f565-4d5e-bce5-0d4c53f9ddc8"
+                        },
+                        {
+                          "id": "b0ae8e50-d687-4445-9cec-0793a5a2f259",
+                          "name": "Forbidden. The request is forbidden. This can happen if the request is made even though the API is not enabled.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-b0ae8e50-d687-4445-9cec-0793a5a2f259"
+                        },
+                        {
+                          "id": "d334d5e2-a4cc-46b1-b016-53c005c8a286",
+                          "name": "Not Found. The request endpoint is not valid. This happens if the API endpoint is wrong.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-d334d5e2-a4cc-46b1-b016-53c005c8a286"
+                        },
+                        {
+                          "id": "68dd6e9e-2bc2-4d32-8c26-ece5c0f40829",
+                          "name": "Method Not Allowed. The request method does not match the supported API. This happens, for example, if the application calls the API with GET method but the endpoint accepts only POST.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-68dd6e9e-2bc2-4d32-8c26-ece5c0f40829"
+                        },
+                        {
+                          "id": "c404e233-3046-42b2-af86-8f7fade26508",
+                          "name": "The request header Content-Type includes an unsupported media type. The API supports application/json only. If none is specified, the request payload is taken as JSON, but if any other media type is specified, this error is returned.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unsupported Media Type",
+                          "code": 415,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-c404e233-3046-42b2-af86-8f7fade26508"
+                        },
+                        {
+                          "id": "d3521280-a19c-4278-9552-77caae169602",
+                          "name": "An error occurred when executing the statement. Check the error code and error message for details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"statementHandle\": \"<uuid>\",\n  \"code\": \"<string>\",\n  \"sqlState\": \"<string>\",\n  \"createdOn\": \"<long>\",\n  \"statementStatusUrl\": \"<uri>\"\n}",
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-d3521280-a19c-4278-9552-77caae169602"
+                        },
+                        {
+                          "id": "c6fd21d7-2c48-461e-961b-56adeaec2e0b",
+                          "name": "Limit Exceeded. The number of requests hit the rate limit. The application must slow down the frequency of hitting the API endpoints.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-c6fd21d7-2c48-461e-961b-56adeaec2e0b"
+                        },
+                        {
+                          "id": "9907c88d-2d38-4d4f-84a0-1172b237664c",
+                          "name": "Internal Server Error. The server hit an unrecoverable system error. The response body may include the error code and message for further guidance. The application owner may need to reach out to customer support.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-9907c88d-2d38-4d4f-84a0-1172b237664c"
+                        },
+                        {
+                          "id": "819dd9eb-52b8-45e0-a680-4de7e29a24f7",
+                          "name": "Service Unavailable. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-819dd9eb-52b8-45e0-a680-4de7e29a24f7"
+                        },
+                        {
+                          "id": "d0905726-6d86-40bc-aada-fd3cde7d3784",
+                          "name": "Gateway Timeout. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                                "key": "User-Agent",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                                "key": "X-Snowflake-Authorization-Token-Type",
+                                "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/statements/:statementHandle?requestId=<uuid>&partition=<long>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "statements",
+                                ":statementHandle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                                  "key": "requestId",
+                                  "value": "<uuid>"
+                                },
+                                {
+                                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.",
+                                  "key": "partition",
+                                  "value": "<long>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "statementHandle"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:56.000Z",
+                          "updatedAt": "2026-06-05T13:20:56.000Z",
+                          "uid": "35240-d0905726-6d86-40bc-aada-fd3cde7d3784"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-2773a541-8f89-4a16-b001-ee06b3329d51"
+                    }
+                  ],
+                  "id": "5fa6573d-bc03-4381-aed9-4ae51700b462",
+                  "createdAt": "2026-06-05T13:20:56.000Z",
+                  "updatedAt": "2026-06-05T13:20:56.000Z",
+                  "uid": "35240-5fa6573d-bc03-4381-aed9-4ae51700b462"
+                },
+                {
+                  "name": "Submit a Sql Statement for Execution.",
+                  "id": "7aeb16b5-07ef-4148-ac3e-e8b987d52274",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                        "key": "User-Agent",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                        "key": "X-Snowflake-Authorization-Token-Type",
+                        "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "statements"
+                      ],
+                      "query": [
+                        {
+                          "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                          "key": "requestId",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                          "key": "async",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                          "key": "nullable",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    },
+                    "description": "Submits one or more SQL statements for execution. You can specify that the statement should be executed asynchronously. The following statement types are not supported: PUT, GET, USE, ALTER SESSION, BEGIN, COMMIT, ROLLBACK, statements that set session variables, and statements that create temporary tables and stages."
+                  },
+                  "response": [
+                    {
+                      "id": "63e7ad03-8b13-4457-8f5a-599135bc0118",
+                      "name": "The statement was executed successfully, and the response includes any data requested.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Link",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"sqlState\": \"<string>\",\n  \"message\": \"<string>\",\n  \"statementHandle\": \"<uuid>\",\n  \"createdOn\": \"<long>\",\n  \"statementStatusUrl\": \"<uri>\",\n  \"resultSetMetaData\": {\n    \"format\": \"jsonv2\",\n    \"numRows\": \"<long>\",\n    \"rowType\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"length\": \"<long>\",\n        \"precision\": \"<long>\",\n        \"scale\": \"<long>\",\n        \"nullable\": \"<boolean>\"\n      }\n    ],\n    \"partitionInfo\": [\n      {\n        \"rowCount\": \"<long>\",\n        \"compressedSize\": \"<long>\",\n        \"uncompressedSize\": \"<long>\"\n      },\n      {\n        \"rowCount\": \"<long>\",\n        \"compressedSize\": \"<long>\",\n        \"uncompressedSize\": \"<long>\"\n      }\n    ],\n    \"nullable\": \"<boolean>\",\n    \"parameters\": {\n      \"timezone\": \"<string>\",\n      \"query_tag\": \"<string>\",\n      \"binary_output_format\": \"<string>\",\n      \"date_output_format\": \"<string>\",\n      \"time_output_format\": \"<string>\",\n      \"timestamp_output_format\": \"<string>\",\n      \"timestamp_ltz_output_format\": \"<string>\",\n      \"timestamp_ntz_output_format\": \"<string>\",\n      \"timestamp_tz_output_format\": \"<string>\",\n      \"multi_statement_count\": 1,\n      \"client_result_chunk_size\": \"<integer>\",\n      \"rows_per_resultset\": \"<integer>\",\n      \"use_cached_result\": \"<boolean>\"\n    }\n  },\n  \"data\": [\n    [\n      \"<string,null>\",\n      \"<string,null>\"\n    ],\n    [\n      \"<string,null>\",\n      \"<string,null>\"\n    ]\n  ],\n  \"stats\": {\n    \"numRowsInserted\": \"<long>\",\n    \"numRowsUpdated\": \"<long>\",\n    \"numRowsDeleted\": \"<long>\",\n    \"numDuplicateRowsUpdated\": \"<long>\"\n  }\n}",
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-63e7ad03-8b13-4457-8f5a-599135bc0118"
+                    },
+                    {
+                      "id": "241abf11-d55c-4539-8ed3-acc33914f32c",
+                      "name": "The execution of the statement is still in progress. Use GET /api/v2/statements/{statementHandle} to check the status of the statement execution.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statementHandle\": \"<uuid>\",\n  \"code\": \"<string>\",\n  \"sqlState\": \"<string>\",\n  \"message\": \"<string>\",\n  \"createdOn\": \"<long>\",\n  \"statementStatusUrl\": \"<uri>\"\n}",
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-241abf11-d55c-4539-8ed3-acc33914f32c"
+                    },
+                    {
+                      "id": "5e3c8d64-44ed-499b-9545-7c2e28257aac",
+                      "name": "Bad Request. The request payload is invalid or malformed. This happens if the application did not send the correct request payload. The response body may include the error code and message indicating the actual cause. The application must reconstruct the ",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-5e3c8d64-44ed-499b-9545-7c2e28257aac"
+                    },
+                    {
+                      "id": "45049276-dfde-42ef-9203-e0a9a96052d5",
+                      "name": "Unauthorized. The request is not authorized. This happens if the attached access token is invalid or missing. The response body may include the error code and message indicating the actual cause, e.g., expired, invalid token. The application must obtain a",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-45049276-dfde-42ef-9203-e0a9a96052d5"
+                    },
+                    {
+                      "id": "4ecec0a3-baea-4139-a3b4-81f40a25dbcb",
+                      "name": "Forbidden. The request is forbidden. This can happen if the request is made even though the API is not enabled.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-4ecec0a3-baea-4139-a3b4-81f40a25dbcb"
+                    },
+                    {
+                      "id": "c6610c0e-b1d7-4e72-b2c2-fa3c8c513ac7",
+                      "name": "Not Found. The request endpoint is not valid. This happens if the API endpoint is wrong.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-c6610c0e-b1d7-4e72-b2c2-fa3c8c513ac7"
+                    },
+                    {
+                      "id": "9f570570-6376-478b-8f93-ad44e41aea60",
+                      "name": "Method Not Allowed. The request method does not match the supported API. This happens, for example, if the application calls the API with GET method but the endpoint accepts only POST.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-9f570570-6376-478b-8f93-ad44e41aea60"
+                    },
+                    {
+                      "id": "835206f9-2189-4525-9f4f-fcd437894cc7",
+                      "name": "The execution of the statement exceeded the timeout period. The execution of the statement was cancelled.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statementHandle\": \"<uuid>\",\n  \"code\": \"<string>\",\n  \"sqlState\": \"<string>\",\n  \"message\": \"<string>\",\n  \"createdOn\": \"<long>\",\n  \"statementStatusUrl\": \"<uri>\"\n}",
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-835206f9-2189-4525-9f4f-fcd437894cc7"
+                    },
+                    {
+                      "id": "ce45765b-6f8f-4494-809a-1575032cc2ac",
+                      "name": "The request header Content-Type includes an unsupported media type. The API supports application/json only. If none is specified, the request payload is taken as JSON, but if any other media type is specified, this error is returned.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unsupported Media Type",
+                      "code": 415,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-ce45765b-6f8f-4494-809a-1575032cc2ac"
+                    },
+                    {
+                      "id": "a3627e16-1f2c-44c7-a3fa-dfa80fe3ee04",
+                      "name": "An error occurred when executing the statement. Check the error code and error message for details.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"statementHandle\": \"<uuid>\",\n  \"code\": \"<string>\",\n  \"sqlState\": \"<string>\",\n  \"createdOn\": \"<long>\",\n  \"statementStatusUrl\": \"<uri>\"\n}",
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-a3627e16-1f2c-44c7-a3fa-dfa80fe3ee04"
+                    },
+                    {
+                      "id": "8dbf1183-1723-443a-b8e7-c62a21c292b8",
+                      "name": "Limit Exceeded. The number of requests hit the rate limit. The application must slow down the frequency of hitting the API endpoints.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-8dbf1183-1723-443a-b8e7-c62a21c292b8"
+                    },
+                    {
+                      "id": "838e9df0-6666-4d2e-b73a-204d06470523",
+                      "name": "Internal Server Error. The server hit an unrecoverable system error. The response body may include the error code and message for further guidance. The application owner may need to reach out to customer support.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-838e9df0-6666-4d2e-b73a-204d06470523"
+                    },
+                    {
+                      "id": "6bb25460-b966-4eec-a623-a924e2bc7bcb",
+                      "name": "Service Unavailable. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-6bb25460-b966-4eec-a623-a924e2bc7bcb"
+                    },
+                    {
+                      "id": "0bb3a750-e68f-4ddb-9f3c-53837097c828",
+                      "name": "Gateway Timeout. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                            "key": "User-Agent",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                            "key": "X-Snowflake-Authorization-Token-Type",
+                            "value": "PROGRAMMATIC_ACCESS_TOKEN"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"Loremb7\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/statements?requestId=<uuid>&async=<boolean>&nullable=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.",
+                              "key": "requestId",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.",
+                              "key": "async",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.",
+                              "key": "nullable",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:56.000Z",
+                      "updatedAt": "2026-06-05T13:20:56.000Z",
+                      "uid": "35240-0bb3a750-e68f-4ddb-9f3c-53837097c828"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:20:56.000Z",
+                  "updatedAt": "2026-06-05T13:20:56.000Z",
+                  "uid": "35240-7aeb16b5-07ef-4148-ac3e-e8b987d52274"
+                }
+              ],
+              "id": "088803c3-94ae-41a4-8299-107711e75c6a",
+              "createdAt": "2026-06-05T13:20:56.000Z",
+              "updatedAt": "2026-06-05T13:20:56.000Z",
+              "uid": "35240-088803c3-94ae-41a4-8299-107711e75c6a"
+            }
+          ],
+          "id": "dbc3213b-60a3-4818-a4ad-f10fe9e8864f",
+          "createdAt": "2026-06-05T13:20:56.000Z",
+          "updatedAt": "2026-06-05T13:20:56.000Z",
+          "uid": "35240-dbc3213b-60a3-4818-a4ad-f10fe9e8864f"
+        }
+      ],
+      "id": "e1100aa3-250c-4f0a-a399-7f3b3c159558",
+      "createdAt": "2026-06-05T13:20:56.000Z",
+      "updatedAt": "2026-06-05T13:20:56.000Z",
+      "uid": "35240-e1100aa3-250c-4f0a-a399-7f3b3c159558"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "account",
+      "value": "org-account"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{account}}.snowflakecomputing.com"
+    }
+  ]
+}

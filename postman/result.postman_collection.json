@@ -1,0 +1,637 @@
+{
+  "info": {
+    "_postman_id": "05f2cf3b-37ff-4db8-8ca3-b1ed9a434c12",
+    "name": "Snowflake Result API",
+    "description": "The Snowflake Result API is a REST API that you can use to check request status and fetch request response.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:20:47.000Z",
+    "updatedAt": "2026-06-05T13:20:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-05f2cf3b-37ff-4db8-8ca3-b1ed9a434c12"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "results",
+              "item": [
+                {
+                  "name": "{result_handler}",
+                  "item": [
+                    {
+                      "name": "Check Result Status or Fetch Request",
+                      "id": "160da789-28ed-4cfa-ba47-5bf033b436eb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "results",
+                            ":result_handler"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                              "key": "page",
+                              "value": "0"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "4ced8d7c-436f-43a1-8c61-6ec3310f296e",
+                              "key": "result_handler",
+                              "value": "<string>",
+                              "description": "(Required) The opaque result id."
+                            }
+                          ]
+                        },
+                        "description": "Get result status or the result when it is ready."
+                      },
+                      "response": [
+                        {
+                          "id": "7c198e72-6fbd-43b6-ae4a-36f4a6745022",
+                          "name": "successful",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "results",
+                                ":result_handler"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                                  "key": "page",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "result_handler"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-Snowflake-Request-ID",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Link",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"examples\": {\n    \"Fetchresult200Example\": {\n      \"summary\": \"Default fetchResult 200 response\",\n      \"x-microcks-default\": true,\n      \"value\": {}\n    }\n  }\n}",
+                          "createdAt": "2026-06-05T13:20:48.000Z",
+                          "updatedAt": "2026-06-05T13:20:48.000Z",
+                          "uid": "35240-7c198e72-6fbd-43b6-ae4a-36f4a6745022"
+                        },
+                        {
+                          "id": "6b544b6d-9167-41a8-a6dc-a32f1145ef66",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "results",
+                                ":result_handler"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                                  "key": "page",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "result_handler"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:48.000Z",
+                          "updatedAt": "2026-06-05T13:20:48.000Z",
+                          "uid": "35240-6b544b6d-9167-41a8-a6dc-a32f1145ef66"
+                        },
+                        {
+                          "id": "f7954833-cb15-4ac8-9198-375267710ca3",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "results",
+                                ":result_handler"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                                  "key": "page",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "result_handler"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:48.000Z",
+                          "updatedAt": "2026-06-05T13:20:48.000Z",
+                          "uid": "35240-f7954833-cb15-4ac8-9198-375267710ca3"
+                        },
+                        {
+                          "id": "cae9d9df-5295-400d-a84c-a10092d10579",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "results",
+                                ":result_handler"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                                  "key": "page",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "result_handler"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:48.000Z",
+                          "updatedAt": "2026-06-05T13:20:48.000Z",
+                          "uid": "35240-cae9d9df-5295-400d-a84c-a10092d10579"
+                        },
+                        {
+                          "id": "b64b6e3d-1456-4211-9778-5058fab4da08",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "results",
+                                ":result_handler"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                                  "key": "page",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "result_handler"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:48.000Z",
+                          "updatedAt": "2026-06-05T13:20:48.000Z",
+                          "uid": "35240-b64b6e3d-1456-4211-9778-5058fab4da08"
+                        },
+                        {
+                          "id": "ed1b66e5-cd05-47d3-8a5b-26736cd35226",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "results",
+                                ":result_handler"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                                  "key": "page",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "result_handler"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:48.000Z",
+                          "updatedAt": "2026-06-05T13:20:48.000Z",
+                          "uid": "35240-ed1b66e5-cd05-47d3-8a5b-26736cd35226"
+                        },
+                        {
+                          "id": "5f017aa9-9c07-4e06-9756-bcfafe1f3d54",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "results",
+                                ":result_handler"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                                  "key": "page",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "result_handler"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:48.000Z",
+                          "updatedAt": "2026-06-05T13:20:48.000Z",
+                          "uid": "35240-5f017aa9-9c07-4e06-9756-bcfafe1f3d54"
+                        },
+                        {
+                          "id": "56bff7ba-4014-43be-8921-38c1b7eee6dc",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "results",
+                                ":result_handler"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                                  "key": "page",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "result_handler"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:48.000Z",
+                          "updatedAt": "2026-06-05T13:20:48.000Z",
+                          "uid": "35240-56bff7ba-4014-43be-8921-38c1b7eee6dc"
+                        },
+                        {
+                          "id": "6ac35c5f-f524-46c8-a248-1b227260ee0a",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "results",
+                                ":result_handler"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                                  "key": "page",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "result_handler"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:48.000Z",
+                          "updatedAt": "2026-06-05T13:20:48.000Z",
+                          "uid": "35240-6ac35c5f-f524-46c8-a248-1b227260ee0a"
+                        },
+                        {
+                          "id": "ac711ada-1046-45a5-ba27-86c41abfa9ac",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "results",
+                                ":result_handler"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                                  "key": "page",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "result_handler"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:48.000Z",
+                          "updatedAt": "2026-06-05T13:20:48.000Z",
+                          "uid": "35240-ac711ada-1046-45a5-ba27-86c41abfa9ac"
+                        },
+                        {
+                          "id": "6664a23e-df1e-4f1e-8bd9-3e254ff47297",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "results",
+                                ":result_handler"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                                  "key": "page",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "result_handler"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:48.000Z",
+                          "updatedAt": "2026-06-05T13:20:48.000Z",
+                          "uid": "35240-6664a23e-df1e-4f1e-8bd9-3e254ff47297"
+                        },
+                        {
+                          "id": "cbccc19b-0758-4185-b133-90d4fa54161f",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/results/:result_handler?page=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "results",
+                                ":result_handler"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1.",
+                                  "key": "page",
+                                  "value": "0"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "result_handler"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:48.000Z",
+                          "updatedAt": "2026-06-05T13:20:48.000Z",
+                          "uid": "35240-cbccc19b-0758-4185-b133-90d4fa54161f"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:20:48.000Z",
+                      "updatedAt": "2026-06-05T13:20:48.000Z",
+                      "uid": "35240-160da789-28ed-4cfa-ba47-5bf033b436eb"
+                    }
+                  ],
+                  "id": "f9f9ff1c-b419-4e3f-94ae-ff50d481449e",
+                  "createdAt": "2026-06-05T13:20:48.000Z",
+                  "updatedAt": "2026-06-05T13:20:48.000Z",
+                  "uid": "35240-f9f9ff1c-b419-4e3f-94ae-ff50d481449e"
+                }
+              ],
+              "id": "50a2afb1-bb52-48af-82a0-f183d4b4458e",
+              "createdAt": "2026-06-05T13:20:48.000Z",
+              "updatedAt": "2026-06-05T13:20:48.000Z",
+              "uid": "35240-50a2afb1-bb52-48af-82a0-f183d4b4458e"
+            }
+          ],
+          "id": "0e79f18a-1a88-4631-88fd-839368a4a1aa",
+          "createdAt": "2026-06-05T13:20:48.000Z",
+          "updatedAt": "2026-06-05T13:20:48.000Z",
+          "uid": "35240-0e79f18a-1a88-4631-88fd-839368a4a1aa"
+        }
+      ],
+      "id": "129eff1a-b892-4fd7-8a80-b6c031828132",
+      "createdAt": "2026-06-05T13:20:48.000Z",
+      "updatedAt": "2026-06-05T13:20:48.000Z",
+      "uid": "35240-129eff1a-b892-4fd7-8a80-b6c031828132"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://org-account.snowflakecomputing.com"
+    }
+  ]
+}

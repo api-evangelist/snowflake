@@ -1,0 +1,2265 @@
+{
+  "info": {
+    "_postman_id": "2819a5cd-7336-4b54-a237-4ed0ad0d02ff",
+    "name": "Snowflake Notification Integration API",
+    "description": "The Snowflake Notification Integration API is a REST API that you can use to access, update, and perform certain actions on Notification Integration resource in a Snowflake database.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:20:34.000Z",
+    "updatedAt": "2026-06-05T13:20:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2819a5cd-7336-4b54-a237-4ed0ad0d02ff"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "notification-integrations",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "Fetch a Notification Integration",
+                      "id": "5ff03fd3-8aad-4f1a-9b65-62868edfb271",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e9ef7876-f847-40f4-89a6-25ff72035933",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Fetch a notification integration"
+                      },
+                      "response": [
+                        {
+                          "id": "d3abe37e-4012-4b79-bbbb-c31b51e45f1c",
+                          "name": "successful",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-Snowflake-Request-ID",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Link",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-d3abe37e-4012-4b79-bbbb-c31b51e45f1c"
+                        },
+                        {
+                          "id": "80f6cb30-5aa5-4bd0-a9a9-2a5d50db70ca",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-80f6cb30-5aa5-4bd0-a9a9-2a5d50db70ca"
+                        },
+                        {
+                          "id": "dd5ab490-819b-45b7-b99d-1385af214a31",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-dd5ab490-819b-45b7-b99d-1385af214a31"
+                        },
+                        {
+                          "id": "6db97803-2236-4498-9e05-1dab01557426",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-6db97803-2236-4498-9e05-1dab01557426"
+                        },
+                        {
+                          "id": "a4763ff5-ac95-4d46-a4ba-fb252977506a",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-a4763ff5-ac95-4d46-a4ba-fb252977506a"
+                        },
+                        {
+                          "id": "de014d67-e051-4453-b0d5-ca984e757320",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-de014d67-e051-4453-b0d5-ca984e757320"
+                        },
+                        {
+                          "id": "8a733b7a-399a-4ca5-b662-6a802248f118",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-8a733b7a-399a-4ca5-b662-6a802248f118"
+                        },
+                        {
+                          "id": "532bef87-46c1-41fa-9fdc-2742c41b864e",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-532bef87-46c1-41fa-9fdc-2742c41b864e"
+                        },
+                        {
+                          "id": "7497594d-4b5c-4e0f-9537-cb7da3735bf0",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-7497594d-4b5c-4e0f-9537-cb7da3735bf0"
+                        },
+                        {
+                          "id": "1dc6765d-7277-45fc-bf7e-958d252a2798",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-1dc6765d-7277-45fc-bf7e-958d252a2798"
+                        },
+                        {
+                          "id": "bf1fbbc8-792e-4f33-9af7-80f547b945f1",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-bf1fbbc8-792e-4f33-9af7-80f547b945f1"
+                        },
+                        {
+                          "id": "68531504-d76b-4e75-a6c9-0375f0018a9a",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-68531504-d76b-4e75-a6c9-0375f0018a9a"
+                        },
+                        {
+                          "id": "2cc37f94-7001-4085-9508-29e980d28b00",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-2cc37f94-7001-4085-9508-29e980d28b00"
+                        },
+                        {
+                          "id": "2f65e46e-0f3f-4e24-8ffc-bd76163b36c4",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-2f65e46e-0f3f-4e24-8ffc-bd76163b36c4"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:20:34.000Z",
+                      "updatedAt": "2026-06-05T13:20:34.000Z",
+                      "uid": "35240-5ff03fd3-8aad-4f1a-9b65-62868edfb271"
+                    },
+                    {
+                      "name": "Delete a Notification Integration",
+                      "id": "58812499-183c-4978-bd02-bf68d1890615",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "17c9626e-6fdb-4c63-96fb-d919d612a2e9",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Delete a notification integration"
+                      },
+                      "response": [
+                        {
+                          "id": "bb2328ee-d674-4fd0-80f4-b272cccbb7f2",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-bb2328ee-d674-4fd0-80f4-b272cccbb7f2"
+                        },
+                        {
+                          "id": "dcde09a6-0138-487f-a98a-42ebfaa9756d",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-dcde09a6-0138-487f-a98a-42ebfaa9756d"
+                        },
+                        {
+                          "id": "ac0b3619-b65f-4d2e-bb70-d014952f0d89",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-ac0b3619-b65f-4d2e-bb70-d014952f0d89"
+                        },
+                        {
+                          "id": "e7562b69-629a-4ef5-8971-b5d7f0b6c9c9",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-e7562b69-629a-4ef5-8971-b5d7f0b6c9c9"
+                        },
+                        {
+                          "id": "c8382948-f52f-4159-8c29-f39714f1f2a2",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-c8382948-f52f-4159-8c29-f39714f1f2a2"
+                        },
+                        {
+                          "id": "58e1e0c2-b22d-420a-be5e-b7a28d0dd39d",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-58e1e0c2-b22d-420a-be5e-b7a28d0dd39d"
+                        },
+                        {
+                          "id": "e6472196-3e48-45bc-985e-5dea34b0acaa",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-e6472196-3e48-45bc-985e-5dea34b0acaa"
+                        },
+                        {
+                          "id": "f91380cb-d085-47d6-85dc-be88132d18c4",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-f91380cb-d085-47d6-85dc-be88132d18c4"
+                        },
+                        {
+                          "id": "692f4883-1b60-4d7f-807f-05c6d6cb14f4",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-692f4883-1b60-4d7f-807f-05c6d6cb14f4"
+                        },
+                        {
+                          "id": "51fc03ce-de29-4e81-9f3b-c76ec8b34d43",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-51fc03ce-de29-4e81-9f3b-c76ec8b34d43"
+                        },
+                        {
+                          "id": "a1e6e251-e0e3-4eb6-8e32-b16489c974e2",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-a1e6e251-e0e3-4eb6-8e32-b16489c974e2"
+                        },
+                        {
+                          "id": "c31d8799-3801-4848-9865-d06d2d80276a",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-c31d8799-3801-4848-9865-d06d2d80276a"
+                        },
+                        {
+                          "id": "be663f06-c3ae-4194-b8fc-73e8117d8d9e",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-be663f06-c3ae-4194-b8fc-73e8117d8d9e"
+                        },
+                        {
+                          "id": "a519a1cd-2097-4ea9-b34f-3de75b2bd318",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/notification-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "notification-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:35.000Z",
+                          "updatedAt": "2026-06-05T13:20:35.000Z",
+                          "uid": "35240-a519a1cd-2097-4ea9-b34f-3de75b2bd318"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:20:34.000Z",
+                      "updatedAt": "2026-06-05T13:20:34.000Z",
+                      "uid": "35240-58812499-183c-4978-bd02-bf68d1890615"
+                    }
+                  ],
+                  "id": "14a0e66d-1288-4a85-a119-0ec860fc232f",
+                  "createdAt": "2026-06-05T13:20:34.000Z",
+                  "updatedAt": "2026-06-05T13:20:34.000Z",
+                  "uid": "35240-14a0e66d-1288-4a85-a119-0ec860fc232f"
+                },
+                {
+                  "name": "List Notification Integrations",
+                  "id": "3342b8be-3082-45c2-98c0-45daa1276fdb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "notification-integrations"
+                      ]
+                    },
+                    "description": "List notification integrations"
+                  },
+                  "response": [
+                    {
+                      "id": "6dbd79e7-6c61-42f3-b1d8-4d71b1ae7ffb",
+                      "name": "successful",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Snowflake-Request-ID",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Link",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": \"\\\"g~G%4\\\"\\\"\\\"\",\n    \"notification_hook\": {\n      \"type\": \"WEBHOOK\"\n    },\n    \"enabled\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"created_on\": \"<dateTime>\"\n  },\n  {\n    \"name\": \"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\",\n    \"notification_hook\": {\n      \"type\": \"WEBHOOK\"\n    },\n    \"enabled\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"created_on\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-6dbd79e7-6c61-42f3-b1d8-4d71b1ae7ffb"
+                    },
+                    {
+                      "id": "c840456a-f40e-4fe0-a60b-c192f6f05521",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-c840456a-f40e-4fe0-a60b-c192f6f05521"
+                    },
+                    {
+                      "id": "882544e6-f6d2-4ee1-b57c-ee4b3a489c52",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-882544e6-f6d2-4ee1-b57c-ee4b3a489c52"
+                    },
+                    {
+                      "id": "7d885fad-c679-4a2a-a659-f25783c94738",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-7d885fad-c679-4a2a-a659-f25783c94738"
+                    },
+                    {
+                      "id": "aae89f3e-bf6f-4758-81dc-49ac1b3cf505",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-aae89f3e-bf6f-4758-81dc-49ac1b3cf505"
+                    },
+                    {
+                      "id": "6b399dd0-6572-48a6-92ed-e4aeb76bbdd9",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-6b399dd0-6572-48a6-92ed-e4aeb76bbdd9"
+                    },
+                    {
+                      "id": "0d6ff71a-b34b-4625-a025-36c200c9f7d6",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-0d6ff71a-b34b-4625-a025-36c200c9f7d6"
+                    },
+                    {
+                      "id": "c91d12bd-091e-409b-a063-f771e592e400",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-c91d12bd-091e-409b-a063-f771e592e400"
+                    },
+                    {
+                      "id": "8aaa7df9-422e-416c-afed-f8a6b968fe8b",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-8aaa7df9-422e-416c-afed-f8a6b968fe8b"
+                    },
+                    {
+                      "id": "584a4f34-3656-4f8f-8430-1103ac7cc23d",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-584a4f34-3656-4f8f-8430-1103ac7cc23d"
+                    },
+                    {
+                      "id": "fb3edb88-c31d-456b-baec-68efe08f6b9c",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-fb3edb88-c31d-456b-baec-68efe08f6b9c"
+                    },
+                    {
+                      "id": "1547c062-479e-4fcb-862a-a5569679b852",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-1547c062-479e-4fcb-862a-a5569679b852"
+                    },
+                    {
+                      "id": "2f96b388-4888-4c71-8b7a-a499ea3ea962",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-2f96b388-4888-4c71-8b7a-a499ea3ea962"
+                    },
+                    {
+                      "id": "0b95b334-5bf8-4290-b809-b4c3082f8569",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-0b95b334-5bf8-4290-b809-b4c3082f8569"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:20:34.000Z",
+                  "updatedAt": "2026-06-05T13:20:34.000Z",
+                  "uid": "35240-3342b8be-3082-45c2-98c0-45daa1276fdb"
+                },
+                {
+                  "name": "Create a Notification Integration",
+                  "id": "243993c5-3577-438f-8498-c5bbf46b4235",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "notification-integrations"
+                      ]
+                    },
+                    "description": "Create a notification integration"
+                  },
+                  "response": [
+                    {
+                      "id": "0cf5095d-f46f-413a-9416-99d51814624c",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-0cf5095d-f46f-413a-9416-99d51814624c"
+                    },
+                    {
+                      "id": "881aed8b-23bc-4918-95f0-b4b513996997",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-881aed8b-23bc-4918-95f0-b4b513996997"
+                    },
+                    {
+                      "id": "bb404a4a-fa70-4b22-a595-7744742a6d8d",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-bb404a4a-fa70-4b22-a595-7744742a6d8d"
+                    },
+                    {
+                      "id": "41cd78a3-f0b5-4dc4-817d-4a2dadfb7eee",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-41cd78a3-f0b5-4dc4-817d-4a2dadfb7eee"
+                    },
+                    {
+                      "id": "33e274f7-b0bb-45a4-8f9c-fa1cf1b2f946",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-33e274f7-b0bb-45a4-8f9c-fa1cf1b2f946"
+                    },
+                    {
+                      "id": "d0707232-ce3d-417b-b5c9-8b35f2571f9a",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-d0707232-ce3d-417b-b5c9-8b35f2571f9a"
+                    },
+                    {
+                      "id": "d4f398fe-b3da-48cc-abc2-deb4c6d2857a",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-d4f398fe-b3da-48cc-abc2-deb4c6d2857a"
+                    },
+                    {
+                      "id": "8014944d-a5e9-47e5-acf6-ae1f7b39969c",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-8014944d-a5e9-47e5-acf6-ae1f7b39969c"
+                    },
+                    {
+                      "id": "3821062d-258d-4b94-ab5f-ae7d53eefa9d",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-3821062d-258d-4b94-ab5f-ae7d53eefa9d"
+                    },
+                    {
+                      "id": "f5197f53-ef9b-45c2-b5e7-1f227f3ab73e",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-f5197f53-ef9b-45c2-b5e7-1f227f3ab73e"
+                    },
+                    {
+                      "id": "f123461c-7934-4c64-af2e-603b0127da7a",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-f123461c-7934-4c64-af2e-603b0127da7a"
+                    },
+                    {
+                      "id": "90536f3a-18a8-41f1-bd8f-0a0c889d5ff2",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-90536f3a-18a8-41f1-bd8f-0a0c889d5ff2"
+                    },
+                    {
+                      "id": "3302f468-5d09-4052-be29-c3633c1b44f8",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-3302f468-5d09-4052-be29-c3633c1b44f8"
+                    },
+                    {
+                      "id": "a4597d2f-7e0e-4823-8d21-3734c5c2cdf5",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"u}\\\"\\\"\\\"\",\n  \"notification_hook\": {\n    \"type\": \"WEBHOOK\"\n  },\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/notification-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "notification-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:35.000Z",
+                      "updatedAt": "2026-06-05T13:20:35.000Z",
+                      "uid": "35240-a4597d2f-7e0e-4823-8d21-3734c5c2cdf5"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:20:34.000Z",
+                  "updatedAt": "2026-06-05T13:20:34.000Z",
+                  "uid": "35240-243993c5-3577-438f-8498-c5bbf46b4235"
+                }
+              ],
+              "id": "9ad1b8c0-2cc9-41f2-8021-de95b99724a5",
+              "createdAt": "2026-06-05T13:20:34.000Z",
+              "updatedAt": "2026-06-05T13:20:34.000Z",
+              "uid": "35240-9ad1b8c0-2cc9-41f2-8021-de95b99724a5"
+            }
+          ],
+          "id": "13461325-eb08-48cd-b0c6-599c55f198fb",
+          "createdAt": "2026-06-05T13:20:34.000Z",
+          "updatedAt": "2026-06-05T13:20:34.000Z",
+          "uid": "35240-13461325-eb08-48cd-b0c6-599c55f198fb"
+        }
+      ],
+      "id": "df1752e1-d5bd-4eec-869a-b5a910db0b76",
+      "createdAt": "2026-06-05T13:20:34.000Z",
+      "updatedAt": "2026-06-05T13:20:34.000Z",
+      "uid": "35240-df1752e1-d5bd-4eec-869a-b5a910db0b76"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://org-account.snowflakecomputing.com"
+    }
+  ]
+}

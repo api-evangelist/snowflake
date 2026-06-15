@@ -1,0 +1,3056 @@
+{
+  "info": {
+    "_postman_id": "b72e049d-21d0-4bb1-b3db-0b92f3199a64",
+    "name": "Snowflake View API",
+    "description": "The Snowflake View API is a REST API that you can use to access, update, and perform certain actions on View resource in a Snowflake database.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:21:21.000Z",
+    "updatedAt": "2026-06-05T13:21:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b72e049d-21d0-4bb1-b3db-0b92f3199a64"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "databases",
+              "item": [
+                {
+                  "name": "{database}",
+                  "item": [
+                    {
+                      "name": "schemas",
+                      "item": [
+                        {
+                          "name": "{schema}",
+                          "item": [
+                            {
+                              "name": "views",
+                              "item": [
+                                {
+                                  "name": "{name}",
+                                  "item": [
+                                    {
+                                      "name": "Fetch a View",
+                                      "id": "443e6c3d-04cb-4901-9ef1-dac00c5a116f",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views",
+                                            ":name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "243ad57f-60e5-4dfa-8609-47fb35d3c1ea",
+                                              "key": "database"
+                                            },
+                                            {
+                                              "id": "ada0fb30-5c10-4ad1-80a7-16774c050359",
+                                              "key": "schema"
+                                            },
+                                            {
+                                              "id": "bda08d97-ff51-48fa-9870-d9d2b5d1a6d3",
+                                              "key": "name"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Fetch a view"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "6864fc77-b0fc-4f99-b33c-56c99a1bea53",
+                                          "name": "successful",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            },
+                                            {
+                                              "disabled": false,
+                                              "description": {
+                                                "content": "",
+                                                "type": "text/plain"
+                                              },
+                                              "key": "X-Snowflake-Request-ID",
+                                              "value": ""
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-6864fc77-b0fc-4f99-b33c-56c99a1bea53"
+                                        },
+                                        {
+                                          "id": "a13a1dae-1594-4498-acb8-95290d937fef",
+                                          "name": "202 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Accepted",
+                                          "code": 202,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-a13a1dae-1594-4498-acb8-95290d937fef"
+                                        },
+                                        {
+                                          "id": "ec6e88ba-bc46-4983-a916-fd9b65a6143e",
+                                          "name": "400 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Bad Request",
+                                          "code": 400,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-ec6e88ba-bc46-4983-a916-fd9b65a6143e"
+                                        },
+                                        {
+                                          "id": "499d0725-9532-4ee8-871e-44b610f2932c",
+                                          "name": "401 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-499d0725-9532-4ee8-871e-44b610f2932c"
+                                        },
+                                        {
+                                          "id": "ae6b5a08-4173-418f-83f1-ab51bbff0bc4",
+                                          "name": "403 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-ae6b5a08-4173-418f-83f1-ab51bbff0bc4"
+                                        },
+                                        {
+                                          "id": "624ab59a-cdc8-4ae7-8b58-2006d3e3ebed",
+                                          "name": "404 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Not Found",
+                                          "code": 404,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-624ab59a-cdc8-4ae7-8b58-2006d3e3ebed"
+                                        },
+                                        {
+                                          "id": "a5166478-f3dc-446c-8da3-e1495838fd7d",
+                                          "name": "405 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Method Not Allowed",
+                                          "code": 405,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-a5166478-f3dc-446c-8da3-e1495838fd7d"
+                                        },
+                                        {
+                                          "id": "09072d9c-c4bf-4b4d-8022-a8f7e98121d5",
+                                          "name": "408 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Request Timeout",
+                                          "code": 408,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-09072d9c-c4bf-4b4d-8022-a8f7e98121d5"
+                                        },
+                                        {
+                                          "id": "caa53ee8-137e-4c08-b0b3-aa3fb7b58e07",
+                                          "name": "409 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Conflict",
+                                          "code": 409,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-caa53ee8-137e-4c08-b0b3-aa3fb7b58e07"
+                                        },
+                                        {
+                                          "id": "f94f5bac-8c3c-44db-a867-bea4481a7085",
+                                          "name": "410 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Gone",
+                                          "code": 410,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-f94f5bac-8c3c-44db-a867-bea4481a7085"
+                                        },
+                                        {
+                                          "id": "3c138a9b-a489-4f73-93e9-384d83f91028",
+                                          "name": "429 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-3c138a9b-a489-4f73-93e9-384d83f91028"
+                                        },
+                                        {
+                                          "id": "0b6d9fc6-ee7e-48a5-b4bf-f3a7d71ee59e",
+                                          "name": "500 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-0b6d9fc6-ee7e-48a5-b4bf-f3a7d71ee59e"
+                                        },
+                                        {
+                                          "id": "bc3cdf50-513a-4ee6-b382-d7b8ff20d006",
+                                          "name": "503 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Service Unavailable",
+                                          "code": 503,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-bc3cdf50-513a-4ee6-b382-d7b8ff20d006"
+                                        },
+                                        {
+                                          "id": "e48c1668-bb63-43f8-9b1b-1456f2ab617e",
+                                          "name": "504 response",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Gateway Timeout",
+                                          "code": 504,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-e48c1668-bb63-43f8-9b1b-1456f2ab617e"
+                                        }
+                                      ],
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-443e6c3d-04cb-4901-9ef1-dac00c5a116f"
+                                    },
+                                    {
+                                      "name": "Delete a View",
+                                      "id": "6b812ae2-d94b-4e7a-8654-86d9dff22286",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "DELETE",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views",
+                                            ":name"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "d66b25b4-882a-4cfb-8f27-b3ba8fc4c1b6",
+                                              "key": "database"
+                                            },
+                                            {
+                                              "id": "cc5621ba-2924-4961-a428-a5b9d18ca04a",
+                                              "key": "schema"
+                                            },
+                                            {
+                                              "id": "73bb7c10-11d1-42fa-957c-b03031467dc8",
+                                              "key": "name"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Delete a view"
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "1a0a2cf5-63a7-4482-804a-c2d37c5a05c0",
+                                          "name": "200 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-1a0a2cf5-63a7-4482-804a-c2d37c5a05c0"
+                                        },
+                                        {
+                                          "id": "45b2c259-4f1f-4577-a8d3-b4de8d29c7f4",
+                                          "name": "202 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Accepted",
+                                          "code": 202,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-45b2c259-4f1f-4577-a8d3-b4de8d29c7f4"
+                                        },
+                                        {
+                                          "id": "9fc81a9f-02c3-46ac-aeb6-fa7c73fad16b",
+                                          "name": "400 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Bad Request",
+                                          "code": 400,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-9fc81a9f-02c3-46ac-aeb6-fa7c73fad16b"
+                                        },
+                                        {
+                                          "id": "1ea719ef-6d36-4dae-b3b3-e58ee0a88eb5",
+                                          "name": "401 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-1ea719ef-6d36-4dae-b3b3-e58ee0a88eb5"
+                                        },
+                                        {
+                                          "id": "6a5158a6-4603-4823-b833-974c4c1fd551",
+                                          "name": "403 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Forbidden",
+                                          "code": 403,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-6a5158a6-4603-4823-b833-974c4c1fd551"
+                                        },
+                                        {
+                                          "id": "112ad840-9713-4418-bb5c-ad6783098629",
+                                          "name": "404 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Not Found",
+                                          "code": 404,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-112ad840-9713-4418-bb5c-ad6783098629"
+                                        },
+                                        {
+                                          "id": "dd8aa240-97e0-4872-aff1-7f65d672e977",
+                                          "name": "405 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Method Not Allowed",
+                                          "code": 405,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-dd8aa240-97e0-4872-aff1-7f65d672e977"
+                                        },
+                                        {
+                                          "id": "bafac47c-865d-4cbf-a357-6e76b778434f",
+                                          "name": "408 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Request Timeout",
+                                          "code": 408,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-bafac47c-865d-4cbf-a357-6e76b778434f"
+                                        },
+                                        {
+                                          "id": "ee4926ef-d412-405a-8315-fbdbdf34bfe9",
+                                          "name": "409 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Conflict",
+                                          "code": 409,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-ee4926ef-d412-405a-8315-fbdbdf34bfe9"
+                                        },
+                                        {
+                                          "id": "7e119c6e-14e0-47cc-95df-c95922d639ac",
+                                          "name": "410 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Gone",
+                                          "code": 410,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-7e119c6e-14e0-47cc-95df-c95922d639ac"
+                                        },
+                                        {
+                                          "id": "1dfffb1d-905e-4bee-91cf-561c73f46b8f",
+                                          "name": "429 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Too Many Requests",
+                                          "code": 429,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-1dfffb1d-905e-4bee-91cf-561c73f46b8f"
+                                        },
+                                        {
+                                          "id": "75912ba8-7452-4ec3-b9f0-6bc753e66b73",
+                                          "name": "500 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Internal Server Error",
+                                          "code": 500,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-75912ba8-7452-4ec3-b9f0-6bc753e66b73"
+                                        },
+                                        {
+                                          "id": "14623b1b-9644-46d7-bbf5-2ca10b0d0754",
+                                          "name": "503 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Service Unavailable",
+                                          "code": 503,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-14623b1b-9644-46d7-bbf5-2ca10b0d0754"
+                                        },
+                                        {
+                                          "id": "b4e75714-8ca3-4a8c-abe0-57fbf0419ecd",
+                                          "name": "504 response",
+                                          "originalRequest": {
+                                            "method": "DELETE",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views/:name",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "api",
+                                                "v2",
+                                                "databases",
+                                                ":database",
+                                                "schemas",
+                                                ":schema",
+                                                "views",
+                                                ":name"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "database"
+                                                },
+                                                {
+                                                  "key": "schema"
+                                                },
+                                                {
+                                                  "key": "name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Gateway Timeout",
+                                          "code": 504,
+                                          "_postman_previewlanguage": "text",
+                                          "header": [],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": null,
+                                          "createdAt": "2026-06-05T13:21:22.000Z",
+                                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                                          "uid": "35240-b4e75714-8ca3-4a8c-abe0-57fbf0419ecd"
+                                        }
+                                      ],
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-6b812ae2-d94b-4e7a-8654-86d9dff22286"
+                                    }
+                                  ],
+                                  "id": "0d15ad05-f479-45f1-9234-1bcadc563a42",
+                                  "createdAt": "2026-06-05T13:21:22.000Z",
+                                  "updatedAt": "2026-06-05T13:21:22.000Z",
+                                  "uid": "35240-0d15ad05-f479-45f1-9234-1bcadc563a42"
+                                },
+                                {
+                                  "name": "List Views",
+                                  "id": "067eaf53-f488-49f5-8f73-7c0f37f6c412",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "databases",
+                                        ":database",
+                                        "schemas",
+                                        ":schema",
+                                        "views"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Optionally includes dependency information of the view.",
+                                          "key": "deep",
+                                          "value": "<boolean>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "575e5674-08f4-4285-9cfe-7844ea760d63",
+                                          "key": "database"
+                                        },
+                                        {
+                                          "id": "8373adbc-e78d-4619-a4a6-6e4bbcf2b037",
+                                          "key": "schema"
+                                        }
+                                      ]
+                                    },
+                                    "description": "List views"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "8e34d33f-ff17-4a2d-a5b7-0ed369e3a4c9",
+                                      "name": "successful",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        },
+                                        {
+                                          "disabled": false,
+                                          "description": {
+                                            "content": "",
+                                            "type": "text/plain"
+                                          },
+                                          "key": "X-Snowflake-Request-ID",
+                                          "value": ""
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "[\n  {\n    \"name\": \"<string>\",\n    \"columns\": [\n      {\n        \"name\": \"<string>\",\n        \"comment\": \"<string>\",\n        \"datatype\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"comment\": \"<string>\",\n        \"datatype\": \"<string>\"\n      }\n    ],\n    \"query\": \"<string>\",\n    \"secure\": \"<boolean>\",\n    \"kind\": \"PERMANENT\",\n    \"recursive\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"database_name\": \"<string>\",\n    \"schema_name\": \"<string>\",\n    \"owner\": \"<string>\",\n    \"owner_role_type\": \"<string>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"columns\": [\n      {\n        \"name\": \"<string>\",\n        \"comment\": \"<string>\",\n        \"datatype\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"comment\": \"<string>\",\n        \"datatype\": \"<string>\"\n      }\n    ],\n    \"query\": \"<string>\",\n    \"secure\": \"<boolean>\",\n    \"kind\": \"PERMANENT\",\n    \"recursive\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"database_name\": \"<string>\",\n    \"schema_name\": \"<string>\",\n    \"owner\": \"<string>\",\n    \"owner_role_type\": \"<string>\"\n  }\n]",
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-8e34d33f-ff17-4a2d-a5b7-0ed369e3a4c9"
+                                    },
+                                    {
+                                      "id": "2cc4bc4f-b1d2-4a4e-9d76-332bf5322e5d",
+                                      "name": "202 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Accepted",
+                                      "code": 202,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-2cc4bc4f-b1d2-4a4e-9d76-332bf5322e5d"
+                                    },
+                                    {
+                                      "id": "8bf55148-69dd-49a7-89e2-57485315cae1",
+                                      "name": "400 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-8bf55148-69dd-49a7-89e2-57485315cae1"
+                                    },
+                                    {
+                                      "id": "939ee105-a5fa-493b-9ac9-4321959dbad9",
+                                      "name": "401 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-939ee105-a5fa-493b-9ac9-4321959dbad9"
+                                    },
+                                    {
+                                      "id": "d1e165b6-2bff-46c4-bfa6-037f96461dba",
+                                      "name": "403 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-d1e165b6-2bff-46c4-bfa6-037f96461dba"
+                                    },
+                                    {
+                                      "id": "0b274104-9506-4866-908d-99d25a179de6",
+                                      "name": "404 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-0b274104-9506-4866-908d-99d25a179de6"
+                                    },
+                                    {
+                                      "id": "a147ef3c-600b-4121-9bc9-bbc2b49340eb",
+                                      "name": "405 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Method Not Allowed",
+                                      "code": 405,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-a147ef3c-600b-4121-9bc9-bbc2b49340eb"
+                                    },
+                                    {
+                                      "id": "dd1543b4-2147-4293-8b7a-0c87d1f86483",
+                                      "name": "408 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Request Timeout",
+                                      "code": 408,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-dd1543b4-2147-4293-8b7a-0c87d1f86483"
+                                    },
+                                    {
+                                      "id": "03807040-9cdd-4157-a581-bae601eac432",
+                                      "name": "409 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Conflict",
+                                      "code": 409,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-03807040-9cdd-4157-a581-bae601eac432"
+                                    },
+                                    {
+                                      "id": "9f720090-e5d5-432f-ac54-d91d8b08e260",
+                                      "name": "410 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Gone",
+                                      "code": 410,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-9f720090-e5d5-432f-ac54-d91d8b08e260"
+                                    },
+                                    {
+                                      "id": "b87ef663-d282-4e42-818d-6ec4a076e430",
+                                      "name": "429 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-b87ef663-d282-4e42-818d-6ec4a076e430"
+                                    },
+                                    {
+                                      "id": "da354750-dc0b-4bfc-8f2e-a7d6f1d24b99",
+                                      "name": "500 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-da354750-dc0b-4bfc-8f2e-a7d6f1d24b99"
+                                    },
+                                    {
+                                      "id": "422ebfed-4ced-44cb-90bb-ab5e6b654ffd",
+                                      "name": "503 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Service Unavailable",
+                                      "code": 503,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-422ebfed-4ced-44cb-90bb-ab5e6b654ffd"
+                                    },
+                                    {
+                                      "id": "6b499275-27c8-4fc4-9d27-400ca2403b7e",
+                                      "name": "504 response",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views?deep=<boolean>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "Optionally includes dependency information of the view.",
+                                              "key": "deep",
+                                              "value": "<boolean>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Gateway Timeout",
+                                      "code": 504,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-6b499275-27c8-4fc4-9d27-400ca2403b7e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T13:21:22.000Z",
+                                  "updatedAt": "2026-06-05T13:21:22.000Z",
+                                  "uid": "35240-067eaf53-f488-49f5-8f73-7c0f37f6c412"
+                                },
+                                {
+                                  "name": "Create a View",
+                                  "id": "2f3bc859-5579-40b7-96d5-44976c99f952",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "v2",
+                                        "databases",
+                                        ":database",
+                                        "schemas",
+                                        ":schema",
+                                        "views"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "7dd83daf-a705-4a73-9a8c-4f2a35149afa",
+                                          "key": "database"
+                                        },
+                                        {
+                                          "id": "e00719bd-5413-44e0-b9db-6a37cddcee9d",
+                                          "key": "schema"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Create a view"
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "9b9e9a97-b44d-4aa1-932c-dba2e7f4086b",
+                                      "name": "200 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-9b9e9a97-b44d-4aa1-932c-dba2e7f4086b"
+                                    },
+                                    {
+                                      "id": "de96edc2-efc8-4227-9976-243def944ba5",
+                                      "name": "202 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Accepted",
+                                      "code": 202,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-de96edc2-efc8-4227-9976-243def944ba5"
+                                    },
+                                    {
+                                      "id": "b1acaf22-2054-4fe6-a1db-d2804da07205",
+                                      "name": "400 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-b1acaf22-2054-4fe6-a1db-d2804da07205"
+                                    },
+                                    {
+                                      "id": "441551ee-dc9e-41e1-850b-12bdc97b8dc0",
+                                      "name": "401 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-441551ee-dc9e-41e1-850b-12bdc97b8dc0"
+                                    },
+                                    {
+                                      "id": "7281c67d-2a88-4726-8e97-2dca31b9269d",
+                                      "name": "403 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Forbidden",
+                                      "code": 403,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-7281c67d-2a88-4726-8e97-2dca31b9269d"
+                                    },
+                                    {
+                                      "id": "67a68c26-879d-48de-be6d-9d8b140bb22d",
+                                      "name": "404 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-67a68c26-879d-48de-be6d-9d8b140bb22d"
+                                    },
+                                    {
+                                      "id": "f71165f2-a6bb-4975-95ce-4c78ff357cd3",
+                                      "name": "405 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Method Not Allowed",
+                                      "code": 405,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-f71165f2-a6bb-4975-95ce-4c78ff357cd3"
+                                    },
+                                    {
+                                      "id": "f77612c8-7a91-4c0d-a7c8-0a705930c6ea",
+                                      "name": "408 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Request Timeout",
+                                      "code": 408,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-f77612c8-7a91-4c0d-a7c8-0a705930c6ea"
+                                    },
+                                    {
+                                      "id": "a65a5637-1222-4cfa-a19e-6c04a652dcb8",
+                                      "name": "409 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Conflict",
+                                      "code": 409,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-a65a5637-1222-4cfa-a19e-6c04a652dcb8"
+                                    },
+                                    {
+                                      "id": "c1bd96da-22a6-4cc3-b5eb-f4e87ee546b2",
+                                      "name": "410 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Gone",
+                                      "code": 410,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-c1bd96da-22a6-4cc3-b5eb-f4e87ee546b2"
+                                    },
+                                    {
+                                      "id": "97df3e03-b39c-4c6a-9b14-7abce7054f53",
+                                      "name": "429 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Too Many Requests",
+                                      "code": 429,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-97df3e03-b39c-4c6a-9b14-7abce7054f53"
+                                    },
+                                    {
+                                      "id": "b1dd3967-b772-46ac-8029-c4180d450cdc",
+                                      "name": "500 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Internal Server Error",
+                                      "code": 500,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-b1dd3967-b772-46ac-8029-c4180d450cdc"
+                                    },
+                                    {
+                                      "id": "2686ab95-ed5b-475e-99ab-30e160571723",
+                                      "name": "503 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Service Unavailable",
+                                      "code": 503,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-2686ab95-ed5b-475e-99ab-30e160571723"
+                                    },
+                                    {
+                                      "id": "38aa3785-ead6-4d73-af36-7c70e5675926",
+                                      "name": "504 response",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"comment\": \"<string>\",\n      \"datatype\": \"<string>\"\n    }\n  ],\n  \"query\": \"<string>\",\n  \"secure\": \"<boolean>\",\n  \"kind\": \"PERMANENT\",\n  \"recursive\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"database_name\": \"<string>\",\n  \"schema_name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"owner_role_type\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/views",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "api",
+                                            "v2",
+                                            "databases",
+                                            ":database",
+                                            "schemas",
+                                            ":schema",
+                                            "views"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "database"
+                                            },
+                                            {
+                                              "key": "schema"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Gateway Timeout",
+                                      "code": 504,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:21:22.000Z",
+                                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                                      "uid": "35240-38aa3785-ead6-4d73-af36-7c70e5675926"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T13:21:22.000Z",
+                                  "updatedAt": "2026-06-05T13:21:22.000Z",
+                                  "uid": "35240-2f3bc859-5579-40b7-96d5-44976c99f952"
+                                }
+                              ],
+                              "id": "178f63c0-7308-4f0f-9be5-7167d6a73971",
+                              "createdAt": "2026-06-05T13:21:22.000Z",
+                              "updatedAt": "2026-06-05T13:21:22.000Z",
+                              "uid": "35240-178f63c0-7308-4f0f-9be5-7167d6a73971"
+                            }
+                          ],
+                          "id": "6b8e2a53-7afc-4722-b4b7-3707ffe96631",
+                          "createdAt": "2026-06-05T13:21:22.000Z",
+                          "updatedAt": "2026-06-05T13:21:22.000Z",
+                          "uid": "35240-6b8e2a53-7afc-4722-b4b7-3707ffe96631"
+                        }
+                      ],
+                      "id": "c50cdddc-b5e1-4010-a261-cec69d2e43e4",
+                      "createdAt": "2026-06-05T13:21:22.000Z",
+                      "updatedAt": "2026-06-05T13:21:22.000Z",
+                      "uid": "35240-c50cdddc-b5e1-4010-a261-cec69d2e43e4"
+                    }
+                  ],
+                  "id": "1cc7d10e-c8c0-48c6-bc90-a02b6d2c9ff0",
+                  "createdAt": "2026-06-05T13:21:22.000Z",
+                  "updatedAt": "2026-06-05T13:21:22.000Z",
+                  "uid": "35240-1cc7d10e-c8c0-48c6-bc90-a02b6d2c9ff0"
+                }
+              ],
+              "id": "04cb32bf-c965-4ddd-a8f0-9db52cf5dca8",
+              "createdAt": "2026-06-05T13:21:22.000Z",
+              "updatedAt": "2026-06-05T13:21:22.000Z",
+              "uid": "35240-04cb32bf-c965-4ddd-a8f0-9db52cf5dca8"
+            }
+          ],
+          "id": "9c360fa0-a668-4bce-8971-4a0ae19b851b",
+          "createdAt": "2026-06-05T13:21:22.000Z",
+          "updatedAt": "2026-06-05T13:21:22.000Z",
+          "uid": "35240-9c360fa0-a668-4bce-8971-4a0ae19b851b"
+        }
+      ],
+      "id": "d23a8996-02bd-4d0c-8c8d-2b0c0bef8caa",
+      "createdAt": "2026-06-05T13:21:22.000Z",
+      "updatedAt": "2026-06-05T13:21:22.000Z",
+      "uid": "35240-d23a8996-02bd-4d0c-8c8d-2b0c0bef8caa"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://org-account.snowflakecomputing.com"
+    }
+  ]
+}

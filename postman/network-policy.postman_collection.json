@@ -1,0 +1,2247 @@
+{
+  "info": {
+    "_postman_id": "b2b201cd-426f-4da4-a2db-e121e9592c34",
+    "name": "Snowflake Network Policy API",
+    "description": "The Snowflake Network Policy API is a REST API that you can use to access, update, and perform certain actions on Network Policy resource in a Snowflake database.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:20:31.000Z",
+    "updatedAt": "2026-06-05T13:20:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b2b201cd-426f-4da4-a2db-e121e9592c34"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "network-policies",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "Fetch a Network Policy",
+                      "id": "58c1be40-4c47-482b-8d0f-fc7ed1e4168b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "acf5862e-4c55-4135-9e8e-777977caaaab",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Fetch a network policy"
+                      },
+                      "response": [
+                        {
+                          "id": "b4029c7e-4152-4846-b2d9-cf2ca8aeb7f4",
+                          "name": "successful",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-Snowflake-Request-ID",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-b4029c7e-4152-4846-b2d9-cf2ca8aeb7f4"
+                        },
+                        {
+                          "id": "503b1dda-6194-4db8-9fbd-49d91a38ca81",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-503b1dda-6194-4db8-9fbd-49d91a38ca81"
+                        },
+                        {
+                          "id": "e74012ef-4930-4b37-9b50-114a0d960868",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-e74012ef-4930-4b37-9b50-114a0d960868"
+                        },
+                        {
+                          "id": "9d3ce9d2-e1fa-415c-a889-d3724aeeb414",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-9d3ce9d2-e1fa-415c-a889-d3724aeeb414"
+                        },
+                        {
+                          "id": "552fd8b0-b24a-4e6b-90a3-b424f3c80f8e",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-552fd8b0-b24a-4e6b-90a3-b424f3c80f8e"
+                        },
+                        {
+                          "id": "c518dd6a-4868-4045-9535-c867a8469762",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-c518dd6a-4868-4045-9535-c867a8469762"
+                        },
+                        {
+                          "id": "60087ece-8c37-42b6-b54e-ed2ac421800d",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-60087ece-8c37-42b6-b54e-ed2ac421800d"
+                        },
+                        {
+                          "id": "0a48e3b0-7609-451f-99a5-45531845572b",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-0a48e3b0-7609-451f-99a5-45531845572b"
+                        },
+                        {
+                          "id": "6eb486c7-986e-45a7-bc7c-57fdd20aab3a",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-6eb486c7-986e-45a7-bc7c-57fdd20aab3a"
+                        },
+                        {
+                          "id": "f24c6d88-bca8-4ed4-861e-8be792d86be5",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-f24c6d88-bca8-4ed4-861e-8be792d86be5"
+                        },
+                        {
+                          "id": "1bbc2fb6-3cde-4845-99e6-8d3412347079",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-1bbc2fb6-3cde-4845-99e6-8d3412347079"
+                        },
+                        {
+                          "id": "be104ab3-7c72-4df0-ad55-90638747d0a1",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-be104ab3-7c72-4df0-ad55-90638747d0a1"
+                        },
+                        {
+                          "id": "91742c95-4172-40a0-801a-ae0c42b35de1",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-91742c95-4172-40a0-801a-ae0c42b35de1"
+                        },
+                        {
+                          "id": "155e6665-288e-41f2-a9dd-5d71023c6d33",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-155e6665-288e-41f2-a9dd-5d71023c6d33"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-58c1be40-4c47-482b-8d0f-fc7ed1e4168b"
+                    },
+                    {
+                      "name": "Delete a Network Policy",
+                      "id": "c4d4f67a-5398-477e-abac-ba09c370fd00",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "09b58979-21d3-4610-b10d-ec08c95a45a6",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Delete a network policy"
+                      },
+                      "response": [
+                        {
+                          "id": "f41ba8d4-60e5-4b36-b539-5a72a9015fdc",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-f41ba8d4-60e5-4b36-b539-5a72a9015fdc"
+                        },
+                        {
+                          "id": "ccddbb3e-7b6a-46c5-8ac4-9f7447ddae92",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-ccddbb3e-7b6a-46c5-8ac4-9f7447ddae92"
+                        },
+                        {
+                          "id": "15465487-b9ba-4998-9a69-db9641372770",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-15465487-b9ba-4998-9a69-db9641372770"
+                        },
+                        {
+                          "id": "c18982ef-b826-4f26-9b5c-def5ada43b8e",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-c18982ef-b826-4f26-9b5c-def5ada43b8e"
+                        },
+                        {
+                          "id": "802dfc8e-f9a9-4af1-abef-8eed3316a8ab",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-802dfc8e-f9a9-4af1-abef-8eed3316a8ab"
+                        },
+                        {
+                          "id": "08bc74d4-0902-49cd-876b-cf01b30422e6",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-08bc74d4-0902-49cd-876b-cf01b30422e6"
+                        },
+                        {
+                          "id": "4b20c651-3aa8-47c1-8b30-fda6ec7e0f3f",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-4b20c651-3aa8-47c1-8b30-fda6ec7e0f3f"
+                        },
+                        {
+                          "id": "8fe04fc1-96a3-47b3-a13e-24c9fb8dbd90",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-8fe04fc1-96a3-47b3-a13e-24c9fb8dbd90"
+                        },
+                        {
+                          "id": "637b625e-1263-4e33-969c-dd09b031828b",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-637b625e-1263-4e33-969c-dd09b031828b"
+                        },
+                        {
+                          "id": "89a58182-dd52-470b-8a83-bcc03d4a3cd8",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-89a58182-dd52-470b-8a83-bcc03d4a3cd8"
+                        },
+                        {
+                          "id": "b91ae576-d5db-4c7e-8c28-509923eb12a5",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-b91ae576-d5db-4c7e-8c28-509923eb12a5"
+                        },
+                        {
+                          "id": "b918b97a-1a6c-4536-b982-46190919c2a8",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-b918b97a-1a6c-4536-b982-46190919c2a8"
+                        },
+                        {
+                          "id": "ad0cf8f6-1f7a-43f4-92b1-23f9680d8552",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-ad0cf8f6-1f7a-43f4-92b1-23f9680d8552"
+                        },
+                        {
+                          "id": "bdbbeec6-1681-4b8e-80fb-71455839f6a5",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/network-policies/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "network-policies",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:32.000Z",
+                          "updatedAt": "2026-06-05T13:20:32.000Z",
+                          "uid": "35240-bdbbeec6-1681-4b8e-80fb-71455839f6a5"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-c4d4f67a-5398-477e-abac-ba09c370fd00"
+                    }
+                  ],
+                  "id": "1dcc4369-3be8-484e-b86f-817debd47ac5",
+                  "createdAt": "2026-06-05T13:20:32.000Z",
+                  "updatedAt": "2026-06-05T13:20:32.000Z",
+                  "uid": "35240-1dcc4369-3be8-484e-b86f-817debd47ac5"
+                },
+                {
+                  "name": "List Network Policies",
+                  "id": "d1e5b105-1094-4687-be37-fe4dae47c8e1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/network-policies",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "network-policies"
+                      ]
+                    },
+                    "description": "List network policies"
+                  },
+                  "response": [
+                    {
+                      "id": "8958fe79-9592-4a4f-9c79-8b97492d64c6",
+                      "name": "successful",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Snowflake-Request-ID",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": \"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"Su_W+\\\"\",\n    \"allowed_network_rule_list\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"blocked_network_rule_list\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowed_ip_list\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"blocked_ip_list\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"comment\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"owner\": \"InnDMPThPLD\",\n    \"owner_role_type\": \"I3uik\"\n  },\n  {\n    \"name\": \"bhCmxQ1Lr\",\n    \"allowed_network_rule_list\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"blocked_network_rule_list\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowed_ip_list\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"blocked_ip_list\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"comment\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"owner\": \"\\\"\\\"\\\"\\\"\\\"\\\"\\\"iU\\\"\\\"\\\"\\\"e\\\"\",\n    \"owner_role_type\": \"\\\"\\\"\\\")^\\\"\\\"\\\"\\\"\\\"\"\n  }\n]",
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-8958fe79-9592-4a4f-9c79-8b97492d64c6"
+                    },
+                    {
+                      "id": "a015a072-d8fb-4265-8c96-ad5bfd3064c1",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-a015a072-d8fb-4265-8c96-ad5bfd3064c1"
+                    },
+                    {
+                      "id": "eaff5bb5-599c-4a1c-bd3d-1476cbe81966",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-eaff5bb5-599c-4a1c-bd3d-1476cbe81966"
+                    },
+                    {
+                      "id": "0a9f9cec-11a4-4a95-a0c4-86a3aafd8f4d",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-0a9f9cec-11a4-4a95-a0c4-86a3aafd8f4d"
+                    },
+                    {
+                      "id": "08345866-67d9-4ebf-84cd-83243e1f48f7",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-08345866-67d9-4ebf-84cd-83243e1f48f7"
+                    },
+                    {
+                      "id": "c0c4fb12-db2f-4c12-9890-bdca1340e6ff",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-c0c4fb12-db2f-4c12-9890-bdca1340e6ff"
+                    },
+                    {
+                      "id": "390e88e3-d843-4f86-bb95-02276cd9d9eb",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-390e88e3-d843-4f86-bb95-02276cd9d9eb"
+                    },
+                    {
+                      "id": "32307fbd-2e5f-4b30-a9ee-33973c453ead",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-32307fbd-2e5f-4b30-a9ee-33973c453ead"
+                    },
+                    {
+                      "id": "f92a6f78-9792-4ca8-b3c8-8cf6cd7bbcd1",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-f92a6f78-9792-4ca8-b3c8-8cf6cd7bbcd1"
+                    },
+                    {
+                      "id": "f1e1eff3-7a92-4b91-90e0-42cb028db0f7",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-f1e1eff3-7a92-4b91-90e0-42cb028db0f7"
+                    },
+                    {
+                      "id": "dd159c36-75f0-4b6f-b863-bdb85fe7a99e",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-dd159c36-75f0-4b6f-b863-bdb85fe7a99e"
+                    },
+                    {
+                      "id": "acb1f920-e43f-4cdf-bf28-86691529d17b",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-acb1f920-e43f-4cdf-bf28-86691529d17b"
+                    },
+                    {
+                      "id": "be3faf48-94cd-4ed6-b6df-2e8062e6eee8",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-be3faf48-94cd-4ed6-b6df-2e8062e6eee8"
+                    },
+                    {
+                      "id": "b7b1294f-ed39-4bfc-aede-65f8b68bf6b6",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-b7b1294f-ed39-4bfc-aede-65f8b68bf6b6"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:20:32.000Z",
+                  "updatedAt": "2026-06-05T13:20:32.000Z",
+                  "uid": "35240-d1e5b105-1094-4687-be37-fe4dae47c8e1"
+                },
+                {
+                  "name": "Create a Network Policy",
+                  "id": "b836bc49-620a-41e3-9bb1-b7f7a677c5ed",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/network-policies",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "network-policies"
+                      ]
+                    },
+                    "description": "Create a network policy"
+                  },
+                  "response": [
+                    {
+                      "id": "5b269984-a4db-4b6e-a4e7-261a317421ca",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-5b269984-a4db-4b6e-a4e7-261a317421ca"
+                    },
+                    {
+                      "id": "acbcd708-c536-48b1-b732-c91bd69e3a37",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-acbcd708-c536-48b1-b732-c91bd69e3a37"
+                    },
+                    {
+                      "id": "624c8991-c07d-4fcb-9519-43de4bd5baad",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-624c8991-c07d-4fcb-9519-43de4bd5baad"
+                    },
+                    {
+                      "id": "9485d2f6-893a-4881-8796-6388ad741f1f",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-9485d2f6-893a-4881-8796-6388ad741f1f"
+                    },
+                    {
+                      "id": "1be457fc-7ea8-497d-8277-6e11c678320c",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-1be457fc-7ea8-497d-8277-6e11c678320c"
+                    },
+                    {
+                      "id": "ce39effa-b441-4ed7-b363-67017553df03",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-ce39effa-b441-4ed7-b363-67017553df03"
+                    },
+                    {
+                      "id": "5e5a4d2c-5d23-415d-a771-f5d373a85849",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-5e5a4d2c-5d23-415d-a771-f5d373a85849"
+                    },
+                    {
+                      "id": "ed6c70b8-af69-47b6-a3d3-87b7815bfdda",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-ed6c70b8-af69-47b6-a3d3-87b7815bfdda"
+                    },
+                    {
+                      "id": "f1fabdd1-54c8-4acb-955e-5b3c135f9fc9",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-f1fabdd1-54c8-4acb-955e-5b3c135f9fc9"
+                    },
+                    {
+                      "id": "cab40a6b-67f8-48ee-8aa9-9108aa4dead7",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-cab40a6b-67f8-48ee-8aa9-9108aa4dead7"
+                    },
+                    {
+                      "id": "969ec94c-0b3a-4c0b-b32d-98c9f8d56d4e",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-969ec94c-0b3a-4c0b-b32d-98c9f8d56d4e"
+                    },
+                    {
+                      "id": "d3d8fea5-bbc4-4448-9918-28424ce67efa",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-d3d8fea5-bbc4-4448-9918-28424ce67efa"
+                    },
+                    {
+                      "id": "4ec2d0b3-3eea-4ce3-835f-4237e9f87340",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-4ec2d0b3-3eea-4ce3-835f-4237e9f87340"
+                    },
+                    {
+                      "id": "8e73f785-14ab-4e95-850c-5b888f4db460",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"X+\\\"\\\"\\\"\\\"\\\"\\\"n\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"C\\\"\",\n  \"allowed_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_network_rule_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowed_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"blocked_ip_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"owner\": \"\\\"\\\"\\\"G\\\"\\\"m\\\"\",\n  \"owner_role_type\": \"\\\"4\\\"\\\"V\\\"\\\"6U2|\\\"\\\"U/\\\"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/network-policies",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "network-policies"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:20:32.000Z",
+                      "updatedAt": "2026-06-05T13:20:32.000Z",
+                      "uid": "35240-8e73f785-14ab-4e95-850c-5b888f4db460"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:20:32.000Z",
+                  "updatedAt": "2026-06-05T13:20:32.000Z",
+                  "uid": "35240-b836bc49-620a-41e3-9bb1-b7f7a677c5ed"
+                }
+              ],
+              "id": "c41ec43d-9c52-47f6-a933-49a2122f00c1",
+              "createdAt": "2026-06-05T13:20:32.000Z",
+              "updatedAt": "2026-06-05T13:20:32.000Z",
+              "uid": "35240-c41ec43d-9c52-47f6-a933-49a2122f00c1"
+            }
+          ],
+          "id": "8222acf7-fa9a-44e8-8ffa-437523289766",
+          "createdAt": "2026-06-05T13:20:32.000Z",
+          "updatedAt": "2026-06-05T13:20:32.000Z",
+          "uid": "35240-8222acf7-fa9a-44e8-8ffa-437523289766"
+        }
+      ],
+      "id": "90c857bc-65cf-4e54-ac28-a01a5f57a299",
+      "createdAt": "2026-06-05T13:20:32.000Z",
+      "updatedAt": "2026-06-05T13:20:32.000Z",
+      "uid": "35240-90c857bc-65cf-4e54-ac28-a01a5f57a299"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://org-account.snowflakecomputing.com"
+    }
+  ]
+}

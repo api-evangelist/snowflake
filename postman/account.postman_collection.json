@@ -1,0 +1,2366 @@
+{
+  "info": {
+    "_postman_id": "156b0b4c-8de2-4790-be57-ec196b40266e",
+    "name": "Snowflake Account API",
+    "description": "The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:19:54.000Z",
+    "updatedAt": "2026-06-05T13:19:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-156b0b4c-8de2-4790-be57-ec196b40266e"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "accounts",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "Delete an Account.",
+                      "id": "914854b2-f113-4b0c-8e97-fddd745b7c27",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts",
+                            ":name"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                              "key": "gracePeriodInDays",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "3d171c6f-327f-4668-8555-a51f5a607b12",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Deletes the specified account. If you enable the `ifExists` parameter, the operation succeeds even if the account does not exist. Otherwise, a 404 failure is returned if the account does not exist. if the drop is unsuccessful."
+                      },
+                      "response": [
+                        {
+                          "id": "31ee0ca0-af45-434c-beb3-ac5643174833",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-31ee0ca0-af45-434c-beb3-ac5643174833"
+                        },
+                        {
+                          "id": "40297abb-fb01-45e3-a885-47169300069f",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-40297abb-fb01-45e3-a885-47169300069f"
+                        },
+                        {
+                          "id": "4851bd32-ba79-472f-8578-3392e1ea15e3",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-4851bd32-ba79-472f-8578-3392e1ea15e3"
+                        },
+                        {
+                          "id": "5a382211-ed39-49a2-aeb1-dffc39c1bccf",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-5a382211-ed39-49a2-aeb1-dffc39c1bccf"
+                        },
+                        {
+                          "id": "1cd5be06-e9bc-43e0-a834-aaca727b7128",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-1cd5be06-e9bc-43e0-a834-aaca727b7128"
+                        },
+                        {
+                          "id": "85740979-b8a4-4bf1-b81b-bf0b96bbf252",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-85740979-b8a4-4bf1-b81b-bf0b96bbf252"
+                        },
+                        {
+                          "id": "91d35c84-5de8-4e9c-bc86-13e40cb94e7f",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-91d35c84-5de8-4e9c-bc86-13e40cb94e7f"
+                        },
+                        {
+                          "id": "dcfd7366-a1ae-432b-a275-e59e93c1ee07",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-dcfd7366-a1ae-432b-a275-e59e93c1ee07"
+                        },
+                        {
+                          "id": "4f754a65-d3ed-40d2-bfff-d3f417e947ba",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-4f754a65-d3ed-40d2-bfff-d3f417e947ba"
+                        },
+                        {
+                          "id": "07823688-a994-4afe-ae88-b9fbbac6a698",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-07823688-a994-4afe-ae88-b9fbbac6a698"
+                        },
+                        {
+                          "id": "d1724964-a5a1-4a66-9fa9-a9c21d94f774",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-d1724964-a5a1-4a66-9fa9-a9c21d94f774"
+                        },
+                        {
+                          "id": "981ce883-e6f5-4385-a0f5-8ed24acd3c60",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-981ce883-e6f5-4385-a0f5-8ed24acd3c60"
+                        },
+                        {
+                          "id": "cec51232-dd52-458b-8f42-2e70013040ef",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-cec51232-dd52-458b-8f42-2e70013040ef"
+                        },
+                        {
+                          "id": "2cf4c856-aece-4985-a783-944ed8cda338",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/:name?gracePeriodInDays=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ":name"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Specifies the number of days during which the account can be restored (\u201cundropped\u201d). The minimum is 3 days and the maximum is 90 days.",
+                                  "key": "gracePeriodInDays",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-2cf4c856-aece-4985-a783-944ed8cda338"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-914854b2-f113-4b0c-8e97-fddd745b7c27"
+                    }
+                  ],
+                  "id": "0d965e6d-34c0-4655-a52a-3db9cccca530",
+                  "createdAt": "2026-06-05T13:19:54.000Z",
+                  "updatedAt": "2026-06-05T13:19:54.000Z",
+                  "uid": "35240-0d965e6d-34c0-4655-a52a-3db9cccca530"
+                },
+                {
+                  "name": "{name}:undrop",
+                  "item": [
+                    {
+                      "name": "Restore an Account.",
+                      "id": "926573a9-3a63-430b-9411-0bb1f031aa63",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts",
+                            "{{name}}:undrop"
+                          ]
+                        },
+                        "description": "Restores a dropped account that has not yet been permanently deleted (a dropped account that is within its grace period)."
+                      },
+                      "response": [
+                        {
+                          "id": "7e18aedb-39cf-41a0-b3bd-048d0941a650",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-7e18aedb-39cf-41a0-b3bd-048d0941a650"
+                        },
+                        {
+                          "id": "aa434e4f-1f45-43d1-954f-ea0792e5518a",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-aa434e4f-1f45-43d1-954f-ea0792e5518a"
+                        },
+                        {
+                          "id": "aac3a79b-df6b-44be-a881-b30d67737bfb",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-aac3a79b-df6b-44be-a881-b30d67737bfb"
+                        },
+                        {
+                          "id": "9a4c7460-9a15-4b78-adcd-969cc91703b9",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-9a4c7460-9a15-4b78-adcd-969cc91703b9"
+                        },
+                        {
+                          "id": "21dcd47e-3bd6-47e1-969c-f073fed102a5",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-21dcd47e-3bd6-47e1-969c-f073fed102a5"
+                        },
+                        {
+                          "id": "6f2cc2fb-1c1e-4464-a99e-c28a25e67c40",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-6f2cc2fb-1c1e-4464-a99e-c28a25e67c40"
+                        },
+                        {
+                          "id": "fb7a2a28-3e40-47cb-9199-029b1193eb7e",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-fb7a2a28-3e40-47cb-9199-029b1193eb7e"
+                        },
+                        {
+                          "id": "879fe3bc-0df5-4155-8a16-b60715624bd0",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-879fe3bc-0df5-4155-8a16-b60715624bd0"
+                        },
+                        {
+                          "id": "80fe4905-3026-4bd3-ab6a-6fb80158afdb",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-80fe4905-3026-4bd3-ab6a-6fb80158afdb"
+                        },
+                        {
+                          "id": "ecd8649b-5fec-472f-9641-0cf8eb53a410",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-ecd8649b-5fec-472f-9641-0cf8eb53a410"
+                        },
+                        {
+                          "id": "deb69df6-f5ab-4a73-b263-9a6252d3b626",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-deb69df6-f5ab-4a73-b263-9a6252d3b626"
+                        },
+                        {
+                          "id": "d06a2b4a-e28b-4d04-a062-91c6c248d863",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-d06a2b4a-e28b-4d04-a062-91c6c248d863"
+                        },
+                        {
+                          "id": "ed91b5c5-f745-4559-9914-c7d74938db2e",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-ed91b5c5-f745-4559-9914-c7d74938db2e"
+                        },
+                        {
+                          "id": "06d3f8b3-5c39-48f3-9f82-87305e90790c",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/accounts/{{name}}:undrop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{name}}:undrop"
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:54.000Z",
+                          "updatedAt": "2026-06-05T13:19:54.000Z",
+                          "uid": "35240-06d3f8b3-5c39-48f3-9f82-87305e90790c"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-926573a9-3a63-430b-9411-0bb1f031aa63"
+                    }
+                  ],
+                  "id": "bc64bbca-9933-4acc-943d-5e2f023f8c37",
+                  "createdAt": "2026-06-05T13:19:54.000Z",
+                  "updatedAt": "2026-06-05T13:19:54.000Z",
+                  "uid": "35240-bc64bbca-9933-4acc-943d-5e2f023f8c37"
+                },
+                {
+                  "name": "List Accounts.",
+                  "id": "b54c088d-08ab-4252-bcd8-7ed33bd96e08",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "accounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "Optionally includes dropped accounts that have not yet been purged.",
+                          "key": "history",
+                          "value": "<boolean>"
+                        }
+                      ]
+                    },
+                    "description": "Lists the accessible accounts."
+                  },
+                  "response": [
+                    {
+                      "id": "50d6690f-9cfd-487c-9851-dcb5f0f2b583",
+                      "name": "Successful request.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Snowflake-Request-ID",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": {\n      \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n    },\n    \"admin_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"edition\": \"STANDARD\",\n    \"organization_name\": \"<string>\",\n    \"region_group\": \"<string>\",\n    \"region\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"account_url\": \"<string>\",\n    \"account_locator\": \"<string>\",\n    \"account_locator_url\": \"<string>\",\n    \"managed_accounts\": \"<long>\",\n    \"consumption_billing_entity_name\": \"<string>\",\n    \"marketplace_consumer_billing_entity_name\": \"<string>\",\n    \"marketplace_provider_billing_entity_name\": \"<string>\",\n    \"old_account_url\": \"<string>\",\n    \"comment\": \"<string>\",\n    \"is_org_admin\": \"<boolean>\",\n    \"retention_time\": \"<integer>\",\n    \"dropped_on\": \"<dateTime>\",\n    \"scheduled_deletion_time\": \"<dateTime>\",\n    \"restored_on\": \"<dateTime>\",\n    \"account_old_url_saved_on\": \"<dateTime>\",\n    \"account_old_url_last_used\": \"<dateTime>\",\n    \"organization_old_url\": \"<string>\",\n    \"organization_old_url_saved_on\": \"<dateTime>\",\n    \"organization_old_url_last_used\": \"<dateTime>\",\n    \"organization_URL_expiration_on\": \"<dateTime>\",\n    \"moved_on\": \"<dateTime>\",\n    \"is_events_account\": \"<boolean>\",\n    \"moved_to_organization\": \"<string>\",\n    \"admin_password\": \"<string>\",\n    \"admin_rsa_public_key\": \"<string>\",\n    \"admin_user_type\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"must_change_password\": false,\n    \"polaris\": false\n  },\n  {\n    \"name\": {\n      \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n    },\n    \"admin_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"edition\": \"BUSINESS_CRITICAL\",\n    \"organization_name\": \"<string>\",\n    \"region_group\": \"<string>\",\n    \"region\": \"<string>\",\n    \"created_on\": \"<dateTime>\",\n    \"account_url\": \"<string>\",\n    \"account_locator\": \"<string>\",\n    \"account_locator_url\": \"<string>\",\n    \"managed_accounts\": \"<long>\",\n    \"consumption_billing_entity_name\": \"<string>\",\n    \"marketplace_consumer_billing_entity_name\": \"<string>\",\n    \"marketplace_provider_billing_entity_name\": \"<string>\",\n    \"old_account_url\": \"<string>\",\n    \"comment\": \"<string>\",\n    \"is_org_admin\": \"<boolean>\",\n    \"retention_time\": \"<integer>\",\n    \"dropped_on\": \"<dateTime>\",\n    \"scheduled_deletion_time\": \"<dateTime>\",\n    \"restored_on\": \"<dateTime>\",\n    \"account_old_url_saved_on\": \"<dateTime>\",\n    \"account_old_url_last_used\": \"<dateTime>\",\n    \"organization_old_url\": \"<string>\",\n    \"organization_old_url_saved_on\": \"<dateTime>\",\n    \"organization_old_url_last_used\": \"<dateTime>\",\n    \"organization_URL_expiration_on\": \"<dateTime>\",\n    \"moved_on\": \"<dateTime>\",\n    \"is_events_account\": \"<boolean>\",\n    \"moved_to_organization\": \"<string>\",\n    \"admin_password\": \"<string>\",\n    \"admin_rsa_public_key\": \"<string>\",\n    \"admin_user_type\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"must_change_password\": false,\n    \"polaris\": false\n  }\n]",
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-50d6690f-9cfd-487c-9851-dcb5f0f2b583"
+                    },
+                    {
+                      "id": "41247fd4-ed2f-4654-971e-1f22a94e7151",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-41247fd4-ed2f-4654-971e-1f22a94e7151"
+                    },
+                    {
+                      "id": "e5f778bf-2086-4998-b624-97e49a919e06",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-e5f778bf-2086-4998-b624-97e49a919e06"
+                    },
+                    {
+                      "id": "e4ae7cb6-6ae1-4f49-87a8-92d164e48ae6",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-e4ae7cb6-6ae1-4f49-87a8-92d164e48ae6"
+                    },
+                    {
+                      "id": "6405cc4c-e7b0-4977-93f7-c3189c1f4290",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-6405cc4c-e7b0-4977-93f7-c3189c1f4290"
+                    },
+                    {
+                      "id": "91f05839-95b9-48d9-9811-85ac4db55f49",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-91f05839-95b9-48d9-9811-85ac4db55f49"
+                    },
+                    {
+                      "id": "28adb412-e219-4d22-83d8-ad3ccb03e7a0",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-28adb412-e219-4d22-83d8-ad3ccb03e7a0"
+                    },
+                    {
+                      "id": "cf0c1894-21dd-436c-9110-f67cd9a64b45",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-cf0c1894-21dd-436c-9110-f67cd9a64b45"
+                    },
+                    {
+                      "id": "f07a06bd-f621-4c15-a169-d1502b75254b",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-f07a06bd-f621-4c15-a169-d1502b75254b"
+                    },
+                    {
+                      "id": "efa4a3db-7558-49d3-b294-6849348a1793",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-efa4a3db-7558-49d3-b294-6849348a1793"
+                    },
+                    {
+                      "id": "6daf9e01-5858-4aa9-b62c-41befe4a590d",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-6daf9e01-5858-4aa9-b62c-41befe4a590d"
+                    },
+                    {
+                      "id": "44816c1c-f0d1-4c05-81ad-00dfd6cf93dd",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-44816c1c-f0d1-4c05-81ad-00dfd6cf93dd"
+                    },
+                    {
+                      "id": "d1f30573-7429-4c26-8c29-17233b48d4f0",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-d1f30573-7429-4c26-8c29-17233b48d4f0"
+                    },
+                    {
+                      "id": "8e14b286-e9df-4f0b-8a33-cc0e5ead4ca2",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts?history=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ],
+                          "query": [
+                            {
+                              "description": "Optionally includes dropped accounts that have not yet been purged.",
+                              "key": "history",
+                              "value": "<boolean>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-8e14b286-e9df-4f0b-8a33-cc0e5ead4ca2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:19:54.000Z",
+                  "updatedAt": "2026-06-05T13:19:54.000Z",
+                  "uid": "35240-b54c088d-08ab-4252-bcd8-7ed33bd96e08"
+                },
+                {
+                  "name": "Create an Account.",
+                  "id": "23874f3e-5ca5-4262-94d4-abca3e3b5822",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "accounts"
+                      ]
+                    },
+                    "description": "Creates a account. You must provide the full account definition when creating a account."
+                  },
+                  "response": [
+                    {
+                      "id": "72810a50-eeaf-4f48-b1fc-8610068d17f8",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-72810a50-eeaf-4f48-b1fc-8610068d17f8"
+                    },
+                    {
+                      "id": "4834fb44-fd2c-464d-aeea-4e01311181cd",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-4834fb44-fd2c-464d-aeea-4e01311181cd"
+                    },
+                    {
+                      "id": "815c51f0-6b59-4619-9e2d-0230caab5a85",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-815c51f0-6b59-4619-9e2d-0230caab5a85"
+                    },
+                    {
+                      "id": "99141fcd-477b-449e-867c-72d21a466839",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-99141fcd-477b-449e-867c-72d21a466839"
+                    },
+                    {
+                      "id": "c70812fc-e4f7-4ac0-a77a-d651bb30d3f3",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-c70812fc-e4f7-4ac0-a77a-d651bb30d3f3"
+                    },
+                    {
+                      "id": "914e5c15-a75a-404a-a889-f4d5400f2a45",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-914e5c15-a75a-404a-a889-f4d5400f2a45"
+                    },
+                    {
+                      "id": "42a291b0-452e-4afd-91f2-1836be328bab",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-42a291b0-452e-4afd-91f2-1836be328bab"
+                    },
+                    {
+                      "id": "d4ef20fe-f446-42a6-b86d-700ee6885494",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-d4ef20fe-f446-42a6-b86d-700ee6885494"
+                    },
+                    {
+                      "id": "d57f5603-cd75-48d1-940b-eceaa95cf423",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-d57f5603-cd75-48d1-940b-eceaa95cf423"
+                    },
+                    {
+                      "id": "2ad9711d-b7e8-4502-b722-42be580eaaf9",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-2ad9711d-b7e8-4502-b722-42be580eaaf9"
+                    },
+                    {
+                      "id": "ee157753-d750-4cfe-abce-1a0394e4787c",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-ee157753-d750-4cfe-abce-1a0394e4787c"
+                    },
+                    {
+                      "id": "4fc4cff6-a41d-412f-a76c-7c14afa43b8c",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-4fc4cff6-a41d-412f-a76c-7c14afa43b8c"
+                    },
+                    {
+                      "id": "b15e893e-15e2-4e72-961d-1c1d0bbaf8c4",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-b15e893e-15e2-4e72-961d-1c1d0bbaf8c4"
+                    },
+                    {
+                      "id": "c7a147b0-0c49-410a-a2c7-5891686553c6",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"BUSINESS_CRITICAL\",\n  \"organization_name\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"created_on\": \"<dateTime>\",\n  \"account_url\": \"<string>\",\n  \"account_locator\": \"<string>\",\n  \"account_locator_url\": \"<string>\",\n  \"managed_accounts\": \"<long>\",\n  \"consumption_billing_entity_name\": \"<string>\",\n  \"marketplace_consumer_billing_entity_name\": \"<string>\",\n  \"marketplace_provider_billing_entity_name\": \"<string>\",\n  \"old_account_url\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"is_org_admin\": \"<boolean>\",\n  \"retention_time\": \"<integer>\",\n  \"dropped_on\": \"<dateTime>\",\n  \"scheduled_deletion_time\": \"<dateTime>\",\n  \"restored_on\": \"<dateTime>\",\n  \"account_old_url_saved_on\": \"<dateTime>\",\n  \"account_old_url_last_used\": \"<dateTime>\",\n  \"organization_old_url\": \"<string>\",\n  \"organization_old_url_saved_on\": \"<dateTime>\",\n  \"organization_old_url_last_used\": \"<dateTime>\",\n  \"organization_URL_expiration_on\": \"<dateTime>\",\n  \"moved_on\": \"<dateTime>\",\n  \"is_events_account\": \"<boolean>\",\n  \"moved_to_organization\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"admin_rsa_public_key\": \"<string>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/accounts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "accounts"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:54.000Z",
+                      "updatedAt": "2026-06-05T13:19:54.000Z",
+                      "uid": "35240-c7a147b0-0c49-410a-a2c7-5891686553c6"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:19:54.000Z",
+                  "updatedAt": "2026-06-05T13:19:54.000Z",
+                  "uid": "35240-23874f3e-5ca5-4262-94d4-abca3e3b5822"
+                }
+              ],
+              "id": "b9eeab9d-8fca-40c8-aa3e-0ed086162193",
+              "createdAt": "2026-06-05T13:19:54.000Z",
+              "updatedAt": "2026-06-05T13:19:54.000Z",
+              "uid": "35240-b9eeab9d-8fca-40c8-aa3e-0ed086162193"
+            }
+          ],
+          "id": "2ce67dd6-80fc-49a8-8d34-b0b879af06ca",
+          "createdAt": "2026-06-05T13:19:54.000Z",
+          "updatedAt": "2026-06-05T13:19:54.000Z",
+          "uid": "35240-2ce67dd6-80fc-49a8-8d34-b0b879af06ca"
+        }
+      ],
+      "id": "038c0ba4-b09e-4150-8ce2-0c25e5a413ce",
+      "createdAt": "2026-06-05T13:19:54.000Z",
+      "updatedAt": "2026-06-05T13:19:54.000Z",
+      "uid": "35240-038c0ba4-b09e-4150-8ce2-0c25e5a413ce"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://org-account.snowflakecomputing.com"
+    }
+  ]
+}

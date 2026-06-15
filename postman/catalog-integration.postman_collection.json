@@ -1,0 +1,2247 @@
+{
+  "info": {
+    "_postman_id": "4e74faa8-99e4-470f-97b9-bd0c244a052b",
+    "name": "Snowflake Catalog Integration API",
+    "description": "The Snowflake Catalog Integration API is a REST API that you can use to access, update, and perform certain actions on Catalog Integration resource in a Snowflake database.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:19:58.000Z",
+    "updatedAt": "2026-06-05T13:19:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4e74faa8-99e4-470f-97b9-bd0c244a052b"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "catalog-integrations",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "Fetch a Catalog Integration.",
+                      "id": "3f9b4334-b160-4610-94ed-70467c2ac205",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4c5847b5-9830-4e34-8d08-6a6e4b408d12",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Fetch a catalog integration."
+                      },
+                      "response": [
+                        {
+                          "id": "7567ae7c-0b8e-464d-9510-359695e06980",
+                          "name": "successful",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-Snowflake-Request-ID",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-7567ae7c-0b8e-464d-9510-359695e06980"
+                        },
+                        {
+                          "id": "3b0a1407-dc1d-467a-8dae-9ad222c0c4ba",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-3b0a1407-dc1d-467a-8dae-9ad222c0c4ba"
+                        },
+                        {
+                          "id": "58ae9db0-c7f6-4d15-b1cf-c7bc4a19ace0",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-58ae9db0-c7f6-4d15-b1cf-c7bc4a19ace0"
+                        },
+                        {
+                          "id": "e1553879-2c76-486c-adb2-2016cbd04c83",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-e1553879-2c76-486c-adb2-2016cbd04c83"
+                        },
+                        {
+                          "id": "6f0e4478-7c1f-45cf-ac83-6025446daa08",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-6f0e4478-7c1f-45cf-ac83-6025446daa08"
+                        },
+                        {
+                          "id": "b9f09458-e958-4197-b104-ab1f1ab25d4f",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-b9f09458-e958-4197-b104-ab1f1ab25d4f"
+                        },
+                        {
+                          "id": "0f6d16b9-4b7b-43f5-afe8-24a2d10f53c6",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-0f6d16b9-4b7b-43f5-afe8-24a2d10f53c6"
+                        },
+                        {
+                          "id": "fa919761-508c-4946-a7e8-86da7ed5a117",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-fa919761-508c-4946-a7e8-86da7ed5a117"
+                        },
+                        {
+                          "id": "6128bed9-6523-444e-a402-57838e81b415",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-6128bed9-6523-444e-a402-57838e81b415"
+                        },
+                        {
+                          "id": "f1445445-ace8-485e-a3f6-e85b1beff673",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-f1445445-ace8-485e-a3f6-e85b1beff673"
+                        },
+                        {
+                          "id": "88197f4b-f0d6-46fe-b2ae-321a63d727be",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-88197f4b-f0d6-46fe-b2ae-321a63d727be"
+                        },
+                        {
+                          "id": "ae2a4d4e-1e6a-4f94-82d7-42b5ef75efb4",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-ae2a4d4e-1e6a-4f94-82d7-42b5ef75efb4"
+                        },
+                        {
+                          "id": "fc540d8b-0ec6-4e20-9d95-259883ba698e",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-fc540d8b-0ec6-4e20-9d95-259883ba698e"
+                        },
+                        {
+                          "id": "fba9161b-b157-47d1-9255-b26f4a595ff0",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-fba9161b-b157-47d1-9255-b26f4a595ff0"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-3f9b4334-b160-4610-94ed-70467c2ac205"
+                    },
+                    {
+                      "name": "Delete a Catalog Integration.",
+                      "id": "cdd04e7b-3591-496f-aa8c-7fcd978afef8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2e6fdcac-945a-4461-9bae-b5603dda066c",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Delete a catalog integration."
+                      },
+                      "response": [
+                        {
+                          "id": "9668e390-be5e-4c3e-81ef-00fc887c0421",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-9668e390-be5e-4c3e-81ef-00fc887c0421"
+                        },
+                        {
+                          "id": "240f40c6-fcb1-4a69-97ae-4c4ff78ec16c",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-240f40c6-fcb1-4a69-97ae-4c4ff78ec16c"
+                        },
+                        {
+                          "id": "7ebf1d40-09cc-4973-a2f8-3e9f0418d060",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-7ebf1d40-09cc-4973-a2f8-3e9f0418d060"
+                        },
+                        {
+                          "id": "9aa60989-e596-4511-8000-dffa3935a322",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-9aa60989-e596-4511-8000-dffa3935a322"
+                        },
+                        {
+                          "id": "0e2998cf-ca59-4c53-bf79-8e0973606027",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-0e2998cf-ca59-4c53-bf79-8e0973606027"
+                        },
+                        {
+                          "id": "a5d92433-bb06-407a-b3dc-de14b0a07bf9",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-a5d92433-bb06-407a-b3dc-de14b0a07bf9"
+                        },
+                        {
+                          "id": "03992fa4-7547-48f3-b534-805a1f25b6fe",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-03992fa4-7547-48f3-b534-805a1f25b6fe"
+                        },
+                        {
+                          "id": "ece961b0-fbd1-476e-9c76-08be429df50b",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-ece961b0-fbd1-476e-9c76-08be429df50b"
+                        },
+                        {
+                          "id": "3ec5aee8-56b0-48bc-92ec-668655493660",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-3ec5aee8-56b0-48bc-92ec-668655493660"
+                        },
+                        {
+                          "id": "a73aaf87-ee80-4d57-985c-e79fc03d3a3e",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-a73aaf87-ee80-4d57-985c-e79fc03d3a3e"
+                        },
+                        {
+                          "id": "d18b5555-43b8-436d-8a06-eea48d5c0e20",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-d18b5555-43b8-436d-8a06-eea48d5c0e20"
+                        },
+                        {
+                          "id": "92792bd1-a02d-4b5b-8492-c49e20998a6a",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-92792bd1-a02d-4b5b-8492-c49e20998a6a"
+                        },
+                        {
+                          "id": "08847878-abbf-4e7d-9ddc-581e1ff4887d",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-08847878-abbf-4e7d-9ddc-581e1ff4887d"
+                        },
+                        {
+                          "id": "a398c682-b67a-4dad-b03b-849eecff6ac3",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/catalog-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "catalog-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:58.000Z",
+                          "updatedAt": "2026-06-05T13:19:58.000Z",
+                          "uid": "35240-a398c682-b67a-4dad-b03b-849eecff6ac3"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-cdd04e7b-3591-496f-aa8c-7fcd978afef8"
+                    }
+                  ],
+                  "id": "a44a259e-bb84-42e2-b46e-fbf38a3b411c",
+                  "createdAt": "2026-06-05T13:19:58.000Z",
+                  "updatedAt": "2026-06-05T13:19:58.000Z",
+                  "uid": "35240-a44a259e-bb84-42e2-b46e-fbf38a3b411c"
+                },
+                {
+                  "name": "List Catalog Integrations.",
+                  "id": "45e4ab25-24d3-40fc-a07b-3f2e546aa963",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "catalog-integrations"
+                      ]
+                    },
+                    "description": "List catalog integrations."
+                  },
+                  "response": [
+                    {
+                      "id": "a323ee9f-b9bd-43f6-9752-beab1cac52ab",
+                      "name": "successful",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Snowflake-Request-ID",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": \"\\\"H4^\\\"\",\n    \"catalog\": {\n      \"catalog_source\": \"POLARIS\"\n    },\n    \"table_format\": \"ICEBERG\",\n    \"enabled\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"type\": \"<string>\",\n    \"category\": \"<string>\",\n    \"created_on\": \"<dateTime>\"\n  },\n  {\n    \"name\": \"f\",\n    \"catalog\": {\n      \"catalog_source\": \"OBJECT_STORE\"\n    },\n    \"table_format\": \"ICEBERG\",\n    \"enabled\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"type\": \"<string>\",\n    \"category\": \"<string>\",\n    \"created_on\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-a323ee9f-b9bd-43f6-9752-beab1cac52ab"
+                    },
+                    {
+                      "id": "04a932e6-6088-4f19-80a0-52eb6cef965f",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-04a932e6-6088-4f19-80a0-52eb6cef965f"
+                    },
+                    {
+                      "id": "74b7853d-9944-4b7b-bf69-614dab4c92a8",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-74b7853d-9944-4b7b-bf69-614dab4c92a8"
+                    },
+                    {
+                      "id": "5b8a2eb3-7d51-43b8-a07a-2233b309da42",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-5b8a2eb3-7d51-43b8-a07a-2233b309da42"
+                    },
+                    {
+                      "id": "dacdfb96-6638-4baa-b5e4-fe4b363821e7",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-dacdfb96-6638-4baa-b5e4-fe4b363821e7"
+                    },
+                    {
+                      "id": "470ce7b1-c9fb-4300-a7c3-a150ce04e490",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-470ce7b1-c9fb-4300-a7c3-a150ce04e490"
+                    },
+                    {
+                      "id": "a06f93f1-7db5-411e-8e42-6de58088d4e7",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-a06f93f1-7db5-411e-8e42-6de58088d4e7"
+                    },
+                    {
+                      "id": "ee94bdcc-602f-4428-ad5a-2c54e6c35fe9",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-ee94bdcc-602f-4428-ad5a-2c54e6c35fe9"
+                    },
+                    {
+                      "id": "3fa61fa1-9d3d-4de7-bb74-c471d7403c31",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-3fa61fa1-9d3d-4de7-bb74-c471d7403c31"
+                    },
+                    {
+                      "id": "c42f404e-918a-4987-aeef-8d61c6ce56e0",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-c42f404e-918a-4987-aeef-8d61c6ce56e0"
+                    },
+                    {
+                      "id": "1b3eafc0-4a79-4db6-9c8f-c214c20a7336",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-1b3eafc0-4a79-4db6-9c8f-c214c20a7336"
+                    },
+                    {
+                      "id": "f82e72ca-ebec-4b0c-a583-e78391143557",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-f82e72ca-ebec-4b0c-a583-e78391143557"
+                    },
+                    {
+                      "id": "66c66b83-7b43-4724-888c-6c5ac19e8963",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-66c66b83-7b43-4724-888c-6c5ac19e8963"
+                    },
+                    {
+                      "id": "4b03d068-a678-4799-bbfa-91389c8389a2",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-4b03d068-a678-4799-bbfa-91389c8389a2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:19:58.000Z",
+                  "updatedAt": "2026-06-05T13:19:58.000Z",
+                  "uid": "35240-45e4ab25-24d3-40fc-a07b-3f2e546aa963"
+                },
+                {
+                  "name": "Create a Catalog Integration.",
+                  "id": "b3b270da-cb90-4ed3-95fe-07125a1ef68c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "catalog-integrations"
+                      ]
+                    },
+                    "description": "Create a catalog integration."
+                  },
+                  "response": [
+                    {
+                      "id": "83ee8a4a-09b1-4f38-ae2c-4cf0744bed61",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-83ee8a4a-09b1-4f38-ae2c-4cf0744bed61"
+                    },
+                    {
+                      "id": "88c74593-27d5-4487-bb54-439da298fd86",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-88c74593-27d5-4487-bb54-439da298fd86"
+                    },
+                    {
+                      "id": "5896c5cd-965c-4251-8d39-b2af6eab0fff",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-5896c5cd-965c-4251-8d39-b2af6eab0fff"
+                    },
+                    {
+                      "id": "a16475fb-4b79-4b95-84aa-e5dca78ae5a3",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-a16475fb-4b79-4b95-84aa-e5dca78ae5a3"
+                    },
+                    {
+                      "id": "aa36a6a7-6ab4-4b61-9e2a-4f4c272e6f12",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-aa36a6a7-6ab4-4b61-9e2a-4f4c272e6f12"
+                    },
+                    {
+                      "id": "64c57574-0a0e-40b3-a13c-17ceb6314930",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-64c57574-0a0e-40b3-a13c-17ceb6314930"
+                    },
+                    {
+                      "id": "97621bec-2891-4032-8d3b-e6d2bb328692",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-97621bec-2891-4032-8d3b-e6d2bb328692"
+                    },
+                    {
+                      "id": "405f9540-a5db-4f86-ae77-bde764ed5aa3",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-405f9540-a5db-4f86-ae77-bde764ed5aa3"
+                    },
+                    {
+                      "id": "3ff246ce-b2e7-4c1f-ba31-d6a5a892f650",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-3ff246ce-b2e7-4c1f-ba31-d6a5a892f650"
+                    },
+                    {
+                      "id": "bdd3d176-b9ea-4691-b16f-ed77716d6444",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-bdd3d176-b9ea-4691-b16f-ed77716d6444"
+                    },
+                    {
+                      "id": "f519270d-acc6-421e-854a-1fa35d9db21d",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-f519270d-acc6-421e-854a-1fa35d9db21d"
+                    },
+                    {
+                      "id": "31849aad-e23f-4fcb-8413-834b4e52dea5",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-31849aad-e23f-4fcb-8413-834b4e52dea5"
+                    },
+                    {
+                      "id": "a0a0dbc5-364a-42c8-8459-23db28c92f38",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-a0a0dbc5-364a-42c8-8459-23db28c92f38"
+                    },
+                    {
+                      "id": "21945ecb-f327-4ef8-a23a-6f78f42ed16b",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"\\\"\\\"mhi/\\\"\\\"\\\"\",\n  \"catalog\": {\n    \"catalog_source\": \"OBJECT_STORE\"\n  },\n  \"table_format\": \"ICEBERG\",\n  \"enabled\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/catalog-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "catalog-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:58.000Z",
+                      "updatedAt": "2026-06-05T13:19:58.000Z",
+                      "uid": "35240-21945ecb-f327-4ef8-a23a-6f78f42ed16b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:19:58.000Z",
+                  "updatedAt": "2026-06-05T13:19:58.000Z",
+                  "uid": "35240-b3b270da-cb90-4ed3-95fe-07125a1ef68c"
+                }
+              ],
+              "id": "64f44b0e-8174-496c-b1ec-4ed2f1ff8bbf",
+              "createdAt": "2026-06-05T13:19:58.000Z",
+              "updatedAt": "2026-06-05T13:19:58.000Z",
+              "uid": "35240-64f44b0e-8174-496c-b1ec-4ed2f1ff8bbf"
+            }
+          ],
+          "id": "f53a6bb7-7f49-41d8-b016-4683009cb1f7",
+          "createdAt": "2026-06-05T13:19:58.000Z",
+          "updatedAt": "2026-06-05T13:19:58.000Z",
+          "uid": "35240-f53a6bb7-7f49-41d8-b016-4683009cb1f7"
+        }
+      ],
+      "id": "02b9d1c1-38f0-4569-b05d-696ec00ad776",
+      "createdAt": "2026-06-05T13:19:58.000Z",
+      "updatedAt": "2026-06-05T13:19:58.000Z",
+      "uid": "35240-02b9d1c1-38f0-4569-b05d-696ec00ad776"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://org-account.snowflakecomputing.com"
+    }
+  ]
+}

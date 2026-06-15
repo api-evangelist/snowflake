@@ -1,0 +1,989 @@
+{
+  "info": {
+    "_postman_id": "1d3bf3cd-317e-428a-9eca-a719c4ad73f6",
+    "name": "Cortex Inference API",
+    "description": "OpenAPI 3.0 specification for the Cortex REST API\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:20:12.000Z",
+    "updatedAt": "2026-06-05T13:20:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1d3bf3cd-317e-428a-9eca-a719c4ad73f6"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "cortex",
+              "item": [
+                {
+                  "name": "models",
+                  "item": [
+                    {
+                      "name": "Returns the Llms Available for the Current Session",
+                      "id": "fe9d000a-ff29-4ce9-991e-456ef32f9be5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"models\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/cortex/models",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "cortex",
+                            "models"
+                          ]
+                        },
+                        "description": "Returns the LLMs available for the current session"
+                      },
+                      "response": [
+                        {
+                          "id": "e51d02d8-6478-4d4c-a3e5-2479f45cdc3a",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"models\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/models",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "models"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"models\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-e51d02d8-6478-4d4c-a3e5-2479f45cdc3a"
+                        },
+                        {
+                          "id": "aff65c0b-8256-4743-8dd4-56ab4d64ad57",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"models\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/models",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "models"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-aff65c0b-8256-4743-8dd4-56ab4d64ad57"
+                        },
+                        {
+                          "id": "db59162e-b595-4f69-af81-bf202e406955",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"models\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/models",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "models"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-db59162e-b595-4f69-af81-bf202e406955"
+                        },
+                        {
+                          "id": "fd28288a-4d55-44b2-843c-21f55ab90b9c",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"models\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/models",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "models"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-fd28288a-4d55-44b2-843c-21f55ab90b9c"
+                        },
+                        {
+                          "id": "d40231b8-7489-4eb1-9948-eb90374ce773",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"models\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/models",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "models"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-d40231b8-7489-4eb1-9948-eb90374ce773"
+                        },
+                        {
+                          "id": "0e5c5121-31aa-463c-884d-8700e2c095c4",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"models\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/models",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "models"
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-0e5c5121-31aa-463c-884d-8700e2c095c4"
+                        },
+                        {
+                          "id": "0a89daf1-f57e-4abb-b3e9-edde87ce805d",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"models\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/models",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "models"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-0a89daf1-f57e-4abb-b3e9-edde87ce805d"
+                        },
+                        {
+                          "id": "db46aa3a-e60c-41ef-ae74-3e1c9063aa78",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"models\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/models",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "models"
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-db46aa3a-e60c-41ef-ae74-3e1c9063aa78"
+                        },
+                        {
+                          "id": "366e94dc-5938-40ae-ba97-270da2d306a5",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"models\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/models",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "models"
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-366e94dc-5938-40ae-ba97-270da2d306a5"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:20:13.000Z",
+                      "updatedAt": "2026-06-05T13:20:13.000Z",
+                      "uid": "35240-fe9d000a-ff29-4ce9-991e-456ef32f9be5"
+                    }
+                  ],
+                  "id": "3168ad05-6331-427c-9d56-ab2ab8c5f74b",
+                  "createdAt": "2026-06-05T13:20:13.000Z",
+                  "updatedAt": "2026-06-05T13:20:13.000Z",
+                  "uid": "35240-3168ad05-6331-427c-9d56-ab2ab8c5f74b"
+                },
+                {
+                  "name": "inference:complete",
+                  "item": [
+                    {
+                      "name": "Perform Llm Text Completion Inference.",
+                      "id": "374b380d-2991-4886-b2fd-706664242c50",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/event-stream"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"content\": \"<string>\",\n      \"role\": \"user\",\n      \"content_list\": [\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        },\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"temperature\": \"<number>\",\n  \"top_p\": 1,\n  \"max_tokens\": 4096,\n  \"max_output_tokens\": \"<integer>\",\n  \"response_format\": {\n    \"type\": \"json\",\n    \"schema\": {}\n  },\n  \"guardrails\": {\n    \"enabled\": \"<boolean>\",\n    \"response_when_unsafe\": \"<string>\"\n  },\n  \"tools\": [\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    }\n  ],\n  \"tool_choice\": {\n    \"value\": \"reference common-cortex-tool.yaml#/components/schemas/ToolChoice not found in the OpenAPI spec\"\n  },\n  \"provisioned_throughput_id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-action\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-client-id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-public-key\": \"<string>\",\n  \"stream\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/cortex/inference:complete",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "cortex",
+                            "inference:complete"
+                          ]
+                        },
+                        "description": "Perform LLM text completion inference, similar to snowflake.cortex.Complete."
+                      },
+                      "response": [
+                        {
+                          "id": "3ab197b6-a27a-498d-b082-e0efe4c6b0c3",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "text/event-stream"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"content\": \"<string>\",\n      \"role\": \"user\",\n      \"content_list\": [\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        },\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"temperature\": \"<number>\",\n  \"top_p\": 1,\n  \"max_tokens\": 4096,\n  \"max_output_tokens\": \"<integer>\",\n  \"response_format\": {\n    \"type\": \"json\",\n    \"schema\": {}\n  },\n  \"guardrails\": {\n    \"enabled\": \"<boolean>\",\n    \"response_when_unsafe\": \"<string>\"\n  },\n  \"tools\": [\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    }\n  ],\n  \"tool_choice\": {\n    \"value\": \"reference common-cortex-tool.yaml#/components/schemas/ToolChoice not found in the OpenAPI spec\"\n  },\n  \"provisioned_throughput_id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-action\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-client-id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-public-key\": \"<string>\",\n  \"stream\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/inference:complete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "inference:complete"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/event-stream"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-3ab197b6-a27a-498d-b082-e0efe4c6b0c3"
+                        },
+                        {
+                          "id": "d91132f4-be2b-44ef-af44-ee43dbfafcee",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"content\": \"<string>\",\n      \"role\": \"user\",\n      \"content_list\": [\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        },\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"temperature\": \"<number>\",\n  \"top_p\": 1,\n  \"max_tokens\": 4096,\n  \"max_output_tokens\": \"<integer>\",\n  \"response_format\": {\n    \"type\": \"json\",\n    \"schema\": {}\n  },\n  \"guardrails\": {\n    \"enabled\": \"<boolean>\",\n    \"response_when_unsafe\": \"<string>\"\n  },\n  \"tools\": [\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    }\n  ],\n  \"tool_choice\": {\n    \"value\": \"reference common-cortex-tool.yaml#/components/schemas/ToolChoice not found in the OpenAPI spec\"\n  },\n  \"provisioned_throughput_id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-action\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-client-id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-public-key\": \"<string>\",\n  \"stream\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/inference:complete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "inference:complete"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-d91132f4-be2b-44ef-af44-ee43dbfafcee"
+                        },
+                        {
+                          "id": "5b9f7b8d-7593-409f-92d9-592447ebce01",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"content\": \"<string>\",\n      \"role\": \"user\",\n      \"content_list\": [\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        },\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"temperature\": \"<number>\",\n  \"top_p\": 1,\n  \"max_tokens\": 4096,\n  \"max_output_tokens\": \"<integer>\",\n  \"response_format\": {\n    \"type\": \"json\",\n    \"schema\": {}\n  },\n  \"guardrails\": {\n    \"enabled\": \"<boolean>\",\n    \"response_when_unsafe\": \"<string>\"\n  },\n  \"tools\": [\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    }\n  ],\n  \"tool_choice\": {\n    \"value\": \"reference common-cortex-tool.yaml#/components/schemas/ToolChoice not found in the OpenAPI spec\"\n  },\n  \"provisioned_throughput_id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-action\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-client-id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-public-key\": \"<string>\",\n  \"stream\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/inference:complete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "inference:complete"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-5b9f7b8d-7593-409f-92d9-592447ebce01"
+                        },
+                        {
+                          "id": "15510461-6b71-466d-90de-c164c7865715",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"content\": \"<string>\",\n      \"role\": \"user\",\n      \"content_list\": [\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        },\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"temperature\": \"<number>\",\n  \"top_p\": 1,\n  \"max_tokens\": 4096,\n  \"max_output_tokens\": \"<integer>\",\n  \"response_format\": {\n    \"type\": \"json\",\n    \"schema\": {}\n  },\n  \"guardrails\": {\n    \"enabled\": \"<boolean>\",\n    \"response_when_unsafe\": \"<string>\"\n  },\n  \"tools\": [\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    }\n  ],\n  \"tool_choice\": {\n    \"value\": \"reference common-cortex-tool.yaml#/components/schemas/ToolChoice not found in the OpenAPI spec\"\n  },\n  \"provisioned_throughput_id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-action\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-client-id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-public-key\": \"<string>\",\n  \"stream\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/inference:complete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "inference:complete"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-15510461-6b71-466d-90de-c164c7865715"
+                        },
+                        {
+                          "id": "63ffa2a4-acaf-4040-aee6-2c1b0a077ac6",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"content\": \"<string>\",\n      \"role\": \"user\",\n      \"content_list\": [\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        },\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"temperature\": \"<number>\",\n  \"top_p\": 1,\n  \"max_tokens\": 4096,\n  \"max_output_tokens\": \"<integer>\",\n  \"response_format\": {\n    \"type\": \"json\",\n    \"schema\": {}\n  },\n  \"guardrails\": {\n    \"enabled\": \"<boolean>\",\n    \"response_when_unsafe\": \"<string>\"\n  },\n  \"tools\": [\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    }\n  ],\n  \"tool_choice\": {\n    \"value\": \"reference common-cortex-tool.yaml#/components/schemas/ToolChoice not found in the OpenAPI spec\"\n  },\n  \"provisioned_throughput_id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-action\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-client-id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-public-key\": \"<string>\",\n  \"stream\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/inference:complete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "inference:complete"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-63ffa2a4-acaf-4040-aee6-2c1b0a077ac6"
+                        },
+                        {
+                          "id": "1aecea8f-21d0-4b2a-b59d-1308360155b7",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"content\": \"<string>\",\n      \"role\": \"user\",\n      \"content_list\": [\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        },\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"temperature\": \"<number>\",\n  \"top_p\": 1,\n  \"max_tokens\": 4096,\n  \"max_output_tokens\": \"<integer>\",\n  \"response_format\": {\n    \"type\": \"json\",\n    \"schema\": {}\n  },\n  \"guardrails\": {\n    \"enabled\": \"<boolean>\",\n    \"response_when_unsafe\": \"<string>\"\n  },\n  \"tools\": [\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    }\n  ],\n  \"tool_choice\": {\n    \"value\": \"reference common-cortex-tool.yaml#/components/schemas/ToolChoice not found in the OpenAPI spec\"\n  },\n  \"provisioned_throughput_id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-action\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-client-id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-public-key\": \"<string>\",\n  \"stream\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/inference:complete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "inference:complete"
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-1aecea8f-21d0-4b2a-b59d-1308360155b7"
+                        },
+                        {
+                          "id": "fdd6bf49-8bac-4260-a357-14964cdae0cb",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"content\": \"<string>\",\n      \"role\": \"user\",\n      \"content_list\": [\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        },\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"temperature\": \"<number>\",\n  \"top_p\": 1,\n  \"max_tokens\": 4096,\n  \"max_output_tokens\": \"<integer>\",\n  \"response_format\": {\n    \"type\": \"json\",\n    \"schema\": {}\n  },\n  \"guardrails\": {\n    \"enabled\": \"<boolean>\",\n    \"response_when_unsafe\": \"<string>\"\n  },\n  \"tools\": [\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    }\n  ],\n  \"tool_choice\": {\n    \"value\": \"reference common-cortex-tool.yaml#/components/schemas/ToolChoice not found in the OpenAPI spec\"\n  },\n  \"provisioned_throughput_id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-action\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-client-id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-public-key\": \"<string>\",\n  \"stream\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/inference:complete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "inference:complete"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-fdd6bf49-8bac-4260-a357-14964cdae0cb"
+                        },
+                        {
+                          "id": "c548b619-5ee4-4312-b124-1e9e3021f6b2",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"content\": \"<string>\",\n      \"role\": \"user\",\n      \"content_list\": [\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        },\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"temperature\": \"<number>\",\n  \"top_p\": 1,\n  \"max_tokens\": 4096,\n  \"max_output_tokens\": \"<integer>\",\n  \"response_format\": {\n    \"type\": \"json\",\n    \"schema\": {}\n  },\n  \"guardrails\": {\n    \"enabled\": \"<boolean>\",\n    \"response_when_unsafe\": \"<string>\"\n  },\n  \"tools\": [\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    }\n  ],\n  \"tool_choice\": {\n    \"value\": \"reference common-cortex-tool.yaml#/components/schemas/ToolChoice not found in the OpenAPI spec\"\n  },\n  \"provisioned_throughput_id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-action\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-client-id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-public-key\": \"<string>\",\n  \"stream\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/inference:complete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "inference:complete"
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-c548b619-5ee4-4312-b124-1e9e3021f6b2"
+                        },
+                        {
+                          "id": "ac464262-d841-4669-8b16-26ef3c68d7b9",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"model\": \"<string>\",\n  \"messages\": [\n    {\n      \"content\": \"<string>\",\n      \"role\": \"user\",\n      \"content_list\": [\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        },\n        {\n          \"discriminator\": {\n            \"propertyName\": \"type\",\n            \"mapping\": {\n              \"text\": \"common-cortex-tool.yaml#/components/schemas/TextContent\",\n              \"tool_result\": \"common-cortex-tool.yaml#/components/schemas/ToolResults\",\n              \"tool_use\": \"common-cortex-tool.yaml#/components/schemas/ToolUse\"\n            }\n          }\n        }\n      ]\n    }\n  ],\n  \"temperature\": \"<number>\",\n  \"top_p\": 1,\n  \"max_tokens\": 4096,\n  \"max_output_tokens\": \"<integer>\",\n  \"response_format\": {\n    \"type\": \"json\",\n    \"schema\": {}\n  },\n  \"guardrails\": {\n    \"enabled\": \"<boolean>\",\n    \"response_when_unsafe\": \"<string>\"\n  },\n  \"tools\": [\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    },\n    {\n      \"value\": \"reference common-cortex-tool.yaml#/components/schemas/Tool not found in the OpenAPI spec\"\n    }\n  ],\n  \"tool_choice\": {\n    \"value\": \"reference common-cortex-tool.yaml#/components/schemas/ToolChoice not found in the OpenAPI spec\"\n  },\n  \"provisioned_throughput_id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-action\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-client-id\": \"<string>\",\n  \"sf-ml-xp-inflight-prompt-public-key\": \"<string>\",\n  \"stream\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/inference:complete",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "inference:complete"
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:20:13.000Z",
+                          "updatedAt": "2026-06-05T13:20:13.000Z",
+                          "uid": "35240-ac464262-d841-4669-8b16-26ef3c68d7b9"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:20:13.000Z",
+                      "updatedAt": "2026-06-05T13:20:13.000Z",
+                      "uid": "35240-374b380d-2991-4886-b2fd-706664242c50"
+                    }
+                  ],
+                  "id": "a8cb8b60-3e4c-4406-bca8-77c476df203d",
+                  "createdAt": "2026-06-05T13:20:13.000Z",
+                  "updatedAt": "2026-06-05T13:20:13.000Z",
+                  "uid": "35240-a8cb8b60-3e4c-4406-bca8-77c476df203d"
+                }
+              ],
+              "id": "99bbc749-98e5-4e17-846a-1123c8d53912",
+              "createdAt": "2026-06-05T13:20:13.000Z",
+              "updatedAt": "2026-06-05T13:20:13.000Z",
+              "uid": "35240-99bbc749-98e5-4e17-846a-1123c8d53912"
+            }
+          ],
+          "id": "51bc6aef-f8cd-47b4-9122-975d2a68b115",
+          "createdAt": "2026-06-05T13:20:13.000Z",
+          "updatedAt": "2026-06-05T13:20:13.000Z",
+          "uid": "35240-51bc6aef-f8cd-47b4-9122-975d2a68b115"
+        }
+      ],
+      "id": "7cffc9c0-539c-4022-a0b0-c39350a2a5ce",
+      "createdAt": "2026-06-05T13:20:13.000Z",
+      "updatedAt": "2026-06-05T13:20:13.000Z",
+      "uid": "35240-7cffc9c0-539c-4022-a0b0-c39350a2a5ce"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/"
+    }
+  ]
+}

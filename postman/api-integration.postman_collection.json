@@ -1,0 +1,2815 @@
+{
+  "info": {
+    "_postman_id": "5a10a888-02a3-4864-ae91-3cd1cdb8fb65",
+    "name": "Snowflake API Integration API",
+    "description": "The Snowflake API Integration API is a REST API that you can use to access, update, and perform certain actions on API Integration resource in a Snowflake database.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:19:57.000Z",
+    "updatedAt": "2026-06-05T13:19:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5a10a888-02a3-4864-ae91-3cd1cdb8fb65"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "api-integrations",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "Fetch an Api Integration",
+                      "id": "c6a81cda-13aa-4872-9e6c-fc2de30a3450",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3a5432de-89ff-410a-8365-fde6ca370fd8",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Fetch an API integration"
+                      },
+                      "response": [
+                        {
+                          "id": "7a49e9b7-2031-4a0c-b0ae-3e47533fc43f",
+                          "name": "successful",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-Snowflake-Request-ID",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Link",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-7a49e9b7-2031-4a0c-b0ae-3e47533fc43f"
+                        },
+                        {
+                          "id": "b2e52f29-b327-4673-823b-0e8173ac12ed",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-b2e52f29-b327-4673-823b-0e8173ac12ed"
+                        },
+                        {
+                          "id": "056839d4-bcae-464d-8ac0-13cf5d4dc22f",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-056839d4-bcae-464d-8ac0-13cf5d4dc22f"
+                        },
+                        {
+                          "id": "da7552ad-be2a-452c-a6d9-3de4642b16a0",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-da7552ad-be2a-452c-a6d9-3de4642b16a0"
+                        },
+                        {
+                          "id": "949ebfd2-8f17-4fcc-b94e-ac74c4694753",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-949ebfd2-8f17-4fcc-b94e-ac74c4694753"
+                        },
+                        {
+                          "id": "66af5692-7b44-4b1a-8609-d57c1dc117bc",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-66af5692-7b44-4b1a-8609-d57c1dc117bc"
+                        },
+                        {
+                          "id": "7fe04c2c-c60a-4731-88e0-69e11453bf84",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-7fe04c2c-c60a-4731-88e0-69e11453bf84"
+                        },
+                        {
+                          "id": "09bbd153-8e58-4bee-a45d-ab243948f720",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-09bbd153-8e58-4bee-a45d-ab243948f720"
+                        },
+                        {
+                          "id": "a97708ec-e0c7-4642-8e20-fc0c4c5abb2b",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-a97708ec-e0c7-4642-8e20-fc0c4c5abb2b"
+                        },
+                        {
+                          "id": "ca48b01b-06b6-4bee-9e32-122d5d59950a",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-ca48b01b-06b6-4bee-9e32-122d5d59950a"
+                        },
+                        {
+                          "id": "d75df2b9-af04-4fb3-9c57-caa1b3e308c1",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-d75df2b9-af04-4fb3-9c57-caa1b3e308c1"
+                        },
+                        {
+                          "id": "bcc07e88-8981-444b-82fc-ea57ebeed646",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-bcc07e88-8981-444b-82fc-ea57ebeed646"
+                        },
+                        {
+                          "id": "4ce09c4c-8817-4263-b8b2-aa8a3a097dc8",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-4ce09c4c-8817-4263-b8b2-aa8a3a097dc8"
+                        },
+                        {
+                          "id": "25d01152-d44b-406e-bf95-3213a48ba57b",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-25d01152-d44b-406e-bf95-3213a48ba57b"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-c6a81cda-13aa-4872-9e6c-fc2de30a3450"
+                    },
+                    {
+                      "name": "Create an (or Alter an Existing) Api Integration",
+                      "id": "27f374ca-be3a-44a9-916a-ca579017add0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c012a786-77e0-4e74-9de3-853696b9badc",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Create an (or alter an existing) API integration. Note that API_KEY is not currently altered by this operation and is supported for a newly-created object only. Unsetting API_BLOCKED_PREFIXES is also unsupported."
+                      },
+                      "response": [
+                        {
+                          "id": "5371118b-de7f-46a7-957f-e8a05d7de8e5",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-5371118b-de7f-46a7-957f-e8a05d7de8e5"
+                        },
+                        {
+                          "id": "2e798f09-1b9f-409a-b673-365f286c3821",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-2e798f09-1b9f-409a-b673-365f286c3821"
+                        },
+                        {
+                          "id": "9435df3d-8ca7-48ad-bff6-5847cc6fc376",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-9435df3d-8ca7-48ad-bff6-5847cc6fc376"
+                        },
+                        {
+                          "id": "8f619804-38c9-478d-8750-5b684c60e374",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-8f619804-38c9-478d-8750-5b684c60e374"
+                        },
+                        {
+                          "id": "f6ce861b-2185-4aca-8025-8c0ecdc36071",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-f6ce861b-2185-4aca-8025-8c0ecdc36071"
+                        },
+                        {
+                          "id": "1bb070af-6305-4817-a5b4-d1e7ee741ed1",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-1bb070af-6305-4817-a5b4-d1e7ee741ed1"
+                        },
+                        {
+                          "id": "35a9f4fa-02d6-404b-8353-5136532a50cb",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-35a9f4fa-02d6-404b-8353-5136532a50cb"
+                        },
+                        {
+                          "id": "2672b5c5-c0f3-41e5-a28e-f48361085aed",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-2672b5c5-c0f3-41e5-a28e-f48361085aed"
+                        },
+                        {
+                          "id": "38585848-70c8-42b6-ba08-97cfdaaf8db1",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-38585848-70c8-42b6-ba08-97cfdaaf8db1"
+                        },
+                        {
+                          "id": "e4518724-c7c3-4d12-9d50-f2fdd62d2949",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-e4518724-c7c3-4d12-9d50-f2fdd62d2949"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-27f374ca-be3a-44a9-916a-ca579017add0"
+                    },
+                    {
+                      "name": "Delete an Api Integration",
+                      "id": "f09e6f5a-ef29-4851-a544-e6e4d56a0063",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5edb9b90-651d-4c94-9842-e4a2e7817288",
+                              "key": "name"
+                            }
+                          ]
+                        },
+                        "description": "Delete an API integration"
+                      },
+                      "response": [
+                        {
+                          "id": "b95fd1d5-fb3e-40ab-b7b2-74562271ea6a",
+                          "name": "200 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-b95fd1d5-fb3e-40ab-b7b2-74562271ea6a"
+                        },
+                        {
+                          "id": "d6bb2282-c46e-4cb8-be68-e3b3addf1d2d",
+                          "name": "202 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-d6bb2282-c46e-4cb8-be68-e3b3addf1d2d"
+                        },
+                        {
+                          "id": "3a24419a-f28c-4b7d-be23-a896d630ddb3",
+                          "name": "400 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-3a24419a-f28c-4b7d-be23-a896d630ddb3"
+                        },
+                        {
+                          "id": "3d59ddad-f061-4f2e-9d7c-31a13e15f6e1",
+                          "name": "401 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-3d59ddad-f061-4f2e-9d7c-31a13e15f6e1"
+                        },
+                        {
+                          "id": "137184cd-f8c3-4114-8e2a-b4030b725c98",
+                          "name": "403 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-137184cd-f8c3-4114-8e2a-b4030b725c98"
+                        },
+                        {
+                          "id": "d37492f9-79e5-4471-a13e-d0c06fe68add",
+                          "name": "404 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-d37492f9-79e5-4471-a13e-d0c06fe68add"
+                        },
+                        {
+                          "id": "a8e60059-71f2-467f-81a2-ba02f466b5f0",
+                          "name": "405 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-a8e60059-71f2-467f-81a2-ba02f466b5f0"
+                        },
+                        {
+                          "id": "1148883a-81a7-44ad-8526-4ee5defdfa41",
+                          "name": "408 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Timeout",
+                          "code": 408,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-1148883a-81a7-44ad-8526-4ee5defdfa41"
+                        },
+                        {
+                          "id": "cafcee7e-af90-42a9-84fa-83c714a4ef3d",
+                          "name": "409 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-cafcee7e-af90-42a9-84fa-83c714a4ef3d"
+                        },
+                        {
+                          "id": "8d6778c4-0c0c-4ff0-8627-bde2b63bb197",
+                          "name": "410 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gone",
+                          "code": 410,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-8d6778c4-0c0c-4ff0-8627-bde2b63bb197"
+                        },
+                        {
+                          "id": "f2b57ad0-a1a6-40c4-b971-08c2194dfeb0",
+                          "name": "429 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-f2b57ad0-a1a6-40c4-b971-08c2194dfeb0"
+                        },
+                        {
+                          "id": "7bb30339-c957-44c7-b698-e917f8cb599f",
+                          "name": "500 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-7bb30339-c957-44c7-b698-e917f8cb599f"
+                        },
+                        {
+                          "id": "ff7fc16d-52c0-4798-a67f-0f21a72c8739",
+                          "name": "503 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-ff7fc16d-52c0-4798-a67f-0f21a72c8739"
+                        },
+                        {
+                          "id": "939059be-4823-4dea-8d51-8edfb963ab24",
+                          "name": "504 response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/api-integrations/:name",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "api-integrations",
+                                ":name"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Gateway Timeout",
+                          "code": 504,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:19:57.000Z",
+                          "updatedAt": "2026-06-05T13:19:57.000Z",
+                          "uid": "35240-939059be-4823-4dea-8d51-8edfb963ab24"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-f09e6f5a-ef29-4851-a544-e6e4d56a0063"
+                    }
+                  ],
+                  "id": "06659af5-0ff3-4d3b-b2c5-08d80dafa5d8",
+                  "createdAt": "2026-06-05T13:19:57.000Z",
+                  "updatedAt": "2026-06-05T13:19:57.000Z",
+                  "uid": "35240-06659af5-0ff3-4d3b-b2c5-08d80dafa5d8"
+                },
+                {
+                  "name": "List Api Integrations",
+                  "id": "36434d23-3676-4574-bb35-30ad39275bab",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/api-integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "api-integrations"
+                      ]
+                    },
+                    "description": "List API integrations"
+                  },
+                  "response": [
+                    {
+                      "id": "68173163-d75e-4d95-80bd-c79fadd59eaf",
+                      "name": "successful",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Snowflake-Request-ID",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Link",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": \"\\\"8\\\"\\\"J\\\"\\\"\\\"\\\"\\\"\\\"M\\\"\\\"<\\\"\",\n    \"api_hook\": {\n      \"type\": \"GIT\"\n    },\n    \"api_allowed_prefixes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"enabled\": \"<boolean>\",\n    \"api_blocked_prefixes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"comment\": \"<string>\",\n    \"created_on\": \"<dateTime>\"\n  },\n  {\n    \"name\": \"\\\"\\\"\\\"3pR\\\\\\\"\\\"\\\"\\\"\\\"\\\"1\\\"\\\"n\\\"\",\n    \"api_hook\": {\n      \"type\": \"GIT\"\n    },\n    \"api_allowed_prefixes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"enabled\": \"<boolean>\",\n    \"api_blocked_prefixes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"comment\": \"<string>\",\n    \"created_on\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-68173163-d75e-4d95-80bd-c79fadd59eaf"
+                    },
+                    {
+                      "id": "1b996afa-6bce-4776-bb75-e471dd95956c",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-1b996afa-6bce-4776-bb75-e471dd95956c"
+                    },
+                    {
+                      "id": "45319031-c7fa-4700-90e7-f1183364490b",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-45319031-c7fa-4700-90e7-f1183364490b"
+                    },
+                    {
+                      "id": "15732eea-e336-4beb-b09f-fd49441d3177",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-15732eea-e336-4beb-b09f-fd49441d3177"
+                    },
+                    {
+                      "id": "99fca5e4-f449-4918-9462-b178a08ac42c",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-99fca5e4-f449-4918-9462-b178a08ac42c"
+                    },
+                    {
+                      "id": "57703a87-542f-4f19-a563-e27573f9e8ed",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-57703a87-542f-4f19-a563-e27573f9e8ed"
+                    },
+                    {
+                      "id": "8c74a965-6a00-4490-8a55-8c37de2b3eb5",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-8c74a965-6a00-4490-8a55-8c37de2b3eb5"
+                    },
+                    {
+                      "id": "5f6bf323-4fd6-4b6a-a9d7-0f384254b879",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-5f6bf323-4fd6-4b6a-a9d7-0f384254b879"
+                    },
+                    {
+                      "id": "4402213f-84fe-4a81-a4a3-a638a873ccfb",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-4402213f-84fe-4a81-a4a3-a638a873ccfb"
+                    },
+                    {
+                      "id": "720fa155-7084-4c43-b834-fd0ab7456fe0",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-720fa155-7084-4c43-b834-fd0ab7456fe0"
+                    },
+                    {
+                      "id": "7885d7b0-beae-44d3-af24-4d4a0d7e7e6b",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-7885d7b0-beae-44d3-af24-4d4a0d7e7e6b"
+                    },
+                    {
+                      "id": "eae37399-96f2-480a-8818-9245d3f5f5bc",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-eae37399-96f2-480a-8818-9245d3f5f5bc"
+                    },
+                    {
+                      "id": "9a0a7a8f-4521-4730-9494-83b1be04ed8f",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-9a0a7a8f-4521-4730-9494-83b1be04ed8f"
+                    },
+                    {
+                      "id": "d510591d-9a14-406c-9a46-d56852ec0c0e",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-d510591d-9a14-406c-9a46-d56852ec0c0e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:19:57.000Z",
+                  "updatedAt": "2026-06-05T13:19:57.000Z",
+                  "uid": "35240-36434d23-3676-4574-bb35-30ad39275bab"
+                },
+                {
+                  "name": "Create an Api Integration",
+                  "id": "2a217e54-46b1-48c7-ad9e-d5e8448e8a08",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/api-integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "api-integrations"
+                      ]
+                    },
+                    "description": "Create an API integration"
+                  },
+                  "response": [
+                    {
+                      "id": "2b91c79c-a39a-489f-9fa6-661968422e1a",
+                      "name": "200 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-2b91c79c-a39a-489f-9fa6-661968422e1a"
+                    },
+                    {
+                      "id": "a0517381-9b5b-4827-a350-94ea743d84dd",
+                      "name": "202 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-a0517381-9b5b-4827-a350-94ea743d84dd"
+                    },
+                    {
+                      "id": "fff16d99-94d0-4654-9f2d-8b9c7b9ed27a",
+                      "name": "400 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-fff16d99-94d0-4654-9f2d-8b9c7b9ed27a"
+                    },
+                    {
+                      "id": "60c5f99a-b9ac-4ba8-9627-f21ac223326a",
+                      "name": "401 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-60c5f99a-b9ac-4ba8-9627-f21ac223326a"
+                    },
+                    {
+                      "id": "358c62ec-2293-4980-bc27-a55db0a1163c",
+                      "name": "403 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-358c62ec-2293-4980-bc27-a55db0a1163c"
+                    },
+                    {
+                      "id": "c2a7549f-79f1-4a8b-9e77-f95c1e899a96",
+                      "name": "404 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-c2a7549f-79f1-4a8b-9e77-f95c1e899a96"
+                    },
+                    {
+                      "id": "eab800ba-bacb-4bbf-b582-ad14a2440c74",
+                      "name": "405 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-eab800ba-bacb-4bbf-b582-ad14a2440c74"
+                    },
+                    {
+                      "id": "beaa17d8-c6d7-419b-82df-5edf8705b47d",
+                      "name": "408 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Request Timeout",
+                      "code": 408,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-beaa17d8-c6d7-419b-82df-5edf8705b47d"
+                    },
+                    {
+                      "id": "3b54c611-25b1-414f-ba84-6091f3b1a7cd",
+                      "name": "409 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-3b54c611-25b1-414f-ba84-6091f3b1a7cd"
+                    },
+                    {
+                      "id": "20873a22-418c-488b-aa9f-3b39cb2eb471",
+                      "name": "410 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Gone",
+                      "code": 410,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-20873a22-418c-488b-aa9f-3b39cb2eb471"
+                    },
+                    {
+                      "id": "c26e898e-ae7f-4a78-8df6-94b64783b91b",
+                      "name": "429 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-c26e898e-ae7f-4a78-8df6-94b64783b91b"
+                    },
+                    {
+                      "id": "258211bb-3568-463c-8a79-de7a568e838d",
+                      "name": "500 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-258211bb-3568-463c-8a79-de7a568e838d"
+                    },
+                    {
+                      "id": "21889ff5-8ff4-4e80-90a5-92495508a6fe",
+                      "name": "503 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-21889ff5-8ff4-4e80-90a5-92495508a6fe"
+                    },
+                    {
+                      "id": "680c5219-1cff-4f6a-90f6-96827bfbaf89",
+                      "name": "504 response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"\\\"\\\"\\\"gm\\\"\\\"\\\"\\\"-\\\"\\\"\\\"\\\"Z\\\"\\\"\\\"\",\n  \"api_hook\": {\n    \"type\": \"GC\"\n  },\n  \"api_allowed_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"api_blocked_prefixes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\",\n  \"created_on\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/api-integrations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "api-integrations"
+                          ]
+                        }
+                      },
+                      "status": "Gateway Timeout",
+                      "code": 504,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:19:57.000Z",
+                      "updatedAt": "2026-06-05T13:19:57.000Z",
+                      "uid": "35240-680c5219-1cff-4f6a-90f6-96827bfbaf89"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:19:57.000Z",
+                  "updatedAt": "2026-06-05T13:19:57.000Z",
+                  "uid": "35240-2a217e54-46b1-48c7-ad9e-d5e8448e8a08"
+                }
+              ],
+              "id": "ca424b26-e9e5-47e0-b5af-8bcbb289ee67",
+              "createdAt": "2026-06-05T13:19:57.000Z",
+              "updatedAt": "2026-06-05T13:19:57.000Z",
+              "uid": "35240-ca424b26-e9e5-47e0-b5af-8bcbb289ee67"
+            }
+          ],
+          "id": "9f0a885b-f747-470c-bce1-eee3af5ec997",
+          "createdAt": "2026-06-05T13:19:57.000Z",
+          "updatedAt": "2026-06-05T13:19:57.000Z",
+          "uid": "35240-9f0a885b-f747-470c-bce1-eee3af5ec997"
+        }
+      ],
+      "id": "d604af06-78d8-4bfa-a6f2-9940f6ae5d2f",
+      "createdAt": "2026-06-05T13:19:57.000Z",
+      "updatedAt": "2026-06-05T13:19:57.000Z",
+      "uid": "35240-d604af06-78d8-4bfa-a6f2-9940f6ae5d2f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://org-account.snowflakecomputing.com"
+    }
+  ]
+}

@@ -1,0 +1,1988 @@
+{
+  "info": {
+    "_postman_id": "64746ce3-cd29-4c5c-92fd-d89b3217b6b6",
+    "name": "Cortex Analyst API",
+    "description": "The Snowflake Cortex Analyst API is a REST API that allows end user to chat with their data leveraging semantic models to generate SQL queries.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:20:00.000Z",
+    "updatedAt": "2026-06-05T13:20:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-64746ce3-cd29-4c5c-92fd-d89b3217b6b6"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "cortex",
+              "item": [
+                {
+                  "name": "analyst",
+                  "item": [
+                    {
+                      "name": "feedback",
+                      "item": [
+                        {
+                          "name": "send Feedback",
+                          "id": "8ebbcfcc-daba-4e36-894b-4333582c05cd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"request_id\": \"<string>\",\n  \"positive\": \"<boolean>\",\n  \"feedback_message\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/analyst/feedback",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "analyst",
+                                "feedback"
+                              ]
+                            },
+                            "description": "Send a user feedback of Cortex Analyst response"
+                          },
+                          "response": [
+                            {
+                              "id": "6473acbd-9565-4d58-8355-21c77c118553",
+                              "name": "200 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"request_id\": \"<string>\",\n  \"positive\": \"<boolean>\",\n  \"feedback_message\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/feedback",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "feedback"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-6473acbd-9565-4d58-8355-21c77c118553"
+                            },
+                            {
+                              "id": "8a3a211a-91ea-446c-859e-9b06e2b88095",
+                              "name": "400 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"request_id\": \"<string>\",\n  \"positive\": \"<boolean>\",\n  \"feedback_message\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/feedback",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "feedback"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-8a3a211a-91ea-446c-859e-9b06e2b88095"
+                            },
+                            {
+                              "id": "1f79ca21-6eaf-4e70-9984-179dc84c5ab1",
+                              "name": "401 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"request_id\": \"<string>\",\n  \"positive\": \"<boolean>\",\n  \"feedback_message\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/feedback",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "feedback"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-1f79ca21-6eaf-4e70-9984-179dc84c5ab1"
+                            },
+                            {
+                              "id": "763490b1-72e2-4560-8660-cc9d0430eb5b",
+                              "name": "403 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"request_id\": \"<string>\",\n  \"positive\": \"<boolean>\",\n  \"feedback_message\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/feedback",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "feedback"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-763490b1-72e2-4560-8660-cc9d0430eb5b"
+                            },
+                            {
+                              "id": "447e84e4-fba4-4311-b7af-2ea5bb0b1b89",
+                              "name": "404 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"request_id\": \"<string>\",\n  \"positive\": \"<boolean>\",\n  \"feedback_message\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/feedback",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "feedback"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-447e84e4-fba4-4311-b7af-2ea5bb0b1b89"
+                            },
+                            {
+                              "id": "99bc5102-41d1-43c8-a38e-5bf7c1d7def2",
+                              "name": "405 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"request_id\": \"<string>\",\n  \"positive\": \"<boolean>\",\n  \"feedback_message\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/feedback",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "feedback"
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-99bc5102-41d1-43c8-a38e-5bf7c1d7def2"
+                            },
+                            {
+                              "id": "02bfd83a-0b89-4d63-8b4b-16b4bb7f75b3",
+                              "name": "429 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"request_id\": \"<string>\",\n  \"positive\": \"<boolean>\",\n  \"feedback_message\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/feedback",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "feedback"
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-02bfd83a-0b89-4d63-8b4b-16b4bb7f75b3"
+                            },
+                            {
+                              "id": "9d472d8a-1407-4b83-92c5-37150d6213ef",
+                              "name": "500 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"request_id\": \"<string>\",\n  \"positive\": \"<boolean>\",\n  \"feedback_message\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/feedback",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "feedback"
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-9d472d8a-1407-4b83-92c5-37150d6213ef"
+                            },
+                            {
+                              "id": "f9957cdd-ed8a-4fbd-8342-93cd625f4d42",
+                              "name": "503 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"request_id\": \"<string>\",\n  \"positive\": \"<boolean>\",\n  \"feedback_message\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/feedback",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "feedback"
+                                  ]
+                                }
+                              },
+                              "status": "Service Unavailable",
+                              "code": 503,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-f9957cdd-ed8a-4fbd-8342-93cd625f4d42"
+                            },
+                            {
+                              "id": "4d24fe39-101b-4778-801b-cbdaad71b0d1",
+                              "name": "504 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"request_id\": \"<string>\",\n  \"positive\": \"<boolean>\",\n  \"feedback_message\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/feedback",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "feedback"
+                                  ]
+                                }
+                              },
+                              "status": "Gateway Timeout",
+                              "code": 504,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-4d24fe39-101b-4778-801b-cbdaad71b0d1"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:20:01.000Z",
+                          "updatedAt": "2026-06-05T13:20:01.000Z",
+                          "uid": "35240-8ebbcfcc-daba-4e36-894b-4333582c05cd"
+                        }
+                      ],
+                      "id": "ea428678-0444-4c42-b03f-d7e9984c9f60",
+                      "createdAt": "2026-06-05T13:20:01.000Z",
+                      "updatedAt": "2026-06-05T13:20:01.000Z",
+                      "uid": "35240-ea428678-0444-4c42-b03f-d7e9984c9f60"
+                    },
+                    {
+                      "name": "message",
+                      "item": [
+                        {
+                          "name": "Send a Data Question to the Cortex Analyst",
+                          "id": "f3ba211f-1f6c-48ce-986d-c36ab98bce63",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"messages\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"results\"\n        },\n        {\n          \"type\": \"chart\"\n        }\n      ],\n      \"role\": \"analyst\"\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"suggestions\"\n        },\n        {\n          \"type\": \"text\"\n        }\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"semantic_model_file\": \"<string>\",\n  \"semantic_model\": \"<string>\",\n  \"semantic_view\": \"<string>\",\n  \"semantic_models\": [\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    },\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"operation\": \"sql_generation\",\n  \"warehouse\": \"<string>\",\n  \"source\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/analyst/message",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "analyst",
+                                "message"
+                              ]
+                            },
+                            "description": "Send a data question to the Cortex Analyst"
+                          },
+                          "response": [
+                            {
+                              "id": "f91f1005-0267-45d7-a5e6-96a317a6c9a5",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"messages\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"results\"\n        },\n        {\n          \"type\": \"chart\"\n        }\n      ],\n      \"role\": \"analyst\"\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"suggestions\"\n        },\n        {\n          \"type\": \"text\"\n        }\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"semantic_model_file\": \"<string>\",\n  \"semantic_model\": \"<string>\",\n  \"semantic_view\": \"<string>\",\n  \"semantic_models\": [\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    },\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"operation\": \"sql_generation\",\n  \"warehouse\": \"<string>\",\n  \"source\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/message",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "message"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": {\n    \"content\": [\n      {\n        \"type\": \"text\"\n      },\n      {\n        \"type\": \"results\"\n      }\n    ],\n    \"role\": \"user\"\n  },\n  \"request_id\": \"<string>\",\n  \"warnings\": [\n    {\n      \"message\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\"\n    }\n  ],\n  \"semantic_model_selection\": {\n    \"index\": \"<integer>\",\n    \"identifier\": {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    }\n  },\n  \"response_metadata\": {\n    \"aliquip_1db\": 69412799.51786688,\n    \"essef12\": true,\n    \"ina9\": 71055910.40448153,\n    \"nisi10b\": 13192767.549291551\n  }\n}",
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-f91f1005-0267-45d7-a5e6-96a317a6c9a5"
+                            },
+                            {
+                              "id": "ff9227d5-cd91-4a70-a36b-19c99f167b0a",
+                              "name": "400 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"messages\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"results\"\n        },\n        {\n          \"type\": \"chart\"\n        }\n      ],\n      \"role\": \"analyst\"\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"suggestions\"\n        },\n        {\n          \"type\": \"text\"\n        }\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"semantic_model_file\": \"<string>\",\n  \"semantic_model\": \"<string>\",\n  \"semantic_view\": \"<string>\",\n  \"semantic_models\": [\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    },\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"operation\": \"sql_generation\",\n  \"warehouse\": \"<string>\",\n  \"source\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/message",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "message"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-ff9227d5-cd91-4a70-a36b-19c99f167b0a"
+                            },
+                            {
+                              "id": "71440167-6dae-408b-9635-53150f031d63",
+                              "name": "401 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"messages\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"results\"\n        },\n        {\n          \"type\": \"chart\"\n        }\n      ],\n      \"role\": \"analyst\"\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"suggestions\"\n        },\n        {\n          \"type\": \"text\"\n        }\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"semantic_model_file\": \"<string>\",\n  \"semantic_model\": \"<string>\",\n  \"semantic_view\": \"<string>\",\n  \"semantic_models\": [\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    },\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"operation\": \"sql_generation\",\n  \"warehouse\": \"<string>\",\n  \"source\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/message",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "message"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-71440167-6dae-408b-9635-53150f031d63"
+                            },
+                            {
+                              "id": "a6571e60-6565-446b-851e-5269aaf84335",
+                              "name": "403 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"messages\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"results\"\n        },\n        {\n          \"type\": \"chart\"\n        }\n      ],\n      \"role\": \"analyst\"\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"suggestions\"\n        },\n        {\n          \"type\": \"text\"\n        }\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"semantic_model_file\": \"<string>\",\n  \"semantic_model\": \"<string>\",\n  \"semantic_view\": \"<string>\",\n  \"semantic_models\": [\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    },\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"operation\": \"sql_generation\",\n  \"warehouse\": \"<string>\",\n  \"source\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/message",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "message"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-a6571e60-6565-446b-851e-5269aaf84335"
+                            },
+                            {
+                              "id": "57b1a463-ed5c-4bf7-9c2f-2f77740b2990",
+                              "name": "404 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"messages\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"results\"\n        },\n        {\n          \"type\": \"chart\"\n        }\n      ],\n      \"role\": \"analyst\"\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"suggestions\"\n        },\n        {\n          \"type\": \"text\"\n        }\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"semantic_model_file\": \"<string>\",\n  \"semantic_model\": \"<string>\",\n  \"semantic_view\": \"<string>\",\n  \"semantic_models\": [\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    },\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"operation\": \"sql_generation\",\n  \"warehouse\": \"<string>\",\n  \"source\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/message",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "message"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-57b1a463-ed5c-4bf7-9c2f-2f77740b2990"
+                            },
+                            {
+                              "id": "411479f7-1bb1-4dad-bc4e-7a2d8fa485c9",
+                              "name": "405 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"messages\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"results\"\n        },\n        {\n          \"type\": \"chart\"\n        }\n      ],\n      \"role\": \"analyst\"\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"suggestions\"\n        },\n        {\n          \"type\": \"text\"\n        }\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"semantic_model_file\": \"<string>\",\n  \"semantic_model\": \"<string>\",\n  \"semantic_view\": \"<string>\",\n  \"semantic_models\": [\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    },\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"operation\": \"sql_generation\",\n  \"warehouse\": \"<string>\",\n  \"source\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/message",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "message"
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-411479f7-1bb1-4dad-bc4e-7a2d8fa485c9"
+                            },
+                            {
+                              "id": "0c98b9b6-1821-4b1f-a2d3-d85340d542a0",
+                              "name": "429 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"messages\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"results\"\n        },\n        {\n          \"type\": \"chart\"\n        }\n      ],\n      \"role\": \"analyst\"\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"suggestions\"\n        },\n        {\n          \"type\": \"text\"\n        }\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"semantic_model_file\": \"<string>\",\n  \"semantic_model\": \"<string>\",\n  \"semantic_view\": \"<string>\",\n  \"semantic_models\": [\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    },\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"operation\": \"sql_generation\",\n  \"warehouse\": \"<string>\",\n  \"source\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/message",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "message"
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-0c98b9b6-1821-4b1f-a2d3-d85340d542a0"
+                            },
+                            {
+                              "id": "4114e4fd-3768-4606-88ee-f557dd1d0494",
+                              "name": "500 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"messages\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"results\"\n        },\n        {\n          \"type\": \"chart\"\n        }\n      ],\n      \"role\": \"analyst\"\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"suggestions\"\n        },\n        {\n          \"type\": \"text\"\n        }\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"semantic_model_file\": \"<string>\",\n  \"semantic_model\": \"<string>\",\n  \"semantic_view\": \"<string>\",\n  \"semantic_models\": [\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    },\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"operation\": \"sql_generation\",\n  \"warehouse\": \"<string>\",\n  \"source\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/message",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "message"
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-4114e4fd-3768-4606-88ee-f557dd1d0494"
+                            },
+                            {
+                              "id": "36321fba-8314-4ae6-9f5c-f1e9e60235c9",
+                              "name": "503 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"messages\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"results\"\n        },\n        {\n          \"type\": \"chart\"\n        }\n      ],\n      \"role\": \"analyst\"\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"suggestions\"\n        },\n        {\n          \"type\": \"text\"\n        }\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"semantic_model_file\": \"<string>\",\n  \"semantic_model\": \"<string>\",\n  \"semantic_view\": \"<string>\",\n  \"semantic_models\": [\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    },\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"operation\": \"sql_generation\",\n  \"warehouse\": \"<string>\",\n  \"source\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/message",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "message"
+                                  ]
+                                }
+                              },
+                              "status": "Service Unavailable",
+                              "code": 503,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-36321fba-8314-4ae6-9f5c-f1e9e60235c9"
+                            },
+                            {
+                              "id": "2da1b698-9820-4e6c-bcd4-983e14088547",
+                              "name": "504 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"messages\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"results\"\n        },\n        {\n          \"type\": \"chart\"\n        }\n      ],\n      \"role\": \"analyst\"\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"suggestions\"\n        },\n        {\n          \"type\": \"text\"\n        }\n      ],\n      \"role\": \"user\"\n    }\n  ],\n  \"semantic_model_file\": \"<string>\",\n  \"semantic_model\": \"<string>\",\n  \"semantic_view\": \"<string>\",\n  \"semantic_models\": [\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    },\n    {\n      \"semantic_model_file\": \"<string>\",\n      \"semantic_view\": \"<string>\",\n      \"inline_semantic_model\": \"<string>\"\n    }\n  ],\n  \"stream\": false,\n  \"operation\": \"sql_generation\",\n  \"warehouse\": \"<string>\",\n  \"source\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/message",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "message"
+                                  ]
+                                }
+                              },
+                              "status": "Gateway Timeout",
+                              "code": 504,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-2da1b698-9820-4e6c-bcd4-983e14088547"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:20:01.000Z",
+                          "updatedAt": "2026-06-05T13:20:01.000Z",
+                          "uid": "35240-f3ba211f-1f6c-48ce-986d-c36ab98bce63"
+                        }
+                      ],
+                      "id": "8e3614bd-18f9-4bfc-a3c0-c32a917ea59b",
+                      "createdAt": "2026-06-05T13:20:01.000Z",
+                      "updatedAt": "2026-06-05T13:20:01.000Z",
+                      "uid": "35240-8e3614bd-18f9-4bfc-a3c0-c32a917ea59b"
+                    },
+                    {
+                      "name": "verified-query-suggestions",
+                      "item": [
+                        {
+                          "name": "Generate Vq Suggestions for a Semantic Model",
+                          "id": "d4e1d635-cce5-4ef0-bca7-c067251a930d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"semantic_model\": {\n    \"semantic_model_file\": \"<string>\",\n    \"semantic_view\": \"<string>\",\n    \"inline_semantic_model\": \"<string>\"\n  },\n  \"warehouse\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/analyst/verified-query-suggestions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "analyst",
+                                "verified-query-suggestions"
+                              ]
+                            },
+                            "description": "Generate VQ suggestions for a semantic model"
+                          },
+                          "response": [
+                            {
+                              "id": "766c5e57-68d1-46ec-a17d-76444956d274",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"semantic_model\": {\n    \"semantic_model_file\": \"<string>\",\n    \"semantic_view\": \"<string>\",\n    \"inline_semantic_model\": \"<string>\"\n  },\n  \"warehouse\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/verified-query-suggestions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "verified-query-suggestions"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"request_id\": \"<string>\",\n  \"vq_suggestions\": [\n    {\n      \"score\": \"<float>\",\n      \"vq_to_add\": {\n        \"name\": \"<string>\",\n        \"question\": \"<string>\",\n        \"sql\": \"<string>\",\n        \"verified_at\": \"<long>\",\n        \"verified_by\": \"<string>\"\n      },\n      \"vq_to_remove\": {\n        \"name\": \"<string>\",\n        \"question\": \"<string>\",\n        \"sql\": \"<string>\",\n        \"verified_at\": \"<long>\",\n        \"verified_by\": \"<string>\"\n      }\n    },\n    {\n      \"score\": \"<float>\",\n      \"vq_to_add\": {\n        \"name\": \"<string>\",\n        \"question\": \"<string>\",\n        \"sql\": \"<string>\",\n        \"verified_at\": \"<long>\",\n        \"verified_by\": \"<string>\"\n      },\n      \"vq_to_remove\": {\n        \"name\": \"<string>\",\n        \"question\": \"<string>\",\n        \"sql\": \"<string>\",\n        \"verified_at\": \"<long>\",\n        \"verified_by\": \"<string>\"\n      }\n    }\n  ],\n  \"warnings\": [\n    {\n      \"message\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-766c5e57-68d1-46ec-a17d-76444956d274"
+                            },
+                            {
+                              "id": "66aa2ac5-8c27-4792-984b-072e51829c5b",
+                              "name": "400 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"semantic_model\": {\n    \"semantic_model_file\": \"<string>\",\n    \"semantic_view\": \"<string>\",\n    \"inline_semantic_model\": \"<string>\"\n  },\n  \"warehouse\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/verified-query-suggestions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "verified-query-suggestions"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-66aa2ac5-8c27-4792-984b-072e51829c5b"
+                            },
+                            {
+                              "id": "abb2b026-214a-4cb2-a0b4-1ae59ab186b0",
+                              "name": "401 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"semantic_model\": {\n    \"semantic_model_file\": \"<string>\",\n    \"semantic_view\": \"<string>\",\n    \"inline_semantic_model\": \"<string>\"\n  },\n  \"warehouse\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/verified-query-suggestions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "verified-query-suggestions"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-abb2b026-214a-4cb2-a0b4-1ae59ab186b0"
+                            },
+                            {
+                              "id": "0fe9239d-e31e-47e3-a9f9-96ef41eda2a4",
+                              "name": "403 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"semantic_model\": {\n    \"semantic_model_file\": \"<string>\",\n    \"semantic_view\": \"<string>\",\n    \"inline_semantic_model\": \"<string>\"\n  },\n  \"warehouse\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/verified-query-suggestions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "verified-query-suggestions"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-0fe9239d-e31e-47e3-a9f9-96ef41eda2a4"
+                            },
+                            {
+                              "id": "0e9ec73c-0f5f-4a22-a511-67a53a27460a",
+                              "name": "404 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"semantic_model\": {\n    \"semantic_model_file\": \"<string>\",\n    \"semantic_view\": \"<string>\",\n    \"inline_semantic_model\": \"<string>\"\n  },\n  \"warehouse\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/verified-query-suggestions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "verified-query-suggestions"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-0e9ec73c-0f5f-4a22-a511-67a53a27460a"
+                            },
+                            {
+                              "id": "69eb90e2-4a14-4b69-b96f-b4dfa11ee4d7",
+                              "name": "405 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"semantic_model\": {\n    \"semantic_model_file\": \"<string>\",\n    \"semantic_view\": \"<string>\",\n    \"inline_semantic_model\": \"<string>\"\n  },\n  \"warehouse\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/verified-query-suggestions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "verified-query-suggestions"
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-69eb90e2-4a14-4b69-b96f-b4dfa11ee4d7"
+                            },
+                            {
+                              "id": "4a6219d9-6780-420e-9cc6-504f3af15d38",
+                              "name": "429 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"semantic_model\": {\n    \"semantic_model_file\": \"<string>\",\n    \"semantic_view\": \"<string>\",\n    \"inline_semantic_model\": \"<string>\"\n  },\n  \"warehouse\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/verified-query-suggestions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "verified-query-suggestions"
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-4a6219d9-6780-420e-9cc6-504f3af15d38"
+                            },
+                            {
+                              "id": "1161fc8b-d08f-4d74-846f-712f1b5dc363",
+                              "name": "500 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"semantic_model\": {\n    \"semantic_model_file\": \"<string>\",\n    \"semantic_view\": \"<string>\",\n    \"inline_semantic_model\": \"<string>\"\n  },\n  \"warehouse\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/verified-query-suggestions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "verified-query-suggestions"
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-1161fc8b-d08f-4d74-846f-712f1b5dc363"
+                            },
+                            {
+                              "id": "99f2c065-67d7-48f7-a86f-ea28511f8b89",
+                              "name": "503 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"semantic_model\": {\n    \"semantic_model_file\": \"<string>\",\n    \"semantic_view\": \"<string>\",\n    \"inline_semantic_model\": \"<string>\"\n  },\n  \"warehouse\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/verified-query-suggestions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "verified-query-suggestions"
+                                  ]
+                                }
+                              },
+                              "status": "Service Unavailable",
+                              "code": 503,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-99f2c065-67d7-48f7-a86f-ea28511f8b89"
+                            },
+                            {
+                              "id": "09c133a5-addb-45ec-91ce-5d42109610ef",
+                              "name": "504 response",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"semantic_model\": {\n    \"semantic_model_file\": \"<string>\",\n    \"semantic_view\": \"<string>\",\n    \"inline_semantic_model\": \"<string>\"\n  },\n  \"warehouse\": \"<string>\",\n  \"experimental\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/verified-query-suggestions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "verified-query-suggestions"
+                                  ]
+                                }
+                              },
+                              "status": "Gateway Timeout",
+                              "code": 504,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-09c133a5-addb-45ec-91ce-5d42109610ef"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:20:01.000Z",
+                          "updatedAt": "2026-06-05T13:20:01.000Z",
+                          "uid": "35240-d4e1d635-cce5-4ef0-bca7-c067251a930d"
+                        }
+                      ],
+                      "id": "e22b45e1-fa0f-4618-8afe-d586ef31cc92",
+                      "createdAt": "2026-06-05T13:20:01.000Z",
+                      "updatedAt": "2026-06-05T13:20:01.000Z",
+                      "uid": "35240-e22b45e1-fa0f-4618-8afe-d586ef31cc92"
+                    },
+                    {
+                      "name": "token",
+                      "item": [
+                        {
+                          "name": "Internal Endpoint to Exchange a Cortex Analyst Oauth Token",
+                          "id": "734bcdc1-cefb-47af-a84c-ba314331c2be",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/cortex/analyst/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "cortex",
+                                "analyst",
+                                "token"
+                              ]
+                            },
+                            "description": "Internal endpoint to exchange a Cortex Analyst Oauth token"
+                          },
+                          "response": [
+                            {
+                              "id": "e2255279-2d94-44f0-b67a-88afffeeb82a",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "token"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"token\": \"<string>\",\n  \"expiration_seconds\": \"<integer>\"\n}",
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-e2255279-2d94-44f0-b67a-88afffeeb82a"
+                            },
+                            {
+                              "id": "3e658c12-84a3-4621-9822-c8e06066fdc1",
+                              "name": "400 response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "token"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-3e658c12-84a3-4621-9822-c8e06066fdc1"
+                            },
+                            {
+                              "id": "4247a9a8-2e37-4ae1-a642-05f79e724d45",
+                              "name": "401 response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "token"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-4247a9a8-2e37-4ae1-a642-05f79e724d45"
+                            },
+                            {
+                              "id": "2a6d6497-d1ef-419f-b81f-cf49ebe8aa80",
+                              "name": "403 response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "token"
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-2a6d6497-d1ef-419f-b81f-cf49ebe8aa80"
+                            },
+                            {
+                              "id": "d0eec394-376b-4abb-978d-3a7942b0b5d6",
+                              "name": "404 response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "token"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-d0eec394-376b-4abb-978d-3a7942b0b5d6"
+                            },
+                            {
+                              "id": "9b69ec98-068d-4a52-862e-7d4896bc7079",
+                              "name": "405 response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "token"
+                                  ]
+                                }
+                              },
+                              "status": "Method Not Allowed",
+                              "code": 405,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-9b69ec98-068d-4a52-862e-7d4896bc7079"
+                            },
+                            {
+                              "id": "6fbb0a77-0756-4565-b920-2c69ced3ea00",
+                              "name": "429 response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "token"
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-6fbb0a77-0756-4565-b920-2c69ced3ea00"
+                            },
+                            {
+                              "id": "b88d8477-b905-43b7-b86d-67784a10ed9a",
+                              "name": "500 response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "token"
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-b88d8477-b905-43b7-b86d-67784a10ed9a"
+                            },
+                            {
+                              "id": "7c0c9782-b383-48ee-806a-411fc7ca71a6",
+                              "name": "503 response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "token"
+                                  ]
+                                }
+                              },
+                              "status": "Service Unavailable",
+                              "code": 503,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-7c0c9782-b383-48ee-806a-411fc7ca71a6"
+                            },
+                            {
+                              "id": "2e145d7e-0fb5-4593-9c33-4d68e15c2ce7",
+                              "name": "504 response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/cortex/analyst/token",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "cortex",
+                                    "analyst",
+                                    "token"
+                                  ]
+                                }
+                              },
+                              "status": "Gateway Timeout",
+                              "code": 504,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:20:01.000Z",
+                              "updatedAt": "2026-06-05T13:20:01.000Z",
+                              "uid": "35240-2e145d7e-0fb5-4593-9c33-4d68e15c2ce7"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:20:01.000Z",
+                          "updatedAt": "2026-06-05T13:20:01.000Z",
+                          "uid": "35240-734bcdc1-cefb-47af-a84c-ba314331c2be"
+                        }
+                      ],
+                      "id": "24834e8d-7a77-4079-b162-eef901534a74",
+                      "createdAt": "2026-06-05T13:20:01.000Z",
+                      "updatedAt": "2026-06-05T13:20:01.000Z",
+                      "uid": "35240-24834e8d-7a77-4079-b162-eef901534a74"
+                    }
+                  ],
+                  "id": "4451cb8a-465e-407c-a21d-a648bd6e91d2",
+                  "createdAt": "2026-06-05T13:20:01.000Z",
+                  "updatedAt": "2026-06-05T13:20:01.000Z",
+                  "uid": "35240-4451cb8a-465e-407c-a21d-a648bd6e91d2"
+                }
+              ],
+              "id": "0c214aae-901f-4413-a461-9c7a36f7194e",
+              "createdAt": "2026-06-05T13:20:01.000Z",
+              "updatedAt": "2026-06-05T13:20:01.000Z",
+              "uid": "35240-0c214aae-901f-4413-a461-9c7a36f7194e"
+            }
+          ],
+          "id": "596d6217-64f3-4e6b-af96-17de2a061611",
+          "createdAt": "2026-06-05T13:20:01.000Z",
+          "updatedAt": "2026-06-05T13:20:01.000Z",
+          "uid": "35240-596d6217-64f3-4e6b-af96-17de2a061611"
+        }
+      ],
+      "id": "9875fb12-f5e7-470b-8bd4-47dd671c2dd8",
+      "createdAt": "2026-06-05T13:20:01.000Z",
+      "updatedAt": "2026-06-05T13:20:01.000Z",
+      "uid": "35240-9875fb12-f5e7-470b-8bd4-47dd671c2dd8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://org-account.snowflakecomputing.com"
+    }
+  ]
+}
