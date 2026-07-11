@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/snowflake-sql-rest-api.yaml, openapi/sqlapi.yaml
+schemes:
+- name: snowflakeOAuth
+  source: openapi/snowflake-sql-rest-api.yaml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://org-account.snowflakecomputing.com/oauth/authorize
+    tokenUrl: https://org-account.snowflakecomputing.com/oauth/token-request
+  description: Snowflake OAuth authentication flow.
+- name: snowflakeOAuth
+  source: openapi/sqlapi.yaml
+  flows:
+  - flow: implicit
+    authorizationUrl: /oauth/authorize
+scopes:
+- scope: session:role:PUBLIC
+  description: Default public role access
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/snowflake-sql-rest-api.yaml
