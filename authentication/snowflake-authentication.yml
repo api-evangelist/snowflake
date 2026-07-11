@@ -1,0 +1,77 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/account.yaml, openapi/alert.yaml, openapi/api-integration.yaml, openapi/compute-pool.yaml,
+  openapi/cortex-analyst.yaml, openapi/cortex-inference.yaml, openapi/cortex-search-service.yaml,
+  openapi/database-role.yaml, openapi/database.yaml, openapi/dynamic-table.yaml, openapi/event-table.yaml,
+  openapi/external-volume.yaml ...
+summary:
+  types:
+  - http
+  - oauth2
+  - unknown
+  oauth2_flows:
+  - authorizationCode
+  - implicit
+schemes:
+- name: KeyPair
+  type: unknown
+  sources:
+  - openapi/account.yaml
+  - openapi/alert.yaml
+  - openapi/api-integration.yaml
+  - openapi/compute-pool.yaml
+  - openapi/cortex-analyst.yaml
+  - openapi/cortex-inference.yaml
+  - openapi/cortex-search-service.yaml
+  - openapi/database-role.yaml
+  - openapi/database.yaml
+  - openapi/dynamic-table.yaml
+  - openapi/event-table.yaml
+  - openapi/external-volume.yaml
+  - openapi/function.yaml
+  - openapi/grant.yaml
+  - openapi/iceberg-table.yaml
+  - openapi/image-repository.yaml
+  - openapi/managed-account.yaml
+  - openapi/notebook.yaml
+  - openapi/notification-integration.yaml
+  - openapi/pipe.yaml
+  - openapi/procedure.yaml
+  - openapi/result.yaml
+  - openapi/role.yaml
+  - openapi/schema.yaml
+  - openapi/service.yaml
+  - openapi/stage.yaml
+  - openapi/table.yaml
+  - openapi/task.yaml
+  - openapi/user-defined-function.yaml
+  - openapi/user.yaml
+  - openapi/view.yaml
+  - openapi/warehouse.yaml
+- name: keyPair
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Key pair authentication using a JWT token. Set X-Snowflake-Authorization-Token-Type
+    to KEYPAIR_JWT.
+  sources:
+  - openapi/snowflake-sql-rest-api.yaml
+  - openapi/sqlapi.yaml
+- name: snowflakeOAuth
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://org-account.snowflakecomputing.com/oauth/authorize
+    tokenUrl: https://org-account.snowflakecomputing.com/oauth/token-request
+    scopes: 1
+  description: Snowflake OAuth authentication flow.
+  sources:
+  - openapi/snowflake-sql-rest-api.yaml
+- name: snowflakeOAuth
+  type: oauth2
+  flows:
+  - flow: implicit
+    authorizationUrl: /oauth/authorize
+    scopes: 0
+  sources:
+  - openapi/sqlapi.yaml
