@@ -1,36 +1,190 @@
+# snowflake — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - servers-expected-domain: 35/35 servers on snowflakecomputing.com
+#   - path-params-casing: snake @ 91% (n=517)
+#   - query-params-casing: camel @ 58% (n=81)
+#   - operationid-casing: camel @ 98% (n=263)
+#   - schema-names-casing: pascal @ 100% (n=249)
+#   - schema-properties-casing: snake @ 96% (n=1175)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - error-schema-defined: ErrorResponse
+#   - operation-documents-400: 100% adherence
+#   - operation-documents-401: 100% adherence
+#   - operation-documents-403: 100% adherence
+#   - operation-documents-404: 100% adherence
+#   - operation-documents-429: 97% adherence
+#   - operation-documents-500: 100% adherence
+#   - pagination params observed: ['page']
+#   - merge: kept 7 existing, added 15 measured, upgraded 0
+#   - added: servers-https-only, servers-expected-domain, path-params-casing, query-params-casing, operationid-casing, schema-names-casing, schema-properties-casing, security-schemes-defined, error-schema-defined, operation-documents-400, operation-documents-401, operation-documents-403, operation-documents-404, operation-documents-429, operation-documents-500
+extends:
+  - spectral:oas
 rules:
   info-title-required:
     description: Info title must be present
     severity: error
     given: $.info
-    then: {field: title, function: truthy}
+    then:
+      field: title
+      function: truthy
   info-description-required:
     description: Info description must be present
     severity: error
     given: $.info
-    then: {field: description, function: truthy}
+    then:
+      field: description
+      function: truthy
   operation-operationid-required:
     description: Every operation must have an operationId
     severity: error
     given: $.paths[*][get,post,put,patch,delete]
-    then: {field: operationId, function: truthy}
+    then:
+      field: operationId
+      function: truthy
   operation-summary-required:
     description: Every operation must have a summary
     severity: error
     given: $.paths[*][get,post,put,patch,delete]
-    then: {field: summary, function: truthy}
+    then:
+      field: summary
+      function: truthy
   operation-tags-required:
     description: Every operation must have tags
     severity: error
     given: $.paths[*][get,post,put,patch,delete]
-    then: {field: tags, function: truthy}
+    then:
+      field: tags
+      function: truthy
   response-description-required:
     description: Every response must have a description
     severity: error
     given: $.paths[*][get,post,put,patch,delete].responses[*]
-    then: {field: description, function: truthy}
+    then:
+      field: description
+      function: truthy
   no-empty-descriptions:
     description: Descriptions must not be empty
     severity: error
     given: $..description
-    then: {function: truthy}
+    then:
+      function: truthy
+  servers-https-only:
+    description: Server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://
+  servers-expected-domain:
+    description: Server URLs should be on the snowflakecomputing.com domain.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: snowflakecomputing\.com
+  path-params-casing:
+    description: Path parameters should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*].parameters[?(@.in=='path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: snake
+  query-params-casing:
+    description: Query parameters should be camelCase (the dominant convention in this API).
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: camel
+  operationid-casing:
+    description: Operation IDs should be camelCase (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[a-z][A-Za-z0-9]*$
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        match: ^[A-Z][A-Za-z0-9]*$
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
+  security-schemes-defined:
+    description: Security schemes should be defined in components.
+    severity: warn
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+  error-schema-defined:
+    description: A shared error schema (ErrorResponse) should be defined for error payloads.
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: ErrorResponse
+      function: truthy
+  operation-documents-400:
+    description: Operations should document a 400 response (documented on 100% of this API's operations).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: '400'
+      function: truthy
+  operation-documents-401:
+    description: Operations should document a 401 response (documented on 100% of this API's operations).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: '401'
+      function: truthy
+  operation-documents-403:
+    description: Operations should document a 403 response (documented on 100% of this API's operations).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: '403'
+      function: truthy
+  operation-documents-404:
+    description: Operations should document a 404 response (documented on 100% of this API's operations).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: '404'
+      function: truthy
+  operation-documents-429:
+    description: Operations should document a 429 response (documented on 97% of this API's operations).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: '429'
+      function: truthy
+  operation-documents-500:
+    description: Operations should document a 500 response (documented on 100% of this API's operations).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: '500'
+      function: truthy
