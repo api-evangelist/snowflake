@@ -1,0 +1,305 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: Snowflake account notification-integration API
+  description: The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.
+  contact:
+    name: Snowflake, Inc.
+    url: https://snowflake.com
+    email: support@snowflake.com
+servers:
+- description: Snowflake Account API
+  url: https://org-account.snowflakecomputing.com
+security:
+- KeyPair: []
+- ExternalOAuth: []
+- SnowflakeOAuth: []
+tags:
+- name: notification-integration
+paths:
+  /api/v2/notification-integrations:
+    get:
+      summary: List Notification Integrations
+      tags:
+      - notification-integration
+      description: List notification integrations
+      operationId: listNotificationIntegrations
+      parameters:
+      - $ref: common.yaml#/components/parameters/like
+      responses:
+        '200':
+          description: successful
+          headers:
+            X-Snowflake-Request-ID:
+              $ref: common.yaml#/components/headers/X-Snowflake-Request-ID
+            Link:
+              $ref: common.yaml#/components/headers/Link
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NotificationIntegration'
+              examples:
+                Listnotificationintegrations200Example:
+                  summary: Default listNotificationIntegrations 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    enabled: true
+                    comment: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    notification_hook:
+                      type: EMAIL
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      summary: Create a Notification Integration
+      tags:
+      - notification-integration
+      description: Create a notification integration
+      operationId: createNotificationIntegration
+      parameters:
+      - $ref: common.yaml#/components/parameters/createMode
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationIntegration'
+            examples:
+              CreatenotificationintegrationRequestExample:
+                summary: Default createNotificationIntegration request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  enabled: true
+                  comment: example_value
+                  created_on: '2026-01-15T10:30:00Z'
+                  notification_hook:
+                    type: EMAIL
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /api/v2/notification-integrations/{name}:
+    get:
+      summary: Fetch a Notification Integration
+      tags:
+      - notification-integration
+      description: Fetch a notification integration
+      operationId: fetchNotificationIntegration
+      parameters:
+      - $ref: common.yaml#/components/parameters/name
+      responses:
+        '200':
+          description: successful
+          headers:
+            X-Snowflake-Request-ID:
+              $ref: common.yaml#/components/headers/X-Snowflake-Request-ID
+            Link:
+              $ref: common.yaml#/components/headers/Link
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationIntegration'
+              examples:
+                Fetchnotificationintegration200Example:
+                  summary: Default fetchNotificationIntegration 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    enabled: true
+                    comment: example_value
+                    created_on: '2026-01-15T10:30:00Z'
+                    notification_hook:
+                      type: EMAIL
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: Delete a Notification Integration
+      tags:
+      - notification-integration
+      description: Delete a notification integration
+      operationId: deleteNotificationIntegration
+      parameters:
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    NotificationIntegration:
+      type: object
+      description: A Snowflake notification
+      properties:
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Name of the notification.
+          example: Example Title
+        enabled:
+          type: boolean
+          description: Whether the notification integration is enabled.
+          example: true
+        comment:
+          type: string
+          description: Comment for the notification integration.
+          example: example_value
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date and time when the notification was created.
+          example: '2026-01-15T10:30:00Z'
+        notification_hook:
+          $ref: '#/components/schemas/NotificationHook'
+      required:
+      - name
+      - notification_hook
+    NotificationHook:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - EMAIL
+          - WEBHOOK
+          - QUEUE_AWS_SNS_OUTBOUND
+          - QUEUE_AZURE_EVENT_GRID_OUTBOUND
+          - QUEUE_GCP_PUBSUB_OUTBOUND
+          - QUEUE_AZURE_EVENT_GRID_INBOUND
+          - QUEUE_GCP_PUBSUB_INBOUND
+          description: Type of NotificationHook, can be QUEUE, EMAIL or WEBHOOK
+          example: EMAIL
+      required:
+      - type
+      discriminator:
+        propertyName: type
+        mapping:
+          EMAIL: NotificationEmail
+          WEBHOOK: NotificationWebhook
+          QUEUE_AWS_SNS_OUTBOUND: NotificationQueueAwsSnsOutbound
+          QUEUE_AZURE_EVENT_GRID_OUTBOUND: NotificationQueueAzureEventGridOutbound
+          QUEUE_GCP_PUBSUB_OUTBOUND: NotificationQueueGcpPubsubOutbound
+          QUEUE_AZURE_EVENT_GRID_INBOUND: NotificationQueueAzureEventGridInbound
+          QUEUE_GCP_PUBSUB_INBOUND: NotificationQueueGcpPubsubInbound
+  securitySchemes:
+    KeyPair:
+      $ref: common.yaml#/components/securitySchemes/KeyPair
+    ExternalOAuth:
+      $ref: common.yaml#/components/securitySchemes/ExternalOAuth
+    SnowflakeOAuth:
+      $ref: common.yaml#/components/securitySchemes/SnowflakeOAuth
