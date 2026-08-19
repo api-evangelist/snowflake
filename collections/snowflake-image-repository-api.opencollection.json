@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account image-repository API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "image-repository",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists Image Repositories.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/image-repositories"
+          },
+          "docs": "Lists the image repositories under a specified database and schema."
+        },
+        {
+          "info": {
+            "name": "Creates an Image Repository in the Specified Database and Schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/image-repositories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an image repository in the specified database, schema, and create mode. The `createMode` query parameter specifies what action to take based on whether the repository already exists. See the ImageRepository component definition for what is required to be provided in the request body."
+        },
+        {
+          "info": {
+            "name": "Fetches an Image Repository.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/image-repositories/:name"
+          },
+          "docs": "Fetches a named image repository in a specified database and schema."
+        },
+        {
+          "info": {
+            "name": "Deletes an Image Repository.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/image-repositories/:name"
+          },
+          "docs": "Deletes an image repository with the given name. If you enable the `ifExists` query parameter, the operation succeeds even if the object does not exist. Otherwise, a 404 failure is returned if the object does not exist."
+        },
+        {
+          "info": {
+            "name": "List Images in the Image Repository.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/image-repositories/:name/images"
+          },
+          "docs": "List images in the given image repository."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

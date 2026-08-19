@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account schema API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "schema",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Schemas.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas",
+            "params": [
+              {
+                "name": "history",
+                "value": "true",
+                "type": "query",
+                "description": "Whether to include dropped schemas that have not yet been purged. Default: `false`."
+              }
+            ]
+          },
+          "docs": "Lists the accessible schemas."
+        },
+        {
+          "info": {
+            "name": "Create a Schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas",
+            "params": [
+              {
+                "name": "kind",
+                "value": "example_value",
+                "type": "query",
+                "description": "Type of schema to create. Currently, Snowflake supports only `transient` and `permanent` (also represented by the empty string)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a schema, with modifiers as query parameters. You must provide the full schema definition when creating a schema."
+        },
+        {
+          "info": {
+            "name": "Clone a Schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:name:clone",
+            "params": [
+              {
+                "name": "kind",
+                "value": "example_value",
+                "type": "query",
+                "description": "Type of schema to clone. Currently, Snowflake supports only `transient` and `permanent` (also represented by the empty string)."
+              },
+              {
+                "name": "targetDatabase",
+                "value": "example_value",
+                "type": "query",
+                "description": "Database of the newly created schema. Defaults to the source schema's database."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clones an existing schema, with modifiers as query parameters. You must provide the full schema definition when cloning an existing schema."
+        },
+        {
+          "info": {
+            "name": "Undrop a Schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:name:undrop"
+          },
+          "docs": "Undrops schema."
+        },
+        {
+          "info": {
+            "name": "fetchSchema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:name"
+          },
+          "docs": "Fetches a schema."
+        },
+        {
+          "info": {
+            "name": "Create a New, or Alters an Existing, Schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:name",
+            "params": [
+              {
+                "name": "kind",
+                "value": "example_value",
+                "type": "query",
+                "description": "Type of schema to create. Currently, Snowflake supports only `transient` and `permanent` (also represented by the empty string)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new, or alters an existing, schema. You must provide the full schema definition even when altering an existing schema."
+        },
+        {
+          "info": {
+            "name": "Delete a Schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:name",
+            "params": [
+              {
+                "name": "restrict",
+                "value": "true",
+                "type": "query",
+                "description": "Whether to drop the schema if foreign keys exist that reference any tables in the schema.\n- `true`: Return a warning about existing foreign key references and don't drop the schema.\n- `false`: Drop the schema and all objects in the database, including tables with primary or unique keys that are referenced by foreign keys in other tables.\nDefault: `false`."
+              }
+            ]
+          },
+          "docs": "Deletes the specified schema. If you enable the `ifExists` parameter, the operation succeeds even if the schema does not exist. Otherwise, a 404 failure is returned if the schema does not exist. if the drop is unsuccessful."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

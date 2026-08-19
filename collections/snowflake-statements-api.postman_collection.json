@@ -1,0 +1,2860 @@
+{
+  "item": [
+    {
+      "id": "d8d41ec1-9b52-42c3-9e8e-8027bb6d6e22",
+      "name": "statements",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8708e270-de9b-4df8-879e-4b7207d04c5b",
+          "name": "Submit a Sql Statement for Execution.",
+          "request": {
+            "name": "Submit a Sql Statement for Execution.",
+            "description": {
+              "content": "Submits one or more SQL statements for execution. You can specify that the statement should be executed asynchronously. The following statement types are not supported: PUT, GET, USE, ALTER SESSION, BEGIN, COMMIT, ROLLBACK, statements that set session variables, and statements that create temporary tables and stages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "statements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "requestId",
+                  "value": "<uuid>",
+                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned."
+                },
+                {
+                  "disabled": false,
+                  "key": "async",
+                  "value": "<boolean>",
+                  "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "nullable",
+                  "value": "<boolean>",
+                  "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                "key": "User-Agent",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                "key": "X-Snowflake-Authorization-Token-Type",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"key_0\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"key_1\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"key_2\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "285915ca-732a-4315-ac57-3bc3736dd476",
+              "name": "The statement was executed successfully, and the response includes any data requested.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Links to the partition of results (e.g. the first partition, the last partition, etc.). The header can include multiple URL entries with different rel attribute values that specify the partition to return (first, next, prev, and last).",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"sqlState\": \"example_value\",\n  \"message\": \"example_value\",\n  \"statementHandle\": \"example_value\",\n  \"createdOn\": 10,\n  \"statementStatusUrl\": \"https://www.example.com\",\n  \"resultSetMetaData\": {\n    \"format\": \"jsonv2\",\n    \"numRows\": 10,\n    \"rowType\": [\n      {}\n    ],\n    \"partitionInfo\": [\n      {}\n    ],\n    \"nullable\": true\n  },\n  \"data\": [\n    [\n      \"example_value\"\n    ]\n  ],\n  \"stats\": {\n    \"numRowsInserted\": 10,\n    \"numRowsUpdated\": 10,\n    \"numRowsDeleted\": 10,\n    \"numDuplicateRowsUpdated\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e95838d-e9ef-436f-9fb8-a60c020e4f59",
+              "name": "The execution of the statement is still in progress. Use GET /api/v2/statements/{statementHandle} to check the status of the statement execution.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"sqlState\": \"example_value\",\n  \"message\": \"example_value\",\n  \"statementHandle\": \"example_value\",\n  \"createdOn\": 10,\n  \"statementStatusUrl\": \"https://www.example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1889f762-cf0a-4540-aa3a-c6f5c464d034",
+              "name": "Bad Request. The request payload is invalid or malformed. This happens if the application did not send the correct request payload. The response body may include the error code and message indicating the actual cause. The application must reconstruct the request body for retry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9a555f5-30ff-4c76-947c-7ff6784830a2",
+              "name": "Unauthorized. The request is not authorized. This happens if the attached access token is invalid or missing. The response body may include the error code and message indicating the actual cause, e.g., expired, invalid token. The application must obtain a new access token for retry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "37fbaf8f-eef1-435d-869d-dcc947620ae9",
+              "name": "Forbidden. The request is forbidden. This can happen if the request is made even though the API is not enabled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "897cb49e-f436-4f13-a2a4-a9355bf8eb6d",
+              "name": "Not Found. The request endpoint is not valid. This happens if the API endpoint is wrong.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae7049c0-e586-4f22-bac1-45f7038f6bca",
+              "name": "Method Not Allowed. The request method does not match the supported API. This happens, for example, if the application calls the API with GET method but the endpoint accepts only POST.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c790ea6f-57c7-4b9f-a390-8363e016703e",
+              "name": "The execution of the statement exceeded the timeout period. The execution of the statement was cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"sqlState\": \"example_value\",\n  \"message\": \"example_value\",\n  \"statementHandle\": \"example_value\",\n  \"createdOn\": 10,\n  \"statementStatusUrl\": \"https://www.example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96da4c5e-097a-4a65-8f22-3c85295bb2b7",
+              "name": "The request header Content-Type includes an unsupported media type. The API supports application/json only. If none is specified, the request payload is taken as JSON, but if any other media type is specified, this error is returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f03a0f8f-043c-4189-b0db-627e86cf095c",
+              "name": "An error occurred when executing the statement. Check the error code and error message for details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"sqlState\": \"example_value\",\n  \"message\": \"example_value\",\n  \"statementHandle\": \"example_value\",\n  \"createdOn\": 10,\n  \"statementStatusUrl\": \"https://www.example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e913219-93ec-447a-8839-2d3c87fe9c07",
+              "name": "Limit Exceeded. The number of requests hit the rate limit. The application must slow down the frequency of hitting the API endpoints.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c6b0cec4-5ea3-4cae-b2ce-ec62235246e9",
+              "name": "Internal Server Error. The server hit an unrecoverable system error. The response body may include the error code and message for further guidance. The application owner may need to reach out to customer support.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "303459ad-a4de-473f-bfb6-a8404bc0e930",
+              "name": "Service Unavailable. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f99b1601-d216-404d-865b-4fd30891efae",
+              "name": "Gateway Timeout. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "async",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "nullable",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statement\": \"select * from T where c1=?\",\n  \"timeout\": 10,\n  \"database\": \"TESTDB\",\n  \"schema\": \"TESTSCHEMA\",\n  \"warehouse\": \"TESTWH\",\n  \"role\": \"TESTROLE\",\n  \"bindings\": {\n    \"1\": {\n      \"type\": \"FIXED\",\n      \"value\": \"123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93464db3-cb52-44b0-b733-d6e42cd977e7",
+          "name": "Check the Status of the Execution of a Statement.",
+          "request": {
+            "name": "Check the Status of the Execution of a Statement.",
+            "description": {
+              "content": "Checks the status of the execution of the statement with the specified statement handle. If the statement was executed successfully, the operation returns the requested partition of the result set.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "statements",
+                ":statementHandle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "requestId",
+                  "value": "<uuid>",
+                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned."
+                },
+                {
+                  "disabled": false,
+                  "key": "partition",
+                  "value": "<long>",
+                  "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "statementHandle",
+                  "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                "key": "User-Agent",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                "key": "X-Snowflake-Authorization-Token-Type",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "4a65f2ac-7cd7-4326-a71b-cba52772fa90",
+              "name": "The statement was executed successfully, and the response includes any data requested.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Links to the partition of results (e.g. the first partition, the last partition, etc.). The header can include multiple URL entries with different rel attribute values that specify the partition to return (first, next, prev, and last).",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"sqlState\": \"example_value\",\n  \"message\": \"example_value\",\n  \"statementHandle\": \"example_value\",\n  \"createdOn\": 10,\n  \"statementStatusUrl\": \"https://www.example.com\",\n  \"resultSetMetaData\": {\n    \"format\": \"jsonv2\",\n    \"numRows\": 10,\n    \"rowType\": [\n      {}\n    ],\n    \"partitionInfo\": [\n      {}\n    ],\n    \"nullable\": true\n  },\n  \"data\": [\n    [\n      \"example_value\"\n    ]\n  ],\n  \"stats\": {\n    \"numRowsInserted\": 10,\n    \"numRowsUpdated\": 10,\n    \"numRowsDeleted\": 10,\n    \"numDuplicateRowsUpdated\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb594a32-953b-4f7f-b699-900adca26be7",
+              "name": "The execution of the statement is still in progress. Use this method again to check the status of the statement execution.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"sqlState\": \"example_value\",\n  \"message\": \"example_value\",\n  \"statementHandle\": \"example_value\",\n  \"createdOn\": 10,\n  \"statementStatusUrl\": \"https://www.example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff416cca-0590-401f-a1ff-54b3cd185282",
+              "name": "Bad Request. The request payload is invalid or malformed. This happens if the application did not send the correct request payload. The response body may include the error code and message indicating the actual cause. The application must reconstruct the request body for retry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fc9f38e7-257a-4a2d-851d-f44d1a41d1f8",
+              "name": "Unauthorized. The request is not authorized. This happens if the attached access token is invalid or missing. The response body may include the error code and message indicating the actual cause, e.g., expired, invalid token. The application must obtain a new access token for retry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d992a8d2-286c-462e-a457-74ae8c32eadd",
+              "name": "Forbidden. The request is forbidden. This can happen if the request is made even though the API is not enabled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e0bc7247-3461-4996-905d-dc79f75dc9f4",
+              "name": "Not Found. The request endpoint is not valid. This happens if the API endpoint is wrong.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b6e8471-d2f4-480c-b908-06c1b44da192",
+              "name": "Method Not Allowed. The request method does not match the supported API. This happens, for example, if the application calls the API with GET method but the endpoint accepts only POST.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6cf32b3-a0d6-4a5f-b837-70cf5ffd7cbd",
+              "name": "The request header Content-Type includes an unsupported media type. The API supports application/json only. If none is specified, the request payload is taken as JSON, but if any other media type is specified, this error is returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc1d449d-c31d-401b-b814-c35798ccad62",
+              "name": "An error occurred when executing the statement. Check the error code and error message for details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"sqlState\": \"example_value\",\n  \"message\": \"example_value\",\n  \"statementHandle\": \"example_value\",\n  \"createdOn\": 10,\n  \"statementStatusUrl\": \"https://www.example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8da701e2-24bc-4251-8c1d-ab252d05b967",
+              "name": "Limit Exceeded. The number of requests hit the rate limit. The application must slow down the frequency of hitting the API endpoints.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ef2d7eb5-bb37-49df-a75b-5039a66d62ad",
+              "name": "Internal Server Error. The server hit an unrecoverable system error. The response body may include the error code and message for further guidance. The application owner may need to reach out to customer support.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a23a0501-2249-42d5-92cc-bf264824a69c",
+              "name": "Service Unavailable. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cbd6d4c7-0b8a-4399-9048-19b06a7b6f53",
+              "name": "Gateway Timeout. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "partition",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69e03ce7-5ea1-47d1-9cd4-5b87c837bf42",
+          "name": "Cancel the Execution of a Statement.",
+          "request": {
+            "name": "Cancel the Execution of a Statement.",
+            "description": {
+              "content": "Cancels the execution of the statement with the specified statement handle.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "statements",
+                ":statementHandle",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "requestId",
+                  "value": "<uuid>",
+                  "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "statementHandle",
+                  "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                "key": "User-Agent",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                "key": "X-Snowflake-Authorization-Token-Type",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "52ef7735-2fd0-4120-a9c8-72a273dcf518",
+              "name": "The execution of the statement was successfully canceled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"sqlState\": \"example_value\",\n  \"message\": \"example_value\",\n  \"statementHandle\": \"example_value\",\n  \"statementStatusUrl\": \"https://www.example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47f84ef2-baa0-4f10-83eb-b63a6b7e41b2",
+              "name": "Bad Request. The request payload is invalid or malformed. This happens if the application did not send the correct request payload. The response body may include the error code and message indicating the actual cause. The application must reconstruct the request body for retry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fb3d5de9-53f0-4e60-8f02-710f7b460280",
+              "name": "Unauthorized. The request is not authorized. This happens if the attached access token is invalid or missing. The response body may include the error code and message indicating the actual cause, e.g., expired, invalid token. The application must obtain a new access token for retry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e9e74b4-0d53-450a-ad65-ad0f9c1f3564",
+              "name": "Forbidden. The request is forbidden. This can happen if the request is made even though the API is not enabled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ff7f1b8-6b10-47d4-ad9a-de656e099cbe",
+              "name": "Not Found. The request endpoint is not valid. This happens if the API endpoint is wrong.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "49b90055-2c58-45c6-a00f-9c8f902a80b3",
+              "name": "Method Not Allowed. The request method does not match the supported API. This happens, for example, if the application calls the API with GET method but the endpoint accepts only POST.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "10bf1a18-17d3-41f4-b1ef-79ce45766595",
+              "name": "An error occurred when cancelling the execution of the statement. Check the error code and error message for details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"example_value\",\n  \"sqlState\": \"example_value\",\n  \"message\": \"example_value\",\n  \"statementHandle\": \"example_value\",\n  \"statementStatusUrl\": \"https://www.example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66671617-10ad-4eb6-8cfb-d6451c6f3270",
+              "name": "Internal Server Error. The server hit an unrecoverable system error. The response body may include the error code and message for further guidance. The application owner may need to reach out to customer support.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "785270d5-9037-4e3c-b956-d7255b783b86",
+              "name": "Service Unavailable. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0c5035cb-8aee-4398-a017-88470d9b1c88",
+              "name": "Gateway Timeout. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "statements",
+                    ":statementHandle",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statementHandle",
+                      "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://org-account.snowflakecomputing.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "292b4ddb-83e0-4327-9176-26e5b24b284d",
+    "name": "Snowflake account statements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account notification-integration API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "notification-integration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Notification Integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/notification-integrations"
+          },
+          "docs": "List notification integrations"
+        },
+        {
+          "info": {
+            "name": "Create a Notification Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/notification-integrations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a notification integration"
+        },
+        {
+          "info": {
+            "name": "Fetch a Notification Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/notification-integrations/:name"
+          },
+          "docs": "Fetch a notification integration"
+        },
+        {
+          "info": {
+            "name": "Delete a Notification Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/notification-integrations/:name"
+          },
+          "docs": "Delete a notification integration"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

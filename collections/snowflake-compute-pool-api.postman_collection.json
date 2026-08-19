@@ -1,0 +1,3730 @@
+{
+  "item": [
+    {
+      "id": "0d2011fd-a3b4-4695-9fcd-f2675744a626",
+      "name": "compute-pool",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ef137f70-3b2d-4691-9029-a89a5bd17c9e",
+          "name": "Lists Compute Pools.",
+          "request": {
+            "name": "Lists Compute Pools.",
+            "description": {
+              "content": "Lists the compute pools under the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "compute-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11c1f006-6d2b-45ff-b98e-7db2fc302fa4",
+              "name": "Successful request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-Snowflake-Request-ID",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Link",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": {},\n    \"min_nodes\": 10,\n    \"max_nodes\": 10,\n    \"instance_family\": \"example_value\",\n    \"auto_resume\": true,\n    \"comment\": \"example_value\",\n    \"state\": \"UNKNOWN\",\n    \"num_services\": 10,\n    \"num_jobs\": 10,\n    \"auto_suspend_secs\": 10,\n    \"active_nodes\": 10,\n    \"idle_nodes\": 10,\n    \"target_nodes\": 10,\n    \"created_on\": \"2026-01-15T10:30:00Z\",\n    \"resumed_on\": \"2026-01-15T10:30:00Z\",\n    \"updated_on\": \"2026-01-15T10:30:00Z\",\n    \"owner\": \"example_value\",\n    \"is_exclusive\": true,\n    \"application\": \"example_value\",\n    \"budget\": \"example_value\",\n    \"error_code\": \"example_value\",\n    \"status_message\": \"example_value\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77695ccb-8e84-4122-8324-d243e6dc1c54",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d3c79169-6dfe-47e2-b7b5-3dbc87b097a8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2af9a0b4-c5c5-412a-84ac-a40e949fef9b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba36bb6f-410d-4aed-a8ff-e2e00e06bd77",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9c4b470a-a201-40d6-980b-b9ba398a4029",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d833f89-721c-47e7-9902-f08805bc4eb2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7b63f0c-722f-4aeb-a6a8-4f9dfe9470e9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35fe578a-8972-4a29-8e86-eace4bc0016a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "449265c5-3cad-4a54-b550-50573da7b4f0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ce27c1a-2031-4c7a-9978-5353252d2cf9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b36a6aaf-7dd3-4015-827d-d6e7af06196f",
+          "name": "Creates a Compute Pool.",
+          "request": {
+            "name": "Creates a Compute Pool.",
+            "description": {
+              "content": "Creates a compute pool, with standard create modifiers as query parameters. See the Compute Pool component definition for what is required to be provided in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "compute-pools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "initiallySuspended",
+                  "value": "<boolean>",
+                  "description": "Specifies whether the compute pool is created initially in the suspended state."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"instance_family\": \"<string>\",\n  \"min_nodes\": \"<integer>\",\n  \"max_nodes\": \"<integer>\",\n  \"auto_resume\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"auto_suspend_secs\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77dacdf3-840c-42bd-ac1c-0d0ac8932eab",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8adb32f-2003-4226-b2d2-451d25da2b63",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ff2f771-115f-4228-a44a-fc238edf2393",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fbfcab39-f0b3-4dbc-bef3-6bd9c037aff1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e0ed2626-e830-4720-bb3a-acfe2d527b05",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "34a4b166-c6ff-4e1c-88b1-4e5a25bb81ba",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71997c10-1b2e-4133-9f45-699867f019a5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "600e83bd-92d8-4c59-ac86-f1cfaa271cc1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff2a3956-1f46-4e97-94a4-5cf16ede5548",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d6c148bb-5818-4935-96c1-e0662f4d7f1d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e3e9a90-34f1-48bc-8b73-de83a4297dbe",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3bdb3490-1a02-48c9-bf6b-87cd1cbbee31",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "00852f24-e705-49ac-9e81-502c4726cccc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "initiallySuspended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4a38df0-dcb8-47bf-8774-f279b73e8304",
+          "name": "Fetches a Compute Pool.",
+          "request": {
+            "name": "Fetches a Compute Pool.",
+            "description": {
+              "content": "Fetches a named compute pool. You can get the name of the compute pool from the `/api/v2/compute-pools` GET request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "compute-pools",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5adb0fce-95e3-4e24-ac95-31caf535cde3",
+              "name": "Successful request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-Snowflake-Request-ID",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Link",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed7d215a-70e3-4b44-9b3c-794085d5bf70",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d23a7414-77a5-4ce1-995e-71efb6699d43",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "075173b6-f12f-47ec-a90a-dbc882e4c439",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "72049044-ee58-4661-a7cb-c1f076be3538",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "00218419-df3f-494e-b8f5-bf948b713b92",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "93ab4435-4649-468e-bdaa-a03c9b5b01eb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "205d9326-82a1-4d43-b3d1-ccf6b895582b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ab9c258-aa88-4262-9611-c9d3473a4471",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bb47ba23-68b4-4114-9841-278fdca36a3b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "799dd196-2357-4f03-ae5e-e30cd9409c41",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90f327bd-accf-4a5a-b874-3d8d38e541a2",
+          "name": "Create a (or Alter an Existing) Compute Pool.",
+          "request": {
+            "name": "Create a (or Alter an Existing) Compute Pool.",
+            "description": {
+              "content": "Create a (or alter an existing) compute pool. Even if the operation is just an alter, the full property set must be provided.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "compute-pools",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"instance_family\": \"<string>\",\n  \"min_nodes\": \"<integer>\",\n  \"max_nodes\": \"<integer>\",\n  \"auto_resume\": \"<boolean>\",\n  \"comment\": \"<string>\",\n  \"auto_suspend_secs\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a6cdbd4a-efe6-4f4b-ad60-9721f05cb604",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae899d2e-6315-4124-9050-76964ed3eaa4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d70f631f-fa1e-4ce3-a128-bb2588e2453b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "774a8743-3388-4261-bd17-197d068e1e31",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "563a10f3-a3d8-44c7-b5b9-a70e27cfd3c7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "66a187bd-51b8-4d6c-a64c-c4d5e157e9fc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ad6b574-c2ca-4b46-9d4f-4240c2b577bd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6fffc011-06cb-4895-b550-7658e39bfbe4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "271374cd-202b-4a8d-a823-77f31e97daa6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ef7d007d-1142-4a56-919b-d2177e9efb27",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {},\n  \"min_nodes\": 10,\n  \"max_nodes\": 10,\n  \"instance_family\": \"example_value\",\n  \"auto_resume\": true,\n  \"comment\": \"example_value\",\n  \"state\": \"UNKNOWN\",\n  \"num_services\": 10,\n  \"num_jobs\": 10,\n  \"auto_suspend_secs\": 10,\n  \"active_nodes\": 10,\n  \"idle_nodes\": 10,\n  \"target_nodes\": 10,\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"resumed_on\": \"2026-01-15T10:30:00Z\",\n  \"updated_on\": \"2026-01-15T10:30:00Z\",\n  \"owner\": \"example_value\",\n  \"is_exclusive\": true,\n  \"application\": \"example_value\",\n  \"budget\": \"example_value\",\n  \"error_code\": \"example_value\",\n  \"status_message\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0b5899a-9e9a-4883-b7db-d148dd95a8d8",
+          "name": "Deletes a Compute Pool.",
+          "request": {
+            "name": "Deletes a Compute Pool.",
+            "description": {
+              "content": "Deletes a compute pool with the given name. If you enable the `ifExists` parameter, the operation succeeds even if the object does not exist. Otherwise, a 404 failure is returned if the object does not exist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "compute-pools",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ff9e91d-1e21-4d43-a9ab-72f797c2791f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d0521e8-d71d-4f4f-a60b-05375c451360",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f8fad483-5406-415d-a420-ffd0f2d5d2be",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8f87e84f-9eaa-46ab-9d84-528480f2e8f5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9cc3a7ca-71af-45d9-8ca4-5e2103321301",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d091dbc0-8e38-4f1b-a8ce-afec29456719",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3c289522-d65c-4419-b7ca-bc482b128509",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0b18b529-fa29-4672-93b1-f984640614f2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8ad3bbae-2d2d-47cd-b124-9d89e78d19b0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "43237bf8-60b5-4e80-8428-b2bc575d5c3d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8c57655f-c6d6-424f-826a-ad280e4af02b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0688b78-f140-4ac7-aae2-8c738975e873",
+          "name": "Resumes a Suspended Compute Pool.",
+          "request": {
+            "name": "Resumes a Suspended Compute Pool.",
+            "description": {
+              "content": "Resume a compute pool, if suspended. If the specified compute pool is already running, this will cause a 400 Bad Request error.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "compute-pools",
+                "{{name}}:resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02868da2-40dc-4563-8cb8-ab4c96611f45",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0a1e47fa-1a6f-4dbf-b0ef-6ef88bc81905",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4e46ca80-cccd-436b-aec3-468c79663de6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8b59ea03-f5fb-49cb-b758-ab414a4f2c32",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8b4cf0eb-a90c-42a4-a611-ef48d07bc257",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4dfd9a20-1217-4003-aa75-c00f7a553d05",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2e46423d-e6d3-4699-b39d-a2b3e67c475a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4409015c-861d-4f0d-b75c-25d2dc8a75aa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "801e9745-e484-4325-a085-a4aaa1412b44",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6be3a778-3d22-46ff-a559-4e36ac005896",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8abf6777-2f45-49ae-8f73-651080c308dc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a45dd7f7-6fbf-43b5-9743-d92ca4273391",
+          "name": "Suspends an Active Compute Pool.",
+          "request": {
+            "name": "Suspends an Active Compute Pool.",
+            "description": {
+              "content": "Suspend a compute pool, if active. If the specified compute pool is already suspended, no action is taken.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "compute-pools",
+                "{{name}}:suspend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dedab902-acc0-4a35-b2be-729fe01859a4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ea223e1-2212-4b36-8cc1-db8f5318c11a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "179bcd1e-2b05-434b-8bb9-98d040269943",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "06c4eadb-d230-4864-b195-50f20b3258d6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "63320cc8-5148-4f72-a7a1-e481886aecd5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a3f20ef3-e337-44f8-817d-45038d7fefd7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "be53141f-8518-43d7-bcd7-6242b2bb0462",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c01cb328-3f64-4259-be09-4ebcc61e2e00",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cf12f4b0-c399-4db5-b1a6-1b097e29f63f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2891aeb-35d1-4dc1-85dd-a1720f3fbff4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9e704b5-641d-4812-82e6-52b3cedc624f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f01d8c7d-791c-485b-af56-bd9bf804f15b",
+          "name": "Stops All Services on the Compute Pool.",
+          "request": {
+            "name": "Stops All Services on the Compute Pool.",
+            "description": {
+              "content": "Stops all services in the compute pool. Deprecated - use :stop-all-services instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "compute-pools",
+                "{{name}}:stopallservices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf4781df-a666-460a-95c0-cb4259ab5814",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stopallservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de8ae0f5-7a46-4914-b65a-b8640e6d3260",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stopallservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bcd879f9-ed09-41c3-b3f7-cc66f621f32d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stopallservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5519676-a709-4975-b01a-1301f0d61ede",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stopallservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e3f6b1f7-9bd4-44e1-8fe9-ed113c4e1767",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stopallservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "790e4467-b10a-4bdf-b1c8-b7ef2f275c53",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stopallservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "703306bb-74e4-4a35-883d-4d171ed5d049",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stopallservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "44137f44-6f15-4e30-b263-ff5cc58eb2bc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stopallservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7d03579a-c905-4134-a091-bc103b2a8ee3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stopallservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c183379-5e3b-4b8e-99c3-68a7dcb708c9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stopallservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "78a93fc0-ee60-4122-9920-43281353dd33",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stopallservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81e6c6cc-3349-48aa-8344-3cefa9a8a4d1",
+          "name": "Stops All Services on the Compute Pool.",
+          "request": {
+            "name": "Stops All Services on the Compute Pool.",
+            "description": {
+              "content": "Stops all services in the compute pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "compute-pools",
+                "{{name}}:stop-all-services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "696f9ce3-94d2-4a2f-bf0e-7279f2e55d9c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stop-all-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a69d9b78-3a29-477b-bf9f-58c6376f0afb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stop-all-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8c67a4b-b597-47e2-a42c-78a23894db2c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stop-all-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b869857c-a43b-4ae5-8bf5-c801336d5411",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stop-all-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7cbdef01-84af-48d3-9839-8c8812239034",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stop-all-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e7643f56-d921-41cf-8b9f-627ed10a1898",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stop-all-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e1f97deb-db3f-40c2-8502-2ae10cda517c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stop-all-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1c6731a1-7cbd-4168-b85d-bdf90fbd4eca",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stop-all-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ca8573d-a4cb-4081-a86a-0d3bb6e8397c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stop-all-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3dad45eb-adb3-4f28-81ba-5dbb8fe274d6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stop-all-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "febf1036-efb0-4c8c-a86f-4366c77d0fbf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "compute-pools",
+                    "{{name}}:stop-all-services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://org-account.snowflakecomputing.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "77865d7d-0c35-4b82-a708-0b56f5109fdd",
+    "name": "Snowflake account compute-pool API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+      "type": "text/plain"
+    }
+  }
+}

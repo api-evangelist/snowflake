@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account pipe API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "pipe",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pipes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/pipes"
+          },
+          "docs": "List pipes"
+        },
+        {
+          "info": {
+            "name": "Create a Pipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/pipes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a pipe"
+        },
+        {
+          "info": {
+            "name": "Fetch a Pipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/pipes/:name"
+          },
+          "docs": "Fetch a pipe"
+        },
+        {
+          "info": {
+            "name": "Delete a Pipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/pipes/:name"
+          },
+          "docs": "Delete a pipe"
+        },
+        {
+          "info": {
+            "name": "Refresh the Pipe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/pipes/:name:refresh",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "example_value",
+                "type": "query",
+                "description": "Path (or prefix) appended to the stage reference in the pipe definition. The path limits the set of files to load."
+              },
+              {
+                "name": "modified_after",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Timestamp (in ISO-8601 format) of the oldest data files to copy into the Snowpipe ingest queue based on the LAST_MODIFIED date (i.e. date when a file was staged)"
+              }
+            ]
+          },
+          "docs": "Refresh the pipe"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account network-policy API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "network-policy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Network Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/network-policies"
+          },
+          "docs": "List network policies"
+        },
+        {
+          "info": {
+            "name": "Create a Network Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/network-policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a network policy"
+        },
+        {
+          "info": {
+            "name": "Fetch a Network Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/network-policies/:name"
+          },
+          "docs": "Fetch a network policy"
+        },
+        {
+          "info": {
+            "name": "Delete a Network Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/network-policies/:name"
+          },
+          "docs": "Delete a network policy"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

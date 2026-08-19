@@ -1,0 +1,3063 @@
+{
+  "item": [
+    {
+      "id": "2cbb6566-f033-4b34-ada7-8dc7aa696a15",
+      "name": "stream",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4403b018-b943-4301-97bb-f7f16c3f93d9",
+          "name": "List Streams",
+          "request": {
+            "name": "List Streams",
+            "description": {
+              "content": "List streams",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "databases",
+                ":database",
+                "schemas",
+                ":schema",
+                "streams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "695cb1bf-bca9-4096-9982-d2454df59c51",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-Snowflake-Request-ID",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"created_on\": \"2026-01-15T10:30:00Z\",\n    \"name\": \"Example Title\",\n    \"stream_source\": {\n      \"src_type\": \"example_value\",\n      \"name\": \"Example Title\",\n      \"database_name\": \"example_value\",\n      \"schema_name\": \"example_value\"\n    },\n    \"comment\": \"example_value\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\",\n    \"owner\": \"example_value\",\n    \"table_name\": \"example_value\",\n    \"stale\": true,\n    \"mode\": \"example_value\",\n    \"stale_after\": \"2026-01-15T10:30:00Z\",\n    \"invalid_reason\": \"example_value\",\n    \"owner_role_type\": \"example_value\",\n    \"type\": \"example_value\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5bc7223-de07-4b47-bcbc-623d7ec41505",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ae3d96f-b046-4f0a-8500-62291e6a0fff",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5284787b-939c-4b96-921d-2cf10b478569",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e6ecb29-3cc0-4da2-94db-27f31ef88fba",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b59cbbd-1672-4e69-86b4-3bade3bc2741",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6b53b5a-8a94-4111-b0bb-d4164b3dffbd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5a6fb05-15d9-4165-9352-dffd0c265fc9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "913db4f2-3d60-47ef-8be2-fabfaa686145",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "babd33d1-ee81-4f9b-b485-a1221c74e1bb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6573da8e-df00-49c8-a550-d9c98d9b1a9b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4d5d86ac-4e1b-46d5-8cf9-df1d7dfcd782",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "00f579a7-d0a8-41d5-b737-83e5e4309b4f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71d468fa-8bc8-4845-bcb5-69e6d4c7d85f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d9d2d6a-67c6-47dd-98f5-cea4a4dcf500",
+          "name": "Create a Stream",
+          "request": {
+            "name": "Create a Stream",
+            "description": {
+              "content": "Create a stream",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "databases",
+                ":database",
+                "schemas",
+                ":schema",
+                "streams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"stream_source\": {\n    \"src_type\": \"<string>\",\n    \"name\": \"<string>\",\n    \"database_name\": \"<string>\",\n    \"schema_name\": \"<string>\"\n  },\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "898d4fb0-d826-42cd-8f83-c6469222e6ac",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "45f580dc-15b6-49fd-9f0f-5df0723d3f6f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02b6d349-1168-484e-b426-e0607db9061d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "140698c8-eba1-45c0-84c5-c7d15653f16a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d4bcc405-5358-467d-9590-90074ef6b6af",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "37e1dc01-c742-4c62-862b-5516e00ff50d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "18697d39-5184-4467-b732-439d15aeb5f3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b3965cc7-fd43-4b1c-9b40-ecea8fcc4b5c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2d273a67-4a7c-46ba-b2ea-5efecec6dcec",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "10ad7d63-bf90-4c7c-bee2-0fc296b62797",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "52a9e9ff-9e90-48a9-9166-0592fefac617",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "98877bea-9a2c-400d-bcc7-7259c259e0bf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1f624324-1af8-4811-89a2-f82fa4a99f87",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "70e77a4a-cf22-4c30-b2a7-3a0d8fc3ec7f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "295ade8f-fd97-41e4-8175-e709ed52cb14",
+          "name": "Fetch a Stream",
+          "request": {
+            "name": "Fetch a Stream",
+            "description": {
+              "content": "Fetch a stream",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "databases",
+                ":database",
+                "schemas",
+                ":schema",
+                "streams",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6270edc-26fc-4840-aca3-c8a8605b21d0",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-Snowflake-Request-ID",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"name\": \"Example Title\",\n  \"stream_source\": {\n    \"src_type\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\"\n  },\n  \"comment\": \"example_value\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"table_name\": \"example_value\",\n  \"stale\": true,\n  \"mode\": \"example_value\",\n  \"stale_after\": \"2026-01-15T10:30:00Z\",\n  \"invalid_reason\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"type\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71394be2-2318-447f-a52e-527db47098a0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f7ffbc5-3579-4d3b-adac-76ebf854e4a2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "505b7d26-31bf-429c-af08-d95d3d8e197e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c992798f-ac68-4af3-9c4d-8049bab5b53b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "844725f4-2f18-4411-8808-c447d0f93cbc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2583096a-e844-432e-b363-aab6aed3062a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f02e64a-4397-4d9a-823b-f52a0c432391",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cf6f1a09-26b1-4bec-9f98-770e48872cec",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "466513c1-5e69-42de-83e4-31e11945be41",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d00ef668-8d17-41e5-ad2e-dcac2ed0bda7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3c9e504c-80bd-4b3e-8f42-1a89de6a8dd0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2e59630f-71c9-4972-994a-97364d0e7742",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7c60c7bd-acb6-4a29-b717-676e807242f7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e55f0080-a2f1-45dc-989b-f0d530050cce",
+          "name": "Delete a Stream",
+          "request": {
+            "name": "Delete a Stream",
+            "description": {
+              "content": "Delete a stream",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "databases",
+                ":database",
+                "schemas",
+                ":schema",
+                "streams",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "389fb2c2-364c-4d66-a141-19be2af55b7b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f02f0aca-02c4-4169-a4ac-c24083ba5a32",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ced475af-8698-4ed3-affa-53158ff2e30b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ac6c3c79-c557-4b20-a835-327575fd8f27",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "51bcd3cb-7c92-4a36-adab-efb487d26721",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "84295dad-9281-45e6-82a5-79f3d5f93197",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a3c99717-159f-45d2-8c35-dff9521700a1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2dec259b-a6ed-45e4-83e6-b4fae5c844e5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eec4a9cd-c19d-495e-bae0-df66d59c9eb5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9a5dbd3b-bb18-49bb-9ce5-fa0f1e879973",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "509d9908-d64d-4678-8dc7-298dc959a9c7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "739afaf8-baf9-429e-95a1-d0e06d0d1e94",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1316091d-6a74-457d-9fb2-65f3e625d4a6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "97530550-ccdc-466b-826b-9225e0856174",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5985983-b4d8-46cd-93f8-f14b2fe8177a",
+          "name": "Clone a Stream",
+          "request": {
+            "name": "Clone a Stream",
+            "description": {
+              "content": "Clone a stream",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "databases",
+                ":database",
+                "schemas",
+                ":schema",
+                "streams",
+                "{{name}}:clone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "targetDatabase",
+                  "value": "<string>",
+                  "description": "(Required) Database of the target resource. Defaults to the source's database"
+                },
+                {
+                  "disabled": false,
+                  "key": "targetSchema",
+                  "value": "<string>",
+                  "description": "(Required) Schema of the target resource. Defaults to the source's schema"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "182b9038-4628-419c-a132-94edaabbde19",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "61c843e2-00bd-4242-b834-48d79269e517",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c7a22759-ac18-4a36-8bf4-565409ea6ec0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f857ae49-3758-4e21-8941-18b02390b668",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d59e1a95-9857-4d7b-904e-95063260ffe3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2c9b1a5b-7fe2-44b7-87c6-34130e800b6c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e7adb239-32eb-4437-81e9-8d19ed81beff",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cccb5189-235c-407c-8da0-48506aa53fd3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "99b741be-0a4d-4d22-abc9-f1d13158b0d7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d70c750e-8cb1-4219-867a-4ef12430c688",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e7797a10-4f16-4a25-bdc4-85432d3aa02d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7253425e-5f92-420c-bb6a-11ce6904c99f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "039ea7ce-fed0-4796-a51e-eea97f8e9b3f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dc874913-fda5-40b2-bbe0-30f806ffec63",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "streams",
+                    "{{name}}:clone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetDatabase",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "targetSchema",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"comment\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://org-account.snowflakecomputing.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "121e082a-9dcc-4ab8-9690-eb2811fabede",
+    "name": "Snowflake account stream API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+      "type": "text/plain"
+    }
+  }
+}

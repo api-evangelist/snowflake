@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account api-integration API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "api-integration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Api Integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/api-integrations"
+          },
+          "docs": "List API integrations"
+        },
+        {
+          "info": {
+            "name": "Create an Api Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/api-integrations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an API integration"
+        },
+        {
+          "info": {
+            "name": "Fetch an Api Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/api-integrations/:name"
+          },
+          "docs": "Fetch an API integration"
+        },
+        {
+          "info": {
+            "name": "Create an (or Alter an Existing) Api Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/api-integrations/:name",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an (or alter an existing) API integration. Note that API_KEY is not currently altered by this operation and is supported for a newly-created object only. Unsetting API_BLOCKED_PREFIXES is also unsupported."
+        },
+        {
+          "info": {
+            "name": "Delete an Api Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/api-integrations/:name"
+          },
+          "docs": "Delete an API integration"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

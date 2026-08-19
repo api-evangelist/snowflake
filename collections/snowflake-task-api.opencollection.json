@@ -1,0 +1,227 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account task API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "task",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks"
+          },
+          "docs": "Lists tasks under the database and schema, with show options as query parameters."
+        },
+        {
+          "info": {
+            "name": "Create a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a task, with standard create modifiers as query parameters. See the Task component definition for what is required to be provided in the request body."
+        },
+        {
+          "info": {
+            "name": "Fetch a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name"
+          },
+          "docs": "Fetch a task using the describe command output."
+        },
+        {
+          "info": {
+            "name": "Create a (or Alter an Existing) Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a (or alter an existing) task. Even if the operation is just an alter, the full property set must be provided."
+        },
+        {
+          "info": {
+            "name": "Delete a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name"
+          },
+          "docs": "Delete a task with the task name. If ifExists is used, the operation will succeed even if the object does not exist. Otherwise, there will be a failure if the drop is unsuccessful."
+        },
+        {
+          "info": {
+            "name": "Execute a Task Object.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name:execute",
+            "params": [
+              {
+                "name": "retryLast",
+                "value": "true",
+                "type": "query",
+                "description": "Retry the last failed run of the DAG."
+              }
+            ]
+          },
+          "docs": "Execute a task -- this is equivalent to EXECUTE IMMEDIATE."
+        },
+        {
+          "info": {
+            "name": "Resume a Suspended Task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name:resume"
+          },
+          "docs": "Resumes a suspended task object. This is equivalento an ALTER TASK ... RESUME."
+        },
+        {
+          "info": {
+            "name": "Suspend a Running Task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name:suspend"
+          },
+          "docs": "Suspends a running task. This is equivalent to an ALTER TASK ... SUSPEND."
+        },
+        {
+          "info": {
+            "name": "Fetch the Dependent Tasks of a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name/dependents",
+            "params": [
+              {
+                "name": "recursive",
+                "value": "true",
+                "type": "query",
+                "description": "Specifies whether to limit the output to include only direct child tasks or to include all recursive child tasks."
+              }
+            ]
+          },
+          "docs": "This operation returns a list of the dependent tasks of the task with identifier {name}."
+        },
+        {
+          "info": {
+            "name": "Get the Graph Runs That Are Executing or Scheduled for the Task for the Next 8 Days.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name/current_graphs",
+            "params": [
+              {
+                "name": "resultLimit",
+                "value": "10",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This function returns details for graph runs that are currently executing or are next scheduled to run within the next 8 days."
+        },
+        {
+          "info": {
+            "name": "Get the Graph Runs That Are Executing or Scheduled for the Task for the Next 8 Days.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name/current-graphs",
+            "params": [
+              {
+                "name": "resultLimit",
+                "value": "10",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This function returns details for graph runs that are currently executing or are next scheduled to run within the next 8 days."
+        },
+        {
+          "info": {
+            "name": "Get the Graph Runs That Are Completed for the Task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name/complete_graphs",
+            "params": [
+              {
+                "name": "resultLimit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results to return, at most. Default is 1000, valid range is 1 to 10000."
+              },
+              {
+                "name": "errorOnly",
+                "value": "true",
+                "type": "query",
+                "description": "Whether to only return results for tasks runs that have failed. Default is false."
+              }
+            ]
+          },
+          "docs": "This function returns details for graph runs that are completed."
+        },
+        {
+          "info": {
+            "name": "Get the Graph Runs That Are Completed for the Task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name/complete-graphs",
+            "params": [
+              {
+                "name": "resultLimit",
+                "value": "10",
+                "type": "query",
+                "description": "Number of results to return, at most. Default is 1000, valid range is 1 to 10000."
+              },
+              {
+                "name": "errorOnly",
+                "value": "true",
+                "type": "query",
+                "description": "Whether to only return results for tasks runs that have failed. Default is false."
+              }
+            ]
+          },
+          "docs": "This function returns details for graph runs that are completed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

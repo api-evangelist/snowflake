@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account stream API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "stream",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streams"
+          },
+          "docs": "List streams"
+        },
+        {
+          "info": {
+            "name": "Create a Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streams",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a stream"
+        },
+        {
+          "info": {
+            "name": "Fetch a Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streams/:name"
+          },
+          "docs": "Fetch a stream"
+        },
+        {
+          "info": {
+            "name": "Delete a Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streams/:name"
+          },
+          "docs": "Delete a stream"
+        },
+        {
+          "info": {
+            "name": "Clone a Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streams/:name:clone",
+            "params": [
+              {
+                "name": "targetDatabase",
+                "value": "example_value",
+                "type": "query",
+                "description": "Database of the target resource. Defaults to the source's database"
+              },
+              {
+                "name": "targetSchema",
+                "value": "example_value",
+                "type": "query",
+                "description": "Schema of the target resource. Defaults to the source's schema"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clone a stream"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

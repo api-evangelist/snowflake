@@ -1,0 +1,2874 @@
+{
+  "item": [
+    {
+      "id": "35a280c5-df35-4ac6-ae07-f3d5fa2e5a58",
+      "name": "event-table",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3502e64-3744-4bcb-9d1c-6e95b4a30a36",
+          "name": "List Event Tables",
+          "request": {
+            "name": "List Event Tables",
+            "description": {
+              "content": "List event tables",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "databases",
+                ":database",
+                "schemas",
+                ":schema",
+                "event-tables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0e5a89c-2d76-4138-8381-e949070b20b3",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-Snowflake-Request-ID",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"cluster_by\": [\n      \"example_value\"\n    ],\n    \"data_retention_time_in_days\": 10,\n    \"max_data_extension_time_in_days\": 10,\n    \"change_tracking\": true,\n    \"default_ddl_collation\": \"example_value\",\n    \"comment\": \"example_value\",\n    \"created_on\": \"2026-01-15T10:30:00Z\",\n    \"database_name\": \"example_value\",\n    \"schema_name\": \"example_value\",\n    \"owner\": \"example_value\",\n    \"owner_role_type\": \"example_value\",\n    \"rows\": 10,\n    \"bytes\": 10,\n    \"automatic_clustering\": true,\n    \"search_optimization\": true,\n    \"search_optimization_progress\": 10,\n    \"search_optimization_bytes\": 10,\n    \"columns\": [\n      {}\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dd6bb0b-52cd-4547-9eea-b93c245c90af",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "97bfed26-1b44-4b1c-988c-69afd14166e9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "40d8c59a-ccc7-45a6-a053-ebf41f44a129",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c1e3f1d-6e9c-44e5-b0e9-37aee1182f33",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d09fa3cb-3cc8-43c7-9237-9b0527e9ccb7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "29e425ff-bf44-4994-9740-6dfe26294e5b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9f271b5c-5918-41cf-a852-db0b5d241673",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "59e198eb-c456-4f91-8836-e9b5e1e7b434",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5c74bd5-e0f4-4747-bed9-a37a28f20c44",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "82427cbd-83f8-4065-94e6-24cb80df37b5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc9bacca-8bfe-4547-91fb-5cff73b8019d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4c946bd7-3f29-4a9d-8dc0-9ee38a9d3aa2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9572a539-a281-43ee-a733-d398aef16f7d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66638299-5365-4241-9bd6-390f3cf65242",
+          "name": "Create an Event Table",
+          "request": {
+            "name": "Create an Event Table",
+            "description": {
+              "content": "Create an event table",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "databases",
+                ":database",
+                "schemas",
+                ":schema",
+                "event-tables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"cluster_by\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"data_retention_time_in_days\": \"<integer>\",\n  \"max_data_extension_time_in_days\": \"<integer>\",\n  \"change_tracking\": \"<boolean>\",\n  \"default_ddl_collation\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "224825a2-4b4e-4767-a362-862d3ffb947b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0290ec9c-9c35-485e-90b1-4c504479c551",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "302451d8-1f57-43ad-86b4-54cb517a1011",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56e4444d-bb33-433e-8cf3-d947d73730ae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5be2c22-4335-436b-8c16-b057c61f3cd0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94233438-76fb-4880-b050-1612771688df",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "da9f0405-9d7e-4ce6-8fa9-778e4588e629",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "992d2676-a4bd-490b-a3b3-6aacef20b707",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "59bf3049-8b57-434d-8886-c2a32b055263",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d2c08a7c-b7d1-453f-a2c5-c317995bc6f2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d3e5fca-c10f-4b3b-991c-342eb97cf0e6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "332b4e25-7dbc-49aa-8948-3a51a626705f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa2e2f12-17b2-47fc-a837-7f7039193bae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ebc7215-0775-4840-be7d-4de20739017d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d4a6b30-1721-4b4a-8158-7a9f0b80d4f9",
+          "name": "Fetch an Event Table",
+          "request": {
+            "name": "Fetch an Event Table",
+            "description": {
+              "content": "Fetch an event table",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "databases",
+                ":database",
+                "schemas",
+                ":schema",
+                "event-tables",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "569f69fa-d02e-40d2-afde-2558ca146d5b",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-Snowflake-Request-ID",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"cluster_by\": [\n    \"example_value\"\n  ],\n  \"data_retention_time_in_days\": 10,\n  \"max_data_extension_time_in_days\": 10,\n  \"change_tracking\": true,\n  \"default_ddl_collation\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"database_name\": \"example_value\",\n  \"schema_name\": \"example_value\",\n  \"owner\": \"example_value\",\n  \"owner_role_type\": \"example_value\",\n  \"rows\": 10,\n  \"bytes\": 10,\n  \"automatic_clustering\": true,\n  \"search_optimization\": true,\n  \"search_optimization_progress\": 10,\n  \"search_optimization_bytes\": 10,\n  \"columns\": [\n    {\n      \"name\": \"Example Title\",\n      \"datatype\": \"example_value\",\n      \"nullable\": true,\n      \"default\": \"example_value\",\n      \"primary_key\": true,\n      \"unique_key\": true,\n      \"check\": \"example_value\",\n      \"expression\": \"example_value\",\n      \"comment\": \"example_value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd5f0927-3d68-4e8e-a31a-f3d8799103b9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b120de2c-bbfc-423a-ac09-86e222e87e60",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6772be41-f32d-48c0-a736-90102300ff6c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "23a6bb72-6708-4c79-b6ec-942d5c880cc7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2d41d28-a07e-46d8-ab94-eebeb14c9793",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "01ac933d-6a2b-4756-9b96-b508494270f7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dd0d6131-3c2f-4215-970b-305b56d6736a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9eb87f0f-cfd1-4ef5-ac74-aba06814503e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "38150261-b4a4-49e7-b7e9-7e388304eb08",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94220d30-7bf1-4184-af0a-d182d29974e9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4fa19130-5b91-4b16-96d2-15af5a16acc0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa031245-6c47-423e-941d-c018004324dd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f378800c-1236-426f-8a7d-ca92e5bb9123",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2bb21ea-1cf7-4455-9046-1d5bb73c41ed",
+          "name": "Delete an Event Table",
+          "request": {
+            "name": "Delete an Event Table",
+            "description": {
+              "content": "Delete an event table",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "databases",
+                ":database",
+                "schemas",
+                ":schema",
+                "event-tables",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a9564e18-198c-42e1-ab3f-c8933b79a425",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "41f4aba7-83dd-4340-a2f5-5eba16ed4b4d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "851b9c7c-5635-4d94-9362-1ae332a9ae98",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "291b2f12-8d81-4f9f-850a-3d13c1c8c2f5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8305a5a2-9e90-4c89-81d4-9d0f557c71d7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e94d52de-cc99-476e-b7af-98981ad3ca8d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0d0f296b-3a4f-4f05-afd3-120668c52a3c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5766ca78-19ff-42d2-9dd0-28a9caa1fa9d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "77cd153e-d090-4feb-b50c-7a2aa2bdc36e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "54ab1952-eacb-4eb3-bcc9-7d16c52c99eb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "549df487-4f6b-41ad-91af-9103e3752f69",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9867a94d-209c-4fe9-a460-bcc720abd106",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1560fdca-3364-4d4b-b4f7-d7c7a992d22d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d5891d75-9e29-4e5b-af02-94e73f7c1558",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "330c0aa8-7e87-47b1-ab59-79615c31e65c",
+          "name": "Rename the Event Table",
+          "request": {
+            "name": "Rename the Event Table",
+            "description": {
+              "content": "Rename the event table",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "databases",
+                ":database",
+                "schemas",
+                ":schema",
+                "event-tables",
+                "{{name}}:rename"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "targetName",
+                  "value": "<string>",
+                  "description": "(Required) Specify the name of the target resource to be renamed to."
+                }
+              ],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd676e1f-4403-4a72-9aab-e2744be6807f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "15a6ca49-0606-4bc2-a3e5-bbb3fa4c80cb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1c9cb1f8-43ef-41fd-8bd7-4c53b6e7e924",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5864620-2692-4fb6-991b-ecf76031d0a3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c1606cd3-8324-404e-ae3c-1d1218377362",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dd5d306b-8353-46d9-a736-0b38b9a39741",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "831ac5e0-582e-43f8-a969-b3a8c029b3a2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "477854a0-9c83-496c-84f5-a16550017cc1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba611d16-a12a-4db7-b352-464d12ed16c7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "437fbe05-5c23-4350-a805-8034a826fbb3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "41faaa0b-f6f8-4a1c-b172-2a15a1529175",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2244a79e-2631-4738-b3e7-79b6f6272bb8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8febc03-4bf4-4bdd-b08a-87b018a15813",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae79f792-7acd-4da8-beab-339d6716fe90",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "databases",
+                    ":database",
+                    "schemas",
+                    ":schema",
+                    "event-tables",
+                    "{{name}}:rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "targetName",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://org-account.snowflakecomputing.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f781436c-8644-4f64-b7f5-ef461e3e4414",
+    "name": "Snowflake account event-table API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+      "type": "text/plain"
+    }
+  }
+}

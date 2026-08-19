@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account cortex search service API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cortex search service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch a Cortex Search Service.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name"
+          },
+          "docs": "Fetch a Cortex Search Service."
+        },
+        {
+          "info": {
+            "name": "Delete a Cortex Search Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name"
+          },
+          "docs": "Delete a cortex search service with the given name. If ifExists is used, the operation will succeed even if the object does not exist. Otherwise, there will be a failure if the drop is unsuccessful."
+        },
+        {
+          "info": {
+            "name": "List Cortex Search Services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services"
+          },
+          "docs": "Lists the cortex search services under the database and schema."
+        },
+        {
+          "info": {
+            "name": "Create a Cortex Search Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a cortex search service, with standard create modifiers as query parameters. See the Cortex Search Service component definition for what is required to be provided in the request body."
+        },
+        {
+          "info": {
+            "name": "Query a Cortex Search Service.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services/:service_name:query",
+            "params": [
+              {
+                "name": "service_name",
+                "value": "example_value",
+                "type": "path",
+                "description": "The name of the Cortex Search Service."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Query a Cortex Search Service to get search results."
+        },
+        {
+          "info": {
+            "name": "Suspend a Cortex Search Service.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name:suspend",
+            "params": [
+              {
+                "name": "target",
+                "value": "",
+                "type": "query",
+                "description": "Query parameter that identifies the target to which suspension or resumption of the cortex search service should be applied."
+              }
+            ]
+          },
+          "docs": "Suspends one or both of the indexing or serving targets of a cortex search service."
+        },
+        {
+          "info": {
+            "name": "Resume the Cortex Search Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name:resume",
+            "params": [
+              {
+                "name": "target",
+                "value": "",
+                "type": "query",
+                "description": "Query parameter that identifies the target to which suspension or resumption of the cortex search service should be applied."
+              }
+            ]
+          },
+          "docs": "Resume the cortex search service"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

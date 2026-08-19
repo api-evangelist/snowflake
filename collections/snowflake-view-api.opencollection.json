@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account view API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "view",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/views",
+            "params": [
+              {
+                "name": "deep",
+                "value": "true",
+                "type": "query",
+                "description": "Optionally includes dependency information of the view."
+              }
+            ]
+          },
+          "docs": "List views"
+        },
+        {
+          "info": {
+            "name": "Create a View",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/views",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a view"
+        },
+        {
+          "info": {
+            "name": "Fetch a View",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/views/:name"
+          },
+          "docs": "Fetch a view"
+        },
+        {
+          "info": {
+            "name": "Delete a View",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/views/:name"
+          },
+          "docs": "Delete a view"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

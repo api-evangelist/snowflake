@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account function API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "function",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Functions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/functions"
+          },
+          "docs": "Lists the user functions under the database and schema."
+        },
+        {
+          "info": {
+            "name": "Create a Function",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/functions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a function."
+        },
+        {
+          "info": {
+            "name": "Fetch a Function.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/functions/:nameWithArgs"
+          },
+          "docs": "Fetch a Function using the describe command output."
+        },
+        {
+          "info": {
+            "name": "Delete a Function",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/functions/:nameWithArgs"
+          },
+          "docs": "Delete a function with the given name and args."
+        },
+        {
+          "info": {
+            "name": "Execute a Function.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/functions/:name:execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a Function."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

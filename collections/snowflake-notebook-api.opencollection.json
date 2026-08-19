@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account notebook API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "notebook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Notebooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/notebooks"
+          },
+          "docs": "List notebooks"
+        },
+        {
+          "info": {
+            "name": "Create a Notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/notebooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a notebook"
+        },
+        {
+          "info": {
+            "name": "Fetch a Notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/notebooks/:name"
+          },
+          "docs": "Fetch a notebook"
+        },
+        {
+          "info": {
+            "name": "Delete a Notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/notebooks/:name"
+          },
+          "docs": "Delete a notebook"
+        },
+        {
+          "info": {
+            "name": "Execute a Notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/notebooks/:name:execute"
+          },
+          "docs": "Execute a Notebook"
+        },
+        {
+          "info": {
+            "name": "Changes the Name of the Notebook to New Name.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/notebooks/:name:rename",
+            "params": [
+              {
+                "name": "targetDatabase",
+                "value": "example_value",
+                "type": "query",
+                "description": "Database of the target resource. Defaults to the source's database"
+              },
+              {
+                "name": "targetSchema",
+                "value": "example_value",
+                "type": "query",
+                "description": "Schema of the target resource. Defaults to the source's schema"
+              },
+              {
+                "name": "targetName",
+                "value": "example_value",
+                "type": "query",
+                "description": "Name of the target resource."
+              }
+            ]
+          },
+          "docs": "Changes the name of the notebook to new name. The new identifier must be unique for the schema."
+        },
+        {
+          "info": {
+            "name": "Adds a Live Version to the Notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/notebooks/:name:add-live-version",
+            "params": [
+              {
+                "name": "fromLast",
+                "value": "true",
+                "type": "query",
+                "description": "Sets the LIVE version to the LAST version of the notebook"
+              },
+              {
+                "name": "comment",
+                "value": "example_value",
+                "type": "query",
+                "description": "Sets a comment for the notebook or version of the notebook"
+              }
+            ]
+          },
+          "docs": "Adds a LIVE version to the notebook"
+        },
+        {
+          "info": {
+            "name": "Commits the Live Version of the Notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/notebooks/:name:commit",
+            "params": [
+              {
+                "name": "version",
+                "value": "example_value",
+                "type": "query",
+                "description": "live version of the alias"
+              },
+              {
+                "name": "comment",
+                "value": "example_value",
+                "type": "query",
+                "description": "Sets a comment for the notebook or version of the notebook"
+              }
+            ]
+          },
+          "docs": "If a Git connection is set up for the notebook, commits the LIVE version of the notebook to the Git repository"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

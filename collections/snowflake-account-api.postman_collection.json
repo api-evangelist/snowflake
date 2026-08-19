@@ -1,0 +1,2166 @@
+{
+  "item": [
+    {
+      "id": "e6777999-f47b-4628-8a97-b8ed77b51e18",
+      "name": "account",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "23bb4cb9-3177-40f3-82d1-20ce5d4a1bbe",
+          "name": "List Accounts.",
+          "request": {
+            "name": "List Accounts.",
+            "description": {
+              "content": "Lists the accessible accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "history",
+                  "value": "<boolean>",
+                  "description": "Optionally includes dropped accounts that have not yet been purged."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac5d3e22-6f01-4a7d-9d28-ad3cd256329f",
+              "name": "Successful request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-Snowflake-Request-ID",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"organization_name\": \"example_value\",\n    \"name\": {},\n    \"region_group\": \"example_value\",\n    \"region\": \"example_value\",\n    \"edition\": \"STANDARD\",\n    \"created_on\": \"2026-01-15T10:30:00Z\",\n    \"account_url\": \"https://www.example.com\",\n    \"account_locator\": \"example_value\",\n    \"account_locator_url\": \"https://www.example.com\",\n    \"managed_accounts\": 10,\n    \"consumption_billing_entity_name\": \"example_value\",\n    \"marketplace_consumer_billing_entity_name\": \"example_value\",\n    \"marketplace_provider_billing_entity_name\": \"example_value\",\n    \"old_account_url\": \"https://www.example.com\",\n    \"comment\": \"example_value\",\n    \"is_org_admin\": true,\n    \"retention_time\": 10,\n    \"dropped_on\": \"2026-01-15T10:30:00Z\",\n    \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n    \"restored_on\": \"2026-01-15T10:30:00Z\",\n    \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n    \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n    \"organization_old_url\": \"https://www.example.com\",\n    \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n    \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n    \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n    \"moved_on\": \"2026-01-15T10:30:00Z\",\n    \"is_events_account\": true,\n    \"moved_to_organization\": \"example_value\",\n    \"admin_name\": \"example_value\",\n    \"admin_password\": \"example_value\",\n    \"admin_rsa_public_key\": \"example_value\",\n    \"admin_user_type\": \"example_value\",\n    \"first_name\": \"example_value\",\n    \"last_name\": \"example_value\",\n    \"email\": \"user@example.com\",\n    \"must_change_password\": true,\n    \"polaris\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c84c4035-b3e6-4ddd-b2d7-c5b07d96cdf4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "267d5727-45ee-4a8f-b2b8-7d24cffd3ba2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0bf41c45-911a-4da1-adef-8e806427bf9b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19c72f07-fa65-4882-a680-bb42d6b97e5a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4b93fd44-1acf-4b50-9af9-326e79003ced",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "501c9b65-613d-4fc8-b4f0-c81dcd5960ce",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b822d930-9f22-4876-8e85-200141c0618c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "151ecd41-8057-46ed-87ac-768d57ba89f5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e42ae43-3ebe-41b4-9468-1a4f4d60d88c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d968785-f447-42d7-9a9f-c9473ac27652",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "208c8bdb-571d-447e-afbe-5165c0c536cf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "31d999c7-4812-448c-99c9-de457a811742",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "68e104df-03b2-4b44-902d-1c94cd6a7fb2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "history",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c759735c-3057-4ff2-8031-0d1916354d55",
+          "name": "Create an Account.",
+          "request": {
+            "name": "Create an Account.",
+            "description": {
+              "content": "Creates a account. You must provide the full account definition when creating a account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": {\n    \"value\": \"reference ./common.yaml#/components/schemas/Identifier not found in the OpenAPI spec\"\n  },\n  \"admin_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"edition\": \"<string>\",\n  \"region_group\": \"<string>\",\n  \"region\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"admin_password\": \"<password>\",\n  \"admin_rsa_public_key\": \"<password>\",\n  \"admin_user_type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"must_change_password\": false,\n  \"polaris\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "558ac45b-e2af-422c-b047-8841cef19e4f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "589fe0ee-4009-418a-bfe3-45e216b82760",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "26790b8b-1bcf-4225-b2a4-2628a93a7294",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dfa596f6-7a97-42fe-94a0-2365ec917471",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3bcfff2-a5f1-482f-a9b3-38dfa349a892",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9acbc167-e0b0-41a2-8c36-6abe1b169e5b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3c4dc979-a6db-49f4-9862-7fafaa2a13cc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "871c872b-655d-4e0d-abee-f7c93e46f4d9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "93f3999b-ff65-4491-8e3e-5b635bcdc43b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5de3ed6c-0f5b-4ff2-b282-161547bf8d57",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "50f03d68-1849-4f34-82d9-107d5303a066",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d61e0008-405c-487f-ad14-de966cbd6023",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5dc22e37-1bab-4c6a-96f0-fa3ec4cb39b1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2708e43a-98d9-47fc-81c0-c52a33819b70",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_name\": \"example_value\",\n  \"name\": {},\n  \"region_group\": \"example_value\",\n  \"region\": \"example_value\",\n  \"edition\": \"STANDARD\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"account_url\": \"https://www.example.com\",\n  \"account_locator\": \"example_value\",\n  \"account_locator_url\": \"https://www.example.com\",\n  \"managed_accounts\": 10,\n  \"consumption_billing_entity_name\": \"example_value\",\n  \"marketplace_consumer_billing_entity_name\": \"example_value\",\n  \"marketplace_provider_billing_entity_name\": \"example_value\",\n  \"old_account_url\": \"https://www.example.com\",\n  \"comment\": \"example_value\",\n  \"is_org_admin\": true,\n  \"retention_time\": 10,\n  \"dropped_on\": \"2026-01-15T10:30:00Z\",\n  \"scheduled_deletion_time\": \"2026-01-15T10:30:00Z\",\n  \"restored_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"account_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url\": \"https://www.example.com\",\n  \"organization_old_url_saved_on\": \"2026-01-15T10:30:00Z\",\n  \"organization_old_url_last_used\": \"2026-01-15T10:30:00Z\",\n  \"organization_URL_expiration_on\": \"2026-01-15T10:30:00Z\",\n  \"moved_on\": \"2026-01-15T10:30:00Z\",\n  \"is_events_account\": true,\n  \"moved_to_organization\": \"example_value\",\n  \"admin_name\": \"example_value\",\n  \"admin_password\": \"example_value\",\n  \"admin_rsa_public_key\": \"example_value\",\n  \"admin_user_type\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"polaris\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bae3ce66-5baf-4a42-8807-2972cc7c626e",
+          "name": "Delete an Account.",
+          "request": {
+            "name": "Delete an Account.",
+            "description": {
+              "content": "Deletes the specified account. If you enable the `ifExists` parameter, the operation succeeds even if the account does not exist. Otherwise, a 404 failure is returned if the account does not exist. if the drop is unsuccessful.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "accounts",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "gracePeriodInDays",
+                  "value": "<integer>",
+                  "description": "(Required) Specifies the number of days during which the account can be restored (“undropped”). The minimum is 3 days and the maximum is 90 days."
+                }
+              ],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b4e01c7-b705-4d23-b834-edc680f4e68f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "36b56e4b-ebf1-4727-81d8-0d895fb2e4bb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9830d8d-994d-4d92-b1df-1c4499aa7c0a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5bfdf3db-33f0-4fe5-86b9-40db4523b84d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f88703a3-371f-49a8-a998-8c099caecef6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d1870b26-d0f0-4264-9c68-b0e0dd3a3699",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "373a63f9-7359-409b-b098-bd7e319a576a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2bd6ef33-3929-4b65-b549-737a18aece9f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "85a38e71-c8b4-402a-b18b-6d0272396c4c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7cb2668f-e6ef-4bd7-9cd8-d7c30abed4a0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "49d3d72f-ecfe-4d54-a2b3-26eb78dd419d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b42e17ef-0458-4ef1-a5f2-c0585b447637",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b02b809a-173b-482c-8a9a-78ddeb1d19e4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a903faf-e44b-4c15-9d87-02865d5ed090",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gracePeriodInDays",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc46cadd-6440-4ca7-9afa-82c8cb202a68",
+          "name": "Restore an Account.",
+          "request": {
+            "name": "Restore an Account.",
+            "description": {
+              "content": "Restores a dropped account that has not yet been permanently deleted (a dropped account that is within its grace period).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "accounts",
+                "{{name}}:undrop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02245fbf-04f2-4fdc-aa35-5b370adef24b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4696b486-d8dd-43b0-b326-e5d04692fa1a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "df581f35-596e-4858-8658-7ff743f90d06",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c05b6928-1231-4d3d-bf8b-ccb3afcb9787",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f4c3923d-7de9-40a9-b4d7-a14cce80743d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2702c0e6-9a3c-4ca1-8657-28299edb17d0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "af2f2aa1-6adf-4a59-a719-084ad18f3f25",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "737ff6bd-bfd6-453a-a7bb-d4ddf1c965e6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2fc41ea1-64ab-4a2c-aabc-f0957c7b9c72",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "071dd434-b6dc-4cc2-89f6-2fcee51a73be",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "26610aa4-78c1-4663-92cc-c4bd4006105e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8bd9fd96-5ec3-445f-8b10-9503d85b0af3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1366431b-4b9f-434a-a4ce-171fb906309a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "971cb875-43a3-4061-91c5-a6eebb9ca036",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "{{name}}:undrop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://org-account.snowflakecomputing.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "23f0bdf4-2cc7-493b-bdf5-215d568663e9",
+    "name": "Snowflake account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+      "type": "text/plain"
+    }
+  }
+}

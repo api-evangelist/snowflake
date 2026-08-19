@@ -1,0 +1,357 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account grant API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "grant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Grant the Specified Privilege(s) on the Named Securable to the Named Grantee.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/grants/:granteeType/:granteeName/:securableType/:securableName/privileges",
+            "params": [
+              {
+                "name": "granteeType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is the privilege grantee."
+              },
+              {
+                "name": "granteeName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of the privilege grantee."
+              },
+              {
+                "name": "securableType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is being secured by a privilege."
+              },
+              {
+                "name": "securableName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of resource that is being secured by a privilege."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint to indicate that the privileges listed in the request body should be granted."
+        },
+        {
+          "info": {
+            "name": "Grant the Specified Privilege(s) on All/future (as Specified by Bulkgranttype) Securables of This Type in a Given Scope to the Named Grantee.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/grants/:granteeType/:granteeName/:bulkGrantType/:securableTypePlural/:scopeType/:scopeName/privileges",
+            "params": [
+              {
+                "name": "granteeType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is the privilege grantee."
+              },
+              {
+                "name": "granteeName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of the privilege grantee."
+              },
+              {
+                "name": "bulkGrantType",
+                "value": "",
+                "type": "path",
+                "description": "String that species whether this group privilege should be on ALL or FUTURE resources of the specified plural type"
+              },
+              {
+                "name": "securableTypePlural",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the plural of the type of resource that is being secured by an ALL/FUTURE privilege. Must be either \"schemas\" or any plural object type that can nest under a schema such as \"tables\""
+              },
+              {
+                "name": "scopeType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is the scope of an ALL/FUTURE privilege. Can only be DATABASE or SCHEMA"
+              },
+              {
+                "name": "scopeName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of resource that is the scope of an ALL/FUTURE privilege"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint to indicate that the privileges listed in the request body should be granted to all securables of this type in the given scope."
+        },
+        {
+          "info": {
+            "name": "Revoke the Specified Privilege on the Named Securable From the Named Grantee.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/grants/:granteeType/:granteeName/:securableType/:securableName/privileges/:privilege",
+            "params": [
+              {
+                "name": "granteeType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is the privilege grantee."
+              },
+              {
+                "name": "granteeName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of the privilege grantee."
+              },
+              {
+                "name": "securableType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is being secured by a privilege."
+              },
+              {
+                "name": "securableName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of resource that is being secured by a privilege."
+              },
+              {
+                "name": "privilege",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies a privilege to be revoked"
+              },
+              {
+                "name": "deleteMode",
+                "value": "",
+                "type": "query",
+                "description": "If \"cascade\", recursively revoke the grant from sub-grantees to which this privilege was re-granted. Acceptable values are \"restrict\" or \"cascade\"."
+              }
+            ]
+          },
+          "docs": "Endpoint to indicate that the privilege listed in the path should be revoked."
+        },
+        {
+          "info": {
+            "name": "Revoke the Grant Option for the Specified Privilege on the Named Securable From the Named Grantee.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/grants/:granteeType/:granteeName/:securableType/:securableName/privileges/:privilege/grant-option",
+            "params": [
+              {
+                "name": "granteeType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is the privilege grantee."
+              },
+              {
+                "name": "granteeName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of the privilege grantee."
+              },
+              {
+                "name": "securableType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is being secured by a privilege."
+              },
+              {
+                "name": "securableName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of resource that is being secured by a privilege."
+              },
+              {
+                "name": "privilege",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies a privilege to be revoked"
+              },
+              {
+                "name": "deleteMode",
+                "value": "",
+                "type": "query",
+                "description": "If \"cascade\", recursively revoke the grant from sub-grantees to which this privilege was re-granted. Acceptable values are \"restrict\" or \"cascade\"."
+              }
+            ]
+          },
+          "docs": "Endpoint to indicate that the grant option for the privilege listed in the path should be revoked."
+        },
+        {
+          "info": {
+            "name": "Revoke the Specified Privilege on the Specified All/future Securable in the Given Scope From the Named Grantee.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/grants/:granteeType/:granteeName/:bulkGrantType/:securableTypePlural/:scopeType/:scopeName/privileges/:privilege",
+            "params": [
+              {
+                "name": "granteeType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is the privilege grantee."
+              },
+              {
+                "name": "granteeName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of the privilege grantee."
+              },
+              {
+                "name": "bulkGrantType",
+                "value": "",
+                "type": "path",
+                "description": "String that species whether this group privilege should be on ALL or FUTURE resources of the specified plural type"
+              },
+              {
+                "name": "securableTypePlural",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the plural of the type of resource that is being secured by an ALL/FUTURE privilege. Must be either \"schemas\" or any plural object type that can nest under a schema such as \"tables\""
+              },
+              {
+                "name": "scopeType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is the scope of an ALL/FUTURE privilege. Can only be DATABASE or SCHEMA"
+              },
+              {
+                "name": "scopeName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of resource that is the scope of an ALL/FUTURE privilege"
+              },
+              {
+                "name": "privilege",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies a privilege to be revoked"
+              },
+              {
+                "name": "deleteMode",
+                "value": "",
+                "type": "query",
+                "description": "If \"cascade\", recursively revoke the grant from sub-grantees to which this privilege was re-granted. Acceptable values are \"restrict\" or \"cascade\"."
+              }
+            ]
+          },
+          "docs": "Endpoint to indicate that the privilege listed on the group securable in the given scope should be revoked."
+        },
+        {
+          "info": {
+            "name": "Revoke the Grant Option for the Specified Privilege on the Specified All/future Securable in the Given Scope From the Named Grantee.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/grants/:granteeType/:granteeName/:bulkGrantType/:securableTypePlural/:scopeType/:scopeName/privileges/:privilege/grant-option",
+            "params": [
+              {
+                "name": "granteeType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is the privilege grantee."
+              },
+              {
+                "name": "granteeName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of the privilege grantee."
+              },
+              {
+                "name": "bulkGrantType",
+                "value": "",
+                "type": "path",
+                "description": "String that species whether this group privilege should be on ALL or FUTURE resources of the specified plural type"
+              },
+              {
+                "name": "securableTypePlural",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the plural of the type of resource that is being secured by an ALL/FUTURE privilege. Must be either \"schemas\" or any plural object type that can nest under a schema such as \"tables\""
+              },
+              {
+                "name": "scopeType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is the scope of an ALL/FUTURE privilege. Can only be DATABASE or SCHEMA"
+              },
+              {
+                "name": "scopeName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of resource that is the scope of an ALL/FUTURE privilege"
+              },
+              {
+                "name": "privilege",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies a privilege to be revoked"
+              },
+              {
+                "name": "deleteMode",
+                "value": "",
+                "type": "query",
+                "description": "If \"cascade\", recursively revoke the grant from sub-grantees to which this privilege was re-granted. Acceptable values are \"restrict\" or \"cascade\"."
+              }
+            ]
+          },
+          "docs": "Endpoint to indicate that the grant option for the privilege listed on the group securable in the given scope should be revoked."
+        },
+        {
+          "info": {
+            "name": "List of Privileges Associated With This Grantee Type and Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/grants/:granteeType/:granteeName",
+            "params": [
+              {
+                "name": "granteeType",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the type of resource that is the privilege grantee."
+              },
+              {
+                "name": "granteeName",
+                "value": "",
+                "type": "path",
+                "description": "String that specifies the name of the privilege grantee."
+              }
+            ]
+          },
+          "docs": "List the roles and privileges granted to the specified grantee using the output of SHOW GRANTS TO"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

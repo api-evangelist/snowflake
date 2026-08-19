@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account database-role API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "database-role",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Database Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles"
+          },
+          "docs": "List database roles"
+        },
+        {
+          "info": {
+            "name": "Create a Database Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a database role"
+        },
+        {
+          "info": {
+            "name": "Delete a Database Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles/:name"
+          },
+          "docs": "Delete a database role"
+        },
+        {
+          "info": {
+            "name": "Create a New Database Role by Cloning From the Specified Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles/:name:clone",
+            "params": [
+              {
+                "name": "targetDatabase",
+                "value": "example_value",
+                "type": "query",
+                "description": "Database of the target resource. Defaults to the source's database"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new database role by cloning from the specified resource"
+        },
+        {
+          "info": {
+            "name": "List All Grants to the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles/:name/grants"
+          },
+          "docs": "List all grants to the role"
+        },
+        {
+          "info": {
+            "name": "Grant Privileges to the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles/:name/grants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant privileges to the role"
+        },
+        {
+          "info": {
+            "name": "Revoke Grants From the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles/:name/grants:revoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke grants from the role"
+        },
+        {
+          "info": {
+            "name": "List All Future Grants to the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles/:name/future-grants"
+          },
+          "docs": "List all future grants to the role"
+        },
+        {
+          "info": {
+            "name": "Grant Future Privileges to the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles/:name/future-grants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant future privileges to the role"
+        },
+        {
+          "info": {
+            "name": "Revoke Future Grants From the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles/:name/future-grants:revoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke future grants from the role"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

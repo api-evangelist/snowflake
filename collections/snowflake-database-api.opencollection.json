@@ -1,0 +1,271 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account database API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "database",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Databases.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases",
+            "params": [
+              {
+                "name": "history",
+                "value": "true",
+                "type": "query",
+                "description": "Optionally includes dropped databases that have not yet been purged."
+              }
+            ]
+          },
+          "docs": "Lists the accessible databases."
+        },
+        {
+          "info": {
+            "name": "Create a Database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases",
+            "params": [
+              {
+                "name": "kind",
+                "value": "example_value",
+                "type": "query",
+                "description": "Type of database to create. Currently, Snowflake supports only `transient` and `permanent` (also represented by the empty string)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a database, with modifiers as query parameters. You must provide the full database definition when creating a database."
+        },
+        {
+          "info": {
+            "name": "Create a Database From a Share.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases:from-share",
+            "params": [
+              {
+                "name": "share",
+                "value": "example_value",
+                "type": "query",
+                "description": "ID of the share from which to create the database, in the form \"<provider_account>.<share_name>\"."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a database from a given share."
+        },
+        {
+          "info": {
+            "name": "Create a Database From a Share.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name:from_share",
+            "params": [
+              {
+                "name": "share",
+                "value": "example_value",
+                "type": "query",
+                "description": "ID of the share from which to create the database, in the form \"<provider_account>.<share_name>\"."
+              }
+            ]
+          },
+          "docs": "Creates a database from a given share."
+        },
+        {
+          "info": {
+            "name": "Clone a Database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name:clone",
+            "params": [
+              {
+                "name": "kind",
+                "value": "example_value",
+                "type": "query",
+                "description": "Type of database to create. Currently, Snowflake supports only `transient` and `permanent` (also represented by the empty string)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clones an existing database, with modifiers as query parameters. You must provide the full database definition when cloning an existing database."
+        },
+        {
+          "info": {
+            "name": "fetchDatabase",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name"
+          },
+          "docs": "Fetches a database."
+        },
+        {
+          "info": {
+            "name": "Create a New, or Alters an Existing, Database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new, or alters an existing, database. You must provide the full database definition even when altering an existing database."
+        },
+        {
+          "info": {
+            "name": "Delete a Database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name",
+            "params": [
+              {
+                "name": "restrict",
+                "value": "true",
+                "type": "query",
+                "description": "Whether to drop the database if foreign keys exist that reference any tables in the database.\n- `true`: Return a warning about existing foreign key references and don't drop the database.\n- `false`: Drop the database and all objects in the database, including tables with primary or unique keys that are referenced by foreign keys in other tables."
+              }
+            ]
+          },
+          "docs": "Deletes the specified database. If you enable the `ifExists` parameter, the operation succeeds even if the database does not exist. Otherwise, a 404 failure is returned if the database does not exist. if the drop is unsuccessful."
+        },
+        {
+          "info": {
+            "name": "Undrop a Database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name:undrop"
+          },
+          "docs": "Undrops database."
+        },
+        {
+          "info": {
+            "name": "Enable Database Replication.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name/replication:enable",
+            "params": [
+              {
+                "name": "ignore_edition_check",
+                "value": "true",
+                "type": "query",
+                "description": "Whether to allow replicating data to accounts on lower editions. Default: `true`.\nFor more information, see the <a href=https://docs.snowflake.com/en/sql-reference/sql/alter-database> ALTER DATABASE</a> reference."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Promotes a local database to serve as a primary database for replication. A primary database can be replicated in one or more accounts, allowing users in those accounts to query objects in each secondary (i.e. replica) database."
+        },
+        {
+          "info": {
+            "name": "Disable Database Replication.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name/replication:disable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Disables replication for this primary database, meaning no replica of this database (i.e. secondary database) in another account can be refreshed. Any secondary databases remain linked to the primary database, but requests to refresh a secondary database are denied."
+        },
+        {
+          "info": {
+            "name": "Refresh Database Replications.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name/replication:refresh"
+          },
+          "docs": "Refreshes a secondary database from a snapshot of its primary database. A snapshot includes changes to the objects and data.\nIf you call this endpoint while another refresh for the same replica database is running, it fails and returns an error. Snowflake ensures only one refresh is executed at any given time."
+        },
+        {
+          "info": {
+            "name": "Enable Database Failover.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name/failover:enable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Specifies a comma-separated list of accounts in your organization where a replica of this primary database can be promoted to serve as the primary database."
+        },
+        {
+          "info": {
+            "name": "Disable Database Failover.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name/failover:disable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Disables failover for this primary database, meaning no replica of this database (i.e. secondary database) can be promoted to serve as the primary database."
+        },
+        {
+          "info": {
+            "name": "Set a Primary Database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name/failover:primary"
+          },
+          "docs": "Promotes the specified secondary (replica) database to serve as the primary database. When promoted, the database becomes writeable. At the same time, the previous primary database becomes a read-only secondary database."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

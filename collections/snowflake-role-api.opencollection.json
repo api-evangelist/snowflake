@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account role API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "role",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/roles"
+          },
+          "docs": "List roles"
+        },
+        {
+          "info": {
+            "name": "Create a Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a role"
+        },
+        {
+          "info": {
+            "name": "Delete a Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/roles/:name"
+          },
+          "docs": "Delete a role"
+        },
+        {
+          "info": {
+            "name": "List All Grants to the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/roles/:name/grants"
+          },
+          "docs": "List all grants to the role"
+        },
+        {
+          "info": {
+            "name": "Grant Privileges to the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/roles/:name/grants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant privileges to the role"
+        },
+        {
+          "info": {
+            "name": "Revoke Grants From the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/roles/:name/grants:revoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke grants from the role"
+        },
+        {
+          "info": {
+            "name": "List All Grants of the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/roles/:name/grants-of"
+          },
+          "docs": "List all grants of the role"
+        },
+        {
+          "info": {
+            "name": "List All Grants on the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/roles/:name/grants-on"
+          },
+          "docs": "List all grants on the role"
+        },
+        {
+          "info": {
+            "name": "List All Future Grants to the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/roles/:name/future-grants"
+          },
+          "docs": "List all future grants to the role"
+        },
+        {
+          "info": {
+            "name": "Grant Future Privileges to the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/roles/:name/future-grants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant future privileges to the role"
+        },
+        {
+          "info": {
+            "name": "Revoke Future Grants From the Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/roles/:name/future-grants:revoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke future grants from the role"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

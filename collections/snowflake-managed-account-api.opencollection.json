@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account managed-account API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "managed-account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Managed Accounts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/managed-accounts"
+          },
+          "docs": "Lists the accessible managed accounts."
+        },
+        {
+          "info": {
+            "name": "Create a Managed Accounts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/managed-accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a managed account. You must provide the full managed account definition when creating a managed account."
+        },
+        {
+          "info": {
+            "name": "Delete a Managed Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/managed-accounts/:name"
+          },
+          "docs": "Removes a managed account, including all objects created in the account, and immediately restricts access to the account. Currently used by data providers to create reader accounts for their consumers. For more details, see Manage reader accounts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account warehouse API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "warehouse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/warehouses"
+          },
+          "docs": "Show a list of warehouse filtered by pattern. Equivalent to SHOW WAREHOUSE in SQL."
+        },
+        {
+          "info": {
+            "name": "Create or Replace Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/warehouses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a virtual warehouse. Equivalent to CREATE WAREHOUSE in SQL."
+        },
+        {
+          "info": {
+            "name": "Describe Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/warehouses/:name"
+          },
+          "docs": "Describes the warehouse, show information of the chosen warehouse. Equivalent to DESCRIBE WAREHOUSE in SQL."
+        },
+        {
+          "info": {
+            "name": "Create a (or Alter an Existing) Warehouse.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/warehouses/:name",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a (or alter an existing) warehouse. Even if the operation is just an alter, the full property set must be provided."
+        },
+        {
+          "info": {
+            "name": "Drop Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/warehouses/:name"
+          },
+          "docs": "Removes the specified virtual warehouse from the system. Equivalent to DROP WAREHOUSE in SQL."
+        },
+        {
+          "info": {
+            "name": "Resume Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/warehouses/:name:resume"
+          },
+          "docs": "Bring current warehouse to a usable ‘Running’ state by provisioning compute resources if current warehouse is suspended."
+        },
+        {
+          "info": {
+            "name": "Suspend Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/warehouses/:name:suspend"
+          },
+          "docs": "Remove all compute nodes from a warehouse and put the warehouse into a ‘Suspended’ state if current warehouse is not suspended."
+        },
+        {
+          "info": {
+            "name": "Update and Rename Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/warehouses/:name:rename",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Specifies a new identifier for the warehouse; must be unique for current account."
+        },
+        {
+          "info": {
+            "name": "Abort All Queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/warehouses/:name:abort"
+          },
+          "docs": "Aborts all the queries currently running or queued on the warehouse."
+        },
+        {
+          "info": {
+            "name": "Use Current Warehouse for Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/warehouses/:name:use"
+          },
+          "docs": "[Deprecated] Specifies the active/current warehouse for the session."
+        },
+        {
+          "info": {
+            "name": "Enable Adaptive Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/warehouses/:name:enable"
+          },
+          "docs": "Enable an adaptive warehouse and put the warehouse into a ‘enabled’ state, if the warehouse is not enabled."
+        },
+        {
+          "info": {
+            "name": "Disable Adaptive Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/warehouses/:name:disable"
+          },
+          "docs": "Disable an adaptive warehouse and put the warehouse into a ‘disabled’ state, if the warehouse is not disabled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

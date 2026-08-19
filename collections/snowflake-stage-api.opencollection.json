@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account stage API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "stage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Stages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/stages"
+          },
+          "docs": "Lists stages under the database and schema, with show options as query parameters."
+        },
+        {
+          "info": {
+            "name": "Create a Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/stages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a stage, with standard create modifiers as query parameters. See the Stage component definition for what is required to be provided in the request body."
+        },
+        {
+          "info": {
+            "name": "Fetch a Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/stages/:name"
+          },
+          "docs": "Fetch a stage using the describe command output."
+        },
+        {
+          "info": {
+            "name": "Delete a Stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/stages/:name"
+          },
+          "docs": "Delete a stage with the stage name. If ifExists is used, the operation will succeed even if the object does not exist. Otherwise, there will be a failure if the drop is unsuccessful."
+        },
+        {
+          "info": {
+            "name": "List Files in the Stage.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/stages/:name/files"
+          },
+          "docs": "List files in the stage -- this is equivalent to LIST @stage."
+        },
+        {
+          "info": {
+            "name": "Generate a Presigned Url and Optionally Encryption Materials.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/stages/:name/files/:filePath:presigned-url",
+            "params": [
+              {
+                "name": "filePath",
+                "value": "example_value",
+                "type": "path",
+                "description": "The full stage path of the file."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a presigned url and optionally encryption materials for uploading and downloading files."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

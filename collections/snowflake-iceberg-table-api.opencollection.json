@@ -1,0 +1,286 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account iceberg-table API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "iceberg-table",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Iceberg Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables",
+            "params": [
+              {
+                "name": "deep",
+                "value": "true",
+                "type": "query",
+                "description": "Optionally includes dependency information of the table."
+              }
+            ]
+          },
+          "docs": "Lists the Apache Iceberg™ tables for which you have access privileges."
+        },
+        {
+          "info": {
+            "name": "Create a Snowflake Managed Iceberg Table (clone and Undrop Are Separate Subresources)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a snowflake managed iceberg table (clone and undrop are separate subresources)"
+        },
+        {
+          "info": {
+            "name": "Create a Snowflake Managed Iceberg Table as Select",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables:as-select",
+            "params": [
+              {
+                "name": "query",
+                "value": "example_value",
+                "type": "query",
+                "description": "The SQL select query to run to set up the table values (and possibly columns)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a snowflake managed iceberg table as select"
+        },
+        {
+          "info": {
+            "name": "Create an Unmanaged Iceberg Table From Aws Glue Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables:from-aws-glue-catalog",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an unmanaged iceberg table from AWS Glue catalog"
+        },
+        {
+          "info": {
+            "name": "Create an Unmanaged Iceberg Table From Delta",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables:from-delta",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an unmanaged iceberg table from Delta"
+        },
+        {
+          "info": {
+            "name": "Create an Unmanaged Iceberg Table From Iceberg Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables:from-iceberg-files",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an unmanaged iceberg table from Iceberg files"
+        },
+        {
+          "info": {
+            "name": "Create an Unmanaged Iceberg Table From Iceberg Rest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables:from-iceberg-rest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an unmanaged iceberg table from Iceberg REST"
+        },
+        {
+          "info": {
+            "name": "Describe Iceberg Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables/:name"
+          },
+          "docs": "Describe an iceberg table"
+        },
+        {
+          "info": {
+            "name": "Drop Iceberg Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables/:name",
+            "params": [
+              {
+                "name": "type",
+                "value": "CASCADE",
+                "type": "query",
+                "description": "Specifies whether the table can be dropped if foreign keys exist that reference the table."
+              }
+            ]
+          },
+          "docs": "Drop an iceberg table"
+        },
+        {
+          "info": {
+            "name": "Resume Recluster of an Iceberg Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables/:name:resume-recluster"
+          },
+          "docs": "Resume recluster of an iceberg table (iceberg tables managed by an external catalog do not allow clustering)"
+        },
+        {
+          "info": {
+            "name": "Suspend Recluster of an Iceberg Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables/:name:suspend-recluster"
+          },
+          "docs": "Suspend recluster of an iceberg table (iceberg tables managed by an external catalog do not allow clustering)"
+        },
+        {
+          "info": {
+            "name": "Refreshes the Metadata for an Apache Iceberg Table That Uses an External Iceberg Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables/:name:refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refreshes the metadata for an Apache Iceberg table that uses an external Iceberg catalog"
+        },
+        {
+          "info": {
+            "name": "Converts an Apache Iceberg™ Table That Uses an External Iceberg Catalog Into a Table That Uses Snowflake as the Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables/:name:convert-to-managed",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Convert unmanaged iceberg table to managed iceberg table"
+        },
+        {
+          "info": {
+            "name": "Undrop Iceberg Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables/:name:undrop"
+          },
+          "docs": "Undrop an iceberg table"
+        },
+        {
+          "info": {
+            "name": "Clone a Snowflake Managed Iceberg Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables/:name:clone",
+            "params": [
+              {
+                "name": "targetDatabase",
+                "value": "example_value",
+                "type": "query",
+                "description": "Database of the newly created table. Defaults to the source table's database."
+              },
+              {
+                "name": "targetSchema",
+                "value": "example_value",
+                "type": "query",
+                "description": "Schema of the newly created table. Defaults to the source table's schema."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clone a snowflake managed iceberg table"
+        },
+        {
+          "info": {
+            "name": "Create Iceberg Table Like",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables/:name:create-like",
+            "params": [
+              {
+                "name": "targetDatabase",
+                "value": "example_value",
+                "type": "query",
+                "description": "Database of the newly created table. Defaults to the source table's database."
+              },
+              {
+                "name": "targetSchema",
+                "value": "example_value",
+                "type": "query",
+                "description": "Schema of the newly created table. Defaults to the source table's schema."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new table with the same column definitions as an existing table, but without copying data from the existing table."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

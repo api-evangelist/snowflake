@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Accounts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/accounts",
+            "params": [
+              {
+                "name": "history",
+                "value": "true",
+                "type": "query",
+                "description": "Optionally includes dropped accounts that have not yet been purged."
+              }
+            ]
+          },
+          "docs": "Lists the accessible accounts."
+        },
+        {
+          "info": {
+            "name": "Create an Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a account. You must provide the full account definition when creating a account."
+        },
+        {
+          "info": {
+            "name": "Delete an Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/accounts/:name",
+            "params": [
+              {
+                "name": "gracePeriodInDays",
+                "value": "10",
+                "type": "query",
+                "description": "Specifies the number of days during which the account can be restored (“undropped”). The minimum is 3 days and the maximum is 90 days."
+              }
+            ]
+          },
+          "docs": "Deletes the specified account. If you enable the `ifExists` parameter, the operation succeeds even if the account does not exist. Otherwise, a 404 failure is returned if the account does not exist. if the drop is unsuccessful."
+        },
+        {
+          "info": {
+            "name": "Restore an Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/accounts/:name:undrop"
+          },
+          "docs": "Restores a dropped account that has not yet been permanently deleted (a dropped account that is within its grace period)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

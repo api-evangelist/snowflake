@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account statements API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "statements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a Sql Statement for Execution.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/statements",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              },
+              {
+                "name": "User-Agent",
+                "value": ""
+              },
+              {
+                "name": "X-Snowflake-Authorization-Token-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query",
+                "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned."
+              },
+              {
+                "name": "async",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned."
+              },
+              {
+                "name": "nullable",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits one or more SQL statements for execution. You can specify that the statement should be executed asynchronously. The following statement types are not supported: PUT, GET, USE, ALTER SESSION, BEGIN, COMMIT, ROLLBACK, statements that set session variables, and statements that create temporary tables and stages."
+        },
+        {
+          "info": {
+            "name": "Check the Status of the Execution of a Statement.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/statements/:statementHandle",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              },
+              {
+                "name": "User-Agent",
+                "value": ""
+              },
+              {
+                "name": "X-Snowflake-Authorization-Token-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "statementHandle",
+                "value": "",
+                "type": "path",
+                "description": "The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+              },
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query",
+                "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned."
+              },
+              {
+                "name": "partition",
+                "value": "",
+                "type": "query",
+                "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1."
+              }
+            ]
+          },
+          "docs": "Checks the status of the execution of the statement with the specified statement handle. If the statement was executed successfully, the operation returns the requested partition of the result set."
+        },
+        {
+          "info": {
+            "name": "Cancel the Execution of a Statement.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/statements/:statementHandle/cancel",
+            "headers": [
+              {
+                "name": "Accept",
+                "value": ""
+              },
+              {
+                "name": "User-Agent",
+                "value": ""
+              },
+              {
+                "name": "X-Snowflake-Authorization-Token-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "statementHandle",
+                "value": "",
+                "type": "path",
+                "description": "The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+              },
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query",
+                "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned."
+              }
+            ]
+          },
+          "docs": "Cancels the execution of the statement with the specified statement handle."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account cortex-inference API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cortex-inference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the Llms Available for the Current Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/cortex/models",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the LLMs available for the current session"
+        },
+        {
+          "info": {
+            "name": "Perform Llm Text Completion Inference.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/cortex/inference:complete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform LLM text completion inference, similar to snowflake.cortex.Complete."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

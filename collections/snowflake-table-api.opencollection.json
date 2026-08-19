@@ -1,0 +1,351 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account table API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "table",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables",
+            "params": [
+              {
+                "name": "history",
+                "value": "true",
+                "type": "query",
+                "description": "Optionally includes dropped tables that have not yet been purged."
+              },
+              {
+                "name": "deep",
+                "value": "true",
+                "type": "query",
+                "description": "Optionally includes dependency information of the table."
+              }
+            ]
+          },
+          "docs": "Lists the tables under the database and schema."
+        },
+        {
+          "info": {
+            "name": "Create a Table (clone and Undrop Are Separate Subresources)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a table."
+        },
+        {
+          "info": {
+            "name": "Create a Table Using the Result of the Specified Select Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:as_select",
+            "params": [
+              {
+                "name": "query",
+                "value": "example_value",
+                "type": "query",
+                "description": "The SQL select query to run to set up the table values (and possibly columns)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a table as select."
+        },
+        {
+          "info": {
+            "name": "Create a Table Using the Result of the Specified Select Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables:as-select",
+            "params": [
+              {
+                "name": "query",
+                "value": "example_value",
+                "type": "query",
+                "description": "The SQL select query to run to set up the table values (and possibly columns)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a table as select."
+        },
+        {
+          "info": {
+            "name": "Create a Table Using the Templates Specified in Staged Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:using_template",
+            "params": [
+              {
+                "name": "query",
+                "value": "example_value",
+                "type": "query",
+                "description": "The SQL query that uses INFER_SCHEMA on staged files to set the column definitions for the new table."
+              }
+            ]
+          },
+          "docs": "Create a table using template."
+        },
+        {
+          "info": {
+            "name": "Create a Table Using the Templates Specified in Staged Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables:using-template",
+            "params": [
+              {
+                "name": "query",
+                "value": "example_value",
+                "type": "query",
+                "description": "The SQL query that uses INFER_SCHEMA on staged files to set the column definitions for the new table."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a table using template."
+        },
+        {
+          "info": {
+            "name": "Fetch a Table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name"
+          },
+          "docs": "Fetch a Table using the describe command output."
+        },
+        {
+          "info": {
+            "name": "Create a (or Alter an Existing) Table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a (or alter an existing) table. Even if the operation is just an alter, the full property set must be provided."
+        },
+        {
+          "info": {
+            "name": "Delete a Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name"
+          },
+          "docs": "Delete a table with the given name."
+        },
+        {
+          "info": {
+            "name": "Clone Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:clone",
+            "params": [
+              {
+                "name": "targetDatabase",
+                "value": "example_value",
+                "type": "query",
+                "description": "Database of the newly created table. Defaults to the source table's database."
+              },
+              {
+                "name": "targetSchema",
+                "value": "example_value",
+                "type": "query",
+                "description": "Schema of the newly created table. Defaults to the source table's schema."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new table by cloning from the specified resource"
+        },
+        {
+          "info": {
+            "name": "Create a Table Like This Existing One",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:create_like",
+            "params": [
+              {
+                "name": "newTableName",
+                "value": "example_value",
+                "type": "query",
+                "description": "The name of the table to be created."
+              }
+            ]
+          },
+          "docs": "Create a new table like the specified resource, but empty"
+        },
+        {
+          "info": {
+            "name": "Create a Table Like This Existing One",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:create-like",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new table like the specified resource, but empty"
+        },
+        {
+          "info": {
+            "name": "Undrop a Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:undrop"
+          },
+          "docs": "Undrop specified table"
+        },
+        {
+          "info": {
+            "name": "Suspend Recluster of a Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:suspend_recluster"
+          },
+          "docs": "Suspend recluster of a table"
+        },
+        {
+          "info": {
+            "name": "Suspend Recluster of a Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:suspend-recluster"
+          },
+          "docs": "Suspend recluster of a table"
+        },
+        {
+          "info": {
+            "name": "Resume Recluster of a Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:resume_recluster"
+          },
+          "docs": "Resume recluster of a table"
+        },
+        {
+          "info": {
+            "name": "Resume Recluster of a Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:resume-recluster"
+          },
+          "docs": "Resume recluster of a table"
+        },
+        {
+          "info": {
+            "name": "Swap With Another Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:swapwith",
+            "params": [
+              {
+                "name": "targetTableName",
+                "value": "example_value",
+                "type": "query",
+                "description": "The fully-specified name of the target table to be swapped with."
+              }
+            ]
+          },
+          "docs": "Swap with another table"
+        },
+        {
+          "info": {
+            "name": "Swap With Another Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:swap-with",
+            "params": [
+              {
+                "name": "targetName",
+                "value": "example_value",
+                "type": "query",
+                "description": "The name of the target table to be swapped with."
+              },
+              {
+                "name": "targetDatabase",
+                "value": "example_value",
+                "type": "query",
+                "description": "Database of the target table. Defaults to the source table's database."
+              },
+              {
+                "name": "targetSchema",
+                "value": "example_value",
+                "type": "query",
+                "description": "Schema of the target table. Defaults to the source table's schema."
+              }
+            ]
+          },
+          "docs": "Swap with another table"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

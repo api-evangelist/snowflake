@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account dynamic-table API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "dynamic-table",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Dynamic Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables",
+            "params": [
+              {
+                "name": "deep",
+                "value": "true",
+                "type": "query",
+                "description": "Optionally includes dependency information of the dynamic table."
+              }
+            ]
+          },
+          "docs": "Lists the dynamic tables under the database and schema."
+        },
+        {
+          "info": {
+            "name": "Create a Dynamic Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a dynamic table, with standard create modifiers as query parameters. See the Dynamic Table component definition for what is required to be provided in the request body."
+        },
+        {
+          "info": {
+            "name": "Fetch a Dynamic Table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name"
+          },
+          "docs": "Fetch a Dynamic Table."
+        },
+        {
+          "info": {
+            "name": "Delete a Dynamic Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name"
+          },
+          "docs": "Delete a dynamic table with the given name. If ifExists is used, the operation will succeed even if the object does not exist. Otherwise, there will be a failure if the drop is unsuccessful."
+        },
+        {
+          "info": {
+            "name": "Clone Dynamic Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name:clone",
+            "params": [
+              {
+                "name": "targetDatabase",
+                "value": "example_value",
+                "type": "query",
+                "description": "Database of the newly created dynamic table. Defaults to the source table's database."
+              },
+              {
+                "name": "targetSchema",
+                "value": "example_value",
+                "type": "query",
+                "description": "Schema of the newly created dynamic table. Defaults to the source table's schema."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new dynamic table by cloning from the specified resource"
+        },
+        {
+          "info": {
+            "name": "Undrop a Dynamic Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name:undrop"
+          },
+          "docs": "Undrop specified dynamic table"
+        },
+        {
+          "info": {
+            "name": "Suspend Refreshes on the Dynamic Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name:suspend"
+          },
+          "docs": "Suspend refreshes on the dynamic table"
+        },
+        {
+          "info": {
+            "name": "Resume Refreshes on the Dynamic Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name:resume"
+          },
+          "docs": "Resume refreshes on the dynamic table"
+        },
+        {
+          "info": {
+            "name": "Refresh the Dynamic Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name:refresh"
+          },
+          "docs": "Specifies that the dynamic table should be manually refreshed"
+        },
+        {
+          "info": {
+            "name": "Suspend Recluster of a Dynamic Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name:suspend-recluster"
+          },
+          "docs": "Suspend recluster of a dynamic table"
+        },
+        {
+          "info": {
+            "name": "Resume Recluster of a Dynamic Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name:resume-recluster"
+          },
+          "docs": "Resume recluster of a dynamic table"
+        },
+        {
+          "info": {
+            "name": "Swap With Another Dynamic Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name:swap-with",
+            "params": [
+              {
+                "name": "targetName",
+                "value": "example_value",
+                "type": "query",
+                "description": "The name of the target dynamic table to be swapped with."
+              },
+              {
+                "name": "targetDatabase",
+                "value": "example_value",
+                "type": "query",
+                "description": "Database of the target dynamic table. Defaults to the source table's database."
+              },
+              {
+                "name": "targetSchema",
+                "value": "example_value",
+                "type": "query",
+                "description": "Schema of the target dynamic table. Defaults to the source table's schema."
+              }
+            ]
+          },
+          "docs": "Swap with another dynamic table"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

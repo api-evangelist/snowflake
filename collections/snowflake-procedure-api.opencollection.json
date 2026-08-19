@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account procedure API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "procedure",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Procedures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/procedures"
+          },
+          "docs": "List procedures"
+        },
+        {
+          "info": {
+            "name": "Create a Procedure",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/procedures",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a procedure"
+        },
+        {
+          "info": {
+            "name": "Fetch a Procedure",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/procedures/:nameWithArgs"
+          },
+          "docs": "Fetch a procedure"
+        },
+        {
+          "info": {
+            "name": "Delete a Procedure",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/procedures/:nameWithArgs"
+          },
+          "docs": "Delete a procedure"
+        },
+        {
+          "info": {
+            "name": "Call a Procedure",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/procedures/:nameWithArgs:call",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Call a procedure"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

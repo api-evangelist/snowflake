@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account alert API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "alert",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/alerts"
+          },
+          "docs": "List alerts"
+        },
+        {
+          "info": {
+            "name": "Create an Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/alerts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an alert"
+        },
+        {
+          "info": {
+            "name": "Fetch an Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/alerts/:name"
+          },
+          "docs": "Fetch an alert"
+        },
+        {
+          "info": {
+            "name": "Delete an Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/alerts/:name"
+          },
+          "docs": "Delete an alert"
+        },
+        {
+          "info": {
+            "name": "Create a New Alert by Cloning From the Specified Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/alerts/:name:clone",
+            "params": [
+              {
+                "name": "targetDatabase",
+                "value": "example_value",
+                "type": "query",
+                "description": "Database of the newly created resource. Defaults to the source's database"
+              },
+              {
+                "name": "targetSchema",
+                "value": "example_value",
+                "type": "query",
+                "description": "Schema of the newly created resource. Defaults to the source's schema"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new alert by cloning from the specified resource"
+        },
+        {
+          "info": {
+            "name": "Execute an Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/alerts/:name:execute"
+          },
+          "docs": "Execute an alert"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,4358 @@
+{
+  "item": [
+    {
+      "id": "751027cd-9df7-4769-9087-26b6d83ef1ca",
+      "name": "user",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c4c30456-4349-4474-81e3-d7088d117bbe",
+          "name": "Create a User",
+          "request": {
+            "name": "Create a User",
+            "description": {
+              "content": "Create a user according to the parameters given",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"password\": \"<password>\",\n  \"login_name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"middle_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"must_change_password\": \"<boolean>\",\n  \"disabled\": \"<boolean>\",\n  \"days_to_expiry\": \"<integer>\",\n  \"mins_to_unlock\": \"<integer>\",\n  \"default_warehouse\": \"<string>\",\n  \"default_namespace\": \"<string>\",\n  \"default_role\": \"<string>\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": \"<integer>\",\n  \"rsa_public_key\": \"<string>\",\n  \"rsa_public_key_2\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"enable_unredacted_query_syntax_error\": \"<boolean>\",\n  \"network_policy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7b0a6d7-c93b-4125-aab6-e6827a947446",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bae5a4dd-266d-42ab-ac4c-309fef0b4dfa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ffd6fc59-9533-4371-86a3-39fd8f53bc39",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f50507f0-6527-49fb-9e7e-7783bed9f3c3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69952340-039c-463d-8f4d-2e269e5c3a91",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "be9b2660-6c14-4be7-9003-74d2f272d68c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cde936a8-a6ba-4182-9c0c-1d50cf8b3aa6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff982880-f76e-4dae-b889-270745c25885",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ee2e5b2-0bae-4b6b-bd50-92d7ef8a6e69",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6618b392-3ede-4117-9869-91cbcf066627",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7232ced-c425-4934-97ce-b7a6860afae1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "92f1ed68-99e9-4b98-86ca-68f062372f07",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "20117699-2d6a-42a5-bdf6-c0765853cc8d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dbd25f06-0806-4d56-8411-33064ba70f62",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55264bc2-0469-4c37-8f6a-6d80e4628257",
+          "name": "List Users in the System.",
+          "request": {
+            "name": "List Users in the System.",
+            "description": {
+              "content": "Lists the users in the system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d4822af-3e70-4345-9de4-54524aa27d61",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-Snowflake-Request-ID",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Link",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Example Title\",\n    \"password\": \"example_value\",\n    \"login_name\": \"example_value\",\n    \"display_name\": \"example_value\",\n    \"first_name\": \"example_value\",\n    \"middle_name\": \"example_value\",\n    \"last_name\": \"example_value\",\n    \"email\": \"user@example.com\",\n    \"must_change_password\": true,\n    \"disabled\": true,\n    \"days_to_expiry\": 10,\n    \"mins_to_unlock\": 10,\n    \"default_warehouse\": \"example_value\",\n    \"default_namespace\": \"example_value\",\n    \"default_role\": \"example_value\",\n    \"default_secondary_roles\": \"ALL\",\n    \"mins_to_bypass_mfa\": 10,\n    \"rsa_public_key\": \"example_value\",\n    \"rsa_public_key_2\": \"example_value\",\n    \"comment\": \"example_value\",\n    \"type\": \"example_value\",\n    \"enable_unredacted_query_syntax_error\": true,\n    \"network_policy\": \"example_value\",\n    \"created_on\": \"2026-01-15T10:30:00Z\",\n    \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n    \"expires_at\": \"2026-01-15T10:30:00Z\",\n    \"locked_until\": \"2026-01-15T10:30:00Z\",\n    \"has_password\": true,\n    \"has_rsa_public_key\": true,\n    \"rsa_public_key_fp\": \"example_value\",\n    \"rsa_public_key_2_fp\": \"example_value\",\n    \"ext_authn_duo\": true,\n    \"ext_authn_uid\": \"500123\",\n    \"owner\": \"example_value\",\n    \"snowflake_lock\": true,\n    \"snowflake_support\": true,\n    \"mins_to_bypass_network_policy\": 10,\n    \"password_last_set\": \"2026-01-15T10:30:00Z\",\n    \"custom_landing_page_url\": \"https://www.example.com\",\n    \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "343ed415-f532-45c7-988b-a9fd325a26f9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4183aca-fa39-40e4-9da7-d3f3c49b6f52",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9216bd43-0087-44aa-be19-a21b5de0625d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4547ec89-efbb-4bf1-bfa5-09fb30f325fa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "95c9c9bf-e722-4bf9-b366-84115f38192a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dddb34a1-13a2-4450-a4d1-7e260f0b1a89",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ac4f24e-8d12-4ea7-9776-22e07087b56f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "76f9d579-f7ef-4c85-9a2f-1736f8be74a7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9e69c6c8-40fb-4928-9143-dcaa284450b8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d2131a9-953b-4f18-a5e4-b8b92878671b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4161e66c-718d-485b-aeda-61832fa062ac",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a90245eb-ae60-4e1c-9fe7-068a8d0efbc1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53e3a716-2e92-4cd1-8fa4-aea5696040df",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c7d1026-c398-4a3f-8a0b-d33c7723e41f",
+          "name": "Fetch Information About a User",
+          "request": {
+            "name": "Fetch Information About a User",
+            "description": {
+              "content": "Fetch user information using the result of the DESCRIBE command",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "users",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "216e6b08-0bb1-4bc9-a73e-21764d1c09fb",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-Snowflake-Request-ID",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Link",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2204a474-b6a3-4e4f-ad4e-f0f2f945f03d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11390f2b-154e-4493-8513-8c09bc67a9bd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a69ad32c-57e7-4ea7-94eb-6b3e689cad38",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "453e8ca8-8f2b-442d-b321-e661d637e5e1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33c6638e-4edc-4247-99f3-735aa322ac71",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "42bee99f-83b2-4dcd-a454-5b3ee930579b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b46711ed-baa1-4a71-bacc-d37c2f439f5c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "64b2eaba-e199-439c-b2d7-25c4d62a07f0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "081380dd-f19a-4bc4-a437-7dba00acdfc3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bffe5ad3-3b92-44b0-ab3f-913639aeac46",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eb42a0d8-ae72-4620-b733-dfb31718599e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba86bfc2-cc55-4958-9714-9a5d98e7ea72",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "815be12d-acd8-4e80-83f1-5a0c79c00e86",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c5ad30b-f83b-4e33-81ba-46baa0d70398",
+          "name": "Delete a User",
+          "request": {
+            "name": "Delete a User",
+            "description": {
+              "content": "Delete a user with the given name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "users",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28282143-31bf-47e2-a40d-cb7b15b632e1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "79404635-099d-4d0c-af30-329a70058536",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f7c1e47-d62a-44ee-be10-430979c53271",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a2fa6743-7027-413d-a5f9-c9805c994579",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "673e1613-dfa3-47fb-b02a-7fed0648e539",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de1ed24c-362d-4a94-80b7-227d1e709947",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5898806-ea4a-4806-bf83-fa61199b8bdd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2267271-05dd-427f-90ed-831eba54f2b7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6d37caa-fade-4518-9f2c-dbfd234390a0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3e2b4543-9ded-4643-9de4-797546ee4be6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e982fc0e-5fa2-430f-8089-6d4f3d7e59a0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ec8b8269-d380-4c21-84fb-f0161602e8ce",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "52fc3810-9c59-4b23-8829-ecc5a24d475e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2179ee33-1178-4d7d-9880-fdfed5bea06b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c196e6f-1db9-41b8-bd6c-2c1945eea3c5",
+          "name": "Create a (or Alter an Existing) User.",
+          "request": {
+            "name": "Create a (or Alter an Existing) User.",
+            "description": {
+              "content": "Create a (or alter an existing) user. Even if the operation is just an alter, the full property set must be provided. Note that password is not currently altered by this operation but is supported for a newly-created object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "users",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"password\": \"<password>\",\n  \"login_name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"middle_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"must_change_password\": \"<boolean>\",\n  \"disabled\": \"<boolean>\",\n  \"days_to_expiry\": \"<integer>\",\n  \"mins_to_unlock\": \"<integer>\",\n  \"default_warehouse\": \"<string>\",\n  \"default_namespace\": \"<string>\",\n  \"default_role\": \"<string>\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": \"<integer>\",\n  \"rsa_public_key\": \"<string>\",\n  \"rsa_public_key_2\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"enable_unredacted_query_syntax_error\": \"<boolean>\",\n  \"network_policy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "12850a2d-bbd3-4ae0-b11a-23f83db52290",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "126e4a9d-7e26-4aa9-8dc1-169e8b550169",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7fc058f7-7684-446e-8b4e-997cc0aac4cb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6bd6db82-abf2-490d-96aa-ed6da343988b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f78a456-00c1-42b1-a20a-d441af9e068a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d318475c-cf6f-4aad-aeca-db5f23d037de",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2082a19c-cbc4-41a9-bf3a-fe0273fd4d2c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9c8ed3c2-48d0-4454-8c82-cb22ddee0878",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4dfe3305-a510-4b94-ba57-6e9bed0da493",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "06298117-623b-4006-9aa1-5a762ae0f923",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e3fad53-b147-45d3-871d-e36b7143332f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94d9f76f-05c8-4466-9455-f2412e176bfd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f0f3ff9f-8d82-4fe1-b3b1-585462b757ca",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0197e13d-45c8-4395-82d7-874ca4ed825a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"password\": \"example_value\",\n  \"login_name\": \"example_value\",\n  \"display_name\": \"example_value\",\n  \"first_name\": \"example_value\",\n  \"middle_name\": \"example_value\",\n  \"last_name\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"must_change_password\": true,\n  \"disabled\": true,\n  \"days_to_expiry\": 10,\n  \"mins_to_unlock\": 10,\n  \"default_warehouse\": \"example_value\",\n  \"default_namespace\": \"example_value\",\n  \"default_role\": \"example_value\",\n  \"default_secondary_roles\": \"ALL\",\n  \"mins_to_bypass_mfa\": 10,\n  \"rsa_public_key\": \"example_value\",\n  \"rsa_public_key_2\": \"example_value\",\n  \"comment\": \"example_value\",\n  \"type\": \"example_value\",\n  \"enable_unredacted_query_syntax_error\": true,\n  \"network_policy\": \"example_value\",\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"last_successful_login\": \"2026-01-15T10:30:00Z\",\n  \"expires_at\": \"2026-01-15T10:30:00Z\",\n  \"locked_until\": \"2026-01-15T10:30:00Z\",\n  \"has_password\": true,\n  \"has_rsa_public_key\": true,\n  \"rsa_public_key_fp\": \"example_value\",\n  \"rsa_public_key_2_fp\": \"example_value\",\n  \"ext_authn_duo\": true,\n  \"ext_authn_uid\": \"500123\",\n  \"owner\": \"example_value\",\n  \"snowflake_lock\": true,\n  \"snowflake_support\": true,\n  \"mins_to_bypass_network_policy\": 10,\n  \"password_last_set\": \"2026-01-15T10:30:00Z\",\n  \"custom_landing_page_url\": \"https://www.example.com\",\n  \"custom_landing_page_url_flush_next_ui_load\": \"https://www.example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e854e8cf-1f6a-4e2d-8e85-5a24236a151a",
+          "name": "List All Grants to the User",
+          "request": {
+            "name": "List All Grants to the User",
+            "description": {
+              "content": "List all grants to the user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "users",
+                ":name",
+                "grants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46ca3864-a028-4fba-9d81-1b14fa5a0215",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-Snowflake-Request-ID",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Link",
+                  "value": "",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"securable\": {\n      \"database\": \"example_value\",\n      \"schema\": \"example_value\",\n      \"name\": \"Example Title\"\n    },\n    \"containing_scope\": {\n      \"database\": \"example_value\",\n      \"schema\": \"example_value\"\n    },\n    \"securable_type\": \"example_value\",\n    \"privileges\": [\n      \"example_value\"\n    ],\n    \"created_on\": \"2026-01-15T10:30:00Z\",\n    \"granted_by\": \"example_value\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd94f079-fe3a-4bd0-ae48-eacbe04c414d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f1d6a6cb-2fb3-4f76-816d-5bd5eab7fdf3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8bbc22d-d80a-4535-a07b-9bd776323414",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "666c5c78-96db-4fd2-9eef-5417e24adea7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "70c23cb5-ee98-494b-a558-9f8a2c2c35bf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4c0699f1-5bff-4624-83f6-9b94f5ab6b19",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ccd9e585-6a8b-4309-b5f8-7e82536a8fbf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe4a9057-6802-4d76-bffd-4643c37360b9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "352acef9-4481-4556-90af-dd620f3e6e76",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a587d1fb-3747-41f3-8748-011d5483c7e3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ac994d92-4d8e-45d5-bfb2-3cfbf96b4a2d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5141d3ab-ae12-45bd-973e-6dc154c336b5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0157ee51-edf3-45f0-b09e-4c1afe69f3e7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bee11eb2-4ebc-4aef-ad64-6ccbe870d6e2",
+          "name": "Grant a Role to the User",
+          "request": {
+            "name": "Grant a Role to the User",
+            "description": {
+              "content": "Grant a role to the user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "users",
+                ":name",
+                "grants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securable_type\": \"<string>\",\n  \"securable\": {\n    \"name\": \"<string>\",\n    \"database\": \"<string>\",\n    \"schema\": \"<string>\"\n  },\n  \"containing_scope\": {\n    \"database\": \"<string>\",\n    \"schema\": \"<string>\"\n  },\n  \"privileges\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3315cef-4c7a-4d85-a025-63dc9dc8a190",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3484a68-01d3-4fae-92df-68db00f98cee",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "49c21954-e423-460f-bb62-a9d405ea46f4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d8ce7b63-9e3a-48bb-87b4-c031cda98903",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "62c893c9-900d-41ba-9110-1a9e85018434",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9122ee02-384b-4ba2-bb36-90d037b828ca",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d52d1e30-1f9a-4d2e-bdfe-6767f58cc299",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d04bb70b-fc0a-453a-b54c-54a8ee31a419",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ed4eceba-98a1-47eb-836e-508eac7a7b94",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dfcfa3ba-56cb-4b57-a0e9-f66dbf79a83f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "38ce7f16-9ab8-4356-a7aa-262a19c7a9e4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "28a908bc-8ef9-47f2-b43e-b6a287504f7f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dfffc56d-f377-43ff-b9c5-2bebda09c623",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "351be9d4-d1f1-4af5-afe5-c8789202ca21",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67b4cdd4-e262-4427-b32f-c282c475f437",
+          "name": "Revoke Grants From the User",
+          "request": {
+            "name": "Revoke Grants From the User",
+            "description": {
+              "content": "Revoke grants from the user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "users",
+                ":name",
+                "grants:revoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securable_type\": \"<string>\",\n  \"securable\": {\n    \"name\": \"<string>\",\n    \"database\": \"<string>\",\n    \"schema\": \"<string>\"\n  },\n  \"containing_scope\": {\n    \"database\": \"<string>\",\n    \"schema\": \"<string>\"\n  },\n  \"privileges\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "481ee13b-f5f1-4305-90be-5891b57847e5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8efee144-127c-48cf-9e16-705b42b6fc54",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fc4de137-a405-4328-bbb5-ee743ea08bab",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3cf892b0-70f5-4ee7-bdb9-37c0608c9247",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4e6f7830-1f4e-4a77-b13e-d175161538ce",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "929d8844-5374-4cc8-8be4-49d8ffac3248",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5f58240b-d983-4b1d-b25a-5927aba0f821",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2aed4cb9-1866-44de-b768-957dd9e33b1a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "654e840e-5488-483d-8ec4-dd05d99f0eb0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e82b6964-b4a4-4511-901c-fa9b19b31a54",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fb1ab4f3-30d2-41e4-9dcd-dddb854f0506",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3634511a-2fe8-4842-8f3a-6a7b8283ccdd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b50236a-068e-4357-91ff-581bb3dcf85d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "df6f8682-dfa5-4537-8b59-b67f73e506ec",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "users",
+                    ":name",
+                    "grants:revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securable\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\",\n    \"name\": \"Example Title\"\n  },\n  \"containing_scope\": {\n    \"database\": \"example_value\",\n    \"schema\": \"example_value\"\n  },\n  \"securable_type\": \"example_value\",\n  \"privileges\": [\n    \"example_value\"\n  ],\n  \"created_on\": \"2026-01-15T10:30:00Z\",\n  \"granted_by\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://org-account.snowflakecomputing.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "71082b59-9061-4e95-aae7-855bd69a1523",
+    "name": "Snowflake account user API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+      "type": "text/plain"
+    }
+  }
+}

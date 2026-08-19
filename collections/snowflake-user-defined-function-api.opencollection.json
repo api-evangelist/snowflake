@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account user-defined-function API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user-defined-function",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Udfs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/user-defined-functions"
+          },
+          "docs": "List UDFs"
+        },
+        {
+          "info": {
+            "name": "Create a Udf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/user-defined-functions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a UDF"
+        },
+        {
+          "info": {
+            "name": "Fetch a Udf",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/user-defined-functions/:nameWithArgs"
+          },
+          "docs": "Fetch a UDF"
+        },
+        {
+          "info": {
+            "name": "Delete a Udf",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/user-defined-functions/:nameWithArgs"
+          },
+          "docs": "Delete a UDF"
+        },
+        {
+          "info": {
+            "name": "Rename a Udf",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/user-defined-functions/:nameWithArgs:rename",
+            "params": [
+              {
+                "name": "targetDatabase",
+                "value": "example_value",
+                "type": "query",
+                "description": "Database of the target resource. Defaults to the source's database"
+              },
+              {
+                "name": "targetSchema",
+                "value": "example_value",
+                "type": "query",
+                "description": "Schema of the target resource. Defaults to the source's schema"
+              },
+              {
+                "name": "targetName",
+                "value": "example_value",
+                "type": "query",
+                "description": "Name of the target resource."
+              }
+            ]
+          },
+          "docs": "Rename a UDF"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

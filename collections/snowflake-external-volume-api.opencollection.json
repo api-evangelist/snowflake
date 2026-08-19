@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account external-volume API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "external-volume",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List External Volumes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/external-volumes"
+          },
+          "docs": "List external volumes"
+        },
+        {
+          "info": {
+            "name": "Create an External Volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/external-volumes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an external volume"
+        },
+        {
+          "info": {
+            "name": "Fetch an External Volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/external-volumes/:name"
+          },
+          "docs": "Fetch an external volume"
+        },
+        {
+          "info": {
+            "name": "Delete an External Volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/external-volumes/:name"
+          },
+          "docs": "Delete an external volume"
+        },
+        {
+          "info": {
+            "name": "Undrop an External Volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/external-volumes/:name:undrop"
+          },
+          "docs": "Undrop an external volume"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

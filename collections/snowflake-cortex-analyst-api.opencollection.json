@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account cortex-analyst API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cortex-analyst",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "sendFeedback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/cortex/analyst/feedback",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a user feedback of Cortex Analyst response"
+        },
+        {
+          "info": {
+            "name": "Send a Data Question to the Cortex Analyst",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/cortex/analyst/message",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a data question to the Cortex Analyst"
+        },
+        {
+          "info": {
+            "name": "Generate Vq Suggestions for a Semantic Model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/cortex/analyst/verified-query-suggestions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate VQ suggestions for a semantic model"
+        },
+        {
+          "info": {
+            "name": "Internal Endpoint to Exchange a Cortex Analyst Oauth Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/cortex/analyst/token"
+          },
+          "docs": "Internal endpoint to exchange a Cortex Analyst Oauth token"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,258 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account service API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services"
+          },
+          "docs": "Lists the services under the database and schema."
+        },
+        {
+          "info": {
+            "name": "Create a Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services",
+            "params": [
+              {
+                "name": "createMode",
+                "value": "errorIfExists",
+                "type": "query",
+                "description": "Query parameter allowing support for different modes of resource creation. Possible values include: - `errorIfExists`: Throws an error if you try to create a resource that already exists. - `ifNotExists`: Creates a new resource when an alter is requested for a non-existent resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a service, with standard create modifiers as query parameters. See the Service component definition for what is required to be provided in the request body."
+        },
+        {
+          "info": {
+            "name": "Execute a Job Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services:execute-job",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create and execute a job service. See the JobService component definition for what is required to be provided in the request body."
+        },
+        {
+          "info": {
+            "name": "fetchService",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:name"
+          },
+          "docs": "Fetch a service."
+        },
+        {
+          "info": {
+            "name": "Create a (or Alter an Existing) Service.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:name",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a (or alter an existing) service. Even if the operation is just an alter, the full property set must be provided."
+        },
+        {
+          "info": {
+            "name": "Delete a Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:name"
+          },
+          "docs": "Delete a service with the given name. If ifExists is used, the operation will succeed even if the object does not exist. Otherwise, there will be a failure if the drop is unsuccessful."
+        },
+        {
+          "info": {
+            "name": "fetchServiceLogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:name/logs",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "500123",
+                "type": "query",
+                "description": "ID of the service instance, starting with 0."
+              },
+              {
+                "name": "containerName",
+                "value": "example_value",
+                "type": "query",
+                "description": "Container name as specified in the service specification file."
+              },
+              {
+                "name": "numLines",
+                "value": "10",
+                "type": "query",
+                "description": "Number of trailing log lines to retrieve."
+              }
+            ]
+          },
+          "docs": "Fetch the logs for a given service."
+        },
+        {
+          "info": {
+            "name": "fetchServiceStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:name/status",
+            "params": [
+              {
+                "name": "timeout",
+                "value": "10",
+                "type": "query",
+                "description": "Number of seconds to wait for the service to reach a steady state (for example, READY) before returning the status. If the service does not reach a steady state within the specified time, Snowflake returns the current state."
+              }
+            ]
+          },
+          "docs": "Fetch the status for a given service."
+        },
+        {
+          "info": {
+            "name": "listServiceContainers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:name/containers"
+          },
+          "docs": "List all the containers of the service"
+        },
+        {
+          "info": {
+            "name": "listServiceInstances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:name/instances"
+          },
+          "docs": "List all the instances of the service"
+        },
+        {
+          "info": {
+            "name": "listServiceRoles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:name/roles"
+          },
+          "docs": "List all the service roles of the service"
+        },
+        {
+          "info": {
+            "name": "listServiceRoleGrantsOf",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:service/roles/:name/grants-of",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Name of the service that contains the service role."
+              }
+            ]
+          },
+          "docs": "List all the grants of the service role"
+        },
+        {
+          "info": {
+            "name": "listServiceRoleGrantsTo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:service/roles/:name/grants",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Name of the service that contains the service role."
+              }
+            ]
+          },
+          "docs": "List all the grants given to the service role"
+        },
+        {
+          "info": {
+            "name": "resumeService",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:name:resume"
+          },
+          "docs": "Resume a service."
+        },
+        {
+          "info": {
+            "name": "suspendService",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:name:suspend"
+          },
+          "docs": "Suspend a service."
+        },
+        {
+          "info": {
+            "name": "List the Endpoints in a Service.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/services/:name/endpoints"
+          },
+          "docs": "Lists the endpoints in a Snowpark Container Services service (or a job service)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

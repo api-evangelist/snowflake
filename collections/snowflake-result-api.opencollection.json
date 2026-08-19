@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account result API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "result",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check Result Status or Fetch Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/results/:result_handler",
+            "params": [
+              {
+                "name": "result_handler",
+                "value": "example_value",
+                "type": "path",
+                "description": "The opaque result id."
+              },
+              {
+                "name": "page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of the page of results to return. The number can range from 0 to the total number of pages minus 1."
+              }
+            ]
+          },
+          "docs": "Get result status or the result when it is ready."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

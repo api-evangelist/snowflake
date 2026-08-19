@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account catalog-integration API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "catalog-integration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Catalog Integrations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/catalog-integrations"
+          },
+          "docs": "List catalog integrations."
+        },
+        {
+          "info": {
+            "name": "Create a Catalog Integration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/catalog-integrations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a catalog integration."
+        },
+        {
+          "info": {
+            "name": "Fetch a Catalog Integration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/catalog-integrations/:name"
+          },
+          "docs": "Fetch a catalog integration."
+        },
+        {
+          "info": {
+            "name": "Delete a Catalog Integration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/catalog-integrations/:name"
+          },
+          "docs": "Delete a catalog integration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

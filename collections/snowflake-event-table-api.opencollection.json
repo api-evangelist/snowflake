@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account event-table API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "event-table",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Event Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/event-tables"
+          },
+          "docs": "List event tables"
+        },
+        {
+          "info": {
+            "name": "Create an Event Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/event-tables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an event table"
+        },
+        {
+          "info": {
+            "name": "Fetch an Event Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/event-tables/:name"
+          },
+          "docs": "Fetch an event table"
+        },
+        {
+          "info": {
+            "name": "Delete an Event Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/event-tables/:name"
+          },
+          "docs": "Delete an event table"
+        },
+        {
+          "info": {
+            "name": "Rename the Event Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/event-tables/:name:rename",
+            "params": [
+              {
+                "name": "targetName",
+                "value": "example_value",
+                "type": "query",
+                "description": "Specify the name of the target resource to be renamed to."
+              }
+            ]
+          },
+          "docs": "Rename the event table"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

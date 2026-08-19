@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake account compute-pool API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "compute-pool",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists Compute Pools.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools"
+          },
+          "docs": "Lists the compute pools under the account."
+        },
+        {
+          "info": {
+            "name": "Creates a Compute Pool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools",
+            "params": [
+              {
+                "name": "initiallySuspended",
+                "value": "true",
+                "type": "query",
+                "description": "Specifies whether the compute pool is created initially in the suspended state."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a compute pool, with standard create modifiers as query parameters. See the Compute Pool component definition for what is required to be provided in the request body."
+        },
+        {
+          "info": {
+            "name": "Fetches a Compute Pool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools/:name"
+          },
+          "docs": "Fetches a named compute pool. You can get the name of the compute pool from the `/api/v2/compute-pools` GET request."
+        },
+        {
+          "info": {
+            "name": "Create a (or Alter an Existing) Compute Pool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools/:name",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a (or alter an existing) compute pool. Even if the operation is just an alter, the full property set must be provided."
+        },
+        {
+          "info": {
+            "name": "Deletes a Compute Pool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools/:name"
+          },
+          "docs": "Deletes a compute pool with the given name. If you enable the `ifExists` parameter, the operation succeeds even if the object does not exist. Otherwise, a 404 failure is returned if the object does not exist."
+        },
+        {
+          "info": {
+            "name": "Resumes a Suspended Compute Pool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools/:name:resume"
+          },
+          "docs": "Resume a compute pool, if suspended. If the specified compute pool is already running, this will cause a 400 Bad Request error."
+        },
+        {
+          "info": {
+            "name": "Suspends an Active Compute Pool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools/:name:suspend"
+          },
+          "docs": "Suspend a compute pool, if active. If the specified compute pool is already suspended, no action is taken."
+        },
+        {
+          "info": {
+            "name": "Stops All Services on the Compute Pool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools/:name:stopallservices"
+          },
+          "docs": "Stops all services in the compute pool. Deprecated - use :stop-all-services instead."
+        },
+        {
+          "info": {
+            "name": "Stops All Services on the Compute Pool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools/:name:stop-all-services"
+          },
+          "docs": "Stops all services in the compute pool."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
