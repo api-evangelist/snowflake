@@ -1,0 +1,82 @@
+slug: snowflake
+provider: Snowflake
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: grant
+  spec_file: snowflake-grant-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: grantPrivilege Grant the Specified Privilege(s) on the Named Securable to the Named Grantee;
+    revokePrivilege Revoke the Specified Privilege
+  reason: Privilege grant and revocation on securables to grantees — access rights administration, Identity
+    & Access Management.
+- tag: role
+  spec_file: snowflake-role-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/v2/roles/{name}/grants  grantPrivileges  Grant Privileges to the Role
+  reason: Role creation plus granting and revoking privileges and future grants (schemas Grant, Securable)
+    is textbook identity and access management / entitlement administration.
+- tag: user
+  spec_file: snowflake-user-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/v2/users/{name}/grants  grant  Grant a Role to the User
+  reason: Creating users and granting/revoking roles is identity and access management, not customer data.
+- tag: database-role
+  spec_file: snowflake-database-role-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST .../database-roles/{name}/grants grantPrivileges Grant Privileges to the Role; revokeGrants
+    Revoke Grants From the Role
+  reason: Role creation and privilege grant/revoke — access control administration, i.e. Identity & Access
+    Management.
+- tag: cortex-inference
+  spec_file: snowflake-cortex-inference-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.75
+  evidence: GET /api/v2/cortex/models Returns the Llms Available for the Current Session; cortexLLMInferenceComplete
+    Perform Llm Text Completion Inference
+  reason: LLM model listing and inference execution — AI/ML model serving, i.e. Artificial Intelligence
+    Management.
+- tag: compute-pool
+  spec_file: snowflake-compute-pool-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /api/v2/compute-pools createComputePool Creates a Compute Pool; resumeComputePool Resumes
+    a Suspended Compute Pool
+  reason: Provisioning and lifecycle control of compute resources for running services — cloud compute
+    infrastructure management. Not a business capability beyond IT infrastructure.
+- tag: warehouse
+  spec_file: snowflake-warehouse-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /api/v2/warehouses/{name}:resume  resumeWarehouse  Resume Warehouse
+  reason: Snowflake warehouses are compute clusters; create/resume/suspend/scale operations are cloud
+    compute infrastructure management, not physical warehousing.
