@@ -1,14 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Snowflake account notification-integration API
-  description: The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.
+  title: Snowflake Notification Integration API
+  description: The Snowflake Notification Integration API is a REST API that you can use to access, update, and perform certain actions on Notification Integration resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
     email: support@snowflake.com
 servers:
-- description: Snowflake Account API
+- description: Snowflake REST Server
   url: https://org-account.snowflakecomputing.com
 security:
 - KeyPair: []
@@ -241,6 +241,33 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    NotificationHook:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - EMAIL
+          - WEBHOOK
+          - QUEUE_AWS_SNS_OUTBOUND
+          - QUEUE_AZURE_EVENT_GRID_OUTBOUND
+          - QUEUE_GCP_PUBSUB_OUTBOUND
+          - QUEUE_AZURE_EVENT_GRID_INBOUND
+          - QUEUE_GCP_PUBSUB_INBOUND
+          description: Type of NotificationHook, can be QUEUE, EMAIL or WEBHOOK
+          example: EMAIL
+      required:
+      - type
+      discriminator:
+        propertyName: type
+        mapping:
+          EMAIL: NotificationEmail
+          WEBHOOK: NotificationWebhook
+          QUEUE_AWS_SNS_OUTBOUND: NotificationQueueAwsSnsOutbound
+          QUEUE_AZURE_EVENT_GRID_OUTBOUND: NotificationQueueAzureEventGridOutbound
+          QUEUE_GCP_PUBSUB_OUTBOUND: NotificationQueueGcpPubsubOutbound
+          QUEUE_AZURE_EVENT_GRID_INBOUND: NotificationQueueAzureEventGridInbound
+          QUEUE_GCP_PUBSUB_INBOUND: NotificationQueueGcpPubsubInbound
     NotificationIntegration:
       type: object
       description: A Snowflake notification
@@ -269,33 +296,6 @@ components:
       required:
       - name
       - notification_hook
-    NotificationHook:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - EMAIL
-          - WEBHOOK
-          - QUEUE_AWS_SNS_OUTBOUND
-          - QUEUE_AZURE_EVENT_GRID_OUTBOUND
-          - QUEUE_GCP_PUBSUB_OUTBOUND
-          - QUEUE_AZURE_EVENT_GRID_INBOUND
-          - QUEUE_GCP_PUBSUB_INBOUND
-          description: Type of NotificationHook, can be QUEUE, EMAIL or WEBHOOK
-          example: EMAIL
-      required:
-      - type
-      discriminator:
-        propertyName: type
-        mapping:
-          EMAIL: NotificationEmail
-          WEBHOOK: NotificationWebhook
-          QUEUE_AWS_SNS_OUTBOUND: NotificationQueueAwsSnsOutbound
-          QUEUE_AZURE_EVENT_GRID_OUTBOUND: NotificationQueueAzureEventGridOutbound
-          QUEUE_GCP_PUBSUB_OUTBOUND: NotificationQueueGcpPubsubOutbound
-          QUEUE_AZURE_EVENT_GRID_INBOUND: NotificationQueueAzureEventGridInbound
-          QUEUE_GCP_PUBSUB_INBOUND: NotificationQueueGcpPubsubInbound
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

@@ -1,15 +1,12 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: 0.0.1
-  title: Snowflake account cortex search service API
-  description: The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.
+  title: Cortex Search REST cortex search service API
+  description: OpenAPI 3.0 specification for the Cortex Search REST API
+  version: 0.1.0
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
     email: support@snowflake.com
-servers:
-- description: Snowflake Account API
-  url: https://org-account.snowflakecomputing.com
 security:
 - KeyPair: []
 - ExternalOAuth: []
@@ -443,6 +440,28 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    QueryResponse:
+      type: object
+      description: Search results.
+      properties:
+        results:
+          type: array
+          description: List of result rows.
+          items:
+            type: object
+            additionalProperties: true
+            description: Map of column names to bytes.
+          example: []
+        request_id:
+          type: string
+          description: ID of the request.
+          example: '500123'
+      required:
+      - results
+      - request_id
+    Column:
+      type: string
+      description: Column to apply this function to.
     Weights:
       type: object
       description: Weights to apply to each scoring component.
@@ -479,21 +498,12 @@ components:
           example: '2022-01-01T00:00:00Z'
       required:
       - column
-    NumericBoost:
-      type: object
-      properties:
-        column:
-          $ref: '#/components/schemas/Column'
-        weight:
-          type: number
-          description: Weight to apply for boosting this numerical column. It will be normalized across all scored columns specified in the scoring config so that all weights sum to 1. If a weight is not provided, the weight defaults to 1 pre-normalization.
-          example: 0.5
-      required:
-      - column
-    Reranker:
+    SchedulingState:
       type: string
-      description: Model to use for the reranker, or "none" if the reranker should be turned off. If excluded or null, the default reranker is used.
-      example: none
+      enum:
+      - ACTIVE
+      - SUSPENDED
+      - INITIALIZING
     QueryRequest:
       type: object
       description: A search query and additional parameters for search.
@@ -531,6 +541,24 @@ components:
           example: example_value
       required:
       - columns
+    VectorBoost:
+      type: object
+      properties:
+        column:
+          $ref: '#/components/schemas/Column'
+        weight:
+          description: Weight to apply for boosting this vector column.
+          type: number
+          example: 0.5
+    TextBoost:
+      type: object
+      properties:
+        column:
+          $ref: '#/components/schemas/Column'
+        weight:
+          description: Weight to apply for boosting this text column.
+          type: number
+          example: 0.5
     CortexSearchService:
       type: object
       description: A Snowflake cortex search service object.
@@ -615,30 +643,6 @@ components:
           readOnly: true
           description: Size of the serving index, in bytes.
           example: 10
-    TextBoost:
-      type: object
-      properties:
-        column:
-          $ref: '#/components/schemas/Column'
-        weight:
-          description: Weight to apply for boosting this text column.
-          type: number
-          example: 0.5
-    SchedulingState:
-      type: string
-      enum:
-      - ACTIVE
-      - SUSPENDED
-      - INITIALIZING
-    VectorBoost:
-      type: object
-      properties:
-        column:
-          $ref: '#/components/schemas/Column'
-        weight:
-          description: Weight to apply for boosting this vector column.
-          type: number
-          example: 0.5
     ScoringConfig:
       type: object
       description: reserved
@@ -649,25 +653,36 @@ components:
           $ref: '#/components/schemas/Reranker'
         weights:
           $ref: '#/components/schemas/Weights'
-    QueryResponse:
+    Reranker:
+      type: string
+      description: Model to use for the reranker, or "none" if the reranker should be turned off. If excluded or null, the default reranker is used.
+      example: none
+    NumericBoost:
       type: object
-      description: Search results.
       properties:
-        results:
-          type: array
-          description: List of result rows.
-          items:
-            type: object
-            additionalProperties: true
-            description: Map of column names to bytes.
-          example: []
-        request_id:
-          type: string
-          description: ID of the request.
-          example: '500123'
+        column:
+          $ref: '#/components/schemas/Column'
+        weight:
+          type: number
+          description: Weight to apply for boosting this numerical column. It will be normalized across all scored columns specified in the scoring config so that all weights sum to 1. If a weight is not provided, the weight defaults to 1 pre-normalization.
+          example: 0.5
       required:
-      - results
-      - request_id
+      - column
+    QuerySimilarityBoost:
+      type: object
+      properties:
+        cortex_search_service:
+          description: Fully-qualified name of a Cortex Search Service through which to find similar previous queries.
+          type: string
+          example: MY_DB.MY_SCHEMA.MY_SEARCH_SERVICE
+        previous_query_column:
+          description: Name of a TEXT column indexed in the specified previous queries search service that contains the previous query strings.
+          type: string
+          example: example_value
+        documents_column:
+          description: Name of an ARRAY column indexed in the specified previous queries search service that contains a list of documents that matched the corresponding previous query. Each document is represented as an OBJECT mapping all primary key columns to their corresponding values.
+          type: string
+          example: example_value
     Functions:
       type: object
       description: Functions to apply for scoring this request.
@@ -697,24 +712,6 @@ components:
           items:
             $ref: '#/components/schemas/QuerySimilarityBoost'
           example: []
-    Column:
-      type: string
-      description: Column to apply this function to.
-    QuerySimilarityBoost:
-      type: object
-      properties:
-        cortex_search_service:
-          description: Fully-qualified name of a Cortex Search Service through which to find similar previous queries.
-          type: string
-          example: MY_DB.MY_SCHEMA.MY_SEARCH_SERVICE
-        previous_query_column:
-          description: Name of a TEXT column indexed in the specified previous queries search service that contains the previous query strings.
-          type: string
-          example: example_value
-        documents_column:
-          description: Name of an ARRAY column indexed in the specified previous queries search service that contains a list of documents that matched the corresponding previous query. Each document is represented as an OBJECT mapping all primary key columns to their corresponding values.
-          type: string
-          example: example_value
   parameters:
     suspendResumeTarget:
       name: target

@@ -1,14 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Snowflake account dynamic-table API
-  description: The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.
+  title: Snowflake Dynamic Table API
+  description: The Snowflake Dynamic Table API is a REST API that you can use to access, update, and perform certain actions on Dynamic Tables resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
     email: support@snowflake.com
 servers:
-- description: Snowflake Account API
+- description: Snowflake Dynamic Table API
   url: https://org-account.snowflakecomputing.com
 security:
 - KeyPair: []
@@ -715,42 +715,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    DynamicTableClone:
-      type: object
-      description: Clone dynamic table
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the dynamic table, must be unique for the schema in which the dynamic table is created
-          example: Example Title
-        target_lag:
-          $ref: common.yaml#/components/schemas/TargetLag
-        warehouse:
-          type: string
-          description: Specifies the name of the warehouse that provides the compute resources for refreshing the dynamic table
-          example: example_value
-        point_of_time:
-          $ref: common.yaml#/components/schemas/PointOfTime
-      required:
-      - name
-    DynamicTableColumn:
-      type: object
-      description: A column in the dynamic table
-      properties:
-        name:
-          type: string
-          description: Column name
-          example: Example Title
-        datatype:
-          type: string
-          description: The data type for the column
-          example: example_value
-        comment:
-          type: string
-          description: Specifies a comment for the column
-          example: example_value
-      required:
-      - name
     DynamicTable:
       type: object
       description: A Snowflake dynamic table object.
@@ -876,6 +840,42 @@ components:
       - target_lag
       - warehouse
       - query
+    DynamicTableClone:
+      type: object
+      description: Clone dynamic table
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the dynamic table, must be unique for the schema in which the dynamic table is created
+          example: Example Title
+        target_lag:
+          $ref: common.yaml#/components/schemas/TargetLag
+        warehouse:
+          type: string
+          description: Specifies the name of the warehouse that provides the compute resources for refreshing the dynamic table
+          example: example_value
+        point_of_time:
+          $ref: common.yaml#/components/schemas/PointOfTime
+      required:
+      - name
+    DynamicTableColumn:
+      type: object
+      description: A column in the dynamic table
+      properties:
+        name:
+          type: string
+          description: Column name
+          example: Example Title
+        datatype:
+          type: string
+          description: The data type for the column
+          example: example_value
+        comment:
+          type: string
+          description: Specifies a comment for the column
+          example: example_value
+      required:
+      - name
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

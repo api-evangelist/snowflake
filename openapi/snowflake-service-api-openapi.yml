@@ -1,14 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Snowflake account service API
-  description: The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.
+  title: Snowflake Services Service API
+  description: The Snowflake Services API is a REST API that you can use to access, update, and perform certain actions on Services resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
     email: support@snowflake.com
 servers:
-- description: Snowflake Account API
+- description: Snowflake Services API
   url: https://org-account.snowflakecomputing.com
 security:
 - KeyPair: []
@@ -907,6 +907,154 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ServiceEndpoint:
+      type: object
+      properties:
+        name:
+          type: string
+          description: User-friendly endpoint name that represents the corresponding port.
+          example: Example Title
+        port:
+          type: integer
+          description: The network port the service is listening on. NULL, when portRange is specified.
+          example: 10
+        portRange:
+          type: string
+          description: The network port range the service is listening on. NULL, when port is specified.
+          example: example_value
+        protocol:
+          type: string
+          description: Supported network protocol (TCP, HTTP, or HTTPS).
+          default: HTTP
+          example: example_value
+        is_public:
+          type: boolean
+          description: True, if the endpoint is public, accessible from internet.
+          default: false
+          example: true
+        ingress_url:
+          type: string
+          description: Endpoint URL accessible from the internet.
+          readOnly: true
+          example: https://www.example.com
+      example:
+        name: endpoint
+        port: 8080
+        protocol: HTTPS
+        is_public: true
+        ingress_url: abcd-org-acc.snowflakecomputing.app
+    ServiceInstance:
+      type: object
+      properties:
+        database_name:
+          $ref: ./common.yaml#/components/schemas/Identifier
+          description: Database in which the service is created.
+          readOnly: true
+        schema_name:
+          $ref: ./common.yaml#/components/schemas/Identifier
+          description: Schema in which the service is created.
+          readOnly: true
+        service_name:
+          $ref: ./common.yaml#/components/schemas/Identifier
+          description: The name of the service.
+          readOnly: true
+        service_status:
+          type: string
+          description: The current status of the service.
+          readOnly: true
+          example: example_value
+        instance_id:
+          type: string
+          description: ID of the service instance (this is the index of the service instance starting from 0).
+          readOnly: true
+          example: '500123'
+        status:
+          type: string
+          description: The current status of the service instance.
+          readOnly: true
+          example: example_value
+        spec_digest:
+          type: string
+          description: The unique and immutable identifier that represents the service specification content.
+          readOnly: true
+          example: example_value
+        creation_time:
+          type: string
+          description: The time when Snowflake started creating the service instance.
+          readOnly: true
+          example: example_value
+        start_time:
+          type: string
+          description: The time when Snowflake acknowledged the service instance is running on a node.
+          readOnly: true
+          example: example_value
+      example:
+        database_name: testdb
+        schema_name: testschema
+        service_name: myservice
+        instance_id: '0'
+        status: PENDING
+        spec_digest: abcdefg
+        creation_time: 2023-01-01 00:00:00+00:00
+        start_time: 2023-01-01 00:00:00+00:00
+    ServiceRole:
+      type: object
+      properties:
+        created_on:
+          type: string
+          format: date-time
+          description: Date and time when the service role was created
+          readOnly: true
+          example: '2026-01-15T10:30:00Z'
+        name:
+          type: string
+          description: Service role name
+          readOnly: true
+          example: Example Title
+        comment:
+          type: string
+          description: Comment, if any, for the service role
+          readOnly: true
+          example: example_value
+      example:
+        created_on: 2023-01-01 00:00:00+00:00
+        name: testrole
+        comment: This is a service role.
+    GrantOf:
+      type: object
+      properties:
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date and time when the grant was created
+          example: '2026-01-15T10:30:00Z'
+        role:
+          type: string
+          readOnly: true
+          description: The name of the service role
+          example: example_value
+        granted_to:
+          type: string
+          readOnly: true
+          description: The type of the grantee, can be USER or ROLE
+          example: example_value
+        grantee_name:
+          type: string
+          readOnly: true
+          description: The name of the grantee
+          example: example_value
+        granted_by:
+          type: string
+          readOnly: true
+          description: The name of role that granted the service role to the grantee
+          example: example_value
+      example:
+        created_on: 2023-01-01 00:00:00+00:00
+        role: db.schema.service.svc_role
+        granted_to: role
+        grantee_name: test_role
+        granted_by: sysadmin
     Service:
       allOf:
       - $ref: '#/components/schemas/JobService'
@@ -1052,118 +1200,6 @@ components:
           spec_type: from_file
           stage: '@stage_name'
           spec_file: spec_file.yaml
-    ServiceEndpoint:
-      type: object
-      properties:
-        name:
-          type: string
-          description: User-friendly endpoint name that represents the corresponding port.
-          example: Example Title
-        port:
-          type: integer
-          description: The network port the service is listening on. NULL, when portRange is specified.
-          example: 10
-        portRange:
-          type: string
-          description: The network port range the service is listening on. NULL, when port is specified.
-          example: example_value
-        protocol:
-          type: string
-          description: Supported network protocol (TCP, HTTP, or HTTPS).
-          default: HTTP
-          example: example_value
-        is_public:
-          type: boolean
-          description: True, if the endpoint is public, accessible from internet.
-          default: false
-          example: true
-        ingress_url:
-          type: string
-          description: Endpoint URL accessible from the internet.
-          readOnly: true
-          example: https://www.example.com
-      example:
-        name: endpoint
-        port: 8080
-        protocol: HTTPS
-        is_public: true
-        ingress_url: abcd-org-acc.snowflakecomputing.app
-    ServiceRoleGrantTo:
-      type: object
-      properties:
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date and time when the grant was created
-          example: '2026-01-15T10:30:00Z'
-        privilege:
-          type: string
-          readOnly: true
-          description: The name of the privilege
-          example: example_value
-        granted_on:
-          type: string
-          readOnly: true
-          description: The type of of the securable
-          example: example_value
-        name:
-          type: string
-          readOnly: true
-          description: The name of the securable
-          example: Example Title
-        granted_to:
-          type: string
-          readOnly: true
-          description: The type of the grantee
-          example: example_value
-        grantee_name:
-          type: string
-          readOnly: true
-          description: The name of the grantee
-          example: example_value
-      example:
-        created_on: 2023-01-01 00:00:00+00:00
-        privilege: usage
-        granted_on: service_endpoint
-        name: db.schema.service!svc_role
-        granted_to: service role
-        grantee_name: all_endpoints_usage
-    GrantOf:
-      type: object
-      properties:
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date and time when the grant was created
-          example: '2026-01-15T10:30:00Z'
-        role:
-          type: string
-          readOnly: true
-          description: The name of the service role
-          example: example_value
-        granted_to:
-          type: string
-          readOnly: true
-          description: The type of the grantee, can be USER or ROLE
-          example: example_value
-        grantee_name:
-          type: string
-          readOnly: true
-          description: The name of the grantee
-          example: example_value
-        granted_by:
-          type: string
-          readOnly: true
-          description: The name of role that granted the service role to the grantee
-          example: example_value
-      example:
-        created_on: 2023-01-01 00:00:00+00:00
-        role: db.schema.service.svc_role
-        granted_to: role
-        grantee_name: test_role
-        granted_by: sysadmin
     ServiceContainer:
       type: object
       properties:
@@ -1241,60 +1277,6 @@ components:
         image_digest: abcdefd
         restart_count: 0
         start_time: 2023-01-01 00:00:00+00:00
-    ServiceInstance:
-      type: object
-      properties:
-        database_name:
-          $ref: ./common.yaml#/components/schemas/Identifier
-          description: Database in which the service is created.
-          readOnly: true
-        schema_name:
-          $ref: ./common.yaml#/components/schemas/Identifier
-          description: Schema in which the service is created.
-          readOnly: true
-        service_name:
-          $ref: ./common.yaml#/components/schemas/Identifier
-          description: The name of the service.
-          readOnly: true
-        service_status:
-          type: string
-          description: The current status of the service.
-          readOnly: true
-          example: example_value
-        instance_id:
-          type: string
-          description: ID of the service instance (this is the index of the service instance starting from 0).
-          readOnly: true
-          example: '500123'
-        status:
-          type: string
-          description: The current status of the service instance.
-          readOnly: true
-          example: example_value
-        spec_digest:
-          type: string
-          description: The unique and immutable identifier that represents the service specification content.
-          readOnly: true
-          example: example_value
-        creation_time:
-          type: string
-          description: The time when Snowflake started creating the service instance.
-          readOnly: true
-          example: example_value
-        start_time:
-          type: string
-          description: The time when Snowflake acknowledged the service instance is running on a node.
-          readOnly: true
-          example: example_value
-      example:
-        database_name: testdb
-        schema_name: testschema
-        service_name: myservice
-        instance_id: '0'
-        status: PENDING
-        spec_digest: abcdefg
-        creation_time: 2023-01-01 00:00:00+00:00
-        start_time: 2023-01-01 00:00:00+00:00
     ServiceSpec:
       type: object
       description: Specifies service specification.
@@ -1309,29 +1291,47 @@ components:
           from_file: ServiceSpecStageFile
           from_inline: ServiceSpecInlineText
       writeOnly: true
-    ServiceRole:
+    ServiceRoleGrantTo:
       type: object
       properties:
         created_on:
           type: string
           format: date-time
-          description: Date and time when the service role was created
           readOnly: true
+          description: Date and time when the grant was created
           example: '2026-01-15T10:30:00Z'
+        privilege:
+          type: string
+          readOnly: true
+          description: The name of the privilege
+          example: example_value
+        granted_on:
+          type: string
+          readOnly: true
+          description: The type of of the securable
+          example: example_value
         name:
           type: string
-          description: Service role name
           readOnly: true
+          description: The name of the securable
           example: Example Title
-        comment:
+        granted_to:
           type: string
-          description: Comment, if any, for the service role
           readOnly: true
+          description: The type of the grantee
+          example: example_value
+        grantee_name:
+          type: string
+          readOnly: true
+          description: The name of the grantee
           example: example_value
       example:
         created_on: 2023-01-01 00:00:00+00:00
-        name: testrole
-        comment: This is a service role.
+        privilege: usage
+        granted_on: service_endpoint
+        name: db.schema.service!svc_role
+        granted_to: service role
+        grantee_name: all_endpoints_usage
   parameters:
     service:
       name: service

@@ -1,14 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Snowflake account api-integration API
-  description: The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.
+  title: Snowflake API Integration API
+  description: The Snowflake API Integration API is a REST API that you can use to access, update, and perform certain actions on API Integration resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
     email: support@snowflake.com
 servers:
-- description: Snowflake Account API
+- description: Snowflake REST Server
   url: https://org-account.snowflakecomputing.com
 security:
 - KeyPair: []
@@ -345,20 +345,22 @@ components:
           description: A comma-separated list of endpoints and resources that Snowflake can access.
           example: []
         api_blocked_prefixes:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
           description: A comma-separated list of endpoints and resources that are not allowed to be called from Snowflake.
-          nullable: true
           example: []
         enabled:
           type: boolean
           description: Whether the API integration is enabled.
           example: true
         comment:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Comment for the API integration.
-          nullable: true
           example: example_value
         created_on:
           type: string

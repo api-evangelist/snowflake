@@ -1,14 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Snowflake account managed-account API
-  description: The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.
+  title: Snowflake Managed Account API
+  description: The Snowflake Managed Account API is a REST API that you can use to access, update, and perform certain actions on Managed Account resource in Snowflake.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
     email: support@snowflake.com
 servers:
-- description: Snowflake Account API
+- description: Snowflake Managed Account API
   url: https://org-account.snowflakecomputing.com
 security:
 - KeyPair: []
@@ -229,16 +229,18 @@ components:
           description: Optional comment in which to store information related to the account.
           example: example_value
         admin_name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Name of the account administrator.
           writeOnly: true
-          nullable: true
           example: example_value
         admin_password:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Password for the account administrator.
           writeOnly: true
-          nullable: true
           format: password
           example: example_value
         account_type:

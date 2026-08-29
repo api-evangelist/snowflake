@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Snowflake account API
+  title: Snowflake Account API
   description: The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.
   contact:
     name: Snowflake, Inc.
@@ -386,24 +386,27 @@ components:
           description: Number of days that historical data is retained for Time Travel.
           example: 10
         dropped_on:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           readOnly: true
-          nullable: true
           description: Date and time the account was dropped.
           example: '2026-01-15T10:30:00Z'
         scheduled_deletion_time:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           readOnly: true
-          nullable: true
           description: Date and time when the account is scheduled to be permanently deleted. Accounts are deleted within one hour after the scheduled time.
           example: '2026-01-15T10:30:00Z'
         restored_on:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           readOnly: true
-          nullable: true
           description: Date and time when the account was last restored.
           example: '2026-01-15T10:30:00Z'
         account_old_url_saved_on:
@@ -436,17 +439,19 @@ components:
           description: If the account’s organization was changed in a way that created a new account URL and the original account URL was saved, indicates the last time the account was accessed using the original account URL.
           example: '2026-01-15T10:30:00Z'
         organization_URL_expiration_on:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           readOnly: true
-          nullable: true
           description: If the account’s organization was changed in a way that created a new account URL and the original account URL was saved, provides the date and time when the original account URL will be dropped. Dropped URLs cannot be used to access the account.
           example: '2026-01-15T10:30:00Z'
         moved_on:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           readOnly: true
-          nullable: true
           description: Date and time when the account was moved to a different organization.
           example: '2026-01-15T10:30:00Z'
         is_events_account:
@@ -460,10 +465,11 @@ components:
           description: If the account was moved to a different organization, provides the name of that organization.
           example: example_value
         admin_name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Name of the account administrator.
           writeOnly: true
-          nullable: true
           example: example_value
         admin_password:
           type: string
@@ -493,10 +499,11 @@ components:
           writeOnly: true
           example: example_value
         email:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Email address of the account administrator.
           writeOnly: true
-          nullable: true
           example: user@example.com
         must_change_password:
           type: boolean

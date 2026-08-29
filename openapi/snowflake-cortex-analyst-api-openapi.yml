@@ -1,14 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Snowflake account cortex-analyst API
-  description: The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.
+  title: Cortex Analyst API
+  description: The Snowflake Cortex Analyst API is a REST API that allows end user to chat with their data leveraging semantic models to generate SQL queries.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
     email: support@snowflake.com
 servers:
-- description: Snowflake Account API
+- description: Snowflake API
   url: https://org-account.snowflakecomputing.com
 security:
 - KeyPair: []
@@ -251,58 +251,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    MessageObject:
-      type: object
-      title: The message object
-      description: Represents a message within a chat.
-      properties:
-        role:
-          description: The entity that produced the message. One of `user` or `analyst`.
-          type: string
-          enum:
-          - user
-          - analyst
-          example: user
-        content:
-          description: The content of the message in array of text or SQL.
-          type: array
-          items:
-            $ref: '#/components/schemas/MessageContent'
-          example: []
-      required:
-      - content
-    SendMessageResponse:
-      type: object
-      description: The non-streaming response object for the sendMessage
-      properties:
-        message:
-          $ref: '#/components/schemas/MessageObject'
-        request_id:
-          type: string
-          description: Unique request ID
-          example: '500123'
-        warnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Warning'
-          example: []
-        semantic_model_selection:
-          $ref: '#/components/schemas/SemanticModelSelection'
-        response_metadata:
-          type: object
-          additionalProperties: true
-          example: example_value
-      required:
-      - message
-    TokenInfo:
-      type: object
-      properties:
-        token:
-          type: string
-          example: example_value
-        expiration_seconds:
-          type: integer
-          example: 10
     SemanticModelSelection:
       type: object
       properties:
@@ -313,25 +261,6 @@ components:
           example: 10
         identifier:
           $ref: '#/components/schemas/SemanticModelObject'
-    SendFeedbackRequest:
-      type: object
-      description: The request object for sending user feedback on Cortex Analyst responses
-      properties:
-        request_id:
-          type: string
-          description: Request id associated with the feedback
-          example: '500123'
-        positive:
-          type: boolean
-          description: Whether the response was good (true) or bad (false)
-          example: true
-        feedback_message:
-          type: string
-          description: The text for the detailed feedback message
-          example: example_value
-      required:
-      - request_id
-      - positive
     SemanticModelObject:
       type: object
       title: the semantic model object
@@ -349,19 +278,6 @@ components:
           description: A string containing the entire semantic model yaml
           type: string
           example: 'name: my_semantic_model\ntables:\n  - name: orders\n...'
-    VerifiedQuerySuggestion:
-      type: object
-      description: A suggestion to add or remove or replace a Verified Query to a semantic model.
-      properties:
-        score:
-          type: number
-          description: Score of the suggestion, higher is better.
-          format: float
-          example: 42.5
-        vq_to_add:
-          $ref: '#/components/schemas/VerifiedQuery'
-        vq_to_remove:
-          $ref: '#/components/schemas/VerifiedQuery'
     VerifiedQuery:
       type: object
       description: VerifiedQuery represents a (question, sql) pair that has been manually verified (e.g. by an analyst) to be correct.
@@ -407,6 +323,35 @@ components:
           suggestions: '#/components/schemas/MessageContentSuggestionsObject'
           results: '#/components/schemas/MessageContentResultsObject'
           chart: '#/components/schemas/MessageContentChartObject'
+    Warning:
+      type: object
+      title: The warning object
+      description: Represents a warning within a chat.
+      properties:
+        message:
+          type: string
+          description: A human-readable message describing the warning
+          example: example_value
+    MessageObject:
+      type: object
+      title: The message object
+      description: Represents a message within a chat.
+      properties:
+        role:
+          description: The entity that produced the message. One of `user` or `analyst`.
+          type: string
+          enum:
+          - user
+          - analyst
+          example: user
+        content:
+          description: The content of the message in array of text or SQL.
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageContent'
+          example: []
+      required:
+      - content
     GenerateVerifiedQuerySuggestionsRequest:
       type: object
       description: The request object for getting VQ suggestions
@@ -423,6 +368,38 @@ components:
           example: example_value
       required:
       - semantic_model
+    VerifiedQuerySuggestion:
+      type: object
+      description: A suggestion to add or remove or replace a Verified Query to a semantic model.
+      properties:
+        score:
+          type: number
+          description: Score of the suggestion, higher is better.
+          format: float
+          example: 42.5
+        vq_to_add:
+          $ref: '#/components/schemas/VerifiedQuery'
+        vq_to_remove:
+          $ref: '#/components/schemas/VerifiedQuery'
+    SendFeedbackRequest:
+      type: object
+      description: The request object for sending user feedback on Cortex Analyst responses
+      properties:
+        request_id:
+          type: string
+          description: Request id associated with the feedback
+          example: '500123'
+        positive:
+          type: boolean
+          description: Whether the response was good (true) or bad (false)
+          example: true
+        feedback_message:
+          type: string
+          description: The text for the detailed feedback message
+          example: example_value
+      required:
+      - request_id
+      - positive
     GenerateVerifiedQuerySuggestionsResponse:
       type: object
       description: The non-streaming response object for the VQ Suggestions request
@@ -441,15 +418,29 @@ components:
           items:
             $ref: '#/components/schemas/Warning'
           example: []
-    Warning:
+    SendMessageResponse:
       type: object
-      title: The warning object
-      description: Represents a warning within a chat.
+      description: The non-streaming response object for the sendMessage
       properties:
         message:
+          $ref: '#/components/schemas/MessageObject'
+        request_id:
           type: string
-          description: A human-readable message describing the warning
+          description: Unique request ID
+          example: '500123'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Warning'
+          example: []
+        semantic_model_selection:
+          $ref: '#/components/schemas/SemanticModelSelection'
+        response_metadata:
+          type: object
+          additionalProperties: true
           example: example_value
+      required:
+      - message
     SendMessageRequest:
       type: object
       description: The request object for sendMessage requests
@@ -504,6 +495,15 @@ components:
           example: example_value
       required:
       - messages
+    TokenInfo:
+      type: object
+      properties:
+        token:
+          type: string
+          example: example_value
+        expiration_seconds:
+          type: integer
+          example: 10
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

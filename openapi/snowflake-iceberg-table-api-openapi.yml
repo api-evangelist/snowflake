@@ -1,14 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Snowflake account iceberg-table API
-  description: The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.
+  title: Snowflake Iceberg Table API
+  description: The Snowflake Iceberg Table API is a REST API that you can use to access, update, and perform certain actions on Iceberg Table resource in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
     email: support@snowflake.com
 servers:
-- description: Snowflake Account API
+- description: Snowflake REST Server
   url: https://org-account.snowflakecomputing.com
 security:
 - KeyPair: []
@@ -189,7 +189,6 @@ paths:
                   - name: Example Title
                     datatype: example_value
                     comment: example_value
-                    nullable: true
                     default_value: example_value
                   base_location: example_value
                   replace_invalid_characters: true
@@ -237,7 +236,6 @@ paths:
                   - name: Example Title
                     datatype: example_value
                     comment: example_value
-                    nullable: true
                     default_value: example_value
                   external_volume: example_value
                   cluster_by:
@@ -572,7 +570,6 @@ paths:
                     - name: Example Title
                       datatype: example_value
                       comment: example_value
-                      nullable: true
                       default_value: example_value
                     base_location: example_value
                     replace_invalid_characters: true
@@ -1054,38 +1051,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Constraint:
-      type: object
-      description: Constraints define integrity and consistency rules for data stored in tables.
-      properties:
-        name:
-          type: string
-          description: Name of the Constraint
-          example: Example Title
-        column_names:
-          type: array
-          items:
-            type: string
-            description: Column name for the constraint
-          example: []
-        constraint_type:
-          type: string
-          description: Type of the constraint
-          example: example_value
-      discriminator:
-        propertyName: constraint_type
-        mapping:
-          PRIMARY KEY: PrimaryKey
-          FOREIGN KEY: ForeignKey
-          UNIQUE: UniqueKey
-    RefreshIcebergTableRequest:
-      type: object
-      description: Request model for refreshing iceberg table
-      properties:
-        metadata_file_relative_path:
-          type: string
-          description: Specifies a metadata file path for a table created from Iceberg files in object storage.
-          example: example_value
     IcebergTableLike:
       type: object
       description: Create iceberg table as select
@@ -1114,162 +1079,6 @@ components:
           example: example_value
       required:
       - name
-    IcebergTableColumn:
-      type: object
-      description: A column in the snowflake catalog iceberg table
-      properties:
-        name:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Column name
-          example: Example Title
-        datatype:
-          type: string
-          description: The data type for the column
-          example: example_value
-        comment:
-          type: string
-          description: Specifies a comment for the column
-          example: example_value
-        nullable:
-          type: boolean
-          description: Argument null return acceptance criteria
-          example: true
-        default_value:
-          type: string
-          description: Default value for the column
-          example: example_value
-      required:
-      - name
-      - datatype
-    ConvertToManagedIcebergTableRequest:
-      type: object
-      description: Request model for convert to managed iceberg table
-      properties:
-        base_location:
-          type: string
-          description: The path to a directory where Snowflake can write data and metadata files for the table.
-          example: example_value
-        storage_serialization_policy:
-          type: string
-          description: Specifies the storage serialization policy for the table.
-          enum:
-          - COMPATIBLE
-          - OPTIMIZED
-          example: COMPATIBLE
-    IcebergTableClone:
-      type: object
-      description: Clone iceberg table
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-          example: Example Title
-        point_of_time:
-          $ref: common.yaml#/components/schemas/PointOfTime
-      required:
-      - name
-    IcebergTableFromIcebergRest:
-      type: object
-      description: Creates or replaces an Apache Iceberg™ table in the current/specified schema for an Iceberg REST catalog.
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-          example: Example Title
-        external_volume:
-          type: string
-          description: Specifies the name of the external volume to use for the table
-          example: example_value
-        catalog_table_name:
-          type: string
-          description: Specifies the table name as recognized by the AWS Glue Data Catalog.
-          example: example_value
-        catalog_namespace:
-          type: string
-          description: Specifies the catalog namespace for the table.
-          example: example_value
-        replace_invalid_characters:
-          type: boolean
-          description: Specifies whether to replace invalid characters in the column names
-          example: true
-        auto_refresh:
-          type: boolean
-          description: Specifies whether to automatically refresh the table metadata
-          example: true
-        catalog:
-          type: string
-          description: Specifies the name of the catalog integration to use for the table
-          example: example_value
-        comment:
-          type: string
-          description: Specifies a comment for the table
-          example: example_value
-      required:
-      - name
-      - catalog_table_name
-    IcebergTableFromIcebergFiles:
-      type: object
-      description: Create iceberg table from Iceberg files
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-          example: Example Title
-        external_volume:
-          type: string
-          description: Specifies the name of the external volume to use for the table
-          example: example_value
-        replace_invalid_characters:
-          type: boolean
-          description: Specifies whether to replace invalid characters in the column names
-          example: true
-        metadata_file_path:
-          type: string
-          description: Specifies the relative path of the Iceberg metadata file to use for column definitions.
-          example: example_value
-        catalog:
-          type: string
-          description: Specifies the name of the catalog integration to use for the table
-          example: example_value
-        comment:
-          type: string
-          description: Specifies a comment for the table
-          example: example_value
-      required:
-      - name
-      - metadata_file_path
-    IcebergTableFromDelta:
-      type: object
-      description: Create iceberg table from Delta
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-          example: Example Title
-        external_volume:
-          type: string
-          description: Specifies the name of the external volume to use for the table
-          example: example_value
-        replace_invalid_characters:
-          type: boolean
-          description: Specifies whether to replace invalid characters in the column names
-          example: true
-        base_location:
-          type: string
-          description: Specifies a relative path from the table’s EXTERNAL_VOLUME location to a directory where Snowflake can access your Delta table files.
-          example: example_value
-        catalog:
-          type: string
-          description: Specifies the name of the catalog integration to use for the table
-          example: example_value
-        comment:
-          type: string
-          description: Specifies a comment for the table
-          example: example_value
-      required:
-      - name
-      - base_location
     IcebergTable:
       type: object
       description: A Snowflake iceberg table
@@ -1397,6 +1206,60 @@ components:
           example: []
       required:
       - name
+    RefreshIcebergTableRequest:
+      type: object
+      description: Request model for refreshing iceberg table
+      properties:
+        metadata_file_relative_path:
+          type: string
+          description: Specifies a metadata file path for a table created from Iceberg files in object storage.
+          example: example_value
+    ConvertToManagedIcebergTableRequest:
+      type: object
+      description: Request model for convert to managed iceberg table
+      properties:
+        base_location:
+          type: string
+          description: The path to a directory where Snowflake can write data and metadata files for the table.
+          example: example_value
+        storage_serialization_policy:
+          type: string
+          description: Specifies the storage serialization policy for the table.
+          enum:
+          - COMPATIBLE
+          - OPTIMIZED
+          example: COMPATIBLE
+    IcebergTableFromIcebergFiles:
+      type: object
+      description: Create iceberg table from Iceberg files
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+          example: Example Title
+        external_volume:
+          type: string
+          description: Specifies the name of the external volume to use for the table
+          example: example_value
+        replace_invalid_characters:
+          type: boolean
+          description: Specifies whether to replace invalid characters in the column names
+          example: true
+        metadata_file_path:
+          type: string
+          description: Specifies the relative path of the Iceberg metadata file to use for column definitions.
+          example: example_value
+        catalog:
+          type: string
+          description: Specifies the name of the catalog integration to use for the table
+          example: example_value
+        comment:
+          type: string
+          description: Specifies a comment for the table
+          example: example_value
+      required:
+      - name
+      - metadata_file_path
     IcebergTableAsSelect:
       type: object
       description: Create iceberg table as select
@@ -1431,6 +1294,140 @@ components:
       required:
       - name
       - base_location
+    IcebergTableFromDelta:
+      type: object
+      description: Create iceberg table from Delta
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+          example: Example Title
+        external_volume:
+          type: string
+          description: Specifies the name of the external volume to use for the table
+          example: example_value
+        replace_invalid_characters:
+          type: boolean
+          description: Specifies whether to replace invalid characters in the column names
+          example: true
+        base_location:
+          type: string
+          description: Specifies a relative path from the table’s EXTERNAL_VOLUME location to a directory where Snowflake can access your Delta table files.
+          example: example_value
+        catalog:
+          type: string
+          description: Specifies the name of the catalog integration to use for the table
+          example: example_value
+        comment:
+          type: string
+          description: Specifies a comment for the table
+          example: example_value
+      required:
+      - name
+      - base_location
+    IcebergTableFromIcebergRest:
+      type: object
+      description: Creates or replaces an Apache Iceberg™ table in the current/specified schema for an Iceberg REST catalog.
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+          example: Example Title
+        external_volume:
+          type: string
+          description: Specifies the name of the external volume to use for the table
+          example: example_value
+        catalog_table_name:
+          type: string
+          description: Specifies the table name as recognized by the AWS Glue Data Catalog.
+          example: example_value
+        catalog_namespace:
+          type: string
+          description: Specifies the catalog namespace for the table.
+          example: example_value
+        replace_invalid_characters:
+          type: boolean
+          description: Specifies whether to replace invalid characters in the column names
+          example: true
+        auto_refresh:
+          type: boolean
+          description: Specifies whether to automatically refresh the table metadata
+          example: true
+        catalog:
+          type: string
+          description: Specifies the name of the catalog integration to use for the table
+          example: example_value
+        comment:
+          type: string
+          description: Specifies a comment for the table
+          example: example_value
+      required:
+      - name
+      - catalog_table_name
+    IcebergTableColumn:
+      type: object
+      description: A column in the snowflake catalog iceberg table
+      properties:
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Column name
+          example: Example Title
+        datatype:
+          type: string
+          description: The data type for the column
+          example: example_value
+        comment:
+          type: string
+          description: Specifies a comment for the column
+          example: example_value
+        nullable:
+          type: boolean
+          description: Argument null return acceptance criteria
+          example: true
+        default_value:
+          type: string
+          description: Default value for the column
+          example: example_value
+      required:
+      - name
+      - datatype
+    Constraint:
+      type: object
+      description: Constraints define integrity and consistency rules for data stored in tables.
+      properties:
+        name:
+          type: string
+          description: Name of the Constraint
+          example: Example Title
+        column_names:
+          type: array
+          items:
+            type: string
+            description: Column name for the constraint
+          example: []
+        constraint_type:
+          type: string
+          description: Type of the constraint
+          example: example_value
+      discriminator:
+        propertyName: constraint_type
+        mapping:
+          PRIMARY KEY: PrimaryKey
+          FOREIGN KEY: ForeignKey
+          UNIQUE: UniqueKey
+    IcebergTableClone:
+      type: object
+      description: Clone iceberg table
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+          example: Example Title
+        point_of_time:
+          $ref: common.yaml#/components/schemas/PointOfTime
+      required:
+      - name
     IcebergTableFromAWSGlueCatalog:
       type: object
       description: Create iceberg table from AWS Glue catalog

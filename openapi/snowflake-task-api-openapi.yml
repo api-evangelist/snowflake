@@ -1,14 +1,14 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Snowflake account task API
-  description: The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.
+  title: Snowflake Task API
+  description: The Snowflake Task API is a REST API that you can use to access, update, and perform certain actions on task resources in a Snowflake database.
   contact:
     name: Snowflake, Inc.
     url: https://snowflake.com
     email: support@snowflake.com
 servers:
-- description: Snowflake Account API
+- description: Snowflake Task API
   url: https://org-account.snowflakecomputing.com
 security:
 - KeyPair: []
@@ -886,19 +886,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    MinutesSchedule:
-      description: A schedule for executing a task at specified intervals of minutes.
-      allOf:
-      - $ref: '#/components/schemas/TaskSchedule'
-      properties:
-        minutes:
-          type: integer
-          description: The number of minutes between each task run.
-          example: 10
-      example:
-        minutes: 10
-      required:
-      - minutes
     Task:
       type: object
       description: A Snowflake task, used to execute SQL code.
@@ -1075,6 +1062,19 @@ components:
       required:
       - name
       - definition
+    TaskSchedule:
+      type: object
+      description: Specifies the schedule for periodically running the task.
+      properties:
+        schedule_type:
+          description: Type of the schedule, can be either CRON_TYPE or MINUTES_TYPE.
+          type: string
+          example: example_value
+      discriminator:
+        propertyName: schedule_type
+        mapping:
+          CRON_TYPE: CronSchedule
+          MINUTES_TYPE: MinutesSchedule
     TaskRun:
       type: object
       description: A task run executing a standalone task or a DAG of tasks starting from the root task.
@@ -1185,19 +1185,19 @@ components:
       - root_task_id
       - graph_version
       - run_id
-    TaskSchedule:
-      type: object
-      description: Specifies the schedule for periodically running the task.
+    MinutesSchedule:
+      description: A schedule for executing a task at specified intervals of minutes.
+      allOf:
+      - $ref: '#/components/schemas/TaskSchedule'
       properties:
-        schedule_type:
-          description: Type of the schedule, can be either CRON_TYPE or MINUTES_TYPE.
-          type: string
-          example: example_value
-      discriminator:
-        propertyName: schedule_type
-        mapping:
-          CRON_TYPE: CronSchedule
-          MINUTES_TYPE: MinutesSchedule
+        minutes:
+          type: integer
+          description: The number of minutes between each task run.
+          example: 10
+      example:
+        minutes: 10
+      required:
+      - minutes
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair
@@ -1205,3 +1205,6 @@ components:
       $ref: common.yaml#/components/securitySchemes/ExternalOAuth
     SnowflakeOAuth:
       $ref: common.yaml#/components/securitySchemes/SnowflakeOAuth
+externalDocs:
+  description: Streams and Tasks Reference
+  url: https://docs.snowflake.com/en/sql-reference/commands-stream
