@@ -1,7 +1,11 @@
 aid: snowflake
 name: Snowflake
-description: Snowflake is a cloud-based data platform that provides data warehousing, data lakes, data engineering, data science,
-  and data application development capabilities.
+description: Snowflake is a cloud-based data platform delivering data warehousing, data lakes, data engineering, data science
+  and data application development as a single managed service across AWS, Azure and Google Cloud. Its developer surface is
+  a 47-document OpenAPI corpus over /api/v2 covering databases, schemas, tables, Iceberg and dynamic tables, warehouses, tasks,
+  pipes, streams, roles and grants, plus a SQL API for arbitrary statements and a Cortex family for AI inference, semantic
+  analytics and retrieval. Snowflake also serves a SCIM 2.0 identity endpoint, an Apache Iceberg REST Catalog, and an account-hosted
+  Model Context Protocol server that exposes Cortex tools to agents under Snowflake RBAC.
 deliveryModel:
   model: saas
   open_source: false
@@ -30,7 +34,7 @@ accessModel:
 image: https://www.snowflake.com/wp-content/themes/snowflake/assets/img/brand-guidelines/logo-sno-blue-example.svg
 url: https://raw.githubusercontent.com/api-evangelist/snowflake/refs/heads/main/apis.yml
 created: '2025-06-05'
-modified: '2026-05-19'
+modified: '2026-09-03'
 specificationVersion: '0.23'
 kind: contract
 access: 3rd-Party
@@ -38,21 +42,24 @@ position: Consuming
 apis:
 - aid: snowflake:snowflake-artifact-repository-api
   name: Snowflake Artifact Repository API
-  description: >-
-    The Snowflake Artifact Repository API is a REST API that you can use to access, update, and perform
-    certain actions on Artifact Repository resources in a Snowflake database.
+  description: The Snowflake Artifact Repository API is a REST API that you can use to access, update, and perform certain
+    actions on Artifact Repository resources in a Snowflake database.
   tags:
   - Artifacts
   - Repositories
   properties:
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/artifact-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/artifact-repository
+  - type: OpenAPI
+    url: openapi/snowflake-artifact-repository-api-openapi.yml
+  - type: Overlay
+    url: overlays/snowflake-artifact-repository-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/artifact-repository
 - aid: snowflake:cortex-embed-api
   name: Cortex Embed API
-  description: >-
-    The Snowflake Cortex Embed API is a REST API that performs LLM embedding for input text, similar to
-    the Snowflake Cortex EMBED_TEXT functions.
+  description: The Snowflake Cortex Embed API is a REST API that performs LLM embedding for input text, similar to the Snowflake
+    Cortex EMBED_TEXT functions.
   tags:
   - Artificial Intelligence
   - Cortex
@@ -64,67 +71,96 @@ apis:
   properties:
   - type: Documentation
     url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-embed
+  - type: OpenAPI
+    url: openapi/snowflake-cortex-embed-api-openapi.yml
+  - type: Overlay
+    url: overlays/snowflake-cortex-embed-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-embed
 - aid: snowflake:snowflake-network-rule-api
   name: Snowflake Network Rule API
-  description: >-
-    The Snowflake Network Rule API is a REST API that you can use to access, update, and perform certain
-    actions on Network Rule resources in a Snowflake database.
+  description: The Snowflake Network Rule API is a REST API that you can use to access, update, and perform certain actions
+    on Network Rule resources in a Snowflake database.
   tags:
   - Network
   - Security
   properties:
   - type: Documentation
     url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-rule
+  - type: OpenAPI
+    url: openapi/snowflake-network-rule-api-openapi.yml
+  - type: Overlay
+    url: overlays/snowflake-network-rule-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-rule
 - aid: snowflake:snowflake-password-policy-api
   name: Snowflake Password Policy API
-  description: >-
-    The Snowflake Password Policy API is a REST API that you can use to access, update, and perform certain
-    actions on Password Policy resources in a Snowflake database.
+  description: The Snowflake Password Policy API is a REST API that you can use to access, update, and perform certain actions
+    on Password Policy resources in a Snowflake database.
   tags:
   - Password Policy
   - Security
   properties:
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/password-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/password-policy
+  - type: OpenAPI
+    url: openapi/snowflake-password-policy-api-openapi.yml
+  - type: Overlay
+    url: overlays/snowflake-password-policy-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/password-policy
 - aid: snowflake:snowflake-secret-api
   name: Snowflake Secret API
-  description: >-
-    The Snowflake Secret API is a REST API that you can use to access, update, and perform certain actions
-    on Secret resources in a Snowflake database.
+  description: The Snowflake Secret API is a REST API that you can use to access, update, and perform certain actions on Secret
+    resources in a Snowflake database.
   tags:
   - Secrets
   - Security
   properties:
   - type: Documentation
     url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/secret
+  - type: OpenAPI
+    url: openapi/snowflake-secret-api-openapi.yml
+  - type: Overlay
+    url: overlays/snowflake-secret-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/secret
 - aid: snowflake:snowflake-sequence-api
   name: Snowflake Sequence API
-  description: >-
-    The Snowflake Sequence API is a REST API that you can use to access, update, and perform certain actions
-    on Sequence resources in a Snowflake database.
+  description: The Snowflake Sequence API is a REST API that you can use to access, update, and perform certain actions on
+    Sequence resources in a Snowflake database.
   tags:
   - Data Management
   - Sequences
   properties:
   - type: Documentation
     url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/sequence
+  - type: OpenAPI
+    url: openapi/snowflake-sequence-api-openapi.yml
+  - type: Overlay
+    url: overlays/snowflake-sequence-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/sequence
 - aid: snowflake:snowflake-spark-connect-api
   name: Snowflake Spark Connect API
-  description: >-
-    The Snowflake Spark Connect API is a REST API that enables execution of Spark workloads on Snowflake
-    infrastructure through REST endpoints.
+  description: The Snowflake Spark Connect API is a REST API that enables execution of Spark workloads on Snowflake infrastructure
+    through REST endpoints.
   tags:
   - Data Engineering
   - Spark
   properties:
   - type: Documentation
     url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/spark-connect
+  - type: OpenAPI
+    url: openapi/snowflake-spark-connect-api-openapi.yml
+  - type: Overlay
+    url: overlays/snowflake-spark-connect-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/spark-connect
 - aid: snowflake:snowflake-streamlit-api
   name: Snowflake Streamlit API
-  description: >-
-    The Snowflake Streamlit API is a REST API that you can use to access, update, and perform certain
-    actions on Streamlit application resources in a Snowflake database.
+  description: The Snowflake Streamlit API is a REST API that you can use to access, update, and perform certain actions on
+    Streamlit application resources in a Snowflake database.
   tags:
   - Application
   - Streamlit
@@ -134,22 +170,32 @@ apis:
   properties:
   - type: Documentation
     url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/streamlit
+  - type: OpenAPI
+    url: openapi/snowflake-streamlit-api-openapi.yml
+  - type: Overlay
+    url: overlays/snowflake-streamlit-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/streamlit
 - aid: snowflake:snowflake-tag-api
   name: Snowflake Tag API
-  description: >-
-    The Snowflake Tag API is a REST API that you can use to access, update, and perform certain actions
-    on Tag resources in a Snowflake database.
+  description: The Snowflake Tag API is a REST API that you can use to access, update, and perform certain actions on Tag
+    resources in a Snowflake database.
   tags:
   - Data Governance
   - Tags
   properties:
   - type: Documentation
     url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/tag
+  - type: OpenAPI
+    url: openapi/snowflake-tag-api-openapi.yml
+  - type: Overlay
+    url: overlays/snowflake-tag-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/tag
 - aid: snowflake:cortex-agents-api
   name: Cortex Agents API
-  description: >-
-    The Snowflake Cortex Agents API is a REST API that you can use to create, manage, and interact with
-    Cortex Agent objects in a Snowflake account.
+  description: The Snowflake Cortex Agents API is a REST API that you can use to create, manage, and interact with Cortex
+    Agent objects in a Snowflake account.
   tags:
   - Agents
   - Artificial Intelligence
@@ -161,17 +207,20 @@ apis:
   properties:
   - type: Documentation
     url: https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api
 - aid: snowflake:snowpipe-rest-api
   name: Snowpipe REST API
-  description: >-
-    The Snowpipe REST API provides REST endpoints for defining the list of files to ingest and fetching
-    reports of the load history for continuous data loading into Snowflake.
+  description: The Snowpipe REST API provides REST endpoints for defining the list of files to ingest and fetching reports
+    of the load history for continuous data loading into Snowflake.
   tags:
   - Data Ingestion
   - Snowpipe
   properties:
   - type: Documentation
     url: https://docs.snowflake.com/en/user-guide/data-load-snowpipe-rest-apis
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/user-guide/data-load-snowpipe-rest-apis
 - aid: snowflake:snowflake-account-api
   name: Snowflake account API
   description: The account API from Snowflake — 3 operation(s) for account.
@@ -191,13 +240,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -209,13 +256,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -237,8 +282,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -254,18 +298,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -273,8 +314,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -322,8 +362,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -340,6 +379,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-account-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-alert-api
   name: Snowflake alert API
   description: The alert API from Snowflake — 4 operation(s) for alert.
@@ -359,13 +402,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -377,13 +418,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -405,8 +444,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -422,18 +460,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -441,8 +476,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -490,8 +524,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -508,6 +541,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-alert-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-api-integration-api
   name: Snowflake api-integration API
   description: The api-integration API from Snowflake — 2 operation(s) for api-integration.
@@ -527,13 +564,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -545,13 +580,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -573,8 +606,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -590,18 +622,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -609,8 +638,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -658,8 +686,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -676,6 +703,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-api-integration-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-catalog-integration-api
   name: Snowflake catalog-integration API
   description: The catalog-integration API from Snowflake — 2 operation(s) for catalog-integration.
@@ -693,13 +724,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -711,13 +740,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -739,8 +766,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -756,18 +782,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -775,8 +798,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -824,8 +846,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -842,6 +863,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-catalog-integration-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-compute-pool-api
   name: Snowflake compute-pool API
   description: The compute-pool API from Snowflake — 6 operation(s) for compute-pool.
@@ -859,13 +884,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -877,13 +900,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -905,8 +926,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -922,18 +942,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -941,8 +958,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -990,8 +1006,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -1008,6 +1023,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-compute-pool-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-cortex-analyst-api
   name: Snowflake cortex-analyst API
   description: The cortex-analyst API from Snowflake — 4 operation(s) for cortex-analyst.
@@ -1025,13 +1044,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -1043,13 +1060,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -1071,8 +1086,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -1088,18 +1102,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -1107,8 +1118,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -1156,8 +1166,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -1174,6 +1183,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-cortex-analyst-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-cortex-inference-api
   name: Snowflake cortex-inference API
   description: The cortex-inference API from Snowflake — 2 operation(s) for cortex-inference.
@@ -1191,13 +1204,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -1209,13 +1220,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -1237,8 +1246,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -1254,18 +1262,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -1273,8 +1278,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -1322,8 +1326,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -1340,6 +1343,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-cortex-inference-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-cortex-search-service-api
   name: Snowflake cortex search service API
   description: The cortex search service API from Snowflake — 5 operation(s) for cortex search service.
@@ -1357,13 +1364,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -1375,13 +1380,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -1403,8 +1406,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -1420,18 +1422,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -1439,8 +1438,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -1488,8 +1486,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -1506,6 +1503,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-cortex-search-service-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-database-api
   name: Snowflake database API
   description: The database API from Snowflake — 12 operation(s) for database.
@@ -1525,13 +1526,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -1543,13 +1542,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -1571,8 +1568,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -1588,18 +1584,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -1607,8 +1600,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -1656,8 +1648,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -1674,6 +1665,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-database-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-database-role-api
   name: Snowflake database-role API
   description: The database-role API from Snowflake — 7 operation(s) for database-role.
@@ -1691,13 +1686,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -1709,13 +1702,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -1737,8 +1728,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -1754,18 +1744,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -1773,8 +1760,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -1822,8 +1808,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -1840,6 +1825,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-database-role-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-dynamic-table-api
   name: Snowflake dynamic-table API
   description: The dynamic-table API from Snowflake — 10 operation(s) for dynamic-table.
@@ -1857,13 +1846,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -1875,13 +1862,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -1903,8 +1888,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -1920,18 +1904,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -1939,8 +1920,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -1988,8 +1968,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -2006,6 +1985,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-dynamic-table-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-event-table-api
   name: Snowflake event-table API
   description: The event-table API from Snowflake — 3 operation(s) for event-table.
@@ -2023,13 +2006,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -2041,13 +2022,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -2069,8 +2048,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -2086,18 +2064,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -2105,8 +2080,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -2154,8 +2128,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -2172,6 +2145,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-event-table-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-external-volume-api
   name: Snowflake external-volume API
   description: The external-volume API from Snowflake — 3 operation(s) for external-volume.
@@ -2189,13 +2166,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -2207,13 +2182,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -2235,8 +2208,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -2252,18 +2224,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -2271,8 +2240,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -2320,8 +2288,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -2338,6 +2305,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-external-volume-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-function-api
   name: Snowflake function API
   description: The function API from Snowflake — 3 operation(s) for function.
@@ -2357,13 +2328,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -2375,13 +2344,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -2403,8 +2370,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -2420,18 +2386,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -2439,8 +2402,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -2488,8 +2450,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -2506,6 +2467,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-function-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-grant-api
   name: Snowflake grant API
   description: The grant API from Snowflake — 7 operation(s) for grant.
@@ -2525,13 +2490,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -2543,13 +2506,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -2571,8 +2532,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -2588,18 +2548,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -2607,8 +2564,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -2656,8 +2612,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -2674,6 +2629,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-grant-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-iceberg-table-api
   name: Snowflake iceberg-table API
   description: The iceberg-table API from Snowflake — 14 operation(s) for iceberg-table.
@@ -2691,13 +2650,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -2709,13 +2666,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -2737,8 +2692,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -2754,18 +2708,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -2773,8 +2724,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -2822,8 +2772,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -2840,6 +2789,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-iceberg-table-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-image-repository-api
   name: Snowflake image-repository API
   description: The image-repository API from Snowflake — 3 operation(s) for image-repository.
@@ -2857,13 +2810,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -2875,13 +2826,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -2903,8 +2852,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -2920,18 +2868,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -2939,8 +2884,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -2988,8 +2932,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -3006,6 +2949,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-image-repository-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-managed-account-api
   name: Snowflake managed-account API
   description: The managed-account API from Snowflake — 2 operation(s) for managed-account.
@@ -3023,13 +2970,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -3041,13 +2986,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -3069,8 +3012,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -3086,18 +3028,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -3105,8 +3044,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -3154,8 +3092,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -3172,6 +3109,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-managed-account-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-network-policy-api
   name: Snowflake network-policy API
   description: The network-policy API from Snowflake — 2 operation(s) for network-policy.
@@ -3191,13 +3132,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -3209,13 +3148,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -3237,8 +3174,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -3254,18 +3190,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -3273,8 +3206,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -3322,8 +3254,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -3340,6 +3271,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-network-policy-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-notebook-api
   name: Snowflake notebook API
   description: The notebook API from Snowflake — 6 operation(s) for notebook.
@@ -3359,13 +3294,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -3377,13 +3310,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -3405,8 +3336,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -3422,18 +3352,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -3441,8 +3368,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -3490,8 +3416,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -3508,10 +3433,13 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-notebook-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-notification-integration-api
   name: Snowflake notification-integration API
-  description: >-
-    The notification-integration API from Snowflake — 2 operation(s) for notification-integration.
+  description: The notification-integration API from Snowflake — 2 operation(s) for notification-integration.
   tags:
   - notification-integration
   properties:
@@ -3526,13 +3454,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -3544,13 +3470,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -3572,8 +3496,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -3589,18 +3512,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -3608,8 +3528,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -3657,8 +3576,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -3675,6 +3593,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-notification-integration-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-pipe-api
   name: Snowflake pipe API
   description: The pipe API from Snowflake — 3 operation(s) for pipe.
@@ -3694,13 +3616,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -3712,13 +3632,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -3740,8 +3658,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -3757,18 +3674,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -3776,8 +3690,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -3825,8 +3738,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -3843,6 +3755,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-pipe-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-procedure-api
   name: Snowflake procedure API
   description: The procedure API from Snowflake — 3 operation(s) for procedure.
@@ -3862,13 +3778,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -3880,13 +3794,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -3908,8 +3820,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -3925,18 +3836,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -3944,8 +3852,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -3993,8 +3900,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -4011,6 +3917,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-procedure-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-result-api
   name: Snowflake result API
   description: The result API from Snowflake — 1 operation(s) for result.
@@ -4030,13 +3940,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -4048,13 +3956,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -4076,8 +3982,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -4093,18 +3998,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -4112,8 +4014,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -4161,8 +4062,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -4179,6 +4079,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-result-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-role-api
   name: Snowflake role API
   description: The role API from Snowflake — 8 operation(s) for role.
@@ -4198,13 +4102,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -4216,13 +4118,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -4244,8 +4144,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -4261,18 +4160,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -4280,8 +4176,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -4329,8 +4224,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -4347,6 +4241,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-role-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-schema-api
   name: Snowflake schema API
   description: The schema API from Snowflake — 4 operation(s) for schema.
@@ -4366,13 +4264,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -4384,13 +4280,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -4412,8 +4306,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -4429,18 +4322,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -4448,8 +4338,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -4497,8 +4386,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -4515,6 +4403,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-schema-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-service-api
   name: Snowflake service API
   description: The service API from Snowflake — 13 operation(s) for service.
@@ -4534,13 +4426,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -4552,13 +4442,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -4580,8 +4468,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -4597,18 +4484,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -4616,8 +4500,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -4665,8 +4548,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -4683,6 +4565,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-service-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-stage-api
   name: Snowflake stage API
   description: The stage API from Snowflake — 4 operation(s) for stage.
@@ -4700,13 +4586,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -4718,13 +4602,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -4746,8 +4628,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -4763,18 +4644,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -4782,8 +4660,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -4831,8 +4708,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -4849,6 +4725,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-stage-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-statements-api
   name: Snowflake statements API
   description: The statements API from Snowflake — 3 operation(s) for statements.
@@ -4868,13 +4748,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -4886,13 +4764,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -4914,8 +4790,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -4931,18 +4806,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -4950,8 +4822,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -4999,8 +4870,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -5017,6 +4887,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-statements-overlay.yaml
+  baseURL: https://{account}.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-stream-api
   name: Snowflake stream API
   description: The stream API from Snowflake — 3 operation(s) for stream.
@@ -5036,13 +4910,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -5054,13 +4926,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -5082,8 +4952,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -5099,18 +4968,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -5118,8 +4984,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -5167,8 +5032,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -5185,6 +5049,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-stream-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-table-api
   name: Snowflake table API
   description: The table API from Snowflake — 16 operation(s) for table.
@@ -5204,13 +5072,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -5222,13 +5088,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -5250,8 +5114,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -5267,18 +5130,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -5286,8 +5146,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -5335,8 +5194,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -5353,6 +5211,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-table-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-task-api
   name: Snowflake task API
   description: The task API from Snowflake — 10 operation(s) for task.
@@ -5372,13 +5234,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -5390,13 +5250,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -5418,8 +5276,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -5435,18 +5292,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -5454,8 +5308,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -5503,8 +5356,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -5521,6 +5373,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-task-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-user-api
   name: Snowflake user API
   description: The user API from Snowflake — 4 operation(s) for user.
@@ -5540,13 +5396,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -5558,13 +5412,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -5586,8 +5438,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -5603,18 +5454,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -5622,8 +5470,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -5671,8 +5518,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -5689,6 +5535,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-user-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-user-defined-function-api
   name: Snowflake user-defined-function API
   description: The user-defined-function API from Snowflake — 3 operation(s) for user-defined-function.
@@ -5706,13 +5556,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -5724,13 +5572,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -5752,8 +5598,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -5769,18 +5614,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -5788,8 +5630,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -5837,8 +5678,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -5855,6 +5695,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-user-defined-function-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-view-api
   name: Snowflake view API
   description: The view API from Snowflake — 2 operation(s) for view.
@@ -5874,13 +5718,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -5892,13 +5734,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -5920,8 +5760,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -5937,18 +5776,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -5956,8 +5792,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -6005,8 +5840,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -6023,6 +5857,10 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-view-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-warehouse-api
   name: Snowflake warehouse API
   description: The warehouse API from Snowflake — 9 operation(s) for warehouse.
@@ -6042,13 +5880,11 @@ apis:
   - type: JSONLD
     url: json-ld/alert-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/api-integration
   - type: JSONLD
     url: json-ld/api-integration-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/catalog-integration
   - type: JSONLD
     url: json-ld/catalog-integration-context.jsonld
   - type: Documentation
@@ -6060,13 +5896,11 @@ apis:
   - type: JSONLD
     url: json-ld/cortex-analyst-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-inference
   - type: JSONLD
     url: json-ld/cortex-inference-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-search-service
   - type: JSONLD
     url: json-ld/cortex-search-service-context.jsonld
   - type: Documentation
@@ -6088,8 +5922,7 @@ apis:
   - type: JSONLD
     url: json-ld/event-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/external-volume
   - type: JSONLD
     url: json-ld/external-volume-context.jsonld
   - type: Documentation
@@ -6105,18 +5938,15 @@ apis:
   - type: JSONLD
     url: json-ld/iceberg-table-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/image-repository
   - type: JSONLD
     url: json-ld/image-repository-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/managed-account
   - type: JSONLD
     url: json-ld/managed-account-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-policy
   - type: JSONLD
     url: json-ld/network-policy-context.jsonld
   - type: Documentation
@@ -6124,8 +5954,7 @@ apis:
   - type: JSONLD
     url: json-ld/notebook-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/notification-integration
   - type: JSONLD
     url: json-ld/notification-integration-context.jsonld
   - type: Documentation
@@ -6173,8 +6002,7 @@ apis:
   - type: JSONLD
     url: json-ld/task-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/user-defined-function
   - type: JSONLD
     url: json-ld/user-defined-function-context.jsonld
   - type: Documentation
@@ -6191,204 +6019,210 @@ apis:
     url: json-schema/snowflake-warehouse-schema.json
   - type: JSONLD
     url: json-ld/warehouse-context.jsonld
+  - type: Overlay
+    url: overlays/snowflake-warehouse-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
+- aid: snowflake:snowflake-cortex-generic-anthropic-api
+  name: Cortex Messages API
+  description: The Snowflake Cortex Messages API is a REST API that performs LLM text completion inference using the Cortex
+    Messages (Anthropic-compatible) request format.
+  tags:
+  - Artificial Intelligence
+  - Cortex
+  - Inference
+  properties:
+  - type: OpenAPI
+    url: openapi/snowflake-cortex-generic-anthropic-api-openapi.yml
+  - type: Overlay
+    url: overlays/snowflake-cortex-generic-anthropic-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api
+- aid: snowflake:snowflake-cortex-generic-openai-api
+  name: Cortex Chat Completions API
+  description: The Snowflake Cortex Chat Completions API is a REST API that performs LLM text completion inference using the
+    Cortex Chat Completions (OpenAI-compatible) request format.
+  tags:
+  - Artificial Intelligence
+  - Cortex
+  - Inference
+  properties:
+  - type: OpenAPI
+    url: openapi/snowflake-cortex-generic-openai-api-openapi.yml
+  - type: Overlay
+    url: overlays/snowflake-cortex-generic-openai-overlay.yaml
+  baseURL: https://org-account.snowflakecomputing.com
+  humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api
 common:
-- type: CapabilityMap
-  url: capabilities/snowflake-capability-edges.yml
-  name: Snowflake Business Capability Map
-- type: AgenticAccess
-  url: agentic-access/snowflake-agentic-access.yml
-- type: TrustCenter
-  url: security/snowflake-trust-center.yml
-- type: VulnerabilityDisclosure
-  url: security/snowflake-vulnerability-disclosure.yml
 - type: DomainSecurity
   url: security/snowflake-domain-security.yml
-- type: Authentication
-  url: authentication/snowflake-authentication.yml
 - type: OAuthScopes
   url: scopes/snowflake-scopes.yml
-- type: MCPServer
-  url: https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp
-  name: MCP Server
-  description: Snowflake-managed MCP server exposing Cortex Analyst (NL-to-SQL), Cortex Search, and Cortex Agents over governed data, authenticated with PAT or OAuth.
-- type: PostmanWorkspace
-  url: https://www.postman.com/kinlaneapi/snowflake/overview
-- type: Arazzo
-  url: arazzo/snowflake-cancel-running-statement-workflow.yml
-  name: Snowflake Cancel a Running SQL Statement
-- type: Arazzo
-  url: arazzo/snowflake-clone-database-and-verify-workflow.yml
-  name: Snowflake Clone a Database and Verify
-- type: Arazzo
-  url: arazzo/snowflake-create-and-execute-alert-workflow.yml
-  name: Snowflake Create and Execute an Alert
-- type: Arazzo
-  url: arazzo/snowflake-create-and-execute-task-workflow.yml
-  name: Snowflake Create, Resume, and Execute a Task
-- type: Arazzo
-  url: arazzo/snowflake-create-and-refresh-dynamic-table-workflow.yml
-  name: Snowflake Create, Verify, and Refresh a Dynamic Table
-- type: Arazzo
-  url: arazzo/snowflake-create-and-refresh-pipe-workflow.yml
-  name: Snowflake Create, Verify, and Refresh a Pipe
-- type: Arazzo
-  url: arazzo/snowflake-create-and-verify-warehouse-workflow.yml
-  name: Snowflake Create and Verify Warehouse
-- type: Arazzo
-  url: arazzo/snowflake-create-database-and-schema-workflow.yml
-  name: Snowflake Create Database, Verify, and Add Schema
-- type: Arazzo
-  url: arazzo/snowflake-create-role-and-grant-privileges-workflow.yml
-  name: Snowflake Create Role and Grant Privileges
-- type: Arazzo
-  url: arazzo/snowflake-create-schema-and-table-workflow.yml
-  name: Snowflake Create Schema and Table
-- type: Arazzo
-  url: arazzo/snowflake-create-stage-and-list-files-workflow.yml
-  name: Snowflake Create Stage, Verify, and List Files
-- type: Arazzo
-  url: arazzo/snowflake-create-stream-on-table-workflow.yml
-  name: Snowflake Create a Table and a Change Stream On It
-- type: Arazzo
-  url: arazzo/snowflake-create-table-and-insert-via-sql-workflow.yml
-  name: Snowflake Create Table and Insert Rows via SQL
-- type: Arazzo
-  url: arazzo/snowflake-create-user-and-grant-role-workflow.yml
-  name: Snowflake Create User and Grant Role
-- type: Arazzo
-  url: arazzo/snowflake-provision-database-schema-table-workflow.yml
-  name: Snowflake Provision Database, Schema, and Table
-- type: Arazzo
-  url: arazzo/snowflake-resume-warehouse-and-verify-workflow.yml
-  name: Snowflake Resume Warehouse and Verify State
-- type: Arazzo
-  url: arazzo/snowflake-submit-async-sql-statement-workflow.yml
-  name: Snowflake Submit Asynchronous SQL Statement
-- type: Arazzo
-  url: arazzo/snowflake-submit-sql-statement-and-poll-workflow.yml
-  name: Snowflake Submit SQL Statement and Poll for Results
-- type: Arazzo
-  url: arazzo/snowflake-warehouse-lifecycle-workflow.yml
-  name: Snowflake Warehouse Create, Verify, and Suspend Lifecycle
-- type: LinkedIn
-  url: https://www.linkedin.com/company/snowflake-computing
-- type: StatusPage
-  url: https://status.snowflake.com/
-- type: ChangeLog
-  url: https://docs.snowflake.com/en/release-notes/overview
-- type: GettingStarted
-  url: https://docs.snowflake.com/en/user-guide-getting-started
-- type: Tutorials
-  url: https://docs.snowflake.com/en/tutorials
-- type: TermsOfService
-  url: https://www.snowflake.com/en/legal/snowflake-site-terms/
-- type: Documentation
-  url: https://docs.snowflake.com/
-- type: PrivacyPolicy
-  url: https://www.snowflake.com/en/legal/privacy/privacy-policy/
-- type: Blog
-  url: https://www.snowflake.com/en/engineering-blog/
-- type: Support
-  url: https://www.snowflake.com/en/support/
-- type: Plans
-  url: https://www.snowflake.com/en/pricing-options/
-- type: Portal
-  url: https://www.snowflake.com/en/developers/
-- type: Events
-  url: https://www.snowflake.com/about/events/
-- type: Signup
-  url: https://signup.snowflake.com/
-- type: GitHubOrganization
-  url: https://github.com/snowflakedb
-- type: GettingStarted
-  url: https://quickstarts.snowflake.com/
-- type: Documentation
-  url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api
-  title: REST APIs Overview
-- type: GettingStarted
-  url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/getting-started
-  title: REST API Getting Started
-- type: Documentation
-  url: https://docs.snowflake.com/en/developer-guide/snowpark/index
-  title: Snowpark API
-- type: SDKs
-  url: https://docs.snowflake.com/en/developer-guide/python-connector/python-connector
-  title: Python Connector
-- type: OpenAPI
-  url: https://github.com/snowflakedb/snowflake-rest-api-specs
 - type: Authentication
-  url: https://docs.snowflake.com/en/user-guide/admin-security.html
-- type: JSONSchema
-  url: json-schema/snowflake-warehouse-schema.json
-  title: Snowflake Warehouse JSON Schema
-- type: JSONSchema
-  url: json-schema/snowflake-database-schema.json
-  title: Snowflake Database JSON Schema
-- type: JSONLD
-  url: json-ld/snowflake-context.jsonld
-  title: Snowflake JSON-LD Context
-- type: OpenAPI
-  url: openapi/_original/snowflake-sql-rest-api.yaml
-  title: Snowflake SQL REST API OpenAPI 3.1.0
-- type: Features
-  data:
-  - 'Standard: $2.00/credit (US on-demand baseline)'
-  - 'Enterprise: $3.00/credit (1.5x) with multi-cluster, Time Travel 90d'
-  - 'Business Critical: $4.00/credit (2x) with CMK, PrivateLink, HIPAA'
-  - 'VPS: dedicated metadata for highest isolation'
-  - 'Storage: $23/TB-month on-demand'
-  - 'Multi-cloud: AWS, GCP, Azure (regions priced 20-50% higher outside US)'
-  - Warehouse sizes XS-6XL (1-512 credits/hour)
-  - SQL API for REST-based queries
-  - Snowpipe streaming for low-latency ingest (per-channel limits)
-  - Default 60 concurrent queries per user, 8 per warehouse
-  - Snowpark for Python/Scala/Java in-DB execution
-  - Cortex AI/ML built-in functions
-  - Native Apps framework
-  - Data Marketplace for data sharing
-  - Streamlit hosted apps
-  - Time Travel and Fail-safe
-  sources:
-  - https://www.snowflake.com/en/pricing-options/
-  updated: '2026-05-04'
-- type: UseCases
-  data:
-  - name: Data Engineering
-    description: Build and orchestrate data pipelines using tasks, streams, pipes, and dynamic tables for ETL/ELT workflows.
-  - name: Data Science and ML
-    description: Develop and deploy machine learning models using Snowpark, notebooks, and Cortex AI capabilities.
-  - name: Data Analytics
-    description: Run complex analytical queries across massive datasets with automatic scaling and concurrency.
-  - name: AI-Powered Analytics
-    description: Use Cortex Analyst to ask questions about data in natural language and receive SQL-backed answers.
-  - name: Data Application Development
-    description: Build data-intensive applications using Snowflake APIs, Snowpark, and Streamlit.
-  - name: Data Governance
-    description: Manage access control, data classification, and compliance using roles, grants, tags, and network policies.
-- type: Integrations
-  data:
-  - name: Apache Spark
-    description: Execute Spark workloads on Snowflake infrastructure through the Spark Connect API.
-  - name: Apache Iceberg
-    description: Create and manage Iceberg tables with support for AWS Glue, Delta, and REST catalog integrations.
-  - name: Cloud Storage
-    description: Connect to external cloud storage on AWS S3, Azure Blob, and Google Cloud Storage via external volumes and
-      stages.
-  - name: Notification Services
-    description: Integrate with AWS SNS, Azure Event Grid, and GCP Pub/Sub for event-driven data pipelines.
-  - name: Git Repositories
-    description: Connect to Git repositories for version-controlled code and configuration management.
+  url: authentication/snowflake-authentication.yml
+- type: Packages
+  url: packages/snowflake-packages.yml
+- type: SDKs
+  url: packages/snowflake-packages.yml
+- type: WellKnown
+  url: well-known/snowflake-well-known.yml
+- type: SecurityTxt
+  url: well-known/snowflake-security.txt
+- type: MCPServer
+  url: mcp/snowflake-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/snowflake-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/snowflake-llms.txt
 - type: LlmsText
   url: https://docs.snowflake.com/llms.txt
+- type: Conformance
+  url: conformance/snowflake-conformance.yml
+- type: Compliance
+  url: https://trust.snowflake.com/
+- type: ErrorCatalog
+  url: errors/snowflake-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/snowflake-lifecycle.yml
+- type: StatusPage
+  url: https://status.snowflake.com/
+- type: Deprecation
+  url: https://docs.snowflake.com/en/release-notes/behavior-change-policy
+- type: Conventions
+  url: conventions/snowflake-conventions.yml
+- type: Idempotency
+  url: conventions/snowflake-conventions.yml
+- type: Sandbox
+  url: sandbox/snowflake-sandbox.yml
+- type: ChangeLog
+  url: changelog/snowflake-changelog.yml
+- type: ChangeLog
+  url: https://docs.snowflake.com/en/release-notes/overview
+- type: CLI
+  url: cli/snowflake-cli.yml
+- type: CLI
+  url: https://docs.snowflake.com/en/developer-guide/snowflake-cli/index
+- type: DataModel
+  url: data-model/snowflake-data-model.yml
+- type: Webhooks
+  url: asyncapi/snowflake-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Plans
+  url: plans/snowflake-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/snowflake-rate-limits.yml
+- type: Security
+  url: security/snowflake-vulnerability-disclosure.yml
+- type: VulnerabilityDisclosure
+  url: security/snowflake-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/snowflake-trust-center.yml
+- type: AgenticAccess
+  url: agentic-access/snowflake-agentic-access.yml
+- type: CapabilityMap
+  url: capabilities/snowflake-capability-edges.yml
+- type: SpectralRules
+  url: rules/snowflake-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/snowflake-vocabulary.yaml
+- type: FinOps
+  url: finops/snowflake-finops.yml
+- type: Website
+  url: https://www.snowflake.com/
+- type: DeveloperPortal
+  url: https://www.snowflake.com/en/developers/
+- type: Documentation
+  url: https://docs.snowflake.com/
+- type: APIReference
+  url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api
+- type: GettingStarted
+  url: https://quickstarts.snowflake.com/
+- type: Support
+  url: https://www.snowflake.com/en/support/
+- type: HelpCenter
+  url: https://community.snowflake.com/
+- type: Blog
+  url: https://www.snowflake.com/en/blog/
+- type: GitHubOrganization
+  url: https://github.com/snowflakedb
+- type: Pricing
+  url: https://www.snowflake.com/en/pricing-options/
+- type: SignUp
+  url: https://signup.snowflake.com/
+- type: Login
+  url: https://app.snowflake.com/
+- type: TermsOfService
+  url: https://www.snowflake.com/legal/terms-of-service/
+- type: PrivacyPolicy
+  url: https://www.snowflake.com/privacy-policy/
+- type: Authentication
+  url: https://docs.snowflake.com/en/developer-guide/sql-api/authenticating
+- type: Versioning
+  url: https://docs.snowflake.com/en/release-notes/behavior-change-policy
+- type: Drivers
+  url: https://docs.snowflake.com/en/developer-guide/drivers
+- type: Arazzo
+  url: arazzo/snowflake-cancel-running-statement-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-clone-database-and-verify-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-and-execute-alert-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-and-execute-task-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-and-refresh-dynamic-table-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-and-refresh-pipe-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-and-verify-warehouse-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-database-and-schema-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-role-and-grant-privileges-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-schema-and-table-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-stage-and-list-files-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-stream-on-table-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-table-and-insert-via-sql-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-user-and-grant-role-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-provision-database-schema-table-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-resume-warehouse-and-verify-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-submit-async-sql-statement-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-submit-sql-statement-and-poll-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-warehouse-lifecycle-workflow.yml
 tags:
-- Data Lakes
-- Data Sharing
-- Data Warehousing
-- Database
+- Data
+- Data Warehouse
+- Data Lakehouse
+- Cloud Data Platform
+- Analytics
+- Artificial Intelligence
+- Data Engineering
+- Data Governance
 - SQL
+- Apache Iceberg
+- Model Context Protocol
+- T1
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
-- name: Snowflake Inc.
+- FN: APIs.json
+  email: info@apis.io
+- name: Snowflake, Inc.
   email: support@snowflake.com
   url: https://www.snowflake.com
+x-enrichment:
+  date: '2026-09-03'
+  status: enriched
+  artifacts_added: 68
+  pass: local-v1
