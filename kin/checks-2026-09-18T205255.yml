@@ -2,14 +2,15 @@
 kin_checks:
   slug: snowflake
   schema_version: 0.22.0
-  scored_at: '2026-09-15'
-  run_ts: 2026-09-15T230249
-  note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.22.0.yml; counts below let you verify that.
+  scored_at: '2026-09-18'
+  run_ts: 2026-09-18T205255
+  note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
+    apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
+    below let you verify that.
   counts:
     total: 136
-    earned: 64
-    partial: 22
+    earned: 65
+    partial: 21
     missed: 25
     na: 25
   checks:
@@ -65,6 +66,10 @@ kin_checks:
     status: missed
   - id: agentic_commerce
     status: missed
+  - id: info_complete
+    status: partial
+    earned: 3.92
+    detail: 46 of 47 openapi documents pass
   - id: servers_defined
     status: partial
     earned: 2.68
@@ -72,25 +77,17 @@ kin_checks:
   - id: servers_resolvable
     status: partial
     earned: 4.47
-  - id: operations_summary_coverage
+  - id: operations_description_coverage
     status: partial
-    earned: 5.87
-    detail: 46 of 47 openapi documents pass
+    earned: 2.94
+    detail: 23 of 47 openapi documents pass
   - id: examples_present
     status: partial
-    earned: 1.77
+    earned: 0.61
   - id: components_reuse
     status: partial
-    earned: 1.28
-    detail: 20 of 47 openapi documents pass
-  - id: oauth_flows_current
-    status: partial
-    earned: 3.92
-    detail: 46 of 47 openapi documents pass
-  - id: oauth_scopes_enumerated
-    status: partial
-    earned: 3.92
-    detail: 46 of 47 openapi documents pass
+    earned: 0.83
+    detail: 13 of 47 openapi documents pass
   - id: lifecycle_documented
     status: partial
     earned: 2.17
@@ -146,3 +143,29 @@ kin_checks:
     status: partial
     earned: 3.0
     detail: 'grade: documented'
+  na:
+  - asyncapi_3_x
+  - channels_defined
+  - contract_self_operated
+  - fhir_capability_statement
+  - fhir_resource_coverage
+  - graphql_descriptions
+  - graphql_sdl_present
+  - graphql_type_depth
+  - messages_with_schema
+  - os_code_of_conduct
+  - os_contribution_guide
+  - os_releases
+  - os_security_policy
+  - reg_camara_conformance
+  - reg_certification_signal
+  - reg_consent_model
+  - reg_entitlement_terms
+  - reg_fapi_profile
+  - reg_mandate_verified
+  - reg_named_standard_conformance
+  - reg_pci_sca
+  - reg_smart_configuration
+  - reg_write_surface
+  - security_schemes
+  - server_bindings
