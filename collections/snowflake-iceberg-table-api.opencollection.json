@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account iceberg-table API",
+    "name": "Snowflake Iceberg Table API",
     "version": "0.0.1"
   },
   "items": [
@@ -278,6 +278,47 @@
             }
           },
           "docs": "Creates a new table with the same column definitions as an existing table, but without copying data from the existing table."
+        },
+        {
+          "info": {
+            "name": "Set tags on an Iceberg table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on an Iceberg table."
+        },
+        {
+          "info": {
+            "name": "Unset tags from an Iceberg table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from an Iceberg table."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for an Iceberg table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/iceberg-tables/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to an Iceberg table. This operation requires an active warehouse."
         }
       ]
     }

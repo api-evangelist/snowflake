@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake Artifact Repository API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "artifact-repository",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List artifact repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/artifact-repositories"
+          },
+          "docs": "List artifact repositories"
+        },
+        {
+          "info": {
+            "name": "Create an artifact repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/artifact-repositories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an artifact repository"
+        },
+        {
+          "info": {
+            "name": "Fetch an artifact repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/artifact-repositories/:name"
+          },
+          "docs": "Fetch an artifact repository"
+        },
+        {
+          "info": {
+            "name": "Create or update an artifact repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/artifact-repositories/:name",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update an artifact repository"
+        },
+        {
+          "info": {
+            "name": "Delete an artifact repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/artifact-repositories/:name"
+          },
+          "docs": "Delete an artifact repository"
+        },
+        {
+          "info": {
+            "name": "Changes the name of an artifact repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/artifact-repositories/:name:rename",
+            "params": [
+              {
+                "name": "targetDatabase",
+                "value": "",
+                "type": "query",
+                "description": "Database of the target resource. Defaults to the source's database"
+              },
+              {
+                "name": "targetSchema",
+                "value": "",
+                "type": "query",
+                "description": "Schema of the target resource. Defaults to the source's schema"
+              },
+              {
+                "name": "targetName",
+                "value": "",
+                "type": "query",
+                "description": "Name of the target resource."
+              }
+            ]
+          },
+          "docs": "Changes the name of an artifact repository"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

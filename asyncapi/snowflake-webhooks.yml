@@ -1,0 +1,119 @@
+generated: '2026-09-03'
+method: searched
+source: >-
+  https://docs.snowflake.com/en/user-guide/notifications/webhook-notifications ,
+  https://docs.snowflake.com/en/sql-reference/sql/create-notification-integration-webhooks ,
+  https://docs.snowflake.com/en/release-notes/clients-drivers/snowpipe-streaming-sdk , and the
+  notification-integration and pipe operations in openapi/.
+provider: Snowflake
+providerId: snowflake
+
+asyncapi:
+  published: false
+  probed:
+    - https://docs.snowflake.com/en/user-guide/notifications/webhook-notifications
+    - https://github.com/snowflakedb
+  note: >-
+    Snowflake publishes no AsyncAPI document. Its event surface is real but is described in SQL
+    DDL and prose, not in a machine-readable event contract. Recorded as an honest absence — no
+    AsyncAPI has been authored on Snowflake's behalf.
+
+webhooks:
+  direction: outbound
+  model: >-
+    Snowflake does not emit a catalog of typed events to a subscriber URL the way a SaaS product
+    does. It sends operator-authored messages to an operator-registered destination, through a
+    NOTIFICATION INTEGRATION object the customer creates. The payload shape is defined by the
+    customer's WEBHOOK_BODY_TEMPLATE, not by Snowflake — which is why there is no event schema
+    to publish and no AsyncAPI to write.
+  docs: https://docs.snowflake.com/en/user-guide/notifications/webhook-notifications
+  ddl: https://docs.snowflake.com/en/sql-reference/sql/create-notification-integration-webhooks
+  create: CREATE NOTIFICATION INTEGRATION ... TYPE = WEBHOOK
+  parameters:
+    - name: WEBHOOK_URL
+      required: true
+      description: Destination URL. Snowflake constrains it per provider (see destinations below).
+    - name: WEBHOOK_SECRET
+      required: false
+      description: Reference to a Snowflake SECRET object holding the destination's token.
+    - name: WEBHOOK_BODY_TEMPLATE
+      required: true
+      description: >-
+        Body template for the outbound request. Must contain the placeholder
+        SNOWFLAKE_WEBHOOK_MESSAGE, which Snowflake substitutes with the message text.
+    - name: WEBHOOK_HEADERS
+      required: false
+      description: Additional request headers to send with the notification.
+  destinations:
+    - provider: Slack
+      constraint: WEBHOOK_URL must start with https://hooks.slack.com/services/
+    - provider: Microsoft Teams
+      constraint: >-
+        Must use the Teams incoming-webhook URL form, with the :443 port omitted from
+        WEBHOOK_URL.
+    - provider: PagerDuty
+    - provider: generic HTTPS endpoint
+  triggers:
+    - source: Alerts
+      description: An ALERT firing on a scheduled condition sends its message to the integration.
+    - source: Tasks and task graphs
+      description: >-
+        Task error notifications route through a notification integration, wired via the task's
+        `error_integration` field (visible in the Task schema in openapi/).
+    - source: Snowpipe
+      description: >-
+        Pipe ingest errors route through `error_integration` on the Pipe object (visible in the
+        Pipe schema in openapi/).
+    - source: Budgets
+      description: Budget threshold notifications.
+      docs: https://docs.snowflake.com/en/user-guide/budgets/notifications
+    - source: Account replication and failover groups
+      description: Replication error notifications.
+      docs: https://docs.snowflake.com/en/user-guide/account-replication-error-notifications
+  rest_management:
+    note: >-
+      The integration OBJECT is manageable over REST even though the events are not described in
+      a contract.
+    operations:
+      - createNotificationIntegration
+      - listNotificationIntegrations
+      - fetchNotificationIntegration
+      - deleteNotificationIntegration
+    spec: openapi/snowflake-notification-integration-api-openapi.yml
+
+inbound_events:
+  supported: false
+  note: >-
+    Snowflake has no inbound webhook receiver — no "POST your events to Snowflake" endpoint.
+    Inbound data arrives through ingest, not events.
+
+streaming:
+  - name: Snowpipe Streaming
+    kind: row-set streaming ingest
+    docs: https://docs.snowflake.com/en/user-guide/data-load-snowpipe-rest-apis
+    sdk: net.snowflake:snowflake-ingest-sdk (Java), snowflake-ingest (Python)
+    release_notes: https://docs.snowflake.com/en/release-notes/clients-drivers/snowpipe-streaming-sdk
+    note: >-
+      Client-to-Snowflake ingest, not Snowflake-to-client eventing. Included here because it is
+      the surface most often mistaken for an event API.
+  - name: Snowflake Connector for Kafka
+    kind: Kafka Connect sink
+    package: com.snowflake:snowflake-kafka-connector
+    note: Consumes Kafka topics into Snowflake tables. Again inbound.
+  - name: Streams (change data capture)
+    kind: in-database change tracking
+    rest: openapi/snowflake-stream-api-openapi.yml
+    note: >-
+      A Snowflake STREAM records row-level changes on a table for consumption BY A QUERY inside
+      Snowflake. It is CDC, not a delivered event stream — nothing leaves the platform without a
+      task or pipeline pushing it.
+
+summary:
+  asyncapi_documents: 0
+  webhook_surface: yes (outbound, operator-configured, customer-templated payload)
+  inbound_webhooks: 0
+  event_catalog_published: false
+  verdict: >-
+    Snowflake has a genuine notification surface and zero machine-readable event contract. The
+    Webhooks pointer in apis.yml reflects the former; no AsyncAPI pointer is emitted because
+    there is no AsyncAPI.

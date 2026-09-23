@@ -15,13 +15,13 @@ security:
 - ExternalOAuth: []
 - SnowflakeOAuth: []
 tags:
-- name: service
+- name: Service
 paths:
   /api/v2/databases/{database}/schemas/{schema}/services:
     get:
       summary: List Services
       tags:
-      - service
+      - Service
       description: Lists the services under the database and schema.
       operationId: listServices
       parameters:
@@ -77,7 +77,7 @@ paths:
     post:
       summary: Create a Service
       tags:
-      - service
+      - Service
       description: Create a service, with standard create modifiers as query parameters. See the Service component definition for what is required to be provided in the request body.
       operationId: createService
       parameters:
@@ -139,7 +139,7 @@ paths:
     post:
       summary: Execute a Job Service
       tags:
-      - service
+      - Service
       description: Create and execute a job service. See the JobService component definition for what is required to be provided in the request body.
       operationId: executeJobService
       parameters:
@@ -198,7 +198,7 @@ paths:
     get:
       description: Fetch a service.
       tags:
-      - service
+      - Service
       operationId: fetchService
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -244,10 +244,12 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Fetch service
+      x-summary-source: derived
     put:
-      summary: Create a (or Alter an Existing) Service.
+      summary: Create a (or Alter an Existing) Service
       tags:
-      - service
+      - Service
       description: Create a (or alter an existing) service. Even if the operation is just an alter, the full property set must be provided.
       operationId: createOrAlterService
       parameters:
@@ -311,7 +313,7 @@ paths:
       - $ref: common.yaml#/components/parameters/ifExists
       summary: Delete a Service
       tags:
-      - service
+      - Service
       description: Delete a service with the given name. If ifExists is used, the operation will succeed even if the object does not exist. Otherwise, there will be a failure if the drop is unsuccessful.
       operationId: deleteService
       responses:
@@ -344,7 +346,7 @@ paths:
     get:
       description: Fetch the logs for a given service.
       tags:
-      - service
+      - Service
       operationId: fetchServiceLogs
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -414,11 +416,13 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Fetch service logs
+      x-summary-source: derived
   /api/v2/databases/{database}/schemas/{schema}/services/{name}/status:
     get:
       description: Fetch the status for a given service.
       tags:
-      - service
+      - Service
       operationId: fetchServiceStatus
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -474,11 +478,13 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Fetch service status
+      x-summary-source: derived
   /api/v2/databases/{database}/schemas/{schema}/services/{name}/containers:
     get:
       description: List all the containers of the service
       tags:
-      - service
+      - Service
       operationId: listServiceContainers
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -539,11 +545,13 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: List service containers
+      x-summary-source: derived
   /api/v2/databases/{database}/schemas/{schema}/services/{name}/instances:
     get:
       description: List all the instances of the service
       tags:
-      - service
+      - Service
       operationId: listServiceInstances
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -600,11 +608,13 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: List service instances
+      x-summary-source: derived
   /api/v2/databases/{database}/schemas/{schema}/services/{name}/roles:
     get:
       description: List all the service roles of the service
       tags:
-      - service
+      - Service
       operationId: listServiceRoles
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -655,11 +665,13 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: List service roles
+      x-summary-source: derived
   /api/v2/databases/{database}/schemas/{schema}/services/{service}/roles/{name}/grants-of:
     get:
       description: List all the grants of the service role
       tags:
-      - service
+      - Service
       operationId: listServiceRoleGrantsOf
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -713,11 +725,13 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: List service role grants of
+      x-summary-source: derived
   /api/v2/databases/{database}/schemas/{schema}/services/{service}/roles/{name}/grants:
     get:
       description: List all the grants given to the service role
       tags:
-      - service
+      - Service
       operationId: listServiceRoleGrantsTo
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -772,11 +786,13 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: List service role grants to
+      x-summary-source: derived
   /api/v2/databases/{database}/schemas/{schema}/services/{name}:resume:
     post:
       description: Resume a service.
       tags:
-      - service
+      - Service
       operationId: resumeService
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -809,11 +825,13 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Resume service
+      x-summary-source: derived
   /api/v2/databases/{database}/schemas/{schema}/services/{name}:suspend:
     post:
       description: Suspend a service.
       tags:
-      - service
+      - Service
       operationId: suspendService
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -846,12 +864,14 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      summary: Suspend service
+      x-summary-source: derived
   /api/v2/databases/{database}/schemas/{schema}/services/{name}/endpoints:
     get:
-      summary: List the Endpoints in a Service.
+      summary: List the Endpoints in a Service
       description: Lists the endpoints in a Snowpark Container Services service (or a job service).
       tags:
-      - service
+      - Service
       operationId: showServiceEndpoints
       parameters:
       - $ref: common.yaml#/components/parameters/database
@@ -907,154 +927,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ServiceEndpoint:
-      type: object
-      properties:
-        name:
-          type: string
-          description: User-friendly endpoint name that represents the corresponding port.
-          example: Example Title
-        port:
-          type: integer
-          description: The network port the service is listening on. NULL, when portRange is specified.
-          example: 10
-        portRange:
-          type: string
-          description: The network port range the service is listening on. NULL, when port is specified.
-          example: example_value
-        protocol:
-          type: string
-          description: Supported network protocol (TCP, HTTP, or HTTPS).
-          default: HTTP
-          example: example_value
-        is_public:
-          type: boolean
-          description: True, if the endpoint is public, accessible from internet.
-          default: false
-          example: true
-        ingress_url:
-          type: string
-          description: Endpoint URL accessible from the internet.
-          readOnly: true
-          example: https://www.example.com
-      example:
-        name: endpoint
-        port: 8080
-        protocol: HTTPS
-        is_public: true
-        ingress_url: abcd-org-acc.snowflakecomputing.app
-    ServiceInstance:
-      type: object
-      properties:
-        database_name:
-          $ref: ./common.yaml#/components/schemas/Identifier
-          description: Database in which the service is created.
-          readOnly: true
-        schema_name:
-          $ref: ./common.yaml#/components/schemas/Identifier
-          description: Schema in which the service is created.
-          readOnly: true
-        service_name:
-          $ref: ./common.yaml#/components/schemas/Identifier
-          description: The name of the service.
-          readOnly: true
-        service_status:
-          type: string
-          description: The current status of the service.
-          readOnly: true
-          example: example_value
-        instance_id:
-          type: string
-          description: ID of the service instance (this is the index of the service instance starting from 0).
-          readOnly: true
-          example: '500123'
-        status:
-          type: string
-          description: The current status of the service instance.
-          readOnly: true
-          example: example_value
-        spec_digest:
-          type: string
-          description: The unique and immutable identifier that represents the service specification content.
-          readOnly: true
-          example: example_value
-        creation_time:
-          type: string
-          description: The time when Snowflake started creating the service instance.
-          readOnly: true
-          example: example_value
-        start_time:
-          type: string
-          description: The time when Snowflake acknowledged the service instance is running on a node.
-          readOnly: true
-          example: example_value
-      example:
-        database_name: testdb
-        schema_name: testschema
-        service_name: myservice
-        instance_id: '0'
-        status: PENDING
-        spec_digest: abcdefg
-        creation_time: 2023-01-01 00:00:00+00:00
-        start_time: 2023-01-01 00:00:00+00:00
-    ServiceRole:
-      type: object
-      properties:
-        created_on:
-          type: string
-          format: date-time
-          description: Date and time when the service role was created
-          readOnly: true
-          example: '2026-01-15T10:30:00Z'
-        name:
-          type: string
-          description: Service role name
-          readOnly: true
-          example: Example Title
-        comment:
-          type: string
-          description: Comment, if any, for the service role
-          readOnly: true
-          example: example_value
-      example:
-        created_on: 2023-01-01 00:00:00+00:00
-        name: testrole
-        comment: This is a service role.
-    GrantOf:
-      type: object
-      properties:
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date and time when the grant was created
-          example: '2026-01-15T10:30:00Z'
-        role:
-          type: string
-          readOnly: true
-          description: The name of the service role
-          example: example_value
-        granted_to:
-          type: string
-          readOnly: true
-          description: The type of the grantee, can be USER or ROLE
-          example: example_value
-        grantee_name:
-          type: string
-          readOnly: true
-          description: The name of the grantee
-          example: example_value
-        granted_by:
-          type: string
-          readOnly: true
-          description: The name of role that granted the service role to the grantee
-          example: example_value
-      example:
-        created_on: 2023-01-01 00:00:00+00:00
-        role: db.schema.service.svc_role
-        granted_to: role
-        grantee_name: test_role
-        granted_by: sysadmin
     Service:
       allOf:
       - $ref: '#/components/schemas/JobService'
@@ -1153,53 +1025,47 @@ components:
           schema_name: testschema
           owner: SYSADMIN
           is_job: false
-    JobService:
+    ServiceRoleGrantTo:
       type: object
-      description: A Snowflake job service object.
-      writeOnly: true
       properties:
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date and time when the grant was created
+          example: '2026-01-15T10:30:00Z'
+        privilege:
+          type: string
+          readOnly: true
+          description: The name of the privilege
+          example: example_value
+        granted_on:
+          type: string
+          readOnly: true
+          description: The type of of the securable
+          example: example_value
         name:
-          $ref: ./common.yaml#/components/schemas/Identifier
-          description: String that specifies the identifier (that is, the name) for the service.
-        status:
           type: string
-          description: The current status of the service.
-          example: example_value
-        compute_pool:
+          readOnly: true
+          description: The name of the securable
+          example: Example Title
+        granted_to:
           type: string
-          description: Specifies the name of the compute pool in your account on which to run the service.
+          readOnly: true
+          description: The type of the grantee
           example: example_value
-        spec:
-          $ref: '#/components/schemas/ServiceSpec'
-          description: Specifies service specification.
-        external_access_integrations:
-          type: array
-          description: Specifies the names of the external access integrations that allow your service to access external sites.
-          items:
-            type: string
-          example: []
-        query_warehouse:
-          $ref: ./common.yaml#/components/schemas/Identifier
-          description: Warehouse to use if a service container connects to Snowflake to execute a query but does not explicitly specify a warehouse to use.
-        comment:
+        grantee_name:
           type: string
-          description: Specifies a comment for the service.
+          readOnly: true
+          description: The name of the grantee
           example: example_value
-        is_async_job:
-          type: boolean
-          description: True if the service is an async job service; false otherwise.
-          example: true
-      required:
-      - name
-      - compute_pool
-      - spec
       example:
-        name: service_name
-        compute_pool: compute_pool_name
-        spec:
-          spec_type: from_file
-          stage: '@stage_name'
-          spec_file: spec_file.yaml
+        created_on: 2023-01-01 00:00:00+00:00
+        privilege: usage
+        granted_on: service_endpoint
+        name: db.schema.service!svc_role
+        granted_to: service role
+        grantee_name: all_endpoints_usage
     ServiceContainer:
       type: object
       properties:
@@ -1277,6 +1143,165 @@ components:
         image_digest: abcdefd
         restart_count: 0
         start_time: 2023-01-01 00:00:00+00:00
+    ServiceRole:
+      type: object
+      properties:
+        created_on:
+          type: string
+          format: date-time
+          description: Date and time when the service role was created
+          readOnly: true
+          example: '2026-01-15T10:30:00Z'
+        name:
+          type: string
+          description: Service role name
+          readOnly: true
+          example: Example Title
+        comment:
+          type: string
+          description: Comment, if any, for the service role
+          readOnly: true
+          example: example_value
+      example:
+        created_on: 2023-01-01 00:00:00+00:00
+        name: testrole
+        comment: This is a service role.
+    JobService:
+      type: object
+      description: A Snowflake job service object.
+      writeOnly: true
+      properties:
+        name:
+          $ref: ./common.yaml#/components/schemas/Identifier
+          description: String that specifies the identifier (that is, the name) for the service.
+        status:
+          type: string
+          description: The current status of the service.
+          example: example_value
+        compute_pool:
+          type: string
+          description: Specifies the name of the compute pool in your account on which to run the service.
+          example: example_value
+        spec:
+          $ref: '#/components/schemas/ServiceSpec'
+          description: Specifies service specification.
+        external_access_integrations:
+          type: array
+          description: Specifies the names of the external access integrations that allow your service to access external sites.
+          items:
+            type: string
+          example: []
+        query_warehouse:
+          $ref: ./common.yaml#/components/schemas/Identifier
+          description: Warehouse to use if a service container connects to Snowflake to execute a query but does not explicitly specify a warehouse to use.
+        comment:
+          type: string
+          description: Specifies a comment for the service.
+          example: example_value
+        is_async_job:
+          type: boolean
+          description: True if the service is an async job service; false otherwise.
+          example: true
+      required:
+      - name
+      - compute_pool
+      - spec
+      example:
+        name: service_name
+        compute_pool: compute_pool_name
+        spec:
+          spec_type: from_file
+          stage: '@stage_name'
+          spec_file: spec_file.yaml
+    GrantOf:
+      type: object
+      properties:
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date and time when the grant was created
+          example: '2026-01-15T10:30:00Z'
+        role:
+          type: string
+          readOnly: true
+          description: The name of the service role
+          example: example_value
+        granted_to:
+          type: string
+          readOnly: true
+          description: The type of the grantee, can be USER or ROLE
+          example: example_value
+        grantee_name:
+          type: string
+          readOnly: true
+          description: The name of the grantee
+          example: example_value
+        granted_by:
+          type: string
+          readOnly: true
+          description: The name of role that granted the service role to the grantee
+          example: example_value
+      example:
+        created_on: 2023-01-01 00:00:00+00:00
+        role: db.schema.service.svc_role
+        granted_to: role
+        grantee_name: test_role
+        granted_by: sysadmin
+    ServiceInstance:
+      type: object
+      properties:
+        database_name:
+          $ref: ./common.yaml#/components/schemas/Identifier
+          description: Database in which the service is created.
+          readOnly: true
+        schema_name:
+          $ref: ./common.yaml#/components/schemas/Identifier
+          description: Schema in which the service is created.
+          readOnly: true
+        service_name:
+          $ref: ./common.yaml#/components/schemas/Identifier
+          description: The name of the service.
+          readOnly: true
+        service_status:
+          type: string
+          description: The current status of the service.
+          readOnly: true
+          example: example_value
+        instance_id:
+          type: string
+          description: ID of the service instance (this is the index of the service instance starting from 0).
+          readOnly: true
+          example: '500123'
+        status:
+          type: string
+          description: The current status of the service instance.
+          readOnly: true
+          example: example_value
+        spec_digest:
+          type: string
+          description: The unique and immutable identifier that represents the service specification content.
+          readOnly: true
+          example: example_value
+        creation_time:
+          type: string
+          description: The time when Snowflake started creating the service instance.
+          readOnly: true
+          example: example_value
+        start_time:
+          type: string
+          description: The time when Snowflake acknowledged the service instance is running on a node.
+          readOnly: true
+          example: example_value
+      example:
+        database_name: testdb
+        schema_name: testschema
+        service_name: myservice
+        instance_id: '0'
+        status: PENDING
+        spec_digest: abcdefg
+        creation_time: 2023-01-01 00:00:00+00:00
+        start_time: 2023-01-01 00:00:00+00:00
     ServiceSpec:
       type: object
       description: Specifies service specification.
@@ -1291,47 +1316,42 @@ components:
           from_file: ServiceSpecStageFile
           from_inline: ServiceSpecInlineText
       writeOnly: true
-    ServiceRoleGrantTo:
+    ServiceEndpoint:
       type: object
       properties:
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date and time when the grant was created
-          example: '2026-01-15T10:30:00Z'
-        privilege:
-          type: string
-          readOnly: true
-          description: The name of the privilege
-          example: example_value
-        granted_on:
-          type: string
-          readOnly: true
-          description: The type of of the securable
-          example: example_value
         name:
           type: string
-          readOnly: true
-          description: The name of the securable
+          description: User-friendly endpoint name that represents the corresponding port.
           example: Example Title
-        granted_to:
+        port:
+          type: integer
+          description: The network port the service is listening on. NULL, when portRange is specified.
+          example: 10
+        portRange:
           type: string
-          readOnly: true
-          description: The type of the grantee
+          description: The network port range the service is listening on. NULL, when port is specified.
           example: example_value
-        grantee_name:
+        protocol:
           type: string
-          readOnly: true
-          description: The name of the grantee
+          description: Supported network protocol (TCP, HTTP, or HTTPS).
+          default: HTTP
           example: example_value
+        is_public:
+          type: boolean
+          description: True, if the endpoint is public, accessible from internet.
+          default: false
+          example: true
+        ingress_url:
+          type: string
+          description: Endpoint URL accessible from the internet.
+          readOnly: true
+          example: https://www.example.com
       example:
-        created_on: 2023-01-01 00:00:00+00:00
-        privilege: usage
-        granted_on: service_endpoint
-        name: db.schema.service!svc_role
-        granted_to: service role
-        grantee_name: all_endpoints_usage
+        name: endpoint
+        port: 8080
+        protocol: HTTPS
+        is_public: true
+        ingress_url: abcd-org-acc.snowflakecomputing.app
   parameters:
     service:
       name: service

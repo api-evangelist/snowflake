@@ -1,0 +1,194 @@
+generated: '2026-09-03'
+method: derived
+source: >-
+  Derived from the shared error responses in openapi/common.yaml, which every one of the 408
+  harvested operations $refs, and enriched from
+  https://docs.snowflake.com/en/developer-guide/sql-api/handling-responses and the Snowflake
+  community article "SQL API request fails with error Request rate exceeds max".
+provider: Snowflake
+providerId: snowflake
+format: custom-json
+format_note: >-
+  NOT RFC 9457. Snowflake returns application/json with its own ErrorResponse envelope; no
+  operation in the harvested corpus declares application/problem+json, and no `type`/`title`/
+  `status`/`detail`/`instance` members are present. An agent parsing problem+json against this
+  API will find nothing to read.
+envelope:
+  media_type: application/json
+  schema: openapi/common.yaml#/components/schemas/ErrorResponse
+  fields:
+    - name: message
+      type: string
+      description: Human-readable error message returned by the server.
+    - name: code
+      type: string
+      description: Snowflake error code. This is the field to branch on.
+    - name: error_code
+      type: string
+      deprecated: true
+      description: >-
+        Duplicate of `code`. Snowflake's own schema marks it deprecated and slated for removal,
+        kept temporarily for backward compatibility. New clients must read `code`.
+    - name: request_id
+      type: string
+      description: >-
+        Unique request ID; matches the X-Snowflake-Request-ID response header. Quote it in any
+        support ticket.
+  example:
+    message: Compilation error!
+    error_code: '390189'
+    request_id: 01afef9d-0607-0550-0001-dd270c3902d7
+headers:
+  - name: X-Snowflake-Request-ID
+    format: uuid
+    present_on: every response, success and error
+    description: Unique ID of the API request; the correlation handle for support and tracing.
+problem_types:
+  - status: 400
+    name: Bad Request
+    coverage: 408 of 408 operations
+    meaning: >-
+      The request payload is invalid or malformed. The response body may carry the error code
+      and message indicating the actual cause.
+    retryable: false
+    remediation: Fix the payload. Do not retry unchanged.
+  - status: 401
+    name: Unauthorized
+    coverage: 408 of 408 operations
+    meaning: >-
+      The attached access token is invalid or missing — expired, invalid, or revoked. The body
+      may carry the specific cause.
+    retryable: false
+    remediation: >-
+      Re-authenticate. See authentication/snowflake-authentication.yml for the four supported
+      schemes (KeyPair, ExternalOAuth, SnowflakeOAuth, ProgrammaticAccessToken).
+  - status: 403
+    name: Forbidden
+    coverage: 408 of 408 operations
+    meaning: >-
+      The request is forbidden. Snowflake's own description notes this also fires when the API
+      itself is not enabled for the account, not only when the role lacks the privilege.
+    retryable: false
+    remediation: >-
+      Check the calling role's grants, and separately check that the REST API is enabled on the
+      account before assuming an RBAC problem.
+  - status: 404
+    name: Not Found
+    coverage: 407 of 408 operations
+    meaning: >-
+      The request endpoint is not valid — the endpoint does not exist, or the API is not
+      enabled. Note this is about the ENDPOINT, not a missing object.
+    retryable: false
+    remediation: >-
+      Verify the path and the account host. For a missing object, prefer the documented
+      `ifExists=true` query parameter, which returns 200 without acting instead of erroring.
+  - status: 405
+    name: Method Not Allowed
+    coverage: 408 of 408 operations
+    meaning: The HTTP method does not match the operation (e.g. GET against a POST-only path).
+    retryable: false
+    remediation: Correct the method.
+  - status: 408
+    name: Request Timeout
+    coverage: 340 of 408 operations
+    meaning: The request from the client timed out and was not completed by the server.
+    retryable: true
+    remediation: Retry with jittered backoff.
+  - status: 409
+    name: Conflict
+    coverage: 340 of 408 operations
+    meaning: >-
+      The operation could not be performed due to a conflicting state — most often a CREATE
+      against a name that already exists.
+    retryable: false
+    remediation: >-
+      Set createMode=ifNotExists (return the existing object) or createMode=orReplace (replace
+      it). See conventions/snowflake-conventions.yml.
+  - status: 410
+    name: Gone
+    coverage: 327 of 408 operations
+    meaning: The resource is intentionally and permanently unavailable.
+    retryable: false
+    remediation: Stop calling this endpoint; check the release notes for its replacement.
+  - status: 415
+    name: Unsupported Media Type
+    coverage: 2 of 408 operations
+    meaning: >-
+      Content-Type names an unsupported media type. The API supports application/json only.
+      An absent Content-Type is treated as JSON; any other value errors.
+    retryable: false
+    remediation: Send Content-Type application/json or omit the header.
+  - status: 422
+    name: Unprocessable Entity
+    coverage: 3 of 408 operations
+    meaning: Semantically invalid request body on the operations that declare it.
+    retryable: false
+    remediation: Correct the body against the operation schema.
+  - status: 429
+    name: Limit Exceeded
+    coverage: 396 of 408 operations
+    meaning: >-
+      Rate limit hit. Snowflake's description: "The application must slow down the frequency of
+      hitting the API endpoints." The SQL API surfaces error code 390505 with message "Too many
+      requests."
+    retryable: true
+    error_codes:
+      - code: '390505'
+        message: Too many requests.
+        source: https://community.snowflake.com/s/article/SQL-API-request-fails-with-error-Request-rate-exceeds-max
+    remediation: >-
+      Exponentially jittered backoff — Snowflake recommends waiting about 2 seconds, then
+      doubling. NOTE: no Retry-After header and no RateLimit-* headers are declared anywhere in
+      the contract, so the client has no server-supplied wait hint. See
+      rate-limits/snowflake-rate-limits.yml.
+  - status: 500
+    name: Internal Server Error
+    coverage: 408 of 408 operations
+    meaning: Unrecoverable server-side error. The body may carry a code and message.
+    retryable: false
+    remediation: >-
+      Capture request_id / X-Snowflake-Request-ID and open a support case. Snowflake's own text
+      says the application owner may need to contact customer support.
+  - status: 503
+    name: Service Unavailable
+    coverage: 408 of 408 operations
+    meaning: Not processed due to server-side timeouts.
+    retryable: true
+    remediation: Retry with jittered backoff (Snowflake's stated recommendation).
+  - status: 504
+    name: Gateway Timeout
+    coverage: 408 of 408 operations
+    meaning: Not processed due to server-side timeouts.
+    retryable: true
+    remediation: Retry with jittered backoff (Snowflake's stated recommendation).
+known_error_codes:
+  note: >-
+    Snowflake error codes are numeric strings carried in `code`. Only codes actually observed in
+    the published contract or docs are listed; the full code list is not published as a
+    machine-readable reference, so this catalog is deliberately short rather than padded.
+  codes:
+    - code: '390189'
+      message: Compilation error!
+      status: 400
+      source: openapi/common.yaml ErrorResponse example
+    - code: '390505'
+      message: Too many requests.
+      status: 429
+      source: https://community.snowflake.com/s/article/SQL-API-request-fails-with-error-Request-rate-exceeds-max
+    - code: '392604'
+      message: >-
+        Request execution in progress. Use the provided location header or result handler ID to
+        perform query monitoring and management.
+      status: 202
+      kind: informational
+      source: openapi/common.yaml SuccessAcceptedResponse example
+gaps:
+  - >-
+    No published machine-readable error-code reference. An agent cannot enumerate the codes it
+    might see, only handle the HTTP status.
+  - >-
+    No Retry-After on 429/503/504, so backoff is entirely client-side guesswork against a
+    server that knows the answer.
+  - >-
+    `error_code` is deprecated in the schema but still emitted in Snowflake's own example
+    payload, which is how clients end up depending on it.

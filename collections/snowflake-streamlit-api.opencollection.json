@@ -1,0 +1,254 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake Streamlit API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "streamlit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Streamlits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits"
+          },
+          "docs": "List Streamlits in a schema. Supports filtering with pattern matching."
+        },
+        {
+          "info": {
+            "name": "Create a Streamlit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Streamlit application, or replace an existing one. Supports CREATE, CREATE OR REPLACE, and CREATE IF NOT EXISTS modes."
+        },
+        {
+          "info": {
+            "name": "Fetch a Streamlit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name"
+          },
+          "docs": "Fetch detailed information about a specific Streamlit by name, including metadata, configuration, and version details."
+        },
+        {
+          "info": {
+            "name": "Delete a Streamlit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name"
+          },
+          "docs": "Delete a Streamlit. The Streamlit can be restored using undrop within the retention period."
+        },
+        {
+          "info": {
+            "name": "Undrop a Streamlit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name:undrop"
+          },
+          "docs": "Restore a previously deleted Streamlit within the retention period."
+        },
+        {
+          "info": {
+            "name": "Rename a Streamlit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name:rename",
+            "params": [
+              {
+                "name": "targetDatabase",
+                "value": "",
+                "type": "query",
+                "description": "Database of the target resource. Defaults to the source's database"
+              },
+              {
+                "name": "targetSchema",
+                "value": "",
+                "type": "query",
+                "description": "Schema of the target resource. Defaults to the source's schema"
+              },
+              {
+                "name": "targetName",
+                "value": "",
+                "type": "query",
+                "description": "Name of the target resource."
+              }
+            ]
+          },
+          "docs": "Rename a Streamlit to a new name, optionally in a different database or schema."
+        },
+        {
+          "info": {
+            "name": "Add live version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name:add-live-version",
+            "params": [
+              {
+                "name": "fromLast",
+                "value": "",
+                "type": "query",
+                "description": "Set the LIVE version to the LAST version of the Streamlit."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a live version to the Streamlit, making a specific version active for users."
+        },
+        {
+          "info": {
+            "name": "Commit live version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name:commit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "If a Git connection is set up, commit the LIVE version of the Streamlit to the Git repository."
+        },
+        {
+          "info": {
+            "name": "Add version from source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name:add-version",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new version to the Streamlit by copying files from a specified stage location."
+        },
+        {
+          "info": {
+            "name": "Add version from Git",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name:add-version-from-git",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new version to the Streamlit using a Git reference URI. The URI can point to either a tag or a commit."
+        },
+        {
+          "info": {
+            "name": "Abort live version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name:abort"
+          },
+          "docs": "Abort the live version of the Streamlit, discarding uncommitted changes if a Git connection is configured."
+        },
+        {
+          "info": {
+            "name": "Pull from Git",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name:pull"
+          },
+          "docs": "Pull the latest changes from the Git repository for a Streamlit with Git integration."
+        },
+        {
+          "info": {
+            "name": "Push to Git",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name:push",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Push committed changes from the Streamlit back to its connected Git repository."
+        },
+        {
+          "info": {
+            "name": "Set tags on a Streamlit.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a Streamlit."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a Streamlit.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a Streamlit."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a Streamlit.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streamlits/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a Streamlit. This operation requires an active warehouse."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

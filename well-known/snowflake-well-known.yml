@@ -1,0 +1,109 @@
+generated: '2026-09-03'
+method: probed
+source: >-
+  Live unauthenticated GET of each /.well-known/ path on every host named in apis.yml and in
+  the OpenAPI servers[] blocks, 2026-09-03.
+provider: Snowflake
+providerId: snowflake
+description: >-
+  Well-known document probe for Snowflake. One document is served: a valid RFC 9116
+  security.txt on the marketing host, pointing at the Snowflake HackerOne program.
+  Every other probed path 404s. app.snowflake.com is a single-page application that answers
+  200 with the same 66,774-byte HTML shell for every /.well-known/ path, so all of its
+  200s are recorded as HTML shells, not documents.
+hosts:
+  - host: www.snowflake.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/plain
+        file: snowflake-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: snowflake.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/plain
+        file: snowflake-security.txt
+        note: Redirects to www.snowflake.com; same document.
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: docs.snowflake.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: app.snowflake.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        note: HTML SPA shell (66774 bytes, text/html), not a document. Counted as a miss.
+      - path: /.well-known/openid-configuration
+        status: 200
+        note: HTML SPA shell, not a document. Counted as a miss.
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        note: HTML SPA shell, not a document. Counted as a miss.
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        note: HTML SPA shell, not a document. Counted as a miss.
+      - path: /.well-known/api-catalog
+        status: 200
+        note: HTML SPA shell, not a document. Counted as a miss.
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        note: HTML SPA shell, not a document. Counted as a miss.
+      - path: /.well-known/agent-card.json
+        status: 200
+        note: HTML SPA shell, not a document. Counted as a miss.
+      - path: /.well-known/agent.json
+        status: 200
+        note: HTML SPA shell, not a document. Counted as a miss.
+summary:
+  hosts_probed: 4
+  documents_served: 1
+  agent_card: none
+  note: >-
+    org-account.snowflakecomputing.com is Snowflake's documented placeholder for a per-tenant
+    account host, not a resolvable public endpoint, so it carries no anonymous
+    /.well-known/ surface to probe. Snowflake's OAuth authorization and token endpoints are
+    published in the OpenAPI securitySchemes (see scopes/snowflake-scopes.yml) rather than
+    through /.well-known/oauth-authorization-server.

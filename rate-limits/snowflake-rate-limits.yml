@@ -4,39 +4,131 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Snowflake
 providerId: snowflake
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-reconciled: true
+modified: '2026-09-03'
+generated: '2026-09-03'
+method: searched
+source: >-
+  Searched https://docs.snowflake.com/en/developer-guide/sql-api/index ,
+  https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api and the
+  Snowflake community article "SQL API request fails with error Request rate exceeds max"; and
+  read every 429 declaration in the 47 OpenAPI documents in openapi/.
+sources:
+  - https://docs.snowflake.com/en/developer-guide/sql-api/index
+  - https://community.snowflake.com/s/article/SQL-API-request-fails-with-error-Request-rate-exceeds-max
+  - openapi/common.yaml
+provenance_note: >-
+  Replaces a 2026-05-04 bulk-sweep artifact marked method:generated. This version reports what
+  Snowflake actually publishes, which is: a 429, an error code, and no numbers.
 tags:
   - Rate Limiting
   - Data Warehouse
-description: Snowflake API and warehouse concurrency limits.
-sources:
-  - https://www.snowflake.com/en/pricing-options/
-  - https://docs.snowflake.com/en/developer-guide/sql-api/intro
-headers: {}
-responseCodes:
-  throttled: 429
-limits:
-  - name: SQL API
-    scope: user
-    metric: concurrent_queries
-    limit: 60
-    notes: Default per-user concurrency
-  - name: Warehouse query concurrency
-    scope: warehouse
-    metric: concurrent_queries
-    limit: 8
-    notes: Default per warehouse; raise via MAX_CONCURRENCY_LEVEL
-  - name: Snowpipe streaming
-    scope: channel
-    metric: MB_per_second
-    limit: 10
-    timeFrame: second per channel
-  - name: Account API
-    scope: account
-    metric: requests_per_minute
-    limit: 1000
-    timeFrame: minute
+
+description: >-
+  Snowflake publishes NO numeric rate limits for its REST or SQL APIs, and returns no
+  rate-limit headers. 429 is declared on 396 of the 408 operations in the harvested corpus and
+  carries only X-Snowflake-Request-ID. An integrator has a status code and a documented
+  recommendation to back off, and nothing else — no ceiling to design against, and no
+  server-supplied hint about how long to wait.
+
+limit_count: 0
+limit_count_note: >-
+  An honest zero. Snowflake states that the limit "is determined at runtime and depends on the
+  load on the Cloud Services layer at that point in time", so there is no published per-key,
+  per-account or per-endpoint number to record. Recording zero here is a finding about the
+  provider's documentation, not a gap in this probe.
+
+limits: []
+
+response:
+  status_on_exhaustion: 429
+  status_name: Limit Exceeded
+  declared_on: 396 of 408 operations in openapi/
+  body:
+    media_type: application/json
+    schema: openapi/common.yaml#/components/schemas/ErrorResponse
+    fields: [message, code, error_code, request_id]
+  error_codes:
+    - code: '390505'
+      message: Too many requests.
+      source: https://community.snowflake.com/s/article/SQL-API-request-fails-with-error-Request-rate-exceeds-max
+  contract_description: >-
+    "Limit Exceeded. The number of requests hit the rate limit. The application must slow down
+    the frequency of hitting the API endpoints." — openapi/common.yaml#/components/responses/429LimitExceeded
+
+headers:
+  retry_after: false
+  ratelimit_draft: false
+  x_ratelimit: false
+  present:
+    - name: X-Snowflake-Request-ID
+      type: uuid
+      description: >-
+        The only header attached to a 429. It correlates the throttled request with Snowflake
+        support; it says nothing about the limit or the wait.
+  note: >-
+    No Retry-After, no RateLimit-Limit / RateLimit-Remaining / RateLimit-Reset, no
+    X-RateLimit-*. Verified by reading the headers block of every response definition in
+    openapi/common.yaml and across all 47 specs. This is the material gap: the server knows how
+    long the client should wait and does not say.
+
+backoff_guidance:
+  published: true
+  strategy: exponential with jitter
+  initial_wait_seconds: 2
+  multiplier: 2
+  source: https://community.snowflake.com/s/article/SQL-API-request-fails-with-error-Request-rate-exceeds-max
+  quote: >-
+    Snowflake recommends exponentially jittered backoff — a wait of around 2 seconds before the
+    next retry, doubling the wait before each successive attempt.
+
+triggers:
+  - Too many requests in a window.
+  - Too many concurrent requests.
+  - note: >-
+      Both are evaluated against the Cloud Services layer instance serving the account, so the
+      effective ceiling moves with overall load. Two identical clients can see different
+      behaviour at the same request rate.
+
+adjacent_limits:
+  note: >-
+    These are real, published constraints that shape throughput even though they are not rate
+    limits in the HTTP sense. Recorded because an integrator hits them first.
+  items:
+    - name: showLimit
+      value: 1 to 10000
+      scope: per list request
+      source: openapi/common.yaml#/components/parameters/showLimit
+      description: Maximum rows a list operation will return. The hard page ceiling.
+    - name: Warehouse concurrency
+      value: null
+      scope: per warehouse
+      description: >-
+        Concurrent query capacity is a function of warehouse size and, on Enterprise Edition and
+        above, multi-cluster settings (min_cluster_count / max_cluster_count). Queries beyond it
+        queue rather than 429. This is the throughput control that actually governs a data
+        workload.
+      see: plans/snowflake-plans-pricing.yml
+    - name: Statement text size
+      value: null
+      scope: per statement
+      source: https://community.snowflake.com/s/article/Snowflake-query-text-limits
+      description: Snowflake documents a maximum query text length; the figure is in the linked article.
+
+commercial_note: >-
+  Snowflake does not sell API capacity, so there is no plan tier that raises a request limit —
+  see plans/snowflake-plans-pricing.yml. The meter that constrains an integration is credits
+  consumed by compute, not requests made. That is why a rate-limit artifact for Snowflake is
+  thin and a cost artifact is not.
+
+gaps:
+  - No published numeric limit of any kind, at any scope.
+  - No Retry-After on 429, so every client re-implements backoff from a docs recommendation.
+  - No RateLimit-* headers, so a client cannot see how close it is to the ceiling before hitting it.
+  - >-
+    The limit is load-dependent and not disclosed, so it cannot be designed against — only
+    retried against.
+
+cross_references:
+  errors: errors/snowflake-problem-types.yml
+  conventions: conventions/snowflake-conventions.yml
+  plans: plans/snowflake-plans-pricing.yml

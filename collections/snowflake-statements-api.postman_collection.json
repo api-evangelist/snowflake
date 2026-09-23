@@ -1,7 +1,7 @@
 {
   "item": [
     {
-      "id": "d8d41ec1-9b52-42c3-9e8e-8027bb6d6e22",
+      "id": "8a55e400-cfa9-4e2c-8ae7-f884deb10f0d",
       "name": "statements",
       "description": {
         "content": "",
@@ -9,7 +9,7 @@
       },
       "item": [
         {
-          "id": "8708e270-de9b-4df8-879e-4b7207d04c5b",
+          "id": "b6e24c40-5825-4791-bb3f-0c71718bf171",
           "name": "Submit a Sql Statement for Execution.",
           "request": {
             "name": "Submit a Sql Statement for Execution.",
@@ -24,7 +24,7 @@
                 "statements"
               ],
               "host": [
-                "{{baseUrl}}"
+                "{{api-v2-statements-Url}}"
               ],
               "query": [
                 {
@@ -46,7 +46,14 @@
                   "description": "Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'."
                 }
               ],
-              "variable": []
+              "variable": [
+                {
+                  "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
             },
             "header": [
               {
@@ -71,9 +78,18 @@
               }
             ],
             "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"key_0\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"key_1\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"key_2\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
+              "raw": "{\n  \"statement\": \"<string>\",\n  \"timeout\": \"<long>\",\n  \"database\": \"<string>\",\n  \"schema\": \"<string>\",\n  \"warehouse\": \"<string>\",\n  \"role\": \"<string>\",\n  \"bindings\": {\n    \"key_0\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"parameters\": {\n    \"timezone\": \"<string>\",\n    \"query_tag\": \"<string>\",\n    \"binary_output_format\": \"<string>\",\n    \"date_output_format\": \"<string>\",\n    \"time_output_format\": \"<string>\",\n    \"timestamp_output_format\": \"<string>\",\n    \"timestamp_ltz_output_format\": \"<string>\",\n    \"timestamp_ntz_output_format\": \"<string>\",\n    \"timestamp_tz_output_format\": \"<string>\",\n    \"multi_statement_count\": 1,\n    \"client_result_chunk_size\": \"<integer>\",\n    \"rows_per_resultset\": \"<integer>\",\n    \"use_cached_result\": \"<boolean>\"\n  }\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -83,7 +99,7 @@
           },
           "response": [
             {
-              "id": "285915ca-732a-4315-ac57-3bc3736dd476",
+              "id": "4d48c766-13aa-4738-9d4f-bb8bf0594ed8",
               "name": "The statement was executed successfully, and the response includes any data requested.",
               "originalRequest": {
                 "url": {
@@ -93,7 +109,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -109,9 +125,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -165,7 +196,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "7e95838d-e9ef-436f-9fb8-a60c020e4f59",
+              "id": "a07ef5e8-60fb-4c1f-9fa0-978fdecb03c5",
               "name": "The execution of the statement is still in progress. Use GET /api/v2/statements/{statementHandle} to check the status of the statement execution.",
               "originalRequest": {
                 "url": {
@@ -175,7 +206,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -191,9 +222,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -241,7 +287,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "1889f762-cf0a-4540-aa3a-c6f5c464d034",
+              "id": "e1079215-b821-4141-ad3a-12f7b5ceea59",
               "name": "Bad Request. The request payload is invalid or malformed. This happens if the application did not send the correct request payload. The response body may include the error code and message indicating the actual cause. The application must reconstruct the request body for retry.",
               "originalRequest": {
                 "url": {
@@ -251,7 +297,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -267,9 +313,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -313,7 +374,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c9a555f5-30ff-4c76-947c-7ff6784830a2",
+              "id": "0743a3a5-1475-4960-8075-522cfb9e0bd1",
               "name": "Unauthorized. The request is not authorized. This happens if the attached access token is invalid or missing. The response body may include the error code and message indicating the actual cause, e.g., expired, invalid token. The application must obtain a new access token for retry.",
               "originalRequest": {
                 "url": {
@@ -323,7 +384,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -339,9 +400,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -385,7 +461,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "37fbaf8f-eef1-435d-869d-dcc947620ae9",
+              "id": "9e3ca746-a1c8-412e-b77c-27bf48410844",
               "name": "Forbidden. The request is forbidden. This can happen if the request is made even though the API is not enabled.",
               "originalRequest": {
                 "url": {
@@ -395,7 +471,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -411,9 +487,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -457,7 +548,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "897cb49e-f436-4f13-a2a4-a9355bf8eb6d",
+              "id": "fcf056ad-45e7-4dd5-b326-039652c15436",
               "name": "Not Found. The request endpoint is not valid. This happens if the API endpoint is wrong.",
               "originalRequest": {
                 "url": {
@@ -467,7 +558,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -483,9 +574,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -529,7 +635,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "ae7049c0-e586-4f22-bac1-45f7038f6bca",
+              "id": "f9f0816a-d8b8-4f1b-98ce-1851eb56742b",
               "name": "Method Not Allowed. The request method does not match the supported API. This happens, for example, if the application calls the API with GET method but the endpoint accepts only POST.",
               "originalRequest": {
                 "url": {
@@ -539,7 +645,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -555,9 +661,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -601,7 +722,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c790ea6f-57c7-4b9f-a390-8363e016703e",
+              "id": "b148350c-ea54-4f9f-8470-619a3da3ff98",
               "name": "The execution of the statement exceeded the timeout period. The execution of the statement was cancelled.",
               "originalRequest": {
                 "url": {
@@ -611,7 +732,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -627,9 +748,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -677,7 +813,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "96da4c5e-097a-4a65-8f22-3c85295bb2b7",
+              "id": "0770ce15-691e-4c86-83c7-1f17acc6441d",
               "name": "The request header Content-Type includes an unsupported media type. The API supports application/json only. If none is specified, the request payload is taken as JSON, but if any other media type is specified, this error is returned.",
               "originalRequest": {
                 "url": {
@@ -687,7 +823,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -703,9 +839,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -749,7 +900,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f03a0f8f-043c-4189-b0db-627e86cf095c",
+              "id": "8251203d-6f1d-4b03-bf82-313a3b3a88c9",
               "name": "An error occurred when executing the statement. Check the error code and error message for details.",
               "originalRequest": {
                 "url": {
@@ -759,7 +910,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -775,9 +926,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -825,7 +991,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "4e913219-93ec-447a-8839-2d3c87fe9c07",
+              "id": "25b9d0e3-805c-4316-9535-de83dc99ed40",
               "name": "Limit Exceeded. The number of requests hit the rate limit. The application must slow down the frequency of hitting the API endpoints.",
               "originalRequest": {
                 "url": {
@@ -835,7 +1001,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -851,9 +1017,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -897,7 +1078,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "c6b0cec4-5ea3-4cae-b2ce-ec62235246e9",
+              "id": "1fda35f7-1f49-4c4a-8a4b-0e708c5b47dc",
               "name": "Internal Server Error. The server hit an unrecoverable system error. The response body may include the error code and message for further guidance. The application owner may need to reach out to customer support.",
               "originalRequest": {
                 "url": {
@@ -907,7 +1088,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -923,9 +1104,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -969,7 +1165,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "303459ad-a4de-473f-bfb6-a8404bc0e930",
+              "id": "c042cec0-a562-43b7-a471-dda396fac685",
               "name": "Service Unavailable. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
               "originalRequest": {
                 "url": {
@@ -979,7 +1175,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -995,9 +1191,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1041,7 +1252,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "f99b1601-d216-404d-865b-4fd30891efae",
+              "id": "ea2e0ec7-2fb4-4096-ab3c-b264b82c40a9",
               "name": "Gateway Timeout. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
               "originalRequest": {
                 "url": {
@@ -1051,7 +1262,7 @@
                     "statements"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-Url}}"
                   ],
                   "query": [
                     {
@@ -1067,9 +1278,24 @@
                       "value": "<boolean>"
                     }
                   ],
-                  "variable": []
+                  "variable": [
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1119,7 +1345,7 @@
           }
         },
         {
-          "id": "93464db3-cb52-44b0-b733-d6e42cd977e7",
+          "id": "ad42716c-d239-4821-9875-ff734b1d753a",
           "name": "Check the Status of the Execution of a Statement.",
           "request": {
             "name": "Check the Status of the Execution of a Statement.",
@@ -1135,7 +1361,7 @@
                 ":statementHandle"
               ],
               "host": [
-                "{{baseUrl}}"
+                "{{api-v2-statements-statementHandle-Url}}"
               ],
               "query": [
                 {
@@ -1158,6 +1384,12 @@
                   "value": "<uuid>",
                   "key": "statementHandle",
                   "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                },
+                {
+                  "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
                 }
               ]
             },
@@ -1179,11 +1411,20 @@
                 "value": "application/json"
               }
             ],
-            "method": "GET"
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
           },
           "response": [
             {
-              "id": "4a65f2ac-7cd7-4326-a71b-cba52772fa90",
+              "id": "6e47da79-0e31-4ff2-bb41-22c04087bcff",
               "name": "The statement was executed successfully, and the response includes any data requested.",
               "originalRequest": {
                 "url": {
@@ -1194,7 +1435,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -1213,10 +1454,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1262,7 +1517,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "bb594a32-953b-4f7f-b699-900adca26be7",
+              "id": "ea7633db-e28e-412e-9ec6-9a522252503e",
               "name": "The execution of the statement is still in progress. Use this method again to check the status of the statement execution.",
               "originalRequest": {
                 "url": {
@@ -1273,7 +1528,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -1292,10 +1547,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1335,7 +1604,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "ff416cca-0590-401f-a1ff-54b3cd185282",
+              "id": "10698225-2bfd-4330-8914-db3bc07258d1",
               "name": "Bad Request. The request payload is invalid or malformed. This happens if the application did not send the correct request payload. The response body may include the error code and message indicating the actual cause. The application must reconstruct the request body for retry.",
               "originalRequest": {
                 "url": {
@@ -1346,7 +1615,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -1365,10 +1634,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1404,7 +1687,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "fc9f38e7-257a-4a2d-851d-f44d1a41d1f8",
+              "id": "77ee1286-79a6-4d2f-9bbd-31be3abae55e",
               "name": "Unauthorized. The request is not authorized. This happens if the attached access token is invalid or missing. The response body may include the error code and message indicating the actual cause, e.g., expired, invalid token. The application must obtain a new access token for retry.",
               "originalRequest": {
                 "url": {
@@ -1415,7 +1698,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -1434,10 +1717,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1473,7 +1770,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "d992a8d2-286c-462e-a457-74ae8c32eadd",
+              "id": "ea680c2f-b499-4799-81b3-5de214cf9684",
               "name": "Forbidden. The request is forbidden. This can happen if the request is made even though the API is not enabled.",
               "originalRequest": {
                 "url": {
@@ -1484,7 +1781,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -1503,10 +1800,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1542,7 +1853,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "e0bc7247-3461-4996-905d-dc79f75dc9f4",
+              "id": "929d5655-830d-4683-a39f-5d473f487e12",
               "name": "Not Found. The request endpoint is not valid. This happens if the API endpoint is wrong.",
               "originalRequest": {
                 "url": {
@@ -1553,7 +1864,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -1572,10 +1883,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1611,7 +1936,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "3b6e8471-d2f4-480c-b908-06c1b44da192",
+              "id": "98cc6d9c-988b-486b-8f85-53960867ad1c",
               "name": "Method Not Allowed. The request method does not match the supported API. This happens, for example, if the application calls the API with GET method but the endpoint accepts only POST.",
               "originalRequest": {
                 "url": {
@@ -1622,7 +1947,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -1641,10 +1966,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1680,7 +2019,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "b6cf32b3-a0d6-4a5f-b837-70cf5ffd7cbd",
+              "id": "7b2ad9e4-5d9d-4fb7-9ef7-618d714c0fc1",
               "name": "The request header Content-Type includes an unsupported media type. The API supports application/json only. If none is specified, the request payload is taken as JSON, but if any other media type is specified, this error is returned.",
               "originalRequest": {
                 "url": {
@@ -1691,7 +2030,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -1710,10 +2049,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1749,7 +2102,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "cc1d449d-c31d-401b-b814-c35798ccad62",
+              "id": "386f256f-e344-414b-a9bf-4e85b79028e4",
               "name": "An error occurred when executing the statement. Check the error code and error message for details.",
               "originalRequest": {
                 "url": {
@@ -1760,7 +2113,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -1779,10 +2132,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1822,7 +2189,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "8da701e2-24bc-4251-8c1d-ab252d05b967",
+              "id": "074fa120-3456-4b31-9f8e-29e011c710f2",
               "name": "Limit Exceeded. The number of requests hit the rate limit. The application must slow down the frequency of hitting the API endpoints.",
               "originalRequest": {
                 "url": {
@@ -1833,7 +2200,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -1852,10 +2219,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1891,7 +2272,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "ef2d7eb5-bb37-49df-a75b-5039a66d62ad",
+              "id": "cd5d960a-0c80-4afa-80e6-f570f0d75fac",
               "name": "Internal Server Error. The server hit an unrecoverable system error. The response body may include the error code and message for further guidance. The application owner may need to reach out to customer support.",
               "originalRequest": {
                 "url": {
@@ -1902,7 +2283,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -1921,10 +2302,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -1960,7 +2355,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "a23a0501-2249-42d5-92cc-bf264824a69c",
+              "id": "0b574592-b88d-4c74-9e3f-6628ac470e17",
               "name": "Service Unavailable. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
               "originalRequest": {
                 "url": {
@@ -1971,7 +2366,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -1990,10 +2385,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -2029,7 +2438,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "cbd6d4c7-0b8a-4399-9048-19b06a7b6f53",
+              "id": "a456b9f7-3988-461f-b60d-6c1587149aa2",
               "name": "Gateway Timeout. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
               "originalRequest": {
                 "url": {
@@ -2040,7 +2449,7 @@
                     ":statementHandle"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-Url}}"
                   ],
                   "query": [
                     {
@@ -2059,10 +2468,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -2104,7 +2527,7 @@
           }
         },
         {
-          "id": "69e03ce7-5ea1-47d1-9cd4-5b87c837bf42",
+          "id": "bb93dd9d-a0b9-4666-a7cf-73bf11e7c042",
           "name": "Cancel the Execution of a Statement.",
           "request": {
             "name": "Cancel the Execution of a Statement.",
@@ -2121,7 +2544,7 @@
                 "cancel"
               ],
               "host": [
-                "{{baseUrl}}"
+                "{{api-v2-statements-statementHandle-cancel-Url}}"
               ],
               "query": [
                 {
@@ -2138,6 +2561,12 @@
                   "value": "<uuid>",
                   "key": "statementHandle",
                   "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                },
+                {
+                  "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
                 }
               ]
             },
@@ -2159,11 +2588,20 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST"
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
           },
           "response": [
             {
-              "id": "52ef7735-2fd0-4120-a9c8-72a273dcf518",
+              "id": "d1295195-48ab-4b19-8a26-171e10b8ccd3",
               "name": "The execution of the statement was successfully canceled.",
               "originalRequest": {
                 "url": {
@@ -2175,7 +2613,7 @@
                     "cancel"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-cancel-Url}}"
                   ],
                   "query": [
                     {
@@ -2190,10 +2628,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -2233,7 +2685,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "47f84ef2-baa0-4f10-83eb-b63a6b7e41b2",
+              "id": "f1a5396a-c04d-46e7-b4a7-c1fe9a2f5319",
               "name": "Bad Request. The request payload is invalid or malformed. This happens if the application did not send the correct request payload. The response body may include the error code and message indicating the actual cause. The application must reconstruct the request body for retry.",
               "originalRequest": {
                 "url": {
@@ -2245,7 +2697,7 @@
                     "cancel"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-cancel-Url}}"
                   ],
                   "query": [
                     {
@@ -2260,10 +2712,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -2299,7 +2765,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "fb3d5de9-53f0-4e60-8f02-710f7b460280",
+              "id": "cdb8add7-fc44-4057-8491-f7c06b04eb64",
               "name": "Unauthorized. The request is not authorized. This happens if the attached access token is invalid or missing. The response body may include the error code and message indicating the actual cause, e.g., expired, invalid token. The application must obtain a new access token for retry.",
               "originalRequest": {
                 "url": {
@@ -2311,7 +2777,7 @@
                     "cancel"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-cancel-Url}}"
                   ],
                   "query": [
                     {
@@ -2326,10 +2792,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -2365,7 +2845,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "3e9e74b4-0d53-450a-ad65-ad0f9c1f3564",
+              "id": "6dae63b0-067d-4242-9978-d4823431d172",
               "name": "Forbidden. The request is forbidden. This can happen if the request is made even though the API is not enabled.",
               "originalRequest": {
                 "url": {
@@ -2377,7 +2857,7 @@
                     "cancel"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-cancel-Url}}"
                   ],
                   "query": [
                     {
@@ -2392,10 +2872,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -2431,7 +2925,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "5ff7f1b8-6b10-47d4-ad9a-de656e099cbe",
+              "id": "bb030399-17e9-4a88-a25f-dca4e62d3f3e",
               "name": "Not Found. The request endpoint is not valid. This happens if the API endpoint is wrong.",
               "originalRequest": {
                 "url": {
@@ -2443,7 +2937,7 @@
                     "cancel"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-cancel-Url}}"
                   ],
                   "query": [
                     {
@@ -2458,10 +2952,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -2497,7 +3005,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "49b90055-2c58-45c6-a00f-9c8f902a80b3",
+              "id": "cbdc415d-c0d1-4dd9-b0db-034403db5f13",
               "name": "Method Not Allowed. The request method does not match the supported API. This happens, for example, if the application calls the API with GET method but the endpoint accepts only POST.",
               "originalRequest": {
                 "url": {
@@ -2509,7 +3017,7 @@
                     "cancel"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-cancel-Url}}"
                   ],
                   "query": [
                     {
@@ -2524,10 +3032,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -2563,7 +3085,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "10bf1a18-17d3-41f4-b1ef-79ce45766595",
+              "id": "9391f15e-43ec-4059-8595-0a19e37df468",
               "name": "An error occurred when cancelling the execution of the statement. Check the error code and error message for details.",
               "originalRequest": {
                 "url": {
@@ -2575,7 +3097,7 @@
                     "cancel"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-cancel-Url}}"
                   ],
                   "query": [
                     {
@@ -2590,10 +3112,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -2633,7 +3169,7 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "66671617-10ad-4eb6-8cfb-d6451c6f3270",
+              "id": "d2290d6f-0260-4384-a11b-ce65390739f3",
               "name": "Internal Server Error. The server hit an unrecoverable system error. The response body may include the error code and message for further guidance. The application owner may need to reach out to customer support.",
               "originalRequest": {
                 "url": {
@@ -2645,7 +3181,7 @@
                     "cancel"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-cancel-Url}}"
                   ],
                   "query": [
                     {
@@ -2660,10 +3196,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -2699,7 +3249,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "785270d5-9037-4e3c-b956-d7255b783b86",
+              "id": "192a0953-b976-4744-9d4d-2f52f5076b8b",
               "name": "Service Unavailable. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
               "originalRequest": {
                 "url": {
@@ -2711,7 +3261,7 @@
                     "cancel"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-cancel-Url}}"
                   ],
                   "query": [
                     {
@@ -2726,10 +3276,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -2765,7 +3329,7 @@
               "_postman_previewlanguage": "text"
             },
             {
-              "id": "0c5035cb-8aee-4398-a017-88470d9b1c88",
+              "id": "82825fda-4367-4f81-9570-e2c0d8d9c046",
               "name": "Gateway Timeout. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.",
               "originalRequest": {
                 "url": {
@@ -2777,7 +3341,7 @@
                     "cancel"
                   ],
                   "host": [
-                    "{{baseUrl}}"
+                    "{{api-v2-statements-statementHandle-cancel-Url}}"
                   ],
                   "query": [
                     {
@@ -2792,10 +3356,24 @@
                       "value": "<uuid>",
                       "key": "statementHandle",
                       "description": "(Required) The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution)."
+                    },
+                    {
+                      "description": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
                     }
                   ]
                 },
                 "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
                   {
                     "disabled": false,
                     "description": "The response payload format. The schema should be specified in resultSetMetaData in the request payload.",
@@ -2843,17 +3421,68 @@
   "event": [],
   "variable": [
     {
+      "description": {
+        "content": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "org-account",
+      "key": "account"
+    },
+    {
       "type": "string",
-      "value": "https://org-account.snowflakecomputing.com",
+      "value": "https://{{account}}.snowflakecomputing.com",
       "key": "baseUrl"
+    },
+    {
+      "description": {
+        "content": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "org-account",
+      "key": "account"
+    },
+    {
+      "type": "string",
+      "value": "https://{{account}}.snowflakecomputing.com",
+      "key": "api-v2-statements-Url"
+    },
+    {
+      "description": {
+        "content": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "org-account",
+      "key": "account"
+    },
+    {
+      "type": "string",
+      "value": "https://{{account}}.snowflakecomputing.com",
+      "key": "api-v2-statements-statementHandle-Url"
+    },
+    {
+      "description": {
+        "content": "Your Snowflake account identifier in the format org-account_name or account_locator.region.cloud.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "org-account",
+      "key": "account"
+    },
+    {
+      "type": "string",
+      "value": "https://{{account}}.snowflakecomputing.com",
+      "key": "api-v2-statements-statementHandle-cancel-Url"
     }
   ],
   "info": {
-    "_postman_id": "292b4ddb-83e0-4327-9176-26e5b24b284d",
-    "name": "Snowflake account statements API",
+    "_postman_id": "d9c5ee82-19cf-4132-9e6b-efb12c15eda8",
+    "name": "Snowflake Statements API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
-      "content": "The Snowflake Account API is a REST API that you can use to access, update, and perform certain actions on Account resource in Snowflake.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
+      "content": "Operations tagged statements across 3 of this provider's published API definitions: snowflake-sql-rest-api.yaml, sqlapi.yaml, sqlapi.yaml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Snowflake, Inc.\n Email: support@snowflake.com",
       "type": "text/plain"
     }
   }

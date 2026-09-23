@@ -10,12 +10,17 @@ info:
 servers:
 - description: Snowflake REST Server
   url: https://org-account.snowflakecomputing.com
+security:
+- KeyPair: []
+- ExternalOAuth: []
+- SnowflakeOAuth: []
+- ProgrammaticAccessToken: []
 tags:
 - name: catalog-integration
 paths:
   /api/v2/catalog-integrations:
     get:
-      summary: List Catalog Integrations.
+      summary: List catalog integrations
       tags:
       - catalog-integration
       description: List catalog integrations.
@@ -34,20 +39,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CatalogIntegration'
-              examples:
-                Listcatalogintegrations200Example:
-                  summary: Default listCatalogIntegrations 200 response
-                  x-microcks-default: true
-                  value:
-                  - name: Example Title
-                    catalog:
-                      catalog_source: GLUE
-                    table_format: ICEBERG
-                    enabled: true
-                    comment: example_value
-                    type: example_value
-                    category: example_value
-                    created_on: '2026-01-15T10:30:00Z'
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -74,11 +65,8 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     post:
-      summary: Create a Catalog Integration.
+      summary: Create a catalog integration
       tags:
       - catalog-integration
       description: Create a catalog integration.
@@ -120,26 +108,9 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CatalogIntegration'
-            examples:
-              CreatecatalogintegrationRequestExample:
-                summary: Default createCatalogIntegration request
-                x-microcks-default: true
-                value:
-                  name: Example Title
-                  catalog:
-                    catalog_source: GLUE
-                  table_format: ICEBERG
-                  enabled: true
-                  comment: example_value
-                  type: example_value
-                  category: example_value
-                  created_on: '2026-01-15T10:30:00Z'
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/catalog-integrations/{name}:
     get:
-      summary: Fetch a Catalog Integration.
+      summary: Fetch a catalog integration
       tags:
       - catalog-integration
       description: Fetch a catalog integration.
@@ -156,20 +127,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CatalogIntegration'
-              examples:
-                Fetchcatalogintegration200Example:
-                  summary: Default fetchCatalogIntegration 200 response
-                  x-microcks-default: true
-                  value:
-                    name: Example Title
-                    catalog:
-                      catalog_source: GLUE
-                    table_format: ICEBERG
-                    enabled: true
-                    comment: example_value
-                    type: example_value
-                    category: example_value
-                    created_on: '2026-01-15T10:30:00Z'
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -196,11 +153,8 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     delete:
-      summary: Delete a Catalog Integration.
+      summary: Delete a catalog integration
       tags:
       - catalog-integration
       description: Delete a catalog integration.
@@ -237,58 +191,152 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
+  /api/v2/catalog-integrations/{name}:set-tags:
+    post:
+      summary: Set tags on a catalog integration
+      tags:
+      - catalog-integration
+      description: Set tags on a catalog integration.
+      operationId: setTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: common.yaml#/components/schemas/TagAssignment
+  /api/v2/catalog-integrations/{name}:unset-tags:
+    post:
+      summary: Unset tags from a catalog integration
+      tags:
+      - catalog-integration
+      description: Unset tags from a catalog integration.
+      operationId: unsetTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: common.yaml#/components/schemas/TagReference
+  /api/v2/catalog-integrations/{name}:get-tags:
+    get:
+      summary: Get the tag assignments for a catalog integration
+      tags:
+      - catalog-integration
+      description: Returns all tags assigned to a catalog integration. This operation requires an active warehouse.
+      operationId: getTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/withLineage
+      responses:
+        '200':
+          description: successful
+          headers:
+            X-Snowflake-Request-ID:
+              $ref: common.yaml#/components/headers/X-Snowflake-Request-ID
+            Link:
+              $ref: common.yaml#/components/headers/Link
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: common.yaml#/components/schemas/TagAssignment
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    CatalogIntegration:
-      type: object
-      description: Catalog integration
-      properties:
-        name:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Name of the catalog integration.
-          example: Example Title
-        catalog:
-          $ref: '#/components/schemas/Catalog'
-          description: Type of catalog and its parameters.
-        table_format:
-          type: string
-          enum:
-          - ICEBERG
-          description: Table format of the catalog.
-          example: ICEBERG
-        enabled:
-          type: boolean
-          description: 'whether this catalog integration is available to use for Iceberg tables. '
-          example: true
-        comment:
-          type: string
-          description: Comment.
-          example: example_value
-        type:
-          type: string
-          readOnly: true
-          description: Type of the integration. Always CATALOG.
-          example: example_value
-        category:
-          type: string
-          readOnly: true
-          description: Category of the integration. Always CATALOG.
-          example: example_value
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date and time when the catalog integration was created.
-          example: '2026-01-15T10:30:00Z'
-      required:
-      - name
-      - catalog
-      - table_format
-      - enabled
     Catalog:
       type: object
       properties:
@@ -299,7 +347,6 @@ components:
           - OBJECT_STORE
           - POLARIS
           description: Type of external catalog
-          example: GLUE
       required:
       - catalog_source
       discriminator:
@@ -308,3 +355,52 @@ components:
           GLUE: Glue
           OBJECT_STORE: ObjectStore
           POLARIS: Polaris
+    CatalogIntegration:
+      type: object
+      description: Catalog integration
+      properties:
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Name of the catalog integration.
+        catalog:
+          $ref: '#/components/schemas/Catalog'
+          description: Type of catalog and its parameters.
+        table_format:
+          type: string
+          enum:
+          - ICEBERG
+          description: Table format of the catalog.
+        enabled:
+          type: boolean
+          description: 'whether this catalog integration is available to use for Iceberg tables. '
+        comment:
+          type: string
+          description: Comment.
+        type:
+          type: string
+          readOnly: true
+          description: Type of the integration. Always CATALOG.
+        category:
+          type: string
+          readOnly: true
+          description: Category of the integration. Always CATALOG.
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date and time when the catalog integration was created.
+      required:
+      - name
+      - catalog
+      - table_format
+      - enabled
+  securitySchemes:
+    KeyPair:
+      $ref: common.yaml#/components/securitySchemes/KeyPair
+    ExternalOAuth:
+      $ref: common.yaml#/components/securitySchemes/ExternalOAuth
+    SnowflakeOAuth:
+      $ref: common.yaml#/components/securitySchemes/SnowflakeOAuth
+    ProgrammaticAccessToken:
+      $ref: common.yaml#/components/securitySchemes/ProgrammaticAccessToken

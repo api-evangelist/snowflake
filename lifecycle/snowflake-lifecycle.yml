@@ -1,0 +1,161 @@
+generated: '2026-09-03'
+method: searched
+source: >-
+  https://docs.snowflake.com/en/release-notes/behavior-change-policy ,
+  https://docs.snowflake.com/en/release-notes/bcr-bundles/managing-behavior-change-releases ,
+  https://docs.snowflake.com/en/release-notes/behavior-changes ,
+  https://docs.snowflake.com/en/release-notes/overview , https://status.snowflake.com/ , and
+  the `deprecated: true` flags in this repo's openapi/ specs.
+provider: Snowflake
+providerId: snowflake
+
+versioning:
+  api_path_version: v2
+  api_path_note: >-
+    The REST path version has stayed at /api/v2 across all 31 platform releases shipped in 2026.
+    API evolution is not expressed through the path.
+  platform_versioning:
+    scheme: MAJOR.MINOR, weekly
+    current: '10.31'
+    current_window: 2026-08-29 to 2026-09-02
+    cadence: >-
+      New server releases are deployed each week. Releases are applied to accounts on a
+      staggered schedule across deployments.
+    docs: https://docs.snowflake.com/en/release-notes/overview
+
+deprecation_policy:
+  published: true
+  name: Behavior change policy / Behavior Change Release (BCR) bundles
+  url: https://docs.snowflake.com/en/release-notes/behavior-change-policy
+  announcements: https://docs.snowflake.com/en/release-notes/behavior-changes
+  mechanism: >-
+    Breaking and behavior-altering changes are not shipped in ordinary releases. They are
+    collected into dated bundles that customers can enable and disable per account while the
+    bundle is in flight.
+  stages:
+    - stage: Testing period
+      status: Disabled by default
+      length: about 4 weeks
+      customer_control: Customers opt IN with SYSTEM$ENABLE_BEHAVIOR_CHANGE_BUNDLE to test early.
+    - stage: Opt-out period
+      status: Enabled by default
+      length: about 4 weeks
+      customer_control: Customers can still opt OUT with SYSTEM$DISABLE_BEHAVIOR_CHANGE_BUNDLE.
+    - stage: Generally enabled
+      status: Enabled, not disableable
+      customer_control: None. The change is in effect for every account on every deployment.
+  minimum_notice: >-
+    At least eight weeks from a bundle's first appearance to general enablement, per the
+    published policy.
+  inspection: SYSTEM$BEHAVIOR_CHANGE_BUNDLE_STATUS
+  cadence: New bundles are released on roughly a monthly basis.
+  bundles_2026:
+    - id: '2026_01'
+      url: https://docs.snowflake.com/en/release-notes/bcr-bundles/2026_01_bundle
+    - id: '2026_02'
+      url: https://docs.snowflake.com/en/release-notes/bcr-bundles/2026_02_bundle
+    - id: '2026_03'
+      url: https://docs.snowflake.com/en/release-notes/bcr-bundles/2026_03_bundle
+    - id: '2026_04'
+      url: https://docs.snowflake.com/en/release-notes/bcr-bundles/2026_04_bundle
+    - id: '2026_05'
+      url: https://docs.snowflake.com/en/release-notes/bcr-bundles/2026_05_bundle
+      status: Enabled by default
+      introduced: Release 10.21 (June 12-18, 2026)
+      enabled_by_default: Release 10.26 (July 24-31, 2026)
+    - id: '2026_06'
+      url: https://docs.snowflake.com/en/release-notes/bcr-bundles/2026_06_bundle
+      status: Disabled by default
+    - id: '2026_07'
+      url: https://docs.snowflake.com/en/release-notes/bcr-bundles/2026_07_bundle
+
+sunset_headers:
+  rfc8594: false
+  deprecation_header: false
+  sunset_header: false
+  note: >-
+    No Deprecation or Sunset response header is declared anywhere in the 47 harvested specs, and
+    none is documented. Deprecation is signalled at design time (the OpenAPI `deprecated` flag
+    and the BCR bundle notes), never at runtime. A client calling a deprecated operation gets no
+    machine-readable warning in the response.
+
+deprecated_operations:
+  count: 18
+  source: '`deprecated: true` in openapi/*.yml'
+  operations:
+    - operationId: stopAllServicesInComputePoolDeprecated
+      spec: openapi/snowflake-compute-pool-api-openapi.yml
+    - operationId: createDatabaseFromShareDeprecated
+      spec: openapi/snowflake-database-api-openapi.yml
+    - operationId: grantPrivilege
+      spec: openapi/snowflake-grant-api-openapi.yml
+    - operationId: grantGroupPrivilege
+      spec: openapi/snowflake-grant-api-openapi.yml
+    - operationId: revokePrivilege
+      spec: openapi/snowflake-grant-api-openapi.yml
+    - operationId: revokePrivilegeGrantOption
+      spec: openapi/snowflake-grant-api-openapi.yml
+    - operationId: revokeGroupPrivilege
+      spec: openapi/snowflake-grant-api-openapi.yml
+    - operationId: revokeGroupPrivilegeGrantOption
+      spec: openapi/snowflake-grant-api-openapi.yml
+    - operationId: listGrantsTo
+      spec: openapi/snowflake-grant-api-openapi.yml
+    - operationId: createTableAsSelectDeprecated
+      spec: openapi/snowflake-table-api-openapi.yml
+    - operationId: createTableUsingTemplateDeprecated
+      spec: openapi/snowflake-table-api-openapi.yml
+    - operationId: createTableLikeDeprecated
+      spec: openapi/snowflake-table-api-openapi.yml
+    - operationId: suspendReclusterTableDeprecated
+      spec: openapi/snowflake-table-api-openapi.yml
+      replacement: suspendReclusterTable
+      replacement_note: Path changed from :suspend_recluster to :suspend-recluster.
+    - operationId: resumeReclusterTableDeprecated
+      spec: openapi/snowflake-table-api-openapi.yml
+      replacement: resumeReclusterTable
+      replacement_note: Path changed from :resume_recluster to :resume-recluster.
+    - operationId: swapWithTableDeprecated
+      spec: openapi/snowflake-table-api-openapi.yml
+    - operationId: getCurrentGraphsDeprecated
+      spec: openapi/snowflake-task-api-openapi.yml
+    - operationId: getCompleteGraphsDeprecated
+      spec: openapi/snowflake-task-api-openapi.yml
+    - operationId: useWarehouse
+      spec: openapi/snowflake-warehouse-api-openapi.yml
+  note: >-
+    The whole grant/revoke family on /api/v2/grants/... is flagged deprecated — seven of the 18
+    — in favour of the database-role scoped grant operations. That is the largest single
+    deprecation surface in the corpus and the one most likely to break an existing integration.
+  gap: >-
+    None of the 18 carries a sunset date, a replacement pointer in the spec, or an x-sunset
+    extension. The replacements noted above were inferred from matching path pairs in the same
+    spec, not from a published mapping.
+
+deprecated_fields:
+  - field: error_code
+    schema: openapi/common.yaml#/components/schemas/ErrorResponse
+    note: >-
+      Marked deprecated in the schema and "will be removed in a future release", yet still
+      present in Snowflake's own example error payload. Read `code` instead.
+
+status_page:
+  url: https://status.snowflake.com/
+  status: 200
+  checked: '2026-09-03'
+  scope: Per-cloud, per-region deployment status for the Snowflake service.
+  machine_readable: unknown
+  machine_readable_note: >-
+    The page renders; no Statuspage-style /api/v2/status.json endpoint was probed on this pass,
+    so no machine-readable feed is claimed.
+
+sla:
+  published: false
+  note: >-
+    Snowflake does not publish a public per-edition API uptime SLA on its documentation site.
+    Availability commitments sit in the customer agreement, not in the developer surface, so no
+    number is recorded here rather than a guessed one.
+
+support:
+  url: https://www.snowflake.com/en/support/
+  community: https://community.snowflake.com/

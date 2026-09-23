@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account dynamic-table API",
+    "name": "Snowflake Dynamic Table API",
     "version": "0.0.1"
   },
   "items": [
@@ -192,6 +192,47 @@
             ]
           },
           "docs": "Swap with another dynamic table"
+        },
+        {
+          "info": {
+            "name": "Set tags on a dynamic table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a dynamic table."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a dynamic table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a dynamic table."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a dynamic table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/dynamic-tables/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a dynamic table. This operation requires an active warehouse."
         }
       ]
     }

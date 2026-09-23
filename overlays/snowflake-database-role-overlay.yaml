@@ -1,0 +1,49 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Snowflake Database Role API
+  version: 1.0.0
+extends: snowflake-database-role-api-openapi.yml
+x-generated: '2026-09-03'
+x-method: generated
+x-source: 'Generated from openapi/snowflake-database-role-api-openapi.yml (13 operations, tags: database-role).
+  Captures API Evangelist derivations only; the underlying OpenAPI is not mutated.'
+actions:
+- target: $.info
+  description: Cross-link the API Evangelist artifact set derived from this contract.
+  update:
+    x-artifacts:
+      errors: ../errors/snowflake-problem-types.yml
+      conventions: ../conventions/snowflake-conventions.yml
+      lifecycle: ../lifecycle/snowflake-lifecycle.yml
+      authentication: ../authentication/snowflake-authentication.yml
+      scopes: ../scopes/snowflake-scopes.yml
+      rate-limits: ../rate-limits/snowflake-rate-limits.yml
+      conformance: ../conformance/snowflake-conformance.yml
+      data-model: ../data-model/snowflake-data-model.yml
+      packages: ../packages/snowflake-packages.yml
+      mcp: ../mcp/snowflake-mcp.yml
+      skills: ../skills/_index.yml
+    x-provider: snowflake
+- target: $
+  description: Record the runtime semantics that are shared across every Snowflake REST contract but stated
+    in none of them.
+  update:
+    x-runtime-semantics:
+      error-envelope: application/json { message, code, error_code (deprecated), request_id } — not RFC
+        9457
+      request-id-header: X-Snowflake-Request-ID (uuid) on every response
+      pagination: showLimit / fromName query parameters plus an RFC 8288 Link header; the body is a bare
+        array with no paging envelope
+      idempotency: declarative via createMode (errorIfExists|ifNotExists|orReplace) and ifExists — there
+        is no Idempotency-Key header
+      auth-type-header: X-Snowflake-Authorization-Token-Type must accompany Authorization and name the
+        credential kind
+      rate-limit-signalling: 429 with no Retry-After and no RateLimit-* headers; client-side jittered
+        backoff from ~2s
+      dry-run: not supported anywhere in the Snowflake REST API
+- target: $.info
+  description: 'Record the rate-limit gap: 429 is declared but no machine-readable retry signal accompanies
+    it.'
+  update:
+    x-rate-limit-gap: This document declares 429 responses but attaches no Retry-After and no RateLimit-*
+      headers, so a client has no server-supplied backoff hint. See ../rate-limits/snowflake-rate-limits.yml.

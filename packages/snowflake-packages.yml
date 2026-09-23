@@ -1,0 +1,203 @@
+generated: '2026-09-03'
+method: searched
+source: >-
+  https://docs.snowflake.com/en/developer-guide/drivers plus registry metadata endpoints
+  (registry.npmjs.org, pypi.org/pypi/<pkg>/json, repo1.maven.org maven-metadata.xml,
+  api.nuget.org, proxy.golang.org, crates.io). Versions read 2026-09-03.
+provider: Snowflake
+providerId: snowflake
+description: >-
+  First-party Snowflake drivers, connectors and SDKs, plus the community Rust crate.
+  Snowflake publishes its clients across PyPI, npm, Maven Central, NuGet and the Go module
+  proxy, and mirrors installers on the Snowflake Client Repository. Every entry below carries
+  the latest published version and its release date read from the registry metadata endpoint.
+docs:
+  - https://docs.snowflake.com/en/developer-guide/drivers
+  - https://docs.snowflake.com/en/user-guide/snowflake-client-repository
+  - https://docs.snowflake.com/en/release-notes/clients-drivers/monthly-releases
+packages:
+  - name: snowflake-connector-python
+    language: python
+    registry: pypi
+    url: https://pypi.org/project/snowflake-connector-python/
+    repository: https://github.com/snowflakedb/snowflake-connector-python
+    official: true
+    version: 4.7.2
+    published: '2026-08-07'
+    note: Native Python driver (DB API 2.0); does not depend on ODBC or JDBC.
+  - name: snowflake-snowpark-python
+    language: python
+    registry: pypi
+    url: https://pypi.org/project/snowflake-snowpark-python/
+    repository: https://github.com/snowflakedb/snowpark-python
+    official: true
+    version: 1.54.0
+    published: '2026-07-29'
+    note: Snowpark DataFrame API and UDF/stored-procedure authoring for Python.
+  - name: snowflake-ml-python
+    language: python
+    registry: pypi
+    url: https://pypi.org/project/snowflake-ml-python/
+    repository: https://github.com/snowflakedb/snowflake-ml-python
+    official: true
+    version: 1.54.0
+    published: '2026-09-01'
+    note: Snowflake ML — feature store, model registry, ML jobs.
+  - name: snowflake-cli
+    language: python
+    registry: pypi
+    url: https://pypi.org/project/snowflake-cli/
+    repository: https://github.com/snowflakedb/snowflake-cli
+    official: true
+    version: 3.26.0
+    published: '2026-08-31'
+    note: Distribution for the `snow` CLI. See cli/snowflake-cli.yml.
+  - name: snowflake
+    language: python
+    registry: pypi
+    url: https://pypi.org/project/snowflake/
+    official: true
+    version: 1.13.1
+    published: '2026-08-12'
+    note: >-
+      Umbrella package for the Snowflake Python API; wraps snowflake-core, the typed client
+      over the /api/v2 REST surface captured in openapi/.
+  - name: snowflake-core
+    language: python
+    registry: pypi
+    url: https://pypi.org/project/snowflake-core/
+    official: true
+    version: 1.13.1
+    published: '2026-08-12'
+    note: Python bindings generated against the Snowflake REST API (/api/v2 resources).
+  - name: snowflake-sqlalchemy
+    language: python
+    registry: pypi
+    url: https://pypi.org/project/snowflake-sqlalchemy/
+    repository: https://github.com/snowflakedb/snowflake-sqlalchemy
+    official: true
+    version: 1.11.0
+    published: '2026-07-08'
+    note: SQLAlchemy dialect for Snowflake.
+  - name: snowflake-ingest
+    language: python
+    registry: pypi
+    url: https://pypi.org/project/snowflake-ingest/
+    repository: https://github.com/snowflakedb/snowflake-ingest-python
+    official: true
+    version: 1.0.13
+    published: '2026-06-18'
+    note: Python SDK for the Snowpipe REST ingest API.
+  - name: snowflake-labs-mcp
+    language: python
+    registry: pypi
+    url: https://pypi.org/project/snowflake-labs-mcp/
+    repository: https://github.com/Snowflake-Labs/mcp
+    official: true
+    version: 1.4.2
+    published: '2026-05-15'
+    status: deprecated
+    note: >-
+      Snowflake-Labs local stdio MCP server. The repository README states the project is
+      deprecated and no longer maintained, directing users to the Snowflake-managed MCP
+      server (see mcp/snowflake-mcp.yml). Last release 2026-05-15, roughly four months
+      behind the platform releases it wraps.
+  - name: snowflake-sdk
+    language: javascript
+    registry: npm
+    url: https://www.npmjs.com/package/snowflake-sdk
+    repository: https://github.com/snowflakedb/snowflake-connector-nodejs
+    official: true
+    version: 3.3.0
+    published: '2026-09-03'
+    note: Pure-JavaScript asynchronous Node.js driver.
+  - name: net.snowflake:snowflake-jdbc
+    language: java
+    registry: maven
+    url: https://central.sonatype.com/artifact/net.snowflake/snowflake-jdbc
+    repository: https://github.com/snowflakedb/snowflake-jdbc
+    official: true
+    version: 4.3.4
+    published: '2026-09-03'
+    note: JDBC driver (Type 4) for JVM clients and BI tools.
+  - name: com.snowflake:snowpark
+    language: java
+    registry: maven
+    url: https://central.sonatype.com/artifact/com.snowflake/snowpark
+    repository: https://github.com/snowflakedb/snowpark-java-scala
+    official: true
+    version: 1.16.2
+    published: '2026-04-09'
+    note: Snowpark client for Java and Scala.
+  - name: net.snowflake:snowflake-ingest-sdk
+    language: java
+    registry: maven
+    url: https://central.sonatype.com/artifact/net.snowflake/snowflake-ingest-sdk
+    repository: https://github.com/snowflakedb/snowflake-ingest-java
+    official: true
+    version: 4.4.5
+    published: '2026-08-31'
+    note: Snowpipe / Snowpipe Streaming ingest SDK for the JVM.
+  - name: net.snowflake:spark-snowflake_2.12
+    language: scala
+    registry: maven
+    url: https://central.sonatype.com/artifact/net.snowflake/spark-snowflake_2.12
+    repository: https://github.com/snowflakedb/spark-snowflake
+    official: true
+    version: 3.1.3
+    published: '2025-06-18'
+    note: >-
+      Snowflake Connector for Spark (Scala 2.12 build). Latest Scala 2.12 artifact is from
+      2025-06-18; newer Scala builds are published under separate artifactIds.
+  - name: com.snowflake:snowflake-kafka-connector
+    language: java
+    registry: maven
+    url: https://central.sonatype.com/artifact/com.snowflake/snowflake-kafka-connector
+    repository: https://github.com/snowflakedb/snowflake-kafka-connector
+    official: true
+    version: 3.2.2
+    published: '2025-06-26'
+    note: >-
+      Kafka Connect sink connector. Maven Central metadata last updated 2025-06-26; Snowflake
+      also ships releases directly on the GitHub releases page, so the Maven artifact may lag
+      the announced connector version.
+  - name: Snowflake.Data
+    language: dotnet
+    registry: nuget
+    url: https://www.nuget.org/packages/Snowflake.Data
+    repository: https://github.com/snowflakedb/snowflake-connector-net
+    official: true
+    version: 6.0.0
+    published: null
+    note: >-
+      .NET driver. Latest version read from the NuGet flat-container index; the publish date
+      was not returned by the registration endpoint on this pass (gzip-encoded response),
+      so `published` is null rather than guessed.
+  - name: github.com/snowflakedb/gosnowflake
+    language: go
+    registry: gomod
+    url: https://pkg.go.dev/github.com/snowflakedb/gosnowflake
+    repository: https://github.com/snowflakedb/gosnowflake
+    official: true
+    version: v1.19.1
+    published: '2026-04-08'
+    note: Go driver implementing database/sql.
+  - name: snowflake-api
+    language: rust
+    registry: crates
+    url: https://crates.io/crates/snowflake-api
+    official: false
+    version: 0.14.0
+    published: '2025-10-23'
+    note: >-
+      Community Rust client for the Snowflake SQL API. Snowflake publishes no first-party
+      Rust crate; listed as third-party and marked official:false.
+summary:
+  total: 18
+  official: 17
+  third_party: 1
+  registries: [pypi, npm, maven, nuget, gomod, crates]
+  currency_note: >-
+    Sixteen of the eighteen packages have shipped a release in 2026. The two stalest
+    first-party artifacts are the Spark connector (2025-06-18) and the Kafka connector
+    Maven artifact (2025-06-26); the deprecated snowflake-labs-mcp last shipped 2026-05-15.

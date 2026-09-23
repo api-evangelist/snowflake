@@ -14,14 +14,15 @@ security:
 - KeyPair: []
 - ExternalOAuth: []
 - SnowflakeOAuth: []
+- ProgrammaticAccessToken: []
 tags:
-- name: table
+- name: Table
 paths:
   /api/v2/databases/{database}/schemas/{schema}/tables:
     get:
-      summary: List Tables
+      summary: List tables
       tags:
-      - table
+      - Table
       description: Lists the tables under the database and schema.
       operationId: listTables
       parameters:
@@ -37,14 +38,12 @@ paths:
         required: false
         schema:
           type: boolean
-        example: true
       - name: deep
         description: Optionally includes dependency information of the table.
         in: query
         required: false
         schema:
           type: boolean
-        example: true
       responses:
         '200':
           description: successful
@@ -59,39 +58,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Table'
-              examples:
-                Listtables200Example:
-                  summary: Default listTables 200 response
-                  x-microcks-default: true
-                  value:
-                  - name: Example Title
-                    kind: PERMANENT
-                    cluster_by:
-                    - example_value
-                    enable_schema_evolution: true
-                    change_tracking: true
-                    data_retention_time_in_days: 10
-                    max_data_extension_time_in_days: 10
-                    default_ddl_collation: example_value
-                    columns:
-                    - {}
-                    constraints:
-                    - {}
-                    comment: example_value
-                    created_on: '2026-01-15T10:30:00Z'
-                    database_name: example_value
-                    schema_name: example_value
-                    rows: 10
-                    bytes: 10
-                    owner: example_value
-                    dropped_on: '2026-01-15T10:30:00Z'
-                    automatic_clustering: true
-                    search_optimization: true
-                    search_optimization_progress: 10
-                    search_optimization_bytes: 10
-                    owner_role_type: example_value
-                    budget: example_value
-                    table_type: NORMAL
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -118,13 +84,10 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     post:
-      summary: Create a Table (clone and Undrop Are Separate Subresources)
+      summary: Create a table (clone and undrop are separate subresources)
       tags:
-      - table
+      - Table
       description: Create a table.
       operationId: createTable
       parameters:
@@ -138,49 +101,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Table'
-            examples:
-              CreatetableRequestExample:
-                summary: Default createTable request
-                x-microcks-default: true
-                value:
-                  name: Example Title
-                  kind: PERMANENT
-                  cluster_by:
-                  - example_value
-                  enable_schema_evolution: true
-                  change_tracking: true
-                  data_retention_time_in_days: 10
-                  max_data_extension_time_in_days: 10
-                  default_ddl_collation: example_value
-                  columns:
-                  - name: Example Title
-                    datatype: example_value
-                    collate: example_value
-                    default: example_value
-                    autoincrement: true
-                    autoincrement_start: 10
-                    autoincrement_increment: 10
-                    constraints: {}
-                    comment: example_value
-                  constraints:
-                  - name: Example Title
-                    column_names: {}
-                    constraint_type: example_value
-                  comment: example_value
-                  created_on: '2026-01-15T10:30:00Z'
-                  database_name: example_value
-                  schema_name: example_value
-                  rows: 10
-                  bytes: 10
-                  owner: example_value
-                  dropped_on: '2026-01-15T10:30:00Z'
-                  automatic_clustering: true
-                  search_optimization: true
-                  search_optimization_progress: 10
-                  search_optimization_bytes: 10
-                  owner_role_type: example_value
-                  budget: example_value
-                  table_type: NORMAL
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -210,15 +130,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:as_select:
     post:
       deprecated: true
-      summary: Create a Table Using the Result of the Specified Select Query
+      summary: Create a table using the result of the specified select query
       tags:
-      - table
+      - Table
       description: Create a table as select.
       operationId: createTableAsSelectDeprecated
       parameters:
@@ -233,56 +150,12 @@ paths:
         description: The SQL select query to run to set up the table values (and possibly columns).
         schema:
           type: string
-        example: example_value
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Table'
-            examples:
-              CreatetableasselectdeprecatedRequestExample:
-                summary: Default createTableAsSelectDeprecated request
-                x-microcks-default: true
-                value:
-                  name: Example Title
-                  kind: PERMANENT
-                  cluster_by:
-                  - example_value
-                  enable_schema_evolution: true
-                  change_tracking: true
-                  data_retention_time_in_days: 10
-                  max_data_extension_time_in_days: 10
-                  default_ddl_collation: example_value
-                  columns:
-                  - name: Example Title
-                    datatype: example_value
-                    collate: example_value
-                    default: example_value
-                    autoincrement: true
-                    autoincrement_start: 10
-                    autoincrement_increment: 10
-                    constraints: {}
-                    comment: example_value
-                  constraints:
-                  - name: Example Title
-                    column_names: {}
-                    constraint_type: example_value
-                  comment: example_value
-                  created_on: '2026-01-15T10:30:00Z'
-                  database_name: example_value
-                  schema_name: example_value
-                  rows: 10
-                  bytes: 10
-                  owner: example_value
-                  dropped_on: '2026-01-15T10:30:00Z'
-                  automatic_clustering: true
-                  search_optimization: true
-                  search_optimization_progress: 10
-                  search_optimization_bytes: 10
-                  owner_role_type: example_value
-                  budget: example_value
-                  table_type: NORMAL
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -312,14 +185,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables:as-select:
     post:
-      summary: Create a Table Using the Result of the Specified Select Query
+      summary: Create a table using the result of the specified select query
       tags:
-      - table
+      - Table
       description: Create a table as select.
       operationId: createTableAsSelect
       parameters:
@@ -333,31 +203,12 @@ paths:
         description: The SQL select query to run to set up the table values (and possibly columns).
         schema:
           type: string
-        example: example_value
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/TableAsSelect'
-            examples:
-              CreatetableasselectRequestExample:
-                summary: Default createTableAsSelect request
-                x-microcks-default: true
-                value:
-                  name: Example Title
-                  columns:
-                  - name: Example Title
-                    datatype: example_value
-                    collate: example_value
-                    default: example_value
-                    autoincrement: true
-                    autoincrement_start: 10
-                    autoincrement_increment: 10
-                    constraints: {}
-                    comment: example_value
-                  cluster_by:
-                  - example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -387,15 +238,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:using_template:
     post:
       deprecated: true
-      summary: Create a Table Using the Templates Specified in Staged Files
+      summary: Create a table using the templates specified in staged files
       tags:
-      - table
+      - Table
       description: Create a table using template.
       operationId: createTableUsingTemplateDeprecated
       parameters:
@@ -410,7 +258,6 @@ paths:
         required: true
         schema:
           type: string
-        example: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -440,14 +287,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables:using-template:
     post:
-      summary: Create a Table Using the Templates Specified in Staged Files
+      summary: Create a table using the templates specified in staged files
       tags:
-      - table
+      - Table
       description: Create a table using template.
       operationId: createTableUsingTemplate
       parameters:
@@ -461,19 +305,12 @@ paths:
         required: true
         schema:
           type: string
-        example: example_value
       requestBody:
         required: false
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/TableUsingTemplate'
-            examples:
-              CreatetableusingtemplateRequestExample:
-                summary: Default createTableUsingTemplate request
-                x-microcks-default: true
-                value:
-                  name: Example Title
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -503,14 +340,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:
     get:
-      summary: Fetch a Table.
+      summary: Fetch a table
       tags:
-      - table
+      - Table
       description: Fetch a Table using the describe command output.
       operationId: fetchTable
       parameters:
@@ -529,49 +363,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Table'
-              examples:
-                Fetchtable200Example:
-                  summary: Default fetchTable 200 response
-                  x-microcks-default: true
-                  value:
-                    name: Example Title
-                    kind: PERMANENT
-                    cluster_by:
-                    - example_value
-                    enable_schema_evolution: true
-                    change_tracking: true
-                    data_retention_time_in_days: 10
-                    max_data_extension_time_in_days: 10
-                    default_ddl_collation: example_value
-                    columns:
-                    - name: Example Title
-                      datatype: example_value
-                      collate: example_value
-                      default: example_value
-                      autoincrement: true
-                      autoincrement_start: 10
-                      autoincrement_increment: 10
-                      constraints: {}
-                      comment: example_value
-                    constraints:
-                    - name: Example Title
-                      column_names: {}
-                      constraint_type: example_value
-                    comment: example_value
-                    created_on: '2026-01-15T10:30:00Z'
-                    database_name: example_value
-                    schema_name: example_value
-                    rows: 10
-                    bytes: 10
-                    owner: example_value
-                    dropped_on: '2026-01-15T10:30:00Z'
-                    automatic_clustering: true
-                    search_optimization: true
-                    search_optimization_progress: 10
-                    search_optimization_bytes: 10
-                    owner_role_type: example_value
-                    budget: example_value
-                    table_type: NORMAL
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -598,13 +389,10 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     put:
-      summary: Create a (or Alter an Existing) Table.
+      summary: Create a (or alter an existing) table
       tags:
-      - table
+      - Table
       description: Create a (or alter an existing) table. Even if the operation is just an alter, the full property set must be provided.
       operationId: createOrAlterTable
       parameters:
@@ -617,49 +405,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Table'
-            examples:
-              CreateoraltertableRequestExample:
-                summary: Default createOrAlterTable request
-                x-microcks-default: true
-                value:
-                  name: Example Title
-                  kind: PERMANENT
-                  cluster_by:
-                  - example_value
-                  enable_schema_evolution: true
-                  change_tracking: true
-                  data_retention_time_in_days: 10
-                  max_data_extension_time_in_days: 10
-                  default_ddl_collation: example_value
-                  columns:
-                  - name: Example Title
-                    datatype: example_value
-                    collate: example_value
-                    default: example_value
-                    autoincrement: true
-                    autoincrement_start: 10
-                    autoincrement_increment: 10
-                    constraints: {}
-                    comment: example_value
-                  constraints:
-                  - name: Example Title
-                    column_names: {}
-                    constraint_type: example_value
-                  comment: example_value
-                  created_on: '2026-01-15T10:30:00Z'
-                  database_name: example_value
-                  schema_name: example_value
-                  rows: 10
-                  bytes: 10
-                  owner: example_value
-                  dropped_on: '2026-01-15T10:30:00Z'
-                  automatic_clustering: true
-                  search_optimization: true
-                  search_optimization_progress: 10
-                  search_optimization_bytes: 10
-                  owner_role_type: example_value
-                  budget: example_value
-                  table_type: NORMAL
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -689,18 +434,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     delete:
       parameters:
       - $ref: common.yaml#/components/parameters/database
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Delete a Table
+      summary: Delete a table
       tags:
-      - table
+      - Table
       description: Delete a table with the given name.
       operationId: deleteTable
       responses:
@@ -732,14 +474,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:clone:
     post:
-      summary: Clone Table
+      summary: Clone table
       tags:
-      - table
+      - Table
       description: Create a new table by cloning from the specified resource
       operationId: cloneTable
       parameters:
@@ -753,25 +492,17 @@ paths:
         description: Database of the newly created table. Defaults to the source table's database.
         schema:
           $ref: ./common.yaml#/components/schemas/Identifier
-        example: example_value
       - name: targetSchema
         in: query
         description: Schema of the newly created table. Defaults to the source table's schema.
         schema:
           $ref: ./common.yaml#/components/schemas/Identifier
-        example: example_value
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/TableClone'
-            examples:
-              ClonetableRequestExample:
-                summary: Default cloneTable request
-                x-microcks-default: true
-                value:
-                  point_of_time: {}
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -801,15 +532,12 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:create_like:
     post:
       deprecated: true
-      summary: Create a Table Like This Existing One
+      summary: Create a table like this existing one
       tags:
-      - table
+      - Table
       description: Create a new table like the specified resource, but empty
       operationId: createTableLikeDeprecated
       parameters:
@@ -824,7 +552,6 @@ paths:
         required: true
         schema:
           type: string
-        example: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -854,14 +581,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:create-like:
     post:
-      summary: Create a Table Like This Existing One
+      summary: Create a table like this existing one
       tags:
-      - table
+      - Table
       description: Create a new table like the specified resource, but empty
       operationId: createTableLike
       parameters:
@@ -876,12 +600,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TableLike'
-            examples:
-              CreatetablelikeRequestExample:
-                summary: Default createTableLike request
-                x-microcks-default: true
-                value:
-                  name: Example Title
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -911,18 +629,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:undrop:
     post:
       parameters:
       - $ref: common.yaml#/components/parameters/database
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
-      summary: Undrop a Table
+      summary: Undrop a table
       tags:
-      - table
+      - Table
       description: Undrop specified table
       operationId: undropTable
       responses:
@@ -954,9 +669,6 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:suspend_recluster:
     post:
       deprecated: true
@@ -965,10 +677,9 @@ paths:
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Suspend Recluster of a Table
+      summary: Suspend recluster of a table
       tags:
-      - table
-      description: Suspend recluster of a table
+      - Table
       operationId: suspendReclusterTableDeprecated
       responses:
         '200':
@@ -999,9 +710,6 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:suspend-recluster:
     post:
       parameters:
@@ -1009,10 +717,9 @@ paths:
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Suspend Recluster of a Table
+      summary: Suspend recluster of a table
       tags:
-      - table
-      description: Suspend recluster of a table
+      - Table
       operationId: suspendReclusterTable
       responses:
         '200':
@@ -1043,9 +750,6 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:resume_recluster:
     post:
       deprecated: true
@@ -1054,10 +758,9 @@ paths:
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Resume Recluster of a Table
+      summary: Resume recluster of a table
       tags:
-      - table
-      description: Resume recluster of a table
+      - Table
       operationId: resumeReclusterTableDeprecated
       responses:
         '200':
@@ -1088,9 +791,6 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:resume-recluster:
     post:
       parameters:
@@ -1098,10 +798,9 @@ paths:
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Resume Recluster of a Table
+      summary: Resume recluster of a table
       tags:
-      - table
-      description: Resume recluster of a table
+      - Table
       operationId: resumeReclusterTable
       responses:
         '200':
@@ -1132,9 +831,6 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:swapwith:
     post:
       deprecated: true
@@ -1149,11 +845,9 @@ paths:
         required: true
         schema:
           type: string
-        example: example_value
-      summary: Swap With Another Table
+      summary: Swap with another table
       tags:
-      - table
-      description: Swap with another table
+      - Table
       operationId: swapWithTableDeprecated
       responses:
         '200':
@@ -1184,9 +878,6 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/tables/{name}:swap-with:
     post:
       parameters:
@@ -1200,23 +891,19 @@ paths:
         required: true
         schema:
           $ref: common.yaml#/components/schemas/Identifier
-        example: example_value
       - name: targetDatabase
         in: query
         description: Database of the target table. Defaults to the source table's database.
         schema:
           $ref: common.yaml#/components/schemas/Identifier
-        example: example_value
       - name: targetSchema
         in: query
         description: Schema of the target table. Defaults to the source table's schema.
         schema:
           $ref: common.yaml#/components/schemas/Identifier
-        example: example_value
-      summary: Swap With Another Table
+      summary: Swap with another table
       tags:
-      - table
-      description: Swap with another table
+      - Table
       operationId: swapWithTable
       responses:
         '200':
@@ -1247,11 +934,179 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
+  /api/v2/databases/{database}/schemas/{schema}/tables/{name}:set-tags:
+    post:
+      summary: Set tags on a table
+      tags:
+      - Table
+      description: Set tags on a table.
+      operationId: setTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/database
+      - $ref: common.yaml#/components/parameters/schema
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: common.yaml#/components/schemas/TagAssignment
+  /api/v2/databases/{database}/schemas/{schema}/tables/{name}:unset-tags:
+    post:
+      summary: Unset tags from a table
+      tags:
+      - Table
+      description: Unset tags from a table.
+      operationId: unsetTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/database
+      - $ref: common.yaml#/components/parameters/schema
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: common.yaml#/components/schemas/TagReference
+  /api/v2/databases/{database}/schemas/{schema}/tables/{name}:get-tags:
+    get:
+      summary: Get the tag assignments for a table
+      tags:
+      - Table
+      description: Returns all tags assigned to a table. This operation requires an active warehouse.
+      operationId: getTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/database
+      - $ref: common.yaml#/components/parameters/schema
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/withLineage
+      responses:
+        '200':
+          description: successful
+          headers:
+            X-Snowflake-Request-ID:
+              $ref: common.yaml#/components/headers/X-Snowflake-Request-ID
+            Link:
+              $ref: common.yaml#/components/headers/Link
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: common.yaml#/components/schemas/TagAssignment
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    Constraint:
+      type: object
+      description: Constraints define integrity and consistency rules for data stored in tables.
+      properties:
+        name:
+          type: string
+          description: Name of the Constraint
+        column_names:
+          type: array
+          items:
+            type: string
+            description: Column name for the constraint
+        constraint_type:
+          type: string
+          description: Type of the constraint
+      discriminator:
+        propertyName: constraint_type
+        mapping:
+          PRIMARY KEY: PrimaryKey
+          FOREIGN KEY: ForeignKey
+          UNIQUE: UniqueKey
     TableClone:
       type: object
       description: Clone table
@@ -1260,14 +1115,44 @@ components:
       properties:
         point_of_time:
           $ref: common.yaml#/components/schemas/PointOfTime
-    TableUsingTemplate:
+    TableColumn:
       type: object
-      description: Create table using template
+      description: A column in the table
       properties:
         name:
           type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-          example: Example Title
+          description: Column name
+        datatype:
+          type: string
+          description: The data type for the column
+        nullable:
+          type: boolean
+          default: true
+          description: Specifies that the column does allow NULL values or not.
+        collate:
+          type: string
+          description: Specifies the collation to use for column operations such as string comparison
+        default:
+          type: string
+          description: Specifies whether a default value is automatically inserted in the column if a value is not explicitly specified via an INSERT or CREATE TABLE AS SELECT statement
+        autoincrement:
+          type: boolean
+        autoincrement_start:
+          type: integer
+          description: The default value for the column starts with the specified number
+        autoincrement_increment:
+          type: integer
+          description: Each successive value for the column automatically increments by the specified amount
+        constraints:
+          type: array
+          items:
+            $ref: '#/components/schemas/Constraint'
+        comment:
+          type: string
+          description: Specifies a comment for the column
+      required:
+      - name
+      - datatype
     Table:
       type: object
       description: A Snowflake table
@@ -1275,7 +1160,6 @@ components:
         name:
           type: string
           description: Specifies the name for the table, must be unique for the schema in which the table is created
-          example: Example Title
         kind:
           type: string
           enum:
@@ -1294,118 +1178,95 @@ components:
           - DEPRECATED_TEMPORARY
           default: PERMANENT
           description: Table type - permanent, transient, or temporary
-          example: PERMANENT
         cluster_by:
           type: array
           description: Specifies one or more columns or column expressions in the table as the clustering key
           items:
             type: string
-          example: []
         enable_schema_evolution:
           type: boolean
           description: Table has schema evolution enabled or disabled
-          example: true
         change_tracking:
           type: boolean
           description: Change tracking is enabled or disabled
-          example: true
         data_retention_time_in_days:
           type: integer
           description: Specifies the retention period for the table so that Time Travel actions SELECT, CLONE, UNDROP can be performed on historical data in the table
-          example: 10
         max_data_extension_time_in_days:
           type: integer
           description: Specifies the retention period for the table so that Time Travel actions SELECT, CLONE, UNDROP can be performed on historical data in the table
-          example: 10
         default_ddl_collation:
           type: string
           description: Specifies a default collation specification for the columns in the table, including columns added to the table in the future
-          example: example_value
         columns:
           type: array
           items:
             $ref: '#/components/schemas/TableColumn'
-          example: []
         constraints:
           type: array
           items:
             $ref: '#/components/schemas/Constraint'
-          example: []
         comment:
           type: string
           description: Comment for the table
-          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the table was created.
-          example: '2026-01-15T10:30:00Z'
         database_name:
           type: string
           readOnly: true
           description: Database in which the table is stored
-          example: example_value
         schema_name:
           type: string
           readOnly: true
           description: Schema in which the table is stored
-          example: example_value
         rows:
           type: integer
           format: int64
           readOnly: true
           description: Number of rows in the table. Returns NULL for external tables.
-          example: 10
         bytes:
           type: integer
           format: int64
           readOnly: true
           description: Number of bytes that will be scanned if the entire table is scanned in a query. Note that this number may be different than the number of actual physical bytes stored on-disk for the table
-          example: 10
         owner:
           type: string
           readOnly: true
           description: Role that owns the table
-          example: example_value
         dropped_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the table was dropped
-          example: '2026-01-15T10:30:00Z'
         automatic_clustering:
           type: boolean
           readOnly: true
           description: If Automatic Clustering is enabled for your account, specifies whether it is explicitly enabled or disabled for the table.
-          example: true
         search_optimization:
           type: boolean
           readOnly: true
           description: If ON, the table has the search optimization service enabled
-          example: true
         search_optimization_progress:
           type: integer
           format: int64
           readOnly: true
           description: Percentage of the table that has been optimized for search.
-          example: 10
         search_optimization_bytes:
           type: integer
           format: int64
           readOnly: true
           description: Number of additional bytes of storage that the search optimization service consumes for this table
-          example: 10
         owner_role_type:
           type: string
           readOnly: true
           description: The type of role that owns the object.
-          example: example_value
         budget:
           type: string
           readOnly: true
           description: Name of the budget if the object is monitored by a budget
-          example: example_value
         table_type:
           type: string
           enum:
@@ -1418,100 +1279,8 @@ components:
           - IMMUTABLE
           readOnly: true
           description: Type of the table
-          example: NORMAL
       required:
       - name
-    TableAsSelect:
-      type: object
-      description: Create table as select
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-          example: Example Title
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableColumn'
-          example: []
-        cluster_by:
-          type: array
-          description: Specifies one or more columns or column expressions in the table as the clustering key
-          items:
-            type: string
-          example: []
-    Constraint:
-      type: object
-      description: Constraints define integrity and consistency rules for data stored in tables.
-      properties:
-        name:
-          type: string
-          description: Name of the Constraint
-          example: Example Title
-        column_names:
-          type: array
-          items:
-            type: string
-            description: Column name for the constraint
-          example: []
-        constraint_type:
-          type: string
-          description: Type of the constraint
-          example: example_value
-      discriminator:
-        propertyName: constraint_type
-        mapping:
-          PRIMARY KEY: PrimaryKey
-          FOREIGN KEY: ForeignKey
-          UNIQUE: UniqueKey
-    TableColumn:
-      type: object
-      description: A column in the table
-      properties:
-        name:
-          type: string
-          description: Column name
-          example: Example Title
-        datatype:
-          type: string
-          description: The data type for the column
-          example: example_value
-        nullable:
-          type: boolean
-          default: true
-          description: Specifies that the column does allow NULL values or not.
-          example: true
-        collate:
-          type: string
-          description: Specifies the collation to use for column operations such as string comparison
-          example: example_value
-        default:
-          type: string
-          description: Specifies whether a default value is automatically inserted in the column if a value is not explicitly specified via an INSERT or CREATE TABLE AS SELECT statement
-          example: example_value
-        autoincrement:
-          type: boolean
-          example: true
-        autoincrement_start:
-          type: integer
-          description: The default value for the column starts with the specified number
-          example: 10
-        autoincrement_increment:
-          type: integer
-          description: Each successive value for the column automatically increments by the specified amount
-          example: 10
-        constraints:
-          type: array
-          items:
-            $ref: '#/components/schemas/Constraint'
-          example: []
-        comment:
-          type: string
-          description: Specifies a comment for the column
-          example: example_value
-      required:
-      - name
-      - datatype
     TableLike:
       type: object
       description: Create table like an existing table
@@ -1519,7 +1288,29 @@ components:
         name:
           type: string
           description: Specifies the name for the table, must be unique for the schema in which the table is created
-          example: Example Title
+    TableUsingTemplate:
+      type: object
+      description: Create table using template
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+    TableAsSelect:
+      type: object
+      description: Create table as select
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableColumn'
+        cluster_by:
+          type: array
+          description: Specifies one or more columns or column expressions in the table as the clustering key
+          items:
+            type: string
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair
@@ -1527,3 +1318,5 @@ components:
       $ref: common.yaml#/components/securitySchemes/ExternalOAuth
     SnowflakeOAuth:
       $ref: common.yaml#/components/securitySchemes/SnowflakeOAuth
+    ProgrammaticAccessToken:
+      $ref: common.yaml#/components/securitySchemes/ProgrammaticAccessToken

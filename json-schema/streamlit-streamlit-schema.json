@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Streamlit",
+  "type": "object",
+  "description": "A Snowflake Streamlit object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Name of the Streamlit"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Optional description of the Streamlit app, used for documentation or metadata purposes"
+    },
+    "imports": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of files to be imported from a stage."
+    },
+    "external_access_integrations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of external access integrations needed in order for the Streamlit app code to access external networks."
+    },
+    "external_access_secrets": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Secrets needed for the Streamlit app code to access external networks."
+    },
+    "title": {
+      "type": "string",
+      "description": "User-facing title of the Streamlit app."
+    },
+    "main_file": {
+      "type": "string",
+      "description": "Name and path of the entry file for the Streamlit app"
+    },
+    "query_warehouse": {
+      "type": "string",
+      "description": "Warehouse used to run queries issued by the Streamlit app"
+    },
+    "default_version": {
+      "type": "string",
+      "description": "The default version name of Streamlit. Valid values are \"first\" (first version), \"last\" (latest version), or \"version$N\" (specific version, e.g., \"version$1\"). Custom names are not supported."
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the Streamlit was created."
+    },
+    "default_version_details": {
+      "$ref": "#/components/schemas/VersionDetailsStreamlit",
+      "readOnly": true
+    },
+    "last_version_details": {
+      "$ref": "#/components/schemas/VersionDetailsStreamlit",
+      "readOnly": true
+    },
+    "database_name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Database in which the Streamlit is stored"
+    },
+    "schema_name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Schema in which the Streamlit is stored"
+    },
+    "owner": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Role that owns the Streamlit"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "The type of role that owns the Streamlit"
+    },
+    "source_location": {
+      "type": "string",
+      "description": "The stage from which the source files are copied to initialize the Streamlit app."
+    },
+    "url_id": {
+      "type": "string",
+      "readOnly": true,
+      "description": "A unique ID associated with the Streamlit object's URL."
+    },
+    "default_packages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "readOnly": true,
+      "description": "Default Python packages for Streamlit apps."
+    },
+    "user_packages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "readOnly": true,
+      "description": "Python packages specified in the environment.yml file."
+    },
+    "live_version_location_uri": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The location of the Streamlit object's live version files."
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

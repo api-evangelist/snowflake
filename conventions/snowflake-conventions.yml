@@ -1,0 +1,341 @@
+generated: '2026-09-03'
+method: searched
+source: >-
+  Derived from openapi/common.yaml (shared parameters, headers and responses that all 408
+  harvested operations $ref) and searched against
+  https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api ,
+  https://docs.snowflake.com/en/developer-guide/sql-api/index ,
+  https://docs.snowflake.com/en/user-guide/data-time-travel and
+  https://docs.snowflake.com/en/release-notes/behavior-change-policy
+provider: Snowflake
+providerId: snowflake
+description: >-
+  Cross-cutting runtime semantics for the Snowflake REST API (/api/v2) and SQL API. These rules
+  are shared by every resource family because Snowflake factors them into a single common.yaml
+  that all 47 harvested specs reference.
+base_url: https://<orgname>-<account_name>.snowflakecomputing.com
+base_url_note: >-
+  Every call is per-tenant. There is no shared api.snowflake.com. Snowflake's specs use
+  `org-account.snowflakecomputing.com` as the documented placeholder; the SQL API spec declares
+  it as a templated server variable.
+
+authentication:
+  style: bearer-token
+  schemes: [KeyPair, ExternalOAuth, SnowflakeOAuth, ProgrammaticAccessToken]
+  header: Authorization
+  discriminator: X-Snowflake-Authorization-Token-Type
+  discriminator_note: >-
+    Snowflake does not infer the credential type from the token. The
+    X-Snowflake-Authorization-Token-Type request header (declared in common.yaml as
+    `x-snowflake-authorization-token-type`) tells the server whether the bearer value is a
+    key-pair JWT, an OAuth access token or a programmatic access token. Omitting it is a common
+    401 cause.
+  authorization_model: >-
+    Authorization is Snowflake RBAC on the underlying objects, not API scopes. The only OAuth
+    scope form is `session:role:<ROLE>`, which selects which role the session runs as — it does
+    not enumerate permissions.
+  detail: authentication/snowflake-authentication.yml
+  scopes: scopes/snowflake-scopes.yml
+
+idempotency:
+  supported: true
+  mechanism: declarative-query-parameter
+  replay_key: false
+  note: >-
+    Snowflake does NOT implement a replay-key header (there is no Idempotency-Key). It
+    implements idempotency declaratively: the caller states, in the request itself, what should
+    happen if the target already exists or does not exist. Every create and delete in the REST
+    API carries one of these parameters, so a retried call converges on the same state rather
+    than erroring — but a retry after a lost response is NOT deduplicated, it is simply
+    re-evaluated against current state.
+  parameters:
+    - name: createMode
+      in: query
+      applies_to: create operations
+      values:
+        - value: errorIfExists
+          default: true
+          effect: 409 Conflict if the object already exists.
+        - value: ifNotExists
+          effect: Succeeds without acting if the object already exists. This is the idempotent create.
+        - value: orReplace
+          effect: Replaces the existing object. Idempotent in outcome, destructive in effect.
+      source: openapi/common.yaml#/components/parameters/createMode
+    - name: ifExists
+      in: query
+      applies_to: delete and alter operations
+      values:
+        - value: 'true'
+          effect: Returns 200 without acting when the object does not exist. This is the idempotent delete.
+        - value: 'false'
+          default: true
+          effect: Errors when the object does not exist.
+      source: openapi/common.yaml#/components/parameters/ifExists
+    - name: mode
+      in: query
+      applies_to: selected alter operations
+      source: openapi/common.yaml#/components/parameters/mode
+  retention: not-applicable
+  retention_note: >-
+    Because there is no replay key, there is no dedupe window to state. A client that loses a
+    response and retries a `createMode=errorIfExists` call will get 409, not a replayed 201.
+
+pagination:
+  style: cursor-by-name plus RFC 8288 Link header
+  request_parameters:
+    - name: showLimit
+      description: Max rows returned. Integer, minimum 1, maximum 10000.
+    - name: fromName
+      description: >-
+        Fetch rows following the first row whose object name matches this string.
+        Case-sensitive; does not have to be the full name. This is the cursor.
+    - name: like
+      description: Case-insensitive filter on resource name, supports SQL wildcards.
+    - name: startsWith
+      description: Case-sensitive prefix filter on object name.
+    - name: pattern
+      description: Pattern filter, on the operations that declare it.
+  response:
+    header: Link
+    header_description: >-
+      RFC 8288 Link header carrying rel="first", rel="next", rel="prev" and rel="last" URLs.
+      Example from the contract:
+      </api/v2/results/01b66701-0000-001c-0000-0030000b91521?page=0>; rel="first",
+      </api/v2/results/...?page=1>; rel="next", </api/v2/results/...?page=9>; rel="last"
+    envelope: none
+    envelope_note: >-
+      List operations return a bare JSON array, not a wrapper object. There is no `next_cursor`,
+      `has_more` or `total` in the body — paging state lives entirely in the Link header. A
+      client that reads only the body cannot page.
+  source: openapi/common.yaml#/components/parameters and #/components/headers/Link
+
+async_execution:
+  supported: true
+  parameter: asyncExec
+  parameter_default: false
+  accepted_status: 202
+  accepted_body: openapi/common.yaml#/components/schemas/SuccessAcceptedResponse
+  fields:
+    - resultHandler: Opaque result ID used to poll for completion.
+    - code: Message code, e.g. '392604'.
+    - message: Human-readable progress message.
+  headers:
+    - Location: URL to poll for the result.
+  polling_operation: fetchResult (GET /api/v2/results/{result_handler})
+  note: >-
+    Long-running work is not modelled as a job resource; it is a 202 plus an opaque handle. The
+    same shape covers the SQL API, where submitStatement returns a statementHandle polled with
+    getStatementStatus.
+
+request_tracing:
+  header: X-Snowflake-Request-ID
+  format: uuid
+  direction: response
+  echoed_in_body: request_id (inside the ErrorResponse envelope)
+  note: >-
+    Present on every declared response, success and error, and duplicated into the error body.
+    This is the single correlation handle for support. There is no client-supplied
+    correlation/trace header in the contract.
+
+versioning:
+  api_version: v2
+  scheme: path-segment (/api/v2/...)
+  platform_versioning: >-
+    The platform itself versions weekly on a MAJOR.MINOR line (10.31 covered Aug 29 – Sep 2,
+    2026). Platform releases and the /api/v2 path version are independent: the path has not
+    moved while the platform advanced through 31 releases in 2026.
+  breaking_change_process: behavior-change-bundle
+  breaking_change_note: >-
+    Breaking changes ship in dated Behavior Change (BCR) bundles, not in the API version. A
+    bundle is released roughly monthly, spends a four-week testing period disabled by default,
+    then a four-week opt-out period enabled by default, then becomes generally enabled and can
+    no longer be turned off — at least eight weeks end to end. Accounts can toggle a bundle with
+    SYSTEM$ENABLE_BEHAVIOR_CHANGE_BUNDLE / SYSTEM$DISABLE_BEHAVIOR_CHANGE_BUNDLE and inspect it
+    with SYSTEM$BEHAVIOR_CHANGE_BUNDLE_STATUS.
+  docs: https://docs.snowflake.com/en/release-notes/behavior-change-policy
+  detail: lifecycle/snowflake-lifecycle.yml
+
+error_envelope:
+  media_type: application/json
+  shape: '{ message, code, error_code (deprecated), request_id }'
+  rfc9457: false
+  detail: errors/snowflake-problem-types.yml
+
+rate_limit_signaling:
+  status: 429
+  headers: none
+  retry_after: false
+  note: >-
+    The contract declares 429 on 396 of 408 operations but attaches only X-Snowflake-Request-ID
+    to it. No RateLimit-*, no X-RateLimit-*, no Retry-After. Snowflake's guidance is client-side
+    jittered backoff starting around 2 seconds and doubling.
+  detail: rate-limits/snowflake-rate-limits.yml
+
+field_expansion:
+  supported: false
+  note: >-
+    No `expand`, `fields` or sparse-fieldset parameter anywhere in the corpus. Related objects
+    are fetched with a second call.
+
+metadata:
+  supported: partial
+  mechanism: >-
+    Most object schemas carry a free-text `comment` field, and Snowflake object tagging (the
+    `tag` resource family, /api/v2/databases/{db}/schemas/{schema}/tags) provides governed
+    key/value metadata. There is no generic `metadata` map on request bodies in the REST style
+    of a payments API.
+
+dry_run_mode:
+  supported: false
+  note: >-
+    No dry-run, preview or validate-only parameter exists in the corpus. The nearest rehearsal
+    surface is Spark Connect's analyzePlan (POST /api/v2/spark-connect/analyze-plan), which
+    analyses a plan without executing it, but that is specific to Spark Connect and is not a
+    general dry-run facility. An agent cannot rehearse a DDL call before making it.
+
+reversibility:
+  grade: verified
+  grade_basis: >-
+    Reversal operations exist as first-class REST operations AND Snowflake publishes the window
+    inside which they work (Time Travel retention), so this scores `verified` rather than
+    `documented`.
+  read_only: false
+  window_source: https://docs.snowflake.com/en/user-guide/data-time-travel
+  window:
+    parameter: DATA_RETENTION_TIME_IN_DAYS
+    default: 1 day (24 hours), automatically enabled for all accounts
+    standard_edition_max: 1 day (settable to 0 or back to the default of 1)
+    enterprise_edition_and_above_max: 90 days for permanent databases, schemas and tables
+    note: >-
+      The window is per-object and account-configurable. An agent MUST NOT assume 90 days:
+      the default is 1 day, and Standard Edition cannot exceed it. Transient and temporary
+      objects have a maximum of 1 day regardless of edition.
+  surfaces:
+    - write: DROP a database
+      reversal: undropDatabase
+      method: POST
+      path: /api/v2/databases/{name}:undrop
+      window: within DATA_RETENTION_TIME_IN_DAYS for the object (default 1 day, up to 90 on Enterprise+)
+      docs: https://docs.snowflake.com/en/user-guide/data-time-travel
+    - write: DROP a schema
+      reversal: undropSchema
+      method: POST
+      path: /api/v2/databases/{database}/schemas/{name}:undrop
+      window: within DATA_RETENTION_TIME_IN_DAYS for the object
+    - write: DROP a table
+      reversal: undropTable
+      method: POST
+      path: /api/v2/databases/{database}/schemas/{schema}/tables/{name}:undrop
+      window: within DATA_RETENTION_TIME_IN_DAYS for the object
+    - write: DROP an Iceberg table
+      reversal: undropIcebergTable
+      method: POST
+      path: /api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:undrop
+      window: within DATA_RETENTION_TIME_IN_DAYS for the object
+    - write: DROP a dynamic table
+      reversal: undropDynamicTable
+      method: POST
+      path: /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:undrop
+      window: within DATA_RETENTION_TIME_IN_DAYS for the object
+    - write: DROP an external volume
+      reversal: undropExternalVolume
+      method: POST
+      path: /api/v2/external-volumes/{name}:undrop
+      window: within DATA_RETENTION_TIME_IN_DAYS for the object
+    - write: DROP a tag
+      reversal: undropTag
+      method: POST
+      path: /api/v2/databases/{database}/schemas/{schema}/tags/{name}:undrop
+      window: within DATA_RETENTION_TIME_IN_DAYS for the object
+    - write: DROP a Streamlit app
+      reversal: undropStreamlit
+      method: POST
+      path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:undrop
+      window: within DATA_RETENTION_TIME_IN_DAYS for the object
+    - write: DROP an account
+      reversal: UndropAccount
+      method: POST
+      path: /api/v2/accounts/{name}:undrop
+      window: >-
+        Within the grace period set at delete time. deleteAccount takes a REQUIRED
+        gracePeriodInDays query parameter whose own description states "The minimum is 3 days
+        and the maximum is 90 days." The account is restorable until it elapses.
+      docs: openapi/snowflake-account-api-openapi.yml (gracePeriodInDays parameter description)
+    - write: Submit a SQL statement
+      reversal: cancelStatement
+      method: POST
+      path: /api/v2/statements/{statementHandle}/cancel
+      window: while the statement is still executing
+    - write: Start queries on a warehouse
+      reversal: abortAllQueriesOnWarehouse
+      method: POST
+      path: /api/v2/warehouses/{name}:abort
+      window: while queries are running
+    - write: RESUME a warehouse / task / service / compute pool / search service / dynamic table
+      reversal: suspend<Resource>
+      method: POST
+      path: '/api/v2/.../{name}:suspend'
+      window: any time; suspend and resume are mutually inverse and unbounded
+    - write: GRANT a privilege
+      reversal: revokePrivilege / revokeGrants / revokeFutureGrants
+      method: DELETE / POST
+      path: /api/v2/grants/... and /api/v2/databases/{database}/database-roles/{name}/grants:revoke
+      window: any time; grants are state, not events
+  not_reversible:
+    - operations:
+        - deleteAlert
+        - deleteEventTable
+        - deleteSecret
+        - deleteSequence
+        - deletePipe
+        - deleteStream
+        - deleteView
+        - deleteNotebook
+        - deleteTask
+        - deleteStage
+        - deleteFunction
+        - deleteProcedure
+        - deleteUserDefinedFunction
+        - deleteRole
+        - deleteDatabaseRole
+        - deleteUser
+        - deleteWarehouse
+        - deleteComputePool
+        - deleteService
+        - deleteImageRepository
+        - deleteNetworkPolicy
+        - deleteNetworkRule
+        - deletePasswordPolicy
+        - deleteAPIIntegration
+        - deleteCatalogIntegration
+        - deleteNotificationIntegration
+        - deleteManagedAccount
+        - deleteArtifactRepository
+        - deleteCortexSearchService
+      note: >-
+        These object types have no :undrop operation in the contract and no Time Travel
+        coverage. Deleting them is permanent from the API's point of view — recovery, where it
+        exists at all, is a support matter. An agent must treat these as one-way doors.
+    - operations:
+        - cortexLLMInferenceComplete
+        - embed
+        - cortexGenericOpenAIChatCompletions
+        - cortexGenericAnthropicMessages
+        - sendMessage
+        - queryCortexSearchService
+      note: >-
+        Inference and query calls consume credits. Consumption is not reversible; there is no
+        void or refund surface in the API.
+  cost_note: >-
+    Reversal restores objects, not spend. Compute consumed before a DROP is billed regardless of
+    a later UNDROP, and Time Travel storage for a dropped object continues to accrue until the
+    retention window closes.
+
+cross_references:
+  errors: errors/snowflake-problem-types.yml
+  lifecycle: lifecycle/snowflake-lifecycle.yml
+  authentication: authentication/snowflake-authentication.yml
+  scopes: scopes/snowflake-scopes.yml
+  rate_limits: rate-limits/snowflake-rate-limits.yml
+  conformance: conformance/snowflake-conformance.yml
+  data_model: data-model/snowflake-data-model.yml

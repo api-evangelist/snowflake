@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VersionDetailsStreamlit",
+  "type": "object",
+  "description": "The version details of a file-based entity",
+  "properties": {
+    "name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The last version name"
+    },
+    "alias": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The default/last version alias of a file-based entity."
+    },
+    "location_url": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The default/last version location."
+    },
+    "source_location_uri": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The default/last version source location."
+    },
+    "git_commit_hash": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The default/last version Git commit"
+    }
+  }
+}

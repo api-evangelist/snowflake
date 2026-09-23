@@ -15,16 +15,16 @@ security:
 - ExternalOAuth: []
 - SnowflakeOAuth: []
 tags:
-- name: grant
+- name: Grant
 paths:
   /api/v2/grants/{granteeType}/{granteeName}/{securableType}/{securableName}/privileges:
     post:
-      summary: Grant the Specified Privilege(s) on the Named Securable to the Named Grantee.
+      summary: Grant the Specified Privilege(s) on the Named Securable to the Named Grantee
       description: Endpoint to indicate that the privileges listed in the request body should be granted.
       operationId: grantPrivilege
       deprecated: true
       tags:
-      - grant
+      - Grant
       parameters:
       - $ref: '#/components/parameters/granteeType'
       - $ref: '#/components/parameters/granteeName'
@@ -85,12 +85,12 @@ paths:
         dispatcher: FALLBACK
   /api/v2/grants/{granteeType}/{granteeName}/{bulkGrantType}/{securableTypePlural}/{scopeType}/{scopeName}/privileges:
     post:
-      summary: Grant the Specified Privilege(s) on All/future (as Specified by Bulkgranttype) Securables of This Type in a Given Scope to the Named Grantee.
+      summary: Grant the Specified Privilege(s) on All/future (as Specified by Bulkgranttype)…
       description: Endpoint to indicate that the privileges listed in the request body should be granted to all securables of this type in the given scope.
       operationId: grantGroupPrivilege
       deprecated: true
       tags:
-      - grant
+      - Grant
       parameters:
       - $ref: '#/components/parameters/granteeType'
       - $ref: '#/components/parameters/granteeName'
@@ -153,12 +153,12 @@ paths:
         dispatcher: FALLBACK
   /api/v2/grants/{granteeType}/{granteeName}/{securableType}/{securableName}/privileges/{privilege}:
     delete:
-      summary: Revoke the Specified Privilege on the Named Securable From the Named Grantee.
+      summary: Revoke the Specified Privilege on the Named Securable From the Named Grantee
       description: Endpoint to indicate that the privilege listed in the path should be revoked.
       operationId: revokePrivilege
       deprecated: true
       tags:
-      - grant
+      - Grant
       parameters:
       - $ref: '#/components/parameters/granteeType'
       - $ref: '#/components/parameters/granteeName'
@@ -200,12 +200,12 @@ paths:
         dispatcher: FALLBACK
   /api/v2/grants/{granteeType}/{granteeName}/{securableType}/{securableName}/privileges/{privilege}/grant-option:
     delete:
-      summary: Revoke the Grant Option for the Specified Privilege on the Named Securable From the Named Grantee.
+      summary: Revoke the Grant Option for the Specified Privilege on the Named Securable From…
       description: Endpoint to indicate that the grant option for the privilege listed in the path should be revoked.
       operationId: revokePrivilegeGrantOption
       deprecated: true
       tags:
-      - grant
+      - Grant
       parameters:
       - $ref: '#/components/parameters/granteeType'
       - $ref: '#/components/parameters/granteeName'
@@ -247,12 +247,12 @@ paths:
         dispatcher: FALLBACK
   ? /api/v2/grants/{granteeType}/{granteeName}/{bulkGrantType}/{securableTypePlural}/{scopeType}/{scopeName}/privileges/{privilege}
   : delete:
-      summary: Revoke the Specified Privilege on the Specified All/future Securable in the Given Scope From the Named Grantee.
+      summary: Revoke the Specified Privilege on the Specified All/future Securable in the…
       description: Endpoint to indicate that the privilege listed on the group securable in the given scope should be revoked.
       operationId: revokeGroupPrivilege
       deprecated: true
       tags:
-      - grant
+      - Grant
       parameters:
       - $ref: '#/components/parameters/granteeType'
       - $ref: '#/components/parameters/granteeName'
@@ -296,12 +296,12 @@ paths:
         dispatcher: FALLBACK
   ? /api/v2/grants/{granteeType}/{granteeName}/{bulkGrantType}/{securableTypePlural}/{scopeType}/{scopeName}/privileges/{privilege}/grant-option
   : delete:
-      summary: Revoke the Grant Option for the Specified Privilege on the Specified All/future Securable in the Given Scope From the Named Grantee.
+      summary: Revoke the Grant Option for the Specified Privilege on the Specified All/future…
       description: Endpoint to indicate that the grant option for the privilege listed on the group securable in the given scope should be revoked.
       operationId: revokeGroupPrivilegeGrantOption
       deprecated: true
       tags:
-      - grant
+      - Grant
       parameters:
       - $ref: '#/components/parameters/granteeType'
       - $ref: '#/components/parameters/granteeName'
@@ -350,7 +350,7 @@ paths:
       operationId: listGrantsTo
       deprecated: true
       tags:
-      - grant
+      - Grant
       parameters:
       - $ref: '#/components/parameters/granteeType'
       - $ref: '#/components/parameters/granteeName'
@@ -415,14 +415,6 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
-    deleteMode:
-      name: deleteMode
-      description: If "cascade", recursively revoke the grant from sub-grantees to which this privilege was re-granted. Acceptable values are "restrict" or "cascade".
-      required: false
-      in: query
-      schema:
-        type: string
-        example: restrict
     securableTypePlural:
       name: securableTypePlural
       description: String that specifies the plural of the type of resource that is being secured by an ALL/FUTURE privilege. Must be either "schemas" or any plural object type that can nest under a schema such as "tables"
@@ -431,25 +423,6 @@ components:
       schema:
         example: tables
         type: string
-    securableType:
-      name: securableType
-      description: String that specifies the type of resource that is being secured by a privilege.
-      required: true
-      in: path
-      schema:
-        example: DATABASE
-        type: string
-    bulkGrantType:
-      name: bulkGrantType
-      description: String that species whether this group privilege should be on ALL or FUTURE resources of the specified plural type
-      required: true
-      in: path
-      schema:
-        example: all
-        type: string
-        enum:
-        - all
-        - future
     securableName:
       name: securableName
       description: String that specifies the name of resource that is being secured by a privilege.
@@ -458,13 +431,32 @@ components:
       schema:
         example: MY_DB
         type: string
-    granteeName:
-      name: granteeName
-      description: String that specifies the name of the privilege grantee.
+    deleteMode:
+      name: deleteMode
+      description: If "cascade", recursively revoke the grant from sub-grantees to which this privilege was re-granted. Acceptable values are "restrict" or "cascade".
+      required: false
+      in: query
+      schema:
+        type: string
+        example: restrict
+    scopeType:
+      name: scopeType
+      description: String that specifies the type of resource that is the scope of an ALL/FUTURE privilege. Can only be DATABASE or SCHEMA
       required: true
       in: path
       schema:
-        example: SYSADMIN
+        example: schema
+        type: string
+        enum:
+        - database
+        - schema
+    securableType:
+      name: securableType
+      description: String that specifies the type of resource that is being secured by a privilege.
+      required: true
+      in: path
+      schema:
+        example: DATABASE
         type: string
     granteeType:
       name: granteeType
@@ -480,6 +472,17 @@ components:
         - application-role
         - database-role
         - share
+    bulkGrantType:
+      name: bulkGrantType
+      description: String that species whether this group privilege should be on ALL or FUTURE resources of the specified plural type
+      required: true
+      in: path
+      schema:
+        example: all
+        type: string
+        enum:
+        - all
+        - future
     scopeName:
       name: scopeName
       description: String that specifies the name of resource that is the scope of an ALL/FUTURE privilege
@@ -488,17 +491,6 @@ components:
       schema:
         example: MY_DB.MY_SC
         type: string
-    scopeType:
-      name: scopeType
-      description: String that specifies the type of resource that is the scope of an ALL/FUTURE privilege. Can only be DATABASE or SCHEMA
-      required: true
-      in: path
-      schema:
-        example: schema
-        type: string
-        enum:
-        - database
-        - schema
     privilege:
       name: privilege
       description: String that specifies a privilege to be revoked
@@ -506,6 +498,14 @@ components:
       in: path
       schema:
         example: SELECT
+        type: string
+    granteeName:
+      name: granteeName
+      description: String that specifies the name of the privilege grantee.
+      required: true
+      in: path
+      schema:
+        example: SYSADMIN
         type: string
   schemas:
     Grant:

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AddVersionFromGitStreamlitRequest",
+  "type": "object",
+  "description": "Request body for adding a new version to a Streamlit from a Git tag or commit URI.",
+  "properties": {
+    "version": {
+      "$ref": "#/components/schemas/StreamlitVersionForGit"
+    },
+    "git_ref": {
+      "type": "string",
+      "description": "Git reference URI. Accepts either a tag URI or a commit URI."
+    }
+  },
+  "required": [
+    "version",
+    "git_ref"
+  ]
+}

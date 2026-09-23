@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account cortex-analyst API",
+    "name": "Snowflake Cortex Analyst API",
     "version": "0.0.1"
   },
   "items": [
@@ -66,6 +66,85 @@
             "url": "https://org-account.snowflakecomputing.com/api/v2/cortex/analyst/token"
           },
           "docs": "Internal endpoint to exchange a Cortex Analyst Oauth token"
+        },
+        {
+          "info": {
+            "name": "Rapidly generate a semantic model given source material",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/cortex/analyst/fast-generation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provides real-time suggestions for improving a given semantic model via a streaming response."
+        },
+        {
+          "info": {
+            "name": "Retrieve relevant table information from input data for semantic model generation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/cortex/analyst/pre-selection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve relevant table information from input data for semantic model generation"
+        },
+        {
+          "info": {
+            "name": "Generate filters, facts, and metrics suggestions for a semantic model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/cortex/analyst/filters-and-metrics-suggestions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate suggestions for filters, facts, and metrics on a semantic view/model."
+        },
+        {
+          "info": {
+            "name": "List all agentic optimization runs for a given base model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/cortex/analyst/agentic-optimizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all agentic optimization runs for a given base model"
+        },
+        {
+          "info": {
+            "name": "Get the status and state of a specified agentic optimization run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/cortex/analyst/agentic-optimization",
+            "params": [
+              {
+                "name": "optimization_name",
+                "value": "",
+                "type": "query",
+                "description": "The fully-qualified name of the optimization to retrieve."
+              }
+            ]
+          },
+          "docs": "Get the status and state of a specified agentic optimization run"
         }
       ]
     }

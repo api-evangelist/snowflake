@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account view API",
+    "name": "Snowflake View API",
     "version": "0.0.1"
   },
   "items": [
@@ -66,6 +66,47 @@
             "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/views/:name"
           },
           "docs": "Delete a view"
+        },
+        {
+          "info": {
+            "name": "Set tags on a view.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/views/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a view."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a view.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/views/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a view."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a view.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/views/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a view. This operation requires an active warehouse."
         }
       ]
     }

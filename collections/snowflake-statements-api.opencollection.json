@@ -1,8 +1,8 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account statements API",
-    "version": "0.0.1"
+    "name": "Snowflake Statements API",
+    "version": "2.0.0"
   },
   "items": [
     {
@@ -18,7 +18,7 @@
           },
           "http": {
             "method": "POST",
-            "url": "https://org-account.snowflakecomputing.com/api/v2/statements",
+            "url": "https://{account}.snowflakecomputing.com/api/v2/statements",
             "headers": [
               {
                 "name": "Accept",
@@ -56,6 +56,10 @@
             "body": {
               "type": "json",
               "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
             }
           },
           "docs": "Submits one or more SQL statements for execution. You can specify that the statement should be executed asynchronously. The following statement types are not supported: PUT, GET, USE, ALTER SESSION, BEGIN, COMMIT, ROLLBACK, statements that set session variables, and statements that create temporary tables and stages."
@@ -67,7 +71,7 @@
           },
           "http": {
             "method": "GET",
-            "url": "https://org-account.snowflakecomputing.com/api/v2/statements/:statementHandle",
+            "url": "https://{account}.snowflakecomputing.com/api/v2/statements/:statementHandle",
             "headers": [
               {
                 "name": "Accept",
@@ -101,7 +105,11 @@
                 "type": "query",
                 "description": "Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1."
               }
-            ]
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
           },
           "docs": "Checks the status of the execution of the statement with the specified statement handle. If the statement was executed successfully, the operation returns the requested partition of the result set."
         },
@@ -112,7 +120,7 @@
           },
           "http": {
             "method": "POST",
-            "url": "https://org-account.snowflakecomputing.com/api/v2/statements/:statementHandle/cancel",
+            "url": "https://{account}.snowflakecomputing.com/api/v2/statements/:statementHandle/cancel",
             "headers": [
               {
                 "name": "Accept",
@@ -140,7 +148,11 @@
                 "type": "query",
                 "description": "Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned."
               }
-            ]
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
           },
           "docs": "Cancels the execution of the statement with the specified statement handle."
         }

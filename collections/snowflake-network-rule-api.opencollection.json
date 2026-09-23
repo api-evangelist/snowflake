@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake Network Rule API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "network-rule",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List network rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/network-rules"
+          },
+          "docs": "List network rules"
+        },
+        {
+          "info": {
+            "name": "Create a network rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/network-rules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a network rule"
+        },
+        {
+          "info": {
+            "name": "Fetch a network rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/network-rules/:name"
+          },
+          "docs": "Fetch a network rule"
+        },
+        {
+          "info": {
+            "name": "Delete a network rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/network-rules/:name"
+          },
+          "docs": "Delete a network rule"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

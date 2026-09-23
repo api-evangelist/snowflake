@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account user-defined-function API",
+    "name": "Snowflake User Defined Function API",
     "version": "0.0.1"
   },
   "items": [
@@ -89,6 +89,62 @@
             ]
           },
           "docs": "Rename a UDF"
+        },
+        {
+          "info": {
+            "name": "Execute a UDF.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/user-defined-functions/:name:execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a UDF."
+        },
+        {
+          "info": {
+            "name": "Set tags on a user-defined function.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/user-defined-functions/:nameWithArgs:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a user-defined function."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a user-defined function.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/user-defined-functions/:nameWithArgs:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a user-defined function."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a user-defined function.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/user-defined-functions/:nameWithArgs:get-tags"
+          },
+          "docs": "Returns all tags assigned to a user-defined function. This operation requires an active warehouse."
         }
       ]
     }

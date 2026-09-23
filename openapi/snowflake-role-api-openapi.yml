@@ -14,15 +14,15 @@ security:
 - KeyPair: []
 - ExternalOAuth: []
 - SnowflakeOAuth: []
+- ProgrammaticAccessToken: []
 tags:
-- name: role
+- name: Role
 paths:
   /api/v2/roles:
     get:
-      summary: List Roles
+      summary: List roles
       tags:
-      - role
-      description: List roles
+      - Role
       operationId: listRoles
       parameters:
       - $ref: common.yaml#/components/parameters/like
@@ -43,21 +43,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Role'
-              examples:
-                Listroles200Example:
-                  summary: Default listRoles 200 response
-                  x-microcks-default: true
-                  value:
-                  - name: Example Title
-                    comment: example_value
-                    created_on: '2026-01-15T10:30:00Z'
-                    owner: example_value
-                    is_default: true
-                    is_current: true
-                    is_inherited: true
-                    assigned_to_users: 10
-                    granted_to_roles: 10
-                    granted_roles: 10
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -84,14 +69,10 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     post:
-      summary: Create a Role
+      summary: Create a role
       tags:
-      - role
-      description: Create a role
+      - Role
       operationId: createRole
       parameters:
       - $ref: common.yaml#/components/parameters/createMode
@@ -130,30 +111,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Role'
-            examples:
-              CreateroleRequestExample:
-                summary: Default createRole request
-                x-microcks-default: true
-                value:
-                  name: Example Title
-                  comment: example_value
-                  created_on: '2026-01-15T10:30:00Z'
-                  owner: example_value
-                  is_default: true
-                  is_current: true
-                  is_inherited: true
-                  assigned_to_users: 10
-                  granted_to_roles: 10
-                  granted_roles: 10
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/roles/{name}:
     delete:
-      summary: Delete a Role
+      summary: Delete a role
       tags:
-      - role
-      description: Delete a role
+      - Role
       operationId: deleteRole
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -187,15 +149,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/roles/{name}/grants:
     get:
-      summary: List All Grants to the Role
+      summary: List all grants to the role
       tags:
-      - role
-      description: List all grants to the role
+      - Role
       operationId: listGrants
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -214,25 +172,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Grant'
-              examples:
-                Listgrants200Example:
-                  summary: Default listGrants 200 response
-                  x-microcks-default: true
-                  value:
-                  - securable:
-                      database: example_value
-                      schema: example_value
-                      service: example_value
-                      name: Example Title
-                    containing_scope:
-                      database: example_value
-                      schema: example_value
-                    securable_type: example_value
-                    grant_option: true
-                    privileges:
-                    - example_value
-                    created_on: '2026-01-15T10:30:00Z'
-                    granted_by: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -259,14 +198,10 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     post:
-      summary: Grant Privileges to the Role
+      summary: Grant privileges to the role
       tags:
-      - role
-      description: Grant privileges to the role
+      - Role
       operationId: grantPrivileges
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -305,34 +240,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Grant'
-            examples:
-              GrantprivilegesRequestExample:
-                summary: Default grantPrivileges request
-                x-microcks-default: true
-                value:
-                  securable:
-                    database: example_value
-                    schema: example_value
-                    service: example_value
-                    name: Example Title
-                  containing_scope:
-                    database: example_value
-                    schema: example_value
-                  securable_type: example_value
-                  grant_option: true
-                  privileges:
-                  - example_value
-                  created_on: '2026-01-15T10:30:00Z'
-                  granted_by: example_value
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/roles/{name}/grants:revoke:
     post:
-      summary: Revoke Grants From the Role
+      summary: Revoke grants from the role
       tags:
-      - role
-      description: Revoke grants from the role
+      - Role
       operationId: revokeGrants
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -372,34 +284,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Grant'
-            examples:
-              RevokegrantsRequestExample:
-                summary: Default revokeGrants request
-                x-microcks-default: true
-                value:
-                  securable:
-                    database: example_value
-                    schema: example_value
-                    service: example_value
-                    name: Example Title
-                  containing_scope:
-                    database: example_value
-                    schema: example_value
-                  securable_type: example_value
-                  grant_option: true
-                  privileges:
-                  - example_value
-                  created_on: '2026-01-15T10:30:00Z'
-                  granted_by: example_value
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/roles/{name}/grants-of:
     get:
-      summary: List All Grants of the Role
+      summary: List all grants of the role
       tags:
-      - role
-      description: List all grants of the role
+      - Role
       operationId: listGrantsOf
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -418,16 +307,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GrantOf'
-              examples:
-                Listgrantsof200Example:
-                  summary: Default listGrantsOf 200 response
-                  x-microcks-default: true
-                  value:
-                  - created_on: '2026-01-15T10:30:00Z'
-                    role: example_value
-                    granted_to: example_value
-                    grantee_name: example_value
-                    granted_by: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -454,15 +333,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/roles/{name}/grants-on:
     get:
-      summary: List All Grants on the Role
+      summary: List all grants on the role
       tags:
-      - role
-      description: List all grants on the role
+      - Role
       operationId: listGrantsOn
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -481,20 +356,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GrantOn'
-              examples:
-                Listgrantson200Example:
-                  summary: Default listGrantsOn 200 response
-                  x-microcks-default: true
-                  value:
-                  - created_on: '2026-01-15T10:30:00Z'
-                    privilege: example_value
-                    granted_on: example_value
-                    name: Example Title
-                    granted_to: example_value
-                    grantee_name: example_value
-                    grant_option: example_value
-                    granted_by: example_value
-                    granted_by_role_type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -521,15 +382,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/roles/{name}/future-grants:
     get:
-      summary: List All Future Grants to the Role
+      summary: List all future grants to the role
       tags:
-      - role
-      description: List all future grants to the role
+      - Role
       operationId: listFutureGrants
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -548,25 +405,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Grant'
-              examples:
-                Listfuturegrants200Example:
-                  summary: Default listFutureGrants 200 response
-                  x-microcks-default: true
-                  value:
-                  - securable:
-                      database: example_value
-                      schema: example_value
-                      service: example_value
-                      name: Example Title
-                    containing_scope:
-                      database: example_value
-                      schema: example_value
-                    securable_type: example_value
-                    grant_option: true
-                    privileges:
-                    - example_value
-                    created_on: '2026-01-15T10:30:00Z'
-                    granted_by: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -593,14 +431,10 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     post:
-      summary: Grant Future Privileges to the Role
+      summary: Grant future privileges to the role
       tags:
-      - role
-      description: Grant future privileges to the role
+      - Role
       operationId: grantFuturePrivileges
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -639,34 +473,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Grant'
-            examples:
-              GrantfutureprivilegesRequestExample:
-                summary: Default grantFuturePrivileges request
-                x-microcks-default: true
-                value:
-                  securable:
-                    database: example_value
-                    schema: example_value
-                    service: example_value
-                    name: Example Title
-                  containing_scope:
-                    database: example_value
-                    schema: example_value
-                  securable_type: example_value
-                  grant_option: true
-                  privileges:
-                  - example_value
-                  created_on: '2026-01-15T10:30:00Z'
-                  granted_by: example_value
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/roles/{name}/future-grants:revoke:
     post:
-      summary: Revoke Future Grants From the Role
+      summary: Revoke future grants from the role
       tags:
-      - role
-      description: Revoke future grants from the role
+      - Role
       operationId: revokeFutureGrants
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -706,56 +517,203 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Grant'
-            examples:
-              RevokefuturegrantsRequestExample:
-                summary: Default revokeFutureGrants request
-                x-microcks-default: true
-                value:
-                  securable:
-                    database: example_value
-                    schema: example_value
-                    service: example_value
-                    name: Example Title
-                  containing_scope:
-                    database: example_value
-                    schema: example_value
-                  securable_type: example_value
-                  grant_option: true
-                  privileges:
-                  - example_value
-                  created_on: '2026-01-15T10:30:00Z'
-                  granted_by: example_value
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
+  /api/v2/roles/{name}:set-tags:
+    post:
+      summary: Set tags on a role
+      tags:
+      - Role
+      description: Set tags on a role.
+      operationId: setTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: common.yaml#/components/schemas/TagAssignment
+  /api/v2/roles/{name}:unset-tags:
+    post:
+      summary: Unset tags from a role
+      tags:
+      - Role
+      description: Unset tags from a role.
+      operationId: unsetTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: common.yaml#/components/schemas/TagReference
+  /api/v2/roles/{name}:get-tags:
+    get:
+      summary: Get the tag assignments for a role
+      tags:
+      - Role
+      description: Returns all tags assigned to a role. This operation requires an active warehouse.
+      operationId: getTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/withLineage
+      responses:
+        '200':
+          description: successful
+          headers:
+            X-Snowflake-Request-ID:
+              $ref: common.yaml#/components/headers/X-Snowflake-Request-ID
+            Link:
+              $ref: common.yaml#/components/headers/Link
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: common.yaml#/components/schemas/TagAssignment
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    Securable:
+    Role:
       type: object
+      description: A Snowflake role
       properties:
-        database:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Database name of the securable if applicable.
-          example: example_value
-        schema:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Schema name of the securable if applicable.
-          example: example_value
-        service:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Service name of the securable if applicable.
-          example: example_value
         name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Name of the securable if applicable.
-          example: Example Title
+          description: Name of the role.
+        comment:
+          type: string
+          description: Comment of the role.
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date and time when the role was created.
+        owner:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          readOnly: true
+          description: Specifies the role that owns this role.
+        is_default:
+          type: boolean
+          readOnly: true
+          description: Specifies whether the role being fetched is the user's default role.
+        is_current:
+          type: boolean
+          readOnly: true
+          description: Specifies whether the role being fetched is the user's current role.
+        is_inherited:
+          type: boolean
+          readOnly: true
+          description: Specifies whether the role used to run the command inherits the specified role.
+        assigned_to_users:
+          type: integer
+          format: int64
+          readOnly: true
+          description: The number of users to whom this role has been assigned.
+        granted_to_roles:
+          type: integer
+          format: int64
+          readOnly: true
+          description: The number of roles to which this role has been granted.
+        granted_roles:
+          type: integer
+          format: int64
+          readOnly: true
+          description: The number of roles that have been granted to this role.
       required:
       - name
-    GrantOf:
+    GrantOn:
       type: object
       properties:
         created_on:
@@ -763,42 +721,38 @@ components:
           format: date-time
           readOnly: true
           description: Date and time when the grant was created
-          example: '2026-01-15T10:30:00Z'
-        role:
+        privilege:
+          type: string
+          readOnly: true
+          description: The name of the privilege
+        granted_on:
+          type: string
+          readOnly: true
+          description: The type of of the role
+        name:
           type: string
           readOnly: true
           description: The name of the role
-          example: example_value
         granted_to:
           type: string
           readOnly: true
-          description: The type of the grantee, can be USER or ROLE
-          example: example_value
+          description: The type of the grantee
         grantee_name:
           type: string
           readOnly: true
           description: The name of the grantee
-          example: example_value
+        grant_option:
+          type: string
+          readOnly: true
+          description: If true, allows the recipient role to grant the privileges to other roles.
         granted_by:
           type: string
           readOnly: true
-          description: The role that granted this role to this grantee
-          example: example_value
-    ContainingScope:
-      type: object
-      properties:
-        database:
+          description: The role that granted this privilege to this grantee
+        granted_by_role_type:
           type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Database name of the securable scope if applicable.
-          example: example_value
-        schema:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Schema name of the securable scope if applicable.
-          example: example_value
-      required:
-      - database
+          readOnly: true
+          description: Type of the role that granted this privilege to this grantee
     Grant:
       type: object
       properties:
@@ -811,31 +765,39 @@ components:
         securable_type:
           type: string
           description: Type of the securable to be granted.
-          example: example_value
         grant_option:
           type: boolean
           description: If true, allows the recipient role to grant the privileges to other roles.
-          example: true
         privileges:
           type: array
           items:
             type: string
           description: List of privileges to be granted.
-          example: []
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the grant was created
-          example: '2026-01-15T10:30:00Z'
         granted_by:
           type: string
           readOnly: true
           description: The role that granted this privilege to this grantee
-          example: example_value
       required:
       - securable_type
-    GrantOn:
+    ContainingScope:
+      type: object
+      properties:
+        database:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Database name of the securable scope if applicable.
+        schema:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Schema name of the securable scope if applicable.
+      required:
+      - database
+    GrantOf:
       type: object
       properties:
         created_on:
@@ -843,105 +805,41 @@ components:
           format: date-time
           readOnly: true
           description: Date and time when the grant was created
-          example: '2026-01-15T10:30:00Z'
-        privilege:
-          type: string
-          readOnly: true
-          description: The name of the privilege
-          example: example_value
-        granted_on:
-          type: string
-          readOnly: true
-          description: The type of of the role
-          example: example_value
-        name:
+        role:
           type: string
           readOnly: true
           description: The name of the role
-          example: Example Title
         granted_to:
           type: string
           readOnly: true
-          description: The type of the grantee
-          example: example_value
+          description: The type of the grantee, can be USER or ROLE
         grantee_name:
           type: string
           readOnly: true
           description: The name of the grantee
-          example: example_value
-        grant_option:
-          type: string
-          readOnly: true
-          description: If true, allows the recipient role to grant the privileges to other roles.
-          example: example_value
         granted_by:
           type: string
           readOnly: true
-          description: The role that granted this privilege to this grantee
-          example: example_value
-        granted_by_role_type:
-          type: string
-          readOnly: true
-          description: Type of the role that granted this privilege to this grantee
-          example: example_value
-    Role:
+          description: The role that granted this role to this grantee
+    Securable:
       type: object
-      description: A Snowflake role
       properties:
+        database:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Database name of the securable if applicable.
+        schema:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Schema name of the securable if applicable.
+        service:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Service name of the securable if applicable.
         name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Name of the role.
-          example: Example Title
-        comment:
-          type: string
-          description: Comment of the role.
-          example: example_value
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date and time when the role was created.
-          example: '2026-01-15T10:30:00Z'
-        owner:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          readOnly: true
-          description: Specifies the role that owns this role.
-          example: example_value
-        is_default:
-          type: boolean
-          readOnly: true
-          description: Specifies whether the role being fetched is the user's default role.
-          example: true
-        is_current:
-          type: boolean
-          readOnly: true
-          description: Specifies whether the role being fetched is the user's current role.
-          example: true
-        is_inherited:
-          type: boolean
-          readOnly: true
-          description: Specifies whether the role used to run the command inherits the specified role.
-          example: true
-        assigned_to_users:
-          type: integer
-          format: int64
-          readOnly: true
-          description: The number of users to whom this role has been assigned.
-          example: 10
-        granted_to_roles:
-          type: integer
-          format: int64
-          readOnly: true
-          description: The number of roles to which this role has been granted.
-          example: 10
-        granted_roles:
-          type: integer
-          format: int64
-          readOnly: true
-          description: The number of roles that have been granted to this role.
-          example: 10
+          description: Name of the securable if applicable.
       required:
       - name
   securitySchemes:
@@ -951,3 +849,5 @@ components:
       $ref: common.yaml#/components/securitySchemes/ExternalOAuth
     SnowflakeOAuth:
       $ref: common.yaml#/components/securitySchemes/SnowflakeOAuth
+    ProgrammaticAccessToken:
+      $ref: common.yaml#/components/securitySchemes/ProgrammaticAccessToken

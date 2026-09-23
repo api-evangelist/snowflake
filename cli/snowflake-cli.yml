@@ -1,0 +1,126 @@
+generated: '2026-09-03'
+method: searched
+source: >-
+  https://docs.snowflake.com/en/developer-guide/snowflake-cli/index and the machine-readable
+  command index at https://docs.snowflake.com/en/developer-guide/snowflake-cli/llms.txt
+  (fetched 2026-09-03), plus PyPI metadata for snowflake-cli.
+provider: Snowflake
+providerId: snowflake
+name: Snowflake CLI
+binary: snow
+official: true
+open_source: true
+repository: https://github.com/snowflakedb/snowflake-cli
+docs: https://docs.snowflake.com/en/developer-guide/snowflake-cli/index
+command_reference: https://docs.snowflake.com/en/developer-guide/snowflake-cli/command-reference/overview
+description: >-
+  Snowflake CLI is Snowflake's open-source command-line tool for developer-centric workloads in
+  addition to SQL operations. It is the successor to SnowSQL and is the only first-party surface
+  that covers Native Apps, Snowpark, Snowpark Container Services, notebooks, Streamlit apps and
+  dbt from one binary.
+
+version: 3.26.0
+published: '2026-08-31'
+version_source: https://pypi.org/pypi/snowflake-cli/json
+
+install:
+  - method: pip
+    command: pip install snowflake-cli
+    registry: pypi
+    package: snowflake-cli
+    url: https://pypi.org/project/snowflake-cli/
+  - method: pipx
+    command: pipx install snowflake-cli
+    note: >-
+      Recommended where the CLI should be isolated from the project's Python environment.
+  - method: installer
+    url: https://docs.snowflake.com/en/developer-guide/snowflake-cli/installation/installation
+    note: >-
+      Snowflake also documents platform installers and Homebrew. The exact per-platform commands
+      live on the installation page and are not restated here rather than guessed.
+
+command_groups:
+  - group: snow sql
+    reference: sql-commands
+    description: Execute SQL statements and scripts against a connection.
+  - group: snow connection
+    reference: connection-commands
+    description: Manage named connections and credentials in the CLI config.
+  - group: snow auth
+    reference: auth-commands
+    description: Authentication flows, including OAuth token handling.
+  - group: snow app
+    reference: native-apps-commands
+    description: Snowflake Native App lifecycle — create, deploy, version, teardown.
+  - group: snow snowpark
+    reference: snowpark-commands
+    description: Build and deploy Snowpark functions and procedures.
+  - group: snow spcs
+    reference: spcs-commands
+    description: Snowpark Container Services — compute pools, image repositories, services, jobs.
+  - group: snow streamlit
+    reference: streamlit-commands
+    description: Deploy and manage Streamlit-in-Snowflake apps.
+  - group: snow notebook
+    reference: notebook-commands
+    description: Create, deploy and execute Snowflake Notebooks.
+  - group: snow cortex
+    reference: cortex-commands
+    description: Cortex AI functions from the command line.
+  - group: snow dbt
+    reference: dbt-commands
+    description: dbt projects on Snowflake.
+  - group: snow dcm
+    reference: dcm-commands
+    description: Declarative Change Management projects.
+  - group: snow git
+    reference: git-commands
+    description: Git repository integrations — fetch and execute code from a repo stage.
+  - group: snow stage
+    reference: stage-commands
+    description: Stage file operations — put, get, list, remove.
+  - group: snow object
+    reference: object-commands
+    description: Generic create/list/describe/drop across Snowflake object types.
+  - group: snow logs
+    reference: logs-commands
+    description: Retrieve logs and events.
+  - group: snow bootstrap
+    reference: bootstrap-commands
+    description: Scaffold a new project from a template.
+  - group: snow helpers
+    reference: helpers-commands
+    description: Utility commands, including config import and migration.
+  - group: snow custom-image
+    reference: custom-image-commands
+    description: Custom container images for SPCS and notebook runtimes.
+  - group: snow snowflake-app-runtime
+    reference: snowflake-app-runtime-commands
+    description: Snowflake App Runtime commands.
+
+command_groups_source: >-
+  Group list derived from the command-reference pages enumerated in
+  https://docs.snowflake.com/en/developer-guide/snowflake-cli/llms.txt . Each `reference` value
+  is the real page slug under
+  https://docs.snowflake.com/en/developer-guide/snowflake-cli/command-reference/ , so every row
+  is verifiable. Group count: 19.
+
+key_flows:
+  - name: Run SQL non-interactively
+    command: snow sql -q "SELECT CURRENT_VERSION()"
+    note: The closest CLI equivalent of submitStatement in the SQL API.
+  - name: Deploy a Streamlit app
+    command: snow streamlit deploy
+  - name: Deploy a Native App
+    command: snow app run
+  - name: Manage connections
+    command: snow connection add / snow connection test
+
+relationship_to_api:
+  note: >-
+    The CLI authenticates the same four ways the REST API does (key-pair, Snowflake OAuth,
+    External OAuth, programmatic access token) and targets the same per-account host. It is a
+    front end over the same control plane the openapi/ corpus describes, not a separate product.
+  see: authentication/snowflake-authentication.yml
+
+packaging: packages/snowflake-packages.yml

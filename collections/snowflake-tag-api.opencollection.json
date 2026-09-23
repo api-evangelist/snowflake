@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake Tag API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tag",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tags"
+          },
+          "docs": "List tags"
+        },
+        {
+          "info": {
+            "name": "Create a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a tag"
+        },
+        {
+          "info": {
+            "name": "Fetch a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tags/:name"
+          },
+          "docs": "Fetch a tag"
+        },
+        {
+          "info": {
+            "name": "Create or update a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tags/:name",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update a tag"
+        },
+        {
+          "info": {
+            "name": "Delete a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tags/:name"
+          },
+          "docs": "Delete a tag"
+        },
+        {
+          "info": {
+            "name": "Undrop a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tags/:name:undrop"
+          },
+          "docs": "Undrop a tag"
+        },
+        {
+          "info": {
+            "name": "Rename a tag with a new identifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tags/:name:rename",
+            "params": [
+              {
+                "name": "targetDatabase",
+                "value": "",
+                "type": "query",
+                "description": "Database of the target resource. Defaults to the source's database"
+              },
+              {
+                "name": "targetSchema",
+                "value": "",
+                "type": "query",
+                "description": "Schema of the target resource. Defaults to the source's schema"
+              },
+              {
+                "name": "targetName",
+                "value": "",
+                "type": "query",
+                "description": "Name of the target resource."
+              }
+            ]
+          },
+          "docs": "Rename a tag with a new identifier"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

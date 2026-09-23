@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account notebook API",
+    "name": "Snowflake Notebook API",
     "version": "0.0.1"
   },
   "items": [
@@ -150,6 +150,47 @@
             ]
           },
           "docs": "If a Git connection is set up for the notebook, commits the LIVE version of the notebook to the Git repository"
+        },
+        {
+          "info": {
+            "name": "Set tags on a notebook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/notebooks/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a notebook."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a notebook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/notebooks/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a notebook."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a notebook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/notebooks/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a notebook. This operation requires an active warehouse."
         }
       ]
     }

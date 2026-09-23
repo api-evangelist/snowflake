@@ -1,0 +1,309 @@
+generated: '2026-09-03'
+method: derived
+source: >-
+  Derived from the 47 OpenAPI documents in openapi/ — path hierarchy, component schemas (303
+  named schemas, of which roughly half are `_2` duplicates left by the multi-source harvest) and
+  the id-reference fields those schemas carry. Object semantics cross-checked against
+  https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api .
+provider: Snowflake
+providerId: snowflake
+description: >-
+  The Snowflake REST API models the SQL object hierarchy directly: the URL path IS the
+  containment relationship. account > database > schema > object. Almost every entity in the
+  corpus is reached at
+  /api/v2/databases/{database}/schemas/{schema}/<plural>/{name} , and the small set that is not
+  lives at the account level. There are no surrogate object IDs — the primary key of every
+  object is its case-sensitive, optionally quoted `name` within its container.
+
+identifier_scheme:
+  type: name-path, not surrogate ID
+  schema: openapi/common.yaml#/components/schemas/Identifier
+  pattern: '^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$'
+  description: >-
+    A Snowflake object identifier. If it contains spaces or special characters the whole string
+    must be double-quoted, and quoted identifiers are case-sensitive. This is the single most
+    common source of 404s for an agent: an unquoted identifier is folded to uppercase.
+  note: >-
+    There is no `id` field and no prefix convention (no `db_`, `tbl_`). Object identity is
+    (database, schema, name) — or (name) at the account level. Two objects with the same name in
+    different schemas are different objects, and nothing in a response body disambiguates them
+    except the path you asked for.
+
+containers:
+  - entity: Account
+    path: /api/v2/accounts/{name}
+    level: organization
+    contains: [Database, Warehouse, Role, User, ComputePool, ExternalVolume, ApiIntegration, CatalogIntegration, NotificationIntegration, NetworkPolicy, ManagedAccount]
+  - entity: Database
+    path: /api/v2/databases/{name}
+    level: account
+    contains: [Schema, DatabaseRole]
+  - entity: Schema
+    path: /api/v2/databases/{database}/schemas/{name}
+    level: database
+    contains: [Table, IcebergTable, DynamicTable, EventTable, View, Stage, Task, Pipe, Stream, Sequence, Secret, Tag, Notebook, Streamlit, Function, Procedure, UserDefinedFunction, Alert, Service, ImageRepository, CortexSearchService, NetworkRule, PasswordPolicy, ArtifactRepository]
+
+entities:
+  - name: Account
+    schema: Account
+    key: name
+    fields_of_note: [organization_name, admin_name, region, edition, consumption_billing_entity_name, marketplace_provider_billing_entity_name, marketplace_consumer_billing_entity_name]
+  - name: Database
+    schema: Database
+    key: name
+    fields_of_note: [owner, owner_role_type, kind, is_default, is_current, origin, retention_time, data_retention_time_in_days, max_data_extension_time_in_days, budget, dropped_on]
+    json_schema: json-schema/snowflake-database-schema.json
+  - name: Schema
+    schema: Schema
+    key: name
+    fields_of_note: [database_name, owner, owner_role_type, is_default, is_current, retention_time, dropped_on]
+  - name: Table
+    schema: Table
+    key: name
+    fields_of_note: [database_name, schema_name, owner, columns, constraints, cluster_by, rows, bytes, dropped_on]
+  - name: IcebergTable
+    schema: IcebergTable
+    key: name
+    fields_of_note: [database_name, schema_name, owner, catalog, external_volume, catalog_table_name, base_location]
+  - name: DynamicTable
+    schema: DynamicTable
+    key: name
+    fields_of_note: [database_name, schema_name, owner, query, target_lag, warehouse, refresh_mode, scheduling_state]
+  - name: View
+    schema: View
+    key: name
+    fields_of_note: [database_name, schema_name, owner, query, columns]
+  - name: Stage
+    schema: Stage
+    key: name
+    fields_of_note: [database_name, schema_name, owner, url, credentials, directory_table]
+  - name: Task
+    schema: Task
+    key: name
+    fields_of_note: [database_name, schema_name, owner, warehouse, schedule, predecessors, definition, config, error_integration]
+  - name: Pipe
+    schema: Pipe
+    key: name
+    fields_of_note: [database_name, schema_name, owner, copy_statement, integration, error_integration]
+  - name: Stream
+    schema: Stream
+    key: name
+    fields_of_note: [database_name, schema_name, owner, stream_source, mode, table_name]
+  - name: Warehouse
+    schema: Warehouse
+    key: name
+    fields_of_note: [owner, size, type, state, auto_suspend, auto_resume, min_cluster_count, max_cluster_count, resource_monitor]
+  - name: Role
+    schema: Role
+    key: name
+    fields_of_note: [owner, granted_to_roles, granted_roles, comment]
+  - name: DatabaseRole
+    schema: DatabaseRole
+    key: name
+    fields_of_note: [database_name, owner, granted_to_roles, granted_database_roles]
+  - name: User
+    schema: User
+    key: name
+    fields_of_note: [login_name, first_name, last_name, email, default_role, default_warehouse, default_namespace, owner, type]
+  - name: Grant
+    schema: Grant
+    key: composite (grantee_type, grantee_name, securable_type, securable_name, privilege)
+    fields_of_note: [privilege, granted_on, granted_to, grantee_name, granted_by_name, securable, containing_scope, grant_option]
+  - name: Service
+    schema: Service
+    key: name
+    fields_of_note: [database_name, schema_name, owner, compute_pool, spec, endpoints, instances, status]
+  - name: ComputePool
+    schema: ComputePool
+    key: name
+    fields_of_note: [owner, instance_family, min_nodes, max_nodes, state, auto_suspend_secs]
+  - name: CortexSearchService
+    schema: CortexSearchService
+    key: name
+    fields_of_note: [database_name, schema_name, owner, target_lag, warehouse, search_column, attribute_columns, columns, service_query_url]
+  - name: Notebook
+    schema: Notebook
+    key: name
+    fields_of_note: [database_name, schema_name, owner, query_warehouse, main_file, version_details]
+  - name: Streamlit
+    schema: Streamlit
+    key: name
+    fields_of_note: [database_name, schema_name, owner, query_warehouse, main_file, url_id, version_details]
+  - name: ResultSet
+    schema: ResultSet
+    key: statementHandle
+    fields_of_note: [resultSetMetaData, data, code, statementStatusUrl, message, createdOn]
+    note: The SQL API's result envelope. Paged with the `page` query parameter and the Link header.
+
+relationships:
+  - from: Account
+    to: Database
+    type: has_many
+    via: path containment (/api/v2/databases)
+  - from: Database
+    to: Schema
+    type: has_many
+    via: path containment (/api/v2/databases/{database}/schemas)
+  - from: Schema
+    to: Table
+    type: has_many
+    via: path containment
+  - from: Schema
+    to: IcebergTable
+    type: has_many
+    via: path containment
+  - from: Schema
+    to: DynamicTable
+    type: has_many
+    via: path containment
+  - from: Schema
+    to: View
+    type: has_many
+    via: path containment
+  - from: Schema
+    to: Task
+    type: has_many
+    via: path containment
+  - from: Schema
+    to: Pipe
+    type: has_many
+    via: path containment
+  - from: Schema
+    to: Stream
+    type: has_many
+    via: path containment
+  - from: Schema
+    to: Stage
+    type: has_many
+    via: path containment
+  - from: Schema
+    to: CortexSearchService
+    type: has_many
+    via: path containment
+  - from: Schema
+    to: Service
+    type: has_many
+    via: path containment
+  - from: Database
+    to: DatabaseRole
+    type: has_many
+    via: path containment (/api/v2/databases/{database}/database-roles)
+  - from: Table
+    to: Schema
+    type: belongs_to
+    via: schema_name
+  - from: Table
+    to: Database
+    type: belongs_to
+    via: database_name
+  - from: Table
+    to: Role
+    type: belongs_to
+    via: owner
+    note: >-
+      `owner` appears on 53 of the 303 schemas and always names a Role, not a User. This is the
+      single most reused reference field in the corpus.
+  - from: DynamicTable
+    to: Warehouse
+    type: belongs_to
+    via: warehouse
+  - from: Task
+    to: Warehouse
+    type: belongs_to
+    via: warehouse
+  - from: Task
+    to: Task
+    type: has_many
+    via: predecessors
+    note: Task graphs are self-referential. getCurrentGraphs / getCompleteGraphs walk them.
+  - from: Notebook
+    to: Warehouse
+    type: belongs_to
+    via: query_warehouse
+  - from: Streamlit
+    to: Warehouse
+    type: belongs_to
+    via: query_warehouse
+  - from: CortexSearchService
+    to: Warehouse
+    type: belongs_to
+    via: warehouse
+  - from: Stream
+    to: Table
+    type: belongs_to
+    via: stream_source / table_name
+  - from: IcebergTable
+    to: ExternalVolume
+    type: belongs_to
+    via: external_volume
+  - from: IcebergTable
+    to: CatalogIntegration
+    type: belongs_to
+    via: catalog
+  - from: Service
+    to: ComputePool
+    type: belongs_to
+    via: compute_pool
+  - from: Service
+    to: ImageRepository
+    type: belongs_to
+    via: spec image references
+  - from: Pipe
+    to: NotificationIntegration
+    type: belongs_to
+    via: error_integration
+  - from: Task
+    to: NotificationIntegration
+    type: belongs_to
+    via: error_integration
+  - from: Grant
+    to: Role
+    type: belongs_to
+    via: grantee_name (when grantee_type is ROLE)
+  - from: Grant
+    to: DatabaseRole
+    type: belongs_to
+    via: grantee_name (when grantee_type is DATABASE_ROLE)
+  - from: Role
+    to: Role
+    type: has_many
+    via: granted_roles / granted_to_roles
+    note: Role hierarchies are self-referential; privilege inheritance walks this edge.
+  - from: User
+    to: Role
+    type: belongs_to
+    via: default_role
+  - from: User
+    to: Warehouse
+    type: belongs_to
+    via: default_warehouse
+
+reference_field_frequency:
+  owner: 53
+  database_name: 45
+  schema_name: 43
+  warehouse: 16
+  request_id: 12
+  grantee_name: 8
+  catalog_table_name: 6
+  query_warehouse: 5
+  note: >-
+    Counted across the 303 named component schemas. The (database_name, schema_name, owner)
+    triple is the backbone of the model — if an agent can resolve those three it can place
+    almost any object in the graph.
+
+caveats:
+  - >-
+    303 schemas is inflated. The harvest carried two source documents for many resources, so
+    roughly half the names are `_2` duplicates (Database / Database_2, Table / Table_2). The
+    real distinct entity count is closer to 150.
+  - >-
+    The Grant model is the hardest part of the graph and is also the most deprecated: seven of
+    the eighteen deprecated operations are grant/revoke. Prefer the database-role scoped grant
+    operations over /api/v2/grants/... . See lifecycle/snowflake-lifecycle.yml.
+  - >-
+    No entity carries a stable surrogate ID, so renaming an object breaks every stored reference
+    to it. An agent holding "the table called ORDERS" holds a path, not a handle.
+
+render: subway/
+render_note: The subway/ directory in this repo holds the visual rendering of this graph.

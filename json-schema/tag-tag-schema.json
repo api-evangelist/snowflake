@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tag",
+  "type": "object",
+  "description": "A Snowflake tag",
+  "properties": {
+    "allowed_values": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Possible string values that can be assigned with the tag when the tag is set on an object"
+    },
+    "propagate": {
+      "type": "string",
+      "description": "Specifies that the tag will be automatically propagated from source objects to target objects"
+    },
+    "on_conflict": {
+      "type": "string",
+      "description": "Specifies what happens when there is a conflict between the values of propagated tags"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment for the tag"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Name of the tag"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the tag was created."
+    },
+    "database_name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Database in which the tag is stored"
+    },
+    "schema_name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Schema in which the tag is stored"
+    },
+    "owner": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Role that owns the tag"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of role that owns the tag"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

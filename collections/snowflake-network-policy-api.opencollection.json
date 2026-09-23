@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account network-policy API",
+    "name": "Snowflake Network Policy API",
     "version": "0.0.1"
   },
   "items": [
@@ -58,6 +58,47 @@
             "url": "https://org-account.snowflakecomputing.com/api/v2/network-policies/:name"
           },
           "docs": "Delete a network policy"
+        },
+        {
+          "info": {
+            "name": "Set tags on a network policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/network-policies/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a network policy."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a network policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/network-policies/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a network policy."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a network policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/network-policies/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a network policy. This operation requires an active warehouse."
         }
       ]
     }

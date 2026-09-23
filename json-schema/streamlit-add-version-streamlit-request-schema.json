@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AddVersionStreamlitRequest",
+  "type": "object",
+  "description": "Request body for adding a new version to a Streamlit from a source location.",
+  "properties": {
+    "source_location": {
+      "type": "string",
+      "description": "URI to the source location."
+    },
+    "version": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name/Alias for the new version."
+        },
+        "comment": {
+          "type": "string"
+        },
+        "ifNotExists": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+  "required": [
+    "source_location"
+  ]
+}

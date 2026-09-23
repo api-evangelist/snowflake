@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account database-role API",
+    "name": "Snowflake Database Role API",
     "version": "0.0.1"
   },
   "items": [
@@ -152,6 +152,47 @@
             }
           },
           "docs": "Revoke future grants from the role"
+        },
+        {
+          "info": {
+            "name": "Set tags on a database role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a database role."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a database role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a database role."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a database role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/database-roles/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a database role. This operation requires an active warehouse."
         }
       ]
     }

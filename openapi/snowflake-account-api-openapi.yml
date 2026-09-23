@@ -15,13 +15,13 @@ security:
 - ExternalOAuth: []
 - SnowflakeOAuth: []
 tags:
-- name: account
+- name: Account
 paths:
   /api/v2/accounts:
     get:
-      summary: List Accounts.
+      summary: List Accounts
       tags:
-      - account
+      - Account
       description: Lists the accessible accounts.
       operationId: listAccounts
       parameters:
@@ -118,9 +118,9 @@ paths:
         delay: 0
         dispatcher: FALLBACK
     post:
-      summary: Create an Account.
+      summary: Create an Account
       tags:
-      - account
+      - Account
       description: Creates a account. You must provide the full account definition when creating a account.
       operationId: createAccount
       requestBody:
@@ -206,9 +206,9 @@ paths:
         dispatcher: FALLBACK
   /api/v2/accounts/{name}:
     delete:
-      summary: Delete an Account.
+      summary: Delete an Account
       tags:
-      - account
+      - Account
       description: Deletes the specified account. If you enable the `ifExists` parameter, the operation succeeds even if the account does not exist. Otherwise, a 404 failure is returned if the account does not exist. if the drop is unsuccessful.
       operationId: deleteAccount
       parameters:
@@ -255,9 +255,9 @@ paths:
         dispatcher: FALLBACK
   /api/v2/accounts/{name}:undrop:
     post:
-      summary: Restore an Account.
+      summary: Restore an Account
       tags:
-      - account
+      - Account
       description: Restores a dropped account that has not yet been permanently deleted (a dropped account that is within its grace period).
       operationId: UndropAccount
       parameters:

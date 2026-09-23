@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cortex Embed API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cortex-embed",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Perform LLM embed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/cortex/inference:embed",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform LLM embedding for input text, similar to the Snowflake Cortex `EMBED_TEXT` functions.\nFor more details on available functions, see:\n- [EMBED_TEXT_768](https://docs.snowflake.com/en/sql-reference/functions/embed_text-snowflake-cortex)\n- [EMBED_TEXT_1024](https://docs.snowflake.com/en/sql-reference/functions/embed_text_1024-snowflake-cortex)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

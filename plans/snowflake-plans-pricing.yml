@@ -4,130 +4,164 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Snowflake
 providerId: snowflake
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-reconciled: true
+modified: '2026-09-03'
+generated: '2026-09-03'
+method: searched
+source: https://www.snowflake.com/en/pricing-options/
+sources:
+  - https://www.snowflake.com/en/pricing-options/
+  - https://docs.snowflake.com/en/user-guide/admin-trial-account
+  - https://signup.snowflake.com/
+provenance_note: >-
+  Replaces a 2026-05-04 bulk-sweep artifact that was marked method:generated. This version was
+  read from Snowflake's own pricing page on 2026-09-03 (HTTP 200). Where Snowflake does not
+  publish a number on that page, the field is null with a note rather than a figure carried over
+  from the sweep.
 tags:
   - Data Warehouse
   - Data Lakehouse
   - Data Cloud
-description: 'Snowflake credit-based pricing with editions: Standard / Enterprise / Business Critical
-  / VPS.'
-sources:
-  - https://www.snowflake.com/en/pricing-options/
+  - Consumption Pricing
+description: >-
+  Snowflake sells consumption, not seats or API calls. Compute is metered in CREDITS; the credit
+  price is set by the EDITION you buy, multiplied by the cloud platform and region you run in.
+  Storage and data transfer are billed separately. The consequence for anyone integrating: there
+  is no per-request price and no request quota anywhere in the plan structure — a single API call
+  can cost anything from nothing to a great deal, depending on the warehouse it wakes and how
+  long it runs.
+
+pricing_model:
+  unit: credit
+  metered:
+    - name: Virtual warehouse compute
+      unit: credit
+      basis: >-
+        Credits per hour scale with warehouse size, billed per second with a 60-second minimum
+        each time a warehouse resumes.
+    - name: Serverless and cloud services compute
+      unit: credit
+    - name: Storage
+      unit: TB per month
+      basis: Average monthly storage after Snowflake's compression.
+    - name: Data transfer
+      unit: TB
+      basis: Egress, priced by cloud provider and region pair.
+  price_varies_by:
+    - edition
+    - cloud platform (AWS / Azure / Google Cloud)
+    - region
+  price_published_on_page: false
+  price_published_note: >-
+    The pricing page presents cloud and region selectors and does not render a per-credit dollar
+    figure in the static document. No per-credit price is recorded here rather than a guessed
+    one. The authoritative number for a given buyer is the one shown after selecting cloud,
+    region and edition, or the one in their capacity contract.
+
 plans:
-  - id: snowflake-standard
-    name: Standard
-    type: usage-based
-    description: $2.00 per credit (US, on-demand).
-    entries:
-      - label: Per credit
-        name: credit
-        type: metered
-        metric: credit
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: '2.00'
-        userMultiplied: false
-      - label: Storage (on-demand)
-        name: storage
-        type: metered
-        metric: TB-month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '23.00'
-        userMultiplied: false
-    elements:
-      - name: All standard features
-      - name: AES-256 encryption
-      - name: Standard support
-      - name: X-Small to 6X-Large warehouses
-  - id: snowflake-enterprise
-    name: Enterprise
-    type: paid
-    description: $3.00 per credit (1.5x Standard).
-    entries:
-      - label: Per credit
-        name: credit
-        type: metered
-        metric: credit
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: '3.00'
-        userMultiplied: false
-      - label: Storage (on-demand)
-        name: storage
-        type: metered
-        metric: TB-month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '23.00'
-        userMultiplied: false
-    elements:
-      - name: Multi-cluster warehouses
-      - name: Time Travel up to 90 days
-      - name: Materialized views
-      - name: Search optimization
-      - name: Dynamic data masking
-      - name: External tokenization
-  - id: snowflake-business-critical
-    name: Business Critical
-    type: paid
-    description: $4.00 per credit (2x Standard).
-    entries:
-      - label: Per credit
-        name: credit
-        type: metered
-        metric: credit
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: '4.00'
-        userMultiplied: false
-      - label: Storage (on-demand)
-        name: storage
-        type: metered
-        metric: TB-month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '23.00'
-        userMultiplied: false
-    elements:
-      - name: Customer-managed keys (CMK)
-      - name: PrivateLink
-      - name: HIPAA + PCI compliance
-      - name: Database failover/failback
-      - name: Tri-secret secure
-  - id: snowflake-vps
-    name: VPS (Virtual Private Snowflake)
-    type: enterprise
-    description: Custom; dedicated metadata store.
-    entries:
-      - label: Annual (custom)
-        name: annual
-        type: subscription
-        metric: year
-        limit: -1
-        timeFrame: year
-        geo: global
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Dedicated metadata store
-      - name: Customer-dedicated VPC
-      - name: All Business Critical features
-      - name: Highest isolation
+  - name: Standard
+    tier: 1
+    price: null
+    currency: USD
+    period: consumption
+    billing: On-demand or pre-purchased capacity
+    quota: null
+    overage: >-
+      Not applicable. Consumption pricing has no included allowance and no overage rate — every
+      credit is billed at the edition's rate.
+    limits:
+      time_travel_max_days: 1
+      multi_cluster_warehouses: false
+    includes:
+      - Complete SQL data warehouse
+      - Fully managed elastic compute, automatic encryption
+      - Snowpark
+      - Secure data sharing across regions and clouds
+      - Time Travel up to 1 day
+      - Federated authentication, always-on encryption in transit and at rest
+    note: Entry-level edition. Time Travel is capped at the 1-day default.
+  - name: Enterprise
+    tier: 2
+    price: null
+    currency: USD
+    period: consumption
+    billing: On-demand or pre-purchased capacity
+    quota: null
+    limits:
+      time_travel_max_days: 90
+      multi_cluster_warehouses: true
+    includes:
+      - Everything in Standard
+      - Multi-cluster warehouses for concurrency scaling
+      - Time Travel up to 90 days for permanent objects
+      - Granular governance and privacy controls (column- and row-level policies, object tagging)
+      - Materialized views, search optimization
+    note: >-
+      Marked "Most Popular" on the pricing page. The 90-day Time Travel ceiling is the edition
+      difference that matters most for reversibility — see conventions/snowflake-conventions.yml.
+  - name: Business Critical
+    tier: 3
+    price: null
+    currency: USD
+    period: consumption
+    billing: On-demand or pre-purchased capacity
+    quota: null
+    limits:
+      time_travel_max_days: 90
+      multi_cluster_warehouses: true
+    includes:
+      - Everything in Enterprise
+      - Tri-Secret Secure (customer-managed keys)
+      - Private connectivity (AWS PrivateLink, Azure Private Link, Google Private Service Connect)
+      - Database failover and failback for business continuity
+      - Support for regulated data (HIPAA, PCI DSS, HITRUST CSF)
+    note: The edition regulated industries buy.
+  - name: Virtual Private Snowflake (VPS)
+    tier: 4
+    price: null
+    currency: USD
+    period: consumption
+    billing: Contact sales
+    quota: null
+    public_pricing: false
+    includes:
+      - Everything in Business Critical
+      - A completely separate Snowflake environment, isolated from all other Snowflake accounts
+    note: >-
+      "Talk to Sales" on the pricing page. No self-serve path and no published price.
+
+trial:
+  offered: true
+  duration_days: 30
+  duration_note: >-
+    "The trial continues for 30 days (from the sign-up date) or until you've depleted your free
+    usage balance, whichever occurs first."
+  credits: null
+  credits_note: >-
+    A free usage balance is granted; the documented trial page does not state its amount, so none
+    is recorded.
+  card_required: false
+  ends: >-
+    The account is suspended. You can still log in but cannot run a warehouse, load data or
+    query. Entering a credit card converts it to a paid account.
+  signup: https://signup.snowflake.com/
+  detail: sandbox/snowflake-sandbox.yml
+
+plan_count: 4
+api_pricing:
+  metered_per_request: false
+  note: >-
+    Neither the REST API nor the SQL API is priced per call. API usage is billed indirectly
+    through whatever compute it causes — the warehouse a statement runs on, the serverless
+    compute behind a task or dynamic table refresh, the tokens a Cortex call consumes. There is
+    no API-specific plan, no request allowance, and no published per-request rate. This is why
+    rate-limits/snowflake-rate-limits.yml records zero published numeric limits: the throttle
+    that matters commercially is the credit meter, not a request counter.
+
+cost_governance:
+  note: >-
+    Snowflake ships cost controls as platform features rather than plan tiers — resource
+    monitors, budgets with notification integrations, and (as of release 10.29, Aug 2026)
+    per-user quotas at general availability and cost anomaly monitors in preview.
+  see:
+    - finops/snowflake-finops.yml
+    - changelog/snowflake-changelog.yml

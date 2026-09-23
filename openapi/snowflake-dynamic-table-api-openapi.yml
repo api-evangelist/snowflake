@@ -14,12 +14,13 @@ security:
 - KeyPair: []
 - ExternalOAuth: []
 - SnowflakeOAuth: []
+- ProgrammaticAccessToken: []
 tags:
 - name: dynamic-table
 paths:
   /api/v2/databases/{database}/schemas/{schema}/dynamic-tables:
     get:
-      summary: List Dynamic Tables
+      summary: List dynamic tables
       tags:
       - dynamic-table
       description: Lists the dynamic tables under the database and schema.
@@ -37,7 +38,6 @@ paths:
         required: false
         schema:
           type: boolean
-        example: true
       responses:
         '200':
           description: successful
@@ -52,35 +52,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/DynamicTable'
-              examples:
-                Listdynamictables200Example:
-                  summary: Default listDynamicTables 200 response
-                  x-microcks-default: true
-                  value:
-                  - name: Example Title
-                    kind: PERMANENT
-                    columns:
-                    - {}
-                    target_lag: {}
-                    refresh_mode: AUTO
-                    initialize: ON_CREATE
-                    warehouse: example_value
-                    cluster_by:
-                    - example_value
-                    query: example_value
-                    data_retention_time_in_days: 10
-                    max_data_extension_time_in_days: 10
-                    comment: example_value
-                    created_on: '2026-01-15T10:30:00Z'
-                    database_name: example_value
-                    schema_name: example_value
-                    rows: 10
-                    bytes: 10
-                    scheduling_state: RUNNING
-                    automatic_clustering: true
-                    owner: example_value
-                    owner_role_type: example_value
-                    budget: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -107,11 +78,8 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     post:
-      summary: Create a Dynamic Table
+      summary: Create a dynamic table
       tags:
       - dynamic-table
       description: Create a dynamic table, with standard create modifiers as query parameters. See the Dynamic Table component definition for what is required to be provided in the request body.
@@ -126,37 +94,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DynamicTable'
-            examples:
-              CreatedynamictableRequestExample:
-                summary: Default createDynamicTable request
-                x-microcks-default: true
-                value:
-                  name: Example Title
-                  kind: PERMANENT
-                  columns:
-                  - name: Example Title
-                    datatype: example_value
-                    comment: example_value
-                  target_lag: {}
-                  refresh_mode: AUTO
-                  initialize: ON_CREATE
-                  warehouse: example_value
-                  cluster_by:
-                  - example_value
-                  query: example_value
-                  data_retention_time_in_days: 10
-                  max_data_extension_time_in_days: 10
-                  comment: example_value
-                  created_on: '2026-01-15T10:30:00Z'
-                  database_name: example_value
-                  schema_name: example_value
-                  rows: 10
-                  bytes: 10
-                  scheduling_state: RUNNING
-                  automatic_clustering: true
-                  owner: example_value
-                  owner_role_type: example_value
-                  budget: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -186,12 +123,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:
     get:
-      summary: Fetch a Dynamic Table.
+      summary: Fetch a dynamic table
       tags:
       - dynamic-table
       description: Fetch a Dynamic Table.
@@ -212,37 +146,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DynamicTable'
-              examples:
-                Fetchdynamictable200Example:
-                  summary: Default fetchDynamicTable 200 response
-                  x-microcks-default: true
-                  value:
-                    name: Example Title
-                    kind: PERMANENT
-                    columns:
-                    - name: Example Title
-                      datatype: example_value
-                      comment: example_value
-                    target_lag: {}
-                    refresh_mode: AUTO
-                    initialize: ON_CREATE
-                    warehouse: example_value
-                    cluster_by:
-                    - example_value
-                    query: example_value
-                    data_retention_time_in_days: 10
-                    max_data_extension_time_in_days: 10
-                    comment: example_value
-                    created_on: '2026-01-15T10:30:00Z'
-                    database_name: example_value
-                    schema_name: example_value
-                    rows: 10
-                    bytes: 10
-                    scheduling_state: RUNNING
-                    automatic_clustering: true
-                    owner: example_value
-                    owner_role_type: example_value
-                    budget: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -269,16 +172,13 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     delete:
       parameters:
       - $ref: common.yaml#/components/parameters/database
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Delete a Dynamic Table
+      summary: Delete a dynamic table
       tags:
       - dynamic-table
       description: Delete a dynamic table with the given name. If ifExists is used, the operation will succeed even if the object does not exist. Otherwise, there will be a failure if the drop is unsuccessful.
@@ -312,12 +212,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:clone:
     post:
-      summary: Clone Dynamic Table
+      summary: Clone dynamic table
       tags:
       - dynamic-table
       description: Create a new dynamic table by cloning from the specified resource
@@ -333,28 +230,17 @@ paths:
         description: Database of the newly created dynamic table. Defaults to the source table's database.
         schema:
           $ref: ./common.yaml#/components/schemas/Identifier
-        example: example_value
       - name: targetSchema
         in: query
         description: Schema of the newly created dynamic table. Defaults to the source table's schema.
         schema:
           $ref: ./common.yaml#/components/schemas/Identifier
-        example: example_value
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/DynamicTableClone'
-            examples:
-              ClonedynamictableRequestExample:
-                summary: Default cloneDynamicTable request
-                x-microcks-default: true
-                value:
-                  name: Example Title
-                  target_lag: {}
-                  warehouse: example_value
-                  point_of_time: {}
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -384,16 +270,13 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:undrop:
     post:
       parameters:
       - $ref: common.yaml#/components/parameters/database
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
-      summary: Undrop a Dynamic Table
+      summary: Undrop a dynamic table
       tags:
       - dynamic-table
       description: Undrop specified dynamic table
@@ -427,9 +310,6 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:suspend:
     post:
       parameters:
@@ -437,10 +317,9 @@ paths:
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Suspend Refreshes on the Dynamic Table
+      summary: Suspend refreshes on the dynamic table
       tags:
       - dynamic-table
-      description: Suspend refreshes on the dynamic table
       operationId: suspendDynamicTable
       responses:
         '200':
@@ -471,9 +350,6 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:resume:
     post:
       parameters:
@@ -481,10 +357,9 @@ paths:
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Resume Refreshes on the Dynamic Table
+      summary: Resume refreshes on the dynamic table
       tags:
       - dynamic-table
-      description: Resume refreshes on the dynamic table
       operationId: resumeDynamicTable
       responses:
         '200':
@@ -515,9 +390,6 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:refresh:
     post:
       parameters:
@@ -525,7 +397,7 @@ paths:
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Refresh the Dynamic Table
+      summary: Refresh the dynamic table
       tags:
       - dynamic-table
       description: Specifies that the dynamic table should be manually refreshed
@@ -559,9 +431,6 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:suspend-recluster:
     post:
       parameters:
@@ -569,10 +438,9 @@ paths:
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Suspend Recluster of a Dynamic Table
+      summary: Suspend recluster of a dynamic table
       tags:
       - dynamic-table
-      description: Suspend recluster of a dynamic table
       operationId: suspendReclusterDynamicTable
       responses:
         '200':
@@ -603,9 +471,6 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:resume-recluster:
     post:
       parameters:
@@ -613,10 +478,9 @@ paths:
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/name
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Resume Recluster of a Dynamic Table
+      summary: Resume recluster of a dynamic table
       tags:
       - dynamic-table
-      description: Resume recluster of a dynamic table
       operationId: resumeReclusterDynamicTable
       responses:
         '200':
@@ -647,9 +511,6 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:swap-with:
     post:
       parameters:
@@ -663,23 +524,19 @@ paths:
         required: true
         schema:
           $ref: common.yaml#/components/schemas/Identifier
-        example: example_value
       - name: targetDatabase
         in: query
         description: Database of the target dynamic table. Defaults to the source table's database.
         schema:
           $ref: common.yaml#/components/schemas/Identifier
-        example: example_value
       - name: targetSchema
         in: query
         description: Schema of the target dynamic table. Defaults to the source table's schema.
         schema:
           $ref: common.yaml#/components/schemas/Identifier
-        example: example_value
-      summary: Swap With Another Dynamic Table
+      summary: Swap with another dynamic table
       tags:
       - dynamic-table
-      description: Swap with another dynamic table
       operationId: swapWithDynamicTable
       responses:
         '200':
@@ -710,11 +567,174 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
+  /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:set-tags:
+    post:
+      summary: Set tags on a dynamic table
+      tags:
+      - dynamic-table
+      description: Set tags on a dynamic table.
+      operationId: setTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/database
+      - $ref: common.yaml#/components/parameters/schema
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: common.yaml#/components/schemas/TagAssignment
+  /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:unset-tags:
+    post:
+      summary: Unset tags from a dynamic table
+      tags:
+      - dynamic-table
+      description: Unset tags from a dynamic table.
+      operationId: unsetTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/database
+      - $ref: common.yaml#/components/parameters/schema
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: common.yaml#/components/schemas/TagReference
+  /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:get-tags:
+    get:
+      summary: Get the tag assignments for a dynamic table
+      tags:
+      - dynamic-table
+      description: Returns all tags assigned to a dynamic table. This operation requires an active warehouse.
+      operationId: getTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/database
+      - $ref: common.yaml#/components/parameters/schema
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/withLineage
+      responses:
+        '200':
+          description: successful
+          headers:
+            X-Snowflake-Request-ID:
+              $ref: common.yaml#/components/headers/X-Snowflake-Request-ID
+            Link:
+              $ref: common.yaml#/components/headers/Link
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: common.yaml#/components/schemas/TagAssignment
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    DynamicTableClone:
+      type: object
+      description: Clone dynamic table
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the dynamic table, must be unique for the schema in which the dynamic table is created
+        target_lag:
+          $ref: common.yaml#/components/schemas/TargetLag
+        warehouse:
+          type: string
+          description: Specifies the name of the warehouse that provides the compute resources for refreshing the dynamic table
+        point_of_time:
+          $ref: common.yaml#/components/schemas/PointOfTime
+      required:
+      - name
     DynamicTable:
       type: object
       description: A Snowflake dynamic table object.
@@ -722,7 +742,6 @@ components:
         name:
           type: string
           description: Specifies the name for the dynamic table, must be unique for the schema in which the dynamic table is created
-          example: Example Title
         kind:
           type: string
           enum:
@@ -730,12 +749,10 @@ components:
           - TRANSIENT
           default: PERMANENT
           description: Specifies the dynamic table type, permanent (default) or transient.
-          example: PERMANENT
         columns:
           type: array
           items:
             $ref: '#/components/schemas/DynamicTableColumn'
-          example: []
         target_lag:
           $ref: common.yaml#/components/schemas/TargetLag
         refresh_mode:
@@ -745,14 +762,12 @@ components:
           - AUTO
           - FULL
           - INCREMENTAL
-          example: AUTO
         initialize:
           type: string
           description: Specifies the behavior of the initial refresh of the dynamic table
           enum:
           - ON_CREATE
           - ON_SCHEDULE
-          example: ON_CREATE
         warehouse:
           type: string
           description: Specifies the name of the warehouse that provides the compute resources for refreshing the dynamic table
@@ -762,7 +777,6 @@ components:
           description: Specifies one or more columns or column expressions in the dynamic table as the clustering key
           items:
             type: string
-          example: []
         query:
           type: string
           description: Specifies the query whose results the dynamic table should contain
@@ -770,43 +784,35 @@ components:
         data_retention_time_in_days:
           type: integer
           description: Specifies the retention period for the dynamic table so that Time Travel actions (SELECT, CLONE) can be performed on historical data in the dynamic table
-          example: 10
         max_data_extension_time_in_days:
           type: integer
           description: Specifies the retention period for the dynamic table so that Time Travel actions (SELECT, CLONE) can be performed on historical data in the dynamic table
-          example: 10
         comment:
           type: string
           description: Specifies a comment for the dynamic table.
-          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the dynamic table was created.
-          example: '2026-01-15T10:30:00Z'
         database_name:
           type: string
           readOnly: true
           description: Database in which the dynamic table is stored
-          example: example_value
         schema_name:
           type: string
           readOnly: true
           description: Schema in which the dynamic table is stored
-          example: example_value
         rows:
           type: integer
           format: int64
           readOnly: true
           description: Number of rows in the dynamic table.
-          example: 10
         bytes:
           type: integer
           format: int64
           readOnly: true
           description: Number of bytes that will be scanned if the entire table is scanned in a query. Note that this number may be different than the number of actual physical bytes stored on-disk for the table
-          example: 10
         scheduling_state:
           type: string
           enum:
@@ -814,50 +820,31 @@ components:
           - SUSPENDED
           readOnly: true
           description: Scheduling state (RUNNING or SUSPENDED)
-          example: RUNNING
         automatic_clustering:
           type: boolean
           readOnly: true
           description: If Automatic Clustering is enabled for your account, specifies whether it is explicitly enabled or disabled for the dynamic table.
-          example: true
         owner:
           type: string
           readOnly: true
           description: Role that owns the table
-          example: example_value
         owner_role_type:
           type: string
           readOnly: true
           description: The type of role that owns the object.
-          example: example_value
         budget:
           type: string
           readOnly: true
           description: Name of the budget if the object is monitored by a budget
-          example: example_value
+        scheduler:
+          type: string
+          readOnly: true
+          description: ENABLE (default) means the dynamic table is managed by the internal scheduler and participates in pipeline refresh; DISABLE excludes it from automatic background refresh scheduling and isolates it from pipelines.
       required:
       - name
       - target_lag
       - warehouse
       - query
-    DynamicTableClone:
-      type: object
-      description: Clone dynamic table
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the dynamic table, must be unique for the schema in which the dynamic table is created
-          example: Example Title
-        target_lag:
-          $ref: common.yaml#/components/schemas/TargetLag
-        warehouse:
-          type: string
-          description: Specifies the name of the warehouse that provides the compute resources for refreshing the dynamic table
-          example: example_value
-        point_of_time:
-          $ref: common.yaml#/components/schemas/PointOfTime
-      required:
-      - name
     DynamicTableColumn:
       type: object
       description: A column in the dynamic table
@@ -865,15 +852,12 @@ components:
         name:
           type: string
           description: Column name
-          example: Example Title
         datatype:
           type: string
           description: The data type for the column
-          example: example_value
         comment:
           type: string
           description: Specifies a comment for the column
-          example: example_value
       required:
       - name
   securitySchemes:
@@ -883,3 +867,5 @@ components:
       $ref: common.yaml#/components/securitySchemes/ExternalOAuth
     SnowflakeOAuth:
       $ref: common.yaml#/components/securitySchemes/SnowflakeOAuth
+    ProgrammaticAccessToken:
+      $ref: common.yaml#/components/securitySchemes/ProgrammaticAccessToken

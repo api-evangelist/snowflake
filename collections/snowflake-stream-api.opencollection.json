@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account stream API",
+    "name": "Snowflake Stream API",
     "version": "0.0.1"
   },
   "items": [
@@ -87,6 +87,47 @@
             }
           },
           "docs": "Clone a stream"
+        },
+        {
+          "info": {
+            "name": "Set tags on a stream.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streams/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a stream."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a stream.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streams/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a stream."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a stream.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/streams/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a stream. This operation requires an active warehouse."
         }
       ]
     }

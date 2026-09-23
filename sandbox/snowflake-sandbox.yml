@@ -1,0 +1,91 @@
+generated: '2026-09-03'
+method: searched
+source: >-
+  https://docs.snowflake.com/en/user-guide/admin-trial-account and https://signup.snowflake.com/
+  (200, checked 2026-09-03), plus inspection of the harvested contracts in openapi/ for any
+  test-mode discriminator.
+provider: Snowflake
+providerId: snowflake
+
+has_sandbox: partial
+summary: >-
+  Snowflake ships NO test mode. There is no test-vs-live key prefix, no test/live toggle on a
+  credential, no hosted test tokens, no test clocks and no fixture or trigger tooling anywhere in
+  the API. What exists is a time-boxed free trial ACCOUNT — a real, production Snowflake account
+  with a usage balance, not an isolated sandbox. Anything an agent does against a trial account
+  is a real operation against real compute and real storage.
+
+trial:
+  name: Snowflake free trial
+  signup: https://signup.snowflake.com/
+  docs: https://docs.snowflake.com/en/user-guide/admin-trial-account
+  duration: >-
+    "The trial continues for 30 days (from the sign-up date) or until you've depleted your free
+    usage balance, whichever occurs first."
+  credits: null
+  credits_note: >-
+    A free usage balance is granted, but the trial documentation page does not state a dollar or
+    credit figure, so none is recorded here. Marketing pages have quoted a figure at various
+    times; because it is not on the documented trial page it is not treated as published.
+  choices: >-
+    At sign-up you select cloud platform, region and Snowflake Edition. The documentation notes
+    these choices affect how quickly the free usage balance is exhausted.
+  expiry_behaviour: >-
+    "At the end of the trial, the account is suspended. You can still log into a suspended
+    account, but you cannot use any features, such as running a virtual warehouse, loading data,
+    or performing queries."
+  reactivation: >-
+    "To reactivate a suspended trial account, you must enter a credit card, which converts it to
+    a paid account."
+
+test_mode:
+  exists: false
+  key_prefixes: none
+  key_prefix_note: >-
+    Snowflake credentials carry no environment discriminator. The four schemes (KeyPair,
+    ExternalOAuth, SnowflakeOAuth, ProgrammaticAccessToken) are identical in shape whether the
+    account is a trial or a production Business Critical deployment. A client cannot tell from
+    the credential which it is holding — the only signal is the account host.
+  test_fixtures: none
+  time_simulation: none
+  triggers: none
+
+isolation_patterns:
+  note: >-
+    Snowflake's answer to "how do I test safely" is account and object isolation rather than a
+    test mode. These are real, documented practices, not a sandbox API, and are recorded as
+    such.
+  patterns:
+    - name: Separate dev/test accounts within an organization
+      mechanism: >-
+        Organizations create additional accounts (createAccount, POST /api/v2/accounts) for dev
+        and test, isolated by account boundary and billed separately.
+      operations: [createAccount, listAccounts, deleteAccount, UndropAccount]
+    - name: Zero-copy clone
+      mechanism: >-
+        cloneDatabase / cloneSchema / cloneTable / cloneDynamicTable / cloneStream /
+        cloneSequence / cloneAlert / cloneDatabaseRole create a metadata-only copy that shares
+        storage until written. The standard way to get a realistic test dataset without copying
+        it.
+      operations: [cloneDatabase, cloneSchema, cloneTable, cloneDynamicTable, cloneIcebergTable, cloneStream, cloneSequence, cloneAlert, cloneDatabaseRole]
+    - name: Time Travel and UNDROP
+      mechanism: >-
+        A mistake inside the retention window is reversible. See the reversibility block in
+        conventions/snowflake-conventions.yml.
+    - name: Spark Connect analyzePlan
+      mechanism: >-
+        POST /api/v2/spark-connect/analyze-plan analyses a plan without executing it. The only
+        rehearsal surface in the whole corpus, and it is Spark-specific.
+      operations: [analyzePlan]
+
+agent_note: >-
+  This matters for agent safety. There is no environment in which an agent can safely rehearse a
+  Snowflake write. Every call bills, every DROP is real (recoverable only inside the account's
+  Time Travel window, which defaults to ONE day), and dry-run does not exist. An agent operating
+  against Snowflake should be pointed at a dedicated non-production account and given a role
+  whose grants scope the damage, because the API itself provides no other guard rail.
+
+cross_references:
+  conventions: conventions/snowflake-conventions.yml
+  authentication: authentication/snowflake-authentication.yml
+  plans: plans/snowflake-plans-pricing.yml

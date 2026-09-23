@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StreamlitPushOptions",
+  "type": "object",
+  "description": "Options for the PUSH command.",
+  "properties": {
+    "auth_type": {
+      "type": "string",
+      "description": "Specifies which authentication method is used."
+    }
+  },
+  "discriminator": {
+    "propertyName": "auth_type",
+    "mapping": {
+      "CREDENTIALS": "GitPushWithCredentials",
+      "USERNAME_PASSWORD": "GitPushWithUsernamePassword"
+    }
+  }
+}

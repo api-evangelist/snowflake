@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snowflake Spark Connect API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "spark-connect",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "It is guaranteed that there is at least one ARROW batch returned even if the result set is empty.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/spark-connect/execute-plan"
+          },
+          "docs": "Executes a request that contains the query and returns a stream of [[ExecutePlanResponse]]."
+        },
+        {
+          "info": {
+            "name": "Analyzes a query and return a [[AnalyzeResponse]] containing metadata about the query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/spark-connect/analyze-plan"
+          },
+          "docs": "Analyzes a query and return a [[AnalyzeResponse]] containing metadata about the query."
+        },
+        {
+          "info": {
+            "name": "Update or fetch the configurations and returns a [[ConfigResponse]] containing the result.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/spark-connect/config"
+          },
+          "docs": "Update or fetch the configurations and returns a [[ConfigResponse]] containing the result."
+        },
+        {
+          "info": {
+            "name": "Add artifacts to the session and returns a [[AddArtifactsResponse]] containing metadata about the added artifacts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/spark-connect/add-artifacts"
+          },
+          "docs": "Add artifacts to the session and returns a [[AddArtifactsResponse]] containing metadata about the added artifacts."
+        },
+        {
+          "info": {
+            "name": "Check statuses of artifacts in the session and returns them in a [[ArtifactStatusesResponse]]",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/spark-connect/artifact-status"
+          },
+          "docs": "Check statuses of artifacts in the session and returns them in a [[ArtifactStatusesResponse]]"
+        },
+        {
+          "info": {
+            "name": "Interrupts running executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/spark-connect/interrupt"
+          },
+          "docs": "Interrupts running executions"
+        },
+        {
+          "info": {
+            "name": "The ExecutePlan must have been started with ReattachOptions.reattachable=true. If the ExecutePlanResponse stream ends without a ResultComplete message, there is more to continue. If there is a ResultComplete, the client should use ReleaseExecute with",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/spark-connect/reattach-execute"
+          },
+          "docs": "Reattach to an existing re-attachable execution."
+        },
+        {
+          "info": {
+            "name": "The ExecutePlan must have been started with ReattachOptions.reattachable=true. Non re-attachable executions are released automatically and immediately after the ExecutePlan RPC and ReleaseExecute may not be used.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/spark-connect/release-execute"
+          },
+          "docs": "Release an re-attachable execution, or parts thereof."
+        },
+        {
+          "info": {
+            "name": "It is used for sproc dataframe processor to pull Spark request from GS.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/spark-connect/pull-request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the next Spark request."
+        },
+        {
+          "info": {
+            "name": "It is used for sproc dataframe processor to push Spark response to GS.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/spark-connect/push-response",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a request from sproc that contains the Spark response."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

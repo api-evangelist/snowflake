@@ -14,14 +14,15 @@ security:
 - KeyPair: []
 - ExternalOAuth: []
 - SnowflakeOAuth: []
+- ProgrammaticAccessToken: []
 tags:
-- name: function
+- name: Function
 paths:
   /api/v2/databases/{database}/schemas/{schema}/functions:
     get:
       summary: List Functions
       tags:
-      - function
+      - Function
       description: Lists the user functions under the database and schema.
       operationId: listFunctions
       parameters:
@@ -42,21 +43,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Function'
-              examples:
-                Listfunctions200Example:
-                  summary: Default listFunctions 200 response
-                  x-microcks-default: true
-                  value:
-                  - function_type: example_value
-                    name: Example Title
-                    arguments:
-                    - {}
-                    returns: FIXED
-                    max_batch_rows: 10
-                    created_on: '2026-01-15T10:30:00Z'
-                    signature: example_value
-                    language: example_value
-                    body: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -77,13 +63,10 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     post:
       summary: Create a Function
       tags:
-      - function
+      - Function
       description: Create a function.
       operationId: createFunction
       parameters:
@@ -96,23 +79,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Function'
-            examples:
-              CreatefunctionRequestExample:
-                summary: Default createFunction request
-                x-microcks-default: true
-                value:
-                  function_type: example_value
-                  name: Example Title
-                  arguments:
-                  - name: Example Title
-                    datatype: FIXED
-                    value: example_value
-                  returns: FIXED
-                  max_batch_rows: 10
-                  created_on: '2026-01-15T10:30:00Z'
-                  signature: example_value
-                  language: example_value
-                  body: example_value
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -140,14 +106,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/functions/{nameWithArgs}:
     get:
-      summary: Fetch a Function.
+      summary: Fetch a Function
       tags:
-      - function
+      - Function
       description: Fetch a Function using the describe command output.
       operationId: fetchFunction
       parameters:
@@ -166,23 +129,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Function'
-              examples:
-                Fetchfunction200Example:
-                  summary: Default fetchFunction 200 response
-                  x-microcks-default: true
-                  value:
-                    function_type: example_value
-                    name: Example Title
-                    arguments:
-                    - name: Example Title
-                      datatype: FIXED
-                      value: example_value
-                    returns: FIXED
-                    max_batch_rows: 10
-                    created_on: '2026-01-15T10:30:00Z'
-                    signature: example_value
-                    language: example_value
-                    body: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -203,18 +149,15 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     delete:
       parameters:
       - $ref: common.yaml#/components/parameters/database
       - $ref: common.yaml#/components/parameters/schema
       - $ref: common.yaml#/components/parameters/nameWithArgs
       - $ref: common.yaml#/components/parameters/ifExists
-      summary: Delete a Function
+      summary: Delete a function
       tags:
-      - function
+      - Function
       description: Delete a function with the given name and args.
       operationId: deleteFunction
       responses:
@@ -240,14 +183,11 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/functions/{name}:execute:
     post:
-      summary: Execute a Function.
+      summary: Execute a Function
       tags:
-      - function
+      - Function
       description: Execute a Function.
       operationId: executeFunction
       parameters:
@@ -259,14 +199,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/FunctionArguments'
-            examples:
-              ExecutefunctionRequestExample:
-                summary: Default executeFunction request
-                x-microcks-default: true
-                value:
-                - name: Example Title
-                  datatype: FIXED
-                  value: example_value
       responses:
         '200':
           description: successful
@@ -277,11 +209,6 @@ paths:
             application/json:
               schema:
                 type: object
-              examples:
-                Executefunction200Example:
-                  summary: Default executeFunction 200 response
-                  x-microcks-default: true
-                  value: {}
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -302,9 +229,156 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
+  /api/v2/databases/{database}/schemas/{schema}/functions/{nameWithArgs}:set-tags:
+    post:
+      summary: Set tags on a function
+      tags:
+      - Function
+      description: Set tags on a function.
+      operationId: setTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/database
+      - $ref: common.yaml#/components/parameters/schema
+      - $ref: common.yaml#/components/parameters/nameWithArgs
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: common.yaml#/components/schemas/TagAssignment
+  /api/v2/databases/{database}/schemas/{schema}/functions/{nameWithArgs}:unset-tags:
+    post:
+      summary: Unset tags from a function
+      tags:
+      - Function
+      description: Unset tags from a function.
+      operationId: unsetTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/database
+      - $ref: common.yaml#/components/parameters/schema
+      - $ref: common.yaml#/components/parameters/nameWithArgs
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: common.yaml#/components/schemas/TagReference
+  /api/v2/databases/{database}/schemas/{schema}/functions/{nameWithArgs}:get-tags:
+    get:
+      summary: Get the tag assignments for a function
+      tags:
+      - Function
+      description: Returns all tags assigned to a function. This operation requires an active warehouse.
+      operationId: getTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/database
+      - $ref: common.yaml#/components/parameters/schema
+      - $ref: common.yaml#/components/parameters/nameWithArgs
+      - $ref: common.yaml#/components/parameters/withLineage
+      responses:
+        '200':
+          description: successful
+          headers:
+            X-Snowflake-Request-ID:
+              $ref: common.yaml#/components/headers/X-Snowflake-Request-ID
+            Link:
+              $ref: common.yaml#/components/headers/Link
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: common.yaml#/components/schemas/TagAssignment
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
     Function:
@@ -318,57 +392,40 @@ components:
         function_type:
           type: string
           default: service-function
-          example: example_value
         name:
           type: string
           description: Specifies the name for the function, must be unique for the schema in which the function is created
-          example: Example Title
         arguments:
           type: array
           items:
             $ref: '#/components/schemas/FunctionArgument'
-          example: []
         returns:
           type: string
           description: Specifies the type for the function return value.
-          enum:
-          - FIXED
-          - INT
-          - REAL
-          - NUMBER
-          - TEXT
-          - BOOLEAN
-          - DATE
-          - TIME
-          - TIMESTAMP_TZ
-          - TIMESTAMP_LTZ
-          - TIMESTAMP_NTZ
           default: TEXT
-          example: FIXED
         max_batch_rows:
           type: integer
           description: Specifies the max rows for batch operation.
-          example: 10
         created_on:
           type: string
           format: date-time
           description: Date and time when the function was created.
-          example: '2026-01-15T10:30:00Z'
         signature:
           type: string
           description: Function's arguments.
-          example: example_value
         language:
           type: string
           description: Function's language.
-          example: example_value
         body:
           type: string
           description: Function's body.
-          example: example_value
       required:
       - name
       - arguments
+    FunctionArguments:
+      type: array
+      items:
+        $ref: '#/components/schemas/FunctionArgument'
     FunctionArgument:
       type: object
       description: An argument of function
@@ -376,31 +433,12 @@ components:
         name:
           type: string
           description: Argument's name
-          example: Example Title
         datatype:
           description: Argument's type
           type: string
-          enum:
-          - FIXED
-          - INT
-          - REAL
-          - NUMBER
-          - TEXT
-          - BOOLEAN
-          - DATE
-          - TIME
-          - TIMESTAMP_TZ
-          - TIMESTAMP_LTZ
-          - TIMESTAMP_NTZ
           default: TEXT
-          example: FIXED
         value:
           description: Argument's value
-          example: example_value
-    FunctionArguments:
-      type: array
-      items:
-        $ref: '#/components/schemas/FunctionArgument'
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair
@@ -408,3 +446,5 @@ components:
       $ref: common.yaml#/components/securitySchemes/ExternalOAuth
     SnowflakeOAuth:
       $ref: common.yaml#/components/securitySchemes/SnowflakeOAuth
+    ProgrammaticAccessToken:
+      $ref: common.yaml#/components/securitySchemes/ProgrammaticAccessToken

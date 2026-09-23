@@ -1,0 +1,152 @@
+generated: '2026-09-03'
+method: derived
+source: >-
+  Bound the MCP tool types published at
+  https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp to the
+  operationIds present in this repo's openapi/ directory. Snowflake's live per-account MCP
+  server requires an authenticated session, so no tools/list response was retrieved; the
+  binding is by documented tool type and matching REST semantics, and confidence is set
+  accordingly.
+provider: Snowflake
+providerId: snowflake
+surfaces:
+  openapi:
+    path: openapi/
+    specs: 47
+    operations: 408
+    gated: false
+    note: Contracts are public; calling them requires an account and credentials.
+  mcp:
+    url: https://<account_url>/api/v2/databases/{database}/schemas/{schema}/mcp-servers/{name}
+    gated: true
+    note: >-
+      Per-tenant endpoint behind Snowflake OAuth/PAT. The MCP server is itself served from
+      the same /api/v2 namespace as the REST API, which is why several tool types map
+      one-to-one onto published operations.
+  graphql:
+    url: null
+    note: Snowflake publishes no GraphQL API.
+crosswalk:
+  - tool: CORTEX_ANALYST_MESSAGE
+    category: analytics
+    rest:
+      - sendMessage
+    binding: direct
+    confidence: high
+    note: >-
+      Both are "ask a question of a semantic model, get SQL plus results". The REST operation
+      POST /api/v2/cortex/analyst/message carries the full request/response schema the tool
+      inherits.
+  - tool: CORTEX_SEARCH_SERVICE_QUERY
+    category: retrieval
+    rest:
+      - queryCortexSearchService
+    binding: direct
+    confidence: high
+    note: >-
+      POST .../cortex-search-services/{service_name}:query is the published query surface for
+      a Cortex Search service; the tool wraps exactly this call, scoped to the service named
+      in the MCP server definition.
+  - tool: SYSTEM_EXECUTE_SQL
+    category: sql
+    rest:
+      - submitStatement
+      - getStatementStatus
+      - fetchResult
+      - cancelStatement
+    binding: composite
+    confidence: high
+    note: >-
+      Executing SQL through the SQL API is a four-operation lifecycle: submit, poll status,
+      page results, cancel. The single MCP tool collapses submit-and-await; the cancel and
+      paging operations have no separate tool.
+  - tool: CORTEX_AGENT_RUN
+    category: agent
+    rest: []
+    binding: none
+    confidence: medium
+    note: >-
+      Cortex Agents are documented at
+      https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api but no
+      OpenAPI for that surface has been harvested into openapi/, so there is no operationId to
+      bind. Listed here rather than in mcp_only because a REST surface exists and is simply
+      not yet captured.
+  - tool: GENERIC
+    category: custom
+    rest:
+      - createUserDefinedFunction
+      - createProcedure
+    binding: indirect
+    confidence: low
+    note: >-
+      GENERIC wraps a customer's own UDF or stored procedure. The REST operations above create
+      those objects; they do not invoke them. The invocation path for a GENERIC tool is the
+      MCP call itself, so this row records provenance of the wrapped object, not a callable
+      equivalent.
+mcp_only:
+  - tool: CORTEX_AGENT_RUN
+    reason: >-
+      Agent orchestration is multi-step and stateful; the closest REST surface (Cortex Agents
+      REST API) is documented but not present in openapi/, so nothing in this repo binds it.
+  - tool: GENERIC
+    reason: >-
+      Invokes customer-defined UDFs and procedures that exist only inside a given account. No
+      public REST operation can name them.
+rest_only_summary:
+  count: 401
+  note: >-
+    401 of the 408 harvested operations have no MCP tool. Snowflake's MCP surface is
+    deliberately narrow — it exposes AI/query tools, not the object-management CRUD that makes
+    up the bulk of the REST API. The large rest_only families are listed below by tag rather
+    than enumerated operation by operation.
+rest_only:
+  - group: object management (CREATE/ALTER/DROP/UNDROP/CLONE)
+    tags:
+      - database
+      - schema
+      - table
+      - iceberg-table
+      - dynamic-table
+      - view
+      - stage
+      - task
+      - pipe
+      - stream
+      - sequence
+      - secret
+      - tag
+      - notebook
+      - streamlit
+      - function
+      - procedure
+      - user-defined-function
+      - event-table
+      - alert
+    reason: No MCP tool type covers DDL; an agent reaches these only through SYSTEM_EXECUTE_SQL.
+  - group: account and identity administration
+    tags: [account, user, role, database-role, grant, network-policy, network-rule, password-policy, managed-account]
+    reason: Administrative surface, deliberately outside the agent tool set.
+  - group: compute and infrastructure
+    tags: [warehouse, compute-pool, service, image-repository, external-volume, api-integration, catalog-integration, notification-integration]
+    reason: Provisioning surface, no MCP tool type.
+  - group: inference and embedding
+    tags: [cortex-inference, cortex-embed]
+    operations: [cortexLLMInferenceComplete, embed, getModels, cortexGenericOpenAIChatCompletions, cortexGenericAnthropicMessages]
+    reason: >-
+      Direct model inference is reachable over REST (including OpenAI- and Anthropic-shaped
+      compatibility endpoints) but is not published as an MCP tool type — an agent calls the
+      model itself, not through Snowflake's MCP server.
+  - group: Spark Connect
+    tags: [spark-connect]
+    reason: gRPC-shaped Spark Connect protocol proxied over REST; no tool equivalent.
+coverage:
+  mcp_tool_types: 5
+  bound_to_rest: 3
+  partially_bound: 2
+  rest_operations_total: 408
+  rest_operations_with_a_tool: 7
+  rest_only: 401
+  coverage_pct_of_rest: 1.7
+  note: >-
+    Read this as a design statement, not a gap: Snowflake's MCP server is an AI-query door
+    onto a governed data platform, not an agent-callable mirror of the whole control plane.

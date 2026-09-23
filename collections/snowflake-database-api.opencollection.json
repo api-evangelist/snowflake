@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account database API",
+    "name": "Snowflake Database API",
     "version": "0.0.1"
   },
   "items": [
@@ -263,6 +263,47 @@
             "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name/failover:primary"
           },
           "docs": "Promotes the specified secondary (replica) database to serve as the primary database. When promoted, the database becomes writeable. At the same time, the previous primary database becomes a read-only secondary database."
+        },
+        {
+          "info": {
+            "name": "Set tags on a database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a database."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a database."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a database.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a database. This operation requires an active warehouse."
         }
       ]
     }

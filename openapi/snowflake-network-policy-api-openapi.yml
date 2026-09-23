@@ -10,15 +10,19 @@ info:
 servers:
 - description: Snowflake REST Server
   url: https://org-account.snowflakecomputing.com
+security:
+- KeyPair: []
+- ExternalOAuth: []
+- SnowflakeOAuth: []
+- ProgrammaticAccessToken: []
 tags:
-- name: network-policy
+- name: Network Policy
 paths:
   /api/v2/network-policies:
     get:
-      summary: List Network Policies
+      summary: List network policies
       tags:
-      - network-policy
-      description: List network policies
+      - Network Policy
       operationId: listNetworkPolicies
       parameters: []
       responses:
@@ -33,24 +37,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/NetworkPolicy'
-              examples:
-                Listnetworkpolicies200Example:
-                  summary: Default listNetworkPolicies 200 response
-                  x-microcks-default: true
-                  value:
-                  - name: Example Title
-                    allowed_network_rule_list:
-                    - example_value
-                    blocked_network_rule_list:
-                    - example_value
-                    allowed_ip_list:
-                    - example_value
-                    blocked_ip_list:
-                    - example_value
-                    comment: example_value
-                    created_on: '2026-01-15T10:30:00Z'
-                    owner: example_value
-                    owner_role_type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -77,14 +63,10 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     post:
-      summary: Create a Network Policy
+      summary: Create a network policy
       tags:
-      - network-policy
-      description: Create a network policy
+      - Network Policy
       operationId: createNetworkPolicy
       parameters:
       - $ref: common.yaml#/components/parameters/createMode
@@ -123,33 +105,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/NetworkPolicy'
-            examples:
-              CreatenetworkpolicyRequestExample:
-                summary: Default createNetworkPolicy request
-                x-microcks-default: true
-                value:
-                  name: Example Title
-                  allowed_network_rule_list:
-                  - example_value
-                  blocked_network_rule_list:
-                  - example_value
-                  allowed_ip_list:
-                  - example_value
-                  blocked_ip_list:
-                  - example_value
-                  comment: example_value
-                  created_on: '2026-01-15T10:30:00Z'
-                  owner: example_value
-                  owner_role_type: example_value
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/network-policies/{name}:
     get:
-      summary: Fetch a Network Policy
+      summary: Fetch a network policy
       tags:
-      - network-policy
-      description: Fetch a network policy
+      - Network Policy
       operationId: fetchNetworkPolicy
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -163,24 +123,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NetworkPolicy'
-              examples:
-                Fetchnetworkpolicy200Example:
-                  summary: Default fetchNetworkPolicy 200 response
-                  x-microcks-default: true
-                  value:
-                    name: Example Title
-                    allowed_network_rule_list:
-                    - example_value
-                    blocked_network_rule_list:
-                    - example_value
-                    allowed_ip_list:
-                    - example_value
-                    blocked_ip_list:
-                    - example_value
-                    comment: example_value
-                    created_on: '2026-01-15T10:30:00Z'
-                    owner: example_value
-                    owner_role_type: example_value
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -207,14 +149,10 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     delete:
-      summary: Delete a Network Policy
+      summary: Delete a network policy
       tags:
-      - network-policy
-      description: Delete a network policy
+      - Network Policy
       operationId: deleteNetworkPolicy
       parameters:
       - $ref: common.yaml#/components/parameters/name
@@ -248,9 +186,150 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
+  /api/v2/network-policies/{name}:set-tags:
+    post:
+      summary: Set tags on a network policy
+      tags:
+      - Network Policy
+      description: Set tags on a network policy.
+      operationId: setTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: common.yaml#/components/schemas/TagAssignment
+  /api/v2/network-policies/{name}:unset-tags:
+    post:
+      summary: Unset tags from a network policy
+      tags:
+      - Network Policy
+      description: Unset tags from a network policy.
+      operationId: unsetTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/ifExists
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: common.yaml#/components/schemas/TagReference
+  /api/v2/network-policies/{name}:get-tags:
+    get:
+      summary: Get the tag assignments for a network policy
+      tags:
+      - Network Policy
+      description: Returns all tags assigned to a network policy. This operation requires an active warehouse.
+      operationId: getTags
+      parameters:
+      - $ref: common.yaml#/components/parameters/name
+      - $ref: common.yaml#/components/parameters/withLineage
+      responses:
+        '200':
+          description: successful
+          headers:
+            X-Snowflake-Request-ID:
+              $ref: common.yaml#/components/headers/X-Snowflake-Request-ID
+            Link:
+              $ref: common.yaml#/components/headers/Link
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: common.yaml#/components/schemas/TagAssignment
+        '202':
+          $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '410':
+          $ref: common.yaml#/components/responses/410Gone
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
     NetworkPolicy:
@@ -261,52 +340,52 @@ components:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           description: Name of the network policy
-          example: Example Title
         allowed_network_rule_list:
           type: array
           items:
             type: string
           description: List of names of allowed network rules in a network policy
-          example: []
         blocked_network_rule_list:
           type: array
           items:
             type: string
           description: List of names of blocked network rules in a network policy
-          example: []
         allowed_ip_list:
           type: array
           items:
             type: string
           description: List of allowed IPs in a network policy
-          example: []
         blocked_ip_list:
           type: array
           items:
             type: string
           description: List of blocked IPs in a network policy
-          example: []
         comment:
           type: string
           description: user comment associated to an object in the dictionary
-          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the network policy was created.
-          example: '2026-01-15T10:30:00Z'
         owner:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: Role that owns the network policy
-          example: example_value
         owner_role_type:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
           readOnly: true
           description: The type of role that owns the network policy
-          example: example_value
       required:
       - name
+  securitySchemes:
+    KeyPair:
+      $ref: common.yaml#/components/securitySchemes/KeyPair
+    ExternalOAuth:
+      $ref: common.yaml#/components/securitySchemes/ExternalOAuth
+    SnowflakeOAuth:
+      $ref: common.yaml#/components/securitySchemes/SnowflakeOAuth
+    ProgrammaticAccessToken:
+      $ref: common.yaml#/components/securitySchemes/ProgrammaticAccessToken

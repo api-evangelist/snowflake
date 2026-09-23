@@ -1,0 +1,248 @@
+generated: '2026-09-03'
+method: searched
+source: >-
+  Asserted against this repo's openapi/ corpus (47 specs, 408 operations, shared
+  openapi/common.yaml) and searched against Snowflake's published documentation and trust
+  centre. Every `conforms: true` row below carries evidence naming the exact contract location
+  or documentation URL that establishes it.
+provider: Snowflake
+providerId: snowflake
+
+conformance:
+  - id: openapi
+    name: OpenAPI 3.x
+    conforms: true
+    evidence: >-
+      47 machine-readable OpenAPI documents in openapi/, all harvested from Snowflake's own
+      published REST API reference at
+      https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api ,
+      factored around a shared openapi/common.yaml. info.contact is Snowflake, Inc.
+      (support@snowflake.com) and servers[] is *.snowflakecomputing.com.
+
+  - id: oauth2
+    name: OAuth 2.0
+    conforms: true
+    evidence: >-
+      securitySchemes SnowflakeOAuth and ExternalOAuth are declared type oauth2 in every spec.
+      Flows: authorizationCode with authorizationUrl
+      https://org-account.snowflakecomputing.com/oauth/authorize and tokenUrl
+      https://org-account.snowflakecomputing.com/oauth/token-request , plus an implicit flow on
+      the SQL API. See scopes/snowflake-scopes.yml.
+
+  - id: oidc
+    name: OpenID Connect
+    conforms: partial
+    evidence: >-
+      Snowflake supports External OAuth bound to OIDC identity providers (Okta, Microsoft Entra
+      ID) for both the API and the managed MCP server, per
+      https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp . But no
+      /.well-known/openid-configuration is served on any Snowflake host — every probe 404d (see
+      well-known/snowflake-well-known.yml). Snowflake is an OIDC RELYING PARTY, not an OIDC
+      provider with a discoverable configuration.
+
+  - id: scim
+    name: SCIM 2.0 (RFC 7643 / RFC 7644)
+    conforms: true
+    domain_standard: true
+    evidence: >-
+      Snowflake serves a SCIM 2.0 endpoint at
+      https://<account>.snowflakecomputing.com/scim/v2/ with /Users and /Groups resources.
+      The published reference shows real SCIM URNs in the payloads:
+      urn:ietf:params:scim:api:messages:2.0:ListResponse ,
+      urn:ietf:params:scim:schemas:core:2.0:User ,
+      urn:ietf:params:scim:schemas:extension:enterprise:2.0:User and
+      urn:ietf:params:scim:schemas:extension:2.0:User.
+    docs:
+      - https://docs.snowflake.com/en/user-guide/scim-user-api-reference
+      - https://docs.snowflake.com/en/user-guide/scim-group-api-reference
+    note: >-
+      This is a genuine domain-standard signature, not a prose claim: the identifier scheme is
+      the IETF SCIM URN namespace and an IdP that already speaks SCIM provisions Snowflake users
+      with no bespoke connector. It is also the one Snowflake API family with NO OpenAPI in
+      openapi/ — the SCIM surface is documented in prose only.
+
+  - id: iceberg-rest-catalog
+    name: Apache Iceberg REST Catalog API
+    conforms: true
+    domain_standard: true
+    evidence: >-
+      Snowflake serves the Iceberg REST Catalog API from the account host at
+      https://<account>.snowflakecomputing.com/polaris/api/catalog/v1 (Snowflake Open Catalog,
+      the managed Apache Polaris service), including the standard
+      /polaris/api/catalog/v1/oauth/tokens token endpoint. Snowflake also authored and donated
+      Polaris, the reference open-source implementation of the spec.
+    docs:
+      - https://docs.snowflake.com/en/user-guide/tables-iceberg-configure-catalog-integration-polaris
+      - https://docs.snowflake.com/en/user-guide/tables-iceberg-configure-catalog-integration-rest-check-config
+      - https://www.snowflake.com/en/blog/engineering/apache-polaris-iceberg-rest-catalog/
+    note: >-
+      The market-defining interoperability standard for the lakehouse. Any engine that speaks
+      the Iceberg REST Catalog — Spark, Trino, Flink, DuckDB, ClickHouse — reads Snowflake-managed
+      Iceberg tables without a vendor connector. This is the domain-standard row that matters
+      most for a data-platform buyer.
+
+  - id: rfc8288
+    name: RFC 8288 Web Linking (Link header pagination)
+    conforms: true
+    evidence: >-
+      openapi/common.yaml#/components/headers/Link declares a Link response header carrying
+      rel="first", rel="next", rel="prev" and rel="last", with a worked example. Applied to list
+      operations across the corpus.
+
+  - id: pagination
+    name: Documented pagination
+    conforms: true
+    evidence: >-
+      showLimit (1-10000), fromName (name cursor), like, startsWith and pattern query parameters
+      in openapi/common.yaml#/components/parameters, plus the Link response header. Note the
+      body is a bare array with no paging envelope — see conventions/snowflake-conventions.yml.
+
+  - id: idempotency
+    name: Idempotent write semantics
+    conforms: partial
+    evidence: >-
+      Declarative, not replay-key. createMode (errorIfExists | ifNotExists | orReplace) and
+      ifExists (true | false) in openapi/common.yaml#/components/parameters make create and
+      delete converge on the same state when retried. There is NO Idempotency-Key header and no
+      request-deduplication window, so a retry after a lost response is re-evaluated, not
+      replayed.
+
+  - id: rfc9457
+    name: RFC 9457 Problem Details for HTTP APIs
+    conforms: false
+    evidence: >-
+      No operation in the 408-operation corpus declares application/problem+json. Errors use a
+      custom application/json envelope { message, code, error_code, request_id }. See
+      errors/snowflake-problem-types.yml.
+
+  - id: rfc8594
+    name: RFC 8594 Sunset header (and the Deprecation header)
+    conforms: false
+    evidence: >-
+      No Sunset or Deprecation response header is declared in any spec or documented anywhere.
+      18 operations carry the OpenAPI `deprecated: true` flag with no sunset date and no runtime
+      signal. See lifecycle/snowflake-lifecycle.yml.
+
+  - id: rate-limit-headers
+    name: RateLimit header fields (IETF draft / X-RateLimit convention)
+    conforms: false
+    evidence: >-
+      429 is declared on 396 of 408 operations but carries only X-Snowflake-Request-ID. No
+      RateLimit-*, no X-RateLimit-*, no Retry-After anywhere in the corpus.
+
+  - id: mcp
+    name: Model Context Protocol
+    conforms: true
+    evidence: >-
+      Snowflake-managed MCP server, created with CREATE MCP SERVER and served over HTTPS at
+      https://<account_url>/api/v2/databases/{db}/schemas/{schema}/mcp-servers/{name} , with SSE
+      streaming responses as of August 2026. Five published tool types. See mcp/snowflake-mcp.yml
+      and https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp .
+
+  - id: a2a
+    name: A2A Agent Card
+    conforms: false
+    evidence: >-
+      /.well-known/agent-card.json and /.well-known/agent.json probed on www.snowflake.com,
+      snowflake.com and docs.snowflake.com — all 404. app.snowflake.com answers 200 with an SPA
+      HTML shell on every /.well-known/ path, which is not a card. No agent card is published;
+      none has been authored on Snowflake's behalf.
+
+  - id: llmstxt
+    name: llms.txt
+    conforms: true
+    evidence: >-
+      https://docs.snowflake.com/llms.txt returns 200 text/plain, a real hierarchical index with
+      per-section llms.txt children (release notes, Cortex, Cortex Code, clean rooms, Snowsight)
+      and .md twins of documentation pages. Saved verbatim to llms/snowflake-llms.txt.
+
+  - id: rfc9116
+    name: RFC 9116 security.txt
+    conforms: true
+    evidence: >-
+      https://www.snowflake.com/.well-known/security.txt returns 200 text/plain with Canonical,
+      Contact (mailto:security@snowflake.com), Policy (https://hackerone.com/snowflake), Hiring,
+      Preferred-Languages and an unexpired Expires field (2027-08-17). Saved to
+      well-known/snowflake-security.txt.
+
+  - id: openai-compatible
+    name: OpenAI Chat Completions wire format
+    conforms: true
+    evidence: >-
+      openapi/snowflake-cortex-generic-openai-api-openapi.yml declares
+      cortexGenericOpenAIChatCompletions at POST /api/v2/cortex/v1/chat/completions — the
+      OpenAI-shaped path, so an existing OpenAI client can be repointed at a Snowflake account
+      host.
+    note: >-
+      A de-facto rather than a chartered standard, recorded because it removes integration work
+      the same way a chartered one does.
+
+  - id: anthropic-messages-compatible
+    name: Anthropic Messages wire format
+    conforms: true
+    evidence: >-
+      openapi/snowflake-cortex-generic-anthropic-api-openapi.yml declares
+      cortexGenericAnthropicMessages at POST /api/v2/cortex/v1/messages.
+
+  - id: spark-connect
+    name: Apache Spark Connect protocol
+    conforms: true
+    evidence: >-
+      openapi/snowflake-spark-connect-api-openapi.yml exposes the Spark Connect verbs —
+      executePlan, analyzePlan, config, addArtifacts, artifactStatus, interrupt,
+      reattachExecute, releaseExecute — under /api/v2/spark-connect/, letting a Spark Connect
+      client target Snowflake compute.
+
+  - id: focus
+    name: FinOps FOCUS (FinOps Cost and Usage Specification)
+    conforms: claimed
+    evidence: >-
+      finops/snowflake-finops.yml in this repo asserts FOCUS alignment, but that artifact is
+      marked method:generated from a 2026-05-04 bulk sweep, not harvested from Snowflake. No
+      FOCUS-conformant cost export was located on Snowflake's own documentation during this
+      pass, so this row is `claimed`, not `true`, and must not be counted as verified
+      conformance.
+
+  - id: soc2
+    name: SOC 2 / ISO 27001 / PCI DSS / HIPAA / FedRAMP / IRAP / HDS
+    conforms: true
+    evidence: >-
+      https://trust.snowflake.com/ (200, checked 2026-09-03) is Snowflake's public trust centre
+      listing its certification portfolio. Snowflake's own newsroom during this window announced
+      IRAP PROTECTED assessment on Google Cloud (2026-05-27) and HDS certification in France
+      (2026-07-01), both mirrored in blogs/ in this repo.
+    docs: https://trust.snowflake.com/
+    detail: security/snowflake-trust-center.yml
+
+  - id: vulnerability-disclosure
+    name: Coordinated vulnerability disclosure
+    conforms: true
+    evidence: >-
+      Public bug bounty at https://hackerone.com/snowflake , declared as Policy in the served
+      security.txt alongside Contact mailto:security@snowflake.com.
+    detail: security/snowflake-vulnerability-disclosure.yml
+
+domain_standards_summary:
+  market: cloud data platform / lakehouse
+  standards_found:
+    - scim
+    - iceberg-rest-catalog
+  note: >-
+    Two real domain-standard signatures, both readable from the contract surface rather than
+    from marketing copy: SCIM 2.0 URNs on the identity side and the Apache Iceberg REST Catalog
+    API on the data side. Snowflake is unusual in this market for authoring one of them —
+    Polaris, the reference Iceberg REST Catalog implementation, was donated by Snowflake to the
+    ASF.
+  not_applicable:
+    - fhir
+    - fapi
+    - psd2
+    - openrtb
+    - lti
+    - oai-pmh
+    - hl7v2
+    - x12
+    - iso20022
+  not_applicable_note: >-
+    Snowflake is horizontal infrastructure sold into every regulated sector rather than a
+    participant in any one sector's message standard. Absence here is not a finding against it.

@@ -1,23 +1,111 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/snowflake-sql-rest-api.yaml, openapi/sqlapi.yaml
+generated: '2026-09-03'
+method: searched
+source: >-
+  Baseline derived from the oauth2 securitySchemes in openapi/snowflake-statements-api-openapi.yml
+  by 0-working/derive-oauth-scopes.py, then enriched from Snowflake's own OAuth documentation.
+docs:
+  - https://docs.snowflake.com/en/user-guide/oauth-custom
+  - https://docs.snowflake.com/en/user-guide/oauth-ext-overview
+  - https://docs.snowflake.com/en/developer-guide/sql-api/authenticating
+provider: Snowflake
+providerId: snowflake
+
+description: >-
+  Snowflake's OAuth scopes do NOT enumerate permissions. There is no `databases:read` or
+  `warehouse:write`. A Snowflake scope selects which ROLE the session runs as; the permissions
+  themselves come from Snowflake RBAC grants attached to that role inside the account. This is
+  the single most important thing for an integrator to understand: narrowing an OAuth scope
+  narrows the role, and the role is where the actual authorization decision lives.
+
 schemes:
-- name: snowflakeOAuth
-  source: openapi/snowflake-sql-rest-api.yaml
-  flows:
-  - flow: authorizationCode
-    authorizationUrl: https://org-account.snowflakecomputing.com/oauth/authorize
-    tokenUrl: https://org-account.snowflakecomputing.com/oauth/token-request
-  description: Snowflake OAuth authentication flow.
-- name: snowflakeOAuth
-  source: openapi/sqlapi.yaml
-  flows:
-  - flow: implicit
-    authorizationUrl: /oauth/authorize
+  - name: SnowflakeOAuth
+    type: oauth2
+    source: openapi/snowflake-statements-api-openapi.yml
+    description: Snowflake OAuth — Snowflake itself is the authorization server.
+    docs: https://docs.snowflake.com/en/user-guide/oauth-custom
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://org-account.snowflakecomputing.com/oauth/authorize
+        tokenUrl: https://org-account.snowflakecomputing.com/oauth/token-request
+        note: >-
+          Both endpoints are per-account. The authorization endpoint is a GET that must be
+          opened in an interactive browser; the token endpoint is a POST that exchanges an
+          authorization code or a refresh token for an access token.
+      - flow: implicit
+        authorizationUrl: /oauth/authorize
+        note: >-
+          Declared in the contract. The implicit flow is deprecated by OAuth 2.1 and by current
+          IETF security best practice; prefer authorizationCode with PKCE.
+  - name: ExternalOAuth
+    type: oauth2
+    description: >-
+      External OAuth — an external identity provider (Okta, Microsoft Entra ID, Ping, a custom
+      OIDC IdP) is the authorization server and Snowflake validates the token it issues.
+    docs: https://docs.snowflake.com/en/user-guide/oauth-ext-overview
+    note: >-
+      Scope semantics come from the IdP's configuration, not from Snowflake. Snowflake maps the
+      token's subject claim to a Snowflake user and applies that user's roles. Snowflake is the
+      relying party here, not the authorization server — which is also why no
+      /.well-known/openid-configuration is served on a Snowflake host.
+
 scopes:
-- scope: session:role:PUBLIC
-  description: Default public role access
-  flows:
-  - authorizationCode
-  sources:
-  - openapi/snowflake-sql-rest-api.yaml
+  - scope: session:role:<role_name>
+    description: >-
+      Restricts the access token to a single Snowflake role. The session runs as that role and
+      cannot switch. This is the least-privilege scope form and the one to use for machine and
+      agent credentials.
+    flows: [authorizationCode, implicit]
+    docs: https://docs.snowflake.com/en/user-guide/oauth-custom
+    caution: >-
+      The role name must be UPPERCASE unless it was created quoted. A lowercase role name in the
+      scope is the common cause of an authorization that appears to succeed and then behaves as
+      the wrong role.
+  - scope: session:role-encoded:<role_name>
+    description: >-
+      Same as session:role but URL-encodes the role name. Use for roles containing reserved
+      characters.
+    flows: [authorizationCode]
+    docs: https://docs.snowflake.com/en/user-guide/oauth-custom
+  - scope: session:role-any
+    description: >-
+      Requests a session that can switch its primary role at runtime with USE ROLE, rather than
+      being pinned to one. Requires OAUTH_ANY_ROLE_MODE to be enabled on the security
+      integration.
+    flows: [authorizationCode]
+    docs: https://docs.snowflake.com/en/user-guide/oauth-custom
+    caution: >-
+      This is the broad scope. A token issued with session:role-any can assume any role the
+      underlying user holds, so the OAuth scope stops constraining anything — the whole
+      authorization surface collapses back onto the user's role grants. Do not issue it to an
+      agent.
+  - scope: session:role:PUBLIC
+    description: >-
+      The concrete instance of session:role that appears in the contract's own example. PUBLIC
+      is the default role every Snowflake user holds; it grants almost nothing on its own.
+    flows: [authorizationCode]
+    sources:
+      - openapi/snowflake-statements-api-openapi.yml
+  - scope: refresh_token
+    description: >-
+      Requested alongside a role scope in the authorization URL. Snowflake then presents the
+      user with the option to consent to offline access and issues a refresh token, so the
+      client can renew without another interactive authorization.
+    flows: [authorizationCode]
+    docs: https://docs.snowflake.com/en/user-guide/oauth-custom
+
+authorization_model:
+  primary: Snowflake RBAC
+  note: >-
+    Scopes select a role; grants on that role decide what the call can do. To restrict an
+    integration, create a dedicated role, grant it exactly the privileges the integration needs,
+    and issue tokens scoped session:role:<THAT_ROLE>. Everything else — including every check in
+    the MCP server's tool surface — resolves through the same grant graph.
+  docs: https://docs.snowflake.com/en/user-guide/security-access-control-overview
+
+non_oauth_credentials:
+  note: >-
+    Two of Snowflake's four supported credential types are not OAuth at all and therefore carry
+    no scopes. See authentication/snowflake-authentication.yml.
+  types:
+    - KeyPair (RSA key-pair JWT)
+    - ProgrammaticAccessToken (PAT), scoped by the role it is issued against

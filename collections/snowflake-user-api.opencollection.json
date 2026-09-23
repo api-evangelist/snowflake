@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account user API",
+    "name": "Snowflake User API",
     "version": "0.0.1"
   },
   "items": [
@@ -114,6 +114,47 @@
             }
           },
           "docs": "Revoke grants from the user"
+        },
+        {
+          "info": {
+            "name": "Set tags on a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/users/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a user."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/users/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a user."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/users/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a user. This operation requires an active warehouse."
         }
       ]
     }

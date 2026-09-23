@@ -1,0 +1,65 @@
+generated: '2026-09-03'
+method: generated
+source: >-
+  Authored from this repo's openapi/ corpus and arazzo/ workflows. Every operationId referenced
+  in every skill below was verified to exist in openapi/ before it was written; none was
+  invented. Snowflake publishes no AGENTS.md and no skills of its own — probed
+  https://docs.snowflake.com/llms.txt and https://github.com/snowflakedb , neither carries one —
+  so these are generated, not harvested.
+provider: Snowflake
+providerId: snowflake
+api: Snowflake REST API (/api/v2) and SQL API
+base_url: https://<orgname>-<account_name>.snowflakecomputing.com
+
+shared_rules:
+  authentication: >-
+    Every call needs an Authorization header AND the X-Snowflake-Authorization-Token-Type header
+    naming the credential kind (KEYPAIR_JWT, OAUTH, or PROGRAMMATIC_ACCESS_TOKEN). Omitting the
+    type header is the most common 401.
+  identifiers: >-
+    Object names fold to uppercase unless double-quoted. A quoted identifier is case-sensitive.
+    Get this wrong and you get 404, not a helpful error.
+  idempotency: >-
+    Use createMode=ifNotExists on creates and ifExists=true on deletes. There is no
+    Idempotency-Key; a retry is re-evaluated against current state, not replayed.
+  errors: >-
+    Errors are application/json { message, code, error_code (deprecated), request_id } — NOT
+    RFC 9457 problem+json. Branch on `code`, log `request_id`.
+  rate_limits: >-
+    429 carries no Retry-After and no RateLimit headers. Back off with jitter starting around 2
+    seconds and doubling.
+  reversibility: >-
+    DROP is reversible only for the object types with an :undrop operation, and only inside the
+    account's Time Travel window, which DEFAULTS TO ONE DAY. Never assume 90 days.
+  no_dry_run: >-
+    There is no dry-run or validate-only mode anywhere in this API. Every call you make is real.
+
+skills:
+  - name: snowflake-run-sql
+    file: snowflake-run-sql.md
+    description: Submit a SQL statement, poll it to completion, page the results, cancel it if needed.
+    operations: [submitStatement, getStatementStatus, fetchResult, cancelStatement]
+    mirrors: arazzo/snowflake-submit-sql-statement-and-poll-workflow.yml
+  - name: snowflake-provision-objects
+    file: snowflake-provision-objects.md
+    description: Provision a database, schema and table idempotently and verify each one landed.
+    operations: [createDatabase, fetchDatabase, createSchema, fetchSchema, createTable, fetchTable, listDatabases]
+    mirrors: arazzo/snowflake-provision-database-schema-table-workflow.yml
+  - name: snowflake-manage-warehouse
+    file: snowflake-manage-warehouse.md
+    description: Create, resume, suspend, abort queries on and retire a virtual warehouse — the compute cost lever.
+    operations: [createWarehouse, fetchWarehouse, listWarehouses, resumeWarehouse, suspendWarehouse, abortAllQueriesOnWarehouse, deleteWarehouse]
+    mirrors: arazzo/snowflake-warehouse-lifecycle-workflow.yml
+  - name: snowflake-safe-drop
+    file: snowflake-safe-drop.md
+    description: Drop an object with a recovery plan — what is undroppable, what is not, and inside what window.
+    operations: [deleteTable, undropTable, deleteDatabase, undropDatabase, cloneDatabase, fetchTable]
+    mirrors: conventions/snowflake-conventions.yml (reversibility)
+  - name: snowflake-ask-cortex-analyst
+    file: snowflake-ask-cortex-analyst.md
+    description: Ask a natural-language question of a semantic model and get back generated SQL plus results.
+    operations: [sendMessage, submitStatement, getStatementStatus]
+  - name: snowflake-search-unstructured
+    file: snowflake-search-unstructured.md
+    description: Retrieve from a Cortex Search service over unstructured content, for RAG.
+    operations: [listCortexSearchServices, fetchCortexSearchService, queryCortexSearchService, sendFeedback]

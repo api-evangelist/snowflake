@@ -1,8 +1,8 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account cortex search service API",
-    "version": "0.0.1"
+    "name": "Snowflake cortex search service API",
+    "version": "0.1.0"
   },
   "items": [
     {
@@ -18,7 +18,7 @@
           },
           "http": {
             "method": "GET",
-            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name"
+            "url": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name"
           },
           "docs": "Fetch a Cortex Search Service."
         },
@@ -29,7 +29,7 @@
           },
           "http": {
             "method": "DELETE",
-            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name"
+            "url": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name"
           },
           "docs": "Delete a cortex search service with the given name. If ifExists is used, the operation will succeed even if the object does not exist. Otherwise, there will be a failure if the drop is unsuccessful."
         },
@@ -40,7 +40,7 @@
           },
           "http": {
             "method": "GET",
-            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services"
+            "url": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/cortex-search-services"
           },
           "docs": "Lists the cortex search services under the database and schema."
         },
@@ -51,7 +51,7 @@
           },
           "http": {
             "method": "POST",
-            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services",
+            "url": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/cortex-search-services",
             "body": {
               "type": "json",
               "data": "{}"
@@ -66,7 +66,7 @@
           },
           "http": {
             "method": "POST",
-            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services/:service_name:query",
+            "url": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/cortex-search-services/:service_name:query",
             "params": [
               {
                 "name": "service_name",
@@ -89,7 +89,7 @@
           },
           "http": {
             "method": "POST",
-            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name:suspend",
+            "url": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name:suspend",
             "params": [
               {
                 "name": "target",
@@ -108,7 +108,7 @@
           },
           "http": {
             "method": "POST",
-            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name:resume",
+            "url": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name:resume",
             "params": [
               {
                 "name": "target",
@@ -119,6 +119,44 @@
             ]
           },
           "docs": "Resume the cortex search service"
+        },
+        {
+          "info": {
+            "name": "Suggest from a Cortex Search Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/cortex-search-services/:service_name:suggest",
+            "params": [
+              {
+                "name": "service_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Cortex Search Service"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Suggest from a Cortex Search Service to get auto-complete or contextual suggestions"
+        },
+        {
+          "info": {
+            "name": "sendFeedback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/databases/:database/schemas/:schema/cortex-search-services/:name:feedback",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send user feedback for a Cortex Search result"
         }
       ]
     }

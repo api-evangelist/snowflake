@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account notification-integration API",
+    "name": "Snowflake Notification Integration API",
     "version": "0.0.1"
   },
   "items": [
@@ -58,6 +58,47 @@
             "url": "https://org-account.snowflakecomputing.com/api/v2/notification-integrations/:name"
           },
           "docs": "Delete a notification integration"
+        },
+        {
+          "info": {
+            "name": "Set tags on a notification integration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/notification-integrations/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a notification integration."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a notification integration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/notification-integrations/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a notification integration."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a notification integration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/notification-integrations/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a notification integration. This operation requires an active warehouse."
         }
       ]
     }

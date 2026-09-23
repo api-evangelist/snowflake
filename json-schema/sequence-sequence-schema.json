@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sequence",
+  "type": "object",
+  "description": "A Snowflake sequence",
+  "properties": {
+    "start": {
+      "type": "integer",
+      "format": "int64",
+      "description": "First value returned by the sequence"
+    },
+    "increment": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Step interval of the sequence"
+    },
+    "ordered": {
+      "type": "boolean",
+      "description": "Whether or not the values are generated in increasing or decreasing order"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment for the sequence"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "description": "Name of the sequence"
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true,
+      "description": "Date and time when the sequence was created."
+    },
+    "database_name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Database in which the sequence is stored"
+    },
+    "schema_name": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Schema in which the sequence is stored"
+    },
+    "owner": {
+      "type": "string",
+      "pattern": "^\"([^\"]|\"\")+\"|[a-zA-Z_][a-zA-Z0-9_$]*$",
+      "readOnly": true,
+      "description": "Role that owns the sequence"
+    },
+    "owner_role_type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of role that owns the sequence"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

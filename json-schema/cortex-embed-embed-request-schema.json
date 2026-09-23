@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EmbedRequest",
+  "type": "object",
+  "description": "Request to calculate text embeddings using a specified model.",
+  "properties": {
+    "model": {
+      "type": "string",
+      "description": "Identifier of the model to use for generating embeddings.\nRefer to Snowflake documentation for the list of supported models.\n\nExamples:\n  - `snowflake-arctic-embed-m`\n  - `snowflake-arctic-embed-m-v1.5`\n"
+    },
+    "text": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "An array of input texts for which vector embeddings will be calculated.\nExample: [\"Hello world\", \"Machine learning is fascinating\"]",
+      "minItems": 1
+    },
+    "provisioned_throughput_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The provisioned throughput ID to be used with the request."
+    }
+  },
+  "required": [
+    "model",
+    "text"
+  ]
+}

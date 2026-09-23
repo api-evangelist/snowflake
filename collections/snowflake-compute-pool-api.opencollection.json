@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account compute-pool API",
+    "name": "Snowflake Compute Pool API",
     "version": "0.0.1"
   },
   "items": [
@@ -125,6 +125,58 @@
             "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools/:name:stop-all-services"
           },
           "docs": "Stops all services in the compute pool."
+        },
+        {
+          "info": {
+            "name": "Lists available compute pool instance families.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools/instance-families"
+          },
+          "docs": "Lists all available instance families that can be used when creating compute pools."
+        },
+        {
+          "info": {
+            "name": "Set tags on a compute pool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a compute pool."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a compute pool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a compute pool."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a compute pool.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/compute-pools/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a compute pool. This operation requires an active warehouse."
         }
       ]
     }

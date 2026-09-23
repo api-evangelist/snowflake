@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cortex Messages Cortex Generic Anthropic API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cortex-generic-anthropic",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Perform LLM text completion inference using Cortex Messages API format.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v2/cortex/v1/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform LLM text completion inference using Cortex Messages API format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

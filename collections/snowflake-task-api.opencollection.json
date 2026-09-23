@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account task API",
+    "name": "Snowflake Task API",
     "version": "0.0.1"
   },
   "items": [
@@ -219,6 +219,47 @@
             ]
           },
           "docs": "This function returns details for graph runs that are completed."
+        },
+        {
+          "info": {
+            "name": "Set tags on an existing task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets tags on an existing task."
+        },
+        {
+          "info": {
+            "name": "Unset tags from an existing task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unsets tags from an existing task."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for the task.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tasks/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to the task. This operation requires an active warehouse."
         }
       ]
     }

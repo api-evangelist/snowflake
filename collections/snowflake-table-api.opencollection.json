@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account table API",
+    "name": "Snowflake Table API",
     "version": "0.0.1"
   },
   "items": [
@@ -343,6 +343,47 @@
             ]
           },
           "docs": "Swap with another table"
+        },
+        {
+          "info": {
+            "name": "Set tags on a table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a table."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a table."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a table.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/tables/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a table. This operation requires an active warehouse."
         }
       ]
     }

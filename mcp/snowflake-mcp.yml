@@ -1,0 +1,78 @@
+generated: '2026-09-03'
+method: searched
+source: >-
+  https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp ,
+  https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp-connectors ,
+  https://docs.snowflake.com/en/developer-guide/native-apps/agents-mcp-servers ,
+  https://github.com/Snowflake-Labs/mcp
+provider: Snowflake
+providerId: snowflake
+name: Snowflake-managed MCP server
+status: published
+description: >-
+  Snowflake ships a first-party, account-hosted MCP server. A customer creates one with
+  CREATE MCP SERVER; Snowflake then serves it over HTTPS from the customer's own account host
+  and wraps Snowflake-native objects — Cortex Analyst semantic models, Cortex Search services,
+  Cortex Agents, SQL execution and custom UDFs/procedures — as MCP tools. Snowflake RBAC and
+  OAuth remain in force on every call, so the tool surface an agent sees is exactly the set
+  of objects its role can already reach.
+deployment:
+  mode: both
+  endpoint: https://<account_url>/api/v2/databases/{database}/schemas/{schema}/mcp-servers/{name}
+  install: uvx snowflake-labs-mcp --service-config-file config.yaml
+  package: https://pypi.org/project/snowflake-labs-mcp/
+  auth: oauth
+  verified: searched
+  endpoint_note: >-
+    The remote endpoint is per-tenant and per-object: <account_url> is the customer's own
+    Snowflake account host and {database}/{schema}/{name} name the MCP SERVER object the
+    customer created. There is no single shared Snowflake MCP URL to probe anonymously, so
+    `verified` is `searched` — the template is quoted from Snowflake's own documentation,
+    not observed on a live call.
+  install_note: >-
+    The stdio half (Snowflake-Labs/mcp, PyPI snowflake-labs-mcp 1.4.2, last release
+    2026-05-15) is marked DEPRECATED and no longer maintained by its own README, which
+    directs users to the Snowflake-managed server above. Recorded because it still installs
+    and still runs, but it is not the surface to build on.
+transport:
+  - streamable-http
+  - sse
+  - stdio
+transport_note: >-
+  The managed server is HTTP-based; Snowflake's documentation notes that as of August 2026
+  responses stream as Server-Sent Events rather than a single JSON payload. The deprecated
+  local package defaults to stdio and can also be run with streamable-http on port 9000.
+authentication:
+  default: Snowflake OAuth
+  alternatives:
+    - External OAuth (Okta, Microsoft Entra ID) bound to the MCP server object
+    - Programmatic Access Token (PAT) scoped to a least-privileged role
+  docs: https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp
+  note: >-
+    Snowflake's documentation explicitly recommends against hardcoded tokens. Tool
+    authorization is not MCP-level scope: it is Snowflake RBAC on the underlying objects.
+tool_types:
+  - name: CORTEX_AGENT_RUN
+    description: Run a Cortex Agent — multi-step orchestration over Snowflake data and tools.
+  - name: CORTEX_ANALYST_MESSAGE
+    description: Natural-language question against a semantic model; returns generated SQL and results.
+  - name: CORTEX_SEARCH_SERVICE_QUERY
+    description: Semantic/hybrid retrieval against a Cortex Search service over unstructured content.
+  - name: SYSTEM_EXECUTE_SQL
+    description: Execute a SQL statement directly, subject to the calling role's privileges.
+  - name: GENERIC
+    description: Wrap a customer-defined Python UDF or stored procedure as an agent-callable tool.
+tools_note: >-
+  The concrete tool list is per-server: an account's MCP server exposes exactly the objects
+  named in its CREATE MCP SERVER definition. The five entries above are the tool TYPES
+  Snowflake supports, quoted from the documentation — not a fabricated tools/list response.
+  A live tools/list requires an authenticated session against a customer account, which this
+  pass could not and should not perform.
+related:
+  - name: MCP Connectors
+    url: https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp-connectors
+    note: Snowflake acting as an MCP CLIENT, calling third-party MCP servers from Cortex Agents.
+  - name: Cortex Code CLI MCP support
+    url: https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-mcp
+  - name: MCP servers in Snowflake Native Apps
+    url: https://docs.snowflake.com/en/developer-guide/native-apps/agents-mcp-servers

@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account alert API",
+    "name": "Snowflake Alert API",
     "version": "0.0.1"
   },
   "items": [
@@ -98,6 +98,47 @@
             "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/alerts/:name:execute"
           },
           "docs": "Execute an alert"
+        },
+        {
+          "info": {
+            "name": "Set tags on an alert.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/alerts/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on an alert."
+        },
+        {
+          "info": {
+            "name": "Unset tags from an alert.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/alerts/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from an alert."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for an alert.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:schema/alerts/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to an alert. This operation requires an active warehouse."
         }
       ]
     }

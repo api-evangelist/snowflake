@@ -11,13 +11,14 @@ security:
 - KeyPair: []
 - ExternalOAuth: []
 - SnowflakeOAuth: []
+- ProgrammaticAccessToken: []
 tags:
 - name: cortex search service
 paths:
   /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{name}:
     delete:
       operationId: deleteCortexSearchService
-      summary: Delete a Cortex Search Service
+      summary: Delete a cortex search service
       description: Delete a cortex search service with the given name. If ifExists is used, the operation will succeed even if the object does not exist. Otherwise, there will be a failure if the drop is unsuccessful.
       tags:
       - cortex search service
@@ -55,12 +56,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     get:
       operationId: fetchCortexSearchService
-      summary: Fetch a Cortex Search Service.
+      summary: Fetch a cortex search service
       description: Fetch a Cortex Search Service.
       tags:
       - cortex search service
@@ -80,30 +78,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CortexSearchService'
-              examples:
-                Fetchcortexsearchservice200Example:
-                  summary: Default fetchCortexSearchService 200 response
-                  x-microcks-default: true
-                  value:
-                    name: Example Title
-                    search_column: example_value
-                    columns:
-                    - example_value
-                    attribute_columns:
-                    - example_value
-                    target_lag: {}
-                    warehouse: example_value
-                    definition: example_value
-                    comment: example_value
-                    created_on: '2026-01-15T10:30:00Z'
-                    database_name: example_value
-                    schema_name: example_value
-                    source_data_num_rows: 10
-                    data_timestamp: '2026-01-15T10:30:00Z'
-                    indexing_state: ACTIVE
-                    serving_state: ACTIVE
-                    indexing_error: example_value
-                    serving_data_bytes: 10
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -130,13 +104,10 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/cortex-search-services:
     get:
       operationId: listCortexSearchServices
-      summary: List Cortex Search Services
+      summary: List cortex search services
       description: Lists the cortex search services under the database and schema.
       tags:
       - cortex search service
@@ -160,30 +131,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CortexSearchService'
-              examples:
-                Listcortexsearchservices200Example:
-                  summary: Default listCortexSearchServices 200 response
-                  x-microcks-default: true
-                  value:
-                  - name: Example Title
-                    search_column: example_value
-                    columns:
-                    - example_value
-                    attribute_columns:
-                    - example_value
-                    target_lag: {}
-                    warehouse: example_value
-                    definition: example_value
-                    comment: example_value
-                    created_on: '2026-01-15T10:30:00Z'
-                    database_name: example_value
-                    schema_name: example_value
-                    source_data_num_rows: 10
-                    data_timestamp: '2026-01-15T10:30:00Z'
-                    indexing_state: ACTIVE
-                    serving_state: ACTIVE
-                    indexing_error: example_value
-                    serving_data_bytes: 10
         '202':
           $ref: common.yaml#/components/responses/202SuccessAcceptedResponse
         '400':
@@ -210,12 +157,9 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
     post:
       operationId: createCortexSearchService
-      summary: Create a Cortex Search Service
+      summary: Create a cortex search service
       description: Create a cortex search service, with standard create modifiers as query parameters. See the Cortex Search Service component definition for what is required to be provided in the request body.
       tags:
       - cortex search service
@@ -238,11 +182,6 @@ paths:
                 - target_lag
                 - warehouse
                 - definition
-            examples:
-              CreatecortexsearchserviceRequestExample:
-                summary: Default createCortexSearchService request
-                x-microcks-default: true
-                value: {}
       responses:
         '200':
           $ref: common.yaml#/components/responses/200SuccessResponse
@@ -272,13 +211,10 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{service_name}:query:
     post:
       operationId: queryCortexSearchService
-      summary: Query a Cortex Search Service.
+      summary: Query a Cortex Search Service
       description: Query a Cortex Search Service to get search results.
       tags:
       - cortex search service
@@ -291,25 +227,11 @@ paths:
         schema:
           type: string
         description: The name of the Cortex Search Service.
-        example: example_value
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/QueryRequest'
-            examples:
-              QuerycortexsearchserviceRequestExample:
-                summary: Default queryCortexSearchService request
-                x-microcks-default: true
-                value:
-                  query: example_value
-                  multi_index_query: example_value
-                  columns:
-                  - example_value
-                  filter: example_value
-                  limit: 10
-                  scoring_config: {}
-                  experimental: example_value
       responses:
         '200':
           description: OK
@@ -317,14 +239,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/QueryResponse'
-              examples:
-                Querycortexsearchservice200Example:
-                  summary: Default queryCortexSearchService 200 response
-                  x-microcks-default: true
-                  value:
-                    results:
-                    - {}
-                    request_id: '500123'
         '400':
           $ref: common.yaml#/components/responses/400BadRequest
         '401':
@@ -345,13 +259,59 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
+  /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{service_name}:suggest:
+    post:
+      operationId: suggestCortexSearchService
+      summary: Suggest from a Cortex Search Service
+      description: Suggest from a Cortex Search Service to get auto-complete or contextual suggestions
+      tags:
+      - cortex search service
+      parameters:
+      - $ref: common.yaml#/components/parameters/database
+      - $ref: common.yaml#/components/parameters/schema
+      - in: path
+        name: service_name
+        required: true
+        schema:
+          type: string
+        description: The name of the Cortex Search Service
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestQueryRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestQueryResponse'
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '408':
+          $ref: common.yaml#/components/responses/408RequestTimeout
+        '409':
+          $ref: common.yaml#/components/responses/409Conflict
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
   /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{name}:suspend:
     post:
       operationId: suspendCortexSearchService
-      summary: Suspend a Cortex Search Service.
+      summary: Suspend a cortex search service
       description: Suspends one or both of the indexing or serving targets of a cortex search service.
       tags:
       - cortex search service
@@ -390,14 +350,10 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{name}:resume:
     post:
       operationId: resumeCortexSearchService
-      description: Resume the cortex search service
-      summary: Resume the Cortex Search Service
+      summary: Resume the cortex search service
       tags:
       - cortex search service
       parameters:
@@ -435,11 +391,71 @@ paths:
           $ref: common.yaml#/components/responses/503ServiceUnavailable
         '504':
           $ref: common.yaml#/components/responses/504GatewayTimeout
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
+  /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{name}:feedback:
+    summary: Create a feedback event for a Cortex Search query result.
+    description: Create a feedback event for a Cortex Search result.
+    post:
+      operationId: sendFeedback
+      tags:
+      - cortex search service
+      description: Send user feedback for a Cortex Search result
+      parameters:
+      - $ref: common.yaml#/components/parameters/database
+      - $ref: common.yaml#/components/parameters/schema
+      - $ref: common.yaml#/components/parameters/name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendFeedbackRequest'
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+      summary: Send feedback
+      x-summary-source: derived
 components:
   schemas:
+    SuggestResult:
+      type: object
+      description: Suggest results.
+      properties:
+        rows:
+          type: array
+          description: List of result rows.
+          items:
+            $ref: '#/components/schemas/ResultRow'
+    VectorBoost:
+      type: object
+      properties:
+        column:
+          $ref: '#/components/schemas/Column'
+        weight:
+          description: Weight to apply for boosting this vector column.
+          type: number
+          example: 0.5
+        disable_vector_embedding_query_prefix:
+          description: Whether to disable the embedding query prefix
+          type: boolean
+          default: false
     QueryResponse:
       type: object
       description: Search results.
@@ -450,34 +466,79 @@ components:
           items:
             type: object
             additionalProperties: true
-            description: Map of column names to bytes.
-          example: []
+            description: Map of column names to values (as bytes).
         request_id:
           type: string
           description: ID of the request.
-          example: '500123'
       required:
       - results
       - request_id
-    Column:
-      type: string
-      description: Column to apply this function to.
-    Weights:
+    QuerySimilarityBoost:
       type: object
-      description: Weights to apply to each scoring component.
+      properties:
+        cortex_search_service:
+          description: Fully-qualified name of a Cortex Search Service through which to find similar previous queries.
+          type: string
+          example: MY_DB.MY_SCHEMA.MY_SEARCH_SERVICE
+        previous_query_column:
+          description: Name of a TEXT column indexed in the specified previous queries search service that contains the previous query strings.
+          type: string
+        documents_column:
+          description: Name of an ARRAY column indexed in the specified previous queries search service that contains a list of documents that matched the corresponding previous query. Each document is represented as an OBJECT mapping all primary key columns to their corresponding values.
+          type: string
+    RetrievalWeights:
+      type: object
+      description: Weights to apply to retrieval stage components.
       properties:
         texts:
-          description: Weight to apply to all text-specific columns.
+          description: Multiplier for text-based scoring in retrieval.
           type: number
-          example: 0.5
+          example: 1.0
         vectors:
-          description: Weight to apply to all vector-specific columns.
+          description: Multiplier for vector-based scoring in retrieval.
           type: number
-          example: 0.5
-        reranker:
-          description: Weight to apply to reranker-specific scoring component.
-          type: number
-          example: 0.5
+          example: 1.0
+    Reranker:
+      type: string
+      description: Model to use for the reranker, or "none" if the reranker should be turned off. If excluded or null, the default reranker is used.
+      example: none
+    SuggestQueryResponse:
+      type: object
+      description: Suggest results.
+      properties:
+        results:
+          type: array
+          description: List of result rows.
+          items:
+            $ref: '#/components/schemas/SuggestResult'
+        request_id:
+          type: string
+          description: ID of the request.
+      required:
+      - results
+      - request_id
+    SendFeedbackRequest:
+      type: object
+      description: The request object for sending user feedback on Cortex Search results
+      properties:
+        request_id:
+          type: string
+          description: Request id associated with the feedback
+        positive:
+          type: boolean
+          description: Whether the results were good (true) or bad (false)
+        feedback_message:
+          type: string
+          description: The text for the detailed feedback message
+      required:
+      - request_id
+      - positive
+    SchedulingState:
+      type: string
+      enum:
+      - ACTIVE
+      - SUSPENDED
+      - INITIALIZING
     TimeDecay:
       type: object
       properties:
@@ -498,12 +559,9 @@ components:
           example: '2022-01-01T00:00:00Z'
       required:
       - column
-    SchedulingState:
+    Column:
       type: string
-      enum:
-      - ACTIVE
-      - SUSPENDED
-      - INITIALIZING
+      description: Column to apply this function to.
     QueryRequest:
       type: object
       description: A search query and additional parameters for search.
@@ -511,43 +569,56 @@ components:
         query:
           description: Unstructured text query.  Exactly one of 'query' or 'multi_index_query' must be specified.
           type: string
-          example: example_value
         multi_index_query:
           description: A search query expressed as a collection of multiple column-level queries.  Exactly one of 'query' or 'multi_index_query' must be specified. A column/index can be queried with multiple queries.
           type: object
           additionalProperties: true
-          example: example_value
         columns:
           description: List of columns to return.
           type: array
           items:
             type: string
-          example: []
         filter:
           description: Filter query.
           type: object
-          example: example_value
         limit:
           description: Max number of results to return.
           type: integer
           default: 10
-          example: 10
         scoring_config:
           $ref: '#/components/schemas/ScoringConfig'
+        scoring_profile:
+          description: Mutually exclusive with scoring_config. Specifies the pre-defined name of a profile on the cortex search service that resolves to scoring_config.
+          type: string
         experimental:
           description: reserved
           type: object
           additionalProperties: true
-          example: example_value
-      required:
-      - columns
-    VectorBoost:
+    NumericBoost:
       type: object
       properties:
         column:
           $ref: '#/components/schemas/Column'
         weight:
-          description: Weight to apply for boosting this vector column.
+          type: number
+          description: Weight to apply for boosting this numerical column. It will be normalized across all scored columns specified in the scoring config so that all weights sum to 1. If a weight is not provided, the weight defaults to 1 pre-normalization.
+          example: 0.5
+      required:
+      - column
+    Weights:
+      type: object
+      description: Weights to apply to each scoring component.
+      properties:
+        texts:
+          description: Weight to apply to all text-specific columns.
+          type: number
+          example: 0.5
+        vectors:
+          description: Weight to apply to all vector-specific columns.
+          type: number
+          example: 0.5
+        reranker:
+          description: Weight to apply to reranker-specific scoring component.
           type: number
           example: 0.5
     TextBoost:
@@ -559,6 +630,50 @@ components:
           description: Weight to apply for boosting this text column.
           type: number
           example: 0.5
+    ScoringConfig:
+      type: object
+      description: reserved
+      properties:
+        functions:
+          $ref: '#/components/schemas/Functions'
+        reranker:
+          $ref: '#/components/schemas/Reranker'
+        weights:
+          $ref: '#/components/schemas/Weights'
+        retrieval_weights:
+          $ref: '#/components/schemas/RetrievalWeights'
+        ranking_weights:
+          $ref: '#/components/schemas/RankingWeights'
+        disable_vector_embedding_query_prefix:
+          type: boolean
+          description: whether to disable query prefix for embedding while searching
+          default: false
+        diversity:
+          $ref: '#/components/schemas/Diversity'
+    Functions:
+      type: object
+      description: Functions to apply for scoring this request.
+      properties:
+        numeric_boosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/NumericBoost'
+        time_decays:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeDecay'
+        text_boosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextBoost'
+        vector_boosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/VectorBoost'
+        query_similarity_boosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySimilarityBoost'
     CortexSearchService:
       type: object
       description: A Snowflake cortex search service object.
@@ -566,23 +681,19 @@ components:
         name:
           type: string
           description: Specifies the name for the cortex search service, must be unique for the schema in which the cortex search service is created
-          example: Example Title
         search_column:
           type: string
           description: Specifies the name of the search column for the cortex search service.
-          example: example_value
         columns:
           type: array
           items:
             type: string
           description: Specifies all columns included in the cortex search service and that can be returned in search queries.
-          example: []
         attribute_columns:
           type: array
           items:
             type: string
           description: Specifies the attribute columns, which can be referenced in filters in search queries to the cortex search service.
-          example: []
         target_lag:
           $ref: common.yaml#/components/schemas/TargetLag
           description: Specifies the schedule for periodically refreshing the cortex search service.
@@ -597,35 +708,29 @@ components:
         comment:
           type: string
           description: Specifies a comment for the cortex search service
-          example: example_value
         created_on:
           type: string
           format: date-time
           readOnly: true
           description: Date and time when the cortex search service was created.
-          example: '2026-01-15T10:30:00Z'
         database_name:
           type: string
           readOnly: true
           description: Database in which the cortex search service is stored
-          example: example_value
         schema_name:
           type: string
           readOnly: true
           description: Schema in which the cortex search service is stored
-          example: example_value
         source_data_num_rows:
           type: integer
           format: int64
           readOnly: true
           description: Number of rows in the materialized source data feeding into the cortex search service.
-          example: 10
         data_timestamp:
           type: string
           format: date-time
           readOnly: true
           description: Date and time as of which data existent in base tables is now serving.
-          example: '2026-01-15T10:30:00Z'
         indexing_state:
           $ref: '#/components/schemas/SchedulingState'
           description: Current state of the indexing pipeline for the cortex search service; one of 'SUSPENDED' or 'ACTIVE'.
@@ -636,82 +741,63 @@ components:
           type: string
           readOnly: true
           description: Error encountered during the latest indexing pipeline of the cortex search service, if any.
-          example: example_value
         serving_data_bytes:
           type: integer
           format: int64
           readOnly: true
           description: Size of the serving index, in bytes.
-          example: 10
-    ScoringConfig:
+    SuggestQueryRequest:
       type: object
-      description: reserved
+      description: A Suggest request.
       properties:
-        functions:
-          $ref: '#/components/schemas/Functions'
-        reranker:
-          $ref: '#/components/schemas/Reranker'
-        weights:
-          $ref: '#/components/schemas/Weights'
-    Reranker:
-      type: string
-      description: Model to use for the reranker, or "none" if the reranker should be turned off. If excluded or null, the default reranker is used.
-      example: none
-    NumericBoost:
-      type: object
-      properties:
-        column:
-          $ref: '#/components/schemas/Column'
-        weight:
-          type: number
-          description: Weight to apply for boosting this numerical column. It will be normalized across all scored columns specified in the scoring config so that all weights sum to 1. If a weight is not provided, the weight defaults to 1 pre-normalization.
-          example: 0.5
+        query:
+          description: The text query on which to suggest.
+          type: string
+        columns:
+          description: List of columns to return.
+          type: array
+          items:
+            type: string
+        limit:
+          description: Max number of results to return.
+          type: integer
+          default: 5
       required:
-      - column
-    QuerySimilarityBoost:
+      - query
+    ResultRow:
       type: object
+      description: Map of column names to values.
       properties:
-        cortex_search_service:
-          description: Fully-qualified name of a Cortex Search Service through which to find similar previous queries.
-          type: string
-          example: MY_DB.MY_SCHEMA.MY_SEARCH_SERVICE
-        previous_query_column:
-          description: Name of a TEXT column indexed in the specified previous queries search service that contains the previous query strings.
-          type: string
-          example: example_value
-        documents_column:
-          description: Name of an ARRAY column indexed in the specified previous queries search service that contains a list of documents that matched the corresponding previous query. Each document is represented as an OBJECT mapping all primary key columns to their corresponding values.
-          type: string
-          example: example_value
-    Functions:
+        columns:
+          type: object
+    Diversity:
       type: object
-      description: Functions to apply for scoring this request.
+      description: Configuration to control result diversity with respect to one or more metadata columns.
       properties:
-        numeric_boosts:
+        group_by:
+          description: Columns to group by.
           type: array
           items:
-            $ref: '#/components/schemas/NumericBoost'
-          example: []
-        time_decays:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimeDecay'
-          example: []
-        text_boosts:
-          type: array
-          items:
-            $ref: '#/components/schemas/TextBoost'
-          example: []
-        vector_boosts:
-          type: array
-          items:
-            $ref: '#/components/schemas/VectorBoost'
-          example: []
-        query_similarity_boosts:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySimilarityBoost'
-          example: []
+            type: string
+        max_results:
+          description: Maximum number of results per group to return.
+          type: integer
+    RankingWeights:
+      type: object
+      description: Weights to apply to ranking stage components.
+      properties:
+        texts:
+          description: Multiplier for text-based scoring in ranking.
+          type: number
+          example: 1.0
+        vectors:
+          description: Multiplier for vector-based scoring in ranking.
+          type: number
+          example: 1.0
+        reranker:
+          description: Multiplier for reranker score in ranking.
+          type: number
+          example: 1.0
   parameters:
     suspendResumeTarget:
       name: target
@@ -732,3 +818,5 @@ components:
       $ref: common.yaml#/components/securitySchemes/ExternalOAuth
     SnowflakeOAuth:
       $ref: common.yaml#/components/securitySchemes/SnowflakeOAuth
+    ProgrammaticAccessToken:
+      $ref: common.yaml#/components/securitySchemes/ProgrammaticAccessToken

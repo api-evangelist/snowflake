@@ -1,0 +1,122 @@
+generated: '2026-09-03'
+method: searched
+source: >-
+  https://docs.snowflake.com/en/release-notes/llms.txt (machine-readable index of every release
+  note, fetched 2026-09-03) plus the per-release .md documents it links.
+provider: Snowflake
+providerId: snowflake
+url: https://docs.snowflake.com/en/release-notes/overview
+machine_readable_index: https://docs.snowflake.com/en/release-notes/llms.txt
+machine_readable_note: >-
+  Snowflake publishes the release-note index as llms.txt and every release note as a .md twin,
+  so the changelog is machine-readable end to end without scraping HTML. That is rare and worth
+  recording: an agent can enumerate every dated release and read each one as markdown.
+
+scheme: MAJOR.MINOR, weekly, dated by window
+current_version: '10.31'
+current_window:
+  start: '2026-08-29'
+  end: '2026-09-02'
+cadence: weekly
+breaking_change_channel: >-
+  Breaking changes do NOT appear in the weekly release notes as such. They ship in dated
+  Behavior Change (BCR) bundles with an eight-week minimum runway. See
+  lifecycle/snowflake-lifecycle.yml.
+
+entries:
+  - version: '10.31'
+    date_start: '2026-08-29'
+    date_end: '2026-09-02'
+    url: https://docs.snowflake.com/en/release-notes/2026/10_31
+    breaking: false
+    announcements: false
+    highlights:
+      - No significant features, updates or enhancements announced in this release.
+  - version: '10.30'
+    date_start: '2026-08-22'
+    date_end: '2026-08-25'
+    url: https://docs.snowflake.com/en/release-notes/2026/10_30
+    breaking: false
+    announcements: false
+  - version: '10.29'
+    date_start: '2026-08-15'
+    date_end: '2026-08-19'
+    url: https://docs.snowflake.com/en/release-notes/2026/10_29
+    breaking: false
+    announcements: true
+    highlights:
+      - 'Cost management: per-user quotas (General availability)'
+      - 'Cost management: anomaly monitors for cost anomalies (Preview)'
+  - version: '10.28'
+    date_start: '2026-08-09'
+    date_end: '2026-08-12'
+    url: https://docs.snowflake.com/en/release-notes/2026/10_28
+    breaking: false
+    announcements: false
+  - version: '10.27'
+    date_start: '2026-08-02'
+    date_end: '2026-08-06'
+    url: https://docs.snowflake.com/en/release-notes/2026/10_27
+    breaking: false
+    announcements: true
+    highlights:
+      - 'Data pipelines: CREATE OR ALTER DYNAMIC TABLE (General availability)'
+  - version: '10.26'
+    date_start: '2026-07-24'
+    date_end: '2026-07-31'
+    url: https://docs.snowflake.com/en/release-notes/2026/10_26
+    breaking: true
+    breaking_note: >-
+      Carries behavior changes. The 2026_05 BCR bundle moved to Enabled by default in this
+      release.
+  - version: '10.25'
+    date_start: '2026-07-17'
+    date_end: '2026-07-22'
+    url: https://docs.snowflake.com/en/release-notes/2026/10_25
+    breaking: false
+  - version: '10.24'
+    date_start: '2026-07-09'
+    date_end: '2026-07-15'
+    url: https://docs.snowflake.com/en/release-notes/2026/10_24
+    breaking: false
+  - version: '10.23'
+    date_start: '2026-06-26'
+    date_end: '2026-07-01'
+    url: https://docs.snowflake.com/en/release-notes/2026/10_23
+    breaking: false
+    announcements: false
+  - version: '10.22'
+    date_start: '2026-06-20'
+    date_end: '2026-06-25'
+    url: https://docs.snowflake.com/en/release-notes/2026/10_22
+    breaking: false
+  - version: '10.21'
+    date_start: '2026-06-12'
+    date_end: '2026-06-18'
+    url: https://docs.snowflake.com/en/release-notes/2026/10_21
+    breaking: true
+    breaking_note: Carries behavior changes. The 2026_05 BCR bundle was introduced here, disabled by default.
+  - version: '10.20'
+    date_start: '2026-06-06'
+    date_end: '2026-06-09'
+    url: https://docs.snowflake.com/en/release-notes/2026/10_20
+    breaking: false
+
+window:
+  note: >-
+    Recent window only — the twelve most recent releases. The full 2026 line runs 10.0
+    (Jan 12-15) through 10.31, and the index at
+    https://docs.snowflake.com/en/release-notes/llms.txt also carries every 2022-2025 bundle and
+    improvement page. Releases marked breaking:true are the four 2026 releases whose titles read
+    "(with behavior changes)" within this window.
+  releases_in_2026_to_date: 32
+  releases_with_behavior_changes_in_window: 2
+
+related_changelogs:
+  - name: Client, connector, driver and library monthly releases
+    url: https://docs.snowflake.com/en/release-notes/clients-drivers/monthly-releases
+    note: Separate cadence from the platform. Version data in packages/snowflake-packages.yml.
+  - name: Behavior change announcements
+    url: https://docs.snowflake.com/en/release-notes/behavior-changes
+  - name: Snowpipe Streaming SDK release notes
+    url: https://docs.snowflake.com/en/release-notes/clients-drivers/snowpipe-streaming-sdk

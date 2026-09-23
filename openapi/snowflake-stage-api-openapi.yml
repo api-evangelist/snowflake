@@ -15,13 +15,13 @@ security:
 - ExternalOAuth: []
 - SnowflakeOAuth: []
 tags:
-- name: stage
+- name: Stage
 paths:
   /api/v2/databases/{database}/schemas/{schema}/stages:
     get:
       summary: List Stages
       tags:
-      - stage
+      - Stage
       description: Lists stages under the database and schema, with show options as query parameters.
       operationId: listStages
       parameters:
@@ -101,7 +101,7 @@ paths:
     post:
       summary: Create a Stage
       tags:
-      - stage
+      - Stage
       description: Create a stage, with standard create modifiers as query parameters. See the Stage component definition for what is required to be provided in the request body.
       operationId: createStage
       parameters:
@@ -177,7 +177,7 @@ paths:
     get:
       summary: Fetch a Stage
       tags:
-      - stage
+      - Stage
       description: Fetch a stage using the describe command output.
       operationId: fetchStage
       parameters:
@@ -256,7 +256,7 @@ paths:
       - $ref: common.yaml#/components/parameters/ifExists
       summary: Delete a Stage
       tags:
-      - stage
+      - Stage
       description: Delete a stage with the stage name. If ifExists is used, the operation will succeed even if the object does not exist. Otherwise, there will be a failure if the drop is unsuccessful.
       operationId: deleteStage
       responses:
@@ -287,9 +287,9 @@ paths:
         dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/stages/{name}/files:
     get:
-      summary: List Files in the Stage.
+      summary: List Files in the Stage
       tags:
-      - stage
+      - Stage
       description: List files in the stage -- this is equivalent to LIST @stage.
       operationId: listFiles
       parameters:
@@ -345,9 +345,9 @@ paths:
         dispatcher: FALLBACK
   /api/v2/databases/{database}/schemas/{schema}/stages/{name}/files/{filePath}:presigned-url:
     post:
-      summary: Generate a Presigned Url and Optionally Encryption Materials.
+      summary: Generate a Presigned Url and Optionally Encryption Materials
       tags:
-      - stage
+      - Stage
       description: Generate a presigned url and optionally encryption materials for uploading and downloading files.
       operationId: getPresignedUrl
       parameters:
@@ -413,19 +413,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Credentials:
-      type: object
-      description: Specifies the credentials of the stage.
-      properties:
-        credential_type:
-          description: Type of the credential, can be either AWS or AZURE.
-          type: string
-          example: example_value
-      discriminator:
-        propertyName: credential_type
-        mapping:
-          AWS: AwsCredentials
-          AZURE: AzureCredentials
     StageFile:
       type: object
       description: A file on a snowflake stage.
@@ -449,6 +436,14 @@ components:
           description: Date and time when the file was last modified.
           readOnly: true
           example: example_value
+    PresignedUrlRequest:
+      type: object
+      description: Request object to get presigned url of a file
+      properties:
+        expiration_time:
+          description: Expiration time of the generated presigned url in seconds.
+          type: integer
+          example: 10
     Stage:
       type: object
       description: A Snowflake stage.
@@ -571,6 +566,19 @@ components:
         name: stage_name
       required:
       - name
+    Credentials:
+      type: object
+      description: Specifies the credentials of the stage.
+      properties:
+        credential_type:
+          description: Type of the credential, can be either AWS or AZURE.
+          type: string
+          example: example_value
+      discriminator:
+        propertyName: credential_type
+        mapping:
+          AWS: AwsCredentials
+          AZURE: AzureCredentials
     FileTransferMaterial:
       type: object
       description: Materials for uploading and downloading stage files
@@ -579,14 +587,6 @@ components:
           type: string
           description: Presigned url for file transfer, only works for Server Side Encrypted Stages.
           example: https://www.example.com
-    PresignedUrlRequest:
-      type: object
-      description: Request object to get presigned url of a file
-      properties:
-        expiration_time:
-          description: Expiration time of the generated presigned url in seconds.
-          type: integer
-          example: 10
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

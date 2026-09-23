@@ -1,0 +1,1085 @@
+# x-archived-from: cortex-analyst.yaml
+# x-archived-on: 2026-09-03
+openapi: 3.0.0
+servers:
+- description: Snowflake API
+  url: https://org-account.snowflakecomputing.com
+info:
+  version: 0.0.1
+  title: Cortex Analyst API
+  description: The Snowflake Cortex Analyst API is a REST API that allows end user
+    to chat with their data leveraging semantic models to generate SQL queries.
+  contact:
+    name: Snowflake, Inc.
+    url: https://snowflake.com
+    email: support@snowflake.com
+paths:
+  /api/v2/cortex/analyst/feedback:
+    post:
+      operationId: sendFeedback
+      tags:
+      - cortex-analyst
+      description: Send a user feedback of Cortex Analyst response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendFeedbackRequest'
+      responses:
+        '200':
+          $ref: common.yaml#/components/responses/200SuccessResponse
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+  /api/v2/cortex/analyst/message:
+    post:
+      operationId: sendMessage
+      tags:
+      - cortex-analyst
+      summary: Send a data question to the Cortex Analyst
+      description: Send a data question to the Cortex Analyst
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: common-cortex-analyst.yaml#/components/schemas/SendMessageRequest
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: common-cortex-analyst.yaml#/components/schemas/SendMessageResponse
+            text/event-stream:
+              schema:
+                type: string
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+  /api/v2/cortex/analyst/verified-query-suggestions:
+    post:
+      operationId: generateVerifiedQuerySuggestions
+      tags:
+      - cortex-analyst
+      summary: Generate VQ suggestions for a semantic model
+      description: Generate VQ suggestions for a semantic model
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateVerifiedQuerySuggestionsRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateVerifiedQuerySuggestionsResponse'
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+  /api/v2/cortex/analyst/fast-generation:
+    post:
+      operationId: fastGeneration
+      tags:
+      - cortex-analyst
+      summary: Rapidly generate a semantic model given source material
+      description: Provides real-time suggestions for improving a given semantic model
+        via a streaming response.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FastGenerationRequest'
+      responses:
+        '200':
+          description: OK. Streaming suggestions.
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: 'Server-Sent Events stream. Each event''s data payload
+                  will be a JSON representation of a `FastGenerationResponse` object.
+
+                  Events include:
+
+                  - `response`: Contains a `FastGenerationResponse` payload.
+
+                  - `error`: Contains a `StreamingError` payload if an error occurs
+                  during streaming.
+
+                  - `done`: Contains the string payload "done"'
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+  /api/v2/cortex/analyst/pre-selection:
+    post:
+      operationId: preSelection
+      tags:
+      - cortex-analyst
+      summary: Retrieve relevant table information from input data for semantic model
+        generation
+      description: Retrieve relevant table information from input data for semantic
+        model generation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreSelectionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreSelectionResponse'
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+  /api/v2/cortex/analyst/filters-and-metrics-suggestions:
+    post:
+      operationId: generateFiltersAndMetricsSuggestions
+      tags:
+      - cortex-analyst
+      summary: Generate filters, facts, and metrics suggestions for a semantic model
+      description: Generate suggestions for filters, facts, and metrics on a semantic
+        view/model.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateFiltersAndMetricsSuggestionsRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateFiltersAndMetricsSuggestionsResponse'
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+  /api/v2/cortex/analyst/agentic-optimizations:
+    post:
+      operationId: listAgenticOptimizations
+      tags:
+      - cortex-analyst
+      summary: List all agentic optimization runs for a given base model
+      description: List all agentic optimization runs for a given base model
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListAgenticOptimizationsRequest'
+      responses:
+        '200':
+          description: OK. Retrieved optimizations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAgenticOptimizationsResponse'
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+  /api/v2/cortex/analyst/agentic-optimization:
+    get:
+      operationId: getAgenticOptimization
+      tags:
+      - cortex-analyst
+      summary: Get the status and state of a specified agentic optimization run
+      description: Get the status and state of a specified agentic optimization run
+      parameters:
+      - name: optimization_name
+        in: query
+        description: The fully-qualified name of the optimization to retrieve.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK. Retrieved optimization.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAgenticOptimizationResponse'
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+  /api/v2/cortex/analyst/token:
+    get:
+      operationId: getScopedToken
+      summary: Internal endpoint to exchange a Cortex Analyst Oauth token
+      description: Internal endpoint to exchange a Cortex Analyst Oauth token
+      tags:
+      - cortex-analyst
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+        '400':
+          $ref: common.yaml#/components/responses/400BadRequest
+        '401':
+          $ref: common.yaml#/components/responses/401Unauthorized
+        '403':
+          $ref: common.yaml#/components/responses/403Forbidden
+        '404':
+          $ref: common.yaml#/components/responses/404NotFound
+        '405':
+          $ref: common.yaml#/components/responses/405MethodNotAllowed
+        '429':
+          $ref: common.yaml#/components/responses/429LimitExceeded
+        '500':
+          $ref: common.yaml#/components/responses/500InternalServerError
+        '503':
+          $ref: common.yaml#/components/responses/503ServiceUnavailable
+        '504':
+          $ref: common.yaml#/components/responses/504GatewayTimeout
+components:
+  schemas:
+    TokenInfo:
+      type: object
+      properties:
+        token:
+          type: string
+        expiration_seconds:
+          type: integer
+    StatusUpdate:
+      type: object
+      properties:
+        status:
+          description: The latest status for processing the request
+          type: string
+        status_message:
+          description: A human readable description on the current request processing
+            status
+          type: string
+        request_id:
+          type: string
+          description: Unique request ID.
+      required:
+      - status
+    MessageContentDelta:
+      type: object
+      properties:
+        type:
+          type: string
+        index:
+          type: integer
+          description: The index of the content array this delta object represents
+      discriminator:
+        propertyName: type
+        mapping:
+          text: '#/components/schemas/MessageContentDeltaTextObject'
+          think: '#/components/schemas/MessageContentDeltaThinkObject'
+          sql: '#/components/schemas/MessageContentDeltaSqlObject'
+          suggestions: '#/components/schemas/MessageContentDeltaSuggestionsObject'
+          chart: '#/components/schemas/MessageContentChartObject'
+    MessageContentDeltaTextObject:
+      allOf:
+      - $ref: '#/components/schemas/MessageContentDelta'
+      - title: Text
+        type: object
+        description: The text content that is part of a message.
+        properties:
+          text_delta:
+            type: string
+            description: The delta of the text content, clients should concatenate
+              all deltas for the same index
+            example: To answer the question "What is the profit per store?" we must
+              aggregate sales at the store level
+        required:
+        - text_delta
+    MessageContentDeltaThinkObject:
+      allOf:
+      - $ref: '#/components/schemas/MessageContentDelta'
+      - title: Think
+        type: object
+        description: The think content that is part of a message.
+        properties:
+          think_delta:
+            type: string
+            description: The delta of the think content, clients should concatenate
+              all deltas for the same index
+            example: To answer the question "What is the profit per store?" we must
+              aggregate sales at the store level
+        required:
+        - think_delta
+    MessageContentDeltaSqlObject:
+      allOf:
+      - $ref: '#/components/schemas/MessageContentDelta'
+      - title: SQL
+        type: object
+        description: The SQL content that is part of a message.
+        properties:
+          statement_delta:
+            type: string
+            description: The delta of the sql statement, clients should concatenate
+              all deltas for the same index
+            example: SELECT store, SUM(profit) FROM sales GROUP BY store
+          confidence:
+            $ref: common-cortex-analyst.yaml#/components/schemas/Confidence
+        required:
+        - statement_delta
+    MessageContentDeltaSuggestionsObject:
+      allOf:
+      - $ref: '#/components/schemas/MessageContentDelta'
+      - title: Suggested Questions
+        type: object
+        description: If SQL cannot be generated, a list of questions the semantic
+          model can generate SQL for.
+        properties:
+          suggestions_delta:
+            $ref: '#/components/schemas/SuggestionDelta'
+        required:
+        - suggestions_delta
+    SuggestionDelta:
+      type: object
+      properties:
+        index:
+          type: integer
+          description: The index of the suggestions array this delta object represents
+        suggestion_delta:
+          type: string
+          description: The delta of a suggestion text, clients should concatenate
+            all deltas for the same index
+    StreamingError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A description of the error
+        code:
+          type: string
+          description: The Snowflake error code categorizing the error
+        request_id:
+          type: string
+          description: Unique request ID
+    Warnings:
+      type: object
+      description: Represents a wrapper schema around Warning for streaming case
+      properties:
+        warnings:
+          type: array
+          items:
+            $ref: common-cortex-analyst.yaml#/components/schemas/Warning
+    SendFeedbackRequest:
+      type: object
+      description: The request object for sending user feedback on Cortex Analyst
+        responses
+      properties:
+        request_id:
+          type: string
+          description: Request id associated with the feedback
+        positive:
+          type: boolean
+          description: Whether the response was good (true) or bad (false)
+        feedback_message:
+          type: string
+          description: The text for the detailed feedback message
+      required:
+      - request_id
+      - positive
+    GenerateVerifiedQuerySuggestionsRequest:
+      type: object
+      description: The request object for getting VQ suggestions
+      properties:
+        mode:
+          type: string
+          enum:
+          - ca_requests_based
+          - query_history_based
+          description: Whether to generate suggestions based on historical CA requests
+            or all SQL queries. One of 'ca_requests_based' or 'query_history_based'
+          default: ca_requests_based
+        semantic_model:
+          $ref: common-cortex-analyst.yaml#/components/schemas/SemanticModelObject
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableColumns'
+        tds_source:
+          type: array
+          items:
+            $ref: '#/components/schemas/TdsInput'
+        sql_source:
+          $ref: '#/components/schemas/SqlInputs'
+        warehouse:
+          type: string
+          description: Warehouse name to use for processing suggestions.
+        offset:
+          description: The suggestions offset index, offset = 0 indicates the first
+            call
+          type: integer
+          format: int32
+        limit:
+          description: The number of suggestions to return starting from the provided
+            offset value
+          type: integer
+          format: int32
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+      required:
+      - warehouse
+    GenerateVerifiedQuerySuggestionsResponse:
+      type: object
+      description: The non-streaming response object for the VQ Suggestions request
+      properties:
+        request_id:
+          type: string
+          description: Unique request ID
+        vq_suggestions:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerifiedQuerySuggestion'
+        warnings:
+          type: array
+          items:
+            $ref: common-cortex-analyst.yaml#/components/schemas/Warning
+    VerifiedQuerySuggestion:
+      type: object
+      description: A suggestion to add or remove or replace a Verified Query to a
+        semantic model.
+      properties:
+        score:
+          type: number
+          description: Score of the suggestion, higher is better.
+          format: float
+        vq_to_add:
+          $ref: common-cortex-analyst.yaml#/components/schemas/VerifiedQuery
+        vq_to_remove:
+          $ref: common-cortex-analyst.yaml#/components/schemas/VerifiedQuery
+        metadata:
+          type: object
+          description: Arbitrary metadata associated with this suggestion.
+          additionalProperties: true
+    FastGenerationRequest:
+      type: object
+      description: The request for the FastGeneration rpc
+      properties:
+        json_proto:
+          type: object
+          description: A JSON-mapped FastGenerationRequest protobuf
+          additionalProperties: true
+    FastGenerationResponse:
+      type: object
+      description: The response for the FastGeneration rpc (streamed)
+      properties:
+        json_proto:
+          type: object
+          description: A JSON-mapped FastGenerationResponse protobuf
+          additionalProperties: true
+    PreSelectionRequest:
+      type: object
+      description: The request for the PreSelection rpc
+      properties:
+        tds_source:
+          type: array
+          items:
+            $ref: '#/components/schemas/TdsInput'
+        sql_source:
+          $ref: '#/components/schemas/SqlInputs'
+        warehouse:
+          type: string
+          description: Warehouse name to use for processing.
+        tableau_input:
+          $ref: '#/components/schemas/TableauInput'
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+      required:
+      - tds_source
+      - warehouse
+    PreSelectionResponse:
+      type: object
+      description: The response for the PreSelection rpc
+      properties:
+        request_id:
+          type: string
+          description: Unique request ID
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableColumns'
+        warnings:
+          type: array
+          items:
+            $ref: common-cortex-analyst.yaml#/components/schemas/Warning
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+    TdsInput:
+      type: object
+      description: Tableau data source file stage paths
+      properties:
+        tds_stage_path:
+          type: string
+          description: TDS file stage path
+        tds_file_content:
+          type: string
+          description: TDS file raw contents
+      required:
+      - tds_stage_path
+    TableColumns:
+      type: object
+      description: Contains information about table and column names
+      properties:
+        database:
+          type: string
+          description: Database name
+        schema:
+          type: string
+          description: Schema name
+        table:
+          type: string
+          description: Table name
+        column_names:
+          type: array
+          items:
+            type: string
+            description: Column names
+      required:
+      - database
+      - schema
+      - table
+      - column_names
+    AnnotatedSqlQuery:
+      type: object
+      description: Contains a SQL query with optional context and natural language
+        annotation
+      properties:
+        sql_text:
+          type: string
+          description: SQL query text
+        database:
+          type: string
+          description: Database associated with the SQL query
+        schema:
+          type: string
+          description: Schema associated with the SQL query
+        corresponding_question:
+          type: string
+          description: Natural language question that the SQL query answers
+        additional_context:
+          type: string
+          description: Free-form string for additional context about the query
+      required:
+      - sql_text
+    SqlInputs:
+      type: object
+      description: Contains SQL queries which may be annotated with natural language
+      properties:
+        queries:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnnotatedSqlQuery'
+      required:
+      - queries
+    CreateAgenticOptimizationRequest:
+      type: object
+      description: A request to start an agentic optimization run for a semantic model.
+        Note that only semantic views and semantic model files are supported. Inline
+        semantic models will lead to a 400 response.
+      properties:
+        semantic_model:
+          $ref: common-cortex-analyst.yaml#/components/schemas/SemanticModelObject
+        warehouse:
+          type: string
+          description: Warehouse name to use for processing suggestions.
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+      required:
+      - semantic_model
+    CreateAgenticOptimizationResponse:
+      type: object
+      description: The result of starting an agentic optimization run for a semantic
+        model.
+      properties:
+        request_id:
+          type: string
+          description: Unique request ID
+          example: abcd1234-5678-90ab-cdef-1234567890ab
+        optimization_name:
+          type: string
+          description: The fully-qualified name of the created optimization run.
+          example: some_db.some_schema."Some_Optimziation_Name_1234567890"
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+    GetAgenticOptimizationResponse:
+      type: object
+      description: The status, state, and outcome of a specified agentic optimization
+        run.
+      properties:
+        request_id:
+          type: string
+          description: Unique request ID
+          example: abcd1234-5678-90ab-cdef-1234567890ab
+        status:
+          $ref: '#/components/schemas/AgenticOptimizationStatus'
+        state:
+          type: string
+          description: An opaque string containing the state of the optimization.
+          example: '{"progress": 0.5, "details": "Halfway through the optimization"}'
+        outcome:
+          type: string
+          description: An opaque string containing the outcome of the optimization,
+            separate from the state. This should be the JSON-encoded form of an AgenticOptimizationOutcome
+            protobuf message.
+          example: '{"extensions": ""}'
+        base_semantic_view_name:
+          type: string
+          description: The fully-qualified name of the base semantic model. This can
+            be either a semantic view FQN (e.g., 'DB.SCHEMA.VIEW') or a stage file
+            path (e.g., '@STAGE/path/file.yaml').
+          example: MY_DB.MY_SCHEMA.MY_SEMANTIC_VIEW
+    ListAgenticOptimizationsRequest:
+      type: object
+      description: A request to list all agentic optimization runs for a given base
+        model. Note that only semantic views and semantic model files are supported.
+        Inline semantic models will lead to a 400 response.
+      properties:
+        semantic_model:
+          $ref: common-cortex-analyst.yaml#/components/schemas/SemanticModelObject
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+      required:
+      - semantic_model
+    ListAgenticOptimizationsResponse:
+      type: object
+      description: The response from listing agentic optimization runs.
+      properties:
+        request_id:
+          type: string
+          description: Unique request ID
+          example: abcd1234-5678-90ab-cdef-1234567890ab
+        optimizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgenticOptimizationSummary'
+    AgenticOptimizationSummary:
+      type: object
+      description: A summary of an agentic optimization run.
+      properties:
+        optimization_name:
+          type: string
+          description: The fully-qualified name of the optimization.
+        status:
+          $ref: '#/components/schemas/AgenticOptimizationStatus'
+    AgenticOptimizationStatus:
+      type: string
+      description: The status of an agentic optimization run.
+      enum:
+      - IN_PROGRESS
+      - COMPLETED
+      - FAILED
+      - CANCELED
+    CreateAnalystEvalOptimizationRequest:
+      type: object
+      description: A request to create an analyst evaluation optimization for a semantic
+        view. This creates a lightweight optimization without GRPC processing, used
+        for evaluation and observability purposes.
+      properties:
+        semantic_view:
+          type: string
+          description: Fully qualified name of the semantic view for the eval.
+          example: DATABASE.SCHEMA.SEMANTIC_VIEW
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+      required:
+      - semantic_view
+    CreateAnalystEvalOptimizationResponse:
+      type: object
+      description: The result of creating an analyst evaluation optimization.
+      properties:
+        request_id:
+          type: string
+          description: Unique request ID
+          example: abcd1234-5678-90ab-cdef-1234567890ab
+        optimization_name:
+          type: string
+          description: The fully-qualified name of the created optimization. Uses
+            format SYSTEM_AI_OBS_ANALYST_EVAL_{view_name}.
+          example: DATABASE.SCHEMA.SYSTEM_AI_OBS_ANALYST_EVAL_SEMANTIC_VIEW
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+    GetAnalystEvalOptimizationRequest:
+      type: object
+      description: A request to retrieve the analyst eval optimization for a semantic
+        view.
+      properties:
+        semantic_view:
+          type: string
+          description: Fully qualified name of the semantic view.
+          example: DATABASE.SCHEMA.SEMANTIC_VIEW
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+      required:
+      - semantic_view
+    GetAnalystEvalOptimizationResponse:
+      type: object
+      description: The response from retrieving an analyst eval optimization for a
+        semantic view.
+      properties:
+        request_id:
+          type: string
+          description: Unique request ID
+          example: abcd1234-5678-90ab-cdef-1234567890ab
+        optimization_name:
+          type: string
+          description: The fully-qualified name of the analyst evaluation optimization.
+            Uses format SYSTEM_AI_OBS_ANALYST_EVAL_{view_name}.
+          example: DATABASE.SCHEMA.SYSTEM_AI_OBS_ANALYST_EVAL_SEMANTIC_VIEW
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+    TableauInput:
+      type: object
+      description: Input required to extract data from Tableau. Tableau Cloud users
+        can optionally provide integration data if files are not already uploaded
+      properties:
+        stage_files:
+          $ref: '#/components/schemas/TableauStageFiles'
+        server_files:
+          $ref: '#/components/schemas/TableauServerFiles'
+    TableauStageFiles:
+      type: object
+      description: Specifies stage paths of the Tableau files
+      properties:
+        stage_paths:
+          type: array
+          items:
+            type: string
+            description: The stage paths of where the Tableau file is stored
+    TableauServerFiles:
+      type: object
+      description: Contains Tableau URLs to retrieve files from Tableau server and
+        information around Tableau integration
+      properties:
+        tableau_urls:
+          type: array
+          items:
+            type: string
+            description: The URLs in Tableau to retrieve files from
+        integration:
+          $ref: '#/components/schemas/TableauIntegration'
+    TableauIntegration:
+      type: object
+      description: Contains data on how to connect to Tableau and process data
+      properties:
+        auth:
+          $ref: '#/components/schemas/TableauAuth'
+        staging_data:
+          $ref: '#/components/schemas/StagingData'
+      required:
+      - auth
+      - staging_data
+    GenerateFiltersAndMetricsSuggestionsRequest:
+      type: object
+      description: The request object for generating filters, facts, and metrics suggestions
+      properties:
+        semantic_model:
+          $ref: common-cortex-analyst.yaml#/components/schemas/SemanticModelObject
+        tables:
+          type: array
+          description: Tables and selected columns to build a basic semantic model
+            from
+          items:
+            $ref: '#/components/schemas/TableColumns'
+        warehouse:
+          type: string
+          description: Warehouse name to use for processing suggestions.
+        metrics_offset:
+          type: integer
+          format: int32
+          description: Pagination offset for metrics suggestions
+        metrics_limit:
+          type: integer
+          format: int32
+          description: Pagination limit for metrics suggestions
+        facts_offset:
+          type: integer
+          format: int32
+          description: Pagination offset for facts suggestions
+        facts_limit:
+          type: integer
+          format: int32
+          description: Pagination limit for facts suggestions
+        filters_offset:
+          type: integer
+          format: int32
+          description: Pagination offset for filters suggestions
+        filters_limit:
+          type: integer
+          format: int32
+          description: Pagination limit for filters suggestions
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+    GenerateFiltersAndMetricsSuggestionsResponse:
+      type: object
+      description: The response object for filters, facts, and metrics suggestions
+      properties:
+        request_id:
+          type: string
+          description: Unique request ID
+        suggestions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SemanticModelUpdateSuggestion'
+        warnings:
+          type: array
+          items:
+            $ref: common-cortex-analyst.yaml#/components/schemas/Warning
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+    SemanticModelUpdateSuggestion:
+      type: object
+      description: A suggestion consisting of ordered semantic object changes with
+        optional setup SQL and score.
+      properties:
+        changes:
+          type: array
+          description: Changes to be applied in order
+          items:
+            $ref: '#/components/schemas/SemanticModelChange'
+        version:
+          type: integer
+          format: int32
+          description: Version of SemanticModelUpdateSuggestion
+        metadata:
+          type: object
+          description: Arbitrary metadata associated with this suggestion.
+          additionalProperties: true
+    SemanticModelChange:
+      type: object
+      description: A single change to apply to the semantic object
+      properties:
+        operation:
+          $ref: '#/components/schemas/SemanticModelChangeOperation'
+        path:
+          type: string
+          description: Path to the node in the semantic object to change
+        value:
+          $ref: '#/components/schemas/SemanticModelChangeValue'
+      required:
+      - operation
+      - path
+    SemanticModelChangeOperation:
+      type: string
+      description: Operation applied to a semantic object at a given path
+      enum:
+      - set
+      - append
+      - remove
+    SemanticModelChangeValue:
+      type: object
+      description: One-of value. A map with exactly one key set corresponding to the
+        semantic model object or primitive.
+      additionalProperties: true
+    TableauAuth:
+      type: object
+      description: Authentication required to connect to Tableau
+      properties:
+        secret_fqn:
+          type: string
+          description: The fully qualified name of the secret containing the Tableau
+            PAT
+        server_url:
+          type: string
+          description: The Tableau server name to send requests to
+      required:
+      - secret_fqn
+      - server_url
+    StagingData:
+      type: object
+      description: Contains information indicating where to stage data
+      properties:
+        database:
+          type: string
+          description: Database name
+        schema:
+          type: string
+          description: Schema name
+      required:
+      - database
+      - schema
+    ExpandQueryRequest:
+      type: object
+      description: A request to expand logical SQL queries to physical SQL based on
+        a semantic view
+      required:
+      - semantic_view
+      - queries
+      properties:
+        semantic_view:
+          type: string
+          description: The fully qualified name of the semantic view
+          example: MY_DB.MY_SCHEMA.MY_SEMANTIC_VIEW
+        queries:
+          type: array
+          description: Array of SQL queries to expand from logical to physical
+          items:
+            type: string
+          example:
+          - SELECT revenue FROM sales
+          - SELECT COUNT(*) FROM customers
+    ExpandQueryResponse:
+      type: object
+      description: The response containing the expanded SQL queries. Results are returned
+        in the same order as the input queries.
+      properties:
+        queries:
+          type: array
+          description: Array of expanded physical SQL queries
+          items:
+            type: string
+  securitySchemes:
+    KeyPair:
+      $ref: common.yaml#/components/securitySchemes/KeyPair
+    ExternalOAuth:
+      $ref: common.yaml#/components/securitySchemes/ExternalOAuth
+    SnowflakeOAuth:
+      $ref: common.yaml#/components/securitySchemes/SnowflakeOAuth
+    ProgrammaticAccessToken:
+      $ref: common.yaml#/components/securitySchemes/ProgrammaticAccessToken
+security:
+- KeyPair: []
+- ExternalOAuth: []
+- SnowflakeOAuth: []
+- ProgrammaticAccessToken: []

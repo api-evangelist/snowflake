@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Snowflake account schema API",
+    "name": "Snowflake Schema API",
     "version": "0.0.1"
   },
   "items": [
@@ -145,6 +145,47 @@
             ]
           },
           "docs": "Deletes the specified schema. If you enable the `ifExists` parameter, the operation succeeds even if the schema does not exist. Otherwise, a 404 failure is returned if the schema does not exist. if the drop is unsuccessful."
+        },
+        {
+          "info": {
+            "name": "Set tags on a schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:name:set-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set tags on a schema."
+        },
+        {
+          "info": {
+            "name": "Unset tags from a schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:name:unset-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unset tags from a schema."
+        },
+        {
+          "info": {
+            "name": "Get the tag assignments for a schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://org-account.snowflakecomputing.com/api/v2/databases/:database/schemas/:name:get-tags"
+          },
+          "docs": "Returns all tags assigned to a schema. This operation requires an active warehouse."
         }
       ]
     }

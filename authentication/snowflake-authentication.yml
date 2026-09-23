@@ -1,77 +1,159 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/account.yaml, openapi/alert.yaml, openapi/api-integration.yaml, openapi/compute-pool.yaml,
-  openapi/cortex-analyst.yaml, openapi/cortex-inference.yaml, openapi/cortex-search-service.yaml,
-  openapi/database-role.yaml, openapi/database.yaml, openapi/dynamic-table.yaml, openapi/event-table.yaml,
-  openapi/external-volume.yaml ...
+generated: '2026-09-03'
+method: searched
+source: >-
+  Baseline derived by 0-working/derive-authentication.py from the securitySchemes declared in all
+  47 OpenAPI documents under openapi/, then upgraded from Snowflake's own authentication
+  documentation. The specs declare four schemes on essentially every operation; three of the four
+  are typed `apiKey`/`http` or left untyped in the contract, so the semantics below come from the
+  docs rather than from the spec.
+docs:
+  - https://docs.snowflake.com/en/developer-guide/sql-api/authenticating
+  - https://docs.snowflake.com/en/user-guide/key-pair-auth
+  - https://docs.snowflake.com/en/user-guide/oauth-custom
+  - https://docs.snowflake.com/en/user-guide/oauth-ext-overview
+  - https://docs.snowflake.com/en/user-guide/programmatic-access-tokens
+provider: Snowflake
+providerId: snowflake
+
 summary:
-  types:
-  - http
-  - oauth2
-  - unknown
-  oauth2_flows:
-  - authorizationCode
-  - implicit
+  scheme_count: 4
+  types: [http-bearer, oauth2]
+  oauth2_flows: [authorizationCode, implicit]
+  transport: Authorization request header, Bearer scheme
+  coverage: >-
+    All four schemes are declared on effectively every operation across the 47 specs — Snowflake
+    factors security into a shared block rather than varying it per resource. There is no
+    operation in the corpus that accepts anonymous access.
+
+critical_detail:
+  header: X-Snowflake-Authorization-Token-Type
+  required: true
+  description: >-
+    Snowflake does not infer the credential type from the token. Every request must carry a
+    second header naming which of the four kinds the bearer value is. Omitting it is the most
+    common 401 on this API and it produces an error that reads like a bad token rather than a
+    missing header.
+  values:
+    - KEYPAIR_JWT
+    - OAUTH
+    - PROGRAMMATIC_ACCESS_TOKEN
+  source: openapi/common.yaml#/components/parameters/x-snowflake-authorization-token-type
+
 schemes:
-- name: KeyPair
-  type: unknown
-  sources:
-  - openapi/account.yaml
-  - openapi/alert.yaml
-  - openapi/api-integration.yaml
-  - openapi/compute-pool.yaml
-  - openapi/cortex-analyst.yaml
-  - openapi/cortex-inference.yaml
-  - openapi/cortex-search-service.yaml
-  - openapi/database-role.yaml
-  - openapi/database.yaml
-  - openapi/dynamic-table.yaml
-  - openapi/event-table.yaml
-  - openapi/external-volume.yaml
-  - openapi/function.yaml
-  - openapi/grant.yaml
-  - openapi/iceberg-table.yaml
-  - openapi/image-repository.yaml
-  - openapi/managed-account.yaml
-  - openapi/notebook.yaml
-  - openapi/notification-integration.yaml
-  - openapi/pipe.yaml
-  - openapi/procedure.yaml
-  - openapi/result.yaml
-  - openapi/role.yaml
-  - openapi/schema.yaml
-  - openapi/service.yaml
-  - openapi/stage.yaml
-  - openapi/table.yaml
-  - openapi/task.yaml
-  - openapi/user-defined-function.yaml
-  - openapi/user.yaml
-  - openapi/view.yaml
-  - openapi/warehouse.yaml
-- name: keyPair
-  type: http
-  scheme: bearer
-  bearerFormat: JWT
-  description: Key pair authentication using a JWT token. Set X-Snowflake-Authorization-Token-Type
-    to KEYPAIR_JWT.
-  sources:
-  - openapi/snowflake-sql-rest-api.yaml
-  - openapi/sqlapi.yaml
-- name: snowflakeOAuth
-  type: oauth2
-  flows:
-  - flow: authorizationCode
-    authorizationUrl: https://org-account.snowflakecomputing.com/oauth/authorize
-    tokenUrl: https://org-account.snowflakecomputing.com/oauth/token-request
-    scopes: 1
-  description: Snowflake OAuth authentication flow.
-  sources:
-  - openapi/snowflake-sql-rest-api.yaml
-- name: snowflakeOAuth
-  type: oauth2
-  flows:
-  - flow: implicit
-    authorizationUrl: /oauth/authorize
-    scopes: 0
-  sources:
-  - openapi/sqlapi.yaml
+  - name: KeyPair
+    kind: rsa-key-pair-jwt
+    transport: 'Authorization: Bearer <JWT>'
+    token_type_header: KEYPAIR_JWT
+    docs: https://docs.snowflake.com/en/user-guide/key-pair-auth
+    description: >-
+      The customer generates an RSA key pair, registers the public key on a Snowflake user, and
+      signs a short-lived JWT with the private key. No secret is ever sent to Snowflake and no
+      interactive consent is involved, which makes this the standard choice for services,
+      pipelines and agents.
+    rotation: >-
+      Snowflake supports two registered public keys per user (RSA_PUBLIC_KEY and
+      RSA_PUBLIC_KEY_2) specifically so a key can be rotated without downtime.
+    interactive: false
+    declared_in_spec_as: untyped in the harvested contract; documented as key-pair JWT
+    recommended_for: [service accounts, CI, agents, unattended workloads]
+  - name: SnowflakeOAuth
+    kind: oauth2
+    transport: 'Authorization: Bearer <access_token>'
+    token_type_header: OAUTH
+    docs: https://docs.snowflake.com/en/user-guide/oauth-custom
+    description: >-
+      Snowflake acts as the OAuth authorization server for a security integration the customer
+      creates in the account.
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://org-account.snowflakecomputing.com/oauth/authorize
+        tokenUrl: https://org-account.snowflakecomputing.com/oauth/token-request
+      - flow: implicit
+        authorizationUrl: /oauth/authorize
+        caution: >-
+          Declared in the SQL API contract. The implicit flow is removed in OAuth 2.1 and
+          discouraged by current IETF security best practice; use authorizationCode with PKCE.
+    interactive: true
+    scopes: scopes/snowflake-scopes.yml
+    recommended_for: [end-user applications, tools acting on behalf of a signed-in person]
+  - name: ExternalOAuth
+    kind: oauth2
+    transport: 'Authorization: Bearer <access_token>'
+    token_type_header: OAUTH
+    docs: https://docs.snowflake.com/en/user-guide/oauth-ext-overview
+    description: >-
+      An external identity provider — Okta, Microsoft Entra ID, Ping, or a custom OIDC provider —
+      issues the token and Snowflake validates it, mapping a claim to a Snowflake user. Snowflake
+      is the RELYING PARTY, not the authorization server.
+    interactive: true
+    note: >-
+      This is why no /.well-known/openid-configuration is served on any Snowflake host: Snowflake
+      consumes OIDC discovery documents, it does not publish one. See
+      well-known/snowflake-well-known.yml.
+    recommended_for: [enterprises with central IdP-governed access, SSO-first estates]
+  - name: ProgrammaticAccessToken
+    kind: bearer-token
+    transport: 'Authorization: Bearer <pat>'
+    token_type_header: PROGRAMMATIC_ACCESS_TOKEN
+    docs: https://docs.snowflake.com/en/user-guide/programmatic-access-tokens
+    description: >-
+      A long-lived token issued against a Snowflake user and bound to a role, for scripts and
+      tools that cannot run an OAuth flow or manage a key pair.
+    interactive: false
+    caution: >-
+      A PAT is a bearer secret in a file. Snowflake's own MCP documentation explicitly recommends
+      against hardcoded tokens and, where a PAT is used, that it be scoped to a least-privileged
+      role. Prefer KeyPair for anything unattended.
+    recommended_for: [scripts, quick integrations, CLI use where key-pair setup is impractical]
+
+authorization_model:
+  type: RBAC
+  note: >-
+    Authentication establishes WHO. Authorization is entirely Snowflake RBAC: privileges granted
+    to roles, roles granted to users and to other roles. No credential type carries permissions of
+    its own, and OAuth scopes only select which role the session runs as. The practical
+    consequence: to constrain an integration you create a dedicated role with exactly the grants
+    it needs — narrowing the credential does nothing on its own.
+  docs: https://docs.snowflake.com/en/user-guide/security-access-control-overview
+  scopes: scopes/snowflake-scopes.yml
+
+network_controls:
+  note: >-
+    Snowflake layers network-level restriction on top of credentials, manageable over the same
+    REST API.
+  mechanisms:
+    - name: Network policies
+      operations: [createNetworkPolicy, listNetworkPolicies, fetchNetworkPolicy, deleteNetworkPolicy]
+      spec: openapi/snowflake-network-policy-api-openapi.yml
+      description: Allow/deny lists of IP ranges at the account or user level.
+    - name: Network rules
+      operations: [createNetworkRule, listNetworkRules, fetchNetworkRule, deleteNetworkRule]
+      spec: openapi/snowflake-network-rule-api-openapi.yml
+    - name: Private connectivity
+      description: >-
+        AWS PrivateLink, Azure Private Link and Google Private Service Connect, available on
+        Business Critical Edition and above. See plans/snowflake-plans-pricing.yml.
+
+identity_provisioning:
+  standard: SCIM 2.0
+  endpoint: https://<account>.snowflakecomputing.com/scim/v2/
+  docs:
+    - https://docs.snowflake.com/en/user-guide/scim-user-api-reference
+    - https://docs.snowflake.com/en/user-guide/scim-group-api-reference
+  note: >-
+    Users and roles can be provisioned from an IdP over a standards-conformant SCIM 2.0 surface
+    carrying real IETF SCIM URNs. This surface has no OpenAPI in openapi/ — it is documented in
+    prose only. See conformance/snowflake-conformance.yml.
+
+failure_modes:
+  - status: 401
+    causes:
+      - Missing or expired token
+      - Missing X-Snowflake-Authorization-Token-Type header
+      - JWT signed with a key not registered on the user
+      - JWT issuer/subject not matching the account and user
+  - status: 403
+    causes:
+      - The session's role lacks the privilege on the object
+      - The REST API is not enabled on the account (Snowflake's own 403 description says so)
+      - A network policy blocked the source IP
