@@ -636,6 +636,27 @@ components:
           description: Name of the database role
       required:
       - name
+    Securable:
+      type: object
+      properties:
+        database:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Database name of the securable if applicable.
+        schema:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Schema name of the securable if applicable.
+        service:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Service name of the securable if applicable.
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Name of the securable if applicable.
+      required:
+      - name
     Grant:
       type: object
       properties:
@@ -667,19 +688,6 @@ components:
           description: The role that granted this privilege to this grantee
       required:
       - securable_type
-    ContainingScope:
-      type: object
-      properties:
-        database:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Database name of the securable scope if applicable.
-        schema:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Schema name of the securable scope if applicable.
-      required:
-      - database
     DatabaseRole:
       type: object
       description: A Snowflake database role
@@ -723,27 +731,19 @@ components:
           description: The type of role that owns the database role
       required:
       - name
-    Securable:
+    ContainingScope:
       type: object
       properties:
         database:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Database name of the securable if applicable.
+          description: Database name of the securable scope if applicable.
         schema:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Schema name of the securable if applicable.
-        service:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Service name of the securable if applicable.
-        name:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Name of the securable if applicable.
+          description: Schema name of the securable scope if applicable.
       required:
-      - name
+      - database
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

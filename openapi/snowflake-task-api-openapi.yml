@@ -915,6 +915,18 @@ components:
       required:
       - name
       - definition
+    MinutesSchedule:
+      description: A schedule for executing a task at specified intervals of minutes.
+      allOf:
+      - $ref: '#/components/schemas/TaskSchedule'
+      properties:
+        minutes:
+          type: integer
+          description: The number of minutes between each task run.
+      example:
+        minutes: 10
+      required:
+      - minutes
     TaskRun:
       type: object
       description: A task run executing a standalone task or a DAG of tasks starting from the root task.
@@ -1011,18 +1023,6 @@ components:
       - root_task_id
       - graph_version
       - run_id
-    MinutesSchedule:
-      description: A schedule for executing a task at specified intervals of minutes.
-      allOf:
-      - $ref: '#/components/schemas/TaskSchedule'
-      properties:
-        minutes:
-          type: integer
-          description: The number of minutes between each task run.
-      example:
-        minutes: 10
-      required:
-      - minutes
     TaskSchedule:
       type: object
       description: Specifies the schedule for periodically running the task.

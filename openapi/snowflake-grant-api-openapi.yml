@@ -415,30 +415,6 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
-    securableTypePlural:
-      name: securableTypePlural
-      description: String that specifies the plural of the type of resource that is being secured by an ALL/FUTURE privilege. Must be either "schemas" or any plural object type that can nest under a schema such as "tables"
-      required: true
-      in: path
-      schema:
-        example: tables
-        type: string
-    securableName:
-      name: securableName
-      description: String that specifies the name of resource that is being secured by a privilege.
-      required: true
-      in: path
-      schema:
-        example: MY_DB
-        type: string
-    deleteMode:
-      name: deleteMode
-      description: If "cascade", recursively revoke the grant from sub-grantees to which this privilege was re-granted. Acceptable values are "restrict" or "cascade".
-      required: false
-      in: query
-      schema:
-        type: string
-        example: restrict
     scopeType:
       name: scopeType
       description: String that specifies the type of resource that is the scope of an ALL/FUTURE privilege. Can only be DATABASE or SCHEMA
@@ -450,13 +426,32 @@ components:
         enum:
         - database
         - schema
-    securableType:
-      name: securableType
-      description: String that specifies the type of resource that is being secured by a privilege.
+    bulkGrantType:
+      name: bulkGrantType
+      description: String that species whether this group privilege should be on ALL or FUTURE resources of the specified plural type
       required: true
       in: path
       schema:
-        example: DATABASE
+        example: all
+        type: string
+        enum:
+        - all
+        - future
+    securableName:
+      name: securableName
+      description: String that specifies the name of resource that is being secured by a privilege.
+      required: true
+      in: path
+      schema:
+        example: MY_DB
+        type: string
+    securableTypePlural:
+      name: securableTypePlural
+      description: String that specifies the plural of the type of resource that is being secured by an ALL/FUTURE privilege. Must be either "schemas" or any plural object type that can nest under a schema such as "tables"
+      required: true
+      in: path
+      schema:
+        example: tables
         type: string
     granteeType:
       name: granteeType
@@ -472,24 +467,13 @@ components:
         - application-role
         - database-role
         - share
-    bulkGrantType:
-      name: bulkGrantType
-      description: String that species whether this group privilege should be on ALL or FUTURE resources of the specified plural type
+    securableType:
+      name: securableType
+      description: String that specifies the type of resource that is being secured by a privilege.
       required: true
       in: path
       schema:
-        example: all
-        type: string
-        enum:
-        - all
-        - future
-    scopeName:
-      name: scopeName
-      description: String that specifies the name of resource that is the scope of an ALL/FUTURE privilege
-      required: true
-      in: path
-      schema:
-        example: MY_DB.MY_SC
+        example: DATABASE
         type: string
     privilege:
       name: privilege
@@ -498,6 +482,22 @@ components:
       in: path
       schema:
         example: SELECT
+        type: string
+    deleteMode:
+      name: deleteMode
+      description: If "cascade", recursively revoke the grant from sub-grantees to which this privilege was re-granted. Acceptable values are "restrict" or "cascade".
+      required: false
+      in: query
+      schema:
+        type: string
+        example: restrict
+    scopeName:
+      name: scopeName
+      description: String that specifies the name of resource that is the scope of an ALL/FUTURE privilege
+      required: true
+      in: path
+      schema:
+        example: MY_DB.MY_SC
         type: string
     granteeName:
       name: granteeName

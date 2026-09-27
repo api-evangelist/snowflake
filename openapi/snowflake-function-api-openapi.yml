@@ -422,10 +422,6 @@ components:
       required:
       - name
       - arguments
-    FunctionArguments:
-      type: array
-      items:
-        $ref: '#/components/schemas/FunctionArgument'
     FunctionArgument:
       type: object
       description: An argument of function
@@ -439,6 +435,10 @@ components:
           default: TEXT
         value:
           description: Argument's value
+    FunctionArguments:
+      type: array
+      items:
+        $ref: '#/components/schemas/FunctionArgument'
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

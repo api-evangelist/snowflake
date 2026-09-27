@@ -407,39 +407,6 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    ReturnType:
-      type: object
-      properties:
-        type:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Type of the return, can be either DATATYPE or TABLE
-      required:
-      - type
-      discriminator:
-        propertyName: type
-        mapping:
-          DATATYPE: ReturnDataType
-          TABLE: ReturnTable
-    FunctionLanguage:
-      type: object
-      properties:
-        language:
-          type: string
-          description: 'Language that the function/procedure is written in. Possible values include: JAVA, JAVASCRIPT, PYTHON, SCALA, SQL'
-        called_on_null_input:
-          type: boolean
-          description: Decide if the function/procedure can receive null input
-      required:
-      - language
-      discriminator:
-        propertyName: language
-        mapping:
-          JAVA: JavaFunction
-          PYTHON: PythonFunction
-          SCALA: ScalaFunction
-          JAVASCRIPT: JavaScriptFunction
-          SQL: SQLFunction
     Procedure:
       type: object
       description: A Snowflake procedure
@@ -514,32 +481,39 @@ components:
       - arguments
       - return_type
       - language_config
-    Argument:
+    ReturnType:
       type: object
       properties:
-        name:
+        type:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Argument name
-        datatype:
-          type: string
-          description: Argument data type
-        default_value:
-          type: string
-          description: Default value of the argument
+          description: Type of the return, can be either DATATYPE or TABLE
       required:
-      - name
-      - datatype
-    CallArgumentList:
+      - type
+      discriminator:
+        propertyName: type
+        mapping:
+          DATATYPE: ReturnDataType
+          TABLE: ReturnTable
+    FunctionLanguage:
       type: object
       properties:
-        call_arguments:
-          type: array
-          items:
-            $ref: '#/components/schemas/CallArgument'
-          description: Call Argument list
+        language:
+          type: string
+          description: 'Language that the function/procedure is written in. Possible values include: JAVA, JAVASCRIPT, PYTHON, SCALA, SQL'
+        called_on_null_input:
+          type: boolean
+          description: Decide if the function/procedure can receive null input
       required:
-      - call_arguments
+      - language
+      discriminator:
+        propertyName: language
+        mapping:
+          JAVA: JavaFunction
+          PYTHON: PythonFunction
+          SCALA: ScalaFunction
+          JAVASCRIPT: JavaScriptFunction
+          SQL: SQLFunction
     CallArgument:
       type: object
       properties:
@@ -556,6 +530,32 @@ components:
       - name
       - datatype
       - value
+    CallArgumentList:
+      type: object
+      properties:
+        call_arguments:
+          type: array
+          items:
+            $ref: '#/components/schemas/CallArgument'
+          description: Call Argument list
+      required:
+      - call_arguments
+    Argument:
+      type: object
+      properties:
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Argument name
+        datatype:
+          type: string
+          description: Argument data type
+        default_value:
+          type: string
+          description: Default value of the argument
+      required:
+      - name
+      - datatype
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

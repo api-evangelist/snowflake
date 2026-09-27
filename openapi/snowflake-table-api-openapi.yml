@@ -1086,27 +1086,6 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    Constraint:
-      type: object
-      description: Constraints define integrity and consistency rules for data stored in tables.
-      properties:
-        name:
-          type: string
-          description: Name of the Constraint
-        column_names:
-          type: array
-          items:
-            type: string
-            description: Column name for the constraint
-        constraint_type:
-          type: string
-          description: Type of the constraint
-      discriminator:
-        propertyName: constraint_type
-        mapping:
-          PRIMARY KEY: PrimaryKey
-          FOREIGN KEY: ForeignKey
-          UNIQUE: UniqueKey
     TableClone:
       type: object
       description: Clone table
@@ -1115,6 +1094,29 @@ components:
       properties:
         point_of_time:
           $ref: common.yaml#/components/schemas/PointOfTime
+    TableAsSelect:
+      type: object
+      description: Create table as select
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableColumn'
+        cluster_by:
+          type: array
+          description: Specifies one or more columns or column expressions in the table as the clustering key
+          items:
+            type: string
+    TableUsingTemplate:
+      type: object
+      description: Create table using template
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
     TableColumn:
       type: object
       description: A column in the table
@@ -1153,6 +1155,34 @@ components:
       required:
       - name
       - datatype
+    Constraint:
+      type: object
+      description: Constraints define integrity and consistency rules for data stored in tables.
+      properties:
+        name:
+          type: string
+          description: Name of the Constraint
+        column_names:
+          type: array
+          items:
+            type: string
+            description: Column name for the constraint
+        constraint_type:
+          type: string
+          description: Type of the constraint
+      discriminator:
+        propertyName: constraint_type
+        mapping:
+          PRIMARY KEY: PrimaryKey
+          FOREIGN KEY: ForeignKey
+          UNIQUE: UniqueKey
+    TableLike:
+      type: object
+      description: Create table like an existing table
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
     Table:
       type: object
       description: A Snowflake table
@@ -1281,36 +1311,6 @@ components:
           description: Type of the table
       required:
       - name
-    TableLike:
-      type: object
-      description: Create table like an existing table
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-    TableUsingTemplate:
-      type: object
-      description: Create table using template
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-    TableAsSelect:
-      type: object
-      description: Create table as select
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableColumn'
-        cluster_by:
-          type: array
-          description: Specifies one or more columns or column expressions in the table as the clustering key
-          items:
-            type: string
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

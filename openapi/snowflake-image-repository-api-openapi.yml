@@ -384,6 +384,30 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    Image:
+      type: object
+      description: A image in a Snowflake image repository.
+      properties:
+        created_on:
+          type: string
+          description: Date and time when the image was uploaded to the image repository.
+          readOnly: true
+        image_name:
+          type: string
+          description: Image name.
+          readOnly: true
+        tags:
+          type: string
+          description: Image tags.
+          readOnly: true
+        digest:
+          type: string
+          description: SHA256 digest of the image.
+          readOnly: true
+        image_path:
+          type: string
+          description: Image path (database_name/schema_name/repository_name/image_name:image_tag).
+          readOnly: true
     ImageRepository:
       type: object
       description: A Snowflake image repository.
@@ -423,30 +447,6 @@ components:
         owner_role_type: ADMIN
       required:
       - name
-    Image:
-      type: object
-      description: A image in a Snowflake image repository.
-      properties:
-        created_on:
-          type: string
-          description: Date and time when the image was uploaded to the image repository.
-          readOnly: true
-        image_name:
-          type: string
-          description: Image name.
-          readOnly: true
-        tags:
-          type: string
-          description: Image tags.
-          readOnly: true
-        digest:
-          type: string
-          description: SHA256 digest of the image.
-          readOnly: true
-        image_path:
-          type: string
-          description: Image path (database_name/schema_name/repository_name/image_name:image_tag).
-          readOnly: true
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

@@ -772,15 +772,6 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    AddLiveVersionStreamlitRequestVersion:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Optional alias name for the live version.
-        comment:
-          type: string
-          description: Optional comment for the live version.
     VersionDetailsStreamlit:
       type: object
       description: The version details of a file-based entity
@@ -805,34 +796,18 @@ components:
           type: string
           readOnly: true
           description: The default/last version Git commit
-    AddVersionStreamlitRequest:
+    StreamlitVersionForGit:
       type: object
-      title: AddVersionStreamlitRequest
-      description: Request body for adding a new version to a Streamlit from a source location.
+      description: Version metadata for ADD VERSION from Git.
       properties:
-        source_location:
+        name:
           type: string
-          description: URI to the source location.
-        version:
-          type: object
-          properties:
-            name:
-              type: string
-              description: Name/Alias for the new version.
-            comment:
-              type: string
-            ifNotExists:
-              type: boolean
-          required:
-          - name
+          description: Name or alias for the new version.
+        comment:
+          type: string
+          description: Optional comment associated with the pull.
       required:
-      - source_location
-    AddLiveVersionStreamlitRequest:
-      type: object
-      description: Request body for adding a LIVE version to a Streamlit.
-      properties:
-        version:
-          $ref: '#/components/schemas/AddLiveVersionStreamlitRequestVersion'
+      - name
     Streamlit:
       type: object
       description: A Snowflake Streamlit object
@@ -948,18 +923,15 @@ components:
       required:
       - version
       - git_ref
-    StreamlitVersionForGit:
+    AddLiveVersionStreamlitRequestVersion:
       type: object
-      description: Version metadata for ADD VERSION from Git.
       properties:
         name:
           type: string
-          description: Name or alias for the new version.
+          description: Optional alias name for the live version.
         comment:
           type: string
-          description: Optional comment associated with the pull.
-      required:
-      - name
+          description: Optional comment for the live version.
     StreamlitPushOptions:
       type: object
       description: Options for the PUSH command.
@@ -972,6 +944,34 @@ components:
         mapping:
           CREDENTIALS: GitPushWithCredentials
           USERNAME_PASSWORD: GitPushWithUsernamePassword
+    AddVersionStreamlitRequest:
+      type: object
+      title: AddVersionStreamlitRequest
+      description: Request body for adding a new version to a Streamlit from a source location.
+      properties:
+        source_location:
+          type: string
+          description: URI to the source location.
+        version:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Name/Alias for the new version.
+            comment:
+              type: string
+            ifNotExists:
+              type: boolean
+          required:
+          - name
+      required:
+      - source_location
+    AddLiveVersionStreamlitRequest:
+      type: object
+      description: Request body for adding a LIVE version to a Streamlit.
+      properties:
+        version:
+          $ref: '#/components/schemas/AddLiveVersionStreamlitRequestVersion'
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

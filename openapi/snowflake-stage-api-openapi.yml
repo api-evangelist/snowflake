@@ -413,37 +413,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    StageFile:
+    Credentials:
       type: object
-      description: A file on a snowflake stage.
+      description: Specifies the credentials of the stage.
       properties:
-        name:
+        credential_type:
+          description: Type of the credential, can be either AWS or AZURE.
           type: string
-          description: Name of the file.
-          example: Example Title
-        size:
-          type: string
-          description: Size of the file.
-          readOnly: true
           example: example_value
-        md5:
-          type: string
-          description: md5 hash of the file.
-          readOnly: true
-          example: example_value
-        last_modified:
-          type: string
-          description: Date and time when the file was last modified.
-          readOnly: true
-          example: example_value
-    PresignedUrlRequest:
-      type: object
-      description: Request object to get presigned url of a file
-      properties:
-        expiration_time:
-          description: Expiration time of the generated presigned url in seconds.
-          type: integer
-          example: 10
+      discriminator:
+        propertyName: credential_type
+        mapping:
+          AWS: AwsCredentials
+          AZURE: AzureCredentials
     Stage:
       type: object
       description: A Snowflake stage.
@@ -566,19 +548,37 @@ components:
         name: stage_name
       required:
       - name
-    Credentials:
+    StageFile:
       type: object
-      description: Specifies the credentials of the stage.
+      description: A file on a snowflake stage.
       properties:
-        credential_type:
-          description: Type of the credential, can be either AWS or AZURE.
+        name:
           type: string
+          description: Name of the file.
+          example: Example Title
+        size:
+          type: string
+          description: Size of the file.
+          readOnly: true
           example: example_value
-      discriminator:
-        propertyName: credential_type
-        mapping:
-          AWS: AwsCredentials
-          AZURE: AzureCredentials
+        md5:
+          type: string
+          description: md5 hash of the file.
+          readOnly: true
+          example: example_value
+        last_modified:
+          type: string
+          description: Date and time when the file was last modified.
+          readOnly: true
+          example: example_value
+    PresignedUrlRequest:
+      type: object
+      description: Request object to get presigned url of a file
+      properties:
+        expiration_time:
+          description: Expiration time of the generated presigned url in seconds.
+          type: integer
+          example: 10
     FileTransferMaterial:
       type: object
       description: Materials for uploading and downloading stage files

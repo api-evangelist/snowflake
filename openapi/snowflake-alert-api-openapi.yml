@@ -445,45 +445,6 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    PointOfTime:
-      type: object
-      properties:
-        point_of_time_type:
-          type: string
-          description: 'Type of the point of time. Possible values include: timestamp, offset, statement'
-          example: timestamp
-        reference:
-          type: string
-          enum:
-          - at
-          - before
-          x-enum-varnames:
-          - AT
-          - BEFORE
-          description: Relation to the point of time.  Currently, the API supports `at` and `before`
-          example: at
-      required:
-      - point_of_time_type
-      - reference
-      discriminator:
-        propertyName: point_of_time_type
-        mapping:
-          timestamp: PointOfTimeTimestamp
-          offset: PointOfTimeOffset
-          statement: PointOfTimeStatement
-    Schedule:
-      type: object
-      properties:
-        schedule_type:
-          type: string
-          description: Type of the schedule, can be either CRON_TYPE or MINUTES_TYPE
-      required:
-      - schedule_type
-      discriminator:
-        propertyName: schedule_type
-        mapping:
-          CRON_TYPE: CronSchedule
-          SCHEDULE_TYPE: MinutesSchedule
     AlertClone:
       type: object
       properties:
@@ -551,6 +512,45 @@ components:
       - schedule
       - condition
       - action
+    PointOfTime:
+      type: object
+      properties:
+        point_of_time_type:
+          type: string
+          description: 'Type of the point of time. Possible values include: timestamp, offset, statement'
+          example: timestamp
+        reference:
+          type: string
+          enum:
+          - at
+          - before
+          x-enum-varnames:
+          - AT
+          - BEFORE
+          description: Relation to the point of time.  Currently, the API supports `at` and `before`
+          example: at
+      required:
+      - point_of_time_type
+      - reference
+      discriminator:
+        propertyName: point_of_time_type
+        mapping:
+          timestamp: PointOfTimeTimestamp
+          offset: PointOfTimeOffset
+          statement: PointOfTimeStatement
+    Schedule:
+      type: object
+      properties:
+        schedule_type:
+          type: string
+          description: Type of the schedule, can be either CRON_TYPE or MINUTES_TYPE
+      required:
+      - schedule_type
+      discriminator:
+        propertyName: schedule_type
+        mapping:
+          CRON_TYPE: CronSchedule
+          SCHEDULE_TYPE: MinutesSchedule
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

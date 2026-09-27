@@ -290,32 +290,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    StorageLocation:
-      type: object
-      properties:
-        name:
-          type: string
-          description: ''
-          example: Example Title
-        storage_provider:
-          type: string
-          enum:
-          - S3
-          - S3GOV
-          - GCS
-          - AZURE
-          description: Specifies the cloud storage provider that stores your data files.
-          example: S3
-      required:
-      - name
-      - storage_provider
-      discriminator:
-        propertyName: storage_provider
-        mapping:
-          S3: StorageLocationS3
-          S3GOV: StorageLocationS3Gov
-          GCS: StorageLocationGcs
-          AZURE: StorageLocationAzure
     ExternalVolume:
       type: object
       description: A Snowflake external volume
@@ -360,6 +334,32 @@ components:
       required:
       - name
       - storage_locations
+    StorageLocation:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ''
+          example: Example Title
+        storage_provider:
+          type: string
+          enum:
+          - S3
+          - S3GOV
+          - GCS
+          - AZURE
+          description: Specifies the cloud storage provider that stores your data files.
+          example: S3
+      required:
+      - name
+      - storage_provider
+      discriminator:
+        propertyName: storage_provider
+        mapping:
+          S3: StorageLocationS3
+          S3GOV: StorageLocationS3Gov
+          GCS: StorageLocationGcs
+          AZURE: StorageLocationAzure
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

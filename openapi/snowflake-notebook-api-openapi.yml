@@ -559,30 +559,6 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    VersionDetails:
-      type: object
-      description: The version details of a file based entity
-      properties:
-        name:
-          type: string
-          readOnly: true
-          description: The last version name
-        alias:
-          type: string
-          readOnly: true
-          description: The default/last version alias of a file based entity.
-        location_url:
-          type: string
-          readOnly: true
-          description: The default/last version location.
-        source_location_uri:
-          type: string
-          readOnly: true
-          description: The default/last version source location.
-        git_commit_hash:
-          type: string
-          readOnly: true
-          description: The default/last version git commit#
     Notebook:
       type: object
       description: A Snowflake notebook
@@ -690,6 +666,30 @@ components:
           description: Name of the budget if the Notebook is monitored by a budget
       required:
       - name
+    VersionDetails:
+      type: object
+      description: The version details of a file based entity
+      properties:
+        name:
+          type: string
+          readOnly: true
+          description: The last version name
+        alias:
+          type: string
+          readOnly: true
+          description: The default/last version alias of a file based entity.
+        location_url:
+          type: string
+          readOnly: true
+          description: The default/last version location.
+        source_location_uri:
+          type: string
+          readOnly: true
+          description: The default/last version source location.
+        git_commit_hash:
+          type: string
+          readOnly: true
+          description: The default/last version git commit#
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

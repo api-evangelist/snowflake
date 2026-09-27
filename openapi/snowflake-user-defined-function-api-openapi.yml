@@ -459,10 +459,6 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    UserDefinedFunctionArguments:
-      type: array
-      items:
-        $ref: '#/components/schemas/UserDefinedFunctionArgument'
     ReturnType:
       type: object
       properties:
@@ -477,6 +473,23 @@ components:
         mapping:
           DATATYPE: ReturnDataType
           TABLE: ReturnTable
+    UserDefinedFunctionArgument:
+      type: object
+      description: An argument of UDF
+      properties:
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Argument's name
+        datatype:
+          type: string
+          description: Argument's type
+        value:
+          description: Argument's value
+      required:
+      - name
+      - datatype
+      - value
     FunctionLanguage:
       type: object
       properties:
@@ -499,39 +512,6 @@ components:
           SCALA: ScalaFunction
           JAVASCRIPT: JavaScriptFunction
           SQL: SQLFunction
-    Argument:
-      type: object
-      properties:
-        name:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Argument name
-        datatype:
-          type: string
-          description: Argument data type
-        default_value:
-          type: string
-          description: Default value of the argument
-      required:
-      - name
-      - datatype
-    UserDefinedFunctionArgument:
-      type: object
-      description: An argument of UDF
-      properties:
-        name:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Argument's name
-        datatype:
-          type: string
-          description: Argument's type
-        value:
-          description: Argument's value
-      required:
-      - name
-      - datatype
-      - value
     UserDefinedFunction:
       type: object
       description: A snowflake UDF
@@ -619,6 +599,26 @@ components:
       - arguments
       - return_type
       - language_config
+    UserDefinedFunctionArguments:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserDefinedFunctionArgument'
+    Argument:
+      type: object
+      properties:
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Argument name
+        datatype:
+          type: string
+          description: Argument data type
+        default_value:
+          type: string
+          description: Default value of the argument
+      required:
+      - name
+      - datatype
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

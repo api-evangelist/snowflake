@@ -942,6 +942,13 @@ components:
           description: Specifies the maximum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE.
       required:
       - name
+    DatabaseFromShare:
+      type: object
+      description: Database from share.
+      properties:
+        name:
+          $ref: ./common.yaml#/components/schemas/Identifier
+          description: Name of the database.
     AccountIdentifiers:
       type: object
       description: Array of unique account identifiers.
@@ -957,13 +964,6 @@ components:
         - accountName2
       required:
       - accounts
-    DatabaseFromShare:
-      type: object
-      description: Database from share.
-      properties:
-        name:
-          $ref: ./common.yaml#/components/schemas/Identifier
-          description: Name of the database.
     DatabaseClone:
       type: object
       description: Clone database.

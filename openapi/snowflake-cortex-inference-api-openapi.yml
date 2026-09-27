@@ -141,21 +141,40 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    StreamingCompleteResponseDataEvent:
+      type: object
+      description: Streaming text-completion response event.
+      properties:
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              delta:
+                $ref: '#/components/schemas/StreamingCompleteResponseDelta'
+          example: []
+    GetModelsRequest:
+      type: object
+      properties:
+        models:
+          type: array
+          items:
+            type: string
+          example: []
     StreamingCompleteResponse:
       type: object
       description: Server-sent events for streaming text-completion updates.
       x-events:
         data:
           $ref: '#/components/schemas/StreamingCompleteResponseDataEvent'
-    StreamingCompleteResponseDelta:
+    GetModelsResponse:
       type: object
-      required:
-      - type
-      discriminator:
-        propertyName: type
-        mapping:
-          text: common-cortex-tool.yaml#/components/schemas/StreamingTextContent
-          tool_use: common-cortex-tool.yaml#/components/schemas/StreamingToolUse
+      properties:
+        models:
+          type: array
+          items:
+            type: string
+          example: []
     CompleteRequest:
       type: object
       description: LLM text completion request.
@@ -270,14 +289,15 @@ components:
       required:
       - model
       - messages
-    GetModelsResponse:
+    StreamingCompleteResponseDelta:
       type: object
-      properties:
-        models:
-          type: array
-          items:
-            type: string
-          example: []
+      required:
+      - type
+      discriminator:
+        propertyName: type
+        mapping:
+          text: common-cortex-tool.yaml#/components/schemas/StreamingTextContent
+          tool_use: common-cortex-tool.yaml#/components/schemas/StreamingToolUse
     GuardrailsConfig:
       type:
       - object
@@ -293,26 +313,6 @@ components:
           type: string
           description: The response when the guardrails model marks the completion as unsafe
           example: Response filtered by Cortex Guard
-    StreamingCompleteResponseDataEvent:
-      type: object
-      description: Streaming text-completion response event.
-      properties:
-        choices:
-          type: array
-          items:
-            type: object
-            properties:
-              delta:
-                $ref: '#/components/schemas/StreamingCompleteResponseDelta'
-          example: []
-    GetModelsRequest:
-      type: object
-      properties:
-        models:
-          type: array
-          items:
-            type: string
-          example: []
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair
