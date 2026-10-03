@@ -360,82 +360,50 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    TdsInput:
+    GenerateVerifiedQuerySuggestionsResponse:
       type: object
-      description: Tableau data source file stage paths
-      properties:
-        tds_stage_path:
-          type: string
-          description: TDS file stage path
-        tds_file_content:
-          type: string
-          description: TDS file raw contents
-      required:
-      - tds_stage_path
-    SemanticModelUpdateSuggestion:
-      type: object
-      description: A suggestion consisting of ordered semantic object changes with optional setup SQL and score.
-      properties:
-        changes:
-          type: array
-          description: Changes to be applied in order
-          items:
-            $ref: '#/components/schemas/SemanticModelChange'
-        version:
-          type: integer
-          format: int32
-          description: Version of SemanticModelUpdateSuggestion
-        metadata:
-          type: object
-          description: Arbitrary metadata associated with this suggestion.
-          additionalProperties: true
-    TableauInput:
-      type: object
-      description: Input required to extract data from Tableau. Tableau Cloud users can optionally provide integration data if files are not already uploaded
-      properties:
-        stage_files:
-          $ref: '#/components/schemas/TableauStageFiles'
-        server_files:
-          $ref: '#/components/schemas/TableauServerFiles'
-    PreSelectionResponse:
-      type: object
-      description: The response for the PreSelection rpc
+      description: The non-streaming response object for the VQ Suggestions request
       properties:
         request_id:
           type: string
           description: Unique request ID
-        tables:
+        vq_suggestions:
           type: array
           items:
-            $ref: '#/components/schemas/TableColumns'
+            $ref: '#/components/schemas/VerifiedQuerySuggestion'
         warnings:
           type: array
           items:
             $ref: common-cortex-analyst.yaml#/components/schemas/Warning
-        experimental:
-          type: string
-          description: JSON serialized string of experimental API fields (undocumented).
-    AnnotatedSqlQuery:
+    TableauStageFiles:
       type: object
-      description: Contains a SQL query with optional context and natural language annotation
+      description: Specifies stage paths of the Tableau files
       properties:
-        sql_text:
+        stage_paths:
+          type: array
+          items:
+            type: string
+            description: The stage paths of where the Tableau file is stored
+    TableauAuth:
+      type: object
+      description: Authentication required to connect to Tableau
+      properties:
+        secret_fqn:
           type: string
-          description: SQL query text
-        database:
+          description: The fully qualified name of the secret containing the Tableau PAT
+        server_url:
           type: string
-          description: Database associated with the SQL query
-        schema:
-          type: string
-          description: Schema associated with the SQL query
-        corresponding_question:
-          type: string
-          description: Natural language question that the SQL query answers
-        additional_context:
-          type: string
-          description: Free-form string for additional context about the query
+          description: The Tableau server name to send requests to
       required:
-      - sql_text
+      - secret_fqn
+      - server_url
+    SemanticModelChangeOperation:
+      type: string
+      description: Operation applied to a semantic object at a given path
+      enum:
+      - set
+      - append
+      - remove
     GenerateFiltersAndMetricsSuggestionsRequest:
       type: object
       description: The request object for generating filters, facts, and metrics suggestions
@@ -477,17 +445,38 @@ components:
         experimental:
           type: string
           description: JSON serialized string of experimental API fields (undocumented).
-    TableauServerFiles:
+    AnnotatedSqlQuery:
       type: object
-      description: Contains Tableau URLs to retrieve files from Tableau server and information around Tableau integration
+      description: Contains a SQL query with optional context and natural language annotation
       properties:
-        tableau_urls:
-          type: array
-          items:
-            type: string
-            description: The URLs in Tableau to retrieve files from
-        integration:
-          $ref: '#/components/schemas/TableauIntegration'
+        sql_text:
+          type: string
+          description: SQL query text
+        database:
+          type: string
+          description: Database associated with the SQL query
+        schema:
+          type: string
+          description: Schema associated with the SQL query
+        corresponding_question:
+          type: string
+          description: Natural language question that the SQL query answers
+        additional_context:
+          type: string
+          description: Free-form string for additional context about the query
+      required:
+      - sql_text
+    TableauIntegration:
+      type: object
+      description: Contains data on how to connect to Tableau and process data
+      properties:
+        auth:
+          $ref: '#/components/schemas/TableauAuth'
+        staging_data:
+          $ref: '#/components/schemas/StagingData'
+      required:
+      - auth
+      - staging_data
     AgenticOptimizationSummary:
       type: object
       description: A summary of an agentic optimization run.
@@ -497,6 +486,49 @@ components:
           description: The fully-qualified name of the optimization.
         status:
           $ref: '#/components/schemas/AgenticOptimizationStatus'
+    GetAgenticOptimizationResponse:
+      type: object
+      description: The status, state, and outcome of a specified agentic optimization run.
+      properties:
+        request_id:
+          type: string
+          description: Unique request ID
+          example: abcd1234-5678-90ab-cdef-1234567890ab
+        status:
+          $ref: '#/components/schemas/AgenticOptimizationStatus'
+        state:
+          type: string
+          description: An opaque string containing the state of the optimization.
+          example: '{"progress": 0.5, "details": "Halfway through the optimization"}'
+        outcome:
+          type: string
+          description: An opaque string containing the outcome of the optimization, separate from the state. This should be the JSON-encoded form of an AgenticOptimizationOutcome protobuf message.
+          example: '{"extensions": ""}'
+        base_semantic_view_name:
+          type: string
+          description: The fully-qualified name of the base semantic model. This can be either a semantic view FQN (e.g., 'DB.SCHEMA.VIEW') or a stage file path (e.g., '@STAGE/path/file.yaml').
+          example: MY_DB.MY_SCHEMA.MY_SEMANTIC_VIEW
+    FastGenerationRequest:
+      type: object
+      description: The request for the FastGeneration rpc
+      properties:
+        json_proto:
+          type: object
+          description: A JSON-mapped FastGenerationRequest protobuf
+          additionalProperties: true
+    StagingData:
+      type: object
+      description: Contains information indicating where to stage data
+      properties:
+        database:
+          type: string
+          description: Database name
+        schema:
+          type: string
+          description: Schema name
+      required:
+      - database
+      - schema
     VerifiedQuerySuggestion:
       type: object
       description: A suggestion to add or remove or replace a Verified Query to a semantic model.
@@ -513,35 +545,81 @@ components:
           type: object
           description: Arbitrary metadata associated with this suggestion.
           additionalProperties: true
-    FastGenerationRequest:
+    SqlInputs:
       type: object
-      description: The request for the FastGeneration rpc
+      description: Contains SQL queries which may be annotated with natural language
       properties:
-        json_proto:
-          type: object
-          description: A JSON-mapped FastGenerationRequest protobuf
-          additionalProperties: true
-    PreSelectionRequest:
-      type: object
-      description: The request for the PreSelection rpc
-      properties:
-        tds_source:
+        queries:
           type: array
           items:
-            $ref: '#/components/schemas/TdsInput'
-        sql_source:
-          $ref: '#/components/schemas/SqlInputs'
-        warehouse:
-          type: string
-          description: Warehouse name to use for processing.
-        tableau_input:
-          $ref: '#/components/schemas/TableauInput'
-        experimental:
-          type: string
-          description: JSON serialized string of experimental API fields (undocumented).
+            $ref: '#/components/schemas/AnnotatedSqlQuery'
       required:
-      - tds_source
-      - warehouse
+      - queries
+    SemanticModelChange:
+      type: object
+      description: A single change to apply to the semantic object
+      properties:
+        operation:
+          $ref: '#/components/schemas/SemanticModelChangeOperation'
+        path:
+          type: string
+          description: Path to the node in the semantic object to change
+        value:
+          $ref: '#/components/schemas/SemanticModelChangeValue'
+      required:
+      - operation
+      - path
+    TdsInput:
+      type: object
+      description: Tableau data source file stage paths
+      properties:
+        tds_stage_path:
+          type: string
+          description: TDS file stage path
+        tds_file_content:
+          type: string
+          description: TDS file raw contents
+      required:
+      - tds_stage_path
+    TableColumns:
+      type: object
+      description: Contains information about table and column names
+      properties:
+        database:
+          type: string
+          description: Database name
+        schema:
+          type: string
+          description: Schema name
+        table:
+          type: string
+          description: Table name
+        column_names:
+          type: array
+          items:
+            type: string
+            description: Column names
+      required:
+      - database
+      - schema
+      - table
+      - column_names
+    SendFeedbackRequest:
+      type: object
+      description: The request object for sending user feedback on Cortex Analyst responses
+      properties:
+        request_id:
+          type: string
+          description: Request id associated with the feedback
+        positive:
+          type: boolean
+          description: Whether the response was good (true) or bad (false)
+        feedback_message:
+          type: string
+          description: The text for the detailed feedback message
+      required:
+      - request_id
+      - positive
     GenerateVerifiedQuerySuggestionsRequest:
       type: object
       description: The request object for getting VQ suggestions
@@ -581,201 +659,6 @@ components:
           description: JSON serialized string of experimental API fields (undocumented).
       required:
       - warehouse
-    TableColumns:
-      type: object
-      description: Contains information about table and column names
-      properties:
-        database:
-          type: string
-          description: Database name
-        schema:
-          type: string
-          description: Schema name
-        table:
-          type: string
-          description: Table name
-        column_names:
-          type: array
-          items:
-            type: string
-            description: Column names
-      required:
-      - database
-      - schema
-      - table
-      - column_names
-    StagingData:
-      type: object
-      description: Contains information indicating where to stage data
-      properties:
-        database:
-          type: string
-          description: Database name
-        schema:
-          type: string
-          description: Schema name
-      required:
-      - database
-      - schema
-    ListAgenticOptimizationsRequest:
-      type: object
-      description: A request to list all agentic optimization runs for a given base model. Note that only semantic views and semantic model files are supported. Inline semantic models will lead to a 400 response.
-      properties:
-        semantic_model:
-          $ref: common-cortex-analyst.yaml#/components/schemas/SemanticModelObject
-        experimental:
-          type: string
-          description: JSON serialized string of experimental API fields (undocumented).
-      required:
-      - semantic_model
-    SemanticModelChangeValue:
-      type: object
-      description: One-of value. A map with exactly one key set corresponding to the semantic model object or primitive.
-      additionalProperties: true
-    SqlInputs:
-      type: object
-      description: Contains SQL queries which may be annotated with natural language
-      properties:
-        queries:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnnotatedSqlQuery'
-      required:
-      - queries
-    GetAgenticOptimizationResponse:
-      type: object
-      description: The status, state, and outcome of a specified agentic optimization run.
-      properties:
-        request_id:
-          type: string
-          description: Unique request ID
-          example: abcd1234-5678-90ab-cdef-1234567890ab
-        status:
-          $ref: '#/components/schemas/AgenticOptimizationStatus'
-        state:
-          type: string
-          description: An opaque string containing the state of the optimization.
-          example: '{"progress": 0.5, "details": "Halfway through the optimization"}'
-        outcome:
-          type: string
-          description: An opaque string containing the outcome of the optimization, separate from the state. This should be the JSON-encoded form of an AgenticOptimizationOutcome protobuf message.
-          example: '{"extensions": ""}'
-        base_semantic_view_name:
-          type: string
-          description: The fully-qualified name of the base semantic model. This can be either a semantic view FQN (e.g., 'DB.SCHEMA.VIEW') or a stage file path (e.g., '@STAGE/path/file.yaml').
-          example: MY_DB.MY_SCHEMA.MY_SEMANTIC_VIEW
-    TableauAuth:
-      type: object
-      description: Authentication required to connect to Tableau
-      properties:
-        secret_fqn:
-          type: string
-          description: The fully qualified name of the secret containing the Tableau PAT
-        server_url:
-          type: string
-          description: The Tableau server name to send requests to
-      required:
-      - secret_fqn
-      - server_url
-    SemanticModelChangeOperation:
-      type: string
-      description: Operation applied to a semantic object at a given path
-      enum:
-      - set
-      - append
-      - remove
-    GenerateVerifiedQuerySuggestionsResponse:
-      type: object
-      description: The non-streaming response object for the VQ Suggestions request
-      properties:
-        request_id:
-          type: string
-          description: Unique request ID
-        vq_suggestions:
-          type: array
-          items:
-            $ref: '#/components/schemas/VerifiedQuerySuggestion'
-        warnings:
-          type: array
-          items:
-            $ref: common-cortex-analyst.yaml#/components/schemas/Warning
-    AgenticOptimizationStatus:
-      type: string
-      description: The status of an agentic optimization run.
-      enum:
-      - IN_PROGRESS
-      - COMPLETED
-      - FAILED
-      - CANCELED
-    ListAgenticOptimizationsResponse:
-      type: object
-      description: The response from listing agentic optimization runs.
-      properties:
-        request_id:
-          type: string
-          description: Unique request ID
-          example: abcd1234-5678-90ab-cdef-1234567890ab
-        optimizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/AgenticOptimizationSummary'
-    TableauStageFiles:
-      type: object
-      description: Specifies stage paths of the Tableau files
-      properties:
-        stage_paths:
-          type: array
-          items:
-            type: string
-            description: The stage paths of where the Tableau file is stored
-    SemanticModelChange:
-      type: object
-      description: A single change to apply to the semantic object
-      properties:
-        operation:
-          $ref: '#/components/schemas/SemanticModelChangeOperation'
-        path:
-          type: string
-          description: Path to the node in the semantic object to change
-        value:
-          $ref: '#/components/schemas/SemanticModelChangeValue'
-      required:
-      - operation
-      - path
-    SendFeedbackRequest:
-      type: object
-      description: The request object for sending user feedback on Cortex Analyst responses
-      properties:
-        request_id:
-          type: string
-          description: Request id associated with the feedback
-        positive:
-          type: boolean
-          description: Whether the response was good (true) or bad (false)
-        feedback_message:
-          type: string
-          description: The text for the detailed feedback message
-      required:
-      - request_id
-      - positive
-    TableauIntegration:
-      type: object
-      description: Contains data on how to connect to Tableau and process data
-      properties:
-        auth:
-          $ref: '#/components/schemas/TableauAuth'
-        staging_data:
-          $ref: '#/components/schemas/StagingData'
-      required:
-      - auth
-      - staging_data
-    TokenInfo:
-      type: object
-      properties:
-        token:
-          type: string
-        expiration_seconds:
-          type: integer
     GenerateFiltersAndMetricsSuggestionsResponse:
       type: object
       description: The response object for filters, facts, and metrics suggestions
@@ -794,6 +677,123 @@ components:
         experimental:
           type: string
           description: JSON serialized string of experimental API fields (undocumented).
+    AgenticOptimizationStatus:
+      type: string
+      description: The status of an agentic optimization run.
+      enum:
+      - IN_PROGRESS
+      - COMPLETED
+      - FAILED
+      - CANCELED
+    TableauServerFiles:
+      type: object
+      description: Contains Tableau URLs to retrieve files from Tableau server and information around Tableau integration
+      properties:
+        tableau_urls:
+          type: array
+          items:
+            type: string
+            description: The URLs in Tableau to retrieve files from
+        integration:
+          $ref: '#/components/schemas/TableauIntegration'
+    SemanticModelUpdateSuggestion:
+      type: object
+      description: A suggestion consisting of ordered semantic object changes with optional setup SQL and score.
+      properties:
+        changes:
+          type: array
+          description: Changes to be applied in order
+          items:
+            $ref: '#/components/schemas/SemanticModelChange'
+        version:
+          type: integer
+          format: int32
+          description: Version of SemanticModelUpdateSuggestion
+        metadata:
+          type: object
+          description: Arbitrary metadata associated with this suggestion.
+          additionalProperties: true
+    TableauInput:
+      type: object
+      description: Input required to extract data from Tableau. Tableau Cloud users can optionally provide integration data if files are not already uploaded
+      properties:
+        stage_files:
+          $ref: '#/components/schemas/TableauStageFiles'
+        server_files:
+          $ref: '#/components/schemas/TableauServerFiles'
+    SemanticModelChangeValue:
+      type: object
+      description: One-of value. A map with exactly one key set corresponding to the semantic model object or primitive.
+      additionalProperties: true
+    ListAgenticOptimizationsRequest:
+      type: object
+      description: A request to list all agentic optimization runs for a given base model. Note that only semantic views and semantic model files are supported. Inline semantic models will lead to a 400 response.
+      properties:
+        semantic_model:
+          $ref: common-cortex-analyst.yaml#/components/schemas/SemanticModelObject
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+      required:
+      - semantic_model
+    TokenInfo:
+      type: object
+      properties:
+        token:
+          type: string
+        expiration_seconds:
+          type: integer
+    PreSelectionResponse:
+      type: object
+      description: The response for the PreSelection rpc
+      properties:
+        request_id:
+          type: string
+          description: Unique request ID
+        tables:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableColumns'
+        warnings:
+          type: array
+          items:
+            $ref: common-cortex-analyst.yaml#/components/schemas/Warning
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+    ListAgenticOptimizationsResponse:
+      type: object
+      description: The response from listing agentic optimization runs.
+      properties:
+        request_id:
+          type: string
+          description: Unique request ID
+          example: abcd1234-5678-90ab-cdef-1234567890ab
+        optimizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgenticOptimizationSummary'
+    PreSelectionRequest:
+      type: object
+      description: The request for the PreSelection rpc
+      properties:
+        tds_source:
+          type: array
+          items:
+            $ref: '#/components/schemas/TdsInput'
+        sql_source:
+          $ref: '#/components/schemas/SqlInputs'
+        warehouse:
+          type: string
+          description: Warehouse name to use for processing.
+        tableau_input:
+          $ref: '#/components/schemas/TableauInput'
+        experimental:
+          type: string
+          description: JSON serialized string of experimental API fields (undocumented).
+      required:
+      - tds_source
+      - warehouse
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

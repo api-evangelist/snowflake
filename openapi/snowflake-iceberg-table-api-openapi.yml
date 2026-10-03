@@ -937,6 +937,111 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    IcebergTableLike:
+      type: object
+      description: Create iceberg table as select
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+        cluster_by:
+          type: array
+          description: Specifies one or more columns or column expressions in the table as the clustering key
+          items:
+            type: string
+        external_volume:
+          type: string
+          description: Specifies the name of the external volume to use for the table
+        base_location:
+          type: string
+          description: Specifies the path to a directory where Snowflake can write data and metadata files for the table
+        comment:
+          type: string
+          description: Specifies a comment for the table
+      required:
+      - name
+    IcebergTableFromIcebergRest:
+      type: object
+      description: Creates or replaces an Apache Iceberg™ table in the current/specified schema for an Iceberg REST catalog.
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+        external_volume:
+          type: string
+          description: Specifies the name of the external volume to use for the table
+        catalog_table_name:
+          type: string
+          description: Specifies the table name as recognized by the AWS Glue Data Catalog.
+        catalog_namespace:
+          type: string
+          description: Specifies the catalog namespace for the table.
+        replace_invalid_characters:
+          type: boolean
+          description: Specifies whether to replace invalid characters in the column names
+        auto_refresh:
+          type: boolean
+          description: Specifies whether to automatically refresh the table metadata
+        catalog:
+          type: string
+          description: Specifies the name of the catalog integration to use for the table
+        comment:
+          type: string
+          description: Specifies a comment for the table
+      required:
+      - name
+      - catalog_table_name
+    RefreshIcebergTableRequest:
+      type: object
+      description: Request model for refreshing iceberg table
+      properties:
+        metadata_file_relative_path:
+          type: string
+          description: Specifies a metadata file path for a table created from Iceberg files in object storage.
+    Constraint:
+      type: object
+      description: Constraints define integrity and consistency rules for data stored in tables.
+      properties:
+        name:
+          type: string
+          description: Name of the Constraint
+        column_names:
+          type: array
+          items:
+            type: string
+            description: Column name for the constraint
+        constraint_type:
+          type: string
+          description: Type of the constraint
+      discriminator:
+        propertyName: constraint_type
+        mapping:
+          PRIMARY KEY: PrimaryKey
+          FOREIGN KEY: ForeignKey
+          UNIQUE: UniqueKey
+    IcebergTableColumn:
+      type: object
+      description: A column in the snowflake catalog iceberg table
+      properties:
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Column name
+        datatype:
+          type: string
+          description: The data type for the column
+        comment:
+          type: string
+          description: Specifies a comment for the column
+        nullable:
+          type: boolean
+          description: Argument null return acceptance criteria
+        default_value:
+          type: string
+          description: Default value for the column
+      required:
+      - name
+      - datatype
     IcebergTableAsSelect:
       type: object
       description: Create iceberg table as select
@@ -1066,16 +1171,9 @@ components:
             $ref: '#/components/schemas/Constraint'
       required:
       - name
-    RefreshIcebergTableRequest:
+    IcebergTableFromAWSGlueCatalog:
       type: object
-      description: Request model for refreshing iceberg table
-      properties:
-        metadata_file_relative_path:
-          type: string
-          description: Specifies a metadata file path for a table created from Iceberg files in object storage.
-    IcebergTableFromIcebergRest:
-      type: object
-      description: Creates or replaces an Apache Iceberg™ table in the current/specified schema for an Iceberg REST catalog.
+      description: Create iceberg table from AWS Glue catalog
       properties:
         name:
           type: string
@@ -1104,52 +1202,6 @@ components:
       required:
       - name
       - catalog_table_name
-    IcebergTableColumn:
-      type: object
-      description: A column in the snowflake catalog iceberg table
-      properties:
-        name:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Column name
-        datatype:
-          type: string
-          description: The data type for the column
-        comment:
-          type: string
-          description: Specifies a comment for the column
-        nullable:
-          type: boolean
-          description: Argument null return acceptance criteria
-        default_value:
-          type: string
-          description: Default value for the column
-      required:
-      - name
-      - datatype
-    IcebergTableLike:
-      type: object
-      description: Create iceberg table as select
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-        cluster_by:
-          type: array
-          description: Specifies one or more columns or column expressions in the table as the clustering key
-          items:
-            type: string
-        external_volume:
-          type: string
-          description: Specifies the name of the external volume to use for the table
-        base_location:
-          type: string
-          description: Specifies the path to a directory where Snowflake can write data and metadata files for the table
-        comment:
-          type: string
-          description: Specifies a comment for the table
-      required:
-      - name
     IcebergTableFromIcebergFiles:
       type: object
       description: Create iceberg table from Iceberg files
@@ -1200,69 +1252,6 @@ components:
       required:
       - name
       - base_location
-    IcebergTableClone:
-      type: object
-      description: Clone iceberg table
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-        point_of_time:
-          $ref: common.yaml#/components/schemas/PointOfTime
-      required:
-      - name
-    Constraint:
-      type: object
-      description: Constraints define integrity and consistency rules for data stored in tables.
-      properties:
-        name:
-          type: string
-          description: Name of the Constraint
-        column_names:
-          type: array
-          items:
-            type: string
-            description: Column name for the constraint
-        constraint_type:
-          type: string
-          description: Type of the constraint
-      discriminator:
-        propertyName: constraint_type
-        mapping:
-          PRIMARY KEY: PrimaryKey
-          FOREIGN KEY: ForeignKey
-          UNIQUE: UniqueKey
-    IcebergTableFromAWSGlueCatalog:
-      type: object
-      description: Create iceberg table from AWS Glue catalog
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-        external_volume:
-          type: string
-          description: Specifies the name of the external volume to use for the table
-        catalog_table_name:
-          type: string
-          description: Specifies the table name as recognized by the AWS Glue Data Catalog.
-        catalog_namespace:
-          type: string
-          description: Specifies the catalog namespace for the table.
-        replace_invalid_characters:
-          type: boolean
-          description: Specifies whether to replace invalid characters in the column names
-        auto_refresh:
-          type: boolean
-          description: Specifies whether to automatically refresh the table metadata
-        catalog:
-          type: string
-          description: Specifies the name of the catalog integration to use for the table
-        comment:
-          type: string
-          description: Specifies a comment for the table
-      required:
-      - name
-      - catalog_table_name
     ConvertToManagedIcebergTableRequest:
       type: object
       description: Request model for convert to managed iceberg table
@@ -1276,6 +1265,17 @@ components:
           enum:
           - COMPATIBLE
           - OPTIMIZED
+    IcebergTableClone:
+      type: object
+      description: Clone iceberg table
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+        point_of_time:
+          $ref: common.yaml#/components/schemas/PointOfTime
+      required:
+      - name
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

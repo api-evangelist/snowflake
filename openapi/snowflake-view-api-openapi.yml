@@ -357,6 +357,22 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    ViewColumn:
+      type: object
+      description: A column specifier in the view
+      properties:
+        name:
+          type: string
+          description: Column name
+        comment:
+          type: string
+          description: Specifies a comment for the column
+        datatype:
+          type: string
+          readOnly: true
+          description: The data type for the column
+      required:
+      - name
     View:
       type: object
       description: A Snowflake view
@@ -412,22 +428,6 @@ components:
       - name
       - columns
       - query
-    ViewColumn:
-      type: object
-      description: A column specifier in the view
-      properties:
-        name:
-          type: string
-          description: Column name
-        comment:
-          type: string
-          description: Specifies a comment for the column
-        datatype:
-          type: string
-          readOnly: true
-          description: The data type for the column
-      required:
-      - name
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

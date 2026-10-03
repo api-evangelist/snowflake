@@ -407,6 +407,36 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    CallArgument:
+      type: object
+      properties:
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Name of the call argument
+        datatype:
+          type: string
+          description: Call argument data type
+        value:
+          description: Value of the call argument
+      required:
+      - name
+      - datatype
+      - value
+    ReturnType:
+      type: object
+      properties:
+        type:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Type of the return, can be either DATATYPE or TABLE
+      required:
+      - type
+      discriminator:
+        propertyName: type
+        mapping:
+          DATATYPE: ReturnDataType
+          TABLE: ReturnTable
     Procedure:
       type: object
       description: A Snowflake procedure
@@ -481,20 +511,32 @@ components:
       - arguments
       - return_type
       - language_config
-    ReturnType:
+    Argument:
       type: object
       properties:
-        type:
+        name:
           type: string
           pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Type of the return, can be either DATATYPE or TABLE
+          description: Argument name
+        datatype:
+          type: string
+          description: Argument data type
+        default_value:
+          type: string
+          description: Default value of the argument
       required:
-      - type
-      discriminator:
-        propertyName: type
-        mapping:
-          DATATYPE: ReturnDataType
-          TABLE: ReturnTable
+      - name
+      - datatype
+    CallArgumentList:
+      type: object
+      properties:
+        call_arguments:
+          type: array
+          items:
+            $ref: '#/components/schemas/CallArgument'
+          description: Call Argument list
+      required:
+      - call_arguments
     FunctionLanguage:
       type: object
       properties:
@@ -514,48 +556,6 @@ components:
           SCALA: ScalaFunction
           JAVASCRIPT: JavaScriptFunction
           SQL: SQLFunction
-    CallArgument:
-      type: object
-      properties:
-        name:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Name of the call argument
-        datatype:
-          type: string
-          description: Call argument data type
-        value:
-          description: Value of the call argument
-      required:
-      - name
-      - datatype
-      - value
-    CallArgumentList:
-      type: object
-      properties:
-        call_arguments:
-          type: array
-          items:
-            $ref: '#/components/schemas/CallArgument'
-          description: Call Argument list
-      required:
-      - call_arguments
-    Argument:
-      type: object
-      properties:
-        name:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Argument name
-        datatype:
-          type: string
-          description: Argument data type
-        default_value:
-          type: string
-          description: Default value of the argument
-      required:
-      - name
-      - datatype
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

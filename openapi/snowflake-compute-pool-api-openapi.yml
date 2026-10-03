@@ -531,71 +531,6 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    ComputePoolInstanceFamily:
-      type: object
-      description: A compute pool instance family.
-      properties:
-        name:
-          type: string
-          description: Name of the instance family.
-          example: CPU_X64_S
-        description:
-          type: string
-          description: Description of the instance family.
-          example: Ideal for hosting multiple services/jobs while saving cost.
-        vcpu:
-          type: integer
-          description: Number of vCPUs.
-          format: int64
-          example: 3
-        memory_gib:
-          type: integer
-          description: Memory in GiB.
-          format: int64
-          example: 13
-        storage_gib:
-          type: number
-          description: Storage in GiB.
-          format: double
-          example: 93.13
-        gpu:
-          type:
-          - string
-          - 'null'
-          description: GPU model (if applicable).
-          example: NVIDIA A10G
-        gpu_count:
-          type: integer
-          description: Number of GPUs.
-          format: int64
-          example: 0
-        gpu_memory_gib:
-          type: integer
-          description: GPU memory in GiB (if applicable).
-          format: int64
-          example: 0
-        current_node_usage:
-          type: integer
-          description: Number of nodes currently utilizing this instance family
-          format: int64
-          example: 0
-        message:
-          type:
-          - string
-          - 'null'
-          description: Additional information about the instance family.
-          example: ''
-      example:
-        name: CPU_X64_S
-        description: Ideal for hosting multiple services/jobs while saving cost.
-        vcpu: 3
-        memory_gib: 13
-        storage_gib: 93.13
-        gpu: null
-        gpu_count: 0
-        gpu_memory_gib: 0
-        current_node_usage: 0
-        message: ''
     ComputePool:
       type: object
       description: A Snowflake compute pool definition.
@@ -741,6 +676,71 @@ components:
       - instance_family
       - min_nodes
       - max_nodes
+    ComputePoolInstanceFamily:
+      type: object
+      description: A compute pool instance family.
+      properties:
+        name:
+          type: string
+          description: Name of the instance family.
+          example: CPU_X64_S
+        description:
+          type: string
+          description: Description of the instance family.
+          example: Ideal for hosting multiple services/jobs while saving cost.
+        vcpu:
+          type: integer
+          description: Number of vCPUs.
+          format: int64
+          example: 3
+        memory_gib:
+          type: integer
+          description: Memory in GiB.
+          format: int64
+          example: 13
+        storage_gib:
+          type: number
+          description: Storage in GiB.
+          format: double
+          example: 93.13
+        gpu:
+          type:
+          - string
+          - 'null'
+          description: GPU model (if applicable).
+          example: NVIDIA A10G
+        gpu_count:
+          type: integer
+          description: Number of GPUs.
+          format: int64
+          example: 0
+        gpu_memory_gib:
+          type: integer
+          description: GPU memory in GiB (if applicable).
+          format: int64
+          example: 0
+        current_node_usage:
+          type: integer
+          description: Number of nodes currently utilizing this instance family
+          format: int64
+          example: 0
+        message:
+          type:
+          - string
+          - 'null'
+          description: Additional information about the instance family.
+          example: ''
+      example:
+        name: CPU_X64_S
+        description: Ideal for hosting multiple services/jobs while saving cost.
+        vcpu: 3
+        memory_gib: 13
+        storage_gib: 93.13
+        gpu: null
+        gpu_count: 0
+        gpu_memory_gib: 0
+        current_node_usage: 0
+        message: ''
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

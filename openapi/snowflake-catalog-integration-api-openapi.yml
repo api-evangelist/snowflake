@@ -337,24 +337,6 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    Catalog:
-      type: object
-      properties:
-        catalog_source:
-          type: string
-          enum:
-          - GLUE
-          - OBJECT_STORE
-          - POLARIS
-          description: Type of external catalog
-      required:
-      - catalog_source
-      discriminator:
-        propertyName: catalog_source
-        mapping:
-          GLUE: Glue
-          OBJECT_STORE: ObjectStore
-          POLARIS: Polaris
     CatalogIntegration:
       type: object
       description: Catalog integration
@@ -395,6 +377,24 @@ components:
       - catalog
       - table_format
       - enabled
+    Catalog:
+      type: object
+      properties:
+        catalog_source:
+          type: string
+          enum:
+          - GLUE
+          - OBJECT_STORE
+          - POLARIS
+          description: Type of external catalog
+      required:
+      - catalog_source
+      discriminator:
+        propertyName: catalog_source
+        mapping:
+          GLUE: Glue
+          OBJECT_STORE: ObjectStore
+          POLARIS: Polaris
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

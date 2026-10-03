@@ -851,6 +851,13 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    DatabaseFromShare:
+      type: object
+      description: Database from share.
+      properties:
+        name:
+          $ref: ./common.yaml#/components/schemas/Identifier
+          description: Name of the database.
     Database:
       type: object
       description: Snowflake database object.
@@ -942,13 +949,14 @@ components:
           description: Specifies the maximum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE.
       required:
       - name
-    DatabaseFromShare:
+    DatabaseClone:
       type: object
-      description: Database from share.
+      description: Clone database.
+      allOf:
+      - $ref: '#/components/schemas/Database'
       properties:
-        name:
-          $ref: ./common.yaml#/components/schemas/Identifier
-          description: Name of the database.
+        point_of_time:
+          $ref: common.yaml#/components/schemas/PointOfTime
     AccountIdentifiers:
       type: object
       description: Array of unique account identifiers.
@@ -964,14 +972,6 @@ components:
         - accountName2
       required:
       - accounts
-    DatabaseClone:
-      type: object
-      description: Clone database.
-      allOf:
-      - $ref: '#/components/schemas/Database'
-      properties:
-        point_of_time:
-          $ref: common.yaml#/components/schemas/PointOfTime
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

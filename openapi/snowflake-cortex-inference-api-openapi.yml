@@ -153,28 +153,6 @@ components:
               delta:
                 $ref: '#/components/schemas/StreamingCompleteResponseDelta'
           example: []
-    GetModelsRequest:
-      type: object
-      properties:
-        models:
-          type: array
-          items:
-            type: string
-          example: []
-    StreamingCompleteResponse:
-      type: object
-      description: Server-sent events for streaming text-completion updates.
-      x-events:
-        data:
-          $ref: '#/components/schemas/StreamingCompleteResponseDataEvent'
-    GetModelsResponse:
-      type: object
-      properties:
-        models:
-          type: array
-          items:
-            type: string
-          example: []
     CompleteRequest:
       type: object
       description: LLM text completion request.
@@ -289,6 +267,22 @@ components:
       required:
       - model
       - messages
+    GetModelsRequest:
+      type: object
+      properties:
+        models:
+          type: array
+          items:
+            type: string
+          example: []
+    GetModelsResponse:
+      type: object
+      properties:
+        models:
+          type: array
+          items:
+            type: string
+          example: []
     StreamingCompleteResponseDelta:
       type: object
       required:
@@ -313,6 +307,12 @@ components:
           type: string
           description: The response when the guardrails model marks the completion as unsafe
           example: Response filtered by Cortex Guard
+    StreamingCompleteResponse:
+      type: object
+      description: Server-sent events for streaming text-completion updates.
+      x-events:
+        data:
+          $ref: '#/components/schemas/StreamingCompleteResponseDataEvent'
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

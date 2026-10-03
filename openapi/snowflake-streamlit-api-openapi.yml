@@ -796,18 +796,68 @@ components:
           type: string
           readOnly: true
           description: The default/last version Git commit
-    StreamlitVersionForGit:
+    AddLiveVersionStreamlitRequest:
       type: object
-      description: Version metadata for ADD VERSION from Git.
+      description: Request body for adding a LIVE version to a Streamlit.
       properties:
-        name:
+        version:
+          $ref: '#/components/schemas/AddLiveVersionStreamlitRequestVersion'
+    CommitStreamlitRequest:
+      type: object
+      properties:
+        version:
+          type: object
+          properties:
+            comment:
+              type: string
+              description: Optional commit message.
+    AddVersionFromGitStreamlitRequest:
+      type: object
+      title: AddVersionFromGitStreamlitRequest
+      description: Request body for adding a new version to a Streamlit from a Git tag or commit URI.
+      properties:
+        version:
+          $ref: '#/components/schemas/StreamlitVersionForGit'
+        git_ref:
           type: string
-          description: Name or alias for the new version.
-        comment:
-          type: string
-          description: Optional comment associated with the pull.
+          description: Git reference URI. Accepts either a tag URI or a commit URI.
       required:
-      - name
+      - version
+      - git_ref
+    AddVersionStreamlitRequest:
+      type: object
+      title: AddVersionStreamlitRequest
+      description: Request body for adding a new version to a Streamlit from a source location.
+      properties:
+        source_location:
+          type: string
+          description: URI to the source location.
+        version:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Name/Alias for the new version.
+            comment:
+              type: string
+            ifNotExists:
+              type: boolean
+          required:
+          - name
+      required:
+      - source_location
+    StreamlitPushOptions:
+      type: object
+      description: Options for the PUSH command.
+      properties:
+        auth_type:
+          type: string
+          description: Specifies which authentication method is used.
+      discriminator:
+        propertyName: auth_type
+        mapping:
+          CREDENTIALS: GitPushWithCredentials
+          USERNAME_PASSWORD: GitPushWithUsernamePassword
     Streamlit:
       type: object
       description: A Snowflake Streamlit object
@@ -901,28 +951,6 @@ components:
           description: The location of the Streamlit object's live version files.
       required:
       - name
-    CommitStreamlitRequest:
-      type: object
-      properties:
-        version:
-          type: object
-          properties:
-            comment:
-              type: string
-              description: Optional commit message.
-    AddVersionFromGitStreamlitRequest:
-      type: object
-      title: AddVersionFromGitStreamlitRequest
-      description: Request body for adding a new version to a Streamlit from a Git tag or commit URI.
-      properties:
-        version:
-          $ref: '#/components/schemas/StreamlitVersionForGit'
-        git_ref:
-          type: string
-          description: Git reference URI. Accepts either a tag URI or a commit URI.
-      required:
-      - version
-      - git_ref
     AddLiveVersionStreamlitRequestVersion:
       type: object
       properties:
@@ -932,46 +960,18 @@ components:
         comment:
           type: string
           description: Optional comment for the live version.
-    StreamlitPushOptions:
+    StreamlitVersionForGit:
       type: object
-      description: Options for the PUSH command.
+      description: Version metadata for ADD VERSION from Git.
       properties:
-        auth_type:
+        name:
           type: string
-          description: Specifies which authentication method is used.
-      discriminator:
-        propertyName: auth_type
-        mapping:
-          CREDENTIALS: GitPushWithCredentials
-          USERNAME_PASSWORD: GitPushWithUsernamePassword
-    AddVersionStreamlitRequest:
-      type: object
-      title: AddVersionStreamlitRequest
-      description: Request body for adding a new version to a Streamlit from a source location.
-      properties:
-        source_location:
+          description: Name or alias for the new version.
+        comment:
           type: string
-          description: URI to the source location.
-        version:
-          type: object
-          properties:
-            name:
-              type: string
-              description: Name/Alias for the new version.
-            comment:
-              type: string
-            ifNotExists:
-              type: boolean
-          required:
-          - name
+          description: Optional comment associated with the pull.
       required:
-      - source_location
-    AddLiveVersionStreamlitRequest:
-      type: object
-      description: Request body for adding a LIVE version to a Streamlit.
-      properties:
-        version:
-          $ref: '#/components/schemas/AddLiveVersionStreamlitRequestVersion'
+      - name
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

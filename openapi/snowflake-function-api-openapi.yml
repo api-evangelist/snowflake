@@ -381,6 +381,23 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    FunctionArguments:
+      type: array
+      items:
+        $ref: '#/components/schemas/FunctionArgument'
+    FunctionArgument:
+      type: object
+      description: An argument of function
+      properties:
+        name:
+          type: string
+          description: Argument's name
+        datatype:
+          description: Argument's type
+          type: string
+          default: TEXT
+        value:
+          description: Argument's value
     Function:
       type: object
       description: A Snowflake function
@@ -422,23 +439,6 @@ components:
       required:
       - name
       - arguments
-    FunctionArgument:
-      type: object
-      description: An argument of function
-      properties:
-        name:
-          type: string
-          description: Argument's name
-        datatype:
-          description: Argument's type
-          type: string
-          default: TEXT
-        value:
-          description: Argument's value
-    FunctionArguments:
-      type: array
-      items:
-        $ref: '#/components/schemas/FunctionArgument'
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

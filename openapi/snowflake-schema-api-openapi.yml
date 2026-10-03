@@ -525,14 +525,6 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    SchemaClone:
-      type: object
-      description: Schema clone definition.
-      allOf:
-      - $ref: '#/components/schemas/Schema'
-      properties:
-        point_of_time:
-          $ref: common.yaml#/components/schemas/PointOfTime
     Schema:
       type: object
       description: Snowflake schema definition.
@@ -632,6 +624,14 @@ components:
           description: Specifies the maximum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE.
       required:
       - name
+    SchemaClone:
+      type: object
+      description: Schema clone definition.
+      allOf:
+      - $ref: '#/components/schemas/Schema'
+      properties:
+        point_of_time:
+          $ref: common.yaml#/components/schemas/PointOfTime
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

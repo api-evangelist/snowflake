@@ -415,17 +415,14 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
-    scopeType:
-      name: scopeType
-      description: String that specifies the type of resource that is the scope of an ALL/FUTURE privilege. Can only be DATABASE or SCHEMA
-      required: true
-      in: path
+    deleteMode:
+      name: deleteMode
+      description: If "cascade", recursively revoke the grant from sub-grantees to which this privilege was re-granted. Acceptable values are "restrict" or "cascade".
+      required: false
+      in: query
       schema:
-        example: schema
         type: string
-        enum:
-        - database
-        - schema
+        example: restrict
     bulkGrantType:
       name: bulkGrantType
       description: String that species whether this group privilege should be on ALL or FUTURE resources of the specified plural type
@@ -437,13 +434,29 @@ components:
         enum:
         - all
         - future
-    securableName:
-      name: securableName
-      description: String that specifies the name of resource that is being secured by a privilege.
+    granteeName:
+      name: granteeName
+      description: String that specifies the name of the privilege grantee.
       required: true
       in: path
       schema:
-        example: MY_DB
+        example: SYSADMIN
+        type: string
+    securableType:
+      name: securableType
+      description: String that specifies the type of resource that is being secured by a privilege.
+      required: true
+      in: path
+      schema:
+        example: DATABASE
+        type: string
+    scopeName:
+      name: scopeName
+      description: String that specifies the name of resource that is the scope of an ALL/FUTURE privilege
+      required: true
+      in: path
+      schema:
+        example: MY_DB.MY_SC
         type: string
     securableTypePlural:
       name: securableTypePlural
@@ -452,6 +465,14 @@ components:
       in: path
       schema:
         example: tables
+        type: string
+    securableName:
+      name: securableName
+      description: String that specifies the name of resource that is being secured by a privilege.
+      required: true
+      in: path
+      schema:
+        example: MY_DB
         type: string
     granteeType:
       name: granteeType
@@ -467,14 +488,17 @@ components:
         - application-role
         - database-role
         - share
-    securableType:
-      name: securableType
-      description: String that specifies the type of resource that is being secured by a privilege.
+    scopeType:
+      name: scopeType
+      description: String that specifies the type of resource that is the scope of an ALL/FUTURE privilege. Can only be DATABASE or SCHEMA
       required: true
       in: path
       schema:
-        example: DATABASE
+        example: schema
         type: string
+        enum:
+        - database
+        - schema
     privilege:
       name: privilege
       description: String that specifies a privilege to be revoked
@@ -482,30 +506,6 @@ components:
       in: path
       schema:
         example: SELECT
-        type: string
-    deleteMode:
-      name: deleteMode
-      description: If "cascade", recursively revoke the grant from sub-grantees to which this privilege was re-granted. Acceptable values are "restrict" or "cascade".
-      required: false
-      in: query
-      schema:
-        type: string
-        example: restrict
-    scopeName:
-      name: scopeName
-      description: String that specifies the name of resource that is the scope of an ALL/FUTURE privilege
-      required: true
-      in: path
-      schema:
-        example: MY_DB.MY_SC
-        type: string
-    granteeName:
-      name: granteeName
-      description: String that specifies the name of the privilege grantee.
-      required: true
-      in: path
-      schema:
-        example: SYSADMIN
         type: string
   schemas:
     Grant:
