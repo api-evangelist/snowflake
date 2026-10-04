@@ -748,18 +748,114 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    MinutesSchedule:
-      description: A schedule for executing a task at specified intervals of minutes.
-      allOf:
-      - $ref: '#/components/schemas/TaskSchedule'
+    TaskSchedule:
+      type: object
+      description: Specifies the schedule for periodically running the task.
       properties:
-        minutes:
+        schedule_type:
+          description: Type of the schedule, can be either CRON_TYPE or MINUTES_TYPE.
+          type: string
+      discriminator:
+        propertyName: schedule_type
+        mapping:
+          CRON_TYPE: CronSchedule
+          MINUTES_TYPE: MinutesSchedule
+    TaskRun:
+      type: object
+      description: A task run executing a standalone task or a DAG of tasks starting from the root task.
+      properties:
+        root_task_name:
+          type: string
+          description: The name of the root task in the current task run.
+          readOnly: true
+        database_name:
+          type: string
+          description: The name of the current database for the task run.
+          readOnly: true
+        schema_name:
+          type: string
+          description: The name of the current schema for the task run.
+          readOnly: true
+        state:
+          type: string
+          description: The current state of the task run.
+          enum:
+          - SCHEDULED
+          - EXECUTING
+          - SUCCEEDED
+          - FAILED
+          - CANCELLED
+          - SKIPPED
+          readOnly: true
+        first_error_task_name:
+          type: string
+          description: The name of the first task throwing an error in the task run.
+          readOnly: true
+        first_error_code:
           type: integer
-          description: The number of minutes between each task run.
+          description: The first error code thrown in the task run.
+          readOnly: true
+        first_error_message:
+          type: string
+          description: The first error message thrown in the task run.
+          readOnly: true
+        scheduled_time:
+          type: string
+          description: The scheduled time for the task run.
+          format: date-time
+          readOnly: true
+        query_start_time:
+          type: string
+          description: The start time for the task run query.
+          format: date-time
+          readOnly: true
+        next_scheduled_time:
+          type: string
+          description: The next upcoming time for the task run.
+          format: date-time
+          readOnly: true
+        completed_time:
+          type: string
+          description: The time this task run was last completed.
+          format: date-time
+          readOnly: true
+        root_task_id:
+          type: string
+          description: The unique task ID for the root task.
+          readOnly: true
+        graph_version:
+          type: integer
+          description: The current version of the DAG on the task run.
+          readOnly: true
+        run_id:
+          type: integer
+          description: The unique ID for the current task run.
+          readOnly: true
       example:
-        minutes: 10
+        root_task_name: root_task
+        database_name: test_db
+        schema_name: test_schema
+        state: SCHEDULED
+        first_error_task_name: test_task
+        first_error_code: 0
+        first_error_message: ERROR
+        scheduled_time: '2024-06-18T01:01:01.111111'
+        query_start_time: '2024-06-18T01:01:01.111111'
+        next_scheduled_time: '2024-06-18T01:01:01.111111'
+        completed_time: '2024-06-18T01:01:01.111111'
+        root_task_id: '0'
+        graph_version: 0
+        run_id: 0
       required:
-      - minutes
+      - root_task_name
+      - database_name
+      - schema_name
+      - state
+      - scheduled_time
+      - next_scheduled_time
+      - root_task_id
+      - graph_version
+      - run_id
     Task:
       type: object
       description: A Snowflake task, used to execute SQL code.
@@ -927,114 +1023,18 @@ components:
       required:
       - name
       - definition
-    TaskSchedule:
-      type: object
-      description: Specifies the schedule for periodically running the task.
+    MinutesSchedule:
+      description: A schedule for executing a task at specified intervals of minutes.
+      allOf:
+      - $ref: '#/components/schemas/TaskSchedule'
       properties:
-        schedule_type:
-          description: Type of the schedule, can be either CRON_TYPE or MINUTES_TYPE.
-          type: string
-      discriminator:
-        propertyName: schedule_type
-        mapping:
-          CRON_TYPE: CronSchedule
-          MINUTES_TYPE: MinutesSchedule
-    TaskRun:
-      type: object
-      description: A task run executing a standalone task or a DAG of tasks starting from the root task.
-      properties:
-        root_task_name:
-          type: string
-          description: The name of the root task in the current task run.
-          readOnly: true
-        database_name:
-          type: string
-          description: The name of the current database for the task run.
-          readOnly: true
-        schema_name:
-          type: string
-          description: The name of the current schema for the task run.
-          readOnly: true
-        state:
-          type: string
-          description: The current state of the task run.
-          enum:
-          - SCHEDULED
-          - EXECUTING
-          - SUCCEEDED
-          - FAILED
-          - CANCELLED
-          - SKIPPED
-          readOnly: true
-        first_error_task_name:
-          type: string
-          description: The name of the first task throwing an error in the task run.
-          readOnly: true
-        first_error_code:
+        minutes:
           type: integer
-          description: The first error code thrown in the task run.
-          readOnly: true
-        first_error_message:
-          type: string
-          description: The first error message thrown in the task run.
-          readOnly: true
-        scheduled_time:
-          type: string
-          description: The scheduled time for the task run.
-          format: date-time
-          readOnly: true
-        query_start_time:
-          type: string
-          description: The start time for the task run query.
-          format: date-time
-          readOnly: true
-        next_scheduled_time:
-          type: string
-          description: The next upcoming time for the task run.
-          format: date-time
-          readOnly: true
-        completed_time:
-          type: string
-          description: The time this task run was last completed.
-          format: date-time
-          readOnly: true
-        root_task_id:
-          type: string
-          description: The unique task ID for the root task.
-          readOnly: true
-        graph_version:
-          type: integer
-          description: The current version of the DAG on the task run.
-          readOnly: true
-        run_id:
-          type: integer
-          description: The unique ID for the current task run.
-          readOnly: true
+          description: The number of minutes between each task run.
       example:
-        root_task_name: root_task
-        database_name: test_db
-        schema_name: test_schema
-        state: SCHEDULED
-        first_error_task_name: test_task
-        first_error_code: 0
-        first_error_message: ERROR
-        scheduled_time: '2024-06-18T01:01:01.111111'
-        query_start_time: '2024-06-18T01:01:01.111111'
-        next_scheduled_time: '2024-06-18T01:01:01.111111'
-        completed_time: '2024-06-18T01:01:01.111111'
-        root_task_id: '0'
-        graph_version: 0
-        run_id: 0
+        minutes: 10
       required:
-      - root_task_name
-      - database_name
-      - schema_name
-      - state
-      - scheduled_time
-      - next_scheduled_time
-      - root_task_id
-      - graph_version
-      - run_id
+      - minutes
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

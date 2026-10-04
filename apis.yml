@@ -1,11 +1,13 @@
 aid: snowflake
+
 name: Snowflake
-description: Snowflake is a cloud-based data platform delivering data warehousing, data lakes, data engineering, data science
-  and data application development as a single managed service across AWS, Azure and Google Cloud. Its developer surface is
-  a 47-document OpenAPI corpus over /api/v2 covering databases, schemas, tables, Iceberg and dynamic tables, warehouses, tasks,
-  pipes, streams, roles and grants, plus a SQL API for arbitrary statements and a Cortex family for AI inference, semantic
-  analytics and retrieval. Snowflake also serves a SCIM 2.0 identity endpoint, an Apache Iceberg REST Catalog, and an account-hosted
-  Model Context Protocol server that exposes Cortex tools to agents under Snowflake RBAC.
+
+description: Snowflake is a cloud-based data platform delivering data warehousing, data lakes, data engineering, data science and data application
+  development as a single managed service across AWS, Azure and Google Cloud. Its developer surface is a 47-document OpenAPI corpus over /api/v2
+  covering databases, schemas, tables, Iceberg and dynamic tables, warehouses, tasks, pipes, streams, roles and grants, plus a SQL API for arbitrary
+  statements and a Cortex family for AI inference, semantic analytics and retrieval. Snowflake also serves a SCIM 2.0 identity endpoint, an Apache
+  Iceberg REST Catalog, and an account-hosted Model Context Protocol server that exposes Cortex tools to agents under Snowflake RBAC.
+
 deliveryModel:
   model: saas
   open_source: false
@@ -18,6 +20,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: paid
   onboarding: self-serve
@@ -31,19 +34,218 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
+
 image: https://www.snowflake.com/wp-content/themes/snowflake/assets/img/brand-guidelines/logo-sno-blue-example.svg
+
 url: https://raw.githubusercontent.com/api-evangelist/snowflake/refs/heads/main/apis.yml
+
 created: '2025-06-05'
+
 modified: '2026-09-03'
+
 specificationVersion: '0.23'
+
 kind: contract
+
 access: 3rd-Party
+
 position: Consuming
+
+tags:
+- Snowflake
+- Data
+- Data Warehouse
+- Data Lakehouse
+- Cloud Data Platform
+- Analytics
+- Artificial Intelligence
+- Data Engineering
+- Data Governance
+- SQL
+- Apache Iceberg
+- MCP
+- T1
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+- FN: APIs.json
+  email: info@apis.io
+- name: Snowflake, Inc.
+  email: support@snowflake.com
+  url: https://www.snowflake.com
+
+common:
+- type: Spectral
+  url: rules/snowflake-spectral-rules.yml
+- type: Spectral
+  url: rules/snowflake-rules.yml
+- type: Spectral
+  url: rules/snowflake-jsonschema-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/snowflake-context.jsonld
+- type: JSONLD
+  url: json-ld/common-context.jsonld
+- type: Vocabulary
+  url: vocabulary/snowflake-vocabulary.yml
+- type: Hosts
+  url: hosts/snowflake-hosts.yml
+- type: Vendors
+  url: vendors/snowflake-vendors.yml
+- type: Newsroom
+  url: https://www.snowflake.com/en/news/
+- type: DomainSecurity
+  url: security/snowflake-domain-security.yml
+- type: OAuthScopes
+  url: scopes/snowflake-scopes.yml
+- type: Authentication
+  url: authentication/snowflake-authentication.yml
+- type: Packages
+  url: packages/snowflake-packages.yml
+- type: SDKs
+  url: packages/snowflake-packages.yml
+- type: WellKnown
+  url: well-known/snowflake-well-known.yml
+- type: SecurityTxt
+  url: well-known/snowflake-security.txt
+- type: MCPServer
+  url: mcp/snowflake-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/snowflake-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/snowflake-llms.txt
+- type: LlmsText
+  url: https://docs.snowflake.com/llms.txt
+- type: Conformance
+  url: conformance/snowflake-conformance.yml
+- type: Compliance
+  url: https://trust.snowflake.com/
+- type: ErrorCatalog
+  url: errors/snowflake-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/snowflake-lifecycle.yml
+- type: StatusPage
+  url: https://status.snowflake.com/
+- type: Deprecation
+  url: https://docs.snowflake.com/en/release-notes/behavior-change-policy
+- type: Conventions
+  url: conventions/snowflake-conventions.yml
+- type: Idempotency
+  url: conventions/snowflake-conventions.yml
+- type: Sandbox
+  url: sandbox/snowflake-sandbox.yml
+- type: ChangeLog
+  url: changelog/snowflake-changelog.yml
+- type: ChangeLog
+  url: https://docs.snowflake.com/en/release-notes/overview
+- type: CLI
+  url: cli/snowflake-cli.yml
+- type: CLI
+  url: https://docs.snowflake.com/en/developer-guide/snowflake-cli/index
+- type: DataModel
+  url: data-model/snowflake-data-model.yml
+- type: Webhooks
+  url: asyncapi/snowflake-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Plans
+  url: plans/snowflake-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/snowflake-rate-limits.yml
+- type: Security
+  url: security/snowflake-vulnerability-disclosure.yml
+- type: VulnerabilityDisclosure
+  url: security/snowflake-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/snowflake-trust-center.yml
+- type: AgenticAccess
+  url: agentic-access/snowflake-agentic-access.yml
+- type: CapabilityMap
+  url: capabilities/snowflake-capability-edges.yml
+- type: SpectralRules
+  url: rules/snowflake-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/snowflake-vocabulary.yaml
+- type: FinOps
+  url: finops/snowflake-finops.yml
+- type: Website
+  url: https://www.snowflake.com/
+- type: DeveloperPortal
+  url: https://www.snowflake.com/en/developers/
+- type: Documentation
+  url: https://docs.snowflake.com/
+- type: APIReference
+  url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api
+- type: GettingStarted
+  url: https://quickstarts.snowflake.com/
+- type: Support
+  url: https://www.snowflake.com/en/support/
+- type: HelpCenter
+  url: https://community.snowflake.com/
+- type: Blog
+  url: https://www.snowflake.com/en/blog/
+- type: GitHubOrganization
+  url: https://github.com/snowflakedb
+- type: Pricing
+  url: https://www.snowflake.com/en/pricing-options/
+- type: SignUp
+  url: https://signup.snowflake.com/
+- type: Login
+  url: https://app.snowflake.com/
+- type: TermsOfService
+  url: https://www.snowflake.com/legal/terms-of-service/
+- type: PrivacyPolicy
+  url: https://www.snowflake.com/privacy-policy/
+- type: Authentication
+  url: https://docs.snowflake.com/en/developer-guide/sql-api/authenticating
+- type: Versioning
+  url: https://docs.snowflake.com/en/release-notes/behavior-change-policy
+- type: Drivers
+  url: https://docs.snowflake.com/en/developer-guide/drivers
+- type: Arazzo
+  url: arazzo/snowflake-cancel-running-statement-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-clone-database-and-verify-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-and-execute-alert-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-and-execute-task-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-and-refresh-dynamic-table-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-and-refresh-pipe-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-and-verify-warehouse-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-database-and-schema-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-role-and-grant-privileges-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-schema-and-table-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-stage-and-list-files-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-stream-on-table-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-table-and-insert-via-sql-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-create-user-and-grant-role-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-provision-database-schema-table-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-resume-warehouse-and-verify-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-submit-async-sql-statement-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-submit-sql-statement-and-poll-workflow.yml
+- type: Arazzo
+  url: arazzo/snowflake-warehouse-lifecycle-workflow.yml
+
 apis:
 - aid: snowflake:snowflake-artifact-repository-api
   name: Snowflake Artifact Repository API
-  description: The Snowflake Artifact Repository API is a REST API that you can use to access, update, and perform certain
-    actions on Artifact Repository resources in a Snowflake database.
+  description: The Snowflake Artifact Repository API is a REST API that you can use to access, update, and perform certain actions on Artifact
+    Repository resources in a Snowflake database.
   tags:
   - Artifacts
   - Repositories
@@ -54,12 +256,14 @@ apis:
     url: openapi/snowflake-artifact-repository-api-openapi.yml
   - type: Overlay
     url: overlays/snowflake-artifact-repository-overlay.yaml
+  - type: JSONSchema
+    url: json-schema/snowflake-artifact-repository-schema.json
   baseURL: https://org-account.snowflakecomputing.com
   humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/artifact-repository
 - aid: snowflake:cortex-embed-api
   name: Cortex Embed API
-  description: The Snowflake Cortex Embed API is a REST API that performs LLM embedding for input text, similar to the Snowflake
-    Cortex EMBED_TEXT functions.
+  description: The Snowflake Cortex Embed API is a REST API that performs LLM embedding for input text, similar to the Snowflake Cortex EMBED_TEXT
+    functions.
   tags:
   - Artificial Intelligence
   - Cortex
@@ -75,12 +279,16 @@ apis:
     url: openapi/snowflake-cortex-embed-api-openapi.yml
   - type: Overlay
     url: overlays/snowflake-cortex-embed-overlay.yaml
+  - type: JSONSchema
+    url: json-schema/snowflake-embed-response-schema.json
+  - type: JSONSchema
+    url: json-schema/snowflake-embed-request-schema.json
   baseURL: https://org-account.snowflakecomputing.com
   humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/cortex-embed
 - aid: snowflake:snowflake-network-rule-api
   name: Snowflake Network Rule API
-  description: The Snowflake Network Rule API is a REST API that you can use to access, update, and perform certain actions
-    on Network Rule resources in a Snowflake database.
+  description: The Snowflake Network Rule API is a REST API that you can use to access, update, and perform certain actions on Network Rule resources
+    in a Snowflake database.
   tags:
   - Networks
   - Security
@@ -94,12 +302,14 @@ apis:
     url: openapi/snowflake-network-rule-api-openapi.yml
   - type: Overlay
     url: overlays/snowflake-network-rule-overlay.yaml
+  - type: JSONSchema
+    url: json-schema/snowflake-network-rule-schema.json
   baseURL: https://org-account.snowflakecomputing.com
   humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/network-rule
 - aid: snowflake:snowflake-password-policy-api
   name: Snowflake Password Policy API
-  description: The Snowflake Password Policy API is a REST API that you can use to access, update, and perform certain actions
-    on Password Policy resources in a Snowflake database.
+  description: The Snowflake Password Policy API is a REST API that you can use to access, update, and perform certain actions on Password Policy
+    resources in a Snowflake database.
   tags:
   - Password Policy
   - Security
@@ -110,12 +320,14 @@ apis:
     url: openapi/snowflake-password-policy-api-openapi.yml
   - type: Overlay
     url: overlays/snowflake-password-policy-overlay.yaml
+  - type: JSONSchema
+    url: json-schema/snowflake-password-policy-schema.json
   baseURL: https://org-account.snowflakecomputing.com
   humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/password-policy
 - aid: snowflake:snowflake-secret-api
   name: Snowflake Secret API
-  description: The Snowflake Secret API is a REST API that you can use to access, update, and perform certain actions on Secret
-    resources in a Snowflake database.
+  description: The Snowflake Secret API is a REST API that you can use to access, update, and perform certain actions on Secret resources in a
+    Snowflake database.
   tags:
   - Secrets
   - Security
@@ -126,12 +338,14 @@ apis:
     url: openapi/snowflake-secret-api-openapi.yml
   - type: Overlay
     url: overlays/snowflake-secret-overlay.yaml
+  - type: JSONSchema
+    url: json-schema/snowflake-secret-schema.json
   baseURL: https://org-account.snowflakecomputing.com
   humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/secret
 - aid: snowflake:snowflake-sequence-api
   name: Snowflake Sequence API
-  description: The Snowflake Sequence API is a REST API that you can use to access, update, and perform certain actions on
-    Sequence resources in a Snowflake database.
+  description: The Snowflake Sequence API is a REST API that you can use to access, update, and perform certain actions on Sequence resources
+    in a Snowflake database.
   tags:
   - Data Management
   - Sequences
@@ -142,12 +356,14 @@ apis:
     url: openapi/snowflake-sequence-api-openapi.yml
   - type: Overlay
     url: overlays/snowflake-sequence-overlay.yaml
+  - type: JSONSchema
+    url: json-schema/snowflake-sequence-schema.json
   baseURL: https://org-account.snowflakecomputing.com
   humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/sequence
 - aid: snowflake:snowflake-spark-connect-api
   name: Snowflake Spark Connect API
-  description: The Snowflake Spark Connect API is a REST API that enables execution of Spark workloads on Snowflake infrastructure
-    through REST endpoints.
+  description: The Snowflake Spark Connect API is a REST API that enables execution of Spark workloads on Snowflake infrastructure through REST
+    endpoints.
   tags:
   - Data Engineering
   - Spark
@@ -162,8 +378,8 @@ apis:
   humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/spark-connect
 - aid: snowflake:snowflake-streamlit-api
   name: Snowflake Streamlit API
-  description: The Snowflake Streamlit API is a REST API that you can use to access, update, and perform certain actions on
-    Streamlit application resources in a Snowflake database.
+  description: The Snowflake Streamlit API is a REST API that you can use to access, update, and perform certain actions on Streamlit application
+    resources in a Snowflake database.
   tags:
   - Application
   - Streamlit
@@ -177,12 +393,24 @@ apis:
     url: openapi/snowflake-streamlit-api-openapi.yml
   - type: Overlay
     url: overlays/snowflake-streamlit-overlay.yaml
+  - type: JSONSchema
+    url: json-schema/snowflake-streamlit-schema.json
+  - type: JSONSchema
+    url: json-schema/snowflake-add-version-streamlit-request-schema.json
+  - type: JSONSchema
+    url: json-schema/snowflake-add-version-from-git-streamlit-request-schema.json
+  - type: JSONSchema
+    url: json-schema/snowflake-streamlit-push-options-schema.json
+  - type: JSONSchema
+    url: json-schema/snowflake-add-live-version-streamlit-request-schema.json
+  - type: JSONSchema
+    url: json-schema/snowflake-commit-streamlit-request-schema.json
   baseURL: https://org-account.snowflakecomputing.com
   humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/streamlit
 - aid: snowflake:snowflake-tag-api
   name: Snowflake Tag API
-  description: The Snowflake Tag API is a REST API that you can use to access, update, and perform certain actions on Tag
-    resources in a Snowflake database.
+  description: The Snowflake Tag API is a REST API that you can use to access, update, and perform certain actions on Tag resources in a Snowflake
+    database.
   tags:
   - Data Governance
   - Tags
@@ -193,12 +421,14 @@ apis:
     url: openapi/snowflake-tag-api-openapi.yml
   - type: Overlay
     url: overlays/snowflake-tag-overlay.yaml
+  - type: JSONSchema
+    url: json-schema/snowflake-tag-schema.json
   baseURL: https://org-account.snowflakecomputing.com
   humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/tag
 - aid: snowflake:cortex-agents-api
   name: Cortex Agents API
-  description: The Snowflake Cortex Agents API is a REST API that you can use to create, manage, and interact with Cortex
-    Agent objects in a Snowflake account.
+  description: The Snowflake Cortex Agents API is a REST API that you can use to create, manage, and interact with Cortex Agent objects in a Snowflake
+    account.
   tags:
   - Agents
   - Artificial Intelligence
@@ -214,8 +444,8 @@ apis:
   humanURL: https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api
 - aid: snowflake:snowpipe-rest-api
   name: Snowpipe REST API
-  description: The Snowpipe REST API provides REST endpoints for defining the list of files to ingest and fetching reports
-    of the load history for continuous data loading into Snowflake.
+  description: The Snowpipe REST API provides REST endpoints for defining the list of files to ingest and fetching reports of the load history
+    for continuous data loading into Snowflake.
   tags:
   - Data Ingestion
   - Snowpipe
@@ -6028,8 +6258,8 @@ apis:
   humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/reference/account
 - aid: snowflake:snowflake-cortex-generic-anthropic-api
   name: Cortex Messages API
-  description: The Snowflake Cortex Messages API is a REST API that performs LLM text completion inference using the Cortex
-    Messages (Anthropic-compatible) request format.
+  description: The Snowflake Cortex Messages API is a REST API that performs LLM text completion inference using the Cortex Messages (Anthropic-compatible)
+    request format.
   tags:
   - Artificial Intelligence
   - Cortex
@@ -6043,8 +6273,8 @@ apis:
   humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api
 - aid: snowflake:snowflake-cortex-generic-openai-api
   name: Cortex Chat Completions API
-  description: The Snowflake Cortex Chat Completions API is a REST API that performs LLM text completion inference using the
-    Cortex Chat Completions (OpenAI-compatible) request format.
+  description: The Snowflake Cortex Chat Completions API is a REST API that performs LLM text completion inference using the Cortex Chat Completions
+    (OpenAI-compatible) request format.
   tags:
   - Artificial Intelligence
   - Cortex
@@ -6056,167 +6286,7 @@ apis:
     url: overlays/snowflake-cortex-generic-openai-overlay.yaml
   baseURL: https://org-account.snowflakecomputing.com
   humanURL: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api
-common:
-- type: DomainSecurity
-  url: security/snowflake-domain-security.yml
-- type: OAuthScopes
-  url: scopes/snowflake-scopes.yml
-- type: Authentication
-  url: authentication/snowflake-authentication.yml
-- type: Packages
-  url: packages/snowflake-packages.yml
-- type: SDKs
-  url: packages/snowflake-packages.yml
-- type: WellKnown
-  url: well-known/snowflake-well-known.yml
-- type: SecurityTxt
-  url: well-known/snowflake-security.txt
-- type: MCPServer
-  url: mcp/snowflake-mcp.yml
-- type: ToolCrosswalk
-  url: mcp/snowflake-tool-crosswalk.yml
-- type: LLMsTxt
-  url: llms/snowflake-llms.txt
-- type: LlmsText
-  url: https://docs.snowflake.com/llms.txt
-- type: Conformance
-  url: conformance/snowflake-conformance.yml
-- type: Compliance
-  url: https://trust.snowflake.com/
-- type: ErrorCatalog
-  url: errors/snowflake-problem-types.yml
-- type: Lifecycle
-  url: lifecycle/snowflake-lifecycle.yml
-- type: StatusPage
-  url: https://status.snowflake.com/
-- type: Deprecation
-  url: https://docs.snowflake.com/en/release-notes/behavior-change-policy
-- type: Conventions
-  url: conventions/snowflake-conventions.yml
-- type: Idempotency
-  url: conventions/snowflake-conventions.yml
-- type: Sandbox
-  url: sandbox/snowflake-sandbox.yml
-- type: ChangeLog
-  url: changelog/snowflake-changelog.yml
-- type: ChangeLog
-  url: https://docs.snowflake.com/en/release-notes/overview
-- type: CLI
-  url: cli/snowflake-cli.yml
-- type: CLI
-  url: https://docs.snowflake.com/en/developer-guide/snowflake-cli/index
-- type: DataModel
-  url: data-model/snowflake-data-model.yml
-- type: Webhooks
-  url: asyncapi/snowflake-webhooks.yml
-- type: AgentSkill
-  url: skills/_index.yml
-- type: Plans
-  url: plans/snowflake-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/snowflake-rate-limits.yml
-- type: Security
-  url: security/snowflake-vulnerability-disclosure.yml
-- type: VulnerabilityDisclosure
-  url: security/snowflake-vulnerability-disclosure.yml
-- type: TrustCenter
-  url: security/snowflake-trust-center.yml
-- type: AgenticAccess
-  url: agentic-access/snowflake-agentic-access.yml
-- type: CapabilityMap
-  url: capabilities/snowflake-capability-edges.yml
-- type: SpectralRules
-  url: rules/snowflake-spectral-rules.yml
-- type: Vocabulary
-  url: vocabulary/snowflake-vocabulary.yaml
-- type: FinOps
-  url: finops/snowflake-finops.yml
-- type: Website
-  url: https://www.snowflake.com/
-- type: DeveloperPortal
-  url: https://www.snowflake.com/en/developers/
-- type: Documentation
-  url: https://docs.snowflake.com/
-- type: APIReference
-  url: https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api
-- type: GettingStarted
-  url: https://quickstarts.snowflake.com/
-- type: Support
-  url: https://www.snowflake.com/en/support/
-- type: HelpCenter
-  url: https://community.snowflake.com/
-- type: Blog
-  url: https://www.snowflake.com/en/blog/
-- type: GitHubOrganization
-  url: https://github.com/snowflakedb
-- type: Pricing
-  url: https://www.snowflake.com/en/pricing-options/
-- type: SignUp
-  url: https://signup.snowflake.com/
-- type: Login
-  url: https://app.snowflake.com/
-- type: TermsOfService
-  url: https://www.snowflake.com/legal/terms-of-service/
-- type: PrivacyPolicy
-  url: https://www.snowflake.com/privacy-policy/
-- type: Authentication
-  url: https://docs.snowflake.com/en/developer-guide/sql-api/authenticating
-- type: Versioning
-  url: https://docs.snowflake.com/en/release-notes/behavior-change-policy
-- type: Drivers
-  url: https://docs.snowflake.com/en/developer-guide/drivers
-- type: Arazzo
-  url: arazzo/snowflake-cancel-running-statement-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-clone-database-and-verify-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-create-and-execute-alert-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-create-and-execute-task-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-create-and-refresh-dynamic-table-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-create-and-refresh-pipe-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-create-and-verify-warehouse-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-create-database-and-schema-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-create-role-and-grant-privileges-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-create-schema-and-table-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-create-stage-and-list-files-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-create-stream-on-table-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-create-table-and-insert-via-sql-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-create-user-and-grant-role-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-provision-database-schema-table-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-resume-warehouse-and-verify-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-submit-async-sql-statement-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-submit-sql-statement-and-poll-workflow.yml
-- type: Arazzo
-  url: arazzo/snowflake-warehouse-lifecycle-workflow.yml
-tags:
-- Snowflake
-- Data
-- Data Warehouse
-- Data Lakehouse
-- Cloud Data Platform
-- Analytics
-- Artificial Intelligence
-- Data Engineering
-- Data Governance
-- SQL
-- Apache Iceberg
-- MCP
-- T1
+
 tags_raw:
 - Snowflake
 - Data
@@ -6231,16 +6301,10 @@ tags_raw:
 - Apache Iceberg
 - Model Context Protocol
 - T1
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-- FN: APIs.json
-  email: info@apis.io
-- name: Snowflake, Inc.
-  email: support@snowflake.com
-  url: https://www.snowflake.com
+
 x-enrichment:
-  date: '2026-09-03'
+  date: '2026-10-04'
   status: enriched
-  artifacts_added: 68
-  pass: local-v1
+  artifacts_added: 19
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

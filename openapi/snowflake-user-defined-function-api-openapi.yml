@@ -473,61 +473,10 @@ components:
         mapping:
           DATATYPE: ReturnDataType
           TABLE: ReturnTable
-    Argument:
-      type: object
-      properties:
-        name:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Argument name
-        datatype:
-          type: string
-          description: Argument data type
-        default_value:
-          type: string
-          description: Default value of the argument
-      required:
-      - name
-      - datatype
-    FunctionLanguage:
-      type: object
-      properties:
-        language:
-          type: string
-          description: 'Language that the function/procedure is written in. Possible values include: JAVA, JAVASCRIPT, PYTHON, SCALA, SQL'
-        called_on_null_input:
-          type: boolean
-          description: Decide if the function/procedure can receive null input
-        is_volatile:
-          type: boolean
-          description: " Specifies the behavior of the UDF when returning results. This Field is deprecated for Procedure.\n            \n            If true, UDF might return different values for different rows, even for the same input. \n            This field is deprecated for Procedure.\n\n            If false, UDF assumes that the function, when called with the same inputs, will always return the same result. \n            This guarantee is not checked. Specifying IMMUTABLE for a UDF that returns different values for the same input will result in undefined behavior.\n        "
-      required:
-      - language
-      discriminator:
-        propertyName: language
-        mapping:
-          JAVA: JavaFunction
-          PYTHON: PythonFunction
-          SCALA: ScalaFunction
-          JAVASCRIPT: JavaScriptFunction
-          SQL: SQLFunction
-    UserDefinedFunctionArgument:
-      type: object
-      description: An argument of UDF
-      properties:
-        name:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Argument's name
-        datatype:
-          type: string
-          description: Argument's type
-        value:
-          description: Argument's value
-      required:
-      - name
-      - datatype
-      - value
+    UserDefinedFunctionArguments:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserDefinedFunctionArgument'
     UserDefinedFunction:
       type: object
       description: A snowflake UDF
@@ -615,10 +564,61 @@ components:
       - arguments
       - return_type
       - language_config
-    UserDefinedFunctionArguments:
-      type: array
-      items:
-        $ref: '#/components/schemas/UserDefinedFunctionArgument'
+    UserDefinedFunctionArgument:
+      type: object
+      description: An argument of UDF
+      properties:
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Argument's name
+        datatype:
+          type: string
+          description: Argument's type
+        value:
+          description: Argument's value
+      required:
+      - name
+      - datatype
+      - value
+    FunctionLanguage:
+      type: object
+      properties:
+        language:
+          type: string
+          description: 'Language that the function/procedure is written in. Possible values include: JAVA, JAVASCRIPT, PYTHON, SCALA, SQL'
+        called_on_null_input:
+          type: boolean
+          description: Decide if the function/procedure can receive null input
+        is_volatile:
+          type: boolean
+          description: " Specifies the behavior of the UDF when returning results. This Field is deprecated for Procedure.\n            \n            If true, UDF might return different values for different rows, even for the same input. \n            This field is deprecated for Procedure.\n\n            If false, UDF assumes that the function, when called with the same inputs, will always return the same result. \n            This guarantee is not checked. Specifying IMMUTABLE for a UDF that returns different values for the same input will result in undefined behavior.\n        "
+      required:
+      - language
+      discriminator:
+        propertyName: language
+        mapping:
+          JAVA: JavaFunction
+          PYTHON: PythonFunction
+          SCALA: ScalaFunction
+          JAVASCRIPT: JavaScriptFunction
+          SQL: SQLFunction
+    Argument:
+      type: object
+      properties:
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Argument name
+        datatype:
+          type: string
+          description: Argument data type
+        default_value:
+          type: string
+          description: Default value of the argument
+      required:
+      - name
+      - datatype
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

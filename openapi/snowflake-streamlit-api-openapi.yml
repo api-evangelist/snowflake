@@ -772,6 +772,34 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    AddVersionStreamlitRequest:
+      type: object
+      title: AddVersionStreamlitRequest
+      description: Request body for adding a new version to a Streamlit from a source location.
+      properties:
+        source_location:
+          type: string
+          description: URI to the source location.
+        version:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Name/Alias for the new version.
+            comment:
+              type: string
+            ifNotExists:
+              type: boolean
+          required:
+          - name
+      required:
+      - source_location
+    AddLiveVersionStreamlitRequest:
+      type: object
+      description: Request body for adding a LIVE version to a Streamlit.
+      properties:
+        version:
+          $ref: '#/components/schemas/AddLiveVersionStreamlitRequestVersion'
     VersionDetailsStreamlit:
       type: object
       description: The version details of a file-based entity
@@ -796,56 +824,6 @@ components:
           type: string
           readOnly: true
           description: The default/last version Git commit
-    AddLiveVersionStreamlitRequest:
-      type: object
-      description: Request body for adding a LIVE version to a Streamlit.
-      properties:
-        version:
-          $ref: '#/components/schemas/AddLiveVersionStreamlitRequestVersion'
-    CommitStreamlitRequest:
-      type: object
-      properties:
-        version:
-          type: object
-          properties:
-            comment:
-              type: string
-              description: Optional commit message.
-    AddVersionFromGitStreamlitRequest:
-      type: object
-      title: AddVersionFromGitStreamlitRequest
-      description: Request body for adding a new version to a Streamlit from a Git tag or commit URI.
-      properties:
-        version:
-          $ref: '#/components/schemas/StreamlitVersionForGit'
-        git_ref:
-          type: string
-          description: Git reference URI. Accepts either a tag URI or a commit URI.
-      required:
-      - version
-      - git_ref
-    AddVersionStreamlitRequest:
-      type: object
-      title: AddVersionStreamlitRequest
-      description: Request body for adding a new version to a Streamlit from a source location.
-      properties:
-        source_location:
-          type: string
-          description: URI to the source location.
-        version:
-          type: object
-          properties:
-            name:
-              type: string
-              description: Name/Alias for the new version.
-            comment:
-              type: string
-            ifNotExists:
-              type: boolean
-          required:
-          - name
-      required:
-      - source_location
     StreamlitPushOptions:
       type: object
       description: Options for the PUSH command.
@@ -858,6 +836,15 @@ components:
         mapping:
           CREDENTIALS: GitPushWithCredentials
           USERNAME_PASSWORD: GitPushWithUsernamePassword
+    AddLiveVersionStreamlitRequestVersion:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Optional alias name for the live version.
+        comment:
+          type: string
+          description: Optional comment for the live version.
     Streamlit:
       type: object
       description: A Snowflake Streamlit object
@@ -951,15 +938,19 @@ components:
           description: The location of the Streamlit object's live version files.
       required:
       - name
-    AddLiveVersionStreamlitRequestVersion:
+    AddVersionFromGitStreamlitRequest:
       type: object
+      title: AddVersionFromGitStreamlitRequest
+      description: Request body for adding a new version to a Streamlit from a Git tag or commit URI.
       properties:
-        name:
+        version:
+          $ref: '#/components/schemas/StreamlitVersionForGit'
+        git_ref:
           type: string
-          description: Optional alias name for the live version.
-        comment:
-          type: string
-          description: Optional comment for the live version.
+          description: Git reference URI. Accepts either a tag URI or a commit URI.
+      required:
+      - version
+      - git_ref
     StreamlitVersionForGit:
       type: object
       description: Version metadata for ADD VERSION from Git.
@@ -972,6 +963,15 @@ components:
           description: Optional comment associated with the pull.
       required:
       - name
+    CommitStreamlitRequest:
+      type: object
+      properties:
+        version:
+          type: object
+          properties:
+            comment:
+              type: string
+              description: Optional commit message.
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

@@ -1,0 +1,418 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/snowflake-account-api-openapi.yml
+- openapi/snowflake-alert-api-openapi.yml
+- openapi/snowflake-api-integration-api-openapi.yml
+- openapi/snowflake-artifact-repository-api-openapi.yml
+- openapi/snowflake-catalog-integration-api-openapi.yml
+vocabulary:
+  name: Snowflake Domain Vocabulary
+  description: 'Terms declared by Snowflake''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-04'
+  terms:
+  - term: Account
+    definition: Snowflake account object.
+    tags:
+    - Object
+    source: openapi/snowflake-account-api-openapi.yml#/components/schemas/Account
+  - term: Schedule
+    definition: 'Object declared by the contract with fields: schedule_type.'
+    tags:
+    - Object
+    source: openapi/snowflake-alert-api-openapi.yml#/components/schemas/Schedule
+  - term: PointOfTime
+    definition: 'Object declared by the contract with fields: point_of_time_type, reference.'
+    tags:
+    - Object
+    source: openapi/snowflake-alert-api-openapi.yml#/components/schemas/PointOfTime
+  - term: Alert
+    definition: A Snowflake alert
+    tags:
+    - Object
+    source: openapi/snowflake-alert-api-openapi.yml#/components/schemas/Alert
+  - term: AlertClone
+    definition: 'Object declared by the contract with fields: name, point_of_time.'
+    tags:
+    - Object
+    source: openapi/snowflake-alert-api-openapi.yml#/components/schemas/AlertClone
+  - term: ApiIntegration
+    definition: A Snowflake API integration object.
+    tags:
+    - Object
+    source: openapi/snowflake-api-integration-api-openapi.yml#/components/schemas/ApiIntegration
+  - term: ApiHook
+    definition: 'Object declared by the contract with fields: type.'
+    tags:
+    - Object
+    source: openapi/snowflake-api-integration-api-openapi.yml#/components/schemas/ApiHook
+  - term: ArtifactRepository
+    definition: A Snowflake artifact repository
+    tags:
+    - Object
+    source: openapi/snowflake-artifact-repository-api-openapi.yml#/components/schemas/ArtifactRepository
+  - term: CatalogIntegration
+    definition: Catalog integration
+    tags:
+    - Object
+    source: openapi/snowflake-catalog-integration-api-openapi.yml#/components/schemas/CatalogIntegration
+  - term: Catalog
+    definition: 'Object declared by the contract with fields: catalog_source.'
+    tags:
+    - Object
+    source: openapi/snowflake-catalog-integration-api-openapi.yml#/components/schemas/Catalog
+  - term: ComputePool
+    definition: A Snowflake compute pool definition.
+    tags:
+    - Object
+    source: openapi/snowflake-compute-pool-api-openapi.yml#/components/schemas/ComputePool
+  - term: ComputePoolInstanceFamily
+    definition: A compute pool instance family.
+    tags:
+    - Object
+    source: openapi/snowflake-compute-pool-api-openapi.yml#/components/schemas/ComputePoolInstanceFamily
+  - term: GenerateVerifiedQuerySuggestionsResponse
+    definition: The non-streaming response object for the VQ Suggestions request
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/GenerateVerifiedQuerySuggestionsResponse
+  - term: TableauStageFiles
+    definition: Specifies stage paths of the Tableau files
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/TableauStageFiles
+  - term: TableauAuth
+    definition: Authentication required to connect to Tableau
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/TableauAuth
+  - term: SemanticModelChangeOperation
+    definition: Operation applied to a semantic object at a given path
+    tags:
+    - Enumeration
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/SemanticModelChangeOperation
+  - term: GenerateFiltersAndMetricsSuggestionsRequest
+    definition: The request object for generating filters, facts, and metrics suggestions
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/GenerateFiltersAndMetricsSuggestionsRequest
+  - term: AnnotatedSqlQuery
+    definition: Contains a SQL query with optional context and natural language annotation
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/AnnotatedSqlQuery
+  - term: TableauIntegration
+    definition: Contains data on how to connect to Tableau and process data
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/TableauIntegration
+  - term: AgenticOptimizationSummary
+    definition: A summary of an agentic optimization run.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/AgenticOptimizationSummary
+  - term: GetAgenticOptimizationResponse
+    definition: The status, state, and outcome of a specified agentic optimization run.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/GetAgenticOptimizationResponse
+  - term: FastGenerationRequest
+    definition: The request for the FastGeneration rpc
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/FastGenerationRequest
+  - term: StagingData
+    definition: Contains information indicating where to stage data
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/StagingData
+  - term: VerifiedQuerySuggestion
+    definition: A suggestion to add or remove or replace a Verified Query to a semantic model.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/VerifiedQuerySuggestion
+  - term: SqlInputs
+    definition: Contains SQL queries which may be annotated with natural language
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/SqlInputs
+  - term: SemanticModelChange
+    definition: A single change to apply to the semantic object
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/SemanticModelChange
+  - term: TdsInput
+    definition: Tableau data source file stage paths
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/TdsInput
+  - term: TableColumns
+    definition: Contains information about table and column names
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/TableColumns
+  - term: SendFeedbackRequest
+    definition: The request object for sending user feedback on Cortex Analyst responses
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/SendFeedbackRequest
+  - term: GenerateVerifiedQuerySuggestionsRequest
+    definition: The request object for getting VQ suggestions
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/GenerateVerifiedQuerySuggestionsRequest
+  - term: GenerateFiltersAndMetricsSuggestionsResponse
+    definition: The response object for filters, facts, and metrics suggestions
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/GenerateFiltersAndMetricsSuggestionsResponse
+  - term: AgenticOptimizationStatus
+    definition: The status of an agentic optimization run.
+    tags:
+    - Enumeration
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/AgenticOptimizationStatus
+  - term: TableauServerFiles
+    definition: Contains Tableau URLs to retrieve files from Tableau server and information around Tableau integration
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/TableauServerFiles
+  - term: SemanticModelUpdateSuggestion
+    definition: A suggestion consisting of ordered semantic object changes with optional setup SQL and score.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/SemanticModelUpdateSuggestion
+  - term: TableauInput
+    definition: Input required to extract data from Tableau. Tableau Cloud users can optionally provide integration data if files are not already
+      uploaded
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/TableauInput
+  - term: SemanticModelChangeValue
+    definition: One-of value. A map with exactly one key set corresponding to the semantic model object or primitive.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/SemanticModelChangeValue
+  - term: ListAgenticOptimizationsRequest
+    definition: A request to list all agentic optimization runs for a given base model. Note that only semantic views and semantic model files
+      are supported. Inline semantic models will lead to a 400 response.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/ListAgenticOptimizationsRequest
+  - term: TokenInfo
+    definition: 'Object declared by the contract with fields: token, expiration_seconds.'
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/TokenInfo
+  - term: PreSelectionResponse
+    definition: The response for the PreSelection rpc
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/PreSelectionResponse
+  - term: ListAgenticOptimizationsResponse
+    definition: The response from listing agentic optimization runs.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/ListAgenticOptimizationsResponse
+  - term: PreSelectionRequest
+    definition: The request for the PreSelection rpc
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-analyst-api-openapi.yml#/components/schemas/PreSelectionRequest
+  - term: EmbedRequest
+    definition: Request to calculate text embeddings using a specified model.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-embed-api-openapi.yml#/components/schemas/EmbedRequest
+  - term: EmbedResponse
+    definition: 'Object declared by the contract with fields: object, data, model, usage.'
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-embed-api-openapi.yml#/components/schemas/EmbedResponse
+  - term: StreamingCompleteResponseDataEvent
+    definition: Streaming text-completion response event.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-inference-api-openapi.yml#/components/schemas/StreamingCompleteResponseDataEvent
+  - term: CompleteRequest
+    definition: LLM text completion request.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-inference-api-openapi.yml#/components/schemas/CompleteRequest
+  - term: GetModelsRequest
+    definition: 'Object declared by the contract with fields: models.'
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-inference-api-openapi.yml#/components/schemas/GetModelsRequest
+  - term: GetModelsResponse
+    definition: 'Object declared by the contract with fields: models.'
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-inference-api-openapi.yml#/components/schemas/GetModelsResponse
+  - term: GuardrailsConfig
+    definition: Guardrails configuration
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-inference-api-openapi.yml#/components/schemas/GuardrailsConfig
+  - term: StreamingCompleteResponse
+    definition: Server-sent events for streaming text-completion updates.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-inference-api-openapi.yml#/components/schemas/StreamingCompleteResponse
+  - term: VectorBoost
+    definition: 'Object declared by the contract with fields: column, weight, disable_vector_embedding_query_prefix.'
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/VectorBoost
+  - term: TimeDecay
+    definition: 'Object declared by the contract with fields: column, weight, limit_hours, now.'
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/TimeDecay
+  - term: Weights
+    definition: Weights to apply to each scoring component.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/Weights
+  - term: NumericBoost
+    definition: 'Object declared by the contract with fields: column, weight.'
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/NumericBoost
+  - term: QueryRequest
+    definition: A search query and additional parameters for search.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/QueryRequest
+  - term: RetrievalWeights
+    definition: Weights to apply to retrieval stage components.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/RetrievalWeights
+  - term: Column
+    definition: Column to apply this function to.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/Column
+  - term: ResultRow
+    definition: Map of column names to values.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/ResultRow
+  - term: SuggestQueryResponse
+    definition: Suggest results.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/SuggestQueryResponse
+  - term: Reranker
+    definition: Model to use for the reranker, or "none" if the reranker should be turned off. If excluded or null, the default reranker is used.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/Reranker
+  - term: RankingWeights
+    definition: Weights to apply to ranking stage components.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/RankingWeights
+  - term: SuggestQueryRequest
+    definition: A Suggest request.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/SuggestQueryRequest
+  - term: Functions
+    definition: Functions to apply for scoring this request.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/Functions
+  - term: SchedulingState
+    definition: 'Enumeration declared by the contract with values: ACTIVE, SUSPENDED, INITIALIZING.'
+    tags:
+    - Enumeration
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/SchedulingState
+  - term: Diversity
+    definition: Configuration to control result diversity with respect to one or more metadata columns.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/Diversity
+  - term: QueryResponse
+    definition: Search results.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/QueryResponse
+  - term: CortexSearchService
+    definition: A Snowflake cortex search service object.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/CortexSearchService
+  - term: TextBoost
+    definition: 'Object declared by the contract with fields: column, weight.'
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/TextBoost
+  - term: SuggestResult
+    definition: Suggest results.
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/SuggestResult
+  - term: QuerySimilarityBoost
+    definition: 'Object declared by the contract with fields: cortex_search_service, previous_query_column, documents_column.'
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/QuerySimilarityBoost
+  - term: ScoringConfig
+    definition: reserved
+    tags:
+    - Object
+    source: openapi/snowflake-cortex-search-service-api-openapi.yml#/components/schemas/ScoringConfig
+  - term: DatabaseFromShare
+    definition: Database from share.
+    tags:
+    - Object
+    source: openapi/snowflake-database-api-openapi.yml#/components/schemas/DatabaseFromShare
+  - term: Database
+    definition: Snowflake database object.
+    tags:
+    - Object
+    source: openapi/snowflake-database-api-openapi.yml#/components/schemas/Database
+  - term: DatabaseClone
+    definition: Clone database.
+    tags:
+    - Object
+    source: openapi/snowflake-database-api-openapi.yml#/components/schemas/DatabaseClone
+  - term: AccountIdentifiers
+    definition: Array of unique account identifiers.
+    tags:
+    - Object
+    source: openapi/snowflake-database-api-openapi.yml#/components/schemas/AccountIdentifiers
+  - term: DatabaseRoleClone
+    definition: 'Object declared by the contract with fields: name.'
+    tags:
+    - Object
+    source: openapi/snowflake-database-role-api-openapi.yml#/components/schemas/DatabaseRoleClone
+  - term: ContainingScope
+    definition: 'Object declared by the contract with fields: database, schema.'
+    tags:
+    - Object
+    source: openapi/snowflake-database-role-api-openapi.yml#/components/schemas/ContainingScope
+  - term: Securable
+    definition: 'Object declared by the contract with fields: database, schema, service, name.'
+    tags:
+    - Object
+    source: openapi/snowflake-database-role-api-openapi.yml#/components/schemas/Securable
+  - term: DatabaseRole
+    definition: A Snowflake database role
+    tags:
+    - Object
+    source: openapi/snowflake-database-role-api-openapi.yml#/components/schemas/DatabaseRole
+  - term: Grant
+    definition: 'Object declared by the contract with fields: securable, containing_scope, securable_type, grant_option, privileges, created_on,
+      granted_by.'
+    tags:
+    - Object
+    source: openapi/snowflake-database-role-api-openapi.yml#/components/schemas/Grant
+  - term: DynamicTableClone
+    definition: Clone dynamic table
+    tags:
+    - Object
+    source: openapi/snowflake-dynamic-table-api-openapi.yml#/components/schemas/DynamicTableClone

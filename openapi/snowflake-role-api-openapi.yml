@@ -663,6 +663,111 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    Grant:
+      type: object
+      properties:
+        securable:
+          $ref: '#/components/schemas/Securable'
+          description: Securable of the grant
+        containing_scope:
+          $ref: '#/components/schemas/ContainingScope'
+          description: Containing scope of the grant
+        securable_type:
+          type: string
+          description: Type of the securable to be granted.
+        grant_option:
+          type: boolean
+          description: If true, allows the recipient role to grant the privileges to other roles.
+        privileges:
+          type: array
+          items:
+            type: string
+          description: List of privileges to be granted.
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date and time when the grant was created
+        granted_by:
+          type: string
+          readOnly: true
+          description: The role that granted this privilege to this grantee
+      required:
+      - securable_type
+    ContainingScope:
+      type: object
+      properties:
+        database:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Database name of the securable scope if applicable.
+        schema:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Schema name of the securable scope if applicable.
+      required:
+      - database
+    GrantOn:
+      type: object
+      properties:
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date and time when the grant was created
+        privilege:
+          type: string
+          readOnly: true
+          description: The name of the privilege
+        granted_on:
+          type: string
+          readOnly: true
+          description: The type of of the role
+        name:
+          type: string
+          readOnly: true
+          description: The name of the role
+        granted_to:
+          type: string
+          readOnly: true
+          description: The type of the grantee
+        grantee_name:
+          type: string
+          readOnly: true
+          description: The name of the grantee
+        grant_option:
+          type: string
+          readOnly: true
+          description: If true, allows the recipient role to grant the privileges to other roles.
+        granted_by:
+          type: string
+          readOnly: true
+          description: The role that granted this privilege to this grantee
+        granted_by_role_type:
+          type: string
+          readOnly: true
+          description: Type of the role that granted this privilege to this grantee
+    Securable:
+      type: object
+      properties:
+        database:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Database name of the securable if applicable.
+        schema:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Schema name of the securable if applicable.
+        service:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Service name of the securable if applicable.
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Name of the securable if applicable.
+      required:
+      - name
     Role:
       type: object
       description: A Snowflake role
@@ -713,50 +818,6 @@ components:
           description: The number of roles that have been granted to this role.
       required:
       - name
-    Grant:
-      type: object
-      properties:
-        securable:
-          $ref: '#/components/schemas/Securable'
-          description: Securable of the grant
-        containing_scope:
-          $ref: '#/components/schemas/ContainingScope'
-          description: Containing scope of the grant
-        securable_type:
-          type: string
-          description: Type of the securable to be granted.
-        grant_option:
-          type: boolean
-          description: If true, allows the recipient role to grant the privileges to other roles.
-        privileges:
-          type: array
-          items:
-            type: string
-          description: List of privileges to be granted.
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date and time when the grant was created
-        granted_by:
-          type: string
-          readOnly: true
-          description: The role that granted this privilege to this grantee
-      required:
-      - securable_type
-    ContainingScope:
-      type: object
-      properties:
-        database:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Database name of the securable scope if applicable.
-        schema:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Schema name of the securable scope if applicable.
-      required:
-      - database
     GrantOf:
       type: object
       properties:
@@ -781,67 +842,6 @@ components:
           type: string
           readOnly: true
           description: The role that granted this role to this grantee
-    Securable:
-      type: object
-      properties:
-        database:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Database name of the securable if applicable.
-        schema:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Schema name of the securable if applicable.
-        service:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Service name of the securable if applicable.
-        name:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Name of the securable if applicable.
-      required:
-      - name
-    GrantOn:
-      type: object
-      properties:
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date and time when the grant was created
-        privilege:
-          type: string
-          readOnly: true
-          description: The name of the privilege
-        granted_on:
-          type: string
-          readOnly: true
-          description: The type of of the role
-        name:
-          type: string
-          readOnly: true
-          description: The name of the role
-        granted_to:
-          type: string
-          readOnly: true
-          description: The type of the grantee
-        grantee_name:
-          type: string
-          readOnly: true
-          description: The name of the grantee
-        grant_option:
-          type: string
-          readOnly: true
-          description: If true, allows the recipient role to grant the privileges to other roles.
-        granted_by:
-          type: string
-          readOnly: true
-          description: The role that granted this privilege to this grantee
-        granted_by_role_type:
-          type: string
-          readOnly: true
-          description: Type of the role that granted this privilege to this grantee
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

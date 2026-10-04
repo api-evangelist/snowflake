@@ -360,119 +360,32 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    accept:
-      name: Accept
-      in: header
-      schema:
-        type: string
-        default: application/json
-      required: false
-      description: The response payload format. The schema should be specified in resultSetMetaData in the request payload.
-    userAgent:
-      name: User-Agent
-      in: header
-      schema:
-        type: string
-      required: true
-      description: Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.
-    requestId:
-      name: requestId
-      in: query
-      schema:
-        type: string
-        format: uuid
-      required: false
-      description: Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.
-    async:
-      name: async
-      in: query
-      schema:
-        type: boolean
-      required: false
-      description: Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.
-    statementHandle:
-      name: statementHandle
-      in: path
-      schema:
-        type: string
-        format: uuid
-      required: true
-      description: The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution).
-    nullable:
-      name: nullable
-      in: query
-      schema:
-        type: boolean
-      required: false
-      description: Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.
-    snowflakeAuthorizationTokenType:
-      name: X-Snowflake-Authorization-Token-Type
-      in: header
-      schema:
-        type: string
-        enum:
-        - KEYPAIR_JWT
-        - OAUTH
-        - PROGRAMMATIC_ACCESS_TOKEN
-      required: false
-      description: Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.
-    partition:
-      name: partition
-      in: query
-      schema:
-        type: integer
-        format: int64
-        minimum: 0
-      required: false
-      description: Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.
-  responses:
-    429LimitExceeded:
-      description: Limit Exceeded. The number of requests hit the rate limit. The application must slow down the frequency of hitting the API endpoints.
-    403Forbidden:
-      description: Forbidden. The request is forbidden. This can happen if the request is made even though the API is not enabled.
-    500InternalServerError:
-      description: Internal Server Error. The server hit an unrecoverable system error. The response body may include the error code and message for further guidance. The application owner may need to reach out to customer support.
-    415UnsupportedMediaType:
-      description: The request header Content-Type includes an unsupported media type. The API supports application/json only. If none is specified, the request payload is taken as JSON, but if any other media type is specified, this error is returned.
-    404NotFound:
-      description: Not Found. The request endpoint is not valid. This happens if the API endpoint is wrong.
-    400BadRequest:
-      description: Bad Request. The request payload is invalid or malformed. This happens if the application did not send the correct request payload. The response body may include the error code and message indicating the actual cause. The application must reconstruct the request body for retry.
-    405MethodNotAllowed:
-      description: Method Not Allowed. The request method does not match the supported API. This happens, for example, if the application calls the API with GET method but the endpoint accepts only POST.
-    504GatewayTimeout:
-      description: Gateway Timeout. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.
-    503ServiceUnavailable:
-      description: Service Unavailable. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.
-    401Unauthorized:
-      description: Unauthorized. The request is not authorized. This happens if the attached access token is invalid or missing. The response body may include the error code and message indicating the actual cause, e.g., expired, invalid token. The application must obtain a new access token for retry.
   schemas:
-    ResultSet:
+    QueryFailureStatus:
       type: object
-      description: The result set returned from a successfully executed SQL statement, including metadata, row data, and execution statistics.
+      description: Status returned when a query execution fails.
       properties:
         code:
           type: string
-          description: Status code for the query.
+          description: Error code for the query failure.
           examples:
-          - 090001
+          - '000123'
         sqlState:
           type: string
-          description: SQL state code.
+          description: SQL state code indicating the error category.
           examples:
-          - '00000'
+          - '42601'
         message:
           type: string
-          description: Message describing the execution status.
+          description: Error message describing the failure.
           examples:
-          - successfully executed
+          - SQL compilation error
         statementHandle:
           type: string
           format: uuid
-          description: Handle that uniquely identifies the executed statement.
+          description: Handle that uniquely identifies the failed statement.
           examples:
-          - 536fad38-b564-4dc5-9892-a4543504df6c
+          - e4ce975e-f7ff-4b5e-b15e-bf25f59371ae
         createdOn:
           type: integer
           format: int64
@@ -482,22 +395,11 @@ components:
         statementStatusUrl:
           type: string
           format: uri
-          description: URL for checking the status of the statement.
+          description: URL for checking the status of the failed statement.
           example: https://www.example.com
-        resultSetMetaData:
-          $ref: '#/components/schemas/ResultSetMetaData'
-        data:
-          type: array
-          description: Result set data. Each element in the outer array represents a row. Each element in the inner array represents a column value as a string.
-          items:
-            type: array
-            items:
-              type:
-              - string
-              - 'null'
-          example: []
-        stats:
-          $ref: '#/components/schemas/ExecutionStats'
+      required:
+      - message
+      - statementHandle
     BindVariable:
       type: object
       description: A bind variable value with its Snowflake data type.
@@ -633,185 +535,6 @@ components:
           example: example_value
         parameters:
           $ref: '#/components/schemas/SessionParameters'
-    ResultSetMetaData:
-      type: object
-      description: Metadata about the result set including column definitions.
-      properties:
-        format:
-          type: string
-          enum:
-          - jsonv2
-          description: For v2 endpoints the only possible value for this field is jsonv2.
-          example: jsonv2
-        numRows:
-          type: integer
-          format: int64
-          description: The total number of rows of results.
-          examples:
-          - 100
-        rowType:
-          type: array
-          description: Array of column descriptors for the result set.
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/ColumnDefinition'
-          example: []
-        partitionInfo:
-          type: array
-          description: Information about result set partitions for large results.
-          items:
-            $ref: '#/components/schemas/PartitionInfo'
-          example: []
-        nullable:
-          type: boolean
-          description: If false, null values are replaced with the string 'null' in the result set.
-          example: true
-        parameters:
-          $ref: '#/components/schemas/SessionParameters'
-    ExecutionStats:
-      type: object
-      description: Statistics about the execution of the statement. These stats might not be available for each request.
-      properties:
-        numRowsInserted:
-          type: integer
-          format: int64
-          minimum: 0
-          description: Number of rows that were inserted.
-          examples:
-          - 12
-        numRowsUpdated:
-          type: integer
-          format: int64
-          minimum: 0
-          description: Number of rows that were updated.
-          examples:
-          - 9
-        numRowsDeleted:
-          type: integer
-          format: int64
-          minimum: 0
-          description: Number of rows that were deleted.
-          examples:
-          - 8
-        numDuplicateRowsUpdated:
-          type: integer
-          format: int64
-          minimum: 0
-          description: Number of duplicate rows that were updated.
-          examples:
-          - 20
-    QueryFailureStatus:
-      type: object
-      description: Status returned when a query execution fails.
-      properties:
-        code:
-          type: string
-          description: Error code for the query failure.
-          examples:
-          - '000123'
-        sqlState:
-          type: string
-          description: SQL state code indicating the error category.
-          examples:
-          - '42601'
-        message:
-          type: string
-          description: Error message describing the failure.
-          examples:
-          - SQL compilation error
-        statementHandle:
-          type: string
-          format: uuid
-          description: Handle that uniquely identifies the failed statement.
-          examples:
-          - e4ce975e-f7ff-4b5e-b15e-bf25f59371ae
-        createdOn:
-          type: integer
-          format: int64
-          description: Timestamp that specifies when the statement execution started. The timestamp is expressed in milliseconds since the epoch.
-          examples:
-          - 1597090533987
-        statementStatusUrl:
-          type: string
-          format: uri
-          description: URL for checking the status of the failed statement.
-          example: https://www.example.com
-      required:
-      - message
-      - statementHandle
-    QueryStatus:
-      type: object
-      description: Status of a query that is in progress or has completed successfully.
-      properties:
-        code:
-          type: string
-          description: Status code for the query execution.
-          examples:
-          - 090001
-        sqlState:
-          type: string
-          description: SQL state code.
-          examples:
-          - '00000'
-        message:
-          type: string
-          description: Message describing the status of the query.
-          examples:
-          - successfully executed
-        statementHandle:
-          type: string
-          format: uuid
-          description: Handle that uniquely identifies the statement. You can use this handle to check the status of the statement and retrieve the result set.
-          examples:
-          - e4ce975e-f7ff-4b5e-b15e-bf25f59371ae
-        createdOn:
-          type: integer
-          format: int64
-          description: Timestamp that specifies when the statement execution started. The timestamp is expressed in milliseconds since the epoch.
-          examples:
-          - 1597090533987
-        statementStatusUrl:
-          type: string
-          format: uri
-          description: URL that you can use to check the status of the execution of the statement and retrieve the result set.
-          examples:
-          - /api/v2/statements/e4ce975e-f7ff-4b5e-b15e-bf25f59371ae
-      required:
-      - statementHandle
-    ColumnDefinition:
-      type: object
-      description: Describes a column in the result set.
-      properties:
-        name:
-          type: string
-          description: Name of the column.
-          example: Example Title
-        type:
-          type: string
-          description: Snowflake data type of the column (e.g. FIXED, TEXT, BOOLEAN, DATE, TIMESTAMP_NTZ, VARIANT, ARRAY, OBJECT).
-          example: example_value
-        length:
-          type: integer
-          format: int64
-          minimum: 0
-          description: Maximum length of the column data.
-          example: 10
-        precision:
-          type: integer
-          format: int64
-          minimum: 0
-          description: Precision of numeric data.
-          example: 10
-        scale:
-          type: integer
-          format: int64
-          minimum: 0
-          description: Scale of numeric data.
-          example: 10
-        nullable:
-          type: boolean
-          description: Whether the column allows null values.
-          example: true
     PartitionInfo:
       type: object
       description: Information about a partition of the result set.
@@ -867,6 +590,283 @@ components:
           example: https://www.example.com
       required:
       - statementHandle
+    ExecutionStats:
+      type: object
+      description: Statistics about the execution of the statement. These stats might not be available for each request.
+      properties:
+        numRowsInserted:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Number of rows that were inserted.
+          examples:
+          - 12
+        numRowsUpdated:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Number of rows that were updated.
+          examples:
+          - 9
+        numRowsDeleted:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Number of rows that were deleted.
+          examples:
+          - 8
+        numDuplicateRowsUpdated:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Number of duplicate rows that were updated.
+          examples:
+          - 20
+    ResultSet:
+      type: object
+      description: The result set returned from a successfully executed SQL statement, including metadata, row data, and execution statistics.
+      properties:
+        code:
+          type: string
+          description: Status code for the query.
+          examples:
+          - 090001
+        sqlState:
+          type: string
+          description: SQL state code.
+          examples:
+          - '00000'
+        message:
+          type: string
+          description: Message describing the execution status.
+          examples:
+          - successfully executed
+        statementHandle:
+          type: string
+          format: uuid
+          description: Handle that uniquely identifies the executed statement.
+          examples:
+          - 536fad38-b564-4dc5-9892-a4543504df6c
+        createdOn:
+          type: integer
+          format: int64
+          description: Timestamp that specifies when the statement execution started. The timestamp is expressed in milliseconds since the epoch.
+          examples:
+          - 1597090533987
+        statementStatusUrl:
+          type: string
+          format: uri
+          description: URL for checking the status of the statement.
+          example: https://www.example.com
+        resultSetMetaData:
+          $ref: '#/components/schemas/ResultSetMetaData'
+        data:
+          type: array
+          description: Result set data. Each element in the outer array represents a row. Each element in the inner array represents a column value as a string.
+          items:
+            type: array
+            items:
+              type:
+              - string
+              - 'null'
+          example: []
+        stats:
+          $ref: '#/components/schemas/ExecutionStats'
+    ColumnDefinition:
+      type: object
+      description: Describes a column in the result set.
+      properties:
+        name:
+          type: string
+          description: Name of the column.
+          example: Example Title
+        type:
+          type: string
+          description: Snowflake data type of the column (e.g. FIXED, TEXT, BOOLEAN, DATE, TIMESTAMP_NTZ, VARIANT, ARRAY, OBJECT).
+          example: example_value
+        length:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Maximum length of the column data.
+          example: 10
+        precision:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Precision of numeric data.
+          example: 10
+        scale:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Scale of numeric data.
+          example: 10
+        nullable:
+          type: boolean
+          description: Whether the column allows null values.
+          example: true
+    ResultSetMetaData:
+      type: object
+      description: Metadata about the result set including column definitions.
+      properties:
+        format:
+          type: string
+          enum:
+          - jsonv2
+          description: For v2 endpoints the only possible value for this field is jsonv2.
+          example: jsonv2
+        numRows:
+          type: integer
+          format: int64
+          description: The total number of rows of results.
+          examples:
+          - 100
+        rowType:
+          type: array
+          description: Array of column descriptors for the result set.
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ColumnDefinition'
+          example: []
+        partitionInfo:
+          type: array
+          description: Information about result set partitions for large results.
+          items:
+            $ref: '#/components/schemas/PartitionInfo'
+          example: []
+        nullable:
+          type: boolean
+          description: If false, null values are replaced with the string 'null' in the result set.
+          example: true
+        parameters:
+          $ref: '#/components/schemas/SessionParameters'
+    QueryStatus:
+      type: object
+      description: Status of a query that is in progress or has completed successfully.
+      properties:
+        code:
+          type: string
+          description: Status code for the query execution.
+          examples:
+          - 090001
+        sqlState:
+          type: string
+          description: SQL state code.
+          examples:
+          - '00000'
+        message:
+          type: string
+          description: Message describing the status of the query.
+          examples:
+          - successfully executed
+        statementHandle:
+          type: string
+          format: uuid
+          description: Handle that uniquely identifies the statement. You can use this handle to check the status of the statement and retrieve the result set.
+          examples:
+          - e4ce975e-f7ff-4b5e-b15e-bf25f59371ae
+        createdOn:
+          type: integer
+          format: int64
+          description: Timestamp that specifies when the statement execution started. The timestamp is expressed in milliseconds since the epoch.
+          examples:
+          - 1597090533987
+        statementStatusUrl:
+          type: string
+          format: uri
+          description: URL that you can use to check the status of the execution of the statement and retrieve the result set.
+          examples:
+          - /api/v2/statements/e4ce975e-f7ff-4b5e-b15e-bf25f59371ae
+      required:
+      - statementHandle
+  parameters:
+    partition:
+      name: partition
+      in: query
+      schema:
+        type: integer
+        format: int64
+        minimum: 0
+      required: false
+      description: Number of the partition of results to return. The number can range from 0 to the total number of partitions minus 1.
+    userAgent:
+      name: User-Agent
+      in: header
+      schema:
+        type: string
+      required: true
+      description: Set this to the name and version of your application (e.g. applicationName/applicationVersion). You must use a value that complies with RFC 7231.
+    snowflakeAuthorizationTokenType:
+      name: X-Snowflake-Authorization-Token-Type
+      in: header
+      schema:
+        type: string
+        enum:
+        - KEYPAIR_JWT
+        - OAUTH
+        - PROGRAMMATIC_ACCESS_TOKEN
+      required: false
+      description: Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT, OAUTH for oAuth token, or PROGRAMMATIC_ACCESS_TOKEN for programmatic access tokens. If not specified, OAUTH is assumed.
+    statementHandle:
+      name: statementHandle
+      in: path
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: The handle of the statement that you want to use (e.g. to fetch the result set or cancel execution).
+    nullable:
+      name: nullable
+      in: query
+      schema:
+        type: boolean
+      required: false
+      description: Set to true to execute the statement to generate the result set including null. If the parameter is set to false, the result set value null will be replaced with the string 'null'.
+    accept:
+      name: Accept
+      in: header
+      schema:
+        type: string
+        default: application/json
+      required: false
+      description: The response payload format. The schema should be specified in resultSetMetaData in the request payload.
+    requestId:
+      name: requestId
+      in: query
+      schema:
+        type: string
+        format: uuid
+      required: false
+      description: Unique ID of the API request. This ensures that the execution is idempotent. If not specified, a new UUID is generated and assigned.
+    async:
+      name: async
+      in: query
+      schema:
+        type: boolean
+      required: false
+      description: Set to true to execute the statement asynchronously and return the statement handle. If the parameter is not specified or is set to false, a statement is executed and the first result is returned if the execution is completed in 45 seconds. If the statement execution takes longer to complete, the statement handle is returned.
+  responses:
+    500InternalServerError:
+      description: Internal Server Error. The server hit an unrecoverable system error. The response body may include the error code and message for further guidance. The application owner may need to reach out to customer support.
+    504GatewayTimeout:
+      description: Gateway Timeout. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.
+    415UnsupportedMediaType:
+      description: The request header Content-Type includes an unsupported media type. The API supports application/json only. If none is specified, the request payload is taken as JSON, but if any other media type is specified, this error is returned.
+    429LimitExceeded:
+      description: Limit Exceeded. The number of requests hit the rate limit. The application must slow down the frequency of hitting the API endpoints.
+    404NotFound:
+      description: Not Found. The request endpoint is not valid. This happens if the API endpoint is wrong.
+    400BadRequest:
+      description: Bad Request. The request payload is invalid or malformed. This happens if the application did not send the correct request payload. The response body may include the error code and message indicating the actual cause. The application must reconstruct the request body for retry.
+    401Unauthorized:
+      description: Unauthorized. The request is not authorized. This happens if the attached access token is invalid or missing. The response body may include the error code and message indicating the actual cause, e.g., expired, invalid token. The application must obtain a new access token for retry.
+    403Forbidden:
+      description: Forbidden. The request is forbidden. This can happen if the request is made even though the API is not enabled.
+    405MethodNotAllowed:
+      description: Method Not Allowed. The request method does not match the supported API. This happens, for example, if the application calls the API with GET method but the endpoint accepts only POST.
+    503ServiceUnavailable:
+      description: Service Unavailable. The request was not processed due to server side timeouts. The application may retry with backoff. Jittered backoff is recommended.
   headers:
     Link:
       schema:

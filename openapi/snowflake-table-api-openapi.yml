@@ -1086,27 +1086,82 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    Constraint:
+    TableColumn:
       type: object
-      description: Constraints define integrity and consistency rules for data stored in tables.
+      description: A column in the table
       properties:
         name:
           type: string
-          description: Name of the Constraint
-        column_names:
+          description: Column name
+        datatype:
+          type: string
+          description: The data type for the column
+        nullable:
+          type: boolean
+          default: true
+          description: Specifies that the column does allow NULL values or not.
+        collate:
+          type: string
+          description: Specifies the collation to use for column operations such as string comparison
+        default:
+          type: string
+          description: Specifies whether a default value is automatically inserted in the column if a value is not explicitly specified via an INSERT or CREATE TABLE AS SELECT statement
+        autoincrement:
+          type: boolean
+        autoincrement_start:
+          type: integer
+          description: The default value for the column starts with the specified number
+        autoincrement_increment:
+          type: integer
+          description: Each successive value for the column automatically increments by the specified amount
+        constraints:
           type: array
           items:
-            type: string
-            description: Column name for the constraint
-        constraint_type:
+            $ref: '#/components/schemas/Constraint'
+        comment:
           type: string
-          description: Type of the constraint
-      discriminator:
-        propertyName: constraint_type
-        mapping:
-          PRIMARY KEY: PrimaryKey
-          FOREIGN KEY: ForeignKey
-          UNIQUE: UniqueKey
+          description: Specifies a comment for the column
+      required:
+      - name
+      - datatype
+    TableLike:
+      type: object
+      description: Create table like an existing table
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+    TableClone:
+      type: object
+      description: Clone table
+      allOf:
+      - $ref: '#/components/schemas/Table'
+      properties:
+        point_of_time:
+          $ref: common.yaml#/components/schemas/PointOfTime
+    TableAsSelect:
+      type: object
+      description: Create table as select
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableColumn'
+        cluster_by:
+          type: array
+          description: Specifies one or more columns or column expressions in the table as the clustering key
+          items:
+            type: string
+    TableUsingTemplate:
+      type: object
+      description: Create table using template
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the table, must be unique for the schema in which the table is created
     Table:
       type: object
       description: A Snowflake table
@@ -1235,82 +1290,27 @@ components:
           description: Type of the table
       required:
       - name
-    TableClone:
+    Constraint:
       type: object
-      description: Clone table
-      allOf:
-      - $ref: '#/components/schemas/Table'
-      properties:
-        point_of_time:
-          $ref: common.yaml#/components/schemas/PointOfTime
-    TableColumn:
-      type: object
-      description: A column in the table
+      description: Constraints define integrity and consistency rules for data stored in tables.
       properties:
         name:
           type: string
-          description: Column name
-        datatype:
-          type: string
-          description: The data type for the column
-        nullable:
-          type: boolean
-          default: true
-          description: Specifies that the column does allow NULL values or not.
-        collate:
-          type: string
-          description: Specifies the collation to use for column operations such as string comparison
-        default:
-          type: string
-          description: Specifies whether a default value is automatically inserted in the column if a value is not explicitly specified via an INSERT or CREATE TABLE AS SELECT statement
-        autoincrement:
-          type: boolean
-        autoincrement_start:
-          type: integer
-          description: The default value for the column starts with the specified number
-        autoincrement_increment:
-          type: integer
-          description: Each successive value for the column automatically increments by the specified amount
-        constraints:
+          description: Name of the Constraint
+        column_names:
           type: array
-          items:
-            $ref: '#/components/schemas/Constraint'
-        comment:
-          type: string
-          description: Specifies a comment for the column
-      required:
-      - name
-      - datatype
-    TableAsSelect:
-      type: object
-      description: Create table as select
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/TableColumn'
-        cluster_by:
-          type: array
-          description: Specifies one or more columns or column expressions in the table as the clustering key
           items:
             type: string
-    TableLike:
-      type: object
-      description: Create table like an existing table
-      properties:
-        name:
+            description: Column name for the constraint
+        constraint_type:
           type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
-    TableUsingTemplate:
-      type: object
-      description: Create table using template
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the table, must be unique for the schema in which the table is created
+          description: Type of the constraint
+      discriminator:
+        propertyName: constraint_type
+        mapping:
+          PRIMARY KEY: PrimaryKey
+          FOREIGN KEY: ForeignKey
+          UNIQUE: UniqueKey
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

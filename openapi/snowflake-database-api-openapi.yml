@@ -851,6 +851,14 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    DatabaseClone:
+      type: object
+      description: Clone database.
+      allOf:
+      - $ref: '#/components/schemas/Database'
+      properties:
+        point_of_time:
+          $ref: common.yaml#/components/schemas/PointOfTime
     DatabaseFromShare:
       type: object
       description: Database from share.
@@ -949,14 +957,6 @@ components:
           description: Specifies the maximum allowed warehouse size for the serverless task. Minimum XSMALL, Maximum XXLARGE.
       required:
       - name
-    DatabaseClone:
-      type: object
-      description: Clone database.
-      allOf:
-      - $ref: '#/components/schemas/Database'
-      properties:
-        point_of_time:
-          $ref: common.yaml#/components/schemas/PointOfTime
     AccountIdentifiers:
       type: object
       description: Array of unique account identifiers.

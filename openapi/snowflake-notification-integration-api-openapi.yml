@@ -337,30 +337,6 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    NotificationIntegration:
-      type: object
-      description: A Snowflake notification
-      properties:
-        name:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Name of the notification.
-        enabled:
-          type: boolean
-          description: Whether the notification integration is enabled.
-        comment:
-          type: string
-          description: Comment for the notification integration.
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date and time when the notification was created.
-        notification_hook:
-          $ref: '#/components/schemas/NotificationHook'
-      required:
-      - name
-      - notification_hook
     NotificationHook:
       type: object
       properties:
@@ -387,6 +363,30 @@ components:
           QUEUE_GCP_PUBSUB_OUTBOUND: NotificationQueueGcpPubsubOutbound
           QUEUE_AZURE_EVENT_GRID_INBOUND: NotificationQueueAzureEventGridInbound
           QUEUE_GCP_PUBSUB_INBOUND: NotificationQueueGcpPubsubInbound
+    NotificationIntegration:
+      type: object
+      description: A Snowflake notification
+      properties:
+        name:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Name of the notification.
+        enabled:
+          type: boolean
+          description: Whether the notification integration is enabled.
+        comment:
+          type: string
+          description: Comment for the notification integration.
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date and time when the notification was created.
+        notification_hook:
+          $ref: '#/components/schemas/NotificationHook'
+      required:
+      - name
+      - notification_hook
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

@@ -413,45 +413,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    FileTransferMaterial:
-      type: object
-      description: Materials for uploading and downloading stage files
-      properties:
-        presigned_url:
-          type: string
-          description: Presigned url for file transfer, only works for Server Side Encrypted Stages.
-          example: https://www.example.com
-    StageFile:
-      type: object
-      description: A file on a snowflake stage.
-      properties:
-        name:
-          type: string
-          description: Name of the file.
-          example: Example Title
-        size:
-          type: string
-          description: Size of the file.
-          readOnly: true
-          example: example_value
-        md5:
-          type: string
-          description: md5 hash of the file.
-          readOnly: true
-          example: example_value
-        last_modified:
-          type: string
-          description: Date and time when the file was last modified.
-          readOnly: true
-          example: example_value
-    PresignedUrlRequest:
-      type: object
-      description: Request object to get presigned url of a file
-      properties:
-        expiration_time:
-          description: Expiration time of the generated presigned url in seconds.
-          type: integer
-          example: 10
     Credentials:
       type: object
       description: Specifies the credentials of the stage.
@@ -465,6 +426,22 @@ components:
         mapping:
           AWS: AwsCredentials
           AZURE: AzureCredentials
+    PresignedUrlRequest:
+      type: object
+      description: Request object to get presigned url of a file
+      properties:
+        expiration_time:
+          description: Expiration time of the generated presigned url in seconds.
+          type: integer
+          example: 10
+    FileTransferMaterial:
+      type: object
+      description: Materials for uploading and downloading stage files
+      properties:
+        presigned_url:
+          type: string
+          description: Presigned url for file transfer, only works for Server Side Encrypted Stages.
+          example: https://www.example.com
     Stage:
       type: object
       description: A Snowflake stage.
@@ -587,6 +564,29 @@ components:
         name: stage_name
       required:
       - name
+    StageFile:
+      type: object
+      description: A file on a snowflake stage.
+      properties:
+        name:
+          type: string
+          description: Name of the file.
+          example: Example Title
+        size:
+          type: string
+          description: Size of the file.
+          readOnly: true
+          example: example_value
+        md5:
+          type: string
+          description: md5 hash of the file.
+          readOnly: true
+          example: example_value
+        last_modified:
+          type: string
+          description: Date and time when the file was last modified.
+          readOnly: true
+          example: example_value
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

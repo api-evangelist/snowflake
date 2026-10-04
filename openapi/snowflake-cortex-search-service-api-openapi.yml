@@ -467,214 +467,6 @@ components:
           example: '2022-01-01T00:00:00Z'
       required:
       - column
-    Weights:
-      type: object
-      description: Weights to apply to each scoring component.
-      properties:
-        texts:
-          description: Weight to apply to all text-specific columns.
-          type: number
-          example: 0.5
-        vectors:
-          description: Weight to apply to all vector-specific columns.
-          type: number
-          example: 0.5
-        reranker:
-          description: Weight to apply to reranker-specific scoring component.
-          type: number
-          example: 0.5
-    NumericBoost:
-      type: object
-      properties:
-        column:
-          $ref: '#/components/schemas/Column'
-        weight:
-          type: number
-          description: Weight to apply for boosting this numerical column. It will be normalized across all scored columns specified in the scoring config so that all weights sum to 1. If a weight is not provided, the weight defaults to 1 pre-normalization.
-          example: 0.5
-      required:
-      - column
-    QueryRequest:
-      type: object
-      description: A search query and additional parameters for search.
-      properties:
-        query:
-          description: Unstructured text query.  Exactly one of 'query' or 'multi_index_query' must be specified.
-          type: string
-        multi_index_query:
-          description: A search query expressed as a collection of multiple column-level queries.  Exactly one of 'query' or 'multi_index_query' must be specified. A column/index can be queried with multiple queries.
-          type: object
-          additionalProperties: true
-        columns:
-          description: List of columns to return.
-          type: array
-          items:
-            type: string
-        filter:
-          description: Filter query.
-          type: object
-        limit:
-          description: Max number of results to return.
-          type: integer
-          default: 10
-        scoring_config:
-          $ref: '#/components/schemas/ScoringConfig'
-        scoring_profile:
-          description: Mutually exclusive with scoring_config. Specifies the pre-defined name of a profile on the cortex search service that resolves to scoring_config.
-          type: string
-        experimental:
-          description: reserved
-          type: object
-          additionalProperties: true
-    RetrievalWeights:
-      type: object
-      description: Weights to apply to retrieval stage components.
-      properties:
-        texts:
-          description: Multiplier for text-based scoring in retrieval.
-          type: number
-          example: 1.0
-        vectors:
-          description: Multiplier for vector-based scoring in retrieval.
-          type: number
-          example: 1.0
-    Column:
-      type: string
-      description: Column to apply this function to.
-    ResultRow:
-      type: object
-      description: Map of column names to values.
-      properties:
-        columns:
-          type: object
-    SendFeedbackRequest:
-      type: object
-      description: The request object for sending user feedback on Cortex Search results
-      properties:
-        request_id:
-          type: string
-          description: Request id associated with the feedback
-        positive:
-          type: boolean
-          description: Whether the results were good (true) or bad (false)
-        feedback_message:
-          type: string
-          description: The text for the detailed feedback message
-      required:
-      - request_id
-      - positive
-    SuggestQueryResponse:
-      type: object
-      description: Suggest results.
-      properties:
-        results:
-          type: array
-          description: List of result rows.
-          items:
-            $ref: '#/components/schemas/SuggestResult'
-        request_id:
-          type: string
-          description: ID of the request.
-      required:
-      - results
-      - request_id
-    Reranker:
-      type: string
-      description: Model to use for the reranker, or "none" if the reranker should be turned off. If excluded or null, the default reranker is used.
-      example: none
-    RankingWeights:
-      type: object
-      description: Weights to apply to ranking stage components.
-      properties:
-        texts:
-          description: Multiplier for text-based scoring in ranking.
-          type: number
-          example: 1.0
-        vectors:
-          description: Multiplier for vector-based scoring in ranking.
-          type: number
-          example: 1.0
-        reranker:
-          description: Multiplier for reranker score in ranking.
-          type: number
-          example: 1.0
-    SuggestQueryRequest:
-      type: object
-      description: A Suggest request.
-      properties:
-        query:
-          description: The text query on which to suggest.
-          type: string
-        columns:
-          description: List of columns to return.
-          type: array
-          items:
-            type: string
-        limit:
-          description: Max number of results to return.
-          type: integer
-          default: 5
-      required:
-      - query
-    Functions:
-      type: object
-      description: Functions to apply for scoring this request.
-      properties:
-        numeric_boosts:
-          type: array
-          items:
-            $ref: '#/components/schemas/NumericBoost'
-        time_decays:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimeDecay'
-        text_boosts:
-          type: array
-          items:
-            $ref: '#/components/schemas/TextBoost'
-        vector_boosts:
-          type: array
-          items:
-            $ref: '#/components/schemas/VectorBoost'
-        query_similarity_boosts:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuerySimilarityBoost'
-    SchedulingState:
-      type: string
-      enum:
-      - ACTIVE
-      - SUSPENDED
-      - INITIALIZING
-    Diversity:
-      type: object
-      description: Configuration to control result diversity with respect to one or more metadata columns.
-      properties:
-        group_by:
-          description: Columns to group by.
-          type: array
-          items:
-            type: string
-        max_results:
-          description: Maximum number of results per group to return.
-          type: integer
-    QueryResponse:
-      type: object
-      description: Search results.
-      properties:
-        results:
-          type: array
-          description: List of result rows.
-          items:
-            type: object
-            additionalProperties: true
-            description: Map of column names to values (as bytes).
-        request_id:
-          type: string
-          description: ID of the request.
-      required:
-      - results
-      - request_id
     CortexSearchService:
       type: object
       description: A Snowflake cortex search service object.
@@ -747,24 +539,88 @@ components:
           format: int64
           readOnly: true
           description: Size of the serving index, in bytes.
-    TextBoost:
+    Column:
+      type: string
+      description: Column to apply this function to.
+    Weights:
       type: object
+      description: Weights to apply to each scoring component.
       properties:
-        column:
-          $ref: '#/components/schemas/Column'
-        weight:
-          description: Weight to apply for boosting this text column.
+        texts:
+          description: Weight to apply to all text-specific columns.
           type: number
           example: 0.5
-    SuggestResult:
+        vectors:
+          description: Weight to apply to all vector-specific columns.
+          type: number
+          example: 0.5
+        reranker:
+          description: Weight to apply to reranker-specific scoring component.
+          type: number
+          example: 0.5
+    SuggestQueryResponse:
       type: object
       description: Suggest results.
       properties:
-        rows:
+        results:
           type: array
           description: List of result rows.
           items:
-            $ref: '#/components/schemas/ResultRow'
+            $ref: '#/components/schemas/SuggestResult'
+        request_id:
+          type: string
+          description: ID of the request.
+      required:
+      - results
+      - request_id
+    RetrievalWeights:
+      type: object
+      description: Weights to apply to retrieval stage components.
+      properties:
+        texts:
+          description: Multiplier for text-based scoring in retrieval.
+          type: number
+          example: 1.0
+        vectors:
+          description: Multiplier for vector-based scoring in retrieval.
+          type: number
+          example: 1.0
+    SchedulingState:
+      type: string
+      enum:
+      - ACTIVE
+      - SUSPENDED
+      - INITIALIZING
+    ResultRow:
+      type: object
+      description: Map of column names to values.
+      properties:
+        columns:
+          type: object
+    Functions:
+      type: object
+      description: Functions to apply for scoring this request.
+      properties:
+        numeric_boosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/NumericBoost'
+        time_decays:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeDecay'
+        text_boosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextBoost'
+        vector_boosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/VectorBoost'
+        query_similarity_boosts:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuerySimilarityBoost'
     QuerySimilarityBoost:
       type: object
       properties:
@@ -778,6 +634,34 @@ components:
         documents_column:
           description: Name of an ARRAY column indexed in the specified previous queries search service that contains a list of documents that matched the corresponding previous query. Each document is represented as an OBJECT mapping all primary key columns to their corresponding values.
           type: string
+    NumericBoost:
+      type: object
+      properties:
+        column:
+          $ref: '#/components/schemas/Column'
+        weight:
+          type: number
+          description: Weight to apply for boosting this numerical column. It will be normalized across all scored columns specified in the scoring config so that all weights sum to 1. If a weight is not provided, the weight defaults to 1 pre-normalization.
+          example: 0.5
+      required:
+      - column
+    QueryResponse:
+      type: object
+      description: Search results.
+      properties:
+        results:
+          type: array
+          description: List of result rows.
+          items:
+            type: object
+            additionalProperties: true
+            description: Map of column names to values (as bytes).
+        request_id:
+          type: string
+          description: ID of the request.
+      required:
+      - results
+      - request_id
     ScoringConfig:
       type: object
       description: reserved
@@ -798,6 +682,122 @@ components:
           default: false
         diversity:
           $ref: '#/components/schemas/Diversity'
+    Reranker:
+      type: string
+      description: Model to use for the reranker, or "none" if the reranker should be turned off. If excluded or null, the default reranker is used.
+      example: none
+    SuggestResult:
+      type: object
+      description: Suggest results.
+      properties:
+        rows:
+          type: array
+          description: List of result rows.
+          items:
+            $ref: '#/components/schemas/ResultRow'
+    Diversity:
+      type: object
+      description: Configuration to control result diversity with respect to one or more metadata columns.
+      properties:
+        group_by:
+          description: Columns to group by.
+          type: array
+          items:
+            type: string
+        max_results:
+          description: Maximum number of results per group to return.
+          type: integer
+    SendFeedbackRequest:
+      type: object
+      description: The request object for sending user feedback on Cortex Search results
+      properties:
+        request_id:
+          type: string
+          description: Request id associated with the feedback
+        positive:
+          type: boolean
+          description: Whether the results were good (true) or bad (false)
+        feedback_message:
+          type: string
+          description: The text for the detailed feedback message
+      required:
+      - request_id
+      - positive
+    SuggestQueryRequest:
+      type: object
+      description: A Suggest request.
+      properties:
+        query:
+          description: The text query on which to suggest.
+          type: string
+        columns:
+          description: List of columns to return.
+          type: array
+          items:
+            type: string
+        limit:
+          description: Max number of results to return.
+          type: integer
+          default: 5
+      required:
+      - query
+    TextBoost:
+      type: object
+      properties:
+        column:
+          $ref: '#/components/schemas/Column'
+        weight:
+          description: Weight to apply for boosting this text column.
+          type: number
+          example: 0.5
+    RankingWeights:
+      type: object
+      description: Weights to apply to ranking stage components.
+      properties:
+        texts:
+          description: Multiplier for text-based scoring in ranking.
+          type: number
+          example: 1.0
+        vectors:
+          description: Multiplier for vector-based scoring in ranking.
+          type: number
+          example: 1.0
+        reranker:
+          description: Multiplier for reranker score in ranking.
+          type: number
+          example: 1.0
+    QueryRequest:
+      type: object
+      description: A search query and additional parameters for search.
+      properties:
+        query:
+          description: Unstructured text query.  Exactly one of 'query' or 'multi_index_query' must be specified.
+          type: string
+        multi_index_query:
+          description: A search query expressed as a collection of multiple column-level queries.  Exactly one of 'query' or 'multi_index_query' must be specified. A column/index can be queried with multiple queries.
+          type: object
+          additionalProperties: true
+        columns:
+          description: List of columns to return.
+          type: array
+          items:
+            type: string
+        filter:
+          description: Filter query.
+          type: object
+        limit:
+          description: Max number of results to return.
+          type: integer
+          default: 10
+        scoring_config:
+          $ref: '#/components/schemas/ScoringConfig'
+        scoring_profile:
+          description: Mutually exclusive with scoring_config. Specifies the pre-defined name of a profile on the cortex search service that resolves to scoring_config.
+          type: string
+        experimental:
+          description: reserved
+          type: object
+          additionalProperties: true
   parameters:
     suspendResumeTarget:
       name: target

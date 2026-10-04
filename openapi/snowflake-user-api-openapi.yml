@@ -538,6 +538,19 @@ components:
           description: Name of the securable if applicable.
       required:
       - name
+    ContainingScope:
+      type: object
+      properties:
+        database:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Database name of the securable scope if applicable.
+        schema:
+          type: string
+          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
+          description: Schema name of the securable scope if applicable.
+      required:
+      - database
     User:
       description: Properties of user.
       type: object
@@ -713,19 +726,6 @@ components:
           description: The role that granted this privilege to this grantee
       required:
       - securable_type
-    ContainingScope:
-      type: object
-      properties:
-        database:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Database name of the securable scope if applicable.
-        schema:
-          type: string
-          pattern: ^"([^"]|"")+"|[a-zA-Z_][a-zA-Z0-9_$]*$
-          description: Schema name of the securable scope if applicable.
-      required:
-      - database
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

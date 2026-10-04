@@ -627,6 +627,37 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    Grant:
+      type: object
+      properties:
+        securable:
+          $ref: '#/components/schemas/Securable'
+          description: Securable of the grant
+        containing_scope:
+          $ref: '#/components/schemas/ContainingScope'
+          description: Containing scope of the grant
+        securable_type:
+          type: string
+          description: Type of the securable to be granted.
+        grant_option:
+          type: boolean
+          description: If true, allows the recipient role to grant the privileges to other roles.
+        privileges:
+          type: array
+          items:
+            type: string
+          description: List of privileges to be granted.
+        created_on:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date and time when the grant was created
+        granted_by:
+          type: string
+          readOnly: true
+          description: The role that granted this privilege to this grantee
+      required:
+      - securable_type
     DatabaseRoleClone:
       type: object
       properties:
@@ -713,37 +744,6 @@ components:
           description: The type of role that owns the database role
       required:
       - name
-    Grant:
-      type: object
-      properties:
-        securable:
-          $ref: '#/components/schemas/Securable'
-          description: Securable of the grant
-        containing_scope:
-          $ref: '#/components/schemas/ContainingScope'
-          description: Containing scope of the grant
-        securable_type:
-          type: string
-          description: Type of the securable to be granted.
-        grant_option:
-          type: boolean
-          description: If true, allows the recipient role to grant the privileges to other roles.
-        privileges:
-          type: array
-          items:
-            type: string
-          description: List of privileges to be granted.
-        created_on:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date and time when the grant was created
-        granted_by:
-          type: string
-          readOnly: true
-          description: The role that granted this privilege to this grantee
-      required:
-      - securable_type
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

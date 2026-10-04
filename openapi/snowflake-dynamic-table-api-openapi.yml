@@ -719,22 +719,6 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
-    DynamicTableClone:
-      type: object
-      description: Clone dynamic table
-      properties:
-        name:
-          type: string
-          description: Specifies the name for the dynamic table, must be unique for the schema in which the dynamic table is created
-        target_lag:
-          $ref: common.yaml#/components/schemas/TargetLag
-        warehouse:
-          type: string
-          description: Specifies the name of the warehouse that provides the compute resources for refreshing the dynamic table
-        point_of_time:
-          $ref: common.yaml#/components/schemas/PointOfTime
-      required:
-      - name
     DynamicTableColumn:
       type: object
       description: A column in the dynamic table
@@ -860,6 +844,22 @@ components:
       - target_lag
       - warehouse
       - query
+    DynamicTableClone:
+      type: object
+      description: Clone dynamic table
+      properties:
+        name:
+          type: string
+          description: Specifies the name for the dynamic table, must be unique for the schema in which the dynamic table is created
+        target_lag:
+          $ref: common.yaml#/components/schemas/TargetLag
+        warehouse:
+          type: string
+          description: Specifies the name of the warehouse that provides the compute resources for refreshing the dynamic table
+        point_of_time:
+          $ref: common.yaml#/components/schemas/PointOfTime
+      required:
+      - name
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

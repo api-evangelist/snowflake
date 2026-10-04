@@ -372,6 +372,26 @@ paths:
           $ref: common.yaml#/components/responses/504GatewayTimeout
 components:
   schemas:
+    ApiHook:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - AWS
+          - AZURE
+          - GC
+          - GIT
+          description: Type of ApiHook, can be AWS, AZURE, GC or GIT.
+      required:
+      - type
+      discriminator:
+        propertyName: type
+        mapping:
+          AWS: AwsHook
+          AZURE: AzureHook
+          GC: GoogleCloudHook
+          GIT: GitHook
     ApiIntegration:
       type: object
       description: A Snowflake API integration object.
@@ -412,26 +432,6 @@ components:
       - api_hook
       - api_allowed_prefixes
       - enabled
-    ApiHook:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - AWS
-          - AZURE
-          - GC
-          - GIT
-          description: Type of ApiHook, can be AWS, AZURE, GC or GIT.
-      required:
-      - type
-      discriminator:
-        propertyName: type
-        mapping:
-          AWS: AwsHook
-          AZURE: AzureHook
-          GC: GoogleCloudHook
-          GIT: GitHook
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

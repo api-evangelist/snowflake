@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/snowflake/main/json-schema/snowflake-add-version-from-git-streamlit-request-schema.json",
+  "title": "AddVersionFromGitStreamlitRequest",
+  "description": "Request body for adding a new version to a Streamlit from a Git tag or commit URI.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/snowflake-streamlit-api-openapi.yml#/components/schemas/AddVersionFromGitStreamlitRequest",
+  "type": "object",
+  "properties": {
+    "version": {
+      "$ref": "#/$defs/StreamlitVersionForGit"
+    },
+    "git_ref": {
+      "type": "string",
+      "description": "Git reference URI. Accepts either a tag URI or a commit URI."
+    }
+  },
+  "required": [
+    "version",
+    "git_ref"
+  ],
+  "$defs": {
+    "StreamlitVersionForGit": {
+      "type": "object",
+      "description": "Version metadata for ADD VERSION from Git.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name or alias for the new version."
+        },
+        "comment": {
+          "type": "string",
+          "description": "Optional comment associated with the pull."
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  }
+}

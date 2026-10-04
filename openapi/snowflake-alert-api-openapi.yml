@@ -458,32 +458,6 @@ components:
         mapping:
           CRON_TYPE: CronSchedule
           SCHEDULE_TYPE: MinutesSchedule
-    PointOfTime:
-      type: object
-      properties:
-        point_of_time_type:
-          type: string
-          description: 'Type of the point of time. Possible values include: timestamp, offset, statement'
-          example: timestamp
-        reference:
-          type: string
-          enum:
-          - at
-          - before
-          x-enum-varnames:
-          - AT
-          - BEFORE
-          description: Relation to the point of time.  Currently, the API supports `at` and `before`
-          example: at
-      required:
-      - point_of_time_type
-      - reference
-      discriminator:
-        propertyName: point_of_time_type
-        mapping:
-          timestamp: PointOfTimeTimestamp
-          offset: PointOfTimeOffset
-          statement: PointOfTimeStatement
     Alert:
       type: object
       description: A Snowflake alert
@@ -551,6 +525,32 @@ components:
             For more information, see https://docs.snowflake.com/en/sql-reference/data-types-datetime.'
       required:
       - name
+    PointOfTime:
+      type: object
+      properties:
+        point_of_time_type:
+          type: string
+          description: 'Type of the point of time. Possible values include: timestamp, offset, statement'
+          example: timestamp
+        reference:
+          type: string
+          enum:
+          - at
+          - before
+          x-enum-varnames:
+          - AT
+          - BEFORE
+          description: Relation to the point of time.  Currently, the API supports `at` and `before`
+          example: at
+      required:
+      - point_of_time_type
+      - reference
+      discriminator:
+        propertyName: point_of_time_type
+        mapping:
+          timestamp: PointOfTimeTimestamp
+          offset: PointOfTimeOffset
+          statement: PointOfTimeStatement
   securitySchemes:
     KeyPair:
       $ref: common.yaml#/components/securitySchemes/KeyPair

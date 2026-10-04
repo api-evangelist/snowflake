@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/snowflake/main/json-schema/snowflake-embed-response-schema.json",
+  "title": "EmbedResponse",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/snowflake-cortex-embed-api-openapi.yml#/components/schemas/EmbedResponse",
+  "type": "object",
+  "properties": {
+    "object": {
+      "type": "string",
+      "description": "Type of the response object",
+      "enum": [
+        "list"
+      ]
+    },
+    "data": {
+      "type": "array",
+      "description": "List of embedding objects",
+      "items": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "description": "Type of the embedding object",
+            "enum": [
+              "embedding"
+            ]
+          },
+          "embedding": {
+            "type": "array",
+            "description": "Nested array of floating-point numbers representing the embedding vector",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "float"
+              }
+            }
+          },
+          "index": {
+            "type": "integer",
+            "description": "Index of the embedding in the input array"
+          }
+        },
+        "required": [
+          "object",
+          "embedding",
+          "index"
+        ]
+      }
+    },
+    "model": {
+      "type": "string",
+      "description": "Name of the embedding model used"
+    },
+    "usage": {
+      "type": "object",
+      "properties": {
+        "total_tokens": {
+          "type": "integer",
+          "description": "Total number of tokens processed"
+        }
+      }
+    }
+  },
+  "required": [
+    "object",
+    "data",
+    "model",
+    "usage"
+  ]
+}
