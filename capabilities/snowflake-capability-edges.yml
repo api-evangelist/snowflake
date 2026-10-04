@@ -12,7 +12,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 7
+edge_count: 10
 edges:
 - tag: grant
   spec_file: snowflake-grant-api-openapi.yml
@@ -41,6 +41,33 @@ edges:
   confidence: 0.85
   evidence: POST /api/v2/users/{name}/grants  grant  Grant a Role to the User
   reason: Creating users and granting/revoking roles is identity and access management, not customer data.
+- tag: cortex-embed
+  spec_file: snowflake-cortex-embed-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.8
+  evidence: POST /api/v2/cortex/inference:embed  embed  "Perform LLM embed"; schemas EmbedRequest, EmbedResponse
+  reason: The single operation performs LLM embedding inference, i.e. consumption of AI/ML models as a
+    managed service, which falls under Artificial Intelligence Management within Information & Data Management.
+- tag: cortex-generic-anthropic
+  spec_file: snowflake-cortex-generic-anthropic-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.8
+  evidence: '"Perform LLM text completion inference using Cortex Messages API format"'
+  reason: LLM inference endpoint — AI model serving/consumption, mapping to Artificial Intelligence Management.
+    No other candidate capability describes model inference.
+- tag: cortex-generic-openai
+  spec_file: snowflake-cortex-generic-openai-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.8
+  evidence: '"Perform LLM text completion inference using Cortex Chat Completions API format"'
+  reason: OpenAI-compatible chat completion inference endpoint; this is AI/ML model consumption, i.e.
+    Artificial Intelligence Management.
 - tag: database-role
   spec_file: snowflake-database-role-api-openapi.yml
   capability_id: BC-620.20
