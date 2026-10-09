@@ -1,27 +1,39 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/account.yaml, openapi/alert.yaml, openapi/api-integration.yaml, openapi/catalog-integration.yaml,
-  openapi/compute-pool.yaml, openapi/cortex-analyst.yaml, openapi/cortex-inference.yaml, openapi/cortex-search-service.yaml,
-  openapi/database-role.yaml, openapi/database.yaml, openapi/dynamic-table.yaml, openapi/event-table.yaml,
-  openapi/external-volume.yaml, openapi/function.yaml, openapi/grant.yaml, openapi/iceberg-table.yaml,
-  openapi/image-repository.yaml, openapi/managed-account.yaml, openapi/network-policy.yaml,
-  openapi/notebook.yaml, openapi/notification-integration.yaml, openapi/pipe.yaml, openapi/procedure.yaml,
-  openapi/result.yaml, openapi/role.yaml, openapi/schema.yaml, openapi/service.yaml, openapi/snowflake-sql-rest-api.yaml,
-  openapi/sqlapi.yaml, openapi/stage.yaml, openapi/stream.yaml, openapi/table.yaml, openapi/task.yaml,
-  openapi/user-defined-function.yaml, openapi/user.yaml, openapi/view.yaml, openapi/warehouse.yaml
+source: openapi/snowflake-account-api-openapi.yml, openapi/snowflake-alert-api-openapi.yml,
+  openapi/snowflake-api-integration-api-openapi.yml, openapi/snowflake-artifact-repository-api-openapi.yml,
+  openapi/snowflake-catalog-integration-api-openapi.yml, openapi/snowflake-compute-pool-api-openapi.yml,
+  openapi/snowflake-cortex-analyst-api-openapi.yml, openapi/snowflake-cortex-embed-api-openapi.yml,
+  openapi/snowflake-cortex-generic-anthropic-api-openapi.yml, openapi/snowflake-cortex-generic-openai-api-openapi.yml,
+  openapi/snowflake-cortex-inference-api-openapi.yml, openapi/snowflake-cortex-search-service-api-openapi.yml,
+  openapi/snowflake-database-api-openapi.yml, openapi/snowflake-database-role-api-openapi.yml,
+  openapi/snowflake-dynamic-table-api-openapi.yml, openapi/snowflake-event-table-api-openapi.yml,
+  openapi/snowflake-external-volume-api-openapi.yml, openapi/snowflake-function-api-openapi.yml,
+  openapi/snowflake-grant-api-openapi.yml, openapi/snowflake-iceberg-table-api-openapi.yml,
+  openapi/snowflake-image-repository-api-openapi.yml, openapi/snowflake-managed-account-api-openapi.yml,
+  openapi/snowflake-network-policy-api-openapi.yml, openapi/snowflake-network-rule-api-openapi.yml,
+  openapi/snowflake-notebook-api-openapi.yml, openapi/snowflake-notification-integration-api-openapi.yml,
+  openapi/snowflake-password-policy-api-openapi.yml, openapi/snowflake-pipe-api-openapi.yml,
+  openapi/snowflake-procedure-api-openapi.yml, openapi/snowflake-result-api-openapi.yml, openapi/snowflake-role-api-openapi.yml,
+  openapi/snowflake-schema-api-openapi.yml, openapi/snowflake-secret-api-openapi.yml, openapi/snowflake-sequence-api-openapi.yml,
+  openapi/snowflake-service-api-openapi.yml, openapi/snowflake-spark-connect-api-openapi.yml,
+  openapi/snowflake-stage-api-openapi.yml, openapi/snowflake-statements-api-openapi.yml, openapi/snowflake-stream-api-openapi.yml,
+  openapi/snowflake-streamlit-api-openapi.yml, openapi/snowflake-table-api-openapi.yml, openapi/snowflake-tag-api-openapi.yml,
+  openapi/snowflake-task-api-openapi.yml, openapi/snowflake-user-api-openapi.yml, openapi/snowflake-user-defined-function-api-openapi.yml,
+  openapi/snowflake-view-api-openapi.yml, openapi/snowflake-warehouse-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 263
+  operations: 408
   by_action_class:
-    connected: 86
-    acting: 177
+    connected: 132
+    acting: 276
   by_consequence:
-    read: 86
-    write: 161
+    read: 132
+    write: 259
     safety-critical: 14
-    physical: 2
+    physical: 3
   human_in_the_loop_required: 14
 operations:
 - path: /api/v2/accounts
@@ -166,6 +178,48 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/alerts/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/alerts/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/alerts/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/api-integrations
   method: get
   operationId: listAPIIntegrations
@@ -234,6 +288,132 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/api-integrations/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/api-integrations/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/api-integrations/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/artifact-repositories
+  method: get
+  operationId: listArtifactRepositories
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/artifact-repositories
+  method: post
+  operationId: createArtifactRepository
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/artifact-repositories/{name}
+  method: get
+  operationId: fetchArtifactRepository
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/artifact-repositories/{name}
+  method: delete
+  operationId: deleteArtifactRepository
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/artifact-repositories/{name}
+  method: put
+  operationId: createOrAlterArtifactRepository
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/artifact-repositories/{name}:rename
+  method: post
+  operationId: renameArtifactRepository
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /api/v2/catalog-integrations
   method: get
   operationId: listCatalogIntegrations
@@ -286,6 +466,48 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/catalog-integrations/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/catalog-integrations/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/catalog-integrations/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/compute-pools
   method: get
   operationId: listComputePools
@@ -418,6 +640,58 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
+- path: /api/v2/compute-pools/instance-families
+  method: get
+  operationId: listComputePoolInstanceFamilies
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/compute-pools/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/compute-pools/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/compute-pools/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/cortex/analyst/feedback
   method: post
   operationId: sendFeedback
@@ -470,6 +744,68 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/cortex/analyst/fast-generation
+  method: post
+  operationId: fastGeneration
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/cortex/analyst/pre-selection
+  method: post
+  operationId: preSelection
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/cortex/analyst/filters-and-metrics-suggestions
+  method: post
+  operationId: generateFiltersAndMetricsSuggestions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/cortex/analyst/agentic-optimizations
+  method: post
+  operationId: listAgenticOptimizations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/cortex/analyst/agentic-optimization
+  method: get
+  operationId: getAgenticOptimization
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/cortex/analyst/token
   method: get
   operationId: getScopedToken
@@ -480,6 +816,54 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /api/v2/cortex/inference:embed
+  method: post
+  operationId: embed
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/cortex/v1/messages
+  method: post
+  operationId: cortexGenericAnthropicMessages
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/cortex/v1/chat/completions
+  method: post
+  operationId: cortexGenericOpenAIChatCompletions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /api/v2/cortex/models
   method: get
   operationId: getModels
@@ -506,6 +890,32 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{name}
+  method: delete
+  operationId: deleteCortexSearchService
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{name}
+  method: get
+  operationId: fetchCortexSearchService
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/databases/{database}/schemas/{schema}/cortex-search-services
   method: get
   operationId: listCortexSearchServices
@@ -532,9 +942,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{name}
-  method: get
-  operationId: fetchCortexSearchService
+- path: /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{service_name}:query
+  method: post
+  operationId: queryCortexSearchService
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -542,25 +952,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{name}
-  method: delete
-  operationId: deleteCortexSearchService
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{service_name}:query
+- path: /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{service_name}:suggest
   method: post
-  operationId: queryCortexSearchService
+  operationId: suggestCortexSearchService
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -606,147 +1000,23 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v2/databases/{database}/database-roles
-  method: get
-  operationId: listDatabaseRoles
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/v2/databases/{database}/database-roles
+- path: /api/v2/databases/{database}/schemas/{schema}/cortex-search-services/{name}:feedback
   method: post
-  operationId: createDatabaseRole
+  operationId: sendFeedback
   x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: physical
     subject: required
     audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/v2/databases/{database}/database-roles/{name}
-  method: delete
-  operationId: deleteDatabaseRole
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/v2/databases/{database}/database-roles/{name}:clone
-  method: post
-  operationId: cloneDatabaseRole
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/v2/databases/{database}/database-roles/{name}/grants
-  method: get
-  operationId: listGrants
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/v2/databases/{database}/database-roles/{name}/grants
-  method: post
-  operationId: grantPrivileges
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/v2/databases/{database}/database-roles/{name}/grants:revoke
-  method: post
-  operationId: revokeGrants
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
+      max-ttl: 300
       exchange: true
       purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /api/v2/databases/{database}/database-roles/{name}/future-grants
-  method: get
-  operationId: listFutureGrants
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/v2/databases/{database}/database-roles/{name}/future-grants
-  method: post
-  operationId: grantFuturePrivileges
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
       - high-value
-    audit: required
-- path: /api/v2/databases/{database}/database-roles/{name}/future-grants:revoke
-  method: post
-  operationId: revokeFutureGrants
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
     audit: required
 - path: /api/v2/databases
   method: get
@@ -976,6 +1246,232 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/database-roles
+  method: get
+  operationId: listDatabaseRoles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/database-roles
+  method: post
+  operationId: createDatabaseRole
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/database-roles/{name}
+  method: delete
+  operationId: deleteDatabaseRole
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/database-roles/{name}:clone
+  method: post
+  operationId: cloneDatabaseRole
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/database-roles/{name}/grants
+  method: get
+  operationId: listGrants
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/database-roles/{name}/grants
+  method: post
+  operationId: grantPrivileges
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/database-roles/{name}/grants:revoke
+  method: post
+  operationId: revokeGrants
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v2/databases/{database}/database-roles/{name}/future-grants
+  method: get
+  operationId: listFutureGrants
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/database-roles/{name}/future-grants
+  method: post
+  operationId: grantFuturePrivileges
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/database-roles/{name}/future-grants:revoke
+  method: post
+  operationId: revokeFutureGrants
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v2/databases/{database}/database-roles/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/database-roles/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/database-roles/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/databases/{database}/schemas/{schema}/dynamic-tables
   method: get
   operationId: listDynamicTables
@@ -1156,6 +1652,48 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/dynamic-tables/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/databases/{database}/schemas/{schema}/event-tables
   method: get
   operationId: listEventTables
@@ -1224,6 +1762,48 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/event-tables/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/event-tables/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/event-tables/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/external-volumes
   method: get
   operationId: listExternalVolumes
@@ -1360,6 +1940,48 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/functions/{nameWithArgs}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/functions/{nameWithArgs}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/functions/{nameWithArgs}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/grants/{granteeType}/{granteeName}/{securableType}/{securableName}/privileges
   method: post
   operationId: grantPrivilege
@@ -1710,6 +2332,48 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/iceberg-tables/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/databases/{database}/schemas/{schema}/image-repositories
   method: get
   operationId: listImageRepositories
@@ -1765,6 +2429,48 @@ operations:
 - path: /api/v2/databases/{database}/schemas/{schema}/image-repositories/{name}/images
   method: get
   operationId: listImagesInRepository
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/image-repositories/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/image-repositories/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/image-repositories/{name}:get-tags
+  method: get
+  operationId: getTags
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1853,6 +2559,100 @@ operations:
 - path: /api/v2/network-policies/{name}
   method: delete
   operationId: deleteNetworkPolicy
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/network-policies/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/network-policies/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/network-policies/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/network-rules
+  method: get
+  operationId: listNetworkRules
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/network-rules
+  method: post
+  operationId: createNetworkRule
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/network-rules/{name}
+  method: get
+  operationId: fetchNetworkRule
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/network-rules/{name}
+  method: delete
+  operationId: deleteNetworkRule
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1982,6 +2782,48 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/notebooks/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/notebooks/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/notebooks/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/notification-integrations
   method: get
   operationId: listNotificationIntegrations
@@ -2034,6 +2876,158 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/notification-integrations/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/notification-integrations/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/notification-integrations/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/password-policies
+  method: get
+  operationId: listPasswordPolicies
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/password-policies
+  method: post
+  operationId: createPasswordPolicy
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/password-policies/{name}
+  method: get
+  operationId: fetchPasswordPolicy
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/password-policies/{name}
+  method: delete
+  operationId: deletePasswordPolicy
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/password-policies/{name}:rename
+  method: post
+  operationId: renamePasswordPolicy
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/password-policies/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/password-policies/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/password-policies/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/databases/{database}/schemas/{schema}/pipes
   method: get
   operationId: listPipes
@@ -2102,6 +3096,48 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/pipes/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/pipes/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/pipes/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/databases/{database}/schemas/{schema}/procedures
   method: get
   operationId: listProcedures
@@ -2170,6 +3206,48 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/procedures/{nameWithArgs}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/results/{result_handler}
   method: get
   operationId: fetchResult
@@ -2326,6 +3404,48 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
+- path: /api/v2/roles/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/roles/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/roles/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/databases/{database}/schemas
   method: get
   operationId: listSchemas
@@ -2413,6 +3533,184 @@ operations:
 - path: /api/v2/databases/{database}/schemas/{name}
   method: delete
   operationId: deleteSchema
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/secrets
+  method: get
+  operationId: listSecrets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/secrets
+  method: post
+  operationId: createSecret
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/secrets/{name}
+  method: get
+  operationId: fetchSecret
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/secrets/{name}
+  method: delete
+  operationId: deleteSecret
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/sequences
+  method: get
+  operationId: listSequences
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/sequences
+  method: post
+  operationId: createSequence
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/sequences/{name}
+  method: get
+  operationId: fetchSequence
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/sequences/{name}
+  method: delete
+  operationId: deleteSequence
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/sequences/{name}:clone
+  method: post
+  operationId: cloneSequence
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/sequences/{name}:rename
+  method: post
+  operationId: renameSequence
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2622,9 +3920,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/v2/statements
+- path: /api/v2/spark-connect/execute-plan
   method: post
-  operationId: submitStatement
+  operationId: executePlan
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2638,19 +3936,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v2/statements/{statementHandle}
-  method: get
-  operationId: getStatementStatus
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/v2/statements/{statementHandle}/cancel
+- path: /api/v2/spark-connect/analyze-plan
   method: post
-  operationId: cancelStatement
+  operationId: analyzePlan
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2664,9 +3952,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v2/statements
+- path: /api/v2/spark-connect/config
   method: post
-  operationId: SubmitStatement
+  operationId: config
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2680,19 +3968,105 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v2/statements/{statementHandle}
-  method: get
-  operationId: GetStatementStatus
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/v2/statements/{statementHandle}/cancel
+- path: /api/v2/spark-connect/add-artifacts
   method: post
-  operationId: CancelStatement
+  operationId: addArtifacts
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/spark-connect/artifact-status
+  method: post
+  operationId: artifactStatus
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/spark-connect/interrupt
+  method: post
+  operationId: interrupt
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/spark-connect/reattach-execute
+  method: post
+  operationId: reattachExecute
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/spark-connect/release-execute
+  method: post
+  operationId: releaseExecute
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/spark-connect/pull-request
+  method: post
+  operationId: pullRequest
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/spark-connect/push-response
+  method: post
+  operationId: pushResponse
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2771,6 +4145,42 @@ operations:
 - path: /api/v2/databases/{database}/schemas/{schema}/stages/{name}/files/{filePath}:presigned-url
   method: post
   operationId: getPresignedUrl
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/statements
+  method: post
+  operationId: submitStatement
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/statements/{statementHandle}
+  method: get
+  operationId: getStatementStatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/statements/{statementHandle}/cancel
+  method: post
+  operationId: cancelStatement
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2852,6 +4262,286 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streams/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streams/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streams/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits
+  method: get
+  operationId: listStreamlits
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits
+  method: post
+  operationId: createStreamlit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}
+  method: get
+  operationId: fetchStreamlit
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}
+  method: delete
+  operationId: deleteStreamlit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:undrop
+  method: post
+  operationId: undropStreamlit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:rename
+  method: post
+  operationId: renameStreamlit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:add-live-version
+  method: post
+  operationId: addLiveVersionStreamlit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:commit
+  method: post
+  operationId: commitStreamlit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:add-version
+  method: post
+  operationId: addVersionStreamlit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:add-version-from-git
+  method: post
+  operationId: addVersionFromGitStreamlit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:abort
+  method: post
+  operationId: abortStreamlit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:pull
+  method: post
+  operationId: pullStreamlit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:push
+  method: post
+  operationId: pushStreamlit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/streamlits/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/databases/{database}/schemas/{schema}/tables
   method: get
   operationId: listTables
@@ -3144,6 +4834,148 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/tables/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/tables/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/tables/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/tags
+  method: get
+  operationId: listTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/tags
+  method: post
+  operationId: createTag
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/tags/{name}
+  method: get
+  operationId: fetchTag
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/tags/{name}
+  method: delete
+  operationId: deleteTag
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/tags/{name}
+  method: put
+  operationId: createOrAlterTag
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/tags/{name}:undrop
+  method: post
+  operationId: undropTag
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/tags/{name}:rename
+  method: post
+  operationId: renameTag
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /api/v2/databases/{database}/schemas/{schema}/tasks
   method: get
   operationId: listTasks
@@ -3310,9 +5142,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions
+- path: /api/v2/databases/{database}/schemas/{schema}/tasks/{name}:set-tags
   method: post
-  operationId: createUserDefinedFunction
+  operationId: setTags
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -3326,9 +5158,25 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions
+- path: /api/v2/databases/{database}/schemas/{schema}/tasks/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/tasks/{name}:get-tags
   method: get
-  operationId: listUserDefinedFunctions
+  operationId: getTags
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -3336,48 +5184,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}
-  method: get
-  operationId: fetchUserDefinedFunction
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}
-  method: delete
-  operationId: deleteUserDefinedFunction
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}:rename
-  method: post
-  operationId: renameUserDefinedFunction
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /api/v2/users
   method: post
   operationId: createUser
@@ -3488,6 +5294,174 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
+- path: /api/v2/users/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/users/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/users/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions
+  method: post
+  operationId: createUserDefinedFunction
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions
+  method: get
+  operationId: listUserDefinedFunctions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}
+  method: get
+  operationId: fetchUserDefinedFunction
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}
+  method: delete
+  operationId: deleteUserDefinedFunction
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{name}:execute
+  method: post
+  operationId: executeUserDefinedFunction
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}:rename
+  method: post
+  operationId: renameUserDefinedFunction
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/user-defined-functions/{nameWithArgs}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/databases/{database}/schemas/{schema}/views
   method: get
   operationId: listViews
@@ -3540,6 +5514,48 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/views/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/views/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/databases/{database}/schemas/{schema}/views/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /api/v2/warehouses
   method: post
   operationId: createWarehouse
@@ -3720,3 +5736,45 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
+- path: /api/v2/warehouses/{name}:set-tags
+  method: post
+  operationId: setTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/warehouses/{name}:unset-tags
+  method: post
+  operationId: unsetTags
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v2/warehouses/{name}:get-tags
+  method: get
+  operationId: getTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
