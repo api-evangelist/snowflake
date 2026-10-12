@@ -1,0 +1,19 @@
+# DERIVED by build-integration-preconfigs.py (roadmap#949). Overlay on the PARTNER's contract:
+# where similarweb's enum names snowflake, and what that value is.
+overlay: 1.0.0
+info:
+  title: snowflake as a processor-connection in similarweb's contract
+  version: 1.0.0
+extends: https://raw.githubusercontent.com/api-evangelist/similarweb/refs/heads/main/openapi/similarweb-integrations-api-openapi.yml
+actions:
+- target: $.components.schemas.IntegrationResponse.properties.integration_type
+  update:
+    x-apievangelist-integration:
+      values:
+        snowflake:
+          provider: snowflake
+          relationship: processor-connection
+          evidence: https://github.com/api-evangelist/similarweb/blob/main/openapi/similarweb-integrations-api-openapi.yml
+      method: derived
+      generated: '2026-10-12'
+      generator: build-integration-preconfigs.py
