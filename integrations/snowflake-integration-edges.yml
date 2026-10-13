@@ -7,6 +7,7 @@ source:
 checked:
 - https://azuremarketplace.microsoft.com/
 - https://composio.dev/toolkits/snowflake
+- https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
 - https://monid.ai/tools/snowflake
 - https://n8n.io/integrations/snowflake/
 - https://zapier.com/apps/snowflake/integrations
@@ -649,6 +650,26 @@ edges:
   seller_name: Snowflake Canada
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: LiteLLM
+  partner: litellm
+  partner_match: router
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+  coverage_role:
+  - provider
+  router_signals:
+    provider:
+      models: 37
+      router_ids:
+      - snowflake
+      tools_share: 0.49
+      structured_output_share: 0.34
+  matched_by: verified-token-table
+  detected_by: sweep-model-routing.py
+  first_seen: '2026-10-13'
 templates:
 - title: Execute sql in Snowflake daily with Schedule by Zapier for consistent data management
   url: https://zapier.com/apps/schedule/integrations/snowflake/1697490/execute-sql-in-snowflake-daily-with-schedule-by-zapier-for-consistent-data-management
