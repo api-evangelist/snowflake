@@ -5,6 +5,7 @@ source:
 - https://n8n.io/integrations/snowflake/
 - https://composio.dev/toolkits/snowflake
 checked:
+- https://azuremarketplace.microsoft.com/
 - https://composio.dev/toolkits/snowflake
 - https://monid.ai/tools/snowflake
 - https://n8n.io/integrations/snowflake/
@@ -567,6 +568,87 @@ edges:
     property: schemas.IntegrationResponse.integration_type
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Snowflake%20Inc
+  listing_count: 3
+  apps:
+  - Snowflake
+  - Assess - Snowflake Data Cloud
+  - Snowflake
+  seller_name: Snowflake Inc
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Snowflake%20B.V.
+  listing_count: 2
+  apps:
+  - Multi-Cloud BV
+  - Snowflake Data Cloud BV
+  seller_name: Snowflake B.V.
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Snowflake%20Australia
+  listing_count: 2
+  apps:
+  - Snowflake Data Cloud AUS
+  - Multi-Cloud AUS
+  seller_name: Snowflake Australia
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Snowflake%20UK
+  listing_count: 2
+  apps:
+  - Multi-Cloud UK
+  - Snowflake Data Cloud UK
+  seller_name: Snowflake UK
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
+- partner_name: Microsoft Azure Marketplace
+  partner: microsoft-azure
+  partner_match: aggregator
+  type: marketplace
+  marketplace: azure-marketplace
+  channel: distribution
+  relationship: platform-app
+  direction: provider-built
+  evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Snowflake%20Canada
+  listing_count: 2
+  apps:
+  - Multi-Cloud CAN
+  - Snowflake Data Cloud CAN
+  seller_name: Snowflake Canada
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-13'
 templates:
 - title: Execute sql in Snowflake daily with Schedule by Zapier for consistent data management
   url: https://zapier.com/apps/schedule/integrations/snowflake/1697490/execute-sql-in-snowflake-daily-with-schedule-by-zapier-for-consistent-data-management
