@@ -7,7 +7,11 @@ source:
 checked:
 - https://azuremarketplace.microsoft.com/
 - https://composio.dev/toolkits/snowflake
+- https://docs.mparticle.com/integrations/snowflake/data-warehouse/
+- https://fivetran.com/docs/activations/destinations/available-destinations/snowflake
 - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+- https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/snowflake
+- https://hightouch.com/docs/destinations/snowflake-destination
 - https://monid.ai/tools/snowflake
 - https://n8n.io/integrations/snowflake/
 - https://zapier.com/apps/snowflake/integrations
@@ -670,6 +674,100 @@ edges:
   matched_by: verified-token-table
   detected_by: sweep-model-routing.py
   first_seen: '2026-10-13'
+- partner_name: RudderStack
+  partner: rudderstack
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/snowflake
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - snowflake
+      connection_modes:
+      - cloud
+      source_types: 13
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: mParticle
+  partner: mparticle
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://docs.mparticle.com/integrations/snowflake/data-warehouse/
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - snowflake
+      integration_types:
+      - audience
+      - data-warehouse
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Hightouch
+  partner: hightouch
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://hightouch.com/docs/destinations/snowflake-destination
+  coverage_role:
+  - destination
+  - source
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - snowflake-destination
+      - snowflake-data-clean-room
+      - snowflake-data-share
+      - snowflake-iceberg-destination
+      status: released
+      sync_types:
+      - Any data set
+      sync_modes:
+      - insert
+      - mirror
+      - upsert
+    source:
+      catalog_entries:
+      - snowflake
+      - snowflake-iceberg
+      status: released
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Census
+  partner: getcensus
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://fivetran.com/docs/activations/destinations/available-destinations/snowflake
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - snowflake
+      sync_behaviours:
+      - mirror
+      - update only
+      - update or create
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
 templates:
 - title: Execute sql in Snowflake daily with Schedule by Zapier for consistent data management
   url: https://zapier.com/apps/schedule/integrations/snowflake/1697490/execute-sql-in-snowflake-daily-with-schedule-by-zapier-for-consistent-data-management
