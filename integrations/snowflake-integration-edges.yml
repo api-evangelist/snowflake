@@ -10,8 +10,10 @@ checked:
 - https://docs.mparticle.com/integrations/snowflake/data-warehouse/
 - https://fivetran.com/docs/activations/destinations/available-destinations/snowflake
 - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+- https://github.com/marketplace?type=actions
 - https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/snowflake
 - https://hightouch.com/docs/destinations/snowflake-destination
+- https://marketplace.visualstudio.com/vscode
 - https://monid.ai/tools/snowflake
 - https://n8n.io/integrations/snowflake/
 - https://zapier.com/apps/snowflake/integrations
@@ -768,6 +770,42 @@ edges:
       - update or create
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
+- partner_name: GitHub Marketplace (actions)
+  partner: github-actions
+  partner_match: aggregator
+  type: marketplace
+  marketplace: github-actions
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://github.com/marketplace/actions/install-snowflake-cli
+  listing_count: 2
+  apps:
+  - Install Snowflake CLI
+  - Snowflake Actions
+  publisher_name: Snowflake
+  badges:
+  - Verified creator
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: Visual Studio Code Marketplace
+  partner: vs-code-marketplace
+  partner_match: aggregator
+  type: marketplace
+  marketplace: vscode
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.visualstudio.com/publishers/snowflake
+  listing_count: 1
+  apps:
+  - Snowflake
+  publisher_name: Snowflake
+  badges:
+  - Verified publisher
+  - Verified domain
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
 templates:
 - title: Execute sql in Snowflake daily with Schedule by Zapier for consistent data management
   url: https://zapier.com/apps/schedule/integrations/snowflake/1697490/execute-sql-in-snowflake-daily-with-schedule-by-zapier-for-consistent-data-management
