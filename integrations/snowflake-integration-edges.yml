@@ -10,6 +10,7 @@ checked:
 - https://docs.mparticle.com/integrations/snowflake/data-warehouse/
 - https://fivetran.com/docs/activations/destinations/available-destinations/snowflake
 - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+- https://github.com/langchain-ai/langchain/tree/master/libs/partners
 - https://github.com/marketplace?type=actions
 - https://github.com/rudderlabs/rudder-integrations-config/tree/main/src/configurations/destinations/snowflake
 - https://hightouch.com/docs/destinations/snowflake-destination
@@ -838,6 +839,25 @@ edges:
   - UPDATE
   - WORKFLOWS_COMPATIBLE
   - WORKFLOWS_CONNECTORS
+- partner_name: LangChain
+  partner: langchain
+  partner_match: framework
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/langchain-ai/langchain-snowflake
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - langchain-snowflake
+    roles:
+    - vector-store
+    vendor_domain: snowflake.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
 templates:
 - title: Execute sql in Snowflake daily with Schedule by Zapier for consistent data management
   url: https://zapier.com/apps/schedule/integrations/snowflake/1697490/execute-sql-in-snowflake-daily-with-schedule-by-zapier-for-consistent-data-management
