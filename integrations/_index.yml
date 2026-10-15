@@ -411,17 +411,6 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
-- slug: snowflake-litellm
-  label: LiteLLM
-  partner: litellm
-  partner_name: LiteLLM
-  type: coverage
-  channel: partner-built
-  evidence: https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
-  source: edge
-  relationship: system-coverage
-  status: not-a-workflow
-  arazzo: null
 - slug: snowflake-github-marketplace-actions
   label: GitHub Marketplace (actions)
   partner: github-actions
@@ -494,17 +483,6 @@
   relationship: connector-coverage
   status: not-a-workflow
   arazzo: null
-- slug: snowflake-langchain
-  label: LangChain
-  partner: langchain
-  partner_name: LangChain
-  type: coverage
-  channel: partner-built
-  evidence: https://github.com/langchain-ai/langchain-snowflake
-  source: edge
-  relationship: system-coverage
-  status: not-a-workflow
-  arazzo: null
 - slug: snowflake-okta-own
   label: Okta (own)
   partner: okta
@@ -516,5 +494,113 @@
   evidence: https://www.okta.com/integrations/snowflake/
   source: edge
   relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: snowflake-litellm
+  label: LiteLLM
+  partner: litellm
+  partner_name: LiteLLM
+  type: coverage
+  channel: partner-built
+  evidence: https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
+  source: edge
+  relationship: system-coverage
+  status: not-a-workflow
+  arazzo: null
+- slug: snowflake-langchain
+  label: LangChain
+  partner: langchain
+  partner_name: LangChain
+  type: coverage
+  channel: partner-built
+  evidence: https://github.com/langchain-ai/langchain-snowflake
+  source: edge
+  relationship: system-coverage
+  status: not-a-workflow
+  arazzo: null
+- slug: snowflake-sps-commerce
+  label: SPS Commerce
+  partner: sps-commerce
+  partner_name: SPS Commerce
+  category: Software Provider
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.spscommerce.com/partner-community/directory/
+  source: edge
+  relationship: platform-app
+  contract_reference:
+    register: SPS Commerce partner community directory
+    spec_file: null
+    role: sps-integration-partner
+    registered_name: Snowflake Inc.
+    website: https://www.snowflake.com/
+    matched_domain: snowflake.com
+    matched_by: domain
+    business_types:
+    - Software Provider
+    signal_note: 'participation only: a directory listing, never a count'
+    detected_by: sweep-consumer-goods.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
+- slug: snowflake-cncf-cloud-native-landscape
+  label: CNCF (Cloud Native Landscape)
+  partner: cncf
+  partner_name: CNCF (Cloud Native Landscape)
+  category: Cloud native landscape
+  type: register
+  channel: standard-directory
+  evidence: https://github.com/cncf/landscape/blob/3a7d378b1824b82e729a453bb03fa6f1e37557e1/landscape.yml
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CNCF Cloud Native Landscape (github.com/cncf/landscape landscape.yml @3a7d378b18)
+    spec_file: null
+    standard: Cloud Native (CNCF)
+    role: landscape-listed
+    registered_name: Snowflake
+    registered_names:
+    - Snowflake
+    website: https://www.snowflake.com/
+    matched_domain: snowflake.com
+    matched_by: domain
+    member_tier: null
+    joined: null
+    end_user: false
+    cncf_projects: []
+    landscape_categories:
+    - App Definition and Development / Database
+    landscape_entries: 1
+    signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
+      categories, tier and projects are CONTEXT, never read (breadth is not credit)'
+    detected_by: sweep-cloud-native.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
+- slug: snowflake-finops-foundation-focus
+  label: FinOps Foundation (FOCUS)
+  partner: finops-foundation
+  partner_name: FinOps Foundation (FOCUS)
+  category: FOCUS billing data
+  type: register
+  channel: standard-directory
+  evidence: https://focus.finops.org/docs/implementation/data-generators/snowflake/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: FOCUS data generators (focus.finops.org/data-generators)
+    spec_file: null
+    standard: FOCUS (FinOps Open Cost and Usage Specification)
+    role: focus-data-generator
+    registered_name: Snowflake
+    matched_domain: snowflake.com
+    matched_by: domain
+    focus_version_supported: '1.3'
+    page_domains:
+      snowflake.com: 1
+    signal_note: 'participation only: the version is context, never read'
+    detected_by: sweep-cloud-native.py
+    detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
