@@ -789,3 +789,151 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: snowflake-airbyte
+  label: Airbyte
+  partner: airbyte
+  partner_name: Airbyte
+  type: marketplace
+  marketplace: airbyte-registry
+  channel: elt-connector
+  evidence: https://docs.airbyte.com/integrations/sources/snowflake
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Airbyte connector registry (connectors.airbyte.com cloud_registry.json + oss_registry.json)
+    spec_file: null
+    role: elt-connector:airbyte-certified
+    registered_name: Snowflake
+    matched_domain: snowflake.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connectors:
+    - airbyte/destination-snowflake
+    - airbyte/destination-snowflake-cortex
+    - airbyte/source-snowflake
+    support_level:
+    - certified
+    - community
+    release_stage:
+    - alpha
+    - beta
+    - generally_available
+    in_cloud: true
+    builder: Airbyte (certified)
+    standard: Airbyte certified connector
+    certified_products:
+    - product: Airbyte certified destination
+      type: destination
+      lapsed: false
+      cloud: true
+    - product: Airbyte certified source
+      type: source
+      lapsed: false
+      cloud: true
+  status: pending-generation
+  arazzo: null
+- slug: snowflake-fivetran
+  label: Fivetran
+  partner: fivetran
+  partner_name: Fivetran
+  type: marketplace
+  marketplace: fivetran-connectors
+  channel: elt-connector
+  evidence: https://fivetran.com/docs/connectors/databases/snowflake
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Fivetran connectors (fivetran.com/docs/connectors, docs-sitemap.xml + Partner-Built program)
+    spec_file: null
+    role: elt-connector:fivetran
+    registered_name: Snowflake
+    matched_domain: snowflake.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connector_paths:
+    - connectors/databases/snowflake
+    vendor_link: https://www.snowflake.com/
+    builder: Fivetran
+  status: pending-generation
+  arazzo: null
+- slug: snowflake-meltano
+  label: Meltano
+  partner: meltano
+  partner_name: Meltano
+  type: marketplace
+  marketplace: meltano-hub
+  channel: elt-connector
+  evidence: https://hub.meltano.com/extractors/tap-snowflake--airbyte
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
+    spec_file: null
+    role: elt-connector:meltano-hub
+    registered_name: Snowflake
+    matched_domain: snowflake.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    plugins:
+    - tap-snowflake--airbyte
+    - tap-snowflake--meltanolabs
+    - tap-snowflake--transferwise
+    - target-snowflake--datamill-co
+    - target-snowflake--meltano
+    - target-snowflake--meltanolabs
+    - target-snowflake--transferwise
+    maintenance_status:
+    - active
+    - beta
+    - inactive
+    quality:
+    - gold
+    - silver
+    builder: 'community (Meltano Hub variant maintainers: airbyte, datamill-co, meltano, meltanolabs, transferwise)'
+  status: pending-partner-spec
+  arazzo: null
+- slug: snowflake-dbt-dbt-package-hub
+  label: dbt (dbt-package-hub)
+  partner: dbt
+  partner_name: dbt (dbt-package-hub)
+  category: dbt package
+  type: marketplace
+  marketplace: dbt-package-hub
+  channel: partner-built
+  evidence: https://hub.getdbt.com/Snowflake-Labs/dbt_constraints/latest/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: snowflake-microsoft-teams-own
+  label: Microsoft Teams (own)
+  partner: microsoft-teams
+  partner_name: Microsoft Teams (own)
+  category: Microsoft Teams app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appsource.microsoft.com/en-us/product/office/WA200008996
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: snowflake-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/A0BG0QVHTF0-snowflake
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
