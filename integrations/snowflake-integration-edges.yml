@@ -6,10 +6,12 @@ source:
 - https://composio.dev/toolkits/snowflake
 checked:
 - dbt/integrations/dbt-integration-edges.yml
+- https://api.nuget.org/v3
 - https://azuremarketplace.microsoft.com/
 - https://composio.dev/toolkits/snowflake
 - https://connectors.airbyte.com/files/registries/v0/cloud_registry.json
 - https://connectors.airbyte.com/files/registries/v0/oss_registry.json
+- https://crates.io/api/v1
 - https://docs.mparticle.com/integrations/snowflake/data-warehouse/
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/activations/destinations/available-destinations/snowflake
@@ -29,7 +31,12 @@ checked:
 - https://marketplace.visualstudio.com/vscode
 - https://monid.ai/tools/snowflake
 - https://n8n.io/integrations/snowflake/
+- https://proxy.golang.org
+- https://pypi.org/pypi
 - https://raw.githubusercontent.com/18F/fedramp-data/4b73d9247fd6360759960e4690e3ce4ca858e0fa/data/data.json
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-15/suppliers
 - https://www.gs1.org/services/gdsn/certified-data-pools-list
 - https://www.gs1us.org/services/find-gs1-us-solution-partner/profiles
@@ -1309,6 +1316,123 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Slack app
+- partner_name: Maven Central
+  partner: maven-central
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Java/JVM)
+  evidence: https://central.sonatype.com/artifact/com.snowflake/snowflake-kafka-connector
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.snowflake:snowflake-kafka-connector
+      version: 4.2.2
+      released: '2026-10-12'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.snowflake/snowflake-kafka-connector
+      repo_leg: domain:snowflake.com
+      publisher_leg: groupId:snowflake.com
+      matched_by: domain
+    - name: com.snowflake:snowpark
+      version: 1.16.2
+      released: '2026-04-09'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.snowflake/snowpark
+      repo_leg: domain:snowflake.com
+      publisher_leg: groupId:snowflake.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/snowflake-sdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: snowflake-sdk
+      version: 3.4.0
+      released: '2026-09-30'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/snowflake-sdk
+      repo_leg: github-org:snowflakedb
+      publisher_leg: email:snowflake.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: PyPI
+  partner: pypi
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Python)
+  evidence: https://pypi.org/project/snowflake-ml-python/
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: snowflake-ml-python
+      version: 2.5.0
+      released: '2026-10-14'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/snowflake-ml-python/
+      repo_leg: github-org:snowflakedb
+      publisher_leg: email:snowflake.com
+      matched_by: domain
+    - name: snowflake-snowpark-python
+      version: 1.55.2
+      released: '2026-10-14'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/snowflake-snowpark-python/
+      repo_leg: domain:snowflake.com
+      publisher_leg: email:snowflake.com
+      matched_by: domain
+    - name: snowflake-sqlalchemy
+      version: 1.11.1
+      released: '2026-09-04'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/snowflake-sqlalchemy/
+      repo_leg: github-org:snowflakedb
+      publisher_leg: email:snowflake.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 templates:
 - title: Execute sql in Snowflake daily with Schedule by Zapier for consistent data management
   url: https://zapier.com/apps/schedule/integrations/snowflake/1697490/execute-sql-in-snowflake-daily-with-schedule-by-zapier-for-consistent-data-management
