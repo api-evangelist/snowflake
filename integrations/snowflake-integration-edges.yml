@@ -8,11 +8,13 @@ checked:
 - dbt/integrations/dbt-integration-edges.yml
 - https://api.nuget.org/v3
 - https://azuremarketplace.microsoft.com/
+- https://cloudsecurityalliance.org/star/registry
 - https://composio.dev/toolkits/snowflake
 - https://connectors.airbyte.com/files/registries/v0/cloud_registry.json
 - https://connectors.airbyte.com/files/registries/v0/oss_registry.json
 - https://crates.io/api/v1
 - https://docs.mparticle.com/integrations/snowflake/data-warehouse/
+- https://eucoc.cloud/en/public-register/list-of-adherent-services
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/activations/destinations/available-destinations/snowflake
 - https://fivetran.com/docs/connectors/partner-built-program
@@ -1415,6 +1417,36 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Cloud Security Alliance STAR Registry
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://cloudsecurityalliance.org/star/registry/snowflake/services/snowflake
+  category: Cloud security assurance
+  contract_reference:
+    register: CSA STAR Registry (cloudsecurityalliance.org/star/registry)
+    spec_file: null
+    standard: CSA STAR
+    role: star-level-1
+    registered_name: Snowflake
+    registry_id: snowflake
+    service_url: https://www.snowflake.com/en/
+    matched_domain: snowflake.com
+    matched_by: domain
+    identity_source: the service URL the organisation filed on its STAR listing (no lookup)
+    levels:
+    - STAR Level 1
+    certified_products: []
+    signal_note: STAR Level 1 (CAIQ self-assessment) = participation; certified_products = one entry per STAR Level
+      2 / STAR for AI Level 2 assessment TYPE (third-party certification, attestation, C-STAR, ValidAIted); lapsed
+      = every instance marked (Deprecated) by the registry; service counts never recorded
+    detected_by: sweep-compliance-assurance.py
+    detected: '2026-10-20'
+  detected_by: sweep-compliance-assurance.py
+  first_seen: '2026-10-20'
 templates:
 - title: Execute sql in Snowflake daily with Schedule by Zapier for consistent data management
   url: https://zapier.com/apps/schedule/integrations/snowflake/1697490/execute-sql-in-snowflake-daily-with-schedule-by-zapier-for-consistent-data-management
