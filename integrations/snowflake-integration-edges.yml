@@ -65,6 +65,10 @@ checked:
 - eclipse/integrations/eclipse-integration-edges.yml
 - opentofu/integrations/opentofu-integration-edges.yml
 - terraform/integrations/terraform-integration-edges.yml
+- https://iasme.co.uk/cyber-essentials/ncsc-certificate-search/
+- https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-14/suppliers
+- https://www.crowncommercial.gov.uk/agreements
+- https://www.ncsc.gov.uk/cyberessentials/search
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -4881,6 +4885,31 @@ edges:
   badges:
   - Verified publisher (Terraform partner tier)
   - Verified publisher (GitHub domain-verified organization)
+- partner_name: UK G-Cloud 14 (Digital Marketplace)
+  partner: null
+  partner_match: register
+  type: marketplace
+  marketplace: g-cloud
+  channel: distribution
+  relationship: distribution-channel
+  direction: third-party
+  evidence: https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-14/supplier/712444
+  category: UK public-sector procurement framework
+  contract_reference:
+    register: UK G-Cloud 14 supplier list (Digital Marketplace)
+    spec_file: null
+    role: g-cloud-supplier
+    registered_name: SNOWFLAKE COMPUTING U.K. LIMITED
+    register_id: '712444'
+    matched_domain: snowflake.com
+    matched_by: domain
+    domain_source: contact-email
+    signal_note: a framework award is distribution (selling to the public sector), not an integration; kept out
+      of position shares
+    detected_by: sweep-uk-g-cloud-suppliers.py
+    detected: '2026-10-21'
+  detected_by: sweep-uk-g-cloud-suppliers.py
+  first_seen: '2026-10-21'
 templates:
 - title: Execute sql in Snowflake daily with Schedule by Zapier for consistent data management
   url: https://zapier.com/apps/schedule/integrations/snowflake/1697490/execute-sql-in-snowflake-daily-with-schedule-by-zapier-for-consistent-data-management
