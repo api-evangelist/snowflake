@@ -62,6 +62,7 @@ checked:
 - https://skillsmp.com/sitemap.xml
 - https://www.skills.sh/sitemap.xml
 - https://app.snowflake.com/marketplace/providers
+- eclipse/integrations/eclipse-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -287,37 +288,6 @@ edges:
   - Verified domain
   detected_by: sweep-devtools.py
   detected: '2026-10-14'
-- partner_name: Okta (own)
-  partner: okta
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.okta.com/integrations/snowflake/
-  mirror_of: okta/integrations/okta-integration-edges.yml
-  apps:
-  - Snowflake
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Single Sign-On
-  badges:
-  - OKTA_VERIFIED
-  features:
-  - CREATE
-  - DEACTIVATE
-  - GROUP_LINKING
-  - GROUP_PUSH
-  - IDENTITY_SECURITY_POSTURE_MANAGEMENT
-  - SAML
-  - SWA
-  - SYNC_PASSWORD
-  - UPDATE
-  - WORKFLOWS_COMPATIBLE
-  - WORKFLOWS_CONNECTORS
 - partner_name: LangChain
   partner: langchain
   partner_match: framework
@@ -337,59 +307,6 @@ edges:
   matched_by: verified-domain-table
   detected_by: sweep-rag-vector.py
   first_seen: '2026-10-15'
-- partner_name: dbt (dbt-package-hub)
-  partner: dbt
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: dbt-package-hub
-  evidence: https://hub.getdbt.com/Snowflake-Labs/dbt_constraints/latest/
-  mirror_of: dbt/integrations/dbt-integration-edges.yml
-  apps:
-  - Snowflake Labs
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: dbt package
-- partner_name: Microsoft Teams (own)
-  partner: microsoft-teams
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://appsource.microsoft.com/en-us/product/office/WA200008996
-  mirror_of: microsoft-teams/integrations/microsoft-teams-integration-edges.yml
-  apps:
-  - Snowflake Cortex Agents
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Microsoft Teams app
-  publisher_verified:
-  - Microsoft 365 Publisher Attestation
-- partner_name: Slack (own)
-  partner: slack
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://slack.com/marketplace/A0BG0QVHTF0-snowflake
-  mirror_of: slack/integrations/slack-integration-edges.yml
-  apps:
-  - Snowflake
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Slack app
 - partner_name: Maven Central
   partner: maven-central
   partner_match: register
@@ -4819,6 +4736,109 @@ edges:
       not its domain)'
   detected_by: sweep-data-marketplaces.py
   detected: '2026-10-20'
+- partner_name: Okta (own)
+  partner: okta
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.okta.com/integrations/snowflake/
+  mirror_of: okta/integrations/okta-integration-edges.yml
+  apps:
+  - Snowflake
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Single Sign-On
+  badges:
+  - OKTA_VERIFIED
+  features:
+  - CREATE
+  - DEACTIVATE
+  - GROUP_LINKING
+  - GROUP_PUSH
+  - IDENTITY_SECURITY_POSTURE_MANAGEMENT
+  - SAML
+  - SWA
+  - SYNC_PASSWORD
+  - UPDATE
+  - WORKFLOWS_COMPATIBLE
+  - WORKFLOWS_CONNECTORS
+- partner_name: dbt (dbt-package-hub)
+  partner: dbt
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: dbt-package-hub
+  evidence: https://hub.getdbt.com/Snowflake-Labs/dbt_constraints/latest/
+  mirror_of: dbt/integrations/dbt-integration-edges.yml
+  apps:
+  - Snowflake Labs
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: dbt package
+- partner_name: Microsoft Teams (own)
+  partner: microsoft-teams
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appsource.microsoft.com/en-us/product/office/WA200008996
+  mirror_of: microsoft-teams/integrations/microsoft-teams-integration-edges.yml
+  apps:
+  - Snowflake Cortex Agents
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Microsoft Teams app
+  publisher_verified:
+  - Microsoft 365 Publisher Attestation
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A0BG0QVHTF0-snowflake
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - Snowflake
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
+- partner_name: Eclipse Foundation (open-vsx)
+  partner: eclipse
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: open-vsx
+  evidence: https://open-vsx.org/namespace/snowflake
+  mirror_of: eclipse/integrations/eclipse-integration-edges.yml
+  apps:
+  - Snowflake
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: IDE / developer extension marketplace listing
+  badges:
+  - Verified namespace
 templates:
 - title: Execute sql in Snowflake daily with Schedule by Zapier for consistent data management
   url: https://zapier.com/apps/schedule/integrations/snowflake/1697490/execute-sql-in-snowflake-daily-with-schedule-by-zapier-for-consistent-data-management
